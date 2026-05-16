@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mindful7777 — Hypnose für tiefe Ruhe</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blau: #1B2845;
+    --blau-hell: #253659;
+    --gold: #D4A574;
+    --gold-hell: #E8C49A;
+    --beige: #F7F4EE;
+    --beige-dunkel: #EDE9E0;
+    --grau: #3A3A3A;
+    --grau-hell: #6B6B6B;
+    --weiss: #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--beige); color: var(--grau); overflow-x: hidden; }
+  h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 20px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(27,40,69,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212,165,116,0.15);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); letter-spacing: 0.02em; text-decoration: none; }
+  .nav-logo span { color: rgba(212,165,116,0.5); font-size: 14px; font-family: 'DM Sans', sans-serif; display: block; font-weight: 300; letter-spacing: 0.15em; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 400; letter-spacing: 0.04em; transition: color .2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta { background: var(--gold); color: var(--blau); padding: 10px 22px; border-radius: 2px; font-size: 13px; font-weight: 500; text-decoration: none; letter-spacing: 0.06em; transition: background .2s; }
+  .nav-cta:hover { background: var(--gold-hell); }
+  .nav-mobile { display: none; cursor: pointer; }
+  .nav-mobile span { display: block; width: 22px; height: 1.5px; background: var(--gold); margin: 5px 0; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--blau);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 120px 5% 80px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(212,165,116,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(212,165,116,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image: linear-gradient(rgba(212,165,116,1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(212,165,116,1) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.25em; color: var(--gold); font-weight: 500; text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 40px; height: 1px; background: var(--gold); }
+  .hero h1 { font-size: clamp(42px, 7vw, 80px); color: var(--weiss); line-height: 1.08; margin-bottom: 28px; }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero-sub { font-size: 18px; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 480px; margin-bottom: 48px; font-weight: 300; }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--blau); padding: 16px 36px; font-size: 14px; font-weight: 500; letter-spacing: 0.08em; text-decoration: none; border-radius: 2px; transition: all .2s; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-hell); transform: translateY(-1px); }
+  .btn-ghost { color: rgba(255,255,255,0.7); padding: 16px 36px; font-size: 14px; letter-spacing: 0.06em; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; transition: all .2s; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stat-row { display: flex; gap: 48px; margin-top: 72px; padding-top: 48px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .hero-stat { }
+  .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--gold); line-height: 1; }
+  .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; margin-top: 6px; }
+  .hero-visual {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    width: min(420px, 40vw);
+    aspect-ratio: 3/4;
+    border: 1px solid rgba(212,165,116,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-visual-inner {
+    width: 100%; height: 100%;
+    background: linear-gradient(160deg, rgba(37,54,89,0.9) 0%, rgba(27,40,69,1) 60%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 24px; padding: 40px;
+  }
+  .welle { width: 100%; height: 80px; position: relative; overflow: hidden; }
+  .welle svg { width: 100%; height: 100%; }
+  .audio-card {
+    width: 100%; background: rgba(212,165,116,0.08); border: 1px solid rgba(212,165,116,0.2);
+    border-radius: 4px; padding: 20px;
+  }
+  .audio-card-title { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 15px; margin-bottom: 8px; }
+  .audio-card-sub { color: rgba(255,255,255,0.4); font-size: 12px; margin-bottom: 16px; }
+  .audio-play { width: 40px; height: 40px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .audio-play svg { width: 14px; height: 14px; fill: var(--blau); margin-left: 2px; }
+  .audio-bar { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 16px; position: relative; }
+  .audio-bar::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 35%; background: var(--gold); border-radius: 2px; }
+
+  /* ── SECTION GEMEINSAM ── */
+  section { padding: 100px 5%; }
+  .section-eyebrow { font-size: 11px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; font-weight: 500; margin-bottom: 16px; }
+  .section-title { font-size: clamp(32px, 4vw, 52px); line-height: 1.15; margin-bottom: 24px; color: var(--blau); }
+  .section-sub { font-size: 17px; color: var(--grau-hell); line-height: 1.75; max-width: 560px; font-weight: 300; }
+
+  /* ── WAS IST HYPNOSE ── */
+  .was-ist { background: var(--beige); }
+  .was-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .was-visual {
+    aspect-ratio: 1;
+    background: var(--blau);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .was-visual-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at center, rgba(212,165,116,0.15) 0%, transparent 65%);
+  }
+  .kreis-container { position: relative; width: 200px; height: 200px; }
+  .kreis {
+    position: absolute; border-radius: 50%; border: 1px solid rgba(212,165,116,0.3);
+    animation: puls 3s ease-in-out infinite;
+  }
+  .kreis:nth-child(1) { inset: 0; animation-delay: 0s; }
+  .kreis:nth-child(2) { inset: -30px; animation-delay: 0.5s; opacity: 0.6; }
+  .kreis:nth-child(3) { inset: -60px; animation-delay: 1s; opacity: 0.3; }
+  .kreis:nth-child(4) { inset: -90px; animation-delay: 1.5s; opacity: 0.15; }
+  @keyframes puls { 0%,100%{transform:scale(1);opacity:inherit} 50%{transform:scale(1.04);opacity:0.7} }
+  .kreis-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .kreis-label span:first-child { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--gold); }
+  .kreis-label span:last-child { font-size: 11px; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-top: 4px; }
+  .was-features { margin-top: 40px; display: flex; flex-direction: column; gap: 24px; }
+  .was-feature { display: flex; gap: 16px; align-items: flex-start; }
+  .was-feature-num { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--gold); opacity: 0.3; line-height: 1; flex-shrink: 0; width: 36px; }
+  .was-feature-text strong { display: block; font-size: 15px; font-weight: 500; color: var(--blau); margin-bottom: 4px; }
+  .was-feature-text p { font-size: 14px; color: var(--grau-hell); line-height: 1.6; }
+
+  /* ── PHASEN / METHODE ── */
+  .methode { background: var(--blau); }
+  .methode .section-title { color: var(--weiss); }
+  .methode .section-sub { color: rgba(255,255,255,0.5); }
+  .phasen-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 64px; }
+  .phase {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,165,116,0.1);
+    padding: 36px 28px;
+    transition: background .3s;
+    position: relative; overflow: hidden;
+  }
+  .phase::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold); transform: scaleX(0); transform-origin: left;
+    transition: transform .3s;
+  }
+  .phase:hover { background: rgba(212,165,116,0.05); }
+  .phase:hover::before { transform: scaleX(1); }
+  .phase-num { font-family: 'Playfair Display', serif; font-size: 64px; color: rgba(212,165,116,0.15); line-height: 1; margin-bottom: 20px; }
+  .phase-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); margin-bottom: 12px; }
+  .phase-dauer { font-size: 11px; letter-spacing: 0.12em; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 16px; }
+  .phase-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+  /* ── AUDIOS / PRODUKTE ── */
+  .audios { background: var(--beige); }
+  .audios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+  .audio-item {
+    background: var(--weiss); border-radius: 4px;
+    overflow: hidden; transition: transform .25s;
+    border: 1px solid var(--beige-dunkel);
+  }
+  .audio-item:hover { transform: translateY(-4px); }
+  .audio-cover {
+    aspect-ratio: 4/3; display: flex; align-items: flex-end;
+    padding: 24px; position: relative; overflow: hidden;
+  }
+  .audio-cover-1 { background: linear-gradient(160deg, #1B2845 0%, #2A4070 100%); }
+  .audio-cover-2 { background: linear-gradient(160deg, #2A1B3D 0%, #1B2845 100%); }
+  .audio-cover-3 { background: linear-gradient(160deg, #1B3A2B 0%, #1B2845 100%); }
+  .audio-cover-deco {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(212,165,116,0.15) 0%, transparent 60%);
+  }
+  .audio-cover-title { position: relative; z-index: 1; }
+  .audio-cover-title h3 { font-family: 'Playfair Display', serif; color: var(--weiss); font-size: 20px; line-height: 1.3; }
+  .audio-cover-title span { font-size: 11px; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; }
+  .audio-body { padding: 24px; }
+  .audio-meta { display: flex; gap: 16px; margin-bottom: 16px; }
+  .audio-tag { font-size: 11px; padding: 4px 10px; border-radius: 20px; background: var(--beige); color: var(--grau-hell); letter-spacing: 0.06em; }
+  .audio-tag.gold { background: rgba(212,165,116,0.12); color: #8B6030; }
+  .audio-desc { font-size: 14px; color: var(--grau-hell); line-height: 1.65; margin-bottom: 20px; }
+  .audio-footer { display: flex; align-items: center; justify-content: space-between; }
+  .audio-preis { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--blau); }
+  .audio-preis span { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--grau-hell); font-weight: 300; }
+  .audio-btn { background: var(--blau); color: var(--gold); padding: 10px 20px; font-size: 13px; border-radius: 2px; text-decoration: none; transition: background .2s; letter-spacing: 0.06em; }
+  .audio-btn:hover { background: var(--blau-hell); }
+
+  /* ── LEAD MAGNET ── */
+  .leadmagnet {
+    background: var(--blau);
+    position: relative; overflow: hidden;
+  }
+  .leadmagnet-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 80% at 100% 50%, rgba(212,165,116,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .leadmagnet-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .leadmagnet .section-title { color: var(--weiss); }
+  .leadmagnet .section-sub { color: rgba(255,255,255,0.5); margin-bottom: 36px; }
+  .form-group { display: flex; gap: 12px; }
+  .form-input {
+    flex: 1; padding: 14px 18px; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 2px;
+    color: var(--weiss); font-size: 14px; font-family: 'DM Sans', sans-serif;
+    outline: none; transition: border-color .2s;
+  }
+  .form-input::placeholder { color: rgba(255,255,255,0.3); }
+  .form-input:focus { border-color: var(--gold); }
+  .form-submit { background: var(--gold); color: var(--blau); padding: 14px 28px; border: none; border-radius: 2px; font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; letter-spacing: 0.06em; transition: background .2s; font-family: 'DM Sans', sans-serif; }
+  .form-submit:hover { background: var(--gold-hell); }
+  .form-note { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 12px; }
+  .lm-visual {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(212,165,116,0.15);
+    border-radius: 4px; padding: 40px; display: flex; flex-direction: column; gap: 20px;
+  }
+  .lm-audio-row { display: flex; align-items: center; gap: 16px; padding: 16px; background: rgba(212,165,116,0.06); border-radius: 4px; border: 1px solid rgba(212,165,116,0.12); }
+  .lm-play { width: 36px; height: 36px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .lm-play svg { width: 12px; fill: var(--blau); margin-left: 2px; }
+  .lm-info { flex: 1; }
+  .lm-title { font-size: 13px; font-weight: 500; color: var(--weiss); }
+  .lm-dauer { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+  .lm-bar { height: 2px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-top: 10px; position: relative; }
+  .lm-bar::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; background: var(--gold); border-radius: 2px; }
+  .lm-bar-1::before { width: 0%; }
+  .lm-bar-2::before { width: 0%; }
+  .lm-bar-3::before { width: 0%; }
+  .lm-free { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; text-align: center; }
+
+  /* ── ÜBER ANDRÉ ── */
+  .ueber { background: var(--beige-dunkel); }
+  .ueber-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: center; }
+  .ueber-bild {
+    aspect-ratio: 3/4; background: var(--blau);
+    border-radius: 4px; position: relative; overflow: hidden;
+    display: flex; align-items: flex-end;
+  }
+  .ueber-bild-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(27,40,69,0.9) 0%, rgba(27,40,69,0.1) 60%); }
+  .ueber-bild-deco { position: absolute; top: 0; left: 0; right: 0; height: 60%; background: radial-gradient(circle at 60% 40%, rgba(212,165,116,0.1) 0%, transparent 60%); }
+  .ueber-bild-name { position: relative; z-index: 1; padding: 24px; }
+  .ueber-bild-name strong { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--weiss); display: block; }
+  .ueber-bild-name span { font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+  .ueber-qualifikationen { margin-top: 32px; display: flex; flex-direction: column; gap: 12px; }
+  .qual-item { display: flex; gap: 12px; align-items: center; }
+  .qual-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  .qual-text { font-size: 14px; color: var(--grau-hell); }
+  .ueber-zitat {
+    font-family: 'Playfair Display', serif; font-size: 22px; line-height: 1.5;
+    color: var(--blau); font-style: italic; margin: 32px 0;
+    padding-left: 24px; border-left: 2px solid var(--gold);
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--blau); }
+  .testimonials .section-title { color: var(--weiss); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+  .testi {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(212,165,116,0.12);
+    border-radius: 4px; padding: 32px;
+  }
+  .testi-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 20px; }
+  .testi-text { font-family: 'Playfair Display', serif; font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.6; font-style: italic; margin-bottom: 24px; }
+  .testi-autor { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(212,165,116,0.2); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; color: var(--gold); font-size: 15px; }
+  .testi-name strong { display: block; font-size: 13px; color: rgba(255,255,255,0.7); }
+  .testi-name span { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  /* ── FOOTER ── */
+  footer { background: #111C2E; padding: 60px 5% 40px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); margin-bottom: 16px; }
+  .footer-desc { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 260px; }
+  .footer-col h4 { font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 0.15em; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.2); }
+  .footer-disclaimer { font-size: 11px; color: rgba(255,255,255,0.15); max-width: 500px; line-height: 1.6; }
+  .qr-code {
+    width: 64px; height: 64px; background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 4px; flex-shrink: 0;
+  }
+  .qr-code svg { width: 48px; height: 48px; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 5%; }
+    .nav-links, .nav-cta { display: none; }
+    .nav-mobile { display: block; }
+    .hero { padding: 100px 5% 60px; flex-direction: column; }
+    .hero-visual { display: none; }
+    .hero-stat-row { gap: 32px; }
+    .was-grid, .ueber-grid, .leadmagnet-inner { grid-template-columns: 1fr; gap: 40px; }
+    .was-visual { aspect-ratio: 16/9; }
+    .ueber-bild { aspect-ratio: 16/9; }
+    .phasen-grid { grid-template-columns: 1fr 1fr; }
+    .audios-grid { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .form-group { flex-direction: column; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 70px 5%; }
+    .phasen-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-stat-row { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">mindful7777 <span>Hypnose · Tiefe Ruhe</span></a>
+  <ul class="nav-links">
+    <li><a href="#methode">Methode</a></li>
+    <li><a href="#audios">Audios</a></li>
+    <li><a href="#ueber">Über André</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#gratis" class="nav-cta">Gratis-Audio ↓</a>
+  <div class="nav-mobile"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Hypnose für den Alltag</div>
+    <h1>Tiefe Ruhe.<br><em>Endlich</em> wieder<br>schlafen.</h1>
+    <p class="hero-sub">Geführte Hypnose-Audios, die deinen Geist sanft in Entspannung führen — wissenschaftlich fundiert, ohne Esoterik.</p>
+    <div class="hero-actions">
+      <a href="#gratis" class="btn-primary">Gratis-Audio hören</a>
+      <a href="#methode" class="btn-ghost">Wie es funktioniert →</a>
+    </div>
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <div class="hero-stat-num">10'</div>
+        <div class="hero-stat-label">Reicht für erste Wirkung</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">4</div>
+        <div class="hero-stat-label">Phasen pro Sitzung</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">∞</div>
+        <div class="hero-stat-label">Hörbar, wann immer nötig</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-visual-inner">
+      <div class="welle">
+        <svg viewBox="0 0 300 80" fill="none">
+          <path d="M0 40 Q25 10 50 40 Q75 70 100 40 Q125 10 150 40 Q175 70 200 40 Q225 10 250 40 Q275 70 300 40" stroke="#D4A574" stroke-width="1.5" stroke-opacity="0.4" fill="none"/>
+          <path d="M0 40 Q25 20 50 40 Q75 60 100 40 Q125 20 150 40 Q175 60 200 40 Q225 20 250 40 Q275 60 300 40" stroke="#D4A574" stroke-width="0.8" stroke-opacity="0.2" fill="none"/>
+        </svg>
+      </div>
+      <div class="audio-card">
+        <div class="audio-card-title">Der 10-Minuten-Reset</div>
+        <div class="audio-card-sub">Tiefenentspannung · 10 Min</div>
+        <div class="audio-play">
+          <svg viewBox="0 0 10 12"><path d="M0 0L10 6L0 12Z"/></svg>
+        </div>
+        <div class="audio-bar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAS IST HYPNOSE -->
+<section class="was-ist" id="methode">
+  <div class="was-grid">
+    <div class="was-visual">
+      <div class="was-visual-bg"></div>
+      <div class="kreis-container">
+        <div class="kreis"></div>
+        <div class="kreis"></div>
+        <div class="kreis"></div>
+        <div class="kreis"></div>
+        <div class="kreis-label">
+          <span>α</span>
+          <span>Alpha-Wellen</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-eyebrow">Was ist Hypnose?</div>
+      <h2 class="section-title">Ein Zustand, den du bereits kennst.</h2>
+      <p class="section-sub">Hypnose ist kein Schlaf und keine Bewusstlosigkeit. Es ist der entspannte Zustand kurz vor dem Einschlafen — gezielte herbeigeführt und genutzt.</p>
+      <div class="was-features">
+        <div class="was-feature">
+          <div class="was-feature-num">1</div>
+          <div class="was-feature-text">
+            <strong>Natürlicher Zustand</strong>
+            <p>Beim Tagträumen, Lesen oder Autofahren bist du täglich in ähnlichen Zuständen — Hypnose macht das nutzbar.</p>
+          </div>
+        </div>
+        <div class="was-feature">
+          <div class="was-feature-num">2</div>
+          <div class="was-feature-text">
+            <strong>Wissenschaftlich fundiert</strong>
+            <p>Das Ericksonsches Modell ist die sanfteste, am besten erforschte Form der Hypnosearbeit.</p>
+          </div>
+        </div>
+        <div class="was-feature">
+          <div class="was-feature-num">3</div>
+          <div class="was-feature-text">
+            <strong>Du behältst die Kontrolle</strong>
+            <p>Kein Kontrollverlust, keine Programmierung — du entscheidest, was du annimmst.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODE / PHASEN -->
+<section class="methode">
+  <div class="section-eyebrow">Die 4-Phasen-Methode</div>
+  <h2 class="section-title">Jedes Audio folgt<br>derselben Struktur.</h2>
+  <p class="section-sub">Kein Zufall. Jeder Schritt hat einen Zweck.</p>
+  <div class="phasen-grid">
+    <div class="phase">
+      <div class="phase-num">01</div>
+      <div class="phase-title">Induktion</div>
+      <div class="phase-dauer">2 – 4 Minuten</div>
+      <p class="phase-desc">Sanfter Einstieg. Atemübung, Fokussierung, Sicherheitsanker. Dein Nervensystem bekommt das Signal: Es ist sicher, loszulassen.</p>
+    </div>
+    <div class="phase">
+      <div class="phase-num">02</div>
+      <div class="phase-title">Vertiefung</div>
+      <div class="phase-dauer">3 – 5 Minuten</div>
+      <p class="phase-desc">Progressive Muskelentspannung oder Treppenbilder vertiefen den Zustand. Du gehst nicht „weg" — du gehst tiefer in dich rein.</p>
+    </div>
+    <div class="phase">
+      <div class="phase-num">03</div>
+      <div class="phase-title">Suggestion</div>
+      <div class="phase-dauer">Kernstück</div>
+      <p class="phase-desc">Themenspezifische Formulierungen, die deinen Geist in eine nützliche Richtung lenken. Positiv, präzise, ohne Druck.</p>
+    </div>
+    <div class="phase">
+      <div class="phase-num">04</div>
+      <div class="phase-title">Rückführung</div>
+      <div class="phase-dauer">1 – 2 Minuten</div>
+      <p class="phase-desc">Sanftes Zurückkehren. Du wachst erfrischt auf — nicht gerissen, sondern geführt. Mit einem klaren Kopf und ruhigem Körper.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIOS -->
+<section class="audios" id="audios">
+  <div class="section-eyebrow">Unsere Hypnose-Audios</div>
+  <h2 class="section-title">Wähle deinen Einstieg.</h2>
+  <p class="section-sub">Alle Audios wurden von André persönlich eingesprochen und nach der 4-Phasen-Methode aufgebaut.</p>
+  <div class="audios-grid">
+    <div class="audio-item">
+      <div class="audio-cover audio-cover-1">
+        <div class="audio-cover-deco"></div>
+        <div class="audio-cover-title">
+          <span>Schlaf · 20 Min</span>
+          <h3>Tief & durch­schlafend erwachen</h3>
+        </div>
+      </div>
+      <div class="audio-body">
+        <div class="audio-meta">
+          <span class="audio-tag">Schlaf</span>
+          <span class="audio-tag gold">Bestseller</span>
+        </div>
+        <p class="audio-desc">Für Menschen, die gedankenkarussell-bedingt nicht einschlafen können. Viele berichten von Wirkung ab der ersten Nacht.</p>
+        <div class="audio-footer">
+          <div class="audio-preis">9,90 € <span>/ einmalig</span></div>
+          <a href="#" class="audio-btn">Hören</a>
+        </div>
+      </div>
+    </div>
+    <div class="audio-item">
+      <div class="audio-cover audio-cover-2">
+        <div class="audio-cover-deco"></div>
+        <div class="audio-cover-title">
+          <span>Stress · 15 Min</span>
+          <h3>Der 10-Minuten-Reset</h3>
+        </div>
+      </div>
+      <div class="audio-body">
+        <div class="audio-meta">
+          <span class="audio-tag">Stress</span>
+          <span class="audio-tag">Alltag</span>
+        </div>
+        <p class="audio-desc">Kurze Pause — große Wirkung. Für gestresste Berufstätige, die mittags oder abends kurz auftanken wollen.</p>
+        <div class="audio-footer">
+          <div class="audio-preis">7,90 € <span>/ einmalig</span></div>
+          <a href="#" class="audio-btn">Hören</a>
+        </div>
+      </div>
+    </div>
+    <div class="audio-item">
+      <div class="audio-cover audio-cover-3">
+        <div class="audio-cover-deco"></div>
+        <div class="audio-cover-title">
+          <span>Angst · 25 Min</span>
+          <h3>Ruhig bleiben in jeder Situation</h3>
+        </div>
+      </div>
+      <div class="audio-body">
+        <div class="audio-meta">
+          <span class="audio-tag">Angst</span>
+          <span class="audio-tag">Gelassenheit</span>
+        </div>
+        <p class="audio-desc">Für Momente, in denen Anspannung und Sorgen überhandnehmen. Kann helfen, mehr Abstand und innere Ruhe zu finden.</p>
+        <div class="audio-footer">
+          <div class="audio-preis">9,90 € <span>/ einmalig</span></div>
+          <a href="#" class="audio-btn">Hören</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD MAGNET -->
+<section class="leadmagnet" id="gratis">
+  <div class="leadmagnet-bg"></div>
+  <div class="leadmagnet-inner">
+    <div>
+      <div class="section-eyebrow">Kostenlos starten</div>
+      <h2 class="section-title">3 Gratis-Audios.<br>Kein Risiko.</h2>
+      <p class="section-sub">Trag deine E-Mail ein und erhalte sofort Zugang zu drei vollständigen Hypnose-Audios — kostenlos, ohne Abo.</p>
+      <div class="form-group">
+        <input type="email" class="form-input" placeholder="deine@email.de">
+        <button class="form-submit">Jetzt gratis hören</button>
+      </div>
+      <p class="form-note">Kein Spam. Abmelden jederzeit möglich. Deine Daten bleiben bei uns.</p>
+    </div>
+    <div class="lm-visual">
+      <div class="lm-free">Dein Gratis-Paket enthält</div>
+      <div class="lm-audio-row">
+        <div class="lm-play"><svg viewBox="0 0 10 12" fill="#1B2845"><path d="M0 0L10 6L0 12Z"/></svg></div>
+        <div class="lm-info">
+          <div class="lm-title">Einführung in Selbsthypnose</div>
+          <div class="lm-dauer">12 Minuten · Für Einsteiger</div>
+          <div class="lm-bar lm-bar-1"></div>
+        </div>
+      </div>
+      <div class="lm-audio-row">
+        <div class="lm-play"><svg viewBox="0 0 10 12" fill="#1B2845"><path d="M0 0L10 6L0 12Z"/></svg></div>
+        <div class="lm-info">
+          <div class="lm-title">Abend-Entspannung</div>
+          <div class="lm-dauer">8 Minuten · Vor dem Schlafen</div>
+          <div class="lm-bar lm-bar-2"></div>
+        </div>
+      </div>
+      <div class="lm-audio-row">
+        <div class="lm-play"><svg viewBox="0 0 10 12" fill="#1B2845"><path d="M0 0L10 6L0 12Z"/></svg></div>
+        <div class="lm-info">
+          <div class="lm-title">Stressabbau in 5 Minuten</div>
+          <div class="lm-dauer">5 Minuten · Für zwischendurch</div>
+          <div class="lm-bar lm-bar-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÜBER ANDRÉ -->
+<section class="ueber" id="ueber">
+  <div class="ueber-grid">
+    <div class="ueber-bild">
+      <div class="ueber-bild-deco"></div>
+      <div class="ueber-bild-overlay"></div>
+      <div class="ueber-bild-name">
+        <strong>André</strong>
+        <span>Gründer · mindful7777</span>
+      </div>
+    </div>
+    <div>
+      <div class="section-eyebrow">Über André</div>
+      <h2 class="section-title">Keine Esoterik.<br>Nur das, was wirkt.</h2>
+      <div class="ueber-zitat">„Ich wollte selbst etwas, das mir wirklich hilft — nicht irgendwas Mystisches, sondern etwas Handfestes."</div>
+      <p class="section-sub">André entwickelt mindful7777-Audios auf Basis des Ericksonschen Modells — dem sanftesten und am besten erforschten Ansatz der Hypnosearbeit.</p>
+      <div class="ueber-qualifikationen">
+        <div class="qual-item"><div class="qual-dot"></div><div class="qual-text">Ausbildung in Ericksonscher Hypnose</div></div>
+        <div class="qual-item"><div class="qual-dot"></div><div class="qual-text">Zertifizierter Hypnose-Coach</div></div>
+        <div class="qual-item"><div class="qual-dot"></div><div class="qual-text">Alle Audios selbst eingesprochen</div></div>
+        <div class="qual-item"><div class="qual-dot"></div><div class="qual-text">Standort: Frankfurt am Main</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-eyebrow">Erfahrungen</div>
+  <h2 class="section-title" style="color:var(--weiss)">Was andere berichten.</h2>
+  <div class="testi-grid">
+    <div class="testi">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">„Ich habe das Schlaf-Audio drei Nächte in Folge gehört. Am dritten Tag bin ich zum ersten Mal seit Wochen durchgeschlafen."</p>
+      <div class="testi-autor">
+        <div class="testi-avatar">S</div>
+        <div class="testi-name"><strong>Sandra M.</strong><span>Lehrerin, 41</span></div>
+      </div>
+    </div>
+    <div class="testi">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">„Ich war skeptisch. Hypnose klang nach Hokuspokus. Aber der Reset-Audio hat mir in stressigen Meetings wirklich geholfen."</p>
+      <div class="testi-autor">
+        <div class="testi-avatar">T</div>
+        <div class="testi-name"><strong>Thomas K.</strong><span>Projektleiter, 38</span></div>
+      </div>
+    </div>
+    <div class="testi">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">„Andrés Stimme ist unglaublich ruhig. Ich bin jedes Mal eingeschlafen — was für mich schon eine Leistung ist."</p>
+      <div class="testi-autor">
+        <div class="testi-avatar">L</div>
+        <div class="testi-name"><strong>Laura B.</strong><span>Selbstständig, 34</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">mindful7777</div>
+      <p class="footer-desc">Hypnose-Audios für tiefe Ruhe, besseren Schlaf und weniger Stress. Wissenschaftlich fundiert, ohne Esoterik.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Audios</h4>
+      <ul>
+        <li><a href="#">Schlaf-Hypnose</a></li>
+        <li><a href="#">Stress-Reset</a></li>
+        <li><a href="#">Angst & Ruhe</a></li>
+        <li><a href="#">Alle Audios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Mehr</h4>
+      <ul>
+        <li><a href="#">Über André</a></li>
+        <li><a href="#">Methode</a></li>
+        <li><a href="#">Coaching</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Rechtliches</h4>
+      <ul>
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+        <li><a href="#">Disclaimer</a></li>
+        <li><a href="#">AGB</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>
+      <p>© 2025 mindful7777 · Alle Rechte vorbehalten</p>
+      <p class="footer-disclaimer" style="margin-top:6px">Alle Audios dienen der Entspannung und ersetzen keine medizinische oder psychotherapeutische Behandlung. Nicht beim Fahren verwenden.</p>
+    </div>
+    <div class="qr-code">
+      <svg viewBox="0 0 48 48" fill="none">
+        <rect x="2" y="2" width="18" height="18" rx="2" fill="#1B2845"/>
+        <rect x="5" y="5" width="12" height="12" rx="1" fill="#D4A574"/>
+        <rect x="28" y="2" width="18" height="18" rx="2" fill="#1B2845"/>
+        <rect x="31" y="5" width="12" height="12" rx="1" fill="#D4A574"/>
+        <rect x="2" y="28" width="18" height="18" rx="2" fill="#1B2845"/>
+        <rect x="5" y="31" width="12" height="12" rx="1" fill="#D4A574"/>
+        <rect x="28" y="28" width="6" height="6" fill="#1B2845"/>
+        <rect x="36" y="28" width="10" height="6" fill="#1B2845"/>
+        <rect x="28" y="36" width="10" height="6" fill="#1B2845"/>
+        <rect x="40" y="36" width="6" height="6" fill="#1B2845"/>
+      </svg>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
