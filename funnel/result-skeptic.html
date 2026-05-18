@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title><!-- BACKFALL7777: Seitentitel --> · mindful7777</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#1a1a2e;--sage:#7c9a7e;--warm:#c4956a;--cream:#faf7f2;--light:#f0ebe3;--muted:#8a8478;--gold:#c4a96a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh;}
+
+/* HERO */
+.hero{min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 1.5rem 3rem;position:relative;overflow:hidden;}
+.hero::before{content:'✦';position:absolute;font-size:50vw;color:rgba(124,154,126,0.04);pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%);}
+.brand{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--sage);margin-bottom:2rem;}
+.type-badge{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage);border:1px solid rgba(124,154,126,0.3);padding:0.3rem 0.9rem;margin-bottom:1.2rem;display:inline-block;}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,6vw,3.8rem);font-weight:300;line-height:1.1;margin-bottom:1rem;}
+h1 em{color:var(--sage);font-style:italic;}
+.hero-sub{font-size:0.9rem;color:#9a9080;max-width:400px;line-height:1.75;}
+
+/* CONTENT */
+.section{max-width:580px;margin:0 auto;padding:3rem 1.5rem 0;}
+.section h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;margin-bottom:0.8rem;}
+.section p{font-size:0.87rem;color:#9a9080;line-height:1.85;margin-bottom:0.8rem;}
+.trait-list{list-style:none;margin:1rem 0 1.5rem;}
+.trait-list li{padding:0.65rem 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.83rem;display:flex;gap:0.8rem;}
+.trait-list li::before{content:'✦';color:var(--sage);font-size:0.6rem;flex-shrink:0;margin-top:3px;}
+
+/* FREE CTA */
+.cta-free{background:rgba(124,154,126,0.07);border:1px solid rgba(124,154,126,0.18);padding:1.8rem;text-align:center;margin:2rem 0;}
+.cta-free h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;margin-bottom:0.4rem;}
+.cta-free p{font-size:0.76rem;color:var(--muted);margin-bottom:1.1rem;}
+.btn{display:inline-block;text-decoration:none;font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.8rem 1.8rem;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:opacity 0.2s;}
+.btn:hover{opacity:0.85;}
+.btn-sage{background:var(--sage);color:var(--cream);}
+.btn-outline{background:none;border:1px solid var(--sage);color:var(--sage);}
+
+/* LEVELS */
+.levels{max-width:580px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+.levels-hdr{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:1.5rem;}
+.lcard{border:1px solid rgba(255,255,255,0.07);margin-bottom:0.7rem;overflow:hidden;}
+.lhead{padding:1.1rem 1.4rem;display:flex;align-items:center;gap:0.9rem;cursor:pointer;transition:background 0.2s;}
+.lhead:hover{background:rgba(255,255,255,0.02);}
+.lnum{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:600;flex-shrink:0;}
+.l1 .lnum{background:rgba(124,154,126,0.15);color:var(--sage);}
+.l2 .lnum{background:rgba(196,169,106,0.15);color:var(--gold);}
+.l3 .lnum{background:rgba(196,149,106,0.15);color:var(--warm);}
+.l4 .lnum{background:rgba(180,180,220,0.15);color:#b4b4dc;}
+.linfo{flex:1;}
+.lname{font-size:0.88rem;font-weight:500;margin-bottom:0.15rem;}
+.ldesc{font-size:0.7rem;color:var(--muted);}
+.llock{font-size:0.65rem;color:var(--muted);letter-spacing:0.07em;white-space:nowrap;}
+.llock.free{color:var(--sage);}
+.lbody{display:none;padding:1.2rem 1.4rem 1.5rem;border-top:1px solid rgba(255,255,255,0.05);background:rgba(0,0,0,0.15);}
+.lbody.open{display:block;}
+.lbody h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;margin-bottom:0.7rem;color:var(--sage);}
+.lbody p{font-size:0.83rem;color:#9a9080;line-height:1.8;margin-bottom:0.8rem;}
+
+/* BACKFALL7777 MARKER */
+.bf{
+  border:1px dashed rgba(255,200,0,0.3);
+  background:rgba(255,200,0,0.03);
+  padding:0.8rem 1rem;
+  margin:0.8rem 0;
+  font-size:0.75rem;
+  color:rgba(255,200,0,0.5);
+  font-family:monospace;
+  line-height:1.6;
+}
+.bf::before{content:'✏ BACKFALL7777 → ';font-weight:bold;}
+
+/* PW */
+.pw-row{display:flex;gap:0.5rem;margin-top:0.8rem;}
+.pw-in{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:0.86rem;padding:0.6rem 0.8rem;outline:none;transition:border-color 0.2s;}
+.pw-in:focus{border-color:var(--sage);}
+.pw-in.err{border-color:#c46a6a;animation:shake 0.3s;}
+@keyframes shake{0%,100%{transform:translateX(0);}33%{transform:translateX(-5px);}66%{transform:translateX(5px);}};
+.pw-btn{background:var(--sage);color:var(--cream);border:none;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0 1.1rem;cursor:pointer;}
+.pw-err{font-size:0.7rem;color:#c46a6a;margin-top:0.4rem;display:none;}
+.pw-hint{font-size:0.67rem;color:var(--muted);margin-top:0.45rem;}
+.pw-hint a{color:var(--sage);text-decoration:none;}
+.unlocked{display:none;margin-top:1rem;border-top:1px solid rgba(124,154,126,0.2);padding-top:1rem;}
+
+/* FOOTER */
+.foot{max-width:580px;margin:0 auto;padding:0 1.5rem 4rem;display:flex;flex-direction:column;align-items:center;gap:0.7rem;}
+.btn-wa{display:flex;align-items:center;justify-content:center;gap:0.55rem;text-decoration:none;font-size:0.77rem;font-weight:500;padding:0.85rem 1.5rem;border:1px solid #25d366;color:#25d366;transition:background 0.2s;width:100%;max-width:320px;}
+.btn-wa:hover{background:rgba(37,211,102,0.07);}
+.btn-wa svg{width:14px;height:14px;fill:currentColor;flex-shrink:0;}
+.back{font-size:0.67rem;color:var(--muted);}
+.back a{color:var(--sage);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BACKFALL7777: HERO — Typ-spezifisch anpassen -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="hero">
+  <div class="brand">mindful7777 · Your Result</div>
+  <span class="type-badge"><!-- BACKFALL7777: Typ-Name, z.B. "Type · The Open One" --></span>
+  <h1><!-- BACKFALL7777: Haupt-Headline --><br/><!-- BACKFALL7777: zweite Zeile mit <em>kursiv</em> --></h1>
+  <p class="hero-sub"><!-- BACKFALL7777: 1-2 Sätze die diesen Typ beschreiben --></p>
+</div>
+
+<!-- FREE SECTION -->
+<div class="section">
+  <h2><!-- BACKFALL7777: Abschnittstitel, z.B. "What this means for you" --></h2>
+  <div class="bf">Absatz 1 — Erkläre was dieser Typ bedeutet (2-3 Sätze)</div>
+  <div class="bf">Absatz 2 — Was macht diesen Typ besonders / welche Stärken (2 Sätze)</div>
+
+  <ul class="trait-list">
+    <li><!-- BACKFALL7777: Eigenschaft 1 --></li>
+    <li><!-- BACKFALL7777: Eigenschaft 2 --></li>
+    <li><!-- BACKFALL7777: Eigenschaft 3 --></li>
+    <li><!-- BACKFALL7777: Eigenschaft 4 --></li>
+  </ul>
+
+  <div class="cta-free">
+    <h3>Start here — it's free</h3>
+    <p><!-- BACKFALL7777: kurzer Satz warum der PDF Guide für diesen Typ passt --></p>
+    <a href="https://mindful777.gumroad.com" class="btn btn-sage" target="_blank" rel="noopener">↓ Free PDF on Gumroad</a>
+  </div>
+</div>
+
+<!-- LEVEL SYSTEM -->
+<div class="levels">
+  <div class="levels-hdr">Your personalised journey — 4 levels</div>
+
+  <!-- ── LEVEL 1 FREE ── -->
+  <div class="lcard l1">
+    <div class="lhead" onclick="toggle('b1')">
+      <div class="lnum">1</div>
+      <div class="linfo">
+        <div class="lname"><!-- BACKFALL7777: Level 1 Titel --></div>
+        <div class="ldesc"><!-- BACKFALL7777: Level 1 Untertitel --></div>
+      </div>
+      <span class="llock free">FREE ↓</span>
+    </div>
+    <div class="lbody open" id="b1">
+      <h4><!-- BACKFALL7777: Level 1 Inhalts-Überschrift --></h4>
+      <div class="bf">Übung / Anleitung für Level 1 — kostenlos, sofort zugänglich. Typ-spezifisch. Ca. 100-150 Wörter.</div>
+      <div class="bf">Optional: Link zu WhatsApp oder Gumroad</div>
+    </div>
+  </div>
+
+  <!-- ── LEVEL 2 PASSWORD ── -->
+  <div class="lcard l2">
+    <div class="lhead" onclick="toggle('b2')">
+      <div class="lnum">2</div>
+      <div class="linfo">
+        <div class="lname"><!-- BACKFALL7777: Level 2 Titel --></div>
+        <div class="ldesc"><!-- BACKFALL7777: Level 2 Untertitel --></div>
+      </div>
+      <span class="llock">🔒 Password required</span>
+    </div>
+    <div class="lbody" id="b2">
+      <div class="bf">Beschreibe kurz was Level 2 enthält (ohne es zu spoilern) — 1 Satz</div>
+      <div class="pw-row">
+        <input type="password" class="pw-in" id="pw2" placeholder="Enter access code..."/>
+        <button class="pw-btn" onclick="check(2,'<!-- BACKFALL7777: PASSWORT_L2 -->')">Unlock</button>
+      </div>
+      <div class="pw-err" id="err2">Wrong code. Try again.</div>
+      <p class="pw-hint">Code available on <a href="https://youtube.com/@mindful7777" target="_blank">YouTube →</a></p>
+      <div class="unlocked" id="ul2">
+        <h4><!-- BACKFALL7777: Level 2 Inhalts-Überschrift --></h4>
+        <div class="bf">Level 2 Inhalt — Typ-spezifisch. Z.B. geführte Audio-Session, Hypnose-Skript, Atemübung. Ca. 100-200 Wörter + optionaler Audio-Link.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LEVEL 3 PASSWORD ── -->
+  <div class="lcard l3">
+    <div class="lhead" onclick="toggle('b3')">
+      <div class="lnum">3</div>
+      <div class="linfo">
+        <div class="lname"><!-- BACKFALL7777: Level 3 Titel --></div>
+        <div class="ldesc"><!-- BACKFALL7777: Level 3 Untertitel --></div>
+      </div>
+      <span class="llock">🔒 Password required</span>
+    </div>
+    <div class="lbody" id="b3">
+      <div class="bf">Beschreibe kurz was Level 3 enthält — 1 Satz</div>
+      <div class="pw-row">
+        <input type="password" class="pw-in" id="pw3" placeholder="Enter access code..."/>
+        <button class="pw-btn" onclick="check(3,'<!-- BACKFALL7777: PASSWORT_L3 -->')">Unlock</button>
+      </div>
+      <div class="pw-err" id="err3">Wrong code. Try again.</div>
+      <p class="pw-hint">Code available on <a href="https://youtube.com/@mindful7777" target="_blank">YouTube →</a></p>
+      <div class="unlocked" id="ul3">
+        <h4><!-- BACKFALL7777: Level 3 Inhalts-Überschrift --></h4>
+        <div class="bf">Level 3 Inhalt — Typ-spezifisch. Z.B. Human Design Deep Dive, Persönlichkeitsanalyse, erweiterte Technik. Ca. 150-250 Wörter.</div>
+        <div class="bf">Optional: Hinweis auf Level 4 Code der hier versteckt ist</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LEVEL 4 INNER CIRCLE ── -->
+  <div class="lcard l4">
+    <div class="lhead" onclick="toggle('b4')">
+      <div class="lnum">4</div>
+      <div class="linfo">
+        <div class="lname"><!-- BACKFALL7777: Level 4 Titel --></div>
+        <div class="ldesc"><!-- BACKFALL7777: Level 4 Untertitel --></div>
+      </div>
+      <span class="llock" style="color:#b4b4dc;">🔒 Inner Circle</span>
+    </div>
+    <div class="lbody" id="b4">
+      <div class="bf">Kurze Einladung — wer ist bereit für dieses Level? 1-2 Sätze</div>
+      <div class="pw-row">
+        <input type="password" class="pw-in" id="pw4" placeholder="Enter Inner Circle code..."/>
+        <button class="pw-btn" onclick="check(4,'<!-- BACKFALL7777: PASSWORT_L4 -->')">Enter</button>
+      </div>
+      <div class="pw-err" id="err4">Wrong code. Try again.</div>
+      <p class="pw-hint">Code revealed inside Level 3.</p>
+      <div class="unlocked" id="ul4">
+        <h4><!-- BACKFALL7777: Level 4 Inhalts-Überschrift --></h4>
+        <div class="bf">Level 4 Inhalt — Buchung 1:1 Session. Persönlicher Text. Keyword für WhatsApp definieren. Ca. 80-120 Wörter.</div>
+        <a href="https://wa.me/4916346922255?text=INNER%20-%20ready" class="btn btn-sage" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;margin-top:0.8rem;">Book via WhatsApp →</a>
+        <a href="mailto:mindful7777@gmail.com?subject=INNER - Session" class="btn btn-outline" style="display:inline-block;text-decoration:none;margin-top:0.5rem;margin-left:0.5rem;">Book via Email →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="foot">
+  <a href="https://wa.me/4916346922255" class="btn-wa" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Any questions? Write me directly
+  </a>
+  <div class="back"><a href="quiz.html">← Retake the quiz</a> · <a href="../index.html">mindful7777 home</a></div>
+</div>
+
+<script>
+function toggle(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+function check(lvl, correct){
+  const inp=document.getElementById('pw'+lvl);
+  const err=document.getElementById('err'+lvl);
+  const ul=document.getElementById('ul'+lvl);
+  const key='m7_lv'+lvl+'_'+window.location.pathname;
+  if(inp.value===correct||localStorage.getItem(key)==='1'){
+    localStorage.setItem(key,'1');
+    ul.style.display='block';
+    inp.closest('.pw-row').style.display='none';
+    err.style.display='none';
+    inp.closest('.lbody').querySelector('.pw-hint').style.display='none';
+  } else {
+    inp.classList.add('err');
+    err.style.display='block';
+    setTimeout(()=>inp.classList.remove('err'),350);
+  }
+}
+
+// Auto-restore unlocked levels
+[2,3,4].forEach(l=>{
+  const key='m7_lv'+l+'_'+window.location.pathname;
+  if(localStorage.getItem(key)==='1'){
+    document.getElementById('ul'+l).style.display='block';
+    const row=document.querySelector('#b'+l+' .pw-row');
+    if(row)row.style.display='none';
+    const hint=document.querySelector('#b'+l+' .pw-hint');
+    if(hint)hint.style.display='none';
+  }
+});
+</script>
+</body>
+</html>

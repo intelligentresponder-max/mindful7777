@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Onboarding · mindful7777</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ── TYPE MATRIX (documented here for reference) ────────────────
+  THE OPEN ONE      → open:    goal-driven, first-timer, trusting, high readiness
+  THE RATIONAL MIND → skeptic: analytical, stage-only, stays aware, cautious
+  THE INITIATED     → experienced: live sessions, deep absorption, complex goals
+  THE WANDERER      → seeker:  burnout, high stress, tried many things, unclear goal
+  Dominant score wins. Ties go to: experienced > open > seeker > skeptic
+──────────────────────────────────────────────────────────────── */
+:root{--ink:#1a1a2e;--sage:#7c9a7e;--warm:#c4956a;--cream:#faf7f2;--muted:#8a8478;--gold:#c4a96a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh;}
+.bg{position:fixed;font-size:55vw;font-family:'Cormorant Garamond',serif;font-weight:300;color:rgba(124,154,126,0.04);pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;user-select:none;}
+.topbar{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1.5rem 0;}
+.brand{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--sage);text-align:center;margin-bottom:1.2rem;}
+.brand a{color:var(--sage);text-decoration:none;}
+.prog-bar{width:100%;max-width:900px;height:1px;background:rgba(255,255,255,0.07);}
+.prog-fill{height:100%;background:linear-gradient(to right,var(--sage),var(--warm));transition:width 0.5s ease;}
+.stage{position:relative;z-index:1;display:grid;grid-template-columns:220px 1fr 220px;min-height:calc(100vh - 80px);align-items:stretch;}
+.img-side{position:sticky;top:0;height:100vh;overflow:hidden;}
+.img-side img{width:100%;height:100%;object-fit:cover;opacity:0;filter:saturate(0.55) brightness(0.72);transition:opacity 0.7s ease;}
+.img-side img.loaded{opacity:1;}
+.contrast-bar{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:0.3rem;pointer-events:none;}
+.contrast-word{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;font-style:italic;color:rgba(255,255,255,0.35);letter-spacing:0.05em;text-shadow:0 1px 8px rgba(0,0,0,0.8);}
+.contrast-line{width:1px;height:40px;background:rgba(124,154,126,0.3);}
+.img-side.left{border-right:1px solid rgba(124,154,126,0.1);}
+.img-side.right{border-left:1px solid rgba(124,154,126,0.1);}
+.credit{position:absolute;bottom:0.5rem;right:0.7rem;font-size:0.5rem;color:rgba(255,255,255,0.2);text-decoration:none;letter-spacing:0.05em;}
+.center{padding:3rem 2.5rem 5rem;display:flex;flex-direction:column;}
+.screen{display:none;}
+.screen.active{display:block;animation:fadeUp 0.4s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+#intro{text-align:center;padding:2rem 0;}
+.i-icon{font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--sage);opacity:0.35;margin-bottom:0.5rem;}
+.i-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:300;line-height:1.15;margin-bottom:1rem;}
+.i-title em{color:var(--sage);font-style:italic;}
+.i-sub{font-size:0.87rem;color:#9a9080;line-height:1.8;max-width:340px;margin:0 auto 0.7rem;}
+.i-note{font-size:0.67rem;color:var(--muted);margin-bottom:2.5rem;}
+.btn-start{background:var(--sage);color:var(--cream);border:none;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:1rem 2.5rem;cursor:pointer;transition:opacity 0.2s;}
+.btn-start:hover{opacity:0.85;}
+.q-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage);margin-bottom:0.8rem;}
+.q-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,3.5vw,1.85rem);font-weight:300;line-height:1.25;margin-bottom:0.4rem;}
+.q-hint{font-size:0.74rem;color:var(--muted);margin-bottom:1.5rem;font-style:italic;}
+.options{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.4rem;}
+.opt{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:flex-start;gap:0.8rem;text-align:left;color:var(--cream);font-family:'DM Sans',sans-serif;font-size:0.83rem;line-height:1.45;width:100%;}
+.opt:hover{border-color:rgba(124,154,126,0.4);background:rgba(124,154,126,0.05);}
+.opt.selected{border-color:var(--sage);background:rgba(124,154,126,0.1);}
+.dot{width:17px;height:17px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);flex-shrink:0;margin-top:2px;transition:all 0.2s;display:flex;align-items:center;justify-content:center;}
+.opt.selected .dot{border-color:var(--sage);background:var(--sage);}
+.opt.selected .dot::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--cream);}
+.scale-labels{display:flex;justify-content:space-between;font-size:0.64rem;color:var(--muted);margin-bottom:0.5rem;}
+.scale-row{display:flex;gap:0.3rem;margin-bottom:1.4rem;}
+.sc-btn{flex:1;padding:0.65rem 0;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.78rem;cursor:pointer;transition:all 0.2s;text-align:center;}
+.sc-btn:hover{border-color:rgba(124,154,126,0.4);color:var(--cream);}
+.sc-btn.selected{border-color:var(--sage);background:rgba(124,154,126,0.1);color:var(--sage);}
+.btn-next{width:100%;padding:0.95rem;background:var(--sage);color:var(--cream);border:none;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;display:none;}
+.btn-next.show{display:block;}
+.btn-next:hover{opacity:0.85;}
+
+/* ── STEP 11: Open text + contact ── */
+#q11{padding-bottom:0;}
+.field-label{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--sage);margin-bottom:0.4rem;margin-top:1.2rem;display:block;}
+.field-label:first-of-type{margin-top:0;}
+textarea,input[type=text],input[type=email]{
+  width:100%;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  color:var(--cream);font-family:'DM Sans',sans-serif;
+  font-size:0.85rem;padding:0.8rem 1rem;outline:none;
+  transition:border-color 0.2s;resize:vertical;
+}
+textarea:focus,input:focus{border-color:var(--sage);}
+textarea{min-height:120px;line-height:1.6;}
+.upload-zone{
+  border:1px dashed rgba(124,154,126,0.3);padding:1.2rem;
+  text-align:center;cursor:pointer;transition:all 0.2s;
+  font-size:0.78rem;color:var(--muted);margin-top:0.4rem;
+  position:relative;
+}
+.upload-zone:hover{border-color:var(--sage);color:var(--cream);}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-name{font-size:0.72rem;color:var(--sage);margin-top:0.4rem;}
+.contact-row{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;}
+
+/* ── ANALYSIS SCREEN ── */
+#analysis{padding:1rem 0;}
+.analysis-type{
+  display:inline-block;font-size:0.6rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--sage);
+  border:1px solid rgba(124,154,126,0.3);padding:0.3rem 0.9rem;
+  margin-bottom:1rem;
+}
+.analysis-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;line-height:1.15;margin-bottom:1rem;}
+.analysis-title em{color:var(--sage);font-style:italic;}
+.analysis-body{font-size:0.88rem;color:#9a9080;line-height:1.85;margin-bottom:1.5rem;}
+.analysis-signals{margin:1rem 0 1.5rem;}
+.signal-row{display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.78rem;}
+.signal-row .sk{color:var(--muted);}
+.signal-row .sv{color:var(--sage);}
+.analysis-tease{
+  background:rgba(124,154,126,0.06);border:1px solid rgba(124,154,126,0.15);
+  padding:1.2rem 1.5rem;font-size:0.83rem;color:#9a9080;
+  line-height:1.7;margin-bottom:1.5rem;font-style:italic;
+}
+.analysis-tease strong{color:var(--cream);font-style:normal;}
+.btn-result{
+  width:100%;padding:1rem;background:var(--sage);color:var(--cream);
+  border:none;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;
+}
+.btn-result:hover{opacity:0.85;}
+.apply-link{
+  display:block;text-align:center;margin-top:1rem;font-size:0.72rem;
+  color:var(--gold);text-decoration:none;letter-spacing:0.05em;
+}
+.apply-link:hover{color:var(--warm);}
+
+/* TRANSITION */
+#transition{text-align:center;padding:4rem 0;}
+.spinner{width:36px;height:36px;border:1px solid rgba(124,154,126,0.2);border-top-color:var(--sage);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1.5rem;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.t-msg{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;font-style:italic;color:var(--muted);}
+
+@media(max-width:800px){
+  .stage{grid-template-columns:1fr;}
+  .img-side{display:none;}
+  .center{padding:2rem 1.5rem 4rem;}
+  .contact-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="bg">7</div>
+<div class="topbar">
+  <div class="brand">
+    <a href="https://intelligentresponder-max.github.io/mindful7777/">mindful7777</a>
+    &nbsp;&middot;&nbsp; Onboarding
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="prog" style="width:0%"></div></div>
+</div>
+
+<div class="stage">
+  <!-- LEFT -->
+  <div class="img-side left" style="position:relative;">
+    <img id="img-left" src="" alt=""/>
+    <div class="contrast-bar">
+      <div class="contrast-word" id="label-left"></div>
+      <div class="contrast-line"></div>
+    </div>
+    <a class="credit" href="https://unsplash.com" target="_blank" rel="noopener">Photo: Unsplash</a>
+  </div>
+
+  <!-- CENTER -->
+  <div class="center">
+
+    <div class="screen active" id="intro">
+      <div class="i-icon">&#10022;</div>
+      <h1 class="i-title">Before we begin &mdash;<br/>tell me about <em>you.</em></h1>
+      <p class="i-sub">A few honest questions to help me understand where you are. No right or wrong answers &mdash; only yours.</p>
+      <p class="i-note">Confidential &nbsp;&middot;&nbsp; No account needed &nbsp;&middot;&nbsp; A few minutes</p>
+      <button class="btn-start" onclick="go('q1')">I'm ready &rarr;</button>
+      <p style="margin-top:1.5rem;font-size:0.68rem;color:var(--muted);">
+        Looking for the private area? &nbsp;
+        <a href="apply.html" style="color:var(--gold);text-decoration:none;">Apply for access &rarr;</a>
+      </p>
+    </div>
+
+    <div class="screen" id="q1">
+      <div class="q-label">What brings you here</div>
+      <div class="q-text">What brings you here today?</div>
+      <div class="q-hint">Choose the one that feels most true right now.</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q1','goal')"><div class="dot"></div>There's something specific I want to change &mdash; a habit, a fear, a pattern</button>
+        <button class="opt" onclick="pick(this,'q1','stress')"><div class="dot"></div>I'm overwhelmed or burned out &mdash; I need to find calm again</button>
+        <button class="opt" onclick="pick(this,'q1','sleep')"><div class="dot"></div>My sleep or energy has been off &mdash; I need to restore something</button>
+        <button class="opt" onclick="pick(this,'q1','curious')"><div class="dot"></div>Curiosity &mdash; I want to understand myself better</button>
+        <button class="opt" onclick="pick(this,'q1','lost')"><div class="dot"></div>I'm not sure &mdash; something led me here and I'm following it</button>
+      </div>
+      <button class="btn-next" id="nx1" onclick="go('q2')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q2">
+      <div class="q-label">Your experience with hypnosis</div>
+      <div class="q-text">Have you experienced hypnosis before?</div>
+      <div class="q-hint">Any kind &mdash; live session, audio, stage show.</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q2','never')"><div class="dot"></div>Never &mdash; this would be my first time</button>
+        <button class="opt" onclick="pick(this,'q2','audio')"><div class="dot"></div>Yes, through recordings or apps</button>
+        <button class="opt" onclick="pick(this,'q2','live')"><div class="dot"></div>Yes, in a live session with a practitioner</button>
+        <button class="opt" onclick="pick(this,'q2','stage')"><div class="dot"></div>Only stage hypnosis &mdash; entertainment, not therapy</button>
+        <button class="opt" onclick="pick(this,'q2','self')"><div class="dot"></div>I practice self-hypnosis or deep meditation regularly</button>
+      </div>
+      <button class="btn-next" id="nx2" onclick="go('q3')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q3">
+      <div class="q-label">Your honest feeling</div>
+      <div class="q-text">When you think about being hypnotised &mdash; what comes up?</div>
+      <div class="q-hint">Your gut feeling matters more than the "right" answer.</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q3','open')"><div class="dot"></div>Openness &mdash; I trust the process and I'm ready</button>
+        <button class="opt" onclick="pick(this,'q3','cautious')"><div class="dot"></div>Curious but cautious &mdash; I want to understand it first</button>
+        <button class="opt" onclick="pick(this,'q3','skeptic')"><div class="dot"></div>Skepticism &mdash; I'm not sure it actually works</button>
+        <button class="opt" onclick="pick(this,'q3','fear')"><div class="dot"></div>A little fear &mdash; of losing control or saying something private</button>
+        <button class="opt" onclick="pick(this,'q3','neutral')"><div class="dot"></div>Neutral &mdash; I have no strong feeling either way</button>
+      </div>
+      <button class="btn-next" id="nx3" onclick="go('q4')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q4">
+      <div class="q-label">How your mind works</div>
+      <div class="q-text">How easily do you get absorbed &mdash; in music, a film, a daydream?</div>
+      <div class="q-hint">This tells me something important about how to work with you.</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q4','deep')"><div class="dot"></div>Very easily &mdash; I lose track of time and forget the world around me</button>
+        <button class="opt" onclick="pick(this,'q4','sometimes')"><div class="dot"></div>Sometimes &mdash; when I feel safe and conditions are right</button>
+        <button class="opt" onclick="pick(this,'q4','rarely')"><div class="dot"></div>Rarely &mdash; my mind stays analytical and active</button>
+        <button class="opt" onclick="pick(this,'q4','never')"><div class="dot"></div>Almost never &mdash; I stay very aware of my surroundings</button>
+      </div>
+      <button class="btn-next" id="nx4" onclick="go('q5')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q5">
+      <div class="q-label">Where you are right now</div>
+      <div class="q-text">How would you rate your current stress or inner tension?</div>
+      <div class="q-hint">1 = very calm &nbsp;&middot;&nbsp; 10 = overwhelmed</div>
+      <div class="scale-labels"><span>Very calm</span><span>Overwhelmed</span></div>
+      <div class="scale-row" id="scale5"></div>
+      <button class="btn-next" id="nx5" onclick="go('q6')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q6">
+      <div class="q-label">Sleep &amp; restoration</div>
+      <div class="q-text">How has your sleep been &mdash; honestly?</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q6','good')"><div class="dot"></div>Generally good &mdash; I sleep well and wake restored</button>
+        <button class="opt" onclick="pick(this,'q6','light')"><div class="dot"></div>Light or fragmented &mdash; I wake often or too early</button>
+        <button class="opt" onclick="pick(this,'q6','falling')"><div class="dot"></div>Hard to fall asleep &mdash; thoughts won't stop at night</button>
+        <button class="opt" onclick="pick(this,'q6','exhausted')"><div class="dot"></div>I sleep but wake exhausted &mdash; rest doesn't restore me</button>
+        <button class="opt" onclick="pick(this,'q6','varies')"><div class="dot"></div>It varies &mdash; no consistent pattern</button>
+      </div>
+      <button class="btn-next" id="nx6" onclick="go('q7')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q7">
+      <div class="q-label">What you've already tried</div>
+      <div class="q-text">Have you worked on this before &mdash; with other methods?</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q7','nothing')"><div class="dot"></div>No &mdash; this is my first real attempt</button>
+        <button class="opt" onclick="pick(this,'q7','self')"><div class="dot"></div>Yes &mdash; books, apps, podcasts, self-help</button>
+        <button class="opt" onclick="pick(this,'q7','therapy')"><div class="dot"></div>Yes &mdash; therapy, coaching, or counselling</button>
+        <button class="opt" onclick="pick(this,'q7','many')"><div class="dot"></div>Many things &mdash; nothing has quite worked yet</button>
+        <button class="opt" onclick="pick(this,'q7','ongoing')"><div class="dot"></div>Currently working with another practitioner alongside this</button>
+      </div>
+      <button class="btn-next" id="nx7" onclick="go('q8')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q8">
+      <div class="q-label">Your goal</div>
+      <div class="q-text">What would a good result feel like?</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q8','concrete')"><div class="dot"></div>Concrete change &mdash; less fear, better sleep, different behaviour</button>
+        <button class="opt" onclick="pick(this,'q8','clarity')"><div class="dot"></div>Inner clarity &mdash; knowing what I want and why</button>
+        <button class="opt" onclick="pick(this,'q8','peace')"><div class="dot"></div>A quieter mind &mdash; less noise, more presence</button>
+        <button class="opt" onclick="pick(this,'q8','shift')"><div class="dot"></div>A deep shift &mdash; something lasting, not just symptom relief</button>
+        <button class="opt" onclick="pick(this,'q8','know')"><div class="dot"></div>I'll know it when I feel it &mdash; I can't describe it yet</button>
+      </div>
+      <button class="btn-next" id="nx8" onclick="go('q9')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q9">
+      <div class="q-label">A brief safety check</div>
+      <div class="q-text">Is there anything I should know before we work together?</div>
+      <div class="q-hint">All answers are voluntary and confidential.</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q9','nothing')"><div class="dot"></div>Nothing relevant &mdash; I'm generally in good health</button>
+        <button class="opt" onclick="pick(this,'q9','medication')"><div class="dot"></div>I'm currently taking medication (psychiatric or other)</button>
+        <button class="opt" onclick="pick(this,'q9','condition')"><div class="dot"></div>I have a diagnosed condition I'd want you to know about</button>
+        <button class="opt" onclick="pick(this,'q9','trauma')"><div class="dot"></div>I have trauma in my background that may be relevant</button>
+      </div>
+      <button class="btn-next" id="nx9" onclick="go('q10')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q10">
+      <div class="q-label">One last thing</div>
+      <div class="q-text">How ready are you &mdash; right now &mdash; to do something different?</div>
+      <div class="q-hint">1 = just exploring &nbsp;&middot;&nbsp; 10 = fully committed</div>
+      <div class="scale-labels"><span>Just exploring</span><span>Fully committed</span></div>
+      <div class="scale-row" id="scale10"></div>
+      <button class="btn-next" id="nx10" onclick="go('q11')">Continue &rarr;</button>
+    </div>
+
+    <!-- Q11 — Free text + contact -->
+    <div class="screen" id="q11">
+      <div class="q-label">In your own words</div>
+      <div class="q-text">Anything else you'd like me to know?</div>
+      <div class="q-hint">Optional &mdash; write freely. You can also upload a file or voice note.</div>
+
+      <label class="field-label">Your message (optional)</label>
+      <textarea id="freetext" placeholder="Write anything that feels relevant &mdash; a specific situation, a question, a feeling you can't quite name yet..."></textarea>
+
+      <label class="field-label">Upload a file (optional)</label>
+      <div class="upload-zone" id="upload-zone">
+        <span id="upload-label">&#8593; Drop a file here or click to browse<br/><span style="font-size:0.65rem;opacity:0.6;">PDF, image, audio &mdash; max 10MB</span></span>
+        <input type="file" id="file-input" accept=".pdf,.jpg,.jpeg,.png,.mp3,.m4a,.wav,.txt" onchange="fileChosen(this)"/>
+      </div>
+      <div class="upload-name" id="file-name"></div>
+
+      <label class="field-label">How to reach you</label>
+      <div class="contact-row">
+        <div>
+          <div style="font-size:0.62rem;color:var(--muted);margin-bottom:0.3rem;">Email</div>
+          <input type="email" id="contact-email" placeholder="your@email.com"/>
+        </div>
+        <div>
+          <div style="font-size:0.62rem;color:var(--muted);margin-bottom:0.3rem;">WhatsApp (optional)</div>
+          <input type="text" id="contact-wa" placeholder="+49 ..."/>
+        </div>
+      </div>
+
+      <button class="btn-next show" style="margin-top:1.5rem;" onclick="submitAndAnalyse()">Submit &amp; See my reading &rarr;</button>
+      <p style="font-size:0.65rem;color:var(--muted);margin-top:0.6rem;text-align:center;">Contact info is only used to reach you. Never shared.</p>
+    </div>
+
+    <!-- SENDING TRANSITION -->
+    <div class="screen" id="sending">
+      <div style="text-align:center;padding:3rem 0;">
+        <div class="spinner"></div>
+        <div class="t-msg">Preparing your reading...</div>
+      </div>
+    </div>
+
+    <!-- ANALYSIS -->
+    <div class="screen" id="analysis">
+      <span class="analysis-type" id="a-badge"></span>
+      <h2 class="analysis-title" id="a-title"></h2>
+      <p class="analysis-body" id="a-body"></p>
+
+      <div class="analysis-signals" id="a-signals"></div>
+
+      <div class="analysis-tease" id="a-tease"></div>
+
+      <button class="btn-result" id="a-btn" onclick="goToResult()">Open your full reading &rarr;</button>
+      <a class="apply-link" href="apply.html">Want deeper access? Apply for the private area &rarr;</a>
+    </div>
+
+    <!-- FINAL TRANSITION -->
+    <div class="screen" id="transition">
+      <div style="text-align:center;padding:4rem 0;">
+        <div class="spinner"></div>
+        <div class="t-msg" id="tmsg">Opening your path...</div>
+      </div>
+    </div>
+
+  </div><!-- /center -->
+
+  <!-- RIGHT -->
+  <div class="img-side right" style="position:relative;">
+    <img id="img-right" src="" alt=""/>
+    <div class="contrast-bar">
+      <div class="contrast-word" id="label-right"></div>
+      <div class="contrast-line"></div>
+    </div>
+    <a class="credit" href="https://unsplash.com" target="_blank" rel="noopener">Photo: Unsplash</a>
+  </div>
+</div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────
+const ans = {};
+let resultType = '';
+
+// ── IMAGES ────────────────────────────────────────────────────
+const IMG = {
+  intro:['https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&h=900&fit=crop','Night','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=900&fit=crop','Dawn'],
+  q1:['https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&h=900&fit=crop','Noise','https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=900&fit=crop','Silence'],
+  q2:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=900&fit=crop','Unknown','https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=900&fit=crop','Familiar'],
+  q3:['https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&h=900&fit=crop','Fear','https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=600&h=900&fit=crop','Trust'],
+  q4:['https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=900&fit=crop','Awake','https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=900&fit=crop','Dreaming'],
+  q5:['https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&h=900&fit=crop','Pressure','https://images.unsplash.com/photo-1439853949212-36589f9cdd54?w=600&h=900&fit=crop','Release'],
+  q6:['https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&h=900&fit=crop','Restless','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=900&fit=crop','Restored'],
+  q7:['https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=600&h=900&fit=crop','Alone','https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=900&fit=crop','Guided'],
+  q8:['https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=600&h=900&fit=crop','Stuck','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=900&fit=crop','Free'],
+  q9:['https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=600&h=900&fit=crop','Protected','https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&h=900&fit=crop','Open'],
+  q10:['https://images.unsplash.com/photo-1455156218388-5e61b526818b?w=600&h=900&fit=crop','Hesitation','https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=900&fit=crop','Commitment'],
+  q11:['https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=900&fit=crop','Your words','https://images.unsplash.com/photo-1516802273409-68526ee1bdd6?w=600&h=900&fit=crop','Your path']
+};
+
+function setImages(key){
+  const d=IMG[key]||IMG.intro;
+  const li=document.getElementById('img-left'),ri=document.getElementById('img-right');
+  li.classList.remove('loaded');ri.classList.remove('loaded');
+  setTimeout(()=>{
+    li.src=d[0];document.getElementById('label-left').textContent=d[1];
+    ri.src=d[2];document.getElementById('label-right').textContent=d[3];
+    li.onload=()=>li.classList.add('loaded');
+    ri.onload=()=>ri.classList.add('loaded');
+  },200);
+}
+
+// ── NAV ──────────────────────────────────────────────────────
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const n=parseInt(id.replace('q',''))||0;
+  document.getElementById('prog').style.width=n>0?((n-1)/11*100)+'%':'0%';
+  setImages(id);window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── INPUT ────────────────────────────────────────────────────
+function pick(el,qKey,val){
+  el.closest('.screen').querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');ans[qKey]=val;
+  document.getElementById('nx'+qKey.replace('q','')).classList.add('show');
+}
+
+function buildScale(wrId,qKey,nxId){
+  const wr=document.getElementById(wrId);
+  for(let i=1;i<=10;i++){
+    const b=document.createElement('button');b.className='sc-btn';b.textContent=i;
+    b.onclick=()=>{
+      wr.querySelectorAll('.sc-btn').forEach(x=>x.classList.remove('selected'));
+      b.classList.add('selected');ans[qKey]=i;
+      document.getElementById(nxId).classList.add('show');
+    };wr.appendChild(b);
+  }
+}
+buildScale('scale5','q5','nx5');buildScale('scale10','q10','nx10');
+
+function fileChosen(inp){
+  const name=inp.files[0]?inp.files[0].name:'';
+  document.getElementById('file-name').textContent=name?'Selected: '+name:'';
+}
+
+// ── SCORING ──────────────────────────────────────────────────
+function score(){
+  let o=0,sk=0,ex=0,se=0;
+  // Q1 — Intent
+  if(ans.q1==='goal'){o+=2;}
+  if(ans.q1==='stress'||ans.q1==='sleep'){se+=2;}
+  if(ans.q1==='curious'){o+=1;ex+=1;}
+  if(ans.q1==='lost'){se+=3;}
+  // Q2 — Experience (strongest single signal)
+  if(ans.q2==='never'){se+=1;}
+  if(ans.q2==='audio'){o+=1;}
+  if(ans.q2==='live'){ex+=3;}
+  if(ans.q2==='self'){ex+=3;}
+  if(ans.q2==='stage'){sk+=1;}
+  // Q3 — Inner feeling (2nd strongest)
+  if(ans.q3==='open'){o+=3;}
+  if(ans.q3==='cautious'){o+=1;sk+=1;}
+  if(ans.q3==='skeptic'){sk+=3;}
+  if(ans.q3==='fear'){se+=2;}
+  if(ans.q3==='neutral'){sk+=1;}
+  // Q4 — Suggestibility
+  if(ans.q4==='deep'){ex+=2;}
+  if(ans.q4==='sometimes'){o+=1;}
+  if(ans.q4==='rarely'){sk+=2;}
+  if(ans.q4==='never'){sk+=2;}
+  // Q5 — Stress
+  if(ans.q5>=8){se+=2;}
+  if(ans.q5>=6&&ans.q5<8){se+=1;}
+  if(ans.q5<=3){ex+=1;o+=1;}
+  // Q6 — Sleep
+  if(ans.q6==='falling'||ans.q6==='exhausted'){se+=1;}
+  if(ans.q6==='good'){ex+=1;}
+  // Q7 — What tried
+  if(ans.q7==='many'){se+=2;}
+  if(ans.q7==='therapy'||ans.q7==='ongoing'){ex+=1;}
+  if(ans.q7==='nothing'){o+=1;}
+  if(ans.q7==='self'){o+=1;}
+  // Q8 — Goal type
+  if(ans.q8==='shift'){ex+=1;}
+  if(ans.q8==='clarity'){ex+=1;}
+  if(ans.q8==='concrete'){o+=1;}
+  if(ans.q8==='know'){se+=1;}
+  if(ans.q8==='peace'){se+=1;}
+  // Q10 — Readiness
+  if(ans.q10>=8){o+=2;}
+  if(ans.q10>=6&&ans.q10<8){o+=1;}
+  if(ans.q10<=3){sk+=2;}
+  if(ans.q10>=4&&ans.q10<=5){sk+=1;}
+
+  const scores={open:o,skeptic:sk,experienced:ex,seeker:se};
+  // Ties: experienced > open > seeker > skeptic
+  const order=['experienced','open','seeker','skeptic'];
+  return order.reduce((best,t)=>scores[t]>scores[best]?t:best,'experienced');
+}
+
+// ── TYPE DATA ─────────────────────────────────────────────────
+const TYPES={
+  open:{
+    badge:'Type · The Open One',
+    title:'You are <em>ready.</em><br/>You just need the door.',
+    body:'You came here with genuine openness — and that, above all else, is what makes hypnosis work. The subconscious responds to trust. You already have it.',
+    signals:[
+      ['Approach','Goal-oriented & willing'],['Mindset','Trust before understanding'],
+      ['Edge','Faster results, deeper trance'],['Path','Structured, step-by-step']
+    ],
+    tease:'Something in your answers suggests a <strong>specific pattern</strong> — one that tends to appear in people who change quickly and completely, rather than slowly and partially. Your full reading reveals what it is, and why that matters for the work ahead.',
+    page:'result-open.html'
+  },
+  skeptic:{
+    badge:'Type · The Rational Mind',
+    title:'Your mind is <em>sharp.</em><br/>That is your greatest asset.',
+    body:'Skepticism is not resistance — it is discernment. The most analytically-minded clients often experience some of the most powerful sessions, once they understand what is actually happening.',
+    signals:[
+      ['Approach','Evidence-based & questioning'],['Mindset','Understand before trusting'],
+      ['Edge','Precision once convinced'],['Path','Education first, depth second']
+    ],
+    tease:'Your answers reveal a particular <strong>relationship with control</strong> — and with letting go of it. This is the most important thing to understand before working together. Your full reading goes into detail about what that means, and what it changes.',
+    page:'result-skeptic.html'
+  },
+  experienced:{
+    badge:'Type · The Initiated',
+    title:'You have been here<br/>before. Now go <em>deeper.</em>',
+    body:'You already know what it feels like to shift states. You have the vocabulary, the body memory, the reference point. What you need is not an introduction — it is a next level.',
+    signals:[
+      ['Approach','Depth-seeking & self-aware'],['Mindset','Familiar with inner work'],
+      ['Edge','Ready for advanced techniques'],['Path','Customised, no basics']
+    ],
+    tease:'Your profile indicates something rare: a person whose <strong>inner work has already begun</strong> — but who may be circling the same territory without breaking through. Your reading reveals exactly where the ceiling is, and what it would take to move past it.',
+    page:'result-experienced.html'
+  },
+  seeker:{
+    badge:'Type · The Wanderer',
+    title:'You have been<br/>searching. <em>This is the place.</em>',
+    body:'Something brought you here — exhaustion, loss of direction, a quiet but persistent feeling that the tools you have tried were not quite right. That feeling is correct. And it is also a very good sign.',
+    signals:[
+      ['Approach','Open-ended, not sure what is needed'],['Mindset','Tired of trying, but still trying'],
+      ['Edge','High readiness once grounded'],['Path','Stabilise first, then go deep']
+    ],
+    tease:'Your answers carry a signature that experienced practitioners recognise immediately — a particular combination of <strong>knowing exactly what you don\'t want</strong> and being genuinely unsure what you do. Your full reading explains what that means, and why it is actually the clearest starting point of all.',
+    page:'result-seeker.html'
+  }
+};
+
+// ── SUBMIT + ANALYSE ──────────────────────────────────────────
+function submitAndAnalyse(){
+  const email=document.getElementById('contact-email').value.trim();
+  const wa=document.getElementById('contact-wa').value.trim();
+  const msg=document.getElementById('freetext').value.trim();
+
+  // Score
+  resultType=score();
+  const t=TYPES[resultType];
+
+  // Send via mailto (no server needed)
+  const contact=email||wa||'(no contact provided)';
+  const summary=`mindful7777 Onboarding — new submission\n\nType: ${resultType.toUpperCase()}\nContact: ${contact}\n\nAnswers:\n${Object.entries(ans).map(([k,v])=>k+': '+v).join('\n')}\n\nMessage:\n${msg||'(none)'}`;
+  const mailLink=`mailto:mindful7777@gmail.com?subject=Onboarding%20Submission%20%E2%80%94%20${encodeURIComponent(t.badge)}&body=${encodeURIComponent(summary)}`;
+
+  // Show sending
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sending').classList.add('active');
+  document.getElementById('prog').style.width='95%';
+
+  // Open mail client silently
+  setTimeout(()=>{ window.location.href=mailLink; },400);
+
+  // Show analysis after delay
+  setTimeout(()=>{
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById('analysis').classList.add('active');
+    document.getElementById('prog').style.width='100%';
+
+    document.getElementById('a-badge').textContent=t.badge;
+    document.getElementById('a-title').innerHTML=t.title;
+    document.getElementById('a-body').textContent=t.body;
+    document.getElementById('a-tease').innerHTML=t.tease;
+
+    const sigEl=document.getElementById('a-signals');
+    sigEl.innerHTML=t.signals.map(([k,v])=>`<div class="signal-row"><span class="sk">${k}</span><span class="sv">${v}</span></div>`).join('');
+
+    sessionStorage.setItem('m7_type',resultType);
+    sessionStorage.setItem('m7_ans',JSON.stringify(ans));
+    setImages('intro');
+    window.scrollTo({top:0,behavior:'smooth'});
+  },2000);
+}
+
+function goToResult(){
+  const t=TYPES[resultType];
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('transition').classList.add('active');
+  document.getElementById('tmsg').textContent=TYPES[resultType].badge.split('·')[1].trim()+'...';
+  setTimeout(()=>{ window.location.href=t.page; },1800);
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+setImages('intro');
+</script>
+</body>
+</html>
