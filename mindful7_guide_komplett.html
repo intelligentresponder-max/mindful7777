@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>The 7 Pillars of Mindful Living · mindful7777</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --ink:    #1a1a2e;
+    --sage:   #7c9a7e;
+    --warm:   #c4956a;
+    --cream:  #faf7f2;
+    --light:  #f0ebe3;
+    --muted:  #8a8478;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #e8e4dc;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+  }
+
+  .page {
+    width: 794px;
+    min-height: 1123px;
+    background: var(--cream);
+    margin: 2rem auto;
+    padding: 72px 80px;
+    position: relative;
+    page-break-after: always;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 80px;
+  }
+
+  .cover-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--sage);
+    opacity: 0.6;
+    margin-bottom: -1rem;
+  }
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.6rem;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.2rem;
+  }
+  .cover-title em { color: var(--sage); font-style: italic; }
+  .cover-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3rem;
+  }
+  .cover-line {
+    width: 60px;
+    height: 1px;
+    background: var(--sage);
+    margin: 0 auto 3rem;
+  }
+  .cover-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #b0a898;
+    max-width: 420px;
+    line-height: 1.7;
+    margin-bottom: 4rem;
+  }
+  .cover-brand {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .cover-brand span { color: var(--sage); }
+
+  /* ── INNER PAGES ── */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--light);
+    margin-bottom: 2.5rem;
+  }
+  .brand-small {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .page-num {
+    font-size: 0.65rem;
+    color: var(--muted);
+  }
+
+  .chapter-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    font-weight: 300;
+    color: var(--sage);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: -0.5rem;
+  }
+  .chapter-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+  }
+  .chapter-subtitle {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 2rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: #2d2d2d;
+    margin-bottom: 1.2rem;
+  }
+
+  .pull-quote {
+    border-left: 3px solid var(--sage);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--light);
+  }
+  .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .practice-box {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+  }
+  .practice-box h3 {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1rem;
+  }
+  .practice-box p {
+    color: #c8c2b8;
+    font-size: 0.88rem;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .pillar-card {
+    background: var(--light);
+    padding: 1.2rem 1.4rem;
+    border-top: 2px solid var(--sage);
+  }
+  .pillar-card .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--sage);
+    opacity: 0.5;
+    line-height: 1;
+  }
+  .pillar-card .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  .pillar-card .desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .reflect-box {
+    border: 1px solid var(--warm);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+  }
+  .reflect-box h3 {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm);
+    margin-bottom: 1rem;
+  }
+  .reflect-line {
+    border-bottom: 1px solid var(--light);
+    height: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── BACK COVER ── */
+  .back-cover {
+    background: var(--light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .back-cover h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+  .back-cover p {
+    max-width: 400px;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .gumroad-badge {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.7rem 2rem;
+    margin-top: 2rem;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ COVER ══ -->
+<div class="page cover">
+  <div class="cover-number">7</div>
+  <h1 class="cover-title">The 7 Pillars of<br/><em>Mindful Living</em></h1>
+  <div class="cover-subtitle">A Free Guide · mindful7777</div>
+  <div class="cover-line"></div>
+  <p class="cover-desc">A gentle, practical guide to building presence, clarity, and inner alignment — one pillar at a time.</p>
+  <div class="cover-brand"><span>mindful</span>7777</div>
+</div>
+
+<!-- ══ INTRO ══ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand-small">mindful7777</span>
+    <span class="page-num">Introduction</span>
+  </div>
+
+  <div class="chapter-num">✦</div>
+  <h2 class="chapter-title">Welcome</h2>
+  <div class="chapter-subtitle">Why 7 Pillars?</div>
+
+  <p>Most of us know we should slow down. We know that presence matters, that our mornings shape our days, that what we consume — mentally and physically — shapes who we become. And yet, the gap between knowing and living can feel enormous.</p>
+
+  <p>This guide doesn't ask you to overhaul your life overnight. Instead, it offers seven gentle anchors — pillars you can return to, in any order, at any pace. Think of them not as rules, but as doorways.</p>
+
+  <div class="pull-quote">
+    <p>"You don't rise to the level of your goals. You fall to the level of your systems."</p>
+  </div>
+
+  <p>Each pillar combines a core concept, a reflection, and a simple daily practice. You can work through all seven in a week — one per day — or return to a single pillar for a month. The structure is yours to hold.</p>
+
+  <p>This is not about perfection. It's about noticing. And noticing, again and again, is enough.</p>
+
+  <div class="pillar-grid">
+    <div class="pillar-card"><div class="num">01</div><div class="name">Presence</div><p class="desc">The art of returning to now</p></div>
+    <div class="pillar-card"><div class="num">02</div><div class="name">Morning Ritual</div><p class="desc">How you begin shapes everything</p></div>
+    <div class="pillar-card"><div class="num">03</div><div class="name">Breath</div><p class="desc">Your oldest anchor</p></div>
+    <div class="pillar-card"><div class="num">04</div><div class="name">Input & Rest</div><p class="desc">What you consume, consumes you</p></div>
+    <div class="pillar-card"><div class="num">05</div><div class="name">Movement</div><p class="desc">The body knows before the mind</p></div>
+    <div class="pillar-card"><div class="num">06</div><div class="name">Inner Design</div><p class="desc">Living aligned with your nature</p></div>
+    <div class="pillar-card"><div class="num">07</div><div class="name">Reflection</div><p class="desc">Closing the loop</p></div>
+  </div>
+</div>
+
+<!-- ══ PILLAR 1 ══ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand-small">mindful7777 · The 7 Pillars</span>
+    <span class="page-num">Pillar One</span>
+  </div>
+
+  <div class="chapter-num">01</div>
+  <h2 class="chapter-title">Presence</h2>
+  <div class="chapter-subtitle">The art of returning to now</div>
+
+  <p>Presence isn't a state you achieve once and hold forever. It's a practice of returning — to this breath, this room, this moment — after wandering away. And wandering is not failure. It's human.</p>
+
+  <p>The mind moves fast. It replays yesterday and rehearses tomorrow. Meanwhile, the actual texture of life — the warmth of sunlight, the weight of a cup in your hands — passes quietly by. Presence is the choice to notice that texture before it's gone.</p>
+
+  <div class="pull-quote">
+    <p>"Wherever you are, be there completely."</p>
+  </div>
+
+  <p>Modern life is engineered for distraction. Every notification, every scroll, every open tab is an invitation to leave the present moment. Mindfulness isn't about resisting technology — it's about choosing, consciously, where your attention goes.</p>
+
+  <div class="practice-box">
+    <h3>Daily Practice · 5 Minutes</h3>
+    <p>Set a single daily anchor moment — your first cup of coffee or tea. For those five minutes: no phone, no music, no reading. Just drink. Notice the warmth, the smell, the taste. When your mind wanders, bring it back. That's it. That's the whole practice.</p>
+  </div>
+
+  <div class="reflect-box">
+    <h3>Reflection Prompt</h3>
+    <p style="font-size:0.85rem;color:#555;margin-bottom:1rem;">When do I feel most present? What helps me return when I've drifted?</p>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+  </div>
+</div>
+
+<!-- ══ PILLAR 2 ══ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand-small">mindful7777 · The 7 Pillars</span>
+    <span class="page-num">Pillar Two</span>
+  </div>
+
+  <div class="chapter-num">02</div>
+  <h2 class="chapter-title">Morning Ritual</h2>
+  <div class="chapter-subtitle">How you begin shapes everything</div>
+
+  <p>The first thirty minutes of your day set the tone for everything that follows. Not because of magic — because of momentum. What you do first, you do with the most willpower, the clearest mind, the least resistance.</p>
+
+  <p>A morning ritual doesn't need to be elaborate. It doesn't require a 5am wake-up or an hour of journaling. What it requires is intention: a sequence of small acts you do deliberately, before the day starts demanding things from you.</p>
+
+  <div class="pull-quote">
+    <p>"Win the morning, win the day."</p>
+  </div>
+
+  <p>The key insight is this: your morning ritual is the one part of the day that is entirely yours. Before emails, before news, before other people's needs enter — there is a window of time that belongs only to you. What you fill it with matters.</p>
+
+  <div class="practice-box">
+    <h3>Design Your Morning · 3 Elements</h3>
+    <p>Choose one thing for your body (stretch, walk, water), one thing for your mind (silence, journaling, reading — no news), and one thing for your spirit (gratitude, intention-setting, a single word for the day). Keep it under 20 minutes total. Consistency beats complexity.</p>
+  </div>
+
+  <div class="reflect-box">
+    <h3>Reflection Prompt</h3>
+    <p style="font-size:0.85rem;color:#555;margin-bottom:1rem;">What does my ideal morning look like — and what's one small step toward it tomorrow?</p>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+  </div>
+</div>
+
+<!-- ══ PILLAR 3 ══ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand-small">mindful7777 · The 7 Pillars</span>
+    <span class="page-num">Pillar Three</span>
+  </div>
+
+  <div class="chapter-num">03</div>
+  <h2 class="chapter-title">Breath</h2>
+  <div class="chapter-subtitle">Your oldest anchor</div>
+
+  <p>You've been breathing your entire life without thinking about it. And yet the moment you bring conscious attention to your breath, everything shifts. Heart rate slows. The nervous system settles. The chatter in your mind softens, if only for a moment.</p>
+
+  <p>Breath is the only function of your body that is both automatic and under conscious control. That makes it a bridge — between thinking and feeling, between doing and being, between anxiety and calm.</p>
+
+  <div class="pull-quote">
+    <p>"Breath is the bridge which connects life to consciousness."<br/><em style="font-size:0.9rem">— Thich Nhat Hanh</em></p>
+  </div>
+
+  <p>You don't need a special technique. The simplest approach: breathe in for 4 counts, hold for 4, out for 6. The extended exhale activates the parasympathetic nervous system — your body's built-in calm response. Three rounds is enough to feel a shift.</p>
+
+  <div class="practice-box">
+    <h3>Daily Practice · Box Breathing</h3>
+    <p>Inhale slowly for 4 counts. Hold for 4. Exhale for 6. Hold for 2. Repeat 3–5 times. Use this before any stressful situation, any important conversation, any moment when you feel yourself speeding up. The breath is always available. You just have to remember to use it.</p>
+  </div>
+
+  <div class="reflect-box">
+    <h3>Reflection Prompt</h3>
+    <p style="font-size:0.85rem;color:#555;margin-bottom:1rem;">In what situations do I forget to breathe? How might pausing to breathe change those moments?</p>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+  </div>
+</div>
+
+<!-- ══ PILLAR 6 — HUMAN DESIGN ══ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand-small">mindful7777 · The 7 Pillars</span>
+    <span class="page-num">Pillar Six</span>
+  </div>
+
+  <div class="chapter-num">06</div>
+  <h2 class="chapter-title">Inner Design</h2>
+  <div class="chapter-subtitle">Living aligned with your nature</div>
+
+  <p>One of the most radical acts of self-care is accepting that you are not built like everyone else — and that this is not a flaw. Each of us has a natural way of processing energy, making decisions, and moving through the world. When we ignore that design and try to operate like others, we exhaust ourselves.</p>
+
+  <p>Human Design is a system that maps your unique energetic blueprint — how you're meant to engage with life, rest, and make decisions that feel right for you specifically. It combines elements of astrology, the I Ching, Kabbalah, and quantum physics into a practical framework for self-understanding.</p>
+
+  <div class="pull-quote">
+    <p>"The deepest form of self-care is living in alignment with who you actually are — not who you think you should be."</p>
+  </div>
+
+  <p>There are five Energy Types in Human Design: Manifestors, Generators, Manifesting Generators, Projectors, and Reflectors. Each type has a distinct strategy for navigating life with less resistance and more flow. Knowing your type doesn't limit you — it liberates you from exhausting yourself trying to be something you're not.</p>
+
+  <p>The invitation: get curious about your design. Notice where in life you feel most energized, most yourself. Those moments are clues. They're telling you something true about your nature.</p>
+
+  <div class="practice-box">
+    <h3>Daily Practice · Alignment Check</h3>
+    <p>Once a day — ideally in the evening — ask yourself: "Did I feel like myself today?" Notice the moments where you felt naturally energized versus drained. No judgment. Just observation. Over time, patterns emerge that are more honest than any personality test.</p>
+  </div>
+
+  <div class="reflect-box">
+    <h3>Reflection Prompt</h3>
+    <p style="font-size:0.85rem;color:#555;margin-bottom:1rem;">When do I feel most authentically myself? What conditions make that possible?</p>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+  </div>
+</div>
+
+<!-- ══ PILLAR 4 ══ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand-small">mindful7777 · The 7 Pillars</span>
+    <span class="page-num">Pillar Four</span>
+  </div>
+
+  <div class="chapter-num">04</div>
+  <h2 class="chapter-title">Sleep as Sacred Time</h2>
+  <div class="chapter-subtitle">Input & Rest — the most underrated practice</div>
+
+  <p>We live in a culture that celebrates exhaustion. Being busy is worn like a badge of honour. Sleep is treated as laziness, rest as weakness. And yet every major system in your body — immune, hormonal, cognitive, emotional — depends on sleep to function. Not eventually. Every single night.</p>
+
+  <p>Sleep is not downtime. It is the time your brain consolidates memory, processes emotion, clears metabolic waste, and prepares you to be fully human tomorrow. When you protect your sleep, you protect everything.</p>
+
+  <div class="pull-quote">
+    <p>"Sleep is the single most effective thing you can do to reset your brain and body for health, happiness, and long life."<br/><em style="font-size:0.9rem">— Matthew Walker</em></p>
+  </div>
+
+  <p>Treating sleep as sacred means giving it a container — a wind-down ritual, a consistent time, a dark and cool room, a boundary against screens. It means deciding, each evening, that tomorrow begins now.</p>
+
+  <p>The hour before sleep is not wasted time. It is an investment in who you will be tomorrow. What you put into that hour determines what your body and mind do with the eight hours that follow.</p>
+
+  <div class="practice-box">
+    <h3>Daily Practice · The Sleep Ritual</h3>
+    <p>60 minutes before bed: dim the lights, put the phone face-down (or in another room), and choose one calming activity — reading physical pages, a warm shower, light stretching, or simply sitting quietly. The same sequence each night trains your nervous system to recognise the signal: it's time to rest. Consistency here is more powerful than any supplement.</p>
+  </div>
+
+  <div class="reflect-box">
+    <h3>Reflection Prompt</h3>
+    <p style="font-size:0.85rem;color:#555;margin-bottom:1rem;">What is one thing I currently do before sleep that works against me — and what could I replace it with?</p>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+  </div>
+</div>
+
+<!-- ══ PILLAR 5 ══ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand-small">mindful7777 · The 7 Pillars</span>
+    <span class="page-num">Pillar Five</span>
+  </div>
+
+  <div class="chapter-num">05</div>
+  <h2 class="chapter-title">Walking in Nature</h2>
+  <div class="chapter-subtitle">Movement — the body knows before the mind</div>
+
+  <p>Before there were gyms, apps, or fitness trackers, there was walking. Through forests, along rivers, across fields. The human body evolved moving through nature — and some part of us still remembers this. A walk outdoors is not just exercise. It is a recalibration.</p>
+
+  <p>Research consistently shows that time in nature lowers cortisol, reduces rumination, and restores attentional capacity. A 20-minute walk in a park changes your brain chemistry in measurable ways. It is one of the cheapest, most accessible mindfulness practices available — and one of the most overlooked.</p>
+
+  <div class="pull-quote">
+    <p>"In every walk with nature, one receives far more than one seeks."<br/><em style="font-size:0.9rem">— John Muir</em></p>
+  </div>
+
+  <p>Walking meditation brings intention to what you're already doing. Instead of walking while thinking, you walk while noticing. The sensation of feet on ground. The temperature of air. The sound of leaves or wind or distant birds. You are not walking to arrive somewhere. You are walking to be here.</p>
+
+  <div class="practice-box">
+    <h3>Daily Practice · The Mindful Walk</h3>
+    <p>Once a day, take a 15–20 minute walk without headphones, without a podcast, without your phone in your hand. Choose a route with some nature — even a single tree-lined street counts. Walk slowly. Every few minutes, pause and name five things you can see, three you can hear, one you can feel. Let the mind settle. The thoughts will still come — just let them pass like clouds.</p>
+  </div>
+
+  <div class="reflect-box">
+    <h3>Reflection Prompt</h3>
+    <p style="font-size:0.85rem;color:#555;margin-bottom:1rem;">When did I last walk somewhere with no destination and no device? What did I notice?</p>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+  </div>
+</div>
+
+<!-- ══ PILLAR 7 ══ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand-small">mindful7777 · The 7 Pillars</span>
+    <span class="page-num">Pillar Seven</span>
+  </div>
+
+  <div class="chapter-num">07</div>
+  <h2 class="chapter-title">Gratitude as Closing Ritual</h2>
+  <div class="chapter-subtitle">Reflection — closing the loop</div>
+
+  <p>The mind has a negativity bias — it is wired to notice threat, loss, and what went wrong. This was useful for survival. It is less useful for happiness. Gratitude is not about pretending everything is fine. It is about deliberately widening the lens to include what is also true: what is good, what held, what you have.</p>
+
+  <p>Done consistently, a gratitude practice physically changes the brain. It strengthens neural pathways associated with positive emotion, reduces baseline anxiety, and improves sleep quality. Not because it's magic — because attention shapes experience. What you look for, you find more of.</p>
+
+  <div class="pull-quote">
+    <p>"Gratitude turns what we have into enough."</p>
+  </div>
+
+  <p>The closing ritual — done at the end of each day — is the seventh pillar because it integrates the other six. It gives the day a shape. It says: this day happened, and it mattered. I was here. Something was good.</p>
+
+  <p>It doesn't need to be elaborate. Three things. Written down. That's enough to change the texture of how you experience time.</p>
+
+  <div class="practice-box">
+    <h3>Daily Practice · The Three Things</h3>
+    <p>Each evening before sleep, write down three things you are grateful for from the day. Be specific — not "my health" but "the warmth of the first coffee this morning." Specificity is what makes it work. Then add one sentence: what made today meaningful? Even on difficult days, something did. Finding it — that's the practice.</p>
+  </div>
+
+  <div class="reflect-box">
+    <h3>Reflection Prompt</h3>
+    <p style="font-size:0.85rem;color:#555;margin-bottom:1rem;">What three specific things am I grateful for today — and what made this day, however small, meaningful?</p>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+    <div class="reflect-line"></div>
+  </div>
+</div>
+
+<!-- ══ BACK COVER ══ -->
+<div class="page back-cover">
+  <div class="chapter-num" style="color:var(--sage);opacity:0.4;font-size:6rem;margin-bottom:1rem">7</div>
+  <h2>You've begun.<br/>That's everything.</h2>
+  <div style="width:50px;height:1px;background:var(--sage);margin:1.5rem auto"></div>
+  <p>If this guide resonated with you, share it with someone who might need it.<br/>It's free — and freely yours to pass on.</p>
+  <p style="margin-top:1rem;font-size:0.8rem">For more guides, tools, and mindful resources:</p>
+  <div class="gumroad-badge">mindful7777 on Gumroad</div>
+  <p style="margin-top:2rem;font-size:0.72rem;color:#aaa">© mindful7777 · Be the best version+</p>
+</div>
+
+</body>
+</html>
