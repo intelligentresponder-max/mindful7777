@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Identity & Inner Design · mindful7777</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#1a1a2e;--sage:#7c9a7e;--warm:#c4956a;--cream:#faf7f2;--muted:#8a8478;--gold:#c4a96a;--purple:#9a7cc4;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh;}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid rgba(154,124,196,0.15);background:rgba(0,0,0,0.3);position:sticky;top:0;z-index:10;}
+.topbar a{color:var(--sage);text-decoration:none;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;}
+.topbar-badge{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--purple);border:1px solid rgba(154,124,196,0.3);padding:0.2rem 0.7rem;}
+.back{font-size:0.7rem;color:var(--muted);text-decoration:none;}
+.back:hover{color:var(--sage);}
+
+.hero{padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(to bottom,rgba(26,26,46,0.3),var(--ink)),
+             url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=500&fit=crop') center/cover;}
+.hero-tag{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--purple);margin-bottom:1rem;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:300;line-height:1.1;margin-bottom:1rem;}
+.hero h1 em{color:var(--purple);font-style:italic;}
+.hero p{font-size:0.9rem;color:#9a9080;max-width:440px;margin:0 auto;line-height:1.8;}
+
+.content{max-width:680px;margin:0 auto;padding:3rem 1.5rem 5rem;}
+
+.intro-block{margin-bottom:3rem;}
+.intro-block p{font-size:0.88rem;color:#9a9080;line-height:1.9;margin-bottom:1rem;}
+
+.types-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:rgba(154,124,196,0.1);margin:2rem 0;}
+.type-card{background:var(--ink);padding:1.5rem;transition:background 0.2s;}
+.type-card:hover{background:rgba(154,124,196,0.05);}
+.type-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--purple);opacity:0.35;line-height:1;}
+.type-name{font-size:0.9rem;font-weight:600;margin-bottom:0.3rem;}
+.type-key{font-size:0.7rem;color:var(--purple);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;}
+.type-desc{font-size:0.75rem;color:var(--muted);line-height:1.6;}
+
+.section{margin-bottom:2.5rem;}
+.section h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin-bottom:0.5rem;}
+.section-sub{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple);margin-bottom:1.2rem;}
+.section p{font-size:0.85rem;color:#9a9080;line-height:1.85;margin-bottom:0.8rem;}
+
+.quote-block{border-left:2px solid var(--purple);padding:1rem 1.5rem;margin:1.5rem 0;background:rgba(154,124,196,0.04);}
+.quote-block p{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;font-weight:300;color:var(--cream);margin:0;line-height:1.5;}
+
+.bf{border:1px dashed rgba(255,200,0,0.2);background:rgba(255,200,0,0.03);padding:0.8rem 1rem;margin:0.8rem 0;font-size:0.73rem;color:rgba(255,200,0,0.4);font-family:monospace;line-height:1.6;}
+.bf::before{content:'✏ BACKFALL7777 → ';}
+
+.cta-box{background:rgba(154,124,196,0.07);border:1px solid rgba(154,124,196,0.2);padding:2rem;text-align:center;margin-top:2.5rem;}
+.cta-box h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;margin-bottom:0.6rem;}
+.cta-box p{font-size:0.8rem;color:var(--muted);margin-bottom:1.2rem;}
+.btn-purple{display:inline-block;background:var(--purple);color:var(--cream);text-decoration:none;font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.85rem 2rem;transition:opacity 0.2s;cursor:pointer;}
+.btn-purple:hover{opacity:0.85;}
+
+.foot{text-align:center;padding:2rem;font-size:0.67rem;color:var(--muted);border-top:1px solid rgba(255,255,255,0.05);}
+.foot a{color:var(--sage);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="https://intelligentresponder-max.github.io/mindful7777/">mindful7777</a>
+  <span class="topbar-badge">&#9670; Identity &amp; Design</span>
+  <a href="private.html" class="back">&larr; Private Area</a>
+</div>
+
+<div class="hero">
+  <div class="hero-tag">Private Area &middot; Deep Work</div>
+  <h1>Identity &amp;<br/><em>Inner Design</em></h1>
+  <p>Who you are underneath the roles you play. A private deep dive into Human Design, shadow work, and aligned identity.</p>
+</div>
+
+<div class="content">
+
+  <div class="intro-block">
+    <p>Most people are living someone else's design. Not out of weakness — out of conditioning. From the moment we are born, we absorb the strategies, fears, and beliefs of those around us. Over time, those absorbed patterns become indistinguishable from "self."</p>
+    <p>This section exists to begin the process of distinguishing: what is actually you, and what is not? This is not a philosophical exercise. It is practical. And for many people, it is the most significant work they will ever do.</p>
+  </div>
+
+  <div class="section">
+    <h2>The Five Energy Types</h2>
+    <div class="section-sub">Human Design &mdash; your energetic blueprint</div>
+    <p>In Human Design, every person is one of five types — each with a distinct strategy for navigating life, making decisions, and interacting with energy.</p>
+
+    <div class="types-grid">
+      <div class="type-card">
+        <div class="type-num">01</div>
+        <div class="type-name">Manifestor</div>
+        <div class="type-key">Strategy: Inform</div>
+        <p class="type-desc">Initiators. Rare (9%). Here to start things — not maintain them.</p>
+      </div>
+      <div class="type-card">
+        <div class="type-num">02</div>
+        <div class="type-name">Generator</div>
+        <div class="type-key">Strategy: Respond</div>
+        <p class="type-desc">The builders. Most common (37%). Sustainable life force when aligned.</p>
+      </div>
+      <div class="type-card">
+        <div class="type-num">03</div>
+        <div class="type-name">Manifesting Generator</div>
+        <div class="type-key">Strategy: Respond &amp; Inform</div>
+        <p class="type-desc">Multi-passionate. Fast, non-linear. 33% of the population.</p>
+      </div>
+      <div class="type-card">
+        <div class="type-num">04</div>
+        <div class="type-name">Projector</div>
+        <div class="type-key">Strategy: Wait for Invitation</div>
+        <p class="type-desc">The guides. 20%. See systems and people clearly — when recognised.</p>
+      </div>
+      <div class="type-card">
+        <div class="type-num">05</div>
+        <div class="type-name">Reflector</div>
+        <div class="type-key">Strategy: Wait a Lunar Cycle</div>
+        <p class="type-desc">The mirrors. Rarest (1%). Deeply sensitive to environment and community.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Shadow Work &amp; Hypnosis</h2>
+    <div class="section-sub">Where the two meet</div>
+    <p>Shadow work — the process of making unconscious patterns conscious — is one of the most powerful things a person can do. It is also one of the most difficult to do alone.</p>
+
+    <div class="quote-block">
+      <p>"Until you make the unconscious conscious, it will direct your life and you will call it fate."</p>
+    </div>
+
+    <p>Hypnosis accesses exactly the territory where shadow lives — below the threshold of conscious awareness, in the language of image, feeling, and sensation rather than words and logic. When combined with Human Design awareness, the work becomes highly targeted: you know which patterns to look for, and hypnosis gives you a way in.</p>
+
+    <div class="bf">André: Hier eigene Erfahrung / Fallbeispiel (anonymisiert) einfügen — ca. 100 Wörter. Was hat ein Klient erkannt? Was hat sich verändert?</div>
+  </div>
+
+  <div class="section">
+    <h2>Your Personal Reading</h2>
+    <div class="section-sub">Calculated from your birth data</div>
+    <p>A Human Design reading requires your exact birth date, time, and place. From this, a chart is generated that maps your specific design — your type, authority, profile, defined and undefined centres, channels, and gates.</p>
+    <p>As a private area member, you receive a personal written reading within 48 hours of sending your birth details.</p>
+    <div class="bf">André: Hier Muster-Reading oder Kurzbeispiel einfügen — zeigt was ein Reading enthält (ca. 150 Wörter, anonymisiert).</div>
+  </div>
+
+  <div class="cta-box">
+    <h3>Request your reading</h3>
+    <p>Send your birth date, time (if known), and place. I'll send your personal Human Design reading within 48 hours.</p>
+    <a href="https://wa.me/4916346922255?text=HD%20Reading%20Request%20%E2%80%94%20Private%20Area%20member" class="btn-purple" target="_blank" rel="noopener">Send birth details on WhatsApp &rarr;</a>
+  </div>
+</div>
+
+<div class="foot">
+  &copy; mindful7777 &nbsp;&middot;&nbsp;
+  <a href="private.html">Private Area</a> &nbsp;&middot;&nbsp;
+  <a href="private-vip.html">VIP Service</a> &nbsp;&middot;&nbsp;
+  <a href="https://intelligentresponder-max.github.io/mindful7777/">Home</a>
+</div>
+</body>
+</html>
