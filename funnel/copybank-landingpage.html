@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landing-Page Copy-Bank — mindful7777</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:#1a1714;--cream:#f5f1eb;--warm:#e8dfd4;
+    --gold:#c8a96e;--muted:#8c7f74;--green:#4a5c4e;
+    --blau:#1B2845;--accent:#d4735a;--card:#fffcf8;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Cormorant Garamond',serif;background:var(--cream);color:var(--ink);padding:0;}
+
+  /* ── ADMIN HEADER ── */
+  .admin-bar{background:var(--blau);color:rgba(255,255,255,.55);padding:.9rem 2rem;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.1em;display:flex;justify-content:space-between;align-items:center;}
+  .admin-bar span{color:var(--gold);}
+
+  /* ── TOC ── */
+  .toc{background:var(--blau);padding:2rem 2rem 2.5rem;position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(212,165,116,.15);}
+  .toc-title{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1rem;}
+  .toc-links{display:flex;flex-wrap:wrap;gap:.5rem;}
+  .toc-links a{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:rgba(255,255,255,.5);text-decoration:none;padding:.35rem .8rem;border:1px solid rgba(212,165,116,.2);border-radius:2px;transition:all .2s;}
+  .toc-links a:hover{color:var(--gold);border-color:rgba(212,165,116,.5);}
+
+  /* ── SECTION WRAPPER ── */
+  .copy-section{padding:3rem 2rem;border-bottom:1px solid var(--warm);max-width:960px;margin:0 auto;}
+  .section-header{display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:2rem;}
+  .section-num{font-family:'DM Mono',monospace;font-size:2rem;color:var(--gold);font-weight:300;line-height:1;min-width:3rem;}
+  .section-meta h2{font-size:1.6rem;font-weight:400;margin-bottom:.3rem;}
+  .section-meta h2 em{font-style:italic;color:var(--green);}
+  .section-meta p{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:var(--muted);}
+
+  /* ── COPY CARD ── */
+  .copy-card{background:var(--card);border:1px solid var(--warm);margin-bottom:1.2rem;overflow:hidden;}
+  .copy-card-header{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.2rem;background:var(--warm);border-bottom:1px solid rgba(200,169,110,.2);}
+  .copy-label{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
+  .copy-badge{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.1em;padding:.2rem .6rem;border-radius:2px;}
+  .badge-hero{background:#4a5c4e;color:#f5f1eb;}
+  .badge-trust{background:var(--gold);color:var(--ink);}
+  .badge-cta{background:var(--accent);color:#fff;}
+  .badge-social{background:var(--blau);color:#f5f1eb;}
+  .badge-faq{background:#7b8fc2;color:#fff;}
+  .badge-disclaimer{background:#c0392b;color:#fff;}
+
+  .copy-content{padding:1.5rem;}
+  .copy-text{font-size:1.25rem;font-weight:300;line-height:1.65;color:var(--ink);margin-bottom:1rem;}
+  .copy-text strong{font-weight:600;}
+  .copy-text em{font-style:italic;color:var(--green);}
+  .copy-note{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:var(--muted);border-top:1px solid var(--warm);padding-top:.8rem;margin-top:.8rem;line-height:1.6;}
+
+  /* VARIANTS */
+  .variants{display:flex;flex-direction:column;gap:.8rem;}
+  .variant{background:rgba(245,241,235,.5);border:1px dashed rgba(200,169,110,.4);padding:1rem 1.2rem;}
+  .variant-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.12em;color:var(--gold);margin-bottom:.5rem;text-transform:uppercase;}
+  .variant-text{font-size:1.15rem;font-weight:300;line-height:1.6;color:var(--ink);}
+  .variant-text em{font-style:italic;color:var(--green);}
+
+  /* STAT GRID */
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:1rem 0;}
+  .stat-item{background:var(--blau);padding:1.5rem 1.2rem;text-align:center;}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--gold);font-weight:300;line-height:1;}
+  .stat-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-top:.4rem;line-height:1.5;}
+
+  /* BULLET LIST */
+  .bullet-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+  .bullet-list li{display:flex;gap:.8rem;align-items:flex-start;font-size:1.1rem;font-weight:300;line-height:1.5;}
+  .bullet-list li::before{content:'→';color:var(--gold);font-family:'DM Mono',monospace;flex-shrink:0;margin-top:.1rem;}
+
+  /* HERO PREVIEW */
+  .hero-preview{background:var(--blau);padding:2rem;margin:1rem 0;color:var(--cream);}
+  .hp-tag{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--gold);margin-bottom:1rem;}
+  .hp-h1{font-size:2.2rem;font-weight:300;line-height:1.1;margin-bottom:.8rem;}
+  .hp-h1 em{font-style:italic;color:var(--gold);}
+  .hp-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,.6);line-height:1.6;max-width:480px;}
+
+  /* DIVIDER */
+  .section-divider{max-width:960px;margin:0 auto;padding:.5rem 2rem;}
+  .sd-line{border:none;border-top:1px solid var(--warm);}
+
+  @media(max-width:600px){
+    .stat-grid{grid-template-columns:1fr;}
+    .section-num{font-size:1.5rem;min-width:2rem;}
+    .copy-section{padding:2rem 1rem;}
+    .toc{padding:1rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="admin-bar">
+  <span>mindful7777 · CONTENT AGENT · Copy-Bank</span>
+  <span>Stand: Mai 2025 · Glossar-konform · Disclaimer geprüft</span>
+</div>
+
+<!-- TOC -->
+<nav class="toc">
+  <div class="toc-title">Schnellnavigation</div>
+  <div class="toc-links">
+    <a href="#hero">01 Hero</a>
+    <a href="#stats">02 Stats-Leiste</a>
+    <a href="#vertrauen">03 Vertrauen</a>
+    <a href="#wie">04 Wie es funktioniert</a>
+    <a href="#fuer-wen">05 Für wen?</a>
+    <a href="#faq">06 FAQ</a>
+    <a href="#testimonials">07 Testimonials</a>
+    <a href="#cta">08 CTAs</a>
+    <a href="#disclaimer">09 Disclaimer</a>
+    <a href="#erfolg">10 Erfolg-Kreislauf</a>
+  </div>
+</nav>
+
+<!-- ───────────────── 01 HERO ───────────────── -->
+<section class="copy-section" id="hero">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-meta">
+      <h2>Hero — <em>Headlines & Sublines</em></h2>
+      <p>Ganz oben auf der Landing Page · Above the fold · max. 8 Wörter Headline</p>
+    </div>
+  </div>
+
+  <!-- SPORTHYPNOSE HERO -->
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Hero A · Sporthypnose</span>
+      <span class="copy-badge badge-hero">HERO</span>
+    </div>
+    <div class="copy-content">
+      <div class="hero-preview">
+        <div class="hp-tag">mindful7777 · Mentale Stärke für Sportler</div>
+        <div class="hp-h1">Dein Körper<br>trainiert. Dein<br><em>Kopf gewinnt.</em></div>
+        <div class="hp-sub">Geführte Sporthypnose — für Sportler, die auch mental alles geben wollen. Fokus, Erholung, Druckresistenz.</div>
+      </div>
+      <div class="copy-note">Subline-Varianten ↓</div>
+      <div class="variants">
+        <div class="variant">
+          <div class="variant-label">Subline A — Kurz</div>
+          <div class="variant-text">25 Minuten, die deinen Wettkampftag verändern können.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Subline B — Fokus Recovery</div>
+          <div class="variant-text">Viele Sportler berichten: weniger Anspannung, tieferer Schlaf, klarerer Kopf am nächsten Morgen.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Subline C — Mental edge</div>
+          <div class="variant-text">Der Unterschied zwischen gut und herausragend? Oft ist er oben — nicht im Muskel, sondern im Kopf.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALLGEMEIN HERO -->
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Hero B · Allgemein / Schlaf / Stress</span>
+      <span class="copy-badge badge-hero">HERO</span>
+    </div>
+    <div class="copy-content">
+      <div class="variants">
+        <div class="variant">
+          <div class="variant-label">Schlaf — Headline</div>
+          <div class="variant-text" style="font-size:1.9rem;line-height:1.1;">Endlich wieder<br><em>schlafen.</em></div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Schlaf — Subline</div>
+          <div class="variant-text">Dieses Audio kann dich dabei unterstützen, schneller einzuschlafen — ohne Tabletten, ohne Willenskraft. Einfach zuhören.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Stress — Headline</div>
+          <div class="variant-text" style="font-size:1.9rem;line-height:1.1;">Tiefer ruhig.<br><em>Klarer stark.</em></div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Stress — Subline</div>
+          <div class="variant-text">Hypnose zur Entspannung — warm, fundiert, ohne Versprechen die wir nicht halten können.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Universal — Headline</div>
+          <div class="variant-text" style="font-size:1.9rem;line-height:1.1;">Dein Kopf.<br><em>Dein Tempo.</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── 02 STATS ───────────────── -->
+<section class="copy-section" id="stats">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-meta">
+      <h2>Stats-Leiste — <em>Zahlen & Kontext</em></h2>
+      <p>Direkt unter dem Hero · 3–4 Kennzahlen · immer mit Kontext-Label</p>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Stats-Set A · Sport</span>
+      <span class="copy-badge badge-trust">TRUST</span>
+    </div>
+    <div class="copy-content">
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-num">90%</div>
+          <div class="stat-label">des sportlichen Erfolgs ist nach Expertenmeinung mentaler Natur</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">25'</div>
+          <div class="stat-label">Länge des Sporthypnose-Audios — einmal am Tag</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Phasen · Induktion, Vertiefung, Suggestion, Rückführung</div>
+        </div>
+      </div>
+      <div class="copy-note">⚠️ "90%" basiert auf sportpsychologischer Fachliteratur (u.a. Platonov) — nicht als klinische Studie zitieren. Kontext immer mitliefern.</div>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Stats-Set B · Allgemein</span>
+      <span class="copy-badge badge-trust">TRUST</span>
+    </div>
+    <div class="copy-content">
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">empirische Studien zur Wirksamkeit klinischer Hypnose (lt. Wissenschaft)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">15'</div>
+          <div class="stat-label">reichen für erste Tiefenentspannung — viele Menschen berichten</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">7×</div>
+          <div class="stat-label">7 Tage täglich — spürbare Veränderung laut Erfahrungsberichten</div>
+        </div>
+      </div>
+      <div class="copy-note">⚠️ Studienzahl aus: IFHE Berlin / Flammer-Metaanalyse (188 Studien, 10.150 Patienten). Immer mit "lt. Wissenschaft" oder "in Studien" qualifizieren — nie als eigenes Versprechen framen.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── 03 VERTRAUEN ───────────────── -->
+<section class="copy-section" id="vertrauen">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div class="section-meta">
+      <h2>Vertrauen — <em>Kurzaussagen & Bullets</em></h2>
+      <p>Features, Vorteile, Differenzierung · 3–6 Punkte</p>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Trust-Bullets · Sporthypnose</span>
+      <span class="copy-badge badge-trust">TRUST</span>
+    </div>
+    <div class="copy-content">
+      <ul class="bullet-list">
+        <li>Aufgebaut nach der 4-Phasen-Methode — Induktion, Vertiefung, Suggestion, Rückführung</li>
+        <li>Eingesprochen von André — warm, ruhig, ohne esoterische Floskeln</li>
+        <li>Speziell für Sportler entwickelt: Fokus vor dem Wettkampf, Erholung danach</li>
+        <li>Viele Sportler berichten: tieferer Schlaf, klarerer Kopf, weniger Wettkampf-Nerven</li>
+        <li>Keine Vorkenntnisse nötig — einfach reinhören</li>
+        <li>Kein Abo. Einmalig. Sofort verfügbar.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Trust-Bullets · Allgemein</span>
+      <span class="copy-badge badge-trust">TRUST</span>
+    </div>
+    <div class="copy-content">
+      <ul class="bullet-list">
+        <li>Kein Schlafzustand. Kein Kontrollverlust. Du nimmst alles wahr.</li>
+        <li>Wissenschaftlich fundiert — ohne Esoterik-Versprechen</li>
+        <li>Dieses Audio kann dich dabei unterstützen, tiefer zu entspannen</li>
+        <li>Viele Menschen berichten nach regelmäßiger Nutzung von besserer Schlafqualität</li>
+        <li>Du-Ansprache. Kein Kurs. Kein Stress. Einfach zuhören.</li>
+        <li>Entwickelt von André — Hypnose-Praktiker aus Leidenschaft, nicht aus Kalkulation</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DIFFERENZIERUNG -->
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Wir vs. der Rest — Differenzierungs-Copy</span>
+      <span class="copy-badge badge-trust">TRUST</span>
+    </div>
+    <div class="copy-content">
+      <div class="variants">
+        <div class="variant">
+          <div class="variant-label">Variante A — direkt</div>
+          <div class="variant-text">Keine Versprechen, die wir nicht halten können. Keine klinisch klingenden Behauptungen ohne Quelle. Nur ehrliche Begleitung — warm, fundiert, klar.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Variante B — Vertrauen</div>
+          <div class="variant-text">mindful7777 ist kein Schlaflabor und kein Therapeut. Wir begleiten dich in tiefe Entspannung — weil wir es können, nicht weil wir es versprechen.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Variante C — minimal</div>
+          <div class="variant-text">Warm. Fundiert. Ohne Hokuspokus.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── 04 WIE ES FUNKTIONIERT ───────────────── -->
+<section class="copy-section" id="wie">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div class="section-meta">
+      <h2>Wie es funktioniert — <em>4-Phasen-Erklärung</em></h2>
+      <p>Prozess-Sektion · kurz und verständlich · keine Fachbegriffe ohne Erklärung</p>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">4-Phasen · Kurztexte (je ~25 Wörter)</span>
+      <span class="copy-badge badge-trust">TRUST</span>
+    </div>
+    <div class="copy-content">
+      <div class="variants">
+        <div class="variant">
+          <div class="variant-label">Phase 1 — Induktion</div>
+          <div class="variant-text"><strong>Ankommen.</strong> Dein Geist richtet sich neu aus. Atemübungen und gezielte Körperwahrnehmung führen dich in einen fokussierten, ruhigen Bewusstseinszustand.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Phase 2 — Vertiefung</div>
+          <div class="variant-text"><strong>Tiefer gehen.</strong> Der Entspannungszustand wird intensiviert — über Bilder, Treppenmotive oder progressive Körperentspannung. Dein Unbewusstes wird zugänglicher.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Phase 3 — Suggestionen</div>
+          <div class="variant-text"><strong>Einpflanzen.</strong> Sprachliche Formulierungen lenken deinen Geist in eine bestimmte Richtung — Fokus, Erholung, Selbstvertrauen. Positiv, präzise, klar.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Phase 4 — Rückführung</div>
+          <div class="variant-text"><strong>Zurückkommen.</strong> Sanft, orientiert, erfrischt. Du öffnest die Augen — wacher, klarer, ruhiger als vorher.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── 05 FÜR WEN ───────────────── -->
+<section class="copy-section" id="fuer-wen">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div class="section-meta">
+      <h2>Für wen? — <em>Zielgruppen-Copy</em></h2>
+      <p>Abschnitt Zielgruppe / Anwendungsfelder · empathisch, nie ausgrenzend</p>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Zielgruppen-Intro-Text</span>
+      <span class="copy-badge badge-trust">TRUST</span>
+    </div>
+    <div class="copy-content">
+      <div class="variants">
+        <div class="variant">
+          <div class="variant-label">Intro A · Sport</div>
+          <div class="variant-text">Dieses Audio ist für Sportler gemacht — Amateursportler, Semiprofis, Athleten jeden Niveaus — die wissen, dass der Körper nicht allein gewinnt.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Intro B · Allgemein</div>
+          <div class="variant-text">Ob du schlecht schläfst, unter Druck stehst, oder einfach tiefer zur Ruhe kommen möchtest — dieses Audio kann dich dabei begleiten.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Intro C · Anti-Zielgruppe (Ehrlichkeit)</div>
+          <div class="variant-text">Wenn du eine klinische Behandlung brauchst: Wir sind nicht die richtige Adresse. Wenn du tiefe Entspannung suchst — dann bist du hier richtig.</div>
+        </div>
+      </div>
+      <ul class="bullet-list" style="margin-top:1rem;">
+        <li>Du schläfst ein, aber dein Kopf läuft weiter</li>
+        <li>Du willst vor wichtigen Momenten ruhiger sein</li>
+        <li>Du willst nach intensiven Belastungen schneller regenerieren</li>
+        <li>Du bist neugierig auf Entspannungsmethoden jenseits von Apps und Podcasts</li>
+        <li>Du suchst etwas Echtes — ohne Esoterik, ohne Versprechen</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── 06 FAQ ───────────────── -->
+<section class="copy-section" id="faq">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div class="section-meta">
+      <h2>FAQ — <em>fertige Antworten</em></h2>
+      <p>Website, WhatsApp, Instagram-DMs · kopierfertig · Glossar-geprüft</p>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">FAQ-Sammlung · 7 Kernfragen</span>
+      <span class="copy-badge badge-faq">FAQ</span>
+    </div>
+    <div class="copy-content">
+      <div class="variants">
+        <div class="variant">
+          <div class="variant-label">F: Verliere ich unter Hypnose die Kontrolle?</div>
+          <div class="variant-text">Nein. Du nimmst alles wahr, du erinnerst dich an alles. Hypnose ist kein Schlafzustand und kein Kontrollverlust. Viele Menschen berichten, dass sie sich gerade durch Hypnose mehr bei sich selbst fühlen.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">F: Was wenn ich nichts fühle oder einschlafe?</div>
+          <div class="variant-text">Beides ist völlig normal — besonders am Anfang. Wenn du einschläfst, wachst du erfrischt auf. Die Wirkung entfaltet sich durch regelmäßige Nutzung, nicht durch ein einmaliges Erlebnis.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">F: Ist das Esoterik?</div>
+          <div class="variant-text">Nein. Hypnose ist ein anerkanntes Verfahren, das von der Deutschen Gesellschaft für Hypnose, der American Psychological Association und der British Medical Association als wirksam eingestuft wird. Unsere Audios verzichten bewusst auf esoterische Sprache.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">F: Kann ich Hypnose-Audios gegen meine Schlafstörung verwenden?</div>
+          <div class="variant-text">Unsere Audios dienen ausschließlich der Entspannung — sie ersetzen keine medizinische oder psychotherapeutische Behandlung. Wenn du unter einer diagnostizierten Schlafstörung leidest, empfehlen wir zuerst ein Gespräch mit deiner Fachperson.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">F: Wie oft sollte ich das Audio verwenden?</div>
+          <div class="variant-text">Viele Menschen berichten die besten Ergebnisse bei täglicher Nutzung — 5 bis 7 Mal die Woche, abends. Die Wirkung wächst mit der Regelmäßigkeit.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">F: Bin ich für Hypnose geeignet?</div>
+          <div class="variant-text">Wer schon mal in ein Buch vertieft war oder beim Autofahren in Gedanken versunken ist, kennt bereits einen hypnoseähnlichen Zustand. Grundsätzlich kann jeder Erwachsene Hypnose erleben — Offenheit ist wichtiger als Begabung.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">F: Was kostet das Audio?</div>
+          <div class="variant-text">Das Sporthypnose-Audio kostet 12,90 € — einmalig, kein Abo, sofortiger Download. Ein kostenloses Einstiegs-Audio kannst du dir hier holen: [Link]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── 07 TESTIMONIALS ───────────────── -->
+<section class="copy-section" id="testimonials">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <div class="section-meta">
+      <h2>Testimonials — <em>erfahrungsbasiert</em></h2>
+      <p>Immer als "Erfahrungsbericht" framen · nie als Beweis · Glossar: "viele Menschen berichten"</p>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Testimonial-Rahmen-Texte</span>
+      <span class="copy-badge badge-social">SOCIAL</span>
+    </div>
+    <div class="copy-content">
+      <div class="copy-note" style="margin-bottom:1rem;">→ Diese Texte rahmen echte Testimonials ein. Verwende sie als Intro-Satz über der Testimonial-Sektion.</div>
+      <div class="variants">
+        <div class="variant">
+          <div class="variant-label">Intro A</div>
+          <div class="variant-text">Was Menschen berichten — ehrlich, ungekürzt, ohne Versprechen dass deine Erfahrung identisch ist.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Intro B · Sport</div>
+          <div class="variant-text">Sportler, die das Audio getestet haben. Ihre Worte — nicht unsere.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Disclaimer unter Testimonial</div>
+          <div class="variant-text" style="font-size:.95rem;color:var(--muted);">Individuelle Erfahrungen. Ergebnisse können abweichen. Dieses Audio dient der Entspannung und ersetzt keine professionelle Behandlung.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── 08 CTAs ───────────────── -->
+<section class="copy-section" id="cta">
+  <div class="section-header">
+    <div class="section-num">08</div>
+    <div class="section-meta">
+      <h2>Call-to-Action — <em>Buttons & Mikro-Copy</em></h2>
+      <p>Primär-CTA, Sekundär-CTA, Mikro-Copy unter dem Button</p>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">CTA-Varianten · Primär</span>
+      <span class="copy-badge badge-cta">CTA</span>
+    </div>
+    <div class="copy-content">
+      <div class="variants">
+        <div class="variant"><div class="variant-label">Sport / Kaufen</div><div class="variant-text">Jetzt kaufen — 12,90 €</div></div>
+        <div class="variant"><div class="variant-label">Lead Magnet</div><div class="variant-text">Kostenloses Audio holen</div></div>
+        <div class="variant"><div class="variant-label">Neugier</div><div class="variant-text">Rein hören — kostenlos</div></div>
+        <div class="variant"><div class="variant-label">Soft</div><div class="variant-text">Heute Abend ausprobieren →</div></div>
+        <div class="variant"><div class="variant-label">Newsletter</div><div class="variant-text">Neues aus der Stille</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Mikro-Copy unter dem Button</span>
+      <span class="copy-badge badge-cta">CTA</span>
+    </div>
+    <div class="copy-content">
+      <div class="variants">
+        <div class="variant"><div class="variant-label">Vertrauen</div><div class="variant-text" style="font-size:.9rem;">Kein Abo. Kein Risiko. Sofortiger Download.</div></div>
+        <div class="variant"><div class="variant-label">Sicherheit</div><div class="variant-text" style="font-size:.9rem;">Einmalig. Du kannst jederzeit aufhören.</div></div>
+        <div class="variant"><div class="variant-label">Empfehlung</div><div class="variant-text" style="font-size:.9rem;">Viele Menschen berichten: schon nach der ersten Nacht einen Unterschied.</div></div>
+        <div class="variant"><div class="variant-label">Disclaimer-freundlich</div><div class="variant-text" style="font-size:.9rem;">⚠️ Dient der Entspannung — kein Ersatz für professionelle Beratung.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">CTA-Section-Copy (vor dem Button)</span>
+      <span class="copy-badge badge-cta">CTA</span>
+    </div>
+    <div class="copy-content">
+      <div class="variants">
+        <div class="variant">
+          <div class="variant-label">Abschluss A · Sport</div>
+          <div class="variant-text">Bereit für deinen mentalen Vorteil? Starte heute — und erlebe, was passiert wenn Körper und Geist wirklich im Einklang sind.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Abschluss B · Schlaf</div>
+          <div class="variant-text">Heute Nacht anders einschlafen. Kein Versprechen — eine Einladung zum Ausprobieren.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Abschluss C · Allgemein</div>
+          <div class="variant-text">Du trägst bereits alles in dir, was du für deine Erholung brauchst. Dieses Audio hilft dir, den Weg dahin zu finden.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── 09 DISCLAIMER ───────────────── -->
+<section class="copy-section" id="disclaimer">
+  <div class="section-header">
+    <div class="section-num">09</div>
+    <div class="section-meta">
+      <h2>Disclaimer — <em>fertige Versionen</em></h2>
+      <p>Pflicht in jedem Format · Quelle: knowledge/disclaimer.md</p>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Kurz · Social / Reel / Caption</span>
+      <span class="copy-badge badge-disclaimer">PFLICHT</span>
+    </div>
+    <div class="copy-content">
+      <div class="copy-text">⚠️ Dieses Audio dient der Entspannung und ersetzt keine professionelle Behandlung. Nicht beim Fahren verwenden. mindful7777.de/disclaimer</div>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Mittel · Landing Page / Produktseite</span>
+      <span class="copy-badge badge-disclaimer">PFLICHT</span>
+    </div>
+    <div class="copy-content">
+      <div class="copy-text" style="font-size:1rem;">Alle Audios von mindful7777 dienen ausschließlich der Entspannung und dem persönlichen Wohlbefinden. Sie ersetzen keine psychotherapeutische, psychologische oder medizinische Behandlung. Nicht beim Autofahren oder Bedienen von Maschinen verwenden. Individuelle Ergebnisse können abweichen. Telefonseelsorge: 0800 111 0 111 (kostenlos, 24/7).</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── 10 ERFOLGSKREISLAUF ───────────────── -->
+<section class="copy-section" id="erfolg">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <div class="section-meta">
+      <h2>Erfolgskreislauf — <em>mindful7777-Modell</em></h2>
+      <p>Basiert auf Erfolgskreislauf-Prinzip · adaptiert auf Hypnose & Wohlbefinden</p>
+    </div>
+  </div>
+
+  <div class="copy-card">
+    <div class="copy-card-header">
+      <span class="copy-label">Der 4-Schritt Weg · Landing-Page-Sektion</span>
+      <span class="copy-badge badge-trust">TRUST</span>
+    </div>
+    <div class="copy-content">
+      <div class="copy-text"><strong>Intro-Zeile (über den Steps):</strong><br>
+      Kein Wundermittel. Kein Kurs mit 47 Modulen. Nur vier Schritte — und du weißt, was dich erwartet.</div>
+      <div class="variants" style="margin-top:1rem;">
+        <div class="variant">
+          <div class="variant-label">Schritt 1 · Neugier</div>
+          <div class="variant-text"><strong>Reinhören.</strong> Hol dir das kostenlose Audio. Keine E-Mail-Pflicht, kein Druck. Einfach ausprobieren — 15 Minuten, die nichts kosten außer Zeit.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Schritt 2 · Vertrauen</div>
+          <div class="variant-text"><strong>Erleben.</strong> Du merkst: das klingt anders. Warm, klar, ohne Versprechen. Kein Hokuspokus. Du kannst es jeden Abend nutzen — oder nie wieder.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Schritt 3 · Entscheidung</div>
+          <div class="variant-text"><strong>Vertiefen.</strong> Wenn du mehr willst — das Sporthypnose-Audio, das Schlaf-Protokoll, das 1:1 — ist alles da. Kein Abo, kein Druck. Du entscheidest.</div>
+        </div>
+        <div class="variant">
+          <div class="variant-label">Schritt 4 · Weitergeben</div>
+          <div class="variant-text"><strong>Empfehlen.</strong> Viele unserer Teilnehmer kommen über Empfehlung. Wenn du zufrieden bist — erzähl es weiter. Wem gönnst du tiefere Erholung?</div>
+        </div>
+      </div>
+      <div class="copy-note">→ Angelehnt an Erfolgskreislauf-Struktur: Kontakt → Gespräch → Erlebnis → Empfehlung. Tone bleibt einladend, nie pushy.</div>
+    </div>
+  </div>
+</section>
+
+<div style="background:var(--blau);color:rgba(255,255,255,.35);text-align:center;padding:1.5rem;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;">
+  © André · mindful7777 · Copy-Bank Stand Mai 2025 · Glossar-konform · Disclaimer-geprüft
+</div>
+
+</body>
+</html>
