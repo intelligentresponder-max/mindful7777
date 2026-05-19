@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selbsthypnose lernen — der erste Schritt | mindful7777</title>
+<meta name="description" content="Selbsthypnose lernen — keine Magie, keine Ausrüstung, 10 Minuten. Eine ehrliche Anleitung für den ersten Schritt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1a1714;--cream:#f5f1eb;--warm:#e8dfd4;--gold:#c8a96e;--muted:#8c7f74;--green:#4a5c4e;--accent:#9b7bb5;--card-bg:#fffcf8;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Cormorant Garamond',serif;background:var(--cream);color:var(--ink);}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.5rem;background:rgba(245,241,235,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,169,110,.25);}
+  .nav-logo{font-family:'DM Mono',monospace;font-size:.85rem;letter-spacing:.12em;color:var(--green);text-decoration:none;}
+  .nav-back{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-decoration:none;}
+  .nav-back:hover{color:var(--gold);}
+
+  .article-hero{padding:8rem 2.5rem 4rem;max-width:720px;margin:0 auto;}
+  .article-tag{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
+  .article-title{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:300;line-height:1.08;letter-spacing:-.02em;}
+  .article-title em{font-style:italic;color:var(--green);}
+  .article-meta{margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:var(--muted);display:flex;gap:2rem;}
+
+  .disclaimer-box{max-width:720px;margin:0 auto 3rem;padding:0 2.5rem;}
+  .disclaimer-box .inner{background:var(--warm);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;font-family:'DM Mono',monospace;font-size:.68rem;line-height:1.7;letter-spacing:.04em;color:var(--muted);}
+
+  .article-body{max-width:720px;margin:0 auto;padding:0 2.5rem 6rem;}
+  .article-body p{font-size:1.2rem;font-weight:300;line-height:1.8;color:var(--ink);margin-bottom:1.6rem;}
+  .article-body h2{font-size:1.9rem;font-weight:400;margin:3rem 0 1.2rem;letter-spacing:-.01em;}
+  .article-body h2 em{font-style:italic;color:var(--green);}
+
+  /* TECHNIQUE CARDS */
+  .technique-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:2.5rem 0;}
+  @media(max-width:600px){.technique-grid{grid-template-columns:1fr;}}
+  .technique-card{background:var(--card-bg);border:1px solid var(--warm);padding:1.8rem;}
+  .tc-icon{font-size:1.8rem;margin-bottom:.8rem;}
+  .tc-title{font-size:1.1rem;font-weight:600;margin-bottom:.5rem;}
+  .tc-text{font-size:1rem;font-weight:300;color:var(--muted);line-height:1.65;}
+
+  /* ANLEITUNG STEPS */
+  .guide-step{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;margin-bottom:2.5rem;align-items:start;}
+  .gs-num{font-family:'DM Mono',monospace;font-size:2.5rem;font-weight:300;color:var(--gold);line-height:1;min-width:3rem;}
+  .gs-content h3{font-size:1.3rem;font-weight:400;margin-bottom:.5rem;}
+  .gs-content h3 em{font-style:italic;color:var(--green);}
+  .gs-content p{font-size:1.05rem;font-weight:300;color:var(--muted);line-height:1.7;}
+
+  .pullquote{border-left:3px solid var(--gold);padding:1rem 0 1rem 2rem;margin:2.5rem 0;font-size:1.4rem;font-style:italic;font-weight:300;color:var(--muted);line-height:1.5;}
+
+  .purple-box{background:var(--accent);color:var(--cream);padding:2rem 2.2rem;margin:2.5rem 0;}
+  .purple-box p{color:rgba(245,241,235,.9);font-size:1.1rem;font-weight:300;line-height:1.75;}
+  .purple-box strong{color:var(--gold);}
+  .pb-label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,241,235,.6);margin-bottom:.8rem;}
+
+  .article-cta{background:var(--warm);padding:3rem 2.5rem;text-align:center;margin-top:3rem;}
+  .article-cta h3{font-size:1.9rem;font-weight:300;margin-bottom:.8rem;}
+  .article-cta p{font-size:1.1rem;font-weight:300;color:var(--muted);margin-bottom:1.8rem;}
+  .btn-primary{display:inline-block;padding:.9rem 2.4rem;background:var(--green);color:var(--cream);font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:opacity .2s;}
+  .btn-primary:hover{opacity:.85;}
+
+  .back-link{display:inline-block;margin-top:2rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--muted);text-decoration:none;}
+  .back-link:hover{color:var(--gold);}
+
+  footer{background:var(--ink);color:var(--muted);padding:2.5rem;text-align:center;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.07em;line-height:1.9;}
+  footer a{color:var(--gold);text-decoration:none;}
+
+  @media(max-width:700px){nav{padding:1rem 1.2rem;}.article-hero,.article-body,.disclaimer-box{padding-left:1.2rem;padding-right:1.2rem;}.guide-step{grid-template-columns:1fr;gap:.8rem;}.gs-num{font-size:1.8rem;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">mindful7777</a>
+  <a class="nav-back" href="blog.html">← Zurück zum Blog</a>
+</nav>
+
+<header class="article-hero">
+  <p class="article-tag">Selbsthypnose · Anleitung · Lesedauer: 8 Min</p>
+  <h1 class="article-title">Selbsthypnose lernen —<br><em>der erste Schritt</em></h1>
+  <div class="article-meta">
+    <span>André · mindful7777</span>
+    <span>Mai 2025</span>
+    <span>SEO: Selbsthypnose lernen</span>
+  </div>
+</header>
+
+<div class="disclaimer-box">
+  <div class="inner">⚠️ Dieser Artikel dient ausschließlich der allgemeinen Information. Selbsthypnose ersetzt keine psychotherapeutische oder medizinische Behandlung. Bei psychischen Erkrankungen: bitte erst Fachperson konsultieren. Telefonseelsorge: 0800 111 0 111 (kostenlos, 24/7). mindful7777.de/disclaimer</div>
+</div>
+
+<article class="article-body">
+
+  <p>Selbsthypnose klingt komplizierter als es ist. Die meisten Menschen denken, man braucht dafür Talent, Ausbildung oder wochenlange Übung. In Wirklichkeit ist Selbsthypnose eine erlernbare Technik — nicht anders als tiefes Atmen oder Stretching. Du brauchst nur einen ruhigen Ort, 10 Minuten und die Bereitschaft, dich darauf einzulassen.</p>
+
+  <div class="pullquote">
+    "Jeder kennt Selbsthypnose bereits — beim Lesen eines Buches, beim Tagträumen, beim Einschlafen. Der Unterschied: du lernst, diesen Zustand gezielt herbeizuführen."
+  </div>
+
+  <h2>Was Selbsthypnose <em>eigentlich</em> ist</h2>
+
+  <p>Selbsthypnose ist das eigenständige Herbeiführen eines entspannten, fokussierten Bewusstseinszustands ohne externe Begleitung. Du leitest dich selbst — durch Atemübungen, Körperwahrnehmung, innere Bilder oder Wiederholungen.</p>
+
+  <p>In diesem Zustand ist dein Unterbewusstsein zugänglicher — der Teil von dir, der Gewohnheiten steuert, Reaktionen automatisiert und emotionale Muster hält. Das macht Selbsthypnose so interessant: nicht als Magie, sondern als direkterer Kommunikationsweg mit dir selbst.</p>
+
+  <h2>Welche <em>Techniken</em> gibt es?</h2>
+
+  <div class="technique-grid">
+    <div class="technique-card">
+      <div class="tc-icon">🫁</div>
+      <div class="tc-title">Atemfokus</div>
+      <p class="tc-text">Die einfachste Einstiegstechnik. Du beobachtest deinen Atem — ohne ihn zu verändern. Nach 2–3 Minuten verlangsamt er sich von selbst. Die Aufmerksamkeit wandert nach innen.</p>
+    </div>
+    <div class="technique-card">
+      <div class="tc-icon">🌀</div>
+      <div class="tc-title">Augenfixation</div>
+      <p class="tc-text">Ein Punkt an der Wand oder eine Kerzenflamme. Du fixierst ihn, bis die Augen schwer werden. Die Schläfrigkeit ist der Eingang in den Induktionszustand.</p>
+    </div>
+    <div class="technique-card">
+      <div class="tc-icon">🏔️</div>
+      <div class="tc-title">Treppenbild</div>
+      <p class="tc-text">Du stellst dir vor, eine Treppe hinabzusteigen — bei jeder Stufe tiefer. Klassische Vertiefungstechnik aus der Hypnotherapie, einfach selbst anzuwenden.</p>
+    </div>
+    <div class="technique-card">
+      <div class="tc-icon">💪</div>
+      <div class="tc-title">Progressive Entspannung</div>
+      <p class="tc-text">Du gehst innerlich durch deinen Körper — von den Füßen bis zum Kopf — und lädst jeden Bereich ein, loszulassen. Sehr körperorientiert, wirkt schnell und zuverlässig.</p>
+    </div>
+  </div>
+
+  <h2>Deine erste <em>Selbsthypnose</em> — Schritt für Schritt</h2>
+
+  <div class="guide-step">
+    <div class="gs-num">01</div>
+    <div class="gs-content">
+      <h3><em>Vorbereitung</em> — 2 Min</h3>
+      <p>Ruhiger Ort. Kein Lärm, kein Handy. Sitz oder lieg bequem. Du musst nichts "richtig" machen — nur ankommen. Stell dir vor, du hast 10 Minuten, die nur dir gehören.</p>
+    </div>
+  </div>
+
+  <div class="guide-step">
+    <div class="gs-num">02</div>
+    <div class="gs-content">
+      <h3><em>Atem</em> als Anker setzen — 3 Min</h3>
+      <p>Atme 4 Sekunden ein, 7 Sekunden halten, 8 Sekunden aus. Diese 4-7-8-Technik aktiviert direkt das parasympathische Nervensystem. Drei bis vier Runden reichen. Dann lass den Atem einfach fließen und beobachte ihn.</p>
+    </div>
+  </div>
+
+  <div class="guide-step">
+    <div class="gs-num">03</div>
+    <div class="gs-content">
+      <h3><em>Vertiefung</em> über Körperscan — 3 Min</h3>
+      <p>Beginne bei den Füßen. Innerlich sagen: "Meine Füße sind schwer und warm. Ich lasse los." Dann Waden, Knie, Oberschenkel, Bauch, Brust, Schultern, Arme, Hände, Nacken, Gesicht. Kein Druck — nur Einladung.</p>
+    </div>
+  </div>
+
+  <div class="guide-step">
+    <div class="gs-num">04</div>
+    <div class="gs-content">
+      <h3><em>Suggestion</em> einpflanzen — 2 Min</h3>
+      <p>Jetzt sagst du dir innerlich — ruhig, warm, bestimmt — einen Satz, den du dir wünschst. Positiv formuliert, Gegenwart. Zum Beispiel: "Ich schlafe tief und erholt." oder "Ich gehe ruhig durch den Tag." Wiederhole ihn 3–5 Mal.</p>
+    </div>
+  </div>
+
+  <div class="guide-step">
+    <div class="gs-num">05</div>
+    <div class="gs-content">
+      <h3><em>Rückführung</em> — 1 Min</h3>
+      <p>Zähle innerlich von 5 auf 1. Bei jeder Zahl wirst du wacher. Bei 1: Augen öffnen, Arme strecken, tief atmen. Fertig. Du bist vollständig zurück.</p>
+    </div>
+  </div>
+
+  <div class="purple-box">
+    <div class="pb-label">Häufige Frage</div>
+    <p><strong>"Was wenn ich keine Bilder sehe oder nichts fühle?"</strong><br><br>
+    Das ist völlig normal — besonders am Anfang. Selbsthypnose ist keine visuelle Erfahrung, die du erzwingen musst. Manchmal ist es nur ein leises Ruhigwerden. Das zählt. Der Zugang wird mit der Übung leichter — wie bei jedem anderen Training auch.</p>
+  </div>
+
+  <h2>Wann und <em>wie oft</em> üben?</h2>
+
+  <p>Tägliche Kurzeinheiten von 10 Minuten sind wirkungsvoller als seltene lange Sessions. Morgens nach dem Aufwachen oder abends vor dem Schlafen sind natürliche Ankerpunkte — das Gehirn ist in diesen Übergangsphasen ohnehin offener für Entspannungszustände.</p>
+
+  <p>Viele Menschen berichten, dass sich nach 7–14 Tagen regelmäßiger Praxis bereits eine spürbare Veränderung einstellt — mehr innere Ruhe, leichteres Einschlafen, ein ruhigerer Umgang mit stressigen Situationen. Kein Versprechen — eine Erfahrung, die du selbst machen kannst.</p>
+
+  <div class="article-cta">
+    <h3>Lieber erst ein geführtes Audio?</h3>
+    <p>Für den Einstieg empfehlen wir ein geführtes Hypnose-Audio — das nimmt dir die Navigation ab und lässt dich einfach erleben. Kostenlos, 15 Minuten.</p>
+    <a class="btn-primary" href="apply.html">Kostenloses Audio holen</a>
+  </div>
+
+  <a class="back-link" href="blog.html">← Zurück zur Übersicht</a>
+
+</article>
+
+<footer>
+  <p>© André · mindful7777 · <a href="#">mindful7777.de</a> · Stand: Mai 2025</p>
+  <p style="margin-top:.5rem;">Alle Inhalte dienen ausschließlich der Information und Entspannung. Kein Ersatz für professionelle Beratung. <a href="#">Disclaimer</a> · <a href="#">Impressum</a></p>
+</footer>
+
+</body>
+</html>

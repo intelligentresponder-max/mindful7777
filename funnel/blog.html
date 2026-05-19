@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — mindful7777</title>
+<meta name="description" content="Hypnose, Selbsthypnose und Tiefenentspannung — Wissen, das wirklich hilft. Warm, fundiert, ohne Esoterik.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:    #1a1714;
+    --cream:  #f5f1eb;
+    --warm:   #e8dfd4;
+    --gold:   #c8a96e;
+    --muted:  #8c7f74;
+    --green:  #4a5c4e;
+    --accent: #d4735a;
+    --card-bg:#fffcf8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 2.5rem;
+    background: rgba(245,241,235,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(200,169,110,0.25);
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    color: var(--green);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 9rem 2.5rem 5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green);
+  }
+  .hero-sub {
+    margin-top: 1.8rem;
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    padding: 0 2.5rem;
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.45rem 1.1rem;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--gold);
+    color: var(--cream);
+  }
+
+  /* ── GRID ── */
+  .blog-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2.5rem 6rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--warm);
+    padding: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(26,23,20,0.08); }
+  .card:hover::before { transform: scaleX(1); }
+
+  .card-featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .card-featured .card-img {
+    background: var(--green);
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    opacity: 0.7;
+  }
+  .card-featured .card-body { padding: 2.8rem; display: flex; flex-direction: column; gap: 1rem; }
+
+  .card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .card-title {
+    font-size: 1.55rem;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  .card-title em { font-style: italic; color: var(--green); }
+  .card-excerpt {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.65;
+    flex: 1;
+  }
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--warm);
+  }
+  .card-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  .card-read {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .card:hover .card-read { gap: 0.8rem; }
+
+  /* ── NEWSLETTER STRIP ── */
+  .newsletter {
+    background: var(--green);
+    padding: 4rem 2.5rem;
+    text-align: center;
+    color: var(--cream);
+  }
+  .newsletter h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+  }
+  .newsletter p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+  .nl-form { display: flex; gap: 0; max-width: 440px; margin: 0 auto; }
+  .nl-form input {
+    flex: 1;
+    padding: 0.9rem 1.2rem;
+    border: none;
+    background: rgba(255,255,255,0.12);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    outline: none;
+  }
+  .nl-form input::placeholder { color: rgba(245,241,235,0.5); }
+  .nl-form button {
+    padding: 0.9rem 1.6rem;
+    background: var(--gold);
+    border: none;
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .nl-form button:hover { opacity: 0.85; }
+  .nl-disclaimer {
+    margin-top: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    opacity: 0.5;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: var(--muted);
+    padding: 2.5rem 2.5rem;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    line-height: 1.9;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .card-featured { grid-template-columns: 1fr; }
+    .card-featured .card-img { min-height: 120px; font-size: 3rem; }
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero { padding: 7rem 1.2rem 3rem; }
+    .filter-bar, .blog-grid { padding-left: 1.2rem; padding-right: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">mindful7777</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Start</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="quiz.html">Quiz</a></li>
+    <li><a href="apply.html">Bewerbung</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">mindful7777 · Wissen &amp; Praxis</p>
+  <h1>Tiefer ruhen.<br><em>Klarer denken.</em></h1>
+  <p class="hero-sub">Fundiertes Wissen über Hypnose, Selbsthypnose und Tiefenentspannung — warm, ehrlich, ohne Versprechen die wir nicht halten können.</p>
+</section>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterCards('all', this)">Alle</button>
+  <button class="filter-btn" onclick="filterCards('hypnose', this)">Hypnose</button>
+  <button class="filter-btn" onclick="filterCards('schlaf', this)">Schlaf</button>
+  <button class="filter-btn" onclick="filterCards('selbsthypnose', this)">Selbsthypnose</button>
+  <button class="filter-btn" onclick="filterCards('sport', this)">Sport & Recovery</button>
+  <button class="filter-btn" onclick="filterCards('stress', this)">Stress</button>
+</div>
+
+<!-- GRID -->
+<main class="blog-grid" id="blogGrid">
+
+  <!-- FEATURED -->
+  <article class="card card-featured" data-tag="hypnose" onclick="location.href='blog-was-ist-hypnose.html'">
+    <div class="card-img">🌊</div>
+    <div class="card-body">
+      <span class="card-tag">Hypnose · Grundlagen</span>
+      <h2 class="card-title">Was ist Hypnose <em>wirklich</em> — und was nicht?</h2>
+      <p class="card-excerpt">Schlafzustand, Kontrollverlust, Gehirnwäsche — kaum ein Thema trägt mehr Mythen. Hier bekommst du eine klare, ruhige Erklärung: was Hypnose ist, wie sie funktioniert und warum viele Menschen berichten, danach erholter zu sein als nach einem Nickerchen.</p>
+      <div class="card-meta">
+        <span class="card-date">Mai 2025 · 7 Min</span>
+        <a class="card-read" href="blog-was-ist-hypnose.html">Lesen →</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- CARD 2 -->
+  <article class="card" data-tag="schlaf" onclick="location.href='blog-besser-schlafen.html'">
+    <span class="card-tag">Schlaf · Hypnose</span>
+    <h2 class="card-title">Besser schlafen mit <em>Hypnose</em></h2>
+    <p class="card-excerpt">Viele Menschen berichten, dass Hypnose-Audios ihnen helfen, schneller einzuschlafen und ruhiger zu schlafen. Was steckt dahinter — und wie kannst du es ausprobieren?</p>
+    <div class="card-meta">
+      <span class="card-date">Mai 2025 · 6 Min</span>
+      <a class="card-read" href="blog-besser-schlafen.html">Lesen →</a>
+    </div>
+  </article>
+
+  <!-- CARD 3 -->
+  <article class="card" data-tag="selbsthypnose" onclick="location.href='blog-selbsthypnose-lernen.html'">
+    <span class="card-tag">Selbsthypnose · Anleitung</span>
+    <h2 class="card-title">Selbsthypnose lernen — <em>der erste Schritt</em></h2>
+    <p class="card-excerpt">Selbsthypnose ist keine Magie. Es ist eine erlernbare Methode, die du überall anwenden kannst — in 10 Minuten auf dem Sofa oder in der Pause bei der Arbeit.</p>
+    <div class="card-meta">
+      <span class="card-date">Mai 2025 · 8 Min</span>
+      <a class="card-read" href="blog-selbsthypnose-lernen.html">Lesen →</a>
+    </div>
+  </article>
+
+  <!-- CARD 4 -->
+  <article class="card" data-tag="sport" onclick="location.href='blog-sport-recovery.html'">
+    <span class="card-tag">Sport · Recovery</span>
+    <h2 class="card-title">Recovery neu gedacht — <em>mentale Regeneration</em></h2>
+    <p class="card-excerpt">Eiswanne, Foam Roller, Schlaf — aber was ist mit dem Kopf? Viele Sportler berichten, dass mentale Entspannungstechniken die körperliche Erholung unterstützen können.</p>
+    <div class="card-meta">
+      <span class="card-date">Demnächst</span>
+      <a class="card-read" href="#">Bald →</a>
+    </div>
+  </article>
+
+  <!-- CARD 5 -->
+  <article class="card" data-tag="stress" onclick="location.href='#'">
+    <span class="card-tag">Stress · Alltag</span>
+    <h2 class="card-title">Die 4-7-8 Methode und <em>warum Atemübungen wirken</em></h2>
+    <p class="card-excerpt">Atemübungen sind keine Esoterik. Sie aktivieren direkt das parasympathische Nervensystem — und das lässt sich messen. Eine kurze Erklärung, die du sofort anwenden kannst.</p>
+    <div class="card-meta">
+      <span class="card-date">Demnächst</span>
+      <a class="card-read" href="#">Bald →</a>
+    </div>
+  </article>
+
+</main>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>Neue Artikel per E-Mail</h2>
+  <p>Kein Spam. Nur Inhalte, die wirklich ankommen.</p>
+  <form class="nl-form" onsubmit="return false;">
+    <input type="email" placeholder="deine@email.de">
+    <button type="submit">Anmelden</button>
+  </form>
+  <p class="nl-disclaimer">⚠️ Inhalte dienen der Information &amp; Entspannung — kein Ersatz für professionelle Beratung. mindful7777.de/disclaimer</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© André · mindful7777 · <a href="mindful7777.de">mindful7777.de</a> · Stand: Mai 2025</p>
+  <p style="margin-top:.5rem;">Alle Inhalte dienen ausschließlich der Information und Entspannung. Kein Ersatz für professionelle medizinische oder psychotherapeutische Beratung. <a href="#">Disclaimer</a> · <a href="#">Impressum</a></p>
+</footer>
+
+<script>
+  function filterCards(tag, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (tag === 'all' || card.dataset.tag === tag) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
