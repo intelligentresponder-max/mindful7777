@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VIP Premium · mindful7777</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+<style>
+/* ════════════════════════════════════
+   ROOT & RESET
+════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --blau:#1B2845;--blau-hell:#253659;
+  --gold:#D4A574;--gold-hell:#E8C49A;--gold-dark:#b8902a;
+  --beige:#F7F4EE;--beige-dunkel:#EDE9E0;
+  --grau:#3A3A3A;--grau-hell:#6B6B6B;
+  --weiss:#FFFFFF;
+  --bg-dark:#0d1710;--bg-dark2:#111f15;--bg-dark3:#162019;
+  --gold-m:#c8a84b;--gold-m2:#e8d090;--gold-m3:#f5edd8;
+  --border-m:rgba(200,168,75,.22);
+  --text-m:#d4cfc4;--text-m2:rgba(212,207,196,.6);
+  --sage:#3d6b45;
+  --danger:#c84b4b;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--blau);color:var(--grau);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+h1,h2,h3,h4{font-family:'Playfair Display',serif}
+
+/* Grain overlay */
+body::after{
+  content:'';position:fixed;inset:0;opacity:.025;pointer-events:none;z-index:9998;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ════════════════════════════════════
+   PUBLIC SHELL
+════════════════════════════════════ */
+#publicShell{display:block}
+#memberShell{display:none}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  padding:18px 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(27,40,69,.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(212,165,116,.12);
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);letter-spacing:.04em}
+.nav-badge{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(212,165,116,.35);padding:5px 12px;border-radius:2px;background:rgba(212,165,116,.06)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-lang{display:flex;gap:6px}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.4);padding:5px 10px;border-radius:2px;font-size:11px;letter-spacing:.1em;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.lang-btn.active,.lang-btn:hover{border-color:var(--gold);color:var(--gold)}
+.nav-login-btn{font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border:1px solid rgba(212,165,116,.4);border-radius:2px;color:var(--gold);background:none;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.nav-login-btn:hover{background:rgba(212,165,116,.08)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--blau)}
+.hero-deco{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 60% at 100% 0%,rgba(212,165,116,.07) 0%,transparent 60%),
+             radial-gradient(ellipse 50% 50% at 0% 100%,rgba(37,54,89,.8) 0%,transparent 60%)}
+.hero-lines{position:absolute;right:5%;top:50%;transform:translateY(-50%);opacity:.04;pointer-events:none}
+.hero-lines svg{width:400px;height:400px}
+.hero-content{position:relative;z-index:2;padding:140px 5% 100px;max-width:820px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:36px;border:1px solid rgba(212,165,116,.28);padding:8px 18px;border-radius:2px;background:rgba(212,165,116,.04)}
+.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero h1{font-size:clamp(44px,7vw,88px);color:var(--weiss);line-height:1.05;margin-bottom:10px}
+.hero h1 em{color:var(--gold);font-style:italic;display:block}
+.hero-sub{font-size:clamp(16px,2vw,18px);color:rgba(255,255,255,.55);line-height:1.8;font-weight:300;margin-top:32px;max-width:560px}
+.hero-divider{width:56px;height:2px;background:var(--gold);margin:32px 0;opacity:.5}
+
+/* ── DONATION ── */
+.donation{background:rgba(255,255,255,.02);border:1px solid rgba(212,165,116,.14);border-radius:4px;padding:44px 48px;margin-top:56px;max-width:700px}
+.donation-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:block}
+.donation-methods{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:28px}
+.donation-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:2px;font-size:13px;font-weight:500;letter-spacing:.05em;transition:all .2s;border:1px solid transparent;cursor:pointer;font-family:'DM Sans',sans-serif}
+.donation-btn.primary{background:var(--gold);color:var(--blau)}
+.donation-btn.primary:hover{background:var(--gold-hell);transform:translateY(-2px)}
+.donation-btn.ghost{border-color:rgba(212,165,116,.3);color:rgba(255,255,255,.6);background:none}
+.donation-btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+.donation-note{font-size:12px;color:rgba(255,255,255,.25);letter-spacing:.04em;font-style:italic;margin-top:4px}
+
+/* ── SECTIONS ── */
+.sections-wrap{background:var(--beige);padding:100px 5%}
+.sections-header{margin-bottom:60px}
+.section-eyebrow{font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:14px}
+.section-title{font-size:clamp(28px,4vw,46px);color:var(--blau);line-height:1.15;margin-bottom:16px}
+.section-sub{font-size:16px;line-height:1.8;color:var(--grau-hell);max-width:540px;font-weight:300}
+.how-steps{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px}
+.how-step{display:flex;align-items:center;gap:10px;background:var(--weiss);padding:14px 20px;border-radius:2px;font-size:13px;color:var(--grau);border-left:3px solid var(--gold);flex:1 1 220px}
+.how-step-num{font-family:'Playfair Display',serif;font-size:22px;color:rgba(212,165,116,.4);line-height:1;flex-shrink:0}
+.areas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px}
+.area-card{background:var(--weiss);padding:36px 32px;border-top:2px solid transparent;transition:all .3s;position:relative;overflow:hidden;cursor:pointer}
+.area-card::after{content:'🔐';position:absolute;top:20px;right:20px;font-size:14px;opacity:.25}
+.area-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 32px rgba(27,40,69,.08)}
+.area-num{font-family:'Playfair Display',serif;font-size:48px;color:rgba(212,165,116,.15);line-height:1;margin-bottom:12px}
+.area-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--blau);margin-bottom:8px}
+.area-desc{font-size:13px;color:var(--grau-hell);line-height:1.65}
+
+/* ── CTA ── */
+.cta-block{background:var(--blau-hell);padding:80px 5%;border-top:1px solid rgba(212,165,116,.1);text-align:center;position:relative;overflow:hidden}
+.cta-block::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 50% 100%,rgba(212,165,116,.06) 0%,transparent 60%);pointer-events:none}
+.cta-block h2{font-size:clamp(28px,4vw,44px);color:var(--weiss);margin-bottom:16px}
+.cta-block h2 em{color:var(--gold);font-style:italic}
+.cta-block p{font-size:16px;color:rgba(255,255,255,.45);margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto;font-weight:300}
+.cta-chat-btn{display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:var(--blau);padding:18px 40px;border-radius:2px;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+.cta-chat-btn:hover{background:var(--gold-hell);transform:translateY(-2px)}
+.open-login-btn{display:inline-flex;align-items:center;gap:10px;margin-left:16px;border:1px solid rgba(212,165,116,.4);color:var(--gold);background:none;padding:18px 32px;border-radius:2px;font-size:14px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.open-login-btn:hover{background:rgba(212,165,116,.08)}
+
+/* ── WUNSCHLISTE ── */
+.wunschliste{background:var(--blau);padding:100px 5%;border-top:1px solid rgba(212,165,116,.08)}
+.wunschliste .section-title{color:var(--weiss);margin-bottom:10px}
+.wunschliste .section-sub{color:rgba(255,255,255,.4);margin-bottom:56px;font-weight:300;font-size:15px;max-width:500px}
+.wunschliste .section-eyebrow{color:var(--gold)}
+.wish-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.wish-card{background:rgba(255,255,255,.03);border:1px solid rgba(212,165,116,.08);padding:28px 22px 24px;text-decoration:none;transition:all .25s;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+.wish-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,165,116,.04) 0%,transparent 60%);opacity:0;transition:opacity .25s}
+.wish-card:hover{border-color:rgba(212,165,116,.35);transform:translateY(-3px);background:rgba(255,255,255,.05)}
+.wish-card:hover::before{opacity:1}
+.wish-emoji{font-size:28px;line-height:1;margin-bottom:4px}
+.wish-cat{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);opacity:.7}
+.wish-name{font-family:'Playfair Display',serif;font-size:15px;color:var(--weiss);line-height:1.35}
+.wish-price{font-size:13px;color:rgba(255,255,255,.35);margin-top:auto}
+.wish-arrow{position:absolute;bottom:20px;right:20px;font-size:14px;color:rgba(212,165,116,.3);transition:all .2s}
+.wish-card:hover .wish-arrow{color:var(--gold);transform:translate(2px,-2px)}
+
+/* ── FOOTER ── */
+footer{background:var(--blau);padding:32px 5%;border-top:1px solid rgba(212,165,116,.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-logo{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.25);letter-spacing:.06em;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-disclaimer{width:100%;font-size:11px;color:rgba(255,255,255,.15);line-height:1.7;padding-top:20px;border-top:1px solid rgba(255,255,255,.05);margin-top:12px}
+
+/* ── FADE-IN ── */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.fade-in.visible{opacity:1;transform:none}
+
+/* ── LANG ── */
+[data-lang="en"]{display:none}
+body.en [data-lang="de"]{display:none}
+body.en [data-lang="en"]{display:block}
+
+/* ════════════════════════════════════
+   PASSWORD MODAL
+════════════════════════════════════ */
+#pwModal{
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(13,23,16,.85);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;
+}
+#pwModal.open{display:flex}
+.pw-box{
+  width:min(420px,92vw);background:#111f15;
+  border:1px solid var(--border-m);border-radius:16px;
+  padding:3rem 2.5rem;position:relative;overflow:hidden;
+}
+.pw-box::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(200,168,75,.08) 0%,transparent 70%);pointer-events:none}
+.pw-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:rgba(200,168,75,.4);font-size:1.2rem;cursor:pointer;transition:color .2s}
+.pw-close:hover{color:var(--gold-m)}
+.pw-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold-m3);text-align:center;margin-bottom:.3rem}
+.pw-title span{color:var(--gold-m)}
+.pw-sub{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,168,75,.4);text-align:center;margin-bottom:2rem}
+.pw-label{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-m);margin-bottom:.5rem;display:block}
+.pw-input{width:100%;background:rgba(0,0,0,.35);border:1px solid var(--border-m);border-radius:8px;padding:.85rem 1rem;font-family:'DM Mono',monospace;font-size:.95rem;color:var(--gold-m3);outline:none;letter-spacing:.12em;transition:border-color .2s}
+.pw-input:focus{border-color:var(--gold-m)}
+.pw-input::placeholder{color:rgba(200,168,75,.3)}
+.pw-err{font-size:.8rem;color:var(--danger);margin-top:.6rem;min-height:1.2rem;text-align:center;letter-spacing:.04em;opacity:0;transition:opacity .3s}
+.pw-err.show{opacity:1}
+.pw-btn{width:100%;margin-top:1.5rem;padding:.9rem;background:var(--gold-m);color:#1a2e1f;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:500;letter-spacing:.1em;cursor:pointer;transition:background .2s,transform .1s;text-transform:uppercase}
+.pw-btn:hover{background:var(--gold-m2);transform:translateY(-1px)}
+.pw-hint{text-align:center;margin-top:1rem;font-size:.75rem;color:rgba(200,168,75,.3);letter-spacing:.06em}
+
+/* Particles */
+.pw-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.pw-particles span{position:absolute;width:2px;height:2px;border-radius:50%;background:var(--gold-m);animation:pfloat linear infinite;opacity:0}
+@keyframes pfloat{0%{transform:translateY(100%);opacity:0}10%{opacity:.6}90%{opacity:.4}100%{transform:translateY(-100%);opacity:0}}
+
+/* ════════════════════════════════════
+   MEMBER SHELL  (Premium7777)
+════════════════════════════════════ */
+#memberShell{min-height:100vh;background:var(--bg-dark)}
+
+/* Sidebar */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:240px;background:var(--bg-dark2);border-right:1px solid var(--border-m);display:flex;flex-direction:column;z-index:100;transform:translateX(0);transition:transform .3s}
+.sidebar-logo{padding:1.8rem 1.5rem 1.2rem;border-bottom:1px solid var(--border-m)}
+.sidebar-logo-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:300;color:var(--gold-m3);letter-spacing:.06em}
+.sidebar-logo-name span{color:var(--gold-m)}
+.sidebar-badge-m{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-m);margin-top:.25rem;padding:.2rem .5rem;border:1px solid rgba(200,168,75,.3);border-radius:100px;display:inline-block}
+.sidebar-nav{flex:1;padding:1.2rem 0;overflow-y:auto}
+.nav-section-label{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,168,75,.4);padding:.6rem 1.5rem .3rem}
+.s-nav-item{display:flex;align-items:center;gap:.75rem;padding:.6rem 1.5rem;cursor:pointer;font-size:.85rem;color:var(--text-m2);border-left:2px solid transparent;transition:all .15s;position:relative}
+.s-nav-item:hover{color:var(--gold-m3);background:rgba(200,168,75,.07)}
+.s-nav-item.active{color:var(--gold-m);border-left-color:var(--gold-m);background:rgba(200,168,75,.07)}
+.s-nav-item .nav-icon{font-size:1rem;width:18px;text-align:center;flex-shrink:0}
+.s-nav-item .nav-num{margin-left:auto;font-size:.65rem;font-family:'DM Mono',monospace;color:rgba(200,168,75,.35)}
+.sidebar-footer-m{padding:1rem 1.5rem;border-top:1px solid var(--border-m);font-size:.75rem;color:var(--text-m2)}
+.sidebar-lock-btn{display:flex;align-items:center;gap:.5rem;cursor:pointer;padding:.4rem 0;color:rgba(200,168,75,.5);transition:color .2s;font-size:.8rem;background:none;border:none;font-family:'DM Sans',sans-serif;width:100%}
+.sidebar-lock-btn:hover{color:var(--gold-m)}
+
+/* Topbar member */
+.topbar-m{position:fixed;top:0;left:240px;right:0;height:56px;background:rgba(13,23,16,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-m);display:flex;align-items:center;padding:0 2rem;z-index:90;gap:1rem}
+.topbar-breadcrumb{font-size:.8rem;color:var(--text-m2);letter-spacing:.06em;display:flex;align-items:center;gap:.5rem}
+.topbar-breadcrumb .sep{opacity:.35}
+.topbar-breadcrumb .current{color:var(--gold-m3)}
+.topbar-spacer{flex:1}
+.topbar-tag-m{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.25rem .7rem;border:1px solid rgba(200,168,75,.3);border-radius:100px;color:var(--gold-m)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;color:var(--gold-m);font-size:1.3rem;padding:.3rem}
+
+/* Main content */
+.m-main{margin-left:240px;padding-top:56px;min-height:100vh}
+.m-page{display:none;padding:2.5rem 2.5rem 4rem;animation:fadeInM .35s ease}
+.m-page.active{display:block}
+@keyframes fadeInM{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Page components */
+.m-page-header{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border-m)}
+.m-page-eyebrow{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-m);margin-bottom:.6rem}
+.m-page-title{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--gold-m3);line-height:1.2}
+.m-page-title em{font-style:italic;color:var(--gold-m)}
+.m-page-desc{font-size:.9rem;color:var(--text-m2);margin-top:.75rem;line-height:1.8;max-width:620px}
+
+.m-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.m-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.m-grid-7{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.2rem}
+
+.m-card{background:var(--bg-dark2);border:1px solid var(--border-m);border-radius:12px;padding:1.5rem;transition:border-color .2s,transform .2s;cursor:pointer;position:relative;overflow:hidden}
+.m-card:hover{border-color:rgba(200,168,75,.5);transform:translateY(-2px)}
+.m-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold-m),transparent);opacity:0;transition:opacity .2s}
+.m-card:hover::before{opacity:1}
+.m-card-num{font-family:'DM Mono',monospace;font-size:.68rem;color:rgba(200,168,75,.4);letter-spacing:.1em;margin-bottom:.75rem}
+.m-card-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--gold-m3);margin-bottom:.5rem}
+.m-card-desc{font-size:.82rem;color:var(--text-m2);line-height:1.6}
+.m-card-icon{font-size:1.8rem;margin-bottom:.75rem}
+.m-card-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--gold-m);margin-top:1rem;letter-spacing:.06em;border-bottom:1px solid rgba(200,168,75,.25);padding-bottom:.15rem;transition:border-color .2s}
+.m-card-link:hover{border-color:var(--gold-m)}
+.m-card-link::after{content:'→'}
+
+.img-card-m{border-radius:12px;overflow:hidden;border:1px solid var(--border-m);cursor:pointer;transition:all .2s;position:relative}
+.img-card-m:hover{border-color:rgba(200,168,75,.5);transform:translateY(-2px)}
+.img-card-visual{height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+.img-card-body-m{padding:1rem 1.2rem 1.2rem;background:var(--bg-dark2)}
+.img-card-title-m{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-m3);margin-bottom:.3rem}
+.img-card-sub-m{font-size:.78rem;color:var(--text-m2)}
+
+.text-link-m{color:var(--gold-m);border-bottom:1px solid rgba(200,168,75,.3);cursor:pointer;transition:border-color .2s}
+.text-link-m:hover{border-color:var(--gold-m)}
+
+.m-section-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--gold-m3);margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid rgba(200,168,75,.15)}
+.m-section-eyebrow{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-m);margin-bottom:.4rem}
+
+.stat-box-m{background:var(--bg-dark3);border:1px solid var(--border-m);border-radius:10px;padding:1.2rem 1.5rem;text-align:center}
+.stat-num-m{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--gold-m);font-weight:300}
+.stat-label-m{font-size:.72rem;color:var(--text-m2);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem}
+
+.m-divider{height:1px;background:var(--border-m);margin:2rem 0;opacity:.5}
+
+.quote-block-m{border-left:3px solid var(--gold-m);padding:1.2rem 1.5rem;background:rgba(200,168,75,.04);border-radius:0 8px 8px 0;margin:1.5rem 0}
+.quote-text-m{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--gold-m3);line-height:1.7}
+.quote-attr-m{font-size:.75rem;color:var(--text-m2);margin-top:.5rem;letter-spacing:.06em}
+
+.m-tag{display:inline-block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.22rem .65rem;border-radius:100px;background:rgba(200,168,75,.1);color:var(--gold-m);border:1px solid rgba(200,168,75,.25);margin:.2rem}
+
+.prog-bar-m{height:4px;background:rgba(200,168,75,.12);border-radius:2px;margin:1rem 0}
+.prog-fill-m{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--sage),var(--gold-m));transition:width .4s}
+
+.list-item-m{display:flex;align-items:flex-start;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(200,168,75,.1)}
+.list-item-m:last-child{border-bottom:none}
+.list-item-icon-m{font-size:1.2rem;flex-shrink:0;margin-top:.1rem}
+.list-item-title-m{font-size:.9rem;color:var(--gold-m3);margin-bottom:.2rem}
+.list-item-desc-m{font-size:.8rem;color:var(--text-m2);line-height:1.55}
+
+.bg-forest{background:linear-gradient(135deg,#1a2e1f 0%,#2d5234 100%)}
+.bg-amber{background:linear-gradient(135deg,#2e1f0d 0%,#4a3010 100%)}
+.bg-ocean{background:linear-gradient(135deg,#0d1f2e 0%,#103050 100%)}
+.bg-violet{background:linear-gradient(135deg,#1a0d2e 0%,#2d1050 100%)}
+.bg-rose{background:linear-gradient(135deg,#2e0d1a 0%,#501030 100%)}
+.bg-teal{background:linear-gradient(135deg,#0d2e2a 0%,#10504a 100%)}
+.bg-slate{background:linear-gradient(135deg,#1a1f2e 0%,#2a304a 100%)}
+
+.m-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+.m-overlay.show{display:block}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){.wish-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .topbar-m{left:0}
+  .m-main{margin-left:0}
+  .hamburger{display:block}
+  .m-grid-2,.m-grid-3{grid-template-columns:1fr}
+  .m-page{padding:1.5rem 1.2rem 3rem}
+}
+@media(max-width:640px){
+  .areas-grid{grid-template-columns:1fr}
+  .donation{padding:32px 24px}
+  nav{padding:14px 4%}
+  footer{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:480px){.wish-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     PASSWORD MODAL
+════════════════════════════════════════ -->
+<div id="pwModal" role="dialog" aria-modal="true" aria-label="Login">
+  <div class="pw-box">
+    <div class="pw-particles" id="pwParticles"></div>
+    <button class="pw-close" onclick="closeModal()" aria-label="Schließen">✕</button>
+    <div class="pw-title">mindful<span>7777</span></div>
+    <div class="pw-sub">Premium · Mitgliederbereich</div>
+    <label class="pw-label" for="pwInput">Passwort</label>
+    <input class="pw-input" type="password" id="pwInput" placeholder="••••••••" autocomplete="off"/>
+    <div class="pw-err" id="pwErr">Falsches Passwort. Bitte erneut versuchen.</div>
+    <button class="pw-btn" onclick="checkPw()">Eintreten ✦</button>
+    <div class="pw-hint">Passwort per privater Nachricht anfordern</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PUBLIC SHELL
+════════════════════════════════════════ -->
+<div id="publicShell">
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">mindful7777</a>
+    <span class="nav-badge">VIP Premium</span>
+    <div class="nav-right">
+      <div class="nav-lang">
+        <button class="lang-btn active" data-target="de" onclick="setLang('de')">DE</button>
+        <button class="lang-btn" data-target="en" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="nav-login-btn" onclick="openModal()">🔐 Login</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-deco"></div>
+    <div class="hero-lines">
+      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="180" stroke="#D4A574" stroke-width="0.5"/>
+        <circle cx="200" cy="200" r="140" stroke="#D4A574" stroke-width="0.5"/>
+        <circle cx="200" cy="200" r="100" stroke="#D4A574" stroke-width="0.5"/>
+        <circle cx="200" cy="200" r="60" stroke="#D4A574" stroke-width="0.5"/>
+        <line x1="20" y1="200" x2="380" y2="200" stroke="#D4A574" stroke-width="0.5"/>
+        <line x1="200" y1="20" x2="200" y2="380" stroke="#D4A574" stroke-width="0.5"/>
+        <line x1="72" y1="72" x2="328" y2="328" stroke="#D4A574" stroke-width="0.5"/>
+        <line x1="328" y1="72" x2="72" y2="328" stroke="#D4A574" stroke-width="0.5"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Private Member Area · mindful7777</div>
+      <h1 data-lang="de">Willkommen.<br><em>Kein Abo. Kein Zwang.<br>Kein Bullshit.</em></h1>
+      <h1 data-lang="en">Welcome.<br><em>No subscription.<br>No pressure. No nonsense.</em></h1>
+      <div class="hero-divider"></div>
+      <p class="hero-sub" data-lang="de">Du bist hier, weil du eingeladen wurdest – nicht weil ein Algorithmus dich hierher gespült hat.<br>Dieser Bereich ist privat, werbefrei und handverlesen.</p>
+      <p class="hero-sub" data-lang="en">You're here because you were invited – not because an algorithm pushed you here.<br>This space is private, ad-free, and carefully curated.</p>
+
+      <div class="donation fade-in" data-lang="de">
+        <span class="donation-label">Freiwillige Unterstützung</span>
+        <div class="donation-methods" style="flex-direction:column;align-items:center;gap:20px">
+          <stripe-buy-button
+            buy-button-id="buy_btn_1TZPnAIxh6j8mxSl50pQvrHj"
+            publishable-key="pk_live_51TTvm4Ixh6j8mxSlPd0N9iDRE2kq8aR7pfmMC8BI5SGEO0BoQnCWtnGplL6WFxEQZzLfSz1GgUBHgYN5iLJYVdDN00C9g79Fuo"
+          ></stripe-buy-button>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+            <a href="https://throne.com/mindful7777" target="_blank" rel="noopener" class="donation-btn ghost">🎁 Wunschliste</a>
+            <a href="https://buy.stripe.com/7sY3cw5lh8W44jp2lM1VK01" target="_blank" rel="noopener" class="donation-btn ghost" style="font-size:11px">💳 Direkt-Link (Fallback)</a>
+          </div>
+        </div>
+        <p class="donation-note">Kein Mindestbetrag. Keine Verpflichtung. Nur wenn du möchtest.</p>
+      </div>
+      <div class="donation fade-in" data-lang="en">
+        <span class="donation-label">Voluntary Support</span>
+        <div class="donation-methods" style="flex-direction:column;align-items:center;gap:20px">
+          <stripe-buy-button
+            buy-button-id="buy_btn_1TZPnAIxh6j8mxSl50pQvrHj"
+            publishable-key="pk_live_51TTvm4Ixh6j8mxSlPd0N9iDRE2kq8aR7pfmMC8BI5SGEO0BoQnCWtnGplL6WFxEQZzLfSz1GgUBHgYN5iLJYVdDN00C9g79Fuo"
+          ></stripe-buy-button>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+            <a href="https://throne.com/mindful7777" target="_blank" rel="noopener" class="donation-btn ghost">🎁 Wishlist</a>
+            <a href="https://buy.stripe.com/7sY3cw5lh8W44jp2lM1VK01" target="_blank" rel="noopener" class="donation-btn ghost" style="font-size:11px">💳 Direct Link (Fallback)</a>
+          </div>
+        </div>
+        <p class="donation-note">No minimum. No obligation. Only if you want to.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEREICHE -->
+  <section class="sections-wrap">
+    <div class="sections-header fade-in" data-lang="de">
+      <div class="section-eyebrow">So funktioniert's</div>
+      <h2 class="section-title">Wähle deinen Bereich.<br>Ich sende dir das Passwort.</h2>
+      <p class="section-sub">Schau dir die 7 Bereiche an – wähle aus, was zu dir passt. Schreib mir kurz im privaten Chat – du erhältst dein Passwort persönlich und direkt.</p>
+    </div>
+    <div class="sections-header fade-in" data-lang="en">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title">Choose your section.<br>I'll send you the password.</h2>
+      <p class="section-sub">Browse the 7 sections – choose what feels right. Drop me a message in private chat – I'll send your password personally and directly.</p>
+    </div>
+
+    <div class="how-steps fade-in" data-lang="de">
+      <div class="how-step"><span class="how-step-num">1</span>Bereich auswählen, der zu dir passt</div>
+      <div class="how-step"><span class="how-step-num">2</span>Kurz im privaten Chat melden</div>
+      <div class="how-step"><span class="how-step-num">3</span>Passwort erhalten &amp; loslegen</div>
+    </div>
+    <div class="how-steps fade-in" data-lang="en">
+      <div class="how-step"><span class="how-step-num">1</span>Pick the section that fits you</div>
+      <div class="how-step"><span class="how-step-num">2</span>Drop me a message in private chat</div>
+      <div class="how-step"><span class="how-step-num">3</span>Receive your password &amp; dive in</div>
+    </div>
+
+    <div class="areas-grid fade-in" data-lang="de">
+      <div class="area-card" onclick="openModal()"><div class="area-num">1</div><div class="area-title">Tiefenentspannung</div><p class="area-desc">PMR, Körperscan, Atemarbeit — das Fundament für alle weiteren Praktiken.</p></div>
+      <div class="area-card" onclick="openModal()"><div class="area-num">2</div><div class="area-title">Schlaf &amp; Traumreise</div><p class="area-desc">Geführte Einschlaf-Meditationen und Traumreisen für erholsame Nächte.</p></div>
+      <div class="area-card" onclick="openModal()"><div class="area-num">3</div><div class="area-title">Selbsthypnose</div><p class="area-desc">Eye-Roll, Anker-Technik, Suggestionsformeln — eigenständige Praxis.</p></div>
+      <div class="area-card" onclick="openModal()"><div class="area-num">4</div><div class="area-title">Sporthypnose</div><p class="area-desc">Pre-Game Focus, Flow-State, Visualisierungs-Training für Athleten.</p></div>
+      <div class="area-card" onclick="openModal()"><div class="area-num">5</div><div class="area-title">Stressreduktion</div><p class="area-desc">Vagus-Aktivierung, HRV-Atmen, Safe Place. Akut &amp; Langzeit.</p></div>
+      <div class="area-card" onclick="openModal()"><div class="area-num">6</div><div class="area-title">Skript-Bibliothek</div><p class="area-desc">Alle Skripte &amp; Vorlagen auf Deutsch und Englisch zum Download.</p></div>
+      <div class="area-card" onclick="openModal()"><div class="area-num">7</div><div class="area-title">Audio-Studio</div><p class="area-desc">Aufnehmen, Schneiden, Musik hinzufügen. Dein persönliches Klang-Atelier.</p></div>
+    </div>
+    <div class="areas-grid fade-in" data-lang="en">
+      <div class="area-card" onclick="openModal()"><div class="area-num">1</div><div class="area-title">Deep Relaxation</div><p class="area-desc">PMR, body scan, breathwork — the foundation for all further practice.</p></div>
+      <div class="area-card" onclick="openModal()"><div class="area-num">2</div><div class="area-title">Sleep &amp; Dream Journey</div><p class="area-desc">Guided sleep meditations and dream journeys for restful nights.</p></div>
+      <div class="area-card" onclick="openModal()"><div class="area-num">3</div><div class="area-title">Self-Hypnosis</div><p class="area-desc">Eye-roll, anchor technique, suggestion formulas — independent practice.</p></div>
+      <div class="area-card" onclick="openModal()"><div class="area-num">4</div><div class="area-title">Sports Hypnosis</div><p class="area-desc">Pre-game focus, flow state, visualization training for athletes.</p></div>
+      <div class="area-card" onclick="openModal()"><div class="area-num">5</div><div class="area-title">Stress Reduction</div><p class="area-desc">Vagus activation, HRV breathing, safe place. Acute &amp; long-term.</p></div>
+      <div class="area-card" onclick="openModal()"><div class="area-num">6</div><div class="area-title">Script Library</div><p class="area-desc">All scripts &amp; templates in German and English ready to download.</p></div>
+      <div class="area-card" onclick="openModal()"><div class="area-num">7</div><div class="area-title">Audio Studio</div><p class="area-desc">Record, edit, add music. Your personal sound atelier.</p></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-block">
+    <div data-lang="de">
+      <h2>Bereit?<br><em>Schreib mir im privaten Chat.</em></h2>
+      <p>Nenn mir den Bereich, der dich anspricht – ich sende dir dein Passwort direkt und persönlich.</p>
+      <a href="https://ig.me/m/intelligentresponder" target="_blank" rel="noopener" class="cta-chat-btn">💬 Passwort anfragen</a>
+      <button class="open-login-btn" onclick="openModal()">🔐 Ich habe schon ein Passwort</button>
+    </div>
+    <div data-lang="en">
+      <h2>Ready?<br><em>Message me in private chat.</em></h2>
+      <p>Tell me which section speaks to you – I'll send your password directly and personally.</p>
+      <a href="https://ig.me/m/intelligentresponder" target="_blank" rel="noopener" class="cta-chat-btn">💬 Request Your Password</a>
+      <button class="open-login-btn" onclick="openModal()">🔐 I already have a password</button>
+    </div>
+  </section>
+
+  <!-- WUNSCHLISTE -->
+  <section class="wunschliste">
+    <div data-lang="de">
+      <div class="section-eyebrow">Wunschliste</div>
+      <h2 class="section-title">Was mich freut.</h2>
+      <p class="section-sub">Wenn du etwas zurückgeben möchtest – hier sind Dinge, die mir wirklich helfen und freuen.</p>
+    </div>
+    <div data-lang="en">
+      <div class="section-eyebrow">Wishlist</div>
+      <h2 class="section-title">Things that bring joy.</h2>
+      <p class="section-sub">If you'd like to give something back – here are things that genuinely help and delight me.</p>
+    </div>
+
+    <div style="margin-bottom:32px;padding:16px 20px;background:rgba(212,165,116,.06);border:1px solid rgba(212,165,116,.18);border-radius:2px;display:inline-flex;align-items:center;gap:12px;">
+      <span style="font-size:20px">👑</span>
+      <span style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6">
+        Alle Produkte werden anonym über <strong style="color:var(--gold)">Throne</strong> verschickt — deine Adresse bleibt 100% privat.
+      </span>
+    </div>
+
+    <div class="wish-grid fade-in">
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">🎧</span><span class="wish-cat">Audio</span><span class="wish-name">Over-Ear Kopfhörer kabellos</span><span class="wish-price">ca. 79 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">📚</span><span class="wish-cat">Buch</span><span class="wish-name">Milton Erickson — Gesammelte Schriften</span><span class="wish-price">ca. 38 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">🕯️</span><span class="wish-cat">Ambiente</span><span class="wish-name">Duftkerze Sandelholz / Zedernholz</span><span class="wish-price">ca. 22 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">🎙️</span><span class="wish-cat">Studio</span><span class="wish-name">USB-Mikrofon für Aufnahmen</span><span class="wish-price">ca. 59 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">🌿</span><span class="wish-cat">Wellness</span><span class="wish-name">Magnesium Komplex hochdosiert</span><span class="wish-price">ca. 18 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">📓</span><span class="wish-cat">Schreiben</span><span class="wish-name">Leuchtturm1917 Notizbuch A5</span><span class="wish-price">ca. 16 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">☕</span><span class="wish-cat">Kaffee</span><span class="wish-name">Specialty Coffee — Probierpaket</span><span class="wish-price">ca. 28 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">🧘</span><span class="wish-cat">Praxis</span><span class="wish-name">Yogamatte extra breit &amp; rutschfest</span><span class="wish-price">ca. 45 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">💡</span><span class="wish-cat">Licht</span><span class="wish-name">Philips Hue Go Tischleuchte</span><span class="wish-price">ca. 69 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">📖</span><span class="wish-cat">Buch</span><span class="wish-name">Stephen Gilligan — The Courage to Love</span><span class="wish-price">ca. 24 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">🎵</span><span class="wish-cat">Musik</span><span class="wish-name">Spotify Premium Geschenkkarte</span><span class="wish-price">ca. 30 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">🌊</span><span class="wish-cat">Erholung</span><span class="wish-name">Floatation Tank Session Gutschein</span><span class="wish-price">ca. 65 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">🖊️</span><span class="wish-cat">Schreiben</span><span class="wish-name">Lamy Safari Füller Set</span><span class="wish-price">ca. 32 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">🫖</span><span class="wish-cat">Ritual</span><span class="wish-name">Hochwertiges Tee-Set mit Kanne</span><span class="wish-price">ca. 42 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">🔋</span><span class="wish-cat">Tech</span><span class="wish-name">Anker Power Bank 20.000 mAh</span><span class="wish-price">ca. 35 €</span><span class="wish-arrow">↗</span></a>
+      <a href="https://throne.com/mindful7777" class="wish-card" target="_blank" rel="noopener"><span class="wish-emoji">✨</span><span class="wish-cat">Surprise</span><span class="wish-name">Überraschung — deine Wahl</span><span class="wish-price">frei wählbar</span><span class="wish-arrow">↗</span></a>
+    </div>
+  </section>
+
+  <!-- FOOTER PUBLIC -->
+  <footer>
+    <div class="footer-logo">mindful7777</div>
+    <div class="footer-links">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="index.html">Kontakt</a>
+    </div>
+    <p class="footer-disclaimer">Alle Inhalte dienen ausschließlich der Entspannung und dem persönlichen Wohlbefinden. Sie ersetzen keine psychologische oder medizinische Beratung. Nicht beim Autofahren oder Bedienen von Maschinen verwenden. · All content is for relaxation and personal well-being only. Not a substitute for professional advice. · © 2026 mindful7777</p>
+  </footer>
+
+</div><!-- /publicShell -->
+
+<!-- ═══════════════════════════════════════
+     MEMBER SHELL  (Premium7777 · 7777-1 bis 7777-7)
+════════════════════════════════════════ -->
+<div id="memberShell">
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="mSidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-name">mindful<span>7777</span></div>
+      <div class="sidebar-badge-m">Premium · Mitglied</div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-label">Kaskade</div>
+      <div class="s-nav-item active" onclick="mNav('hub')"><span class="nav-icon">✦</span>Übersicht<span class="nav-num">0</span></div>
+      <div class="nav-section-label" style="margin-top:.5rem">7777 · Bereiche</div>
+      <div class="s-nav-item" onclick="mNav('p1')"><span class="nav-icon">🧘</span>Tiefenentspannung<span class="nav-num">1</span></div>
+      <div class="s-nav-item" onclick="mNav('p2')"><span class="nav-icon">🌙</span>Schlaf &amp; Traumreise<span class="nav-num">2</span></div>
+      <div class="s-nav-item" onclick="mNav('p3')"><span class="nav-icon">💫</span>Selbsthypnose<span class="nav-num">3</span></div>
+      <div class="s-nav-item" onclick="mNav('p4')"><span class="nav-icon">🔥</span>Sporthypnose<span class="nav-num">4</span></div>
+      <div class="s-nav-item" onclick="mNav('p5')"><span class="nav-icon">🌿</span>Stressreduktion<span class="nav-num">5</span></div>
+      <div class="s-nav-item" onclick="mNav('p6')"><span class="nav-icon">💎</span>Skript-Bibliothek<span class="nav-num">6</span></div>
+      <div class="s-nav-item" onclick="mNav('p7')"><span class="nav-icon">🎧</span>Audio-Studio<span class="nav-num">7</span></div>
+    </div>
+    <div class="sidebar-footer-m">
+      <button class="sidebar-lock-btn" onclick="lockMember()">🔒 &nbsp;Abmelden</button>
+    </div>
+  </nav>
+
+  <div class="m-overlay" id="mOverlay" onclick="closeMSidebar()"></div>
+
+  <!-- Topbar -->
+  <header class="topbar-m">
+    <button class="hamburger" onclick="toggleMSidebar()">☰</button>
+    <div class="topbar-breadcrumb"><span>Premium7777</span><span class="sep">›</span><span class="current" id="mBreadcrumb">Übersicht</span></div>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-tag-m">Mitglied ✦</div>
+  </header>
+
+  <!-- Content -->
+  <main class="m-main">
+
+    <!-- HUB -->
+    <div class="m-page active" id="mp-hub">
+      <div class="m-page-header">
+        <div class="m-page-eyebrow">Premium7777 · Kaskade</div>
+        <div class="m-page-title">Willkommen im<br><em>geschlossenen Bereich</em></div>
+        <p class="m-page-desc">Hier findest du alle 7 Bereiche der Premium7777-Kaskade. Klicke auf eine Karte oder einen Link um direkt zu deiner Kategorie zu gelangen.</p>
+      </div>
+      <div class="m-grid-3" style="margin-bottom:2.5rem">
+        <div class="stat-box-m"><div class="stat-num-m">7</div><div class="stat-label-m">Bereiche</div></div>
+        <div class="stat-box-m"><div class="stat-num-m">∞</div><div class="stat-label-m">Zugriffe</div></div>
+        <div class="stat-box-m"><div class="stat-num-m">7777</div><div class="stat-label-m">Premium</div></div>
+      </div>
+      <div class="m-section-eyebrow">Deine 7 Bereiche</div>
+      <div class="m-section-title">Premium7777 · Kaskade</div>
+      <div class="m-grid-7">
+        <div class="img-card-m" onclick="mNav('p1')"><div class="img-card-visual bg-forest">🧘</div><div class="img-card-body-m"><div class="img-card-title-m">Tiefenentspannung</div><div class="img-card-sub-m">7777-1 · Grundkurs</div></div></div>
+        <div class="img-card-m" onclick="mNav('p2')"><div class="img-card-visual bg-slate">🌙</div><div class="img-card-body-m"><div class="img-card-title-m">Schlaf &amp; Traumreise</div><div class="img-card-sub-m">7777-2 · Schlafmodul</div></div></div>
+        <div class="img-card-m" onclick="mNav('p3')"><div class="img-card-visual bg-violet">💫</div><div class="img-card-body-m"><div class="img-card-title-m">Selbsthypnose</div><div class="img-card-sub-m">7777-3 · Praxis</div></div></div>
+        <div class="img-card-m" onclick="mNav('p4')"><div class="img-card-visual bg-amber">🔥</div><div class="img-card-body-m"><div class="img-card-title-m">Sporthypnose</div><div class="img-card-sub-m">7777-4 · Performance</div></div></div>
+        <div class="img-card-m" onclick="mNav('p5')"><div class="img-card-visual bg-teal">🌿</div><div class="img-card-body-m"><div class="img-card-title-m">Stressreduktion</div><div class="img-card-sub-m">7777-5 · Balance</div></div></div>
+        <div class="img-card-m" onclick="mNav('p6')"><div class="img-card-visual bg-ocean">💎</div><div class="img-card-body-m"><div class="img-card-title-m">Skript-Bibliothek</div><div class="img-card-sub-m">7777-6 · Ressourcen</div></div></div>
+        <div class="img-card-m" onclick="mNav('p7')"><div class="img-card-visual bg-rose">🎧</div><div class="img-card-body-m"><div class="img-card-title-m">Audio-Studio</div><div class="img-card-sub-m">7777-7 · Produktion</div></div></div>
+      </div>
+      <div class="m-divider"></div>
+      <div class="m-section-title">Schnellzugriff</div>
+      <p style="font-size:.9rem;color:var(--text-m2);line-height:2.2">
+        Starte mit <span class="text-link-m" onclick="mNav('p1')">Tiefenentspannung (7777-1)</span> ·
+        Besserer Schlaf → <span class="text-link-m" onclick="mNav('p2')">Schlaf &amp; Traumreise (7777-2)</span> ·
+        <span class="text-link-m" onclick="mNav('p3')">Selbsthypnose (7777-3)</span> lernen ·
+        Performance steigern → <span class="text-link-m" onclick="mNav('p4')">Sporthypnose (7777-4)</span> ·
+        Stressabbau → <span class="text-link-m" onclick="mNav('p5')">Stressreduktion (7777-5)</span> ·
+        Vorlagen in der <span class="text-link-m" onclick="mNav('p6')">Skript-Bibliothek (7777-6)</span> ·
+        Eigene Audios im <span class="text-link-m" onclick="mNav('p7')">Audio-Studio (7777-7)</span>
+      </p>
+      <div class="quote-block-m" style="margin-top:2rem"><div class="quote-text-m">„Die tiefste Entspannung beginnt dort, wo das Denken aufhört."</div><div class="quote-attr-m">— André · mindful7777</div></div>
+    </div>
+
+    <!-- 7777-1 -->
+    <div class="m-page" id="mp-p1">
+      <div class="m-page-header"><div class="m-page-eyebrow">7777-1 · Tiefenentspannung</div><div class="m-page-title">Dein Weg in die<br><em>tiefe Stille</em></div><p class="m-page-desc">Progressive Muskelentspannung, Körperscan und Atemarbeit — das Fundament aller weiteren Praktiken.</p></div>
+      <div class="m-grid-2">
+        <div>
+          <div class="m-section-title">Lektionen</div>
+          <div class="list-item-m"><div class="list-item-icon-m">🌱</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p1')">Einführung: Was ist tiefe Entspannung?</span></div><div class="list-item-desc-m">Grundlagen · 8 Min</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">🫁</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p1')">4-7-8 Atemtechnik</span></div><div class="list-item-desc-m">Atemarbeit · 12 Min</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">💆</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p1')">Progressive Muskelentspannung (PMR)</span></div><div class="list-item-desc-m">Körperarbeit · 20 Min</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">🌊</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p1')">Körperscan · Von Kopf bis Fuß</span></div><div class="list-item-desc-m">Bewusstsein · 15 Min</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">✨</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p3')">Weiter zu Selbsthypnose →</span></div><div class="list-item-desc-m">7777-3 · Nächste Stufe</div></div></div>
+        </div>
+        <div>
+          <div class="m-section-title">Ressourcen</div>
+          <div class="m-card" onclick="mNav('p6')" style="margin-bottom:1rem"><div class="m-card-num">7777-6</div><div class="m-card-icon">📄</div><div class="m-card-title">PMR-Skript herunterladen</div><div class="m-card-desc">Das komplette Skript in der Bibliothek.</div><div class="m-card-link">Zur Skript-Bibliothek</div></div>
+          <div class="m-card" onclick="mNav('p7')"><div class="m-card-num">7777-7</div><div class="m-card-icon">🎙️</div><div class="m-card-title">Audio aufnehmen</div><div class="m-card-desc">Eigene PMR-Session im Studio produzieren.</div><div class="m-card-link">Zum Audio-Studio</div></div>
+          <div class="prog-bar-m" style="margin-top:1.5rem"><div class="prog-fill-m" style="width:14%"></div></div>
+          <div style="font-size:.75rem;color:var(--text-m2)">Kaskade Fortschritt · 7777-1 von 7</div>
+        </div>
+      </div>
+      <div class="m-divider"></div>
+      <span class="m-tag">Anfänger</span><span class="m-tag">PMR</span><span class="m-tag">Atemarbeit</span><span class="m-tag">Körperscan</span>
+    </div>
+
+    <!-- 7777-2 -->
+    <div class="m-page" id="mp-p2">
+      <div class="m-page-header"><div class="m-page-eyebrow">7777-2 · Schlaf &amp; Traumreise</div><div class="m-page-title">Einschlafen in<br><em>tiefer Geborgenheit</em></div><p class="m-page-desc">Geführte Einschlaf-Meditationen, Traumreisen und Schlaf-Audios. Theta-Wellen-optimiert.</p></div>
+      <div class="m-grid-3">
+        <div class="img-card-m" onclick="mNav('p2')"><div class="img-card-visual bg-slate">🌙</div><div class="img-card-body-m"><div class="img-card-title-m">Abend-Ritual</div><div class="img-card-sub-m">20 Min · Theta 4–8 Hz</div></div></div>
+        <div class="img-card-m" onclick="mNav('p2')"><div class="img-card-visual bg-ocean">⭐</div><div class="img-card-body-m"><div class="img-card-title-m">Sternenmeer</div><div class="img-card-sub-m">30 Min · Traumreise</div></div></div>
+        <div class="img-card-m" onclick="mNav('p2')"><div class="img-card-visual bg-forest">🌲</div><div class="img-card-body-m"><div class="img-card-title-m">Waldspaziergang</div><div class="img-card-sub-m">25 Min · Naturklänge</div></div></div>
+      </div>
+      <div class="m-divider"></div>
+      <div class="quote-block-m"><div class="quote-text-m">„Jede Nacht ist eine neue Einladung, loszulassen."</div><div class="quote-attr-m">— mindful7777</div></div>
+      <p style="font-size:.88rem;color:var(--text-m2);line-height:2;margin-top:1.5rem">
+        Vorher empfohlen: <span class="text-link-m" onclick="mNav('p1')">Tiefenentspannung (7777-1)</span> ·
+        Skripte in der <span class="text-link-m" onclick="mNav('p6')">Bibliothek (7777-6)</span> ·
+        Aufnehmen im <span class="text-link-m" onclick="mNav('p7')">Audio-Studio (7777-7)</span>
+      </p>
+      <div class="m-divider"></div>
+      <span class="m-tag">Schlaf</span><span class="m-tag">Theta</span><span class="m-tag">Traumreise</span><span class="m-tag">Natur</span>
+    </div>
+
+    <!-- 7777-3 -->
+    <div class="m-page" id="mp-p3">
+      <div class="m-page-header"><div class="m-page-eyebrow">7777-3 · Selbsthypnose</div><div class="m-page-title">Zugang zu deiner<br><em>inneren Kraft</em></div><p class="m-page-desc">Induktions-Protokolle, Anker-Techniken und eigenständige Praxis für fortgeschrittene Anwender.</p></div>
+      <div class="m-grid-2">
+        <div>
+          <div class="m-section-title">Technik-Module</div>
+          <div class="m-card" onclick="mNav('p3')" style="margin-bottom:1rem"><div class="m-card-num">Modul A</div><div class="m-card-title">Eye-Roll Induktion</div><div class="m-card-desc">Selbsthypnose in unter 60 Sekunden.</div><div class="m-card-link">Jetzt lernen</div></div>
+          <div class="m-card" onclick="mNav('p3')" style="margin-bottom:1rem"><div class="m-card-num">Modul B</div><div class="m-card-title">Anker-Technik</div><div class="m-card-desc">Körperlicher Anker für sofortige Entspannung.</div><div class="m-card-link">Jetzt lernen</div></div>
+          <div class="m-card" onclick="mNav('p3')"><div class="m-card-num">Modul C</div><div class="m-card-title">Suggestionsformeln</div><div class="m-card-desc">Wirksame Auto-Suggestionen für eigene Ziele.</div><div class="m-card-link">Jetzt lernen</div></div>
+        </div>
+        <div>
+          <div class="m-section-title">Verbundene Bereiche</div>
+          <div class="list-item-m"><div class="list-item-icon-m">🧘</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p1')">Voraussetzung: Tiefenentspannung</span></div><div class="list-item-desc-m">7777-1 · Empfohlene Vorbereitung</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">🔥</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p4')">Anwendung: Sporthypnose</span></div><div class="list-item-desc-m">7777-4 · Techniken in der Praxis</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">💎</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p6')">Skript-Vorlagen</span></div><div class="list-item-desc-m">7777-6 · Fertige Induktionsskripte</div></div></div>
+          <div class="prog-bar-m" style="margin-top:1.5rem"><div class="prog-fill-m" style="width:43%"></div></div>
+          <div style="font-size:.75rem;color:var(--text-m2)">Kaskade Fortschritt · 7777-3 von 7</div>
+        </div>
+      </div>
+      <div class="m-divider"></div>
+      <span class="m-tag">Selbsthypnose</span><span class="m-tag">Induktion</span><span class="m-tag">Anker</span><span class="m-tag">Auto-Suggestion</span>
+    </div>
+
+    <!-- 7777-4 -->
+    <div class="m-page" id="mp-p4">
+      <div class="m-page-header"><div class="m-page-eyebrow">7777-4 · Sporthypnose</div><div class="m-page-title">Mentale Stärke für<br><em>Höchstleistung</em></div><p class="m-page-desc">Hypnotische Protokolle für Athleten und alle, die mentale Performance auf das nächste Level bringen wollen.</p></div>
+      <div class="m-grid-3">
+        <div class="m-card" onclick="mNav('p4')"><div class="m-card-icon">🏅</div><div class="m-card-title">Pre-Game Focus</div><div class="m-card-desc">12-Min-Protokoll zur mentalen Wettkampf-Vorbereitung.</div><div class="m-card-link">Öffnen</div></div>
+        <div class="m-card" onclick="mNav('p4')"><div class="m-card-icon">💪</div><div class="m-card-title">Schmerz-Management</div><div class="m-card-desc">Schmerzdistanzierung beim Training.</div><div class="m-card-link">Öffnen</div></div>
+        <div class="m-card" onclick="mNav('p4')"><div class="m-card-icon">🎯</div><div class="m-card-title">Visualisierungs-Training</div><div class="m-card-desc">Bewegungsabläufe im hypnotischen Zustand.</div><div class="m-card-link">Öffnen</div></div>
+        <div class="m-card" onclick="mNav('p4')"><div class="m-card-icon">😴</div><div class="m-card-title">Recovery-Session</div><div class="m-card-desc">Schnelle Regeneration nach Training. 20 Min.</div><div class="m-card-link">Öffnen</div></div>
+        <div class="m-card" onclick="mNav('p4')"><div class="m-card-icon">🧠</div><div class="m-card-title">Flow-State Induktion</div><div class="m-card-desc">Direkter Zugang zum Flow für maximale Performance.</div><div class="m-card-link">Öffnen</div></div>
+        <div class="m-card" onclick="mNav('p7')"><div class="m-card-icon">🎙️</div><div class="m-card-title">Eigenes Audio erstellen</div><div class="m-card-desc">Sport-Hypnose-Audio im Studio produzieren.</div><div class="m-card-link">Zum Studio</div></div>
+      </div>
+      <div class="m-divider"></div>
+      <p style="font-size:.88rem;color:var(--text-m2);line-height:2">
+        Skripte in der <span class="text-link-m" onclick="mNav('p6')">Bibliothek (7777-6)</span> ·
+        Grundlage: <span class="text-link-m" onclick="mNav('p3')">Selbsthypnose (7777-3)</span> ·
+        Erholung &amp; Schlaf → <span class="text-link-m" onclick="mNav('p2')">7777-2</span>
+      </p>
+      <div class="m-divider"></div>
+      <span class="m-tag">Sport</span><span class="m-tag">Performance</span><span class="m-tag">Flow</span><span class="m-tag">Visualisierung</span><span class="m-tag">Recovery</span>
+    </div>
+
+    <!-- 7777-5 -->
+    <div class="m-page" id="mp-p5">
+      <div class="m-page-header"><div class="m-page-eyebrow">7777-5 · Stressreduktion</div><div class="m-page-title">Rückkehr zur<br><em>inneren Balance</em></div><p class="m-page-desc">Protokolle für akuten Stress, chronische Erschöpfung und nachhaltige Resilienz.</p></div>
+      <div class="m-grid-2">
+        <div>
+          <div class="m-section-title">Akut-Programme</div>
+          <div class="list-item-m"><div class="list-item-icon-m">⚡</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p5')">5-Minuten Notfall-Entspannung</span></div><div class="list-item-desc-m">Sofortmaßnahme · überall anwendbar</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">🫀</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p5')">HRV-Atmen · 5-5 Rhythmus</span></div><div class="list-item-desc-m">6 Min · Herzratenvariabilität</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">🌿</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p5')">Vagus-Nerv Stimulation</span></div><div class="list-item-desc-m">10 Min · Parasympathikus aktivieren</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">🏡</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p5')">Safe Place · Sicherer Ort</span></div><div class="list-item-desc-m">15 Min · Hypnotisches Ressource-Bild</div></div></div>
+          <div class="m-divider" style="margin:1rem 0"></div>
+          <p style="font-size:.85rem;color:var(--text-m2);line-height:1.8">Kombiniere mit <span class="text-link-m" onclick="mNav('p1')">Tiefenentspannung (7777-1)</span> für langfristige Wirkung. Skripte in der <span class="text-link-m" onclick="mNav('p6')">Bibliothek (7777-6)</span>.</p>
+        </div>
+        <div>
+          <div class="m-section-title">Langzeit-Programme</div>
+          <div class="m-card" onclick="mNav('p5')" style="margin-bottom:1rem"><div class="m-card-num">4 Wochen</div><div class="m-card-title">Resilienz-Aufbau</div><div class="m-card-desc">Tägliche 10-Min-Praxis für nachhaltige Stressresistenz.</div><div class="m-card-link">Starten</div></div>
+          <div class="m-card" onclick="mNav('p5')" style="margin-bottom:1rem"><div class="m-card-num">8 Wochen</div><div class="m-card-title">Burnout-Prävention</div><div class="m-card-desc">Programm für Menschen unter dauerhafter Belastung.</div><div class="m-card-link">Starten</div></div>
+          <div class="img-card-m" onclick="mNav('p7')"><div class="img-card-visual bg-teal" style="height:100px;font-size:2rem">🧘</div><div class="img-card-body-m"><div class="img-card-title-m">Eigene Session aufnehmen</div><div class="img-card-sub-m">→ Audio-Studio 7777-7</div></div></div>
+        </div>
+      </div>
+      <div class="m-divider"></div>
+      <span class="m-tag">Stress</span><span class="m-tag">Burnout</span><span class="m-tag">HRV</span><span class="m-tag">Vagus</span><span class="m-tag">Resilienz</span>
+    </div>
+
+    <!-- 7777-6 -->
+    <div class="m-page" id="mp-p6">
+      <div class="m-page-header"><div class="m-page-eyebrow">7777-6 · Skript-Bibliothek</div><div class="m-page-title">Deine komplette<br><em>Ressourcen-Sammlung</em></div><p class="m-page-desc">Alle Skripte, Vorlagen und Protokolle auf Deutsch und Englisch — direkt verwendbar.</p></div>
+      <div class="m-grid-2" style="margin-bottom:2rem">
+        <div>
+          <div class="m-section-title">Deutsch · Skripte</div>
+          <div class="list-item-m"><div class="list-item-icon-m">📄</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p6')">PMR · Progressive Muskelentspannung</span></div><div class="list-item-desc-m">DE · 12 Min · → 7777-1</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">📄</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p6')">Abend-Ritual · Einschlafen</span></div><div class="list-item-desc-m">DE · 20 Min · → 7777-2</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">📄</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p6')">Eye-Roll Selbsthypnose-Induktion</span></div><div class="list-item-desc-m">DE · 8 Min · → 7777-3</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">📄</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p6')">Pre-Game Focus · Sporthypnose</span></div><div class="list-item-desc-m">DE · 12 Min · → 7777-4</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">📄</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p6')">Safe Place · Sicherer Ort</span></div><div class="list-item-desc-m">DE · 15 Min · → 7777-5</div></div></div>
+        </div>
+        <div>
+          <div class="m-section-title">English · Scripts</div>
+          <div class="list-item-m"><div class="list-item-icon-m">📃</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p6')">PMR · Progressive Muscle Relaxation</span></div><div class="list-item-desc-m">EN · 12 Min · → 7777-1</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">📃</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p6')">Evening Ritual · Sleep Induction</span></div><div class="list-item-desc-m">EN · 20 Min · → 7777-2</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">📃</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p6')">Self-Hypnosis · Eye-Roll Protocol</span></div><div class="list-item-desc-m">EN · 8 Min · → 7777-3</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">📃</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p6')">Sports Focus · Pre-Game</span></div><div class="list-item-desc-m">EN · 12 Min · → 7777-4</div></div></div>
+          <div class="list-item-m"><div class="list-item-icon-m">📃</div><div><div class="list-item-title-m"><span class="text-link-m" onclick="mNav('p6')">Stress Release · Safe Place</span></div><div class="list-item-desc-m">EN · 15 Min · → 7777-5</div></div></div>
+        </div>
+      </div>
+      <div class="img-card-m" style="max-width:360px;cursor:pointer" onclick="mNav('p7')"><div class="img-card-visual bg-rose" style="height:110px;font-size:2.5rem">🎙️</div><div class="img-card-body-m"><div class="img-card-title-m">Skript → Audio-Studio</div><div class="img-card-sub-m">Direkt im Studio 7777-7 aufnehmen</div></div></div>
+      <div class="m-divider"></div>
+      <span class="m-tag">Skripte</span><span class="m-tag">Deutsch</span><span class="m-tag">English</span><span class="m-tag">Vorlagen</span>
+    </div>
+
+    <!-- 7777-7 -->
+    <div class="m-page" id="mp-p7">
+      <div class="m-page-header"><div class="m-page-eyebrow">7777-7 · Audio-Studio</div><div class="m-page-title">Dein persönliches<br><em>Klang-Atelier</em></div><p class="m-page-desc">Produziere, bearbeite und veröffentliche eigene Entspannungs-Audios. Professionelle Qualität — kein Studio nötig.</p></div>
+      <div class="m-grid-3">
+        <div class="m-card" onclick="mNav('p7')"><div class="m-card-icon">🎙️</div><div class="m-card-title">Aufnahme starten</div><div class="m-card-desc">Direkt im Browser aufnehmen.</div><div class="m-card-link">Jetzt aufnehmen</div></div>
+        <div class="m-card" onclick="mNav('p6')"><div class="m-card-icon">📄</div><div class="m-card-title">Skript laden</div><div class="m-card-desc">Aus der Bibliothek wählen und einsprechen.</div><div class="m-card-link">Zur Bibliothek</div></div>
+        <div class="m-card" onclick="mNav('p7')"><div class="m-card-icon">🎵</div><div class="m-card-title">Hintergrundmusik</div><div class="m-card-desc">Natur, Binaural und Ambient-Tracks.</div><div class="m-card-link">Tracks auswählen</div></div>
+        <div class="m-card" onclick="mNav('p7')"><div class="m-card-icon">✂️</div><div class="m-card-title">Schneiden &amp; Mischen</div><div class="m-card-desc">Einfaches Schnittinterface.</div><div class="m-card-link">Editor öffnen</div></div>
+        <div class="m-card" onclick="mNav('p7')"><div class="m-card-icon">📤</div><div class="m-card-title">Exportieren &amp; Teilen</div><div class="m-card-desc">Als MP3 oder direkt auf mindful7777.de.</div><div class="m-card-link">Export starten</div></div>
+        <div class="m-card" onclick="mNav('p7')"><div class="m-card-icon">📚</div><div class="m-card-title">Meine Aufnahmen</div><div class="m-card-desc">Alle Sessions auf einen Blick.</div><div class="m-card-link">Öffnen</div></div>
+      </div>
+      <div class="m-divider"></div>
+      <div class="m-section-title">Empfohlener Workflow</div>
+      <p style="font-size:.88rem;color:var(--text-m2);line-height:2.2">
+        1. Skript aus der <span class="text-link-m" onclick="mNav('p6')">Skript-Bibliothek (7777-6)</span> wählen →
+        2. Hier aufnehmen →
+        3. Musik hinzufügen →
+        4. Exportieren &amp; teilen<br>
+        Noch kein Skript? Starte bei <span class="text-link-m" onclick="mNav('p1')">Tiefenentspannung (7777-1)</span>.
+      </p>
+      <div class="prog-bar-m"><div class="prog-fill-m" style="width:100%"></div></div>
+      <div style="font-size:.75rem;color:var(--gold-m)">Kaskade Premium7777 · Vollständig freigeschaltet ✦</div>
+      <div class="m-divider"></div>
+      <span class="m-tag">Studio</span><span class="m-tag">Aufnahme</span><span class="m-tag">Binaural</span><span class="m-tag">Export</span>
+    </div>
+
+  </main>
+</div><!-- /memberShell -->
+
+<script>
+/* ═══ CONFIG ══════════════════════════ */
+const PASS        = 'mindful7777'; // ← hier ändern
+const SESSION_KEY = 'mf7777_auth';
+
+/* ═══ MODAL ═══════════════════════════ */
+function openModal(){
+  document.getElementById('pwModal').classList.add('open');
+  setTimeout(()=>document.getElementById('pwInput').focus(),100);
+}
+function closeModal(){
+  document.getElementById('pwModal').classList.remove('open');
+  document.getElementById('pwErr').classList.remove('show');
+  document.getElementById('pwInput').value='';
+}
+document.getElementById('pwModal').addEventListener('click',function(e){
+  if(e.target===this) closeModal();
+});
+document.getElementById('pwInput').addEventListener('keydown',e=>{
+  if(e.key==='Enter') checkPw();
+});
+
+/* ═══ AUTH ════════════════════════════ */
+function checkPw(){
+  const val=document.getElementById('pwInput').value;
+  if(val===PASS){
+    sessionStorage.setItem(SESSION_KEY,'1');
+    closeModal();
+    showMember();
+  } else {
+    const err=document.getElementById('pwErr');
+    err.classList.add('show');
+    document.getElementById('pwInput').style.borderColor='var(--danger)';
+    setTimeout(()=>{err.classList.remove('show');document.getElementById('pwInput').style.borderColor=''},2500);
+  }
+}
+function showMember(){
+  document.getElementById('publicShell').style.display='none';
+  document.getElementById('memberShell').style.display='block';
+  window.scrollTo(0,0);
+}
+function lockMember(){
+  sessionStorage.removeItem(SESSION_KEY);
+  document.getElementById('memberShell').style.display='none';
+  document.getElementById('publicShell').style.display='block';
+  window.scrollTo(0,0);
+  closeMSidebar();
+}
+if(sessionStorage.getItem(SESSION_KEY)==='1') showMember();
+
+/* ═══ MEMBER NAV ══════════════════════ */
+const mPages={
+  hub:'Übersicht',p1:'7777-1 · Tiefenentspannung',p2:'7777-2 · Schlaf & Traumreise',
+  p3:'7777-3 · Selbsthypnose',p4:'7777-4 · Sporthypnose',p5:'7777-5 · Stressreduktion',
+  p6:'7777-6 · Skript-Bibliothek',p7:'7777-7 · Audio-Studio'
+};
+function mNav(key){
+  document.querySelectorAll('.m-page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.s-nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('mp-'+key).classList.add('active');
+  document.getElementById('mBreadcrumb').textContent=mPages[key];
+  document.querySelectorAll('.s-nav-item').forEach(item=>{
+    const oc=item.getAttribute('onclick')||'';
+    if(oc.includes("'"+key+"'")) item.classList.add('active');
+  });
+  window.scrollTo(0,0);
+  closeMSidebar();
+}
+function toggleMSidebar(){
+  document.getElementById('mSidebar').classList.toggle('open');
+  document.getElementById('mOverlay').classList.toggle('show');
+}
+function closeMSidebar(){
+  document.getElementById('mSidebar').classList.remove('open');
+  document.getElementById('mOverlay').classList.remove('show');
+}
+
+/* ═══ LANG TOGGLE ═════════════════════ */
+function setLang(lang){
+  document.body.classList.toggle('en',lang==='en');
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active',b.dataset.target===lang);
+  });
+}
+
+/* ═══ SCROLL FADE ═════════════════════ */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:.1});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+/* ═══ PARTICLES ═══════════════════════ */
+const pC=document.getElementById('pwParticles');
+for(let i=0;i<14;i++){
+  const s=document.createElement('span');
+  s.style.cssText=`left:${Math.random()*100}%;animation-duration:${8+Math.random()*10}s;animation-delay:${Math.random()*8}s;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px;opacity:${Math.random()*.4}`;
+  pC.appendChild(s);
+}
+</script>
+<script async src="https://js.stripe.com/v3/buy-button.js"></script>
+</body>
+</html>
