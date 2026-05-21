@@ -762,24 +762,38 @@ body.en [data-lang="en"]{display:block}
 
 <script>
 /* ═══ CONFIG ══════════════════════════ */
-const PASS        = 'MEINPASS123'; // ← hier ändern
-const SESSION_KEY = 'mf7777_auth';
+/* ═══ CONFIG ══════════════════════════ */
+const PASS_HASH = "9755326d7bd5633b7a82043a4574c1d95d98606d798019ddd88ef43c6943ac7d";
+const SESSION_KEY = "mf7777_auth";
 
-/* ═══ MODAL ═══════════════════════════ */
-function openModal(){
-  document.getElementById('pwModal').classList.add('open');
-  setTimeout(()=>document.getElementById('pwInput').focus(),100);
+async function sha256(str) {
+  const enc = new TextEncoder().encode(str);
+  const buf = await crypto.subtle.digest("SHA-256", enc);
+  return Array.from(new Uint8Array(buf))
+    .map(b => b.toString(16).padStart(2, "0"))
+    .join("");
 }
-function closeModal(){
-  document.getElementById('pwModal').classList.remove('open');
-  document.getElementById('pwErr').classList.remove('show');
-  document.getElementById('pwInput').value='';
+
+/* ═══ AUTH ════════════════════════════ */
+async function checkPw(){
+  const val = document.getElementById("pwInput").value;
+  const hash = await sha256(val);
+
+  if(hash === PASS_HASH){
+    sessionStorage.setItem(SESSION_KEY, "1");
+    closeModal();
+    showMember();
+  } else {
+    const err = document.getElementById("pwErr");
+    err.classList.add("show");
+    const input = document.getElementById("pwInput");
+    input.style.borderColor = "var(--danger)";
+    setTimeout(() => {
+      err.classList.remove("show");
+      input.style.borderColor = "";
+    }, 2500);
+  }
 }
-document.getElementById('pwModal').addEventListener('click',function(e){
-  if(e.target===this) closeModal();
-});
-document.getElementById('pwInput').addEventListener('keydown',e=>{
-  if(e.key==='Enter') checkPw();
 });
 
 /* ═══ AUTH ════════════════════════════ */
