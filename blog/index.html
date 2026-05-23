@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="mindful7777 Blog — Hypnosis, self-hypnosis, theta waves, recovery and stress relief. Written for real people.">
+  <title>Blog · mindful7777</title>
+  <style>
+    :root {
+      --bg:      #0d0d0d;
+      --surface: #161616;
+      --border:  #2a2a2a;
+      --text:    #e8e8e8;
+      --muted:   #888;
+      --accent:  #c8a96e;
+      --white:   #ffffff;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,13,13,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: 'Georgia', serif;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      text-decoration: none;
+      text-transform: lowercase;
+    }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-family: 'Georgia', serif;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+
+    /* ── Header ── */
+    .blog-header {
+      padding: 140px 40px 80px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .blog-header .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .blog-header h1 {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .blog-header h1 em { font-style: italic; color: var(--accent); }
+    .blog-header p {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    /* ── Filter tabs ── */
+    .filter-bar {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 40px 60px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 20px;
+      font-family: 'Georgia', serif;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(200,169,110,0.05);
+    }
+
+    /* ── Blog grid ── */
+    .blog-grid {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 40px 120px;
+      display: grid;
+      gap: 2px;
+    }
+
+    /* ── Article card ── */
+    .article-card {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.25s, background 0.25s;
+      background: var(--surface);
+    }
+    .article-card:hover {
+      border-color: var(--accent);
+      background: #1a1a1a;
+    }
+    .article-card.featured {
+      grid-template-columns: 1fr;
+      grid-column: 1 / -1;
+      border-color: var(--accent);
+    }
+
+    .card-num {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 28px 0 0;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--border);
+      font-family: 'Georgia', serif;
+    }
+
+    .card-body {
+      padding: 28px 28px 28px 0;
+    }
+    .article-card.featured .card-body {
+      padding: 40px;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .article-card.featured .card-tag { font-size: 11px; }
+
+    .card-title {
+      font-size: 19px;
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .article-card.featured .card-title { font-size: 28px; margin-bottom: 14px; }
+    .card-title em { font-style: italic; color: var(--accent); }
+
+    .card-excerpt {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .article-card.featured .card-excerpt { font-size: 16px; max-width: 600px; }
+
+    .card-meta {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--border);
+      text-transform: uppercase;
+    }
+    .card-arrow {
+      margin-left: 8px;
+      color: var(--accent);
+      transition: margin-left 0.2s;
+    }
+    .article-card:hover .card-arrow { margin-left: 14px; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media(max-width:600px) {
+      nav { padding: 0 20px; }
+      .blog-header, .filter-bar, .blog-grid { padding-left: 20px; padding-right: 20px; }
+      .article-card { grid-template-columns: 1fr; }
+      .card-num { display: none; }
+      .card-body { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="../index.html">mindful7777</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Blog</a>
+    <a href="../index.html#products">Resources</a>
+    <a href="../members/login.html">Members</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="blog-header">
+  <div class="eyebrow">The mindful7777 Blog</div>
+  <h1>Thoughts on rest,<br><em>focus, and recovery.</em></h1>
+  <p>Science-based, experience-informed. Written for real people in fast lives — not for algorithms.</p>
+</header>
+
+<div class="filter-bar">
+  <button class="filter-btn active">All</button>
+  <button class="filter-btn">Hypnosis</button>
+  <button class="filter-btn">Recovery</button>
+  <button class="filter-btn">Science</button>
+  <button class="filter-btn">Tools</button>
+</div>
+
+<main class="blog-grid">
+
+  <!-- FEATURED -->
+  <a class="article-card featured" href="socken-anker.html">
+    <div class="card-body">
+      <span class="card-tag">⭐ Featured · Tools</span>
+      <h2 class="card-title">The <em>Sock Anchor</em> — One gesture.<br>Instant reset.</h2>
+      <p class="card-excerpt">A simple physical movement — pulling off your socks, millimeter by millimeter — can trigger a measurable shift in your nervous system. Here's why it works, and how to make it yours.</p>
+      <div class="card-meta">5 min read · May 2025 <span class="card-arrow">→</span></div>
+    </div>
+  </a>
+
+  <!-- CARD 2 -->
+  <a class="article-card" href="theta-wellen.html">
+    <div class="card-num">02</div>
+    <div class="card-body">
+      <span class="card-tag">Science</span>
+      <h2 class="card-title">Theta Waves — Not mysticism.<br><em>Pure biology.</em></h2>
+      <p class="card-excerpt">4–8 Hz brain frequencies appear in half-sleep, deep meditation and creative flow. They're measurable, reproducible — and trainable.</p>
+      <div class="card-meta">4 min read · May 2025 <span class="card-arrow">→</span></div>
+    </div>
+  </a>
+
+  <!-- CARD 3 -->
+  <a class="article-card" href="hypnose-sportler.html">
+    <div class="card-num">03</div>
+    <div class="card-body">
+      <span class="card-tag">Hypnosis · Recovery</span>
+      <h2 class="card-title">Why top athletes use<br><em>mental training.</em></h2>
+      <p class="card-excerpt">From Ronaldo to the German national team — mental rehearsal activates the same neural pathways as physical training. The science is settled.</p>
+      <div class="card-meta">6 min read · May 2025 <span class="card-arrow">→</span></div>
+    </div>
+  </a>
+
+  <!-- CARD 4 -->
+  <a class="article-card" href="stress-reset.html">
+    <div class="card-num">04</div>
+    <div class="card-body">
+      <span class="card-tag">Tools · Recovery</span>
+      <h2 class="card-title">3-minute reset.<br><em>Anywhere.</em></h2>
+      <p class="card-excerpt">For high-pressure jobs, long shifts, or the moment before it gets too much. Three techniques that actually work — without apps, without equipment.</p>
+      <div class="card-meta">3 min read · May 2025 <span class="card-arrow">→</span></div>
+    </div>
+  </a>
+
+  <!-- CARD 5 -->
+  <a class="article-card" href="recovery-training.html">
+    <div class="card-num">05</div>
+    <div class="card-body">
+      <span class="card-tag">Recovery · Science</span>
+      <h2 class="card-title">Recovery begins in the mind —<br><em>not after the shower.</em></h2>
+      <p class="card-excerpt">Satellite cells repair muscle fibres during rest. But when does rest actually begin? The answer might surprise you — and change how you wind down.</p>
+      <div class="card-meta">5 min read · May 2025 <span class="card-arrow">→</span></div>
+    </div>
+  </a>
+
+</main>
+
+<footer>
+  <p>
+    <a href="../index.html">mindful7777</a> &nbsp;·&nbsp;
+    <a href="index.html">Blog</a> &nbsp;·&nbsp;
+    <a href="../index.html#contact">Contact</a> &nbsp;·&nbsp;
+    <a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a>
+  </p>
+  <p style="margin-top:12px;">⚠️ All content is for relaxation and information only — not a substitute for professional treatment.</p>
+  <p style="margin-top:8px;">© 2025 mindful7777 · mindful7777.de · Be the best version+</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
