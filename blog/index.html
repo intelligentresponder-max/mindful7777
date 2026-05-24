@@ -5,113 +5,133 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog · mindful7777</title>
 <style>
-:root{--bg:#0d0d0d;--surface:#161616;--border:#2a2a2a;--text:#e8e8e8;--muted:#888;--accent:#c8a96e;--white:#fff;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:Georgia,serif;font-size:18px;line-height:1.75;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,13,13,0.95);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
-.nav-brand{font-size:
-cat > index.html << 'HTMLEOF'
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog · mindful7777</title>
-<style>
-:root{--bg:#0d0d0d;--surface:#161616;--border:#2a2a2a;--text:#e8e8e8;--muted:#888;--accent:#c8a96e;--white:#fff;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:Georgia,serif;font-size:18px;line-height:1.75;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,13,13,0.95);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
-.nav-brand{font-size:15px;letter-spacing:0.12em;color:var(--white);text-decoration:none;text-transform:lowercase;}
-.nav-links{display:flex;gap:32px;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;}
-.nav-links a:hover,.nav-links a.active{color:var(--accent);}
-.header{padding:140px 40px 60px;max-width:860px;margin:0 auto;}
-.eyebrow{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
-h1{font-size:clamp(32px,5vw,52px);font-weight:400;color:var(--white);margin-bottom:20px;}
-h1 em{font-style:italic;color:var(--accent);}
-.sub{font-size:16px;color:var(--muted);}
-.grid{max-width:860px;margin:0 auto;padding:40px 40px 100px;display:grid;gap:2px;}
-.card{display:grid;grid-template-columns:70px 1fr;border:1px solid var(--border);text-decoration:none !important;color:var(--text) !important;background:var(--surface);}
-.card.featured{grid-template-columns:1fr;border-color:var(--accent);}
-.num{display:flex;align-items:flex-start;justify-content:center;padding:24px 0 0;font-size:11px;color:var(--border);}
-.body{padding:24px 24px 24px 0;}
-.card.featured .body{padding:36px;}
-.tag{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:block;}
-.title{font-size:18px;font-weight:400;color:var(--white);margin-bottom:8px;line-height:1.3;}
-.card.featured .title{font-size:26px;}
-.title em{font-style:italic;color:var(--accent);}
-.excerpt{font-size:14px;color:var(--muted);margin-bottom:12px;line-height:1.5;}
-.meta{font-size:11px;letter-spacing:0.1em;color:var(--border);text-transform:uppercase;}
-.arrow{margin-left:6px;color:var(--accent);}
-footer{border-top:1px solid var(--border);padding:40px;text-align:center;font-size:12px;color:var(--muted);}
-footer a{color:var(--muted);text-decoration:none;}
-footer a:hover{color:var(--accent);}
+  :root {
+    --bg: #0d0d0d;
+    --surface: #161616;
+    --border: #2a2a2a;
+    --text: #e8e8e8;
+    --muted: #888;
+    --accent: #c8a96e;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: Georgia, serif; font-size: 18px; line-height: 1.75; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,13,13,0.97); border-bottom: 1px solid var(--border); padding: 0 40px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand { font-size: 15px; letter-spacing: 0.12em; color: var(--white); text-decoration: none; text-transform: lowercase; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; letter-spacing: 0.08em; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+  .header { padding: 120px 40px 60px; max-width: 860px; margin: 0 auto; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 400; color: var(--white); margin-bottom: 20px; line-height: 1.2; }
+  h1 em { font-style: italic; color: var(--accent); }
+  .sub { font-size: 16px; color: var(--muted); }
+  .grid { max-width: 860px; margin: 0 auto; padding: 40px 40px 100px; display: grid; gap: 2px; }
+  .card { display: grid; grid-template-columns: 70px 1fr; border: 1px solid var(--border); text-decoration: none; color: var(--text); background: var(--surface); transition: border-color 0.25s, background 0.25s; }
+  .card:hover { border-color: var(--accent); background: #1a1a1a; }
+  .card.featured { grid-template-columns: 1fr; border-color: var(--accent); }
+  .num { display: flex; align-items: flex-start; justify-content: center; padding: 24px 0 0; font-size: 11px; letter-spacing: 0.15em; color: var(--border); font-family: Georgia, serif; }
+  .body { padding: 24px 24px 24px 0; }
+  .card.featured .body { padding: 36px; }
+  .tag { display: inline-block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .title { font-size: 18px; font-weight: 400; color: var(--white); margin-bottom: 8px; line-height: 1.3; }
+  .card.featured .title { font-size: 26px; }
+  .title em { font-style: italic; color: var(--accent); }
+  .excerpt { font-size: 14px; color: var(--muted); margin-bottom: 12px; line-height: 1.5; }
+  .card.featured .excerpt { font-size: 15px; }
+  .meta { font-size: 11px; letter-spacing: 0.1em; color: var(--border); text-transform: uppercase; }
+  .arrow { margin-left: 6px; color: var(--accent); }
+  footer { border-top: 1px solid var(--border); padding: 40px; text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 0.08em; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  @media (max-width: 600px) {
+    nav { padding: 0 20px; }
+    .header, .grid { padding-left: 20px; padding-right: 20px; }
+    .card { grid-template-columns: 1fr; }
+    .num { display: none; }
+    .body { padding: 20px; }
+  }
 </style>
 </head>
 <body>
+
 <nav>
-<a class="nav-brand" href="../index.html">mindful7777</a>
-<div class="nav-links">
-<a href="index.html" class="active">Blog</a>
-<a href="../index.html#products">Resources</a>
-<a href="../index.html#contact">Contact</a>
-</div>
+  <a class="nav-brand" href="../index.html">mindful7777</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Blog</a>
+    <a href="../index.html#products">Resources</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
 </nav>
+
 <div class="header">
-<div class="eyebrow">The mindful7777 Blog</div>
-<h1>Thoughts on rest,<br><em>focus, and recovery.</em></h1>
-<p class="sub">Science-based. Written for real people in fast lives.</p>
+  <div class="eyebrow">The mindful7777 Blog</div>
+  <h1>Thoughts on rest,<br><em>focus, and recovery.</em></h1>
+  <p class="sub">Science-based. Written for real people in fast lives.</p>
 </div>
+
 <main class="grid">
-<a class="card featured" href="socken-anker.html">
-<div class="body">
-<span class="tag">Featured · Tools</span>
-<h2 class="title">The <em>Sock Anchor</em> — One gesture. Instant reset.</h2>
-<p class="excerpt">A simple physical movement triggers a measurable shift in your nervous system. Here is why it works, and how to make it yours.</p>
-<div class="meta">5 min · May 2025 <span class="arrow">→</span></div>
-</div>
-</a>
-<a class="card" href="theta-wellen.html">
-<div class="num">02</div>
-<div class="body">
-<span class="tag">Science</span>
-<h2 class="title">Theta Waves — Not mysticism. <em>Pure biology.</em></h2>
-<p class="excerpt">4 to 8 Hz brain frequencies. Measurable, reproducible, and trainable.</p>
-<div class="meta">4 min · May 2025 <span class="arrow">→</span></div>
-</div>
-</a>
-<a class="card" href="hypnose-sportler.html">
-<div class="num">03</div>
-<div class="body">
-<span class="tag">Hypnosis · Recovery</span>
-<h2 class="title">Why top athletes use <em>mental training.</em></h2>
-<p class="excerpt">Mental rehearsal activates the same neural pathways as physical practice.</p>
-<div class="meta">6 min · May 2025 <span class="arrow">→</span></div>
-</div>
-</a>
-<a class="card" href="stress-reset.html">
-<div class="num">04</div>
-<div class="body">
-<span class="tag">Tools · Recovery</span>
-<h2 class="title">3-minute reset. <em>Anywhere.</em></h2>
-<p class="excerpt">Three techniques for high-pressure jobs and long shifts. No app needed.</p>
-<div class="meta">3 min · May 2025 <span class="arrow">→</span></div>
-</div>
-</a>
-<a class="card" href="recovery-training.html">
-<div class="num">05</div>
-<div class="body">
-<span class="tag">Recovery · Science</span>
-<h2 class="title">Recovery begins in the mind — <em>not after the shower.</em></h2>
-<p class="excerpt">When does real recovery actually start? The answer changes everything.</p>
-<div class="meta">5 min · May 2025 <span class="arrow">→</span></div>
-</div>
-</a>
+
+  <a class="card featured" href="socken-anker.html">
+    <div class="body">
+      <span class="tag">&#9733; Featured &middot; Tools</span>
+      <h2 class="title">The <em>Sock Anchor</em> &mdash; One gesture. Instant reset.</h2>
+      <p class="excerpt">A simple physical movement triggers a measurable shift in your nervous system. Here is why it works, and how to make it yours.</p>
+      <div class="meta">5 min &middot; May 2025 <span class="arrow">&rarr;</span></div>
+    </div>
+  </a>
+
+  <a class="card" href="theta-wellen.html">
+    <div class="num">02</div>
+    <div class="body">
+      <span class="tag">Science</span>
+      <h2 class="title">Theta Waves &mdash; Not mysticism. <em>Pure biology.</em></h2>
+      <p class="excerpt">4 to 8 Hz brain frequencies. Measurable, reproducible, and trainable.</p>
+      <div class="meta">4 min &middot; May 2025 <span class="arrow">&rarr;</span></div>
+    </div>
+  </a>
+
+  <a class="card" href="hypnose-sportler.html">
+    <div class="num">03</div>
+    <div class="body">
+      <span class="tag">Hypnosis &middot; Recovery</span>
+      <h2 class="title">Why top athletes use <em>mental training.</em></h2>
+      <p class="excerpt">Mental rehearsal activates the same neural pathways as physical practice.</p>
+      <div class="meta">6 min &middot; May 2025 <span class="arrow">&rarr;</span></div>
+    </div>
+  </a>
+
+  <a class="card" href="stress-reset.html">
+    <div class="num">04</div>
+    <div class="body">
+      <span class="tag">Tools &middot; Recovery</span>
+      <h2 class="title">3-minute reset. <em>Anywhere.</em></h2>
+      <p class="excerpt">Three techniques for high-pressure jobs and long shifts. No app needed.</p>
+      <div class="meta">3 min &middot; May 2025 <span class="arrow">&rarr;</span></div>
+    </div>
+  </a>
+
+  <a class="card" href="recovery-training.html">
+    <div class="num">05</div>
+    <div class="body">
+      <span class="tag">Recovery &middot; Science</span>
+      <h2 class="title">Recovery begins in the mind &mdash; <em>not after the shower.</em></h2>
+      <p class="excerpt">When does real recovery actually start? The answer changes everything.</p>
+      <div class="meta">5 min &middot; May 2025 <span class="arrow">&rarr;</span></div>
+    </div>
+  </a>
+
 </main>
+
 <footer>
-<p><a href="../index.html">mindful7777</a> · <a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a> · <a href="../index.html#contact">Contact</a></p>
-<p style="margin-top:8px;">© 2025 mindful7777 · Be the best version+</p>
+  <p>
+    <a href="../index.html">mindful7777</a> &nbsp;&middot;&nbsp;
+    <a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a> &nbsp;&middot;&nbsp;
+    <a href="../index.html#contact">Contact</a>
+  </p>
+  <p style="margin-top:8px;">&#9888; For relaxation only &mdash; not a substitute for professional treatment.</p>
+  <p style="margin-top:8px;">&copy; 2025 mindful7777 &middot; Be the best version+</p>
 </footer>
+
 </body>
 </html>
