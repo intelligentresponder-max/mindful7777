@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intern · mindful7777</title>
+  <style>
+    :root {
+      --primary: #0A0A0A;
+      --accent:  #1F5C99;
+      --white:   #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--primary);
+      color: var(--white);
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #1a1a1a;
+      background: #0d0d0d;
+    }
+    nav .logo { color: var(--accent); font-weight: 700; letter-spacing: 0.08em; }
+    nav .user  { font-size: 0.82rem; color: #888; }
+    nav button.out {
+      background: none;
+      border: 1px solid #333;
+      color: #888;
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    nav button.out:hover { border-color: var(--accent); color: var(--white); }
+
+    /* MAIN */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+    p.sub {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.2rem;
+    }
+    .card {
+      background: #141414;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      background: #161e28;
+    }
+    .card .icon { font-size: 1.8rem; margin-bottom: 0.7rem; }
+    .card h3    { font-size: 1rem; margin-bottom: 0.3rem; }
+    .card p     { font-size: 0.82rem; color: #666; }
+
+    /* PLACEHOLDER */
+    .placeholder {
+      margin-top: 3rem;
+      padding: 2rem;
+      border: 1px dashed #222;
+      border-radius: 12px;
+      text-align: center;
+      color: #444;
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="logo">mindful7777</span>
+    <span class="user" id="uname"></span>
+    <button class="out" onclick="logout()">Abmelden</button>
+  </nav>
+
+  <main>
+    <h1>🔒 Interner Bereich</h1>
+    <p class="sub">Willkommen, <span id="greet">—</span></p>
+
+    <div class="grid">
+
+      <!-- Karte 1: Dokumente -->
+      <a href="#" class="card">
+        <div class="icon">📄</div>
+        <h3>Dokumente</h3>
+        <p>PDFs, Anleitungen, interne Unterlagen</p>
+      </a>
+
+      <!-- Karte 2: Audios -->
+      <a href="#" class="card">
+        <div class="icon">🎧</div>
+        <h3>Audios</h3>
+        <p>Interne Audio-Dateien & Skripte</p>
+      </a>
+
+      <!-- Karte 3: Links -->
+      <a href="#" class="card">
+        <div class="icon">🔗</div>
+        <h3>Links & Tools</h3>
+        <p>Zugänge, externe Ressourcen</p>
+      </a>
+
+      <!-- Karte 4: Notizen -->
+      <a href="#" class="card">
+        <div class="icon">📝</div>
+        <h3>Notizen</h3>
+        <p>Interne Memos & Ideen</p>
+      </a>
+
+      <!-- Neue Karte hier einfügen -->
+
+    </div>
+
+    <div class="placeholder">
+      ➕ Neue Inhalte: Dateien in <code>intern/</code> ablegen und hier verlinken.
+    </div>
+  </main>
+
+  <script src="intern-auth.js"></script>
+  <script>
+    // Authentifizierung beim Laden prüfen
+    var user = checkAuth();
+    if (user) {
+      document.getElementById('uname').textContent = user.name;
+      document.getElementById('greet').textContent = user.name;
+    }
+  </script>
+</body>
+</html>
