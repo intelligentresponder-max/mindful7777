@@ -4,6 +4,15 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Impressum · mindful7777</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="Impressum und rechtliche Angaben von mindful7777 – André Schwarz, Frankfurt. Informationen gemäß § 5 TMG." />
+<meta name="robots" content="noindex, follow" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Impressum · mindful7777" />
+<meta property="og:description" content="Rechtliche Angaben gemäß § 5 TMG für mindful7777." />
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -70,27 +79,41 @@ footer a{color:var(--gold)}
   <h1 class="page-title">Impressum</h1>
   <p class="page-subtitle">Angaben gemäß § 5 TMG</p>
 
-  <div class="warning-box">
-    <strong>⚠️ Hinweis:</strong> Diese Seite enthält Platzhalter. Sobald Zahlungen über Stripe/Throne möglich sind, ist ein vollständiges Impressum mit Name und ladungsfähiger Anschrift rechtlich verpflichtend (§ 5 TMG). Ohne vollständiges Impressum besteht Abmahngefahr.
-  </div>
-
   <div class="section">
     <h2>Verantwortlich für den Inhalt</h2>
-    <p>
-      <strong>Name:</strong> <span class="placeholder">[VOR- UND NACHNAME]</span><br>
-      <strong>Anschrift:</strong><br>
-      <span class="placeholder">[STRASSE UND HAUSNUMMER]</span><br>
-      <span class="placeholder">[PLZ ORT]</span><br>
-      <span class="placeholder">[LAND]</span>
-    </p>
+    <div id="contactDataHidden" style="display:block">
+      <p style="background:rgba(212,165,116,.08);padding:20px;border-radius:8px;border-left:3px solid var(--gold)">
+        <strong>🔒 Datenschutz-Hinweis:</strong><br>
+        Zum Schutz vor automatisiertem Daten-Scraping sind die Kontaktdaten verborgen.<br>
+        <button onclick="revealContactData()" style="margin-top:12px;padding:10px 20px;background:var(--gold);border:none;border-radius:4px;cursor:pointer;font-weight:600;color:var(--blau)">
+          Kontaktdaten anzeigen
+        </button>
+      </p>
+    </div>
+    <div id="contactDataVisible" style="display:none">
+      <p>
+        <strong>Name:</strong> A. Schwarz<br>
+        <strong>Anschrift:</strong><br>
+        Am Lausberg 8<br>
+        60435 Frankfurt<br>
+        Deutschland
+      </p>
+    </div>
   </div>
 
   <div class="section">
     <h2>Kontakt</h2>
-    <p>
-      <strong>E-Mail:</strong> <span class="placeholder">[DEINE@EMAIL.DE]</span><br>
-      <strong>Instagram:</strong> <a href="https://instagram.com/intelligentresponder" target="_blank">@intelligentresponder</a>
-    </p>
+    <div id="emailHidden" style="display:block">
+      <p style="font-size:14px;color:var(--grau-hell)">
+        E-Mail-Adresse wird nach Freigabe der Kontaktdaten angezeigt.
+      </p>
+    </div>
+    <div id="emailVisible" style="display:none">
+      <p>
+        <strong>E-Mail:</strong> Kontakt über <a href="https://instagram.com/intelligentresponder" target="_blank">@intelligentresponder</a><br>
+        <strong>Instagram:</strong> <a href="https://instagram.com/intelligentresponder" target="_blank">@intelligentresponder</a>
+      </p>
+    </div>
   </div>
 
   <div class="section">
@@ -151,6 +174,27 @@ footer a{color:var(--gold)}
 <footer>
   <p>© 2026 mindful7777 · <a href="datenschutz.html">Datenschutz</a> · <a href="vip.html">Startseite</a></p>
 </footer>
+
+<script>
+function revealContactData() {
+  // Sicherheitsabfrage (Doppelklick-Schutz)
+  const confirmed = confirm(
+    "Möchten Sie die Kontaktdaten wirklich anzeigen?\n\n" +
+    "Hinweis: Diese Daten sind zum Schutz vor automatisiertem Scraping verborgen. " +
+    "Bitte verwenden Sie diese Informationen nur für legitime Kontaktaufnahme."
+  );
+  
+  if (confirmed) {
+    // Versteckte Bereiche ausblenden
+    document.getElementById('contactDataHidden').style.display = 'none';
+    document.getElementById('emailHidden').style.display = 'none';
+    
+    // Sichtbare Bereiche einblenden
+    document.getElementById('contactDataVisible').style.display = 'block';
+    document.getElementById('emailVisible').style.display = 'block';
+  }
+}
+</script>
 
 </body>
 </html>
