@@ -150,27 +150,27 @@
 
   <!-- ── HEADER ── -->
   <div class="form-header">
-    <span class="eyebrow">Sports Article Test Program Sportartikel-Test-Programm &nbsp;&middot;&nbsp; Bewerbungnbsp;Sportartikel-Test-Programm &nbsp;&middot;&nbsp; Bewerbungmiddot;Sportartikel-Test-Programm &nbsp;&middot;&nbsp; Bewerbungnbsp; Application</span>
-    <h1>Model Measurements Modell-Maße &amp;<br><em>Sedcard-Einreichung</em>amp;<br><em>Sedcard Submission</em></h1>
+    <span class="eyebrow">Sports Article Test Program &nbsp;&middot;&nbsp; Application</span>
+    <h1>Model Measurements &amp;<br><em>Sedcard Submission</em></h1>
     <p class="form-intro">Please enter all measurements as accurately as possible. Fields marked with <span style="color:var(--accent)">*</span> are required. Photos and videos are transmitted encrypted and treated confidentially.</p>
   </div>
 
   <form id="model-form" novalidate>
 
-    <!-- ══ 1. PERSÖNLICHE DATEN ══════════════════════════════════ -->
+    <!-- ══ 1. PERSONAL INFORMATION ══════════════════════════════════ -->
     <div class="form-section">
-      <span class="section-title">01 01 &nbsp;&middot;&nbsp; Persönliche Datennbsp;01 &nbsp;&middot;&nbsp; Persönliche Datenmiddot;01 &nbsp;&middot;&nbsp; Persönliche Datennbsp; Personal Information</span>
+      <span class="section-title">01 &nbsp;&middot;&nbsp; Personal Information</span>
 
       <div class="grid-2" style="margin-bottom:16px;">
         <div class="field" id="f-vorname">
           <label>First Name <span class="req">*</span></label>
           <input type="text" name="vorname" placeholder="Max" required>
-          <span class="field-error">Required field</span>
+          <span class="field-error">Required</span>
         </div>
         <div class="field" id="f-nachname">
           <label>Last Name <span class="req">*</span></label>
-          <input type="text" name="nachname" placeholder="Mustermann" required>
-          <span class="field-error">Required field</span>
+          <input type="text" name="nachname" placeholder="Smith" required>
+          <span class="field-error">Required</span>
         </div>
       </div>
 
@@ -178,7 +178,7 @@
         <div class="field" id="f-geburtsdatum">
           <label>Date of Birth <span class="req">*</span></label>
           <input type="date" name="geburtsdatum" required>
-          <span class="field-error">Required field</span>
+          <span class="field-error">Required</span>
         </div>
         <div class="field">
           <label>Gender</label>
@@ -195,13 +195,13 @@
         <div class="field" id="f-adresse">
           <label>Street Address <span class="req">*</span></label>
           <input type="text" name="adresse" placeholder="123 Example Street" required>
-          <span class="field-error">Required field</span>
+          <span class="field-error">Required</span>
         </div>
       </div>
 
       <div class="grid-2" style="margin-bottom:16px;">
         <div class="field">
-          <label>PLZ</label>
+          <label>Postcode</label>
           <input type="text" name="plz" placeholder="60311" maxlength="10">
         </div>
         <div class="field">
@@ -223,16 +223,16 @@
 
       <div class="grid-1">
         <div class="field" id="f-email">
-          <label>E-Mail <span class="req">*</span></label>
+          <label>Email <span class="req">*</span></label>
           <input type="email" name="email" placeholder="name@beispiel.de" required>
           <span class="field-error">Please enter a valid email address</span>
         </div>
       </div>
     </div>
 
-    <!-- ══ 2. KÖRPERMASSE ═════════════════════════════════════════ -->
+    <!-- ══ 2. BODY MEASUREMENTS ═════════════════════════════════════════ -->
     <div class="form-section">
-      <span class="section-title">02 02 &nbsp;&middot;&nbsp; Körpermaßenbsp;02 &nbsp;&middot;&nbsp; Körpermaßemiddot;02 &nbsp;&middot;&nbsp; Körpermaßenbsp; Body Measurements</span>
+      <span class="section-title">02 &nbsp;&middot;&nbsp; Body Measurements</span>
 
       <div class="grid-3" style="margin-bottom:16px;">
         <div class="field" id="f-groesse">
@@ -241,7 +241,7 @@
             <input type="number" name="groesse" placeholder="182" min="100" max="250" required>
             <span class="meas-unit">cm</span>
           </div>
-          <span class="field-error">Required field</span>
+          <span class="field-error">Required</span>
         </div>
         <div class="field" id="f-gewicht">
           <label>Weight <span class="req">*</span></label>
@@ -249,7 +249,7 @@
             <input type="number" name="gewicht" placeholder="78" min="30" max="200" required>
             <span class="meas-unit">kg</span>
           </div>
-          <span class="field-error">Required field</span>
+          <span class="field-error">Required</span>
         </div>
         <div class="field">
           <label>Clothing Size</label>
@@ -345,7 +345,7 @@
 
     <!-- ══ 3. TESTBARE ARTIKEL ════════════════════════════════════ -->
     <div class="form-section">
-      <span class="section-title">03 03 &nbsp;&middot;&nbsp; Testbare Artikelnbsp;03 &nbsp;&middot;&nbsp; Testbare Artikelmiddot;03 &nbsp;&middot;&nbsp; Testbare Artikelnbsp; Testable Products</span>
+      <span class="section-title">03 &nbsp;&middot;&nbsp; Testable Products</span>
       <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Which products can be tested? (Multiple selection possible)</p>
 
       <div class="check-grid">
@@ -387,7 +387,7 @@
         </div>
         <div class="check-item">
           <input type="checkbox" name="artikel" value="sonstiges_artikel" id="c-sonstiges">
-          <label for="c-sonstiges">Sonstiges</label>
+          <label for="c-sonstiges">Other</label>
         </div>
       </div>
     </div>
@@ -400,7 +400,7 @@
       <div class="upload-zone" id="photo-zone">
         <input type="file" id="photo-input" multiple accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp">
         <span class="upload-icon">📷</span>
-        <div class="upload-title">Drag photos here or click</div>
+        <div class="upload-title">Drag photos here or click to select</div>
         <div class="upload-sub">JPG · PNG · WEBP</div>
         <div class="upload-limit">Max. 29 MB per file</div>
       </div>
@@ -409,13 +409,13 @@
 
     <!-- ══ 5. VIDEO / GOOGLE DRIVE ═══════════════════════════════ -->
     <div class="form-section">
-      <span class="section-title">05 05 &nbsp;&middot;&nbsp; Video &amp; Google Drive Uploadnbsp;05 &nbsp;&middot;&nbsp; Video &amp; Google Drive Uploadmiddot;05 &nbsp;&middot;&nbsp; Video &amp; Google Drive Uploadnbsp; Video 05 &nbsp;&middot;&nbsp; Video &amp; Google Drive Uploadamp; Google Drive Upload</span>
+      <span class="section-title">05 &nbsp;&middot;&nbsp; Video &amp; Google Drive Upload</span>
 
       <!-- Upload folder CTA -->
       <a href="https://drive.google.com/drive/folders/15yDo0zRKElEkuMkYsUxYPxWPmaIFxr4E" target="_blank" style="display:flex;align-items:center;justify-content:space-between;background:var(--accent);color:var(--bg);padding:18px 24px;text-decoration:none;margin-bottom:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
         <div>
           <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:4px;opacity:0.7;">Upload Folder</div>
-          <div style="font-size:16px;font-family:Georgia,serif;font-weight:600;">&#128193; &nbsp;Upload files here &rarr;</div>
+          <div style="font-size:16px;font-family:Georgia,serif;font-weight:600;">📁 &nbsp;Upload files here &rarr;</div>
         </div>
         <div style="font-size:12px;opacity:0.7;text-align:right;line-height:1.5;">Google Drive<br>Open folder</div>
       </a>
@@ -424,9 +424,9 @@
       <div style="background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--accent);padding:20px 24px;margin-bottom:16px;">
         <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">How to — Google Drive Upload</div>
         <div style="display:grid;grid-template-columns:28px 1fr;gap:8px 12px;font-size:13px;color:var(--muted);line-height:1.6;">
-          <span style="color:var(--accent);font-weight:600;">1.</span><span>Click <strong style="color:var(--text);">"Upload files here"</strong> above → Google Drive opens</span>
+          <span style="color:var(--accent);font-weight:600;">1.</span><span>Oben auf <strong style="color:var(--text);">"Upload files here"</strong> klicken → Google Drive opens</span>
           <span style="color:var(--accent);font-weight:600;">2.</span><span>Upload your file to the folder — <strong style="color:var(--text);">no Google account required</strong></span>
-          <span style="color:var(--accent);font-weight:600;">3.</span><span>After upload: right-click file → <strong style="color:var(--text);">Copy link</strong> → paste below</span>
+          <span style="color:var(--accent);font-weight:600;">3.</span><span>After upload: right-click → <strong style="color:var(--text);">Copy link</strong> → paste below</span>
         </div>
       </div>
 
@@ -450,16 +450,16 @@
       <!-- Divider -->
       <div style="margin:28px 0 20px;display:flex;align-items:center;gap:14px;">
         <div style="flex:1;height:1px;background:var(--border);"></div>
-        <span style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">oder direkt first</span>
+        <span style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">or upload directly</span>
         <div style="flex:1;height:1px;background:var(--border);"></div>
       </div>
 
       <!-- Direct video upload (smaller files) -->
-      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Kleinere Videodateien direkt first (max. 25 MB über Formspree):</p>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Upload smaller video files directly (max. 25 MB via Formspree):</p>
       <div class="upload-zone" id="video-zone">
         <input type="file" id="video-input" name="video_datei" accept="video/mp4,video/quicktime,video/mov,.mp4,.mov">
         <span class="upload-icon">🎬</span>
-        <div class="upload-title">Drag video here or click</div>
+        <div class="upload-title">Drag video here or click to select</div>
         <div class="upload-sub">MP4 · MOV</div>
         <div class="upload-limit">Max. 25 MB direct · Larger videos → use Google Drive link above</div>
       </div>
@@ -468,7 +468,7 @@
 
     <!-- ══ 6. ERFAHRUNG / NOTIZEN ════════════════════════════════ -->
     <div class="form-section">
-      <span class="section-title">06 06 &nbsp;&middot;&nbsp; Erfahrung &amp; Anmerkungennbsp;06 &nbsp;&middot;&nbsp; Erfahrung &amp; Anmerkungenmiddot;06 &nbsp;&middot;&nbsp; Erfahrung &amp; Anmerkungennbsp; Experience 06 &nbsp;&middot;&nbsp; Erfahrung &amp; Anmerkungenamp; Notes</span>
+      <span class="section-title">06 &nbsp;&middot;&nbsp; Experience &amp; Notes</span>
       <div class="grid-1" style="gap:16px;">
         <div class="field">
           <label>Previous testing experience (brands, products)</label>
@@ -485,7 +485,7 @@
       </div>
     </div>
 
-    <!-- ══ EINVERSTÄNDNIS ════════════════════════════════════════ -->
+    <!-- ══ CONSENT ════════════════════════════════════════ -->
     <div class="form-section">
       <span class="section-title">Declaration of Consent</span>
 
@@ -496,14 +496,14 @@
 
       <div class="consent-box">
         <input type="checkbox" id="consent2" required>
-        <p><strong>I agree</strong> that my data and media may be stored and processed for the purposes of the Sports Article Test Program. Sharing with third parties only after prior consultation. Privacy note: data will be deleted upon completion of the program.</p>
+        <p><strong>I agree</strong> that my data and media may be stored and processed for the purposes of the Sports Article Test Program. Sharing with third parties only after prior consultation. Data will be deleted upon completion of the program.</p>
       </div>
     </div>
 
     <!-- ══ SUBMIT ════════════════════════════════════════════════ -->
     <div class="submit-area">
       <button type="submit" class="submit-btn" id="submit-btn">
-        Submit Application Bewerbung absenden &rarr;rarr;
+        Submit Application &rarr;
       </button>
       <p class="submit-note">You will receive a confirmation email after submission.</p>
     </div>
@@ -514,8 +514,8 @@
   <div id="success-screen">
     <span class="success-icon">✅</span>
     <h2>Application received.</h2>
-    <p style="margin-bottom:8px;">Thank you Vielen Dank &mdash; Ihre Unterlagen wurden erfolgreich übermittelt.mdash; your documents have been successfully submitted.</p>
-    <p>You will shortly receive a confirmation at the email address provided.</p>
+    <p style="margin-bottom:8px;">Thank you &mdash; your documents have been successfully submitted.</p>
+    <p>You will receive a confirmation at the email address provided shortly.</p>
   </div>
 
 </div><!-- /wrap -->
@@ -561,7 +561,7 @@ function setupUpload(inputId, zoneId, listId, limit, label) {
       item.innerHTML = `
         <span class="file-icon">${fileIcon(f.type)}</span>
         <span class="file-name">${isOver ? '⚠ ' : ''}${f.name}</span>
-        <span class="file-size">${formatSize(f.size)}${isOver ? ' — zu groß!' : ''}</span>
+        <span class="file-size">${formatSize(f.size)}${isOver ? ' — file too large!' : ''}</span>
         <button class="file-remove" type="button">&times;</button>
       `;
       item.querySelector('.file-remove').addEventListener('click', () => {
@@ -607,7 +607,7 @@ form.addEventListener('submit', function(e) {
   const c1 = document.getElementById('consent1');
   const c2 = document.getElementById('consent2');
   if (!c1.checked || !c2.checked) {
-    alert('Bitte beide Declaration of Consenten bestätigen.');
+    alert('Please confirm both declarations of consent.');
     return;
   }
 
@@ -640,13 +640,13 @@ form.addEventListener('submit', function(e) {
       window.scrollTo({top: 0, behavior: 'smooth'});
     } else {
       btn.disabled = false;
-      btn.textContent = 'Bewerbung absenden →';
+      btn.textContent = 'Submit Application →';
       alert('Submission error. Please try again.');
     }
   })
   .catch(function() {
     btn.disabled = false;
-    btn.textContent = 'Bewerbung absenden →';
+    btn.textContent = 'Submit Application →';
     alert('Connection error. Please check your internet connection and try again.');
   });
 });
