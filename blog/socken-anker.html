@@ -1,69 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Sock Anchor: how a simple physical gesture triggers a measurable shift in your nervous system. Science-based guide by mindful7777.">
-  <title>The Sock Anchor · mindful7777 Blog</title>
-  <style>
-    :root {
-      --bg:#0d0d0d; --surface:#161616; --border:#2a2a2a;
-      --text:#e8e8e8; --muted:#888; --accent:#c8a96e; --white:#ffffff;
-    }
-    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    html { scroll-behavior:smooth; }
-    body { background:var(--bg); color:var(--text); font-family:'Georgia','Times New Roman',serif; font-size:18px; line-height:1.75; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Sock Anchor: how a simple physical gesture triggers a measurable shift in your nervous system. Science-based guide by mindful7777.">
+<title>The Sock Anchor · mindful7777 Blog</title>
+<style>
+  :root {
+    --bg: #0d0d0d; --surface: #161616; --border: #2a2a2a;
+    --text: #e8e8e8; --muted: #888; --accent: #c8a96e; --white: #ffffff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.75; }
 
-    nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(13,13,13,0.95); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); padding:0 40px; height:60px; display:flex; align-items:center; justify-content:space-between; }
-    .nav-brand { font-family:'Georgia',serif; font-size:15px; letter-spacing:0.12em; color:var(--white); text-decoration:none; text-transform:lowercase; }
-    .nav-links { display:flex; gap:32px; align-items:center; }
-    .nav-links a { color:var(--muted); text-decoration:none; font-family:'Georgia',serif; font-size:13px; letter-spacing:0.08em; transition:color 0.2s; }
-    .nav-links a:hover { color:var(--accent); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,13,13,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 40px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand { font-size: 15px; letter-spacing: 0.12em; color: var(--white); text-decoration: none; text-transform: lowercase; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; letter-spacing: 0.08em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
 
-    .article-wrap { max-width:680px; margin:0 auto; padding:120px 40px 100px; }
+  .article-wrap { max-width: 680px; margin: 0 auto; padding: 100px 40px 100px; }
 
-    .back-link { display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); text-decoration:none; margin-bottom:60px; transition:color 0.2s; }
-    .back-link:hover { color:var(--accent); }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; margin-bottom: 48px; transition: color 0.2s; }
+  .back-link:hover { color: var(--accent); }
 
-    .article-tag { font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-bottom:20px; display:block; }
+  .article-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: block; }
+  h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 400; line-height: 1.2; color: var(--white); margin-bottom: 24px; }
+  h1 em { font-style: italic; color: var(--accent); }
+  .article-meta { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--border); margin-bottom: 48px; padding-bottom: 36px; border-bottom: 1px solid var(--border); }
 
-    h1 { font-size:clamp(32px,5vw,48px); font-weight:400; line-height:1.2; color:var(--white); margin-bottom:24px; }
-    h1 em { font-style:italic; color:var(--accent); }
+  h2 { font-size: 22px; font-weight: 400; color: var(--white); margin: 52px 0 16px; line-height: 1.3; }
+  h2 em { font-style: italic; color: var(--accent); }
+  h3 { font-size: 18px; font-weight: 400; color: var(--accent); margin: 32px 0 12px; }
+  p { margin-bottom: 24px; color: var(--text); }
+  strong { color: var(--white); font-weight: 600; }
 
-    .article-meta { font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--border); margin-bottom:60px; padding-bottom:40px; border-bottom:1px solid var(--border); }
+  .pullquote { border-left: 2px solid var(--accent); padding: 20px 28px; margin: 44px 0; color: var(--muted); font-size: 19px; font-style: italic; line-height: 1.6; }
 
-    h2 { font-size:22px; font-weight:400; color:var(--white); margin:52px 0 16px; line-height:1.3; }
-    h2 em { font-style:italic; color:var(--accent); }
-    p { margin-bottom:24px; color:var(--text); }
-    strong { color:var(--white); font-weight:600; }
+  /* ── Science box ── */
+  .science-box { background: var(--surface); border: 1px solid var(--border); padding: 24px 28px; margin: 36px 0; }
+  .science-box .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; display: block; }
+  .science-box p { color: var(--muted); font-size: 15px; margin-bottom: 0; }
 
-    .pullquote { border-left:2px solid var(--accent); padding:24px 32px; margin:48px 0; color:var(--muted); font-size:19px; font-style:italic; line-height:1.6; }
+  /* ── Illustration container ── */
+  .illustration { margin: 40px 0; text-align: center; }
+  .illustration svg { max-width: 100%; height: auto; }
+  .illustration figcaption { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--border); margin-top: 12px; }
 
-    .science-box { background:var(--surface); border:1px solid var(--border); padding:28px 32px; margin:40px 0; }
-    .science-box .label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; display:block; }
-    .science-box p { color:var(--muted); font-size:15px; margin-bottom:0; }
+  /* ── Wave table ── */
+  .wave-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 15px; }
+  .wave-table th, .wave-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+  .wave-table th { color: var(--accent); font-weight: 400; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
+  .wave-table td { color: var(--muted); }
+  .wave-table td:first-child { color: var(--white); font-weight: 600; }
+  .wave-table tr.highlight td { color: var(--accent); background: rgba(200,169,110,0.06); }
 
-    .steps { margin:40px 0; }
-    .step { display:grid; grid-template-columns:48px 1fr; gap:0 20px; margin-bottom:28px; align-items:start; }
-    .step-num { font-size:28px; color:var(--border); font-family:'Georgia',serif; line-height:1; padding-top:4px; }
-    .step-content strong { display:block; color:var(--white); font-size:16px; margin-bottom:6px; }
-    .step-content p { font-size:15px; color:var(--muted); margin-bottom:0; }
+  /* ── Steps ── */
+  .steps { margin: 36px 0; }
+  .step { display: grid; grid-template-columns: 48px 1fr; gap: 0 20px; margin-bottom: 24px; align-items: start; }
+  .step-num { font-size: 26px; color: var(--border); font-family: Georgia, serif; line-height: 1; padding-top: 4px; }
+  .step-content strong { display: block; color: var(--white); font-size: 16px; margin-bottom: 6px; }
+  .step-content p { font-size: 15px; color: var(--muted); margin-bottom: 0; }
 
-    .cta-box { margin:64px 0 0; border:1px solid var(--accent); padding:40px; text-align:center; }
-    .cta-box .cta-label { font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; display:block; }
-    .cta-box h3 { font-size:22px; font-weight:400; color:var(--white); margin-bottom:12px; }
-    .cta-box p { font-size:15px; color:var(--muted); margin-bottom:24px; }
-    .cta-btn { display:inline-block; border:1px solid var(--accent); color:var(--accent); padding:12px 32px; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:all 0.2s; font-family:'Georgia',serif; }
-    .cta-btn:hover { background:var(--accent); color:var(--bg); }
+  /* ── Three versions grid ── */
+  .versions-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin: 32px 0; }
+  .version-card { background: var(--surface); border: 1px solid var(--border); padding: 24px 20px; }
+  .version-card.highlight { border-color: var(--accent); }
+  .version-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; display: block; }
+  .version-title { font-size: 16px; color: var(--white); margin-bottom: 8px; font-weight: 400; }
+  .version-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
-    .disclaimer { margin-top:64px; padding-top:40px; border-top:1px solid var(--border); font-size:13px; color:var(--muted); }
+  /* ── Stat row ── */
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin: 32px 0; }
+  .stat-box { background: var(--surface); border: 1px solid var(--border); padding: 24px; text-align: center; }
+  .stat-num { font-size: 36px; color: var(--accent); font-family: Georgia, serif; display: block; margin-bottom: 6px; }
+  .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 
-    footer { border-top:1px solid var(--border); padding:40px; text-align:center; font-size:12px; color:var(--muted); letter-spacing:0.08em; }
-    footer a { color:var(--muted); text-decoration:none; }
-    footer a:hover { color:var(--accent); }
+  /* ── CTA ── */
+  .cta-box { margin: 60px 0 0; border: 1px solid var(--accent); padding: 36px; text-align: center; }
+  .cta-box .cta-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: block; }
+  .cta-box h3 { font-size: 22px; font-weight: 400; color: var(--white); margin-bottom: 10px; }
+  .cta-box p { font-size: 15px; color: var(--muted); margin-bottom: 24px; }
+  .cta-btn { display: inline-block; border: 1px solid var(--accent); color: var(--accent); padding: 12px 32px; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; font-family: Georgia, serif; }
+  .cta-btn:hover { background: var(--accent); color: var(--bg); }
 
-    @media(max-width:600px) { nav{padding:0 20px;} .article-wrap{padding:100px 20px 80px;} }
-  </style>
+  .disclaimer { margin-top: 60px; padding-top: 36px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--border); padding: 40px; text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 0.08em; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 20px; }
+    .article-wrap { padding: 90px 20px 80px; }
+    .versions-grid { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
@@ -79,97 +113,278 @@
 <article class="article-wrap">
 
   <a class="back-link" href="index.html">← Back to Blog</a>
+  <span class="article-tag">&#9733; Featured &middot; Tools</span>
 
-  <span class="article-tag">⭐ Featured · Tools</span>
+  <h1>The <em>Sock Anchor</em> &mdash;<br>One gesture. Instant reset.</h1>
 
-  <h1>The <em>Sock Anchor</em> —<br>One gesture. Instant reset.</h1>
-
-  <div class="article-meta">5 min read &nbsp;·&nbsp; May 2025 &nbsp;·&nbsp; André · mindful7777</div>
+  <div class="article-meta">7 min read &nbsp;&middot;&nbsp; May 2025 &nbsp;&middot;&nbsp; Andr&eacute; &middot; mindful7777</div>
 
   <p>You already do it every day. You sit down, reach for your feet, and pull your socks off. A few seconds. Barely noticed.</p>
+  <p>But that moment &mdash; fabric releasing, cool air reaching skin &mdash; is one of the most consistent physical transitions in your entire day. And <strong>transitions are exactly where anchors work best.</strong></p>
 
-  <p>But that moment — fabric releasing, cool air reaching skin — is one of the most consistent physical transitions in your entire day. And <strong>transitions are exactly where anchors work best.</strong></p>
+  <!-- ILLUSTRATION 1: The transition moment -->
+  <figure class="illustration">
+    <svg viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg" style="background:#161616;border:1px solid #2a2a2a;">
+      <!-- Left: Active/tense state -->
+      <rect x="0" y="0" width="310" height="220" fill="#161616"/>
+      <text x="155" y="36" text-anchor="middle" fill="#888" font-family="Georgia" font-size="11" letter-spacing="2">BEFORE</text>
+      <!-- Brain waves - jagged (beta) -->
+      <polyline points="30,90 55,60 80,110 105,55 130,105 155,58 180,108 205,62 210,80" fill="none" stroke="#c8a96e" stroke-width="2" opacity="0.5"/>
+      <text x="155" y="145" text-anchor="middle" fill="#555" font-family="Georgia" font-size="12">Beta waves &nbsp;·&nbsp; 13–30 Hz</text>
+      <text x="155" y="168" text-anchor="middle" fill="#444" font-family="Georgia" font-size="11">Stress &nbsp;·&nbsp; Alert &nbsp;·&nbsp; Cortisol high</text>
+      <!-- Arrow -->
+      <text x="40" y="100" fill="#444" font-family="Georgia" font-size="11">Active mind</text>
 
-  <div class="pullquote">"The body knows rituals before the mind decides to follow."</div>
+      <!-- Divider -->
+      <line x1="310" y1="20" x2="310" y2="200" stroke="#2a2a2a" stroke-width="1"/>
+
+      <!-- Gesture icon center -->
+      <circle cx="310" cy="110" r="24" fill="#0d0d0d" stroke="#c8a96e" stroke-width="1.5"/>
+      <text x="310" y="116" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="18">→</text>
+
+      <!-- Right: Relaxed state -->
+      <rect x="310" y="0" width="310" height="220" fill="#161616"/>
+      <text x="465" y="36" text-anchor="middle" fill="#888" font-family="Georgia" font-size="11" letter-spacing="2">AFTER</text>
+      <!-- Brain waves - smooth (theta) -->
+      <path d="M 330 90 Q 355 60 380 90 Q 405 120 430 90 Q 455 60 480 90 Q 505 120 530 90 Q 555 60 580 90" fill="none" stroke="#c8a96e" stroke-width="2"/>
+      <text x="465" y="145" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="12">Theta waves &nbsp;·&nbsp; 4–8 Hz</text>
+      <text x="465" y="168" text-anchor="middle" fill="#666" font-family="Georgia" font-size="11">Rest &nbsp;·&nbsp; Recovery &nbsp;·&nbsp; Cortisol drops</text>
+    </svg>
+    <figcaption>The state shift &mdash; from beta to theta</figcaption>
+  </figure>
+
+  <div class="pullquote">&ldquo;The body knows rituals before the mind decides to follow.&rdquo;</div>
 
   <h2>What is an <em>anchor</em>, exactly?</h2>
-
-  <p>In neuroscience and behavioural psychology, an anchor is a conditioned connection between a specific stimulus and an internal state. The classic example is Pavlov's dog — a neutral signal becomes linked to a response through repetition.</p>
-
-  <p>The Sock Anchor works on exactly the same principle: a physical gesture, done deliberately and repeatedly, becomes linked to a specific inner state — in this case, <strong>deep relaxation and mental deceleration.</strong></p>
+  <p>In neuroscience and behavioural psychology, an anchor is a conditioned connection between a specific stimulus and an internal state. The classic example is Pavlov&rsquo;s dog &mdash; a neutral signal becomes linked to a response through repetition.</p>
+  <p>The Sock Anchor works on exactly the same principle: a physical gesture, done deliberately and repeatedly, becomes linked to a specific inner state &mdash; in this case, <strong>deep relaxation and mental deceleration.</strong></p>
 
   <div class="science-box">
-    <span class="label">🔬 The Science</span>
-    <p>Theta brain waves (4–8 Hz) appear naturally at the boundary between wakefulness and sleep — in half-sleep, deep meditation, and creative flow states. They are associated with reduced cortisol, enhanced neuroplasticity, and accelerated physical recovery. With practice, a conditioned anchor can reliably trigger this state in under 90 seconds.</p>
+    <span class="label">&#128302; The Science</span>
+    <p>Theta brain waves (4&ndash;8 Hz) appear naturally at the boundary between wakefulness and sleep &mdash; in half-sleep, deep meditation, and creative flow states. They are associated with reduced cortisol, enhanced neuroplasticity, and accelerated physical recovery. With practice, a conditioned anchor can reliably trigger this state in under 90 seconds.</p>
   </div>
 
+  <!-- ILLUSTRATION 2: Brainwave spectrum -->
+  <figure class="illustration">
+    <svg viewBox="0 0 620 180" xmlns="http://www.w3.org/2000/svg" style="background:#161616;border:1px solid #2a2a2a;">
+      <text x="310" y="28" text-anchor="middle" fill="#888" font-family="Georgia" font-size="11" letter-spacing="2">BRAINWAVE SPECTRUM</text>
+      <!-- Bars -->
+      <!-- Delta -->
+      <rect x="40" y="60" width="90" height="80" fill="#222" stroke="#2a2a2a" stroke-width="1"/>
+      <rect x="40" y="110" width="90" height="30" fill="#333"/>
+      <text x="85" y="55" text-anchor="middle" fill="#555" font-family="Georgia" font-size="11">Delta</text>
+      <text x="85" y="158" text-anchor="middle" fill="#444" font-family="Georgia" font-size="10">0.5–4 Hz</text>
+      <!-- Theta - highlighted -->
+      <rect x="148" y="60" width="90" height="80" fill="#1a1400" stroke="#c8a96e" stroke-width="1.5"/>
+      <rect x="148" y="90" width="90" height="50" fill="#c8a96e" opacity="0.25"/>
+      <text x="193" y="55" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="11" font-weight="bold">Theta &#9733;</text>
+      <text x="193" y="158" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="10">4–8 Hz</text>
+      <!-- Alpha -->
+      <rect x="256" y="60" width="90" height="80" fill="#222" stroke="#2a2a2a" stroke-width="1"/>
+      <rect x="256" y="100" width="90" height="40" fill="#2a3a2a"/>
+      <text x="301" y="55" text-anchor="middle" fill="#555" font-family="Georgia" font-size="11">Alpha</text>
+      <text x="301" y="158" text-anchor="middle" fill="#444" font-family="Georgia" font-size="10">8–13 Hz</text>
+      <!-- Beta -->
+      <rect x="364" y="60" width="90" height="80" fill="#222" stroke="#2a2a2a" stroke-width="1"/>
+      <rect x="364" y="80" width="90" height="60" fill="#2a2a3a"/>
+      <text x="409" y="55" text-anchor="middle" fill="#555" font-family="Georgia" font-size="11">Beta</text>
+      <text x="409" y="158" text-anchor="middle" fill="#444" font-family="Georgia" font-size="10">13–30 Hz</text>
+      <!-- Gamma -->
+      <rect x="472" y="60" width="90" height="80" fill="#222" stroke="#2a2a2a" stroke-width="1"/>
+      <rect x="472" y="65" width="90" height="75" fill="#2a2020"/>
+      <text x="517" y="55" text-anchor="middle" fill="#555" font-family="Georgia" font-size="11">Gamma</text>
+      <text x="517" y="158" text-anchor="middle" fill="#444" font-family="Georgia" font-size="10">30–100 Hz</text>
+      <!-- Target label -->
+      <text x="193" y="120" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="10">TARGET</text>
+    </svg>
+    <figcaption>Theta is the target &mdash; between waking and sleep</figcaption>
+  </figure>
+
   <h2>Why <em>socks</em>?</h2>
+  <p><strong>Frequency.</strong> You do it at least once a day &mdash; usually after physical or cognitive exertion, exactly when your nervous system is most ready to shift gears.</p>
+  <p><strong>Specificity.</strong> It&rsquo;s a distinct, contained physical action. Not vague like &ldquo;take a breath&rdquo; &mdash; it has a clear start and end. The brain loves precision.</p>
+  <p><strong>Sensory contrast.</strong> The release of fabric and the touch of air on skin creates an immediate sensory signal. That contrast &mdash; tension, then release &mdash; mirrors the state shift we&rsquo;re training for.</p>
 
-  <p>Three reasons make the sock gesture particularly effective as an anchor:</p>
-
-  <p><strong>Frequency.</strong> You do it at least once a day — usually after physical or cognitive exertion, exactly when your nervous system is most ready to shift gears.</p>
-
-  <p><strong>Specificity.</strong> It's a distinct, contained physical action. Not vague like "take a breath" — it has a clear start and end. The brain loves precision.</p>
-
-  <p><strong>Sensory contrast.</strong> The release of fabric and the touch of air on skin creates an immediate sensory signal. That contrast — tension, then release — mirrors the state shift we're training for.</p>
+  <!-- STAT ROW -->
+  <div class="stat-row">
+    <div class="stat-box">
+      <span class="stat-num">90s</span>
+      <span class="stat-label">Time to shift state<br>with trained anchor</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">2–3w</span>
+      <span class="stat-label">Weeks to build<br>a stable anchor</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">4–8</span>
+      <span class="stat-label">Hz target &mdash;<br>theta frequency</span>
+    </div>
+  </div>
 
   <h2>How to <em>build</em> the anchor</h2>
+
+  <!-- ILLUSTRATION 3: The gesture sequence -->
+  <figure class="illustration">
+    <svg viewBox="0 0 620 120" xmlns="http://www.w3.org/2000/svg" style="background:#161616;border:1px solid #2a2a2a;">
+      <text x="310" y="22" text-anchor="middle" fill="#888" font-family="Georgia" font-size="11" letter-spacing="2">THE 5-STEP SEQUENCE</text>
+      <!-- Steps -->
+      <circle cx="62" cy="70" r="26" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+      <text x="62" y="66" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="13" font-weight="bold">01</text>
+      <text x="62" y="108" text-anchor="middle" fill="#555" font-family="Georgia" font-size="10">Choose</text>
+
+      <line x1="90" y1="70" x2="122" y2="70" stroke="#2a2a2a" stroke-width="1" stroke-dasharray="4,3"/>
+
+      <circle cx="152" cy="70" r="26" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+      <text x="152" y="66" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="13" font-weight="bold">02</text>
+      <text x="152" y="108" text-anchor="middle" fill="#555" font-family="Georgia" font-size="10">Breathe</text>
+
+      <line x1="180" y1="70" x2="212" y2="70" stroke="#2a2a2a" stroke-width="1" stroke-dasharray="4,3"/>
+
+      <circle cx="242" cy="70" r="26" fill="#c8a96e" stroke="#c8a96e" stroke-width="1"/>
+      <text x="242" y="66" text-anchor="middle" fill="#0d0d0d" font-family="Georgia" font-size="13" font-weight="bold">03</text>
+      <text x="242" y="108" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="10">Gesture</text>
+
+      <line x1="270" y1="70" x2="302" y2="70" stroke="#2a2a2a" stroke-width="1" stroke-dasharray="4,3"/>
+
+      <circle cx="332" cy="70" r="26" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+      <text x="332" y="66" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="13" font-weight="bold">04</text>
+      <text x="332" y="108" text-anchor="middle" fill="#555" font-family="Georgia" font-size="10">Stay 60s</text>
+
+      <line x1="360" y1="70" x2="392" y2="70" stroke="#2a2a2a" stroke-width="1" stroke-dasharray="4,3"/>
+
+      <circle cx="422" cy="70" r="26" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+      <text x="422" y="66" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="13" font-weight="bold">05</text>
+      <text x="422" y="108" text-anchor="middle" fill="#555" font-family="Georgia" font-size="10">Repeat</text>
+
+      <!-- Result -->
+      <line x1="450" y1="70" x2="482" y2="70" stroke="#c8a96e" stroke-width="1" stroke-dasharray="4,3"/>
+      <rect x="488" y="48" width="110" height="44" fill="#0d0d0d" stroke="#c8a96e" stroke-width="1"/>
+      <text x="543" y="67" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="11">Anchor</text>
+      <text x="543" y="83" text-anchor="middle" fill="#888" font-family="Georgia" font-size="10">stable in 2–3w</text>
+    </svg>
+    <figcaption>The conditioning sequence &mdash; repeat daily</figcaption>
+  </figure>
 
   <div class="steps">
     <div class="step">
       <div class="step-num">01</div>
       <div class="step-content">
         <strong>Choose a moment</strong>
-        <p>After training, after a shower, or in a quiet pause during the day. You need two to three undisturbed minutes.</p>
+        <p>After training, after a shower, or in a quiet pause during the day. You need two to three undisturbed minutes. Same time every day accelerates the conditioning.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
       <div class="step-content">
         <strong>Sit down and breathe</strong>
-        <p>Let the weight of your body settle. Four seconds in, hold, six seconds out. Two or three rounds.</p>
+        <p>Let the weight of your body settle. Four seconds in, hold briefly, six seconds out. Two or three rounds. The extended exhale activates the vagus nerve &mdash; your express lane to the parasympathetic system.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
       <div class="step-content">
-        <strong>The gesture — slowly</strong>
-        <p>Reach for your socks and remove them millimeter by millimeter. Let the motion match the inner shift you're practising. Slow is the point.</p>
+        <strong>The gesture &mdash; slowly</strong>
+        <p>Reach for your socks and remove them millimeter by millimeter. Let the motion match the inner shift you&rsquo;re practising. Slow is the point. The slowness is the signal.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">04</div>
       <div class="step-content">
         <strong>Stay for 60 seconds</strong>
-        <p>Feel the air. Notice the quiet. Don't do anything. Let the nervous system register: this is rest. This is safe. This is the signal.</p>
+        <p>Feel the air. Notice the quiet. Don&rsquo;t do anything. Let the nervous system register: this is rest. This is safe. This is the signal.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">05</div>
       <div class="step-content">
         <strong>Repeat daily</strong>
-        <p>After two to three weeks, the connection is stable. The gesture becomes the trigger — even without the audio. That's when it gets interesting.</p>
+        <p>After two to three weeks, the connection is stable. The gesture becomes the trigger &mdash; even without the audio. That&rsquo;s when it gets interesting.</p>
       </div>
     </div>
   </div>
 
-  <div class="pullquote">"After two weeks, I don't need the audio anymore. The socks do the work."</div>
+  <div class="pullquote">&ldquo;After two weeks, I don&rsquo;t need the audio anymore. The socks do the work.&rdquo;</div>
 
-  <h2>Three versions — one anchor</h2>
+  <h2>Three versions &mdash; <em>one anchor</em></h2>
+  <p>The same gesture works in three distinct contexts. Each has its own audio in the free guide:</p>
 
-  <p>The same gesture works in three distinct contexts, each with its own version in the free audio guide:</p>
+  <div class="versions-grid">
+    <div class="version-card">
+      <span class="version-label">&#128678; Version 01</span>
+      <div class="version-title">Street</div>
+      <p class="version-desc">On a bench, a step, anywhere. One shoe off, one sock down. The city keeps moving. You don&rsquo;t have to.</p>
+    </div>
+    <div class="version-card">
+      <span class="version-label">&#9917; Version 02</span>
+      <div class="version-title">After Training</div>
+      <p class="version-desc">The moment the session ends. The body wants to recover. The anchor tells the nervous system: start now, not later.</p>
+    </div>
+    <div class="version-card highlight">
+      <span class="version-label">&#128703; Version 03 &mdash; Strongest</span>
+      <div class="version-title">After Shower</div>
+      <p class="version-desc">Fresh socks in hand, not yet on. Warmth still in your skin. The threshold between day and evening. This is the most powerful version.</p>
+    </div>
+  </div>
 
-  <p><strong>Street</strong> — on a bench, a step, anywhere. One shoe off, one sock down. The city keeps moving. You don't have to.</p>
+  <!-- ILLUSTRATION 4: The three contexts timeline -->
+  <figure class="illustration">
+    <svg viewBox="0 0 620 130" xmlns="http://www.w3.org/2000/svg" style="background:#161616;border:1px solid #2a2a2a;padding:8px;">
+      <text x="310" y="22" text-anchor="middle" fill="#888" font-family="Georgia" font-size="11" letter-spacing="2">WHEN TO USE IT — DAILY TIMELINE</text>
+      <!-- Timeline bar -->
+      <rect x="40" y="55" width="540" height="3" fill="#2a2a2a"/>
+      <!-- Morning -->
+      <circle cx="100" cy="57" r="5" fill="#333" stroke="#2a2a2a" stroke-width="1"/>
+      <text x="100" y="42" text-anchor="middle" fill="#444" font-family="Georgia" font-size="10">Morning</text>
+      <!-- Midday - Street -->
+      <circle cx="230" cy="57" r="8" fill="#c8a96e" stroke="#c8a96e" stroke-width="1"/>
+      <text x="230" y="38" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="10">Street</text>
+      <text x="230" y="27" text-anchor="middle" fill="#666" font-family="Georgia" font-size="9">Pause / Lunch</text>
+      <line x1="230" y1="42" x2="230" y2="49" stroke="#c8a96e" stroke-width="1" stroke-dasharray="2,2"/>
+      <!-- After training -->
+      <circle cx="380" cy="57" r="8" fill="#c8a96e" stroke="#c8a96e" stroke-width="1"/>
+      <text x="380" y="80" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="10">Training</text>
+      <text x="380" y="92" text-anchor="middle" fill="#666" font-family="Georgia" font-size="9">After sport</text>
+      <line x1="380" y1="65" x2="380" y2="74" stroke="#c8a96e" stroke-width="1" stroke-dasharray="2,2"/>
+      <!-- Evening - Shower -->
+      <circle cx="530" cy="57" r="10" fill="#0d0d0d" stroke="#c8a96e" stroke-width="2"/>
+      <text x="530" y="38" text-anchor="middle" fill="#c8a96e" font-family="Georgia" font-size="10">Shower &#9733;</text>
+      <text x="530" y="27" text-anchor="middle" fill="#666" font-family="Georgia" font-size="9">Strongest</text>
+      <line x1="530" y1="42" x2="530" y2="47" stroke="#c8a96e" stroke-width="1" stroke-dasharray="2,2"/>
+      <!-- End of day -->
+      <circle cx="570" cy="57" r="5" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+      <text x="570" y="80" text-anchor="middle" fill="#333" font-family="Georgia" font-size="10">Sleep</text>
+    </svg>
+    <figcaption>Three anchor moments &mdash; one builds on the other</figcaption>
+  </figure>
 
-  <p><strong>After Training</strong> — the moment the session ends. The body wants to recover. The anchor tells the nervous system: start now, not later.</p>
+  <h2>What <em>actually</em> happens in your body</h2>
+  <p>When the Sock Anchor triggers the shift, here is what happens physiologically in the first two minutes:</p>
 
-  <p><strong>After Shower</strong> — fresh socks in hand, not yet on. The warmth of the water still in your skin. The threshold between day and evening. This is the strongest version.</p>
+  <div class="science-box">
+    <span class="label">&#128302; Physiology</span>
+    <p><strong style="color:#c8a96e;">0–20 seconds:</strong> The extended exhale activates the vagus nerve. Heart rate begins to slow. Sympathetic activation decreases.<br><br>
+    <strong style="color:#c8a96e;">20–60 seconds:</strong> Cortisol levels begin dropping. Blood pressure follows. The prefrontal cortex (decision-making) calms; the default mode network activates.<br><br>
+    <strong style="color:#c8a96e;">60–90 seconds:</strong> With a trained anchor, theta-dominant brain activity begins. Muscle tension releases. The body enters active recovery mode &mdash; even while awake.</p>
+  </div>
+
+  <table class="wave-table">
+    <thead>
+      <tr><th>What happens</th><th>Timeframe</th><th>Effect</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Vagus nerve activates</td><td>0–20 sec</td><td>Heart rate slows</td></tr>
+      <tr><td>Cortisol drops</td><td>20–60 sec</td><td>Stress response lowers</td></tr>
+      <tr class="highlight"><td>Theta waves emerge</td><td>60–90 sec</td><td>Deep recovery begins</td></tr>
+      <tr><td>Muscle tension releases</td><td>60–120 sec</td><td>Physical repair starts</td></tr>
+      <tr><td>Growth hormone release</td><td>2–4 min</td><td>Tissue rebuilds</td></tr>
+    </tbody>
+  </table>
 
   <div class="cta-box">
-    <span class="cta-label">Free · Instant Download</span>
-    <h3>The Sock Anchor — Audio Guide</h3>
-    <p>Three complete induction scripts with audio. Download free on Gumroad — no sign-up required.</p>
-    <a class="cta-btn" href="https://mindful777.gumroad.com" target="_blank">Get the Free Guide →</a>
+    <span class="cta-label">Free &middot; Instant Download</span>
+    <h3>The Sock Anchor &mdash; Audio Guide</h3>
+    <p>Three complete induction scripts with audio: Street, After Training, After Shower. Download free on Gumroad &mdash; no sign-up required.</p>
+    <a class="cta-btn" href="https://mindful777.gumroad.com" target="_blank">Get the Free Guide &rarr;</a>
   </div>
 
   <div class="disclaimer">
@@ -179,8 +394,8 @@
 </article>
 
 <footer>
-  <p><a href="../index.html">mindful7777</a> &nbsp;·&nbsp; <a href="index.html">Blog</a> &nbsp;·&nbsp; <a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a></p>
-  <p style="margin-top:8px;">© 2025 mindful7777 · mindful7777.de · Be the best version+</p>
+  <p><a href="../index.html">mindful7777</a> &nbsp;&middot;&nbsp; <a href="index.html">Blog</a> &nbsp;&middot;&nbsp; <a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a></p>
+  <p style="margin-top:8px;">&copy; 2025 mindful7777 &middot; mindful7777.de &middot; Be the best version+</p>
 </footer>
 
 </body>
