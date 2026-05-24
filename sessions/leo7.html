@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>mindful7777 · Private Session</title>
+<style>
+  :root {
+    --bg: #0a0a0a; --surface: #141414; --surface2: #1c1c1c;
+    --border: #252525; --text: #e0e0e0; --muted: #666;
+    --accent: #c8a96e; --white: #fff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: Georgia, serif; font-size: 16px; line-height: 1.7; min-height: 100vh; }
+
+  /* ── LOGIN ── */
+  #login-screen {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(ellipse at center, #111 0%, #0a0a0a 70%);
+  }
+  .login-box {
+    width: 100%; max-width: 360px; padding: 52px 44px;
+    border: 1px solid var(--border); background: var(--surface);
+  }
+  .login-brand { font-size: 12px; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 36px; text-transform: lowercase; }
+  .login-box h1 { font-size: 26px; font-weight: 400; color: var(--white); margin-bottom: 8px; }
+  .login-box h1 em { font-style: italic; color: var(--accent); }
+  .login-sub { font-size: 13px; color: var(--muted); margin-bottom: 36px; }
+  .login-box input {
+    width: 100%; background: var(--bg); border: 1px solid var(--border);
+    color: var(--white); padding: 14px 16px; font-family: Georgia, serif;
+    font-size: 15px; margin-bottom: 14px; outline: none; letter-spacing: 0.1em;
+  }
+  .login-box input:focus { border-color: var(--accent); }
+  .login-btn {
+    width: 100%; background: var(--accent); color: var(--bg); border: none;
+    padding: 14px; font-family: Georgia, serif; font-size: 13px;
+    letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .login-btn:hover { opacity: 0.88; }
+  .login-err { color: #e57373; font-size: 13px; margin-top: 14px; display: none; text-align: center; }
+  .login-note { font-size: 11px; color: var(--muted); margin-top: 28px; text-align: center; line-height: 1.6; }
+
+  /* ── MAIN ── */
+  #main-screen { display: none; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,10,0.97); border-bottom: 1px solid var(--border);
+    padding: 0 40px; height: 58px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand { font-size: 13px; letter-spacing: 0.14em; color: var(--white); text-decoration: none; text-transform: lowercase; }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 4px 10px; }
+  .logout-btn { background: none; border: 1px solid var(--border); color: var(--muted); padding: 6px 14px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; font-family: Georgia, serif; transition: all 0.2s; }
+  .logout-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .wrap { max-width: 800px; margin: 0 auto; padding: 90px 40px 100px; }
+
+  /* ── HERO ── */
+  .hero { padding: 52px 0 48px; border-bottom: 1px solid var(--border); margin-bottom: 52px; }
+  .hero-eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+  .hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 400; color: var(--white); line-height: 1.2; margin-bottom: 16px; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero p { font-size: 15px; color: var(--muted); max-width: 520px; line-height: 1.7; }
+
+  /* ── SECTION LABEL ── */
+  .section-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .section-gap { margin-top: 52px; }
+
+  /* ── MEDIA CARDS ── */
+  .media-grid { display: grid; gap: 2px; }
+
+  .media-card {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 28px 32px; display: flex; align-items: flex-start;
+    gap: 24px; text-decoration: none; color: inherit;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .media-card:hover { border-color: var(--accent); background: var(--surface2); }
+  .media-card.featured { border-color: rgba(200,169,110,0.4); }
+
+  .media-icon {
+    width: 52px; height: 52px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0; color: var(--accent);
+    background: var(--bg);
+  }
+  .media-icon.video { background: #0d0d14; border-color: #2a2a40; }
+  .media-icon.audio { background: #0d140d; border-color: #2a402a; }
+  .media-icon.text  { background: #14100d; border-color: #40342a; }
+
+  .media-body { flex: 1; }
+  .media-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .media-title { font-size: 18px; color: var(--white); font-weight: 400; margin-bottom: 6px; line-height: 1.3; }
+  .media-title em { font-style: italic; color: var(--accent); }
+  .media-desc { font-size: 13px; color: var(--muted); margin-bottom: 10px; line-height: 1.5; }
+  .media-meta { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--border); }
+  .media-arrow { font-size: 16px; color: var(--accent); flex-shrink: 0; align-self: center; transition: margin 0.2s; }
+  .media-card:hover .media-arrow { margin-left: 6px; }
+
+  /* ── DRIVE BUTTON ── */
+  .drive-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: var(--bg); padding: 14px 28px;
+    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; font-family: Georgia, serif;
+    transition: opacity 0.2s; margin-top: 28px;
+  }
+  .drive-btn:hover { opacity: 0.88; }
+
+  /* ── TEXT CONTENT ── */
+  .text-block { background: var(--surface); border: 1px solid var(--border); padding: 32px 36px; margin-bottom: 2px; }
+  .text-block h3 { font-size: 20px; font-weight: 400; color: var(--white); margin-bottom: 16px; }
+  .text-block h3 em { font-style: italic; color: var(--accent); }
+  .text-block p { font-size: 15px; color: var(--text); margin-bottom: 16px; line-height: 1.75; }
+  .text-block p:last-child { margin-bottom: 0; }
+  .text-block .script-line { font-size: 16px; color: var(--text); margin-bottom: 16px; line-height: 1.8; font-style: italic; }
+  .text-block .pause { font-size: 13px; color: var(--muted); margin-bottom: 12px; letter-spacing: 0.08em; }
+  .text-block .nuance { font-size: 12px; color: var(--accent); background: rgba(200,169,110,0.08); border-left: 2px solid var(--accent); padding: 8px 12px; margin: 16px 0; }
+
+  /* ── SCIENCE BOX ── */
+  .sci-box { background: var(--surface2); border: 1px solid var(--border); border-left: 2px solid var(--accent); padding: 20px 24px; margin: 24px 0; }
+  .sci-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; display: block; }
+  .sci-box p { font-size: 14px; color: var(--muted); margin: 0; }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer-box { border-top: 1px solid var(--border); padding-top: 32px; margin-top: 52px; font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  footer { border-top: 1px solid var(--border); padding: 32px 40px; text-align: center; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 20px; }
+    .wrap { padding: 80px 20px 80px; }
+    .media-card { flex-direction: column; gap: 14px; padding: 22px; }
+    .media-arrow { display: none; }
+    .text-block { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN SCREEN ══════════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-brand">mindful7777 · private session</div>
+    <h1>Your <em>personal</em><br>space.</h1>
+    <p class="login-sub">Enter your access code to continue.</p>
+    <input type="password" id="pw-input" placeholder="Access code" autocomplete="off"
+           onkeydown="if(event.key==='Enter') doLogin()">
+    <button class="login-btn" onclick="doLogin()">Enter &rarr;</button>
+    <div class="login-err" id="login-err">Incorrect code. Please try again.</div>
+    <p class="login-note">This page is private and not indexed.<br>mindful7777.de &nbsp;&middot;&nbsp; All content confidential.</p>
+  </div>
+</div>
+
+<!-- ══ MAIN CONTENT ══════════════════════════════════════════════ -->
+<div id="main-screen">
+
+  <nav>
+    <a class="nav-brand" href="../index.html">mindful7777</a>
+    <div class="nav-right">
+      <span class="nav-tag">Private Session</span>
+      <button class="logout-btn" onclick="doLogout()">Exit</button>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow">mindful7777 &nbsp;&middot;&nbsp; Personal Access</div>
+      <h1>Your <em>session</em><br>materials.</h1>
+      <p>Audio, video and script resources prepared for you personally. Everything here is private and intended only for your use.</p>
+    </div>
+
+    <!-- ── AUDIO & VIDEO ── -->
+    <div class="section-label">&#127911; Audio &amp; Video &nbsp;&mdash;&nbsp; Google Drive</div>
+
+    <div class="media-grid">
+
+      <!-- DRIVE FOLDER CARD -->
+      <div class="media-card featured" style="flex-direction:column; gap:16px;">
+        <div style="display:flex;align-items:center;gap:20px;width:100%;">
+          <div class="media-icon video" style="font-size:24px;">&#128190;</div>
+          <div class="media-body">
+            <div class="media-type">Google Drive &nbsp;&middot;&nbsp; Private Folder</div>
+            <div class="media-title">All Session Files &mdash; <em>Audio &amp; Video</em></div>
+            <div class="media-desc">Your complete collection of session recordings, guided audios and supplementary material. Opens directly in Google Drive.</div>
+            <div class="media-meta">Private &nbsp;&middot;&nbsp; Access with this link only</div>
+          </div>
+        </div>
+        <a class="drive-btn" href="https://drive.google.com/drive/folders/1ce4enEt-8nNwG8axIdJGUSBZTlrG_Wan" target="_blank">
+          &#128190; &nbsp; Open on Google Drive &rarr;
+        </a>
+      </div>
+
+      <!-- AUDIO 1 -->
+      <a class="media-card" href="https://drive.google.com/drive/folders/1ce4enEt-8nNwG8axIdJGUSBZTlrG_Wan" target="_blank">
+        <div class="media-icon audio">&#127911;</div>
+        <div class="media-body">
+          <div class="media-type">Audio &nbsp;&middot;&nbsp; Induction</div>
+          <div class="media-title">Sock Anchor &mdash; <em>Recovery</em></div>
+          <div class="media-desc">Theta-wave induction for deep recovery. Nature edition &mdash; works anywhere, any time.</div>
+          <div class="media-meta">ca. 3&ndash;4 min &nbsp;&middot;&nbsp; Theta 4&ndash;8 Hz</div>
+        </div>
+        <div class="media-arrow">&rarr;</div>
+      </a>
+
+      <!-- VIDEO / CUSTOM CONTENT PLACEHOLDER -->
+      <a class="media-card" href="https://drive.google.com/drive/folders/1ce4enEt-8nNwG8axIdJGUSBZTlrG_Wan" target="_blank">
+        <div class="media-icon video">&#127910;</div>
+        <div class="media-body">
+          <div class="media-type">Video &nbsp;&middot;&nbsp; Session Recording</div>
+          <div class="media-title">Session Material &mdash; <em>Personal</em></div>
+          <div class="media-desc">Your session recordings and personal video content. Available in your Drive folder.</div>
+          <div class="media-meta">Drive Folder &nbsp;&middot;&nbsp; Private</div>
+        </div>
+        <div class="media-arrow">&rarr;</div>
+      </a>
+
+    </div>
+
+    <!-- ── TEXT / SCRIPT ── -->
+    <div class="section-gap">
+      <div class="section-label">&#128221; Script &nbsp;&mdash;&nbsp; Personal Version</div>
+
+      <div class="text-block">
+        <h3>Induction &mdash; <em>Nature Edition</em></h3>
+
+        <div class="nuance">&#127911; Vocal nuance: Start warm, grounded, conversational. Natural pace. No rush.</div>
+
+        <p class="script-line">&ldquo;Take a moment to truly arrive here&hellip;&rdquo;</p>
+        <p class="pause">[Pause &mdash; 3 seconds]</p>
+
+        <p class="script-line">&ldquo;Find a comfortable spot &mdash; on the grass, against a tree, on a warm flat rock.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <p class="script-line">&ldquo;Let your weight drop. Feel the earth holding you up &mdash; solid, patient, completely reliable.&rdquo;</p>
+        <p class="pause">[Pause &mdash; 3 seconds]</p>
+
+        <p class="script-line">&ldquo;Notice the sounds around you begin to soften&hellip; birdsong in the distance&hellip; the low hum of wind moving through the treetops&hellip; and the steady, unhurried sound of my voice guiding you deeper.&rdquo;</p>
+        <p class="pause">[Long Pause &mdash; 5 seconds]</p>
+
+        <div class="nuance">&#127911; Slow down. Each word lands like a stone dropped in still water.</div>
+
+        <p class="script-line">&ldquo;Your body is heavy. Good heavy. The kind of heavy that only comes after you&rsquo;ve given everything you had.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <p class="script-line">&ldquo;Notice your feet. Feel the fabric still hugging your tired skin.&rdquo;</p>
+        <p class="pause">[Long Pause &mdash; 5 seconds]</p>
+
+        <p class="script-line">&ldquo;Now&hellip; very slowly&hellip; like peeling back the bark from a branch&hellip; millimeter by millimeter&hellip; pull those socks off.&rdquo;</p>
+        <p class="pause">[Pause &mdash; take your time here]</p>
+
+        <p class="script-line">&ldquo;Feel the open air finally reaching your skin. Cool. Clean. Like the first breath after stepping out of the shade into a meadow.&rdquo;</p>
+        <p class="pause">[Long Pause]</p>
+
+        <p class="script-line">&ldquo;And with it&hellip; let everything from today just release. The effort. The tension. The noise. It all slides away &mdash; like water off river stones.&rdquo;</p>
+        <p class="pause">[Long Pause &mdash; 5 seconds]</p>
+
+        <div class="nuance">&#127911; Soften further. Lower the pitch just slightly. Warm, like afternoon sun through leaves.</div>
+
+        <p class="script-line">&ldquo;Your conscious mind can decide to remember to forget&hellip; or forget to remember&hellip; everything that happened today.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <p class="script-line">&ldquo;It doesn&rsquo;t really matter.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <p class="script-line">&ldquo;Because while your thinking mind drifts like a cloud moving across the sky&hellip; your deeper mind &mdash; that quiet, powerful force that handles 90 percent of everything you do &mdash; is right here. Listening closely.&rdquo;</p>
+        <p class="pause">[Long Pause]</p>
+
+        <p class="script-line">&ldquo;Sink even deeper now. Everything is fine. Everything is still. Nothing is wrong.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <p class="script-line">&ldquo;Imagine the warmth of sunlight settling onto your muscles &mdash; gentle, steady, purposeful. Starting at your feet. Moving slowly upward.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <p class="script-line">&ldquo;Every place the warmth touches&hellip; the tension just dissolves. Like morning frost melting off tall grass.&rdquo;</p>
+        <p class="pause">[Long Pause &mdash; 5 seconds]</p>
+
+        <div class="nuance">&#127911; Very gentle and rhythmic. Like water moving over smooth stones in a stream.</div>
+
+        <p class="script-line">&ldquo;The warmth moves up to your shoulders&hellip; the back of your neck. Every breath out releases a little more. Looser. Softer. More open.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <p class="script-line">&ldquo;It&rsquo;s as if the weight you&rsquo;ve been carrying&hellip; the whole day, the whole week&hellip; is being gently absorbed by the earth beneath you. The ground takes it. That&rsquo;s what the ground does.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <p class="script-line">&ldquo;Everything is fine. Everything is still. Everything is stable.&rdquo;</p>
+        <p class="pause">[Long Pause]</p>
+
+        <p class="script-line">&ldquo;You already carry everything you need for your perfect recovery. Your body knows how to heal. Your mind knows how to rest. Trust that.&rdquo;</p>
+        <p class="pause">[Long Pause &mdash; 5 seconds]</p>
+
+        <div class="nuance">&#127911; Expand. Let the voice open up &mdash; wider, more resonant, like the sky itself.</div>
+
+        <p class="script-line">&ldquo;Give this feeling of deep stillness a color. Any color that feels right.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <p class="script-line">&ldquo;Maybe it&rsquo;s the deep green of a forest floor. The pale gold of late afternoon light. The clear blue of open sky.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <p class="script-line">&ldquo;Let that color begin at the soles of your feet&hellip; and rise slowly through your whole body&hellip; up through your chest&hellip; out through the top of your head&hellip; spreading outward&hellip; across the meadow&hellip; into the treeline&hellip; all the way to the horizon.&rdquo;</p>
+        <p class="pause">[Long Pause]</p>
+
+        <p class="script-line">&ldquo;Your inner voice says clearly: I&rsquo;ve got this. I&rsquo;m exactly where I need to be.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <div class="nuance">&#127911; Transition back to bright, warm, energizing &mdash; like sunrise after a deep night of rest.</div>
+
+        <p class="script-line">&ldquo;The world is right here waiting for you. And you&rsquo;re ready for it.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <p class="script-line">&ldquo;Everything is in its right place. Everything is fine. Everything is still.&rdquo;</p>
+        <p class="pause">[Pause]</p>
+
+        <p class="script-line">&ldquo;Take all the time you need&hellip; and when you&rsquo;re ready&hellip; come back. Open eyes. Easy smile. Stronger than before.&rdquo;</p>
+        <p class="pause">[End]</p>
+
+      </div><!-- /text-block -->
+    </div>
+
+    <!-- ── SCIENCE NOTE ── -->
+    <div class="section-gap">
+      <div class="section-label">&#128302; Background</div>
+      <div class="sci-box">
+        <span class="sci-label">Why this works</span>
+        <p>Theta brain waves (4&ndash;8 Hz) appear at the boundary between wakefulness and sleep &mdash; in half-sleep, deep meditation, and creative flow states. A conditioned physical anchor (the sock gesture) reliably triggers this state once the neural pathway is established through daily repetition over 2&ndash;3 weeks. The body and mind then associate the gesture with the state &mdash; automatically, without effort.</p>
+      </div>
+      <div class="sci-box" style="margin-top:2px;">
+        <span class="sci-label">The three versions</span>
+        <p><strong style="color:#e0e0e0;">Street</strong> &mdash; Any quiet moment during the day. One shoe, one sock, 3 minutes.<br>
+        <strong style="color:#e0e0e0;">After Training</strong> &mdash; Immediately after physical effort. Both socks, slow. Recovery starts now.<br>
+        <strong style="color:#e0e0e0;">After Shower</strong> &mdash; Fresh socks in hand, not yet on. The strongest version &mdash; uses the natural hypnagogic window.</p>
+      </div>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer-box">
+      <strong>Note:</strong> All content on this page is for relaxation and personal wellbeing only. It does not replace professional medical or psychological treatment. If you are experiencing acute distress, please contact a qualified professional. Crisis support (DE): Telefonseelsorge 0800 111 0 111 (free, 24/7).
+    </div>
+
+  </div><!-- /wrap -->
+
+  <footer>
+    <p>mindful7777 &nbsp;&middot;&nbsp; Private Session &nbsp;&middot;&nbsp; mindful7777.de</p>
+    <p style="margin-top:8px;">&copy; 2025 mindful7777 &middot; All content confidential &middot; Not for distribution</p>
+  </footer>
+
+</div><!-- /main-screen -->
+
+<script>
+  const ACCESS = 'leo7';
+
+  function doLogin() {
+    var pw = document.getElementById('pw-input').value.trim();
+    if (pw === ACCESS) {
+      sessionStorage.setItem('leo7_auth', 'ok');
+      showMain();
+    } else {
+      var err = document.getElementById('login-err');
+      err.style.display = 'block';
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+      setTimeout(function(){ err.style.display = 'none'; }, 3000);
+    }
+  }
+
+  function doLogout() {
+    sessionStorage.removeItem('leo7_auth');
+    document.getElementById('main-screen').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('pw-input').value = '';
+  }
+
+  function showMain() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('main-screen').style.display = 'block';
+  }
+
+  // Auto-check session
+  window.onload = function() {
+    if (sessionStorage.getItem('leo7_auth') === 'ok') {
+      showMain();
+    }
+    document.getElementById('pw-input').focus();
+  };
+</script>
+</body>
+</html>
