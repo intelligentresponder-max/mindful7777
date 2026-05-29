@@ -1,10 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 48" width="280" height="48">
-  <text
-    x="0" y="36"
-    font-family="'Cormorant Garamond', 'Georgia', serif"
-    font-size="32"
-    font-weight="300"
-    letter-spacing="4"
-    fill="#D4A574">mindful<tspan fill="#F7F4EE" font-weight="400">7777</tspan>
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C8922A;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#E8C05A;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#D4A840;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Konzentrische Ringe — Spirale von außen nach innen -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="url(#gold)" stroke-width="10"/>
+  <circle cx="100" cy="100" r="74" fill="none" stroke="url(#gold)" stroke-width="9"/>
+  <circle cx="100" cy="100" r="55" fill="none" stroke="url(#gold)" stroke-width="8"/>
+  <circle cx="100" cy="100" r="38" fill="none" stroke="url(#gold)" stroke-width="7"/>
+  <circle cx="100" cy="100" r="23" fill="none" stroke="url(#gold)" stroke-width="6"/>
+
+  <!-- Spiralkern -->
+  <path d="M 100 100 m -8,0 a 8,8 0 1,1 16,0 a 5,5 0 1,0 -10,0"
+        fill="none" stroke="url(#gold)" stroke-width="4" stroke-linecap="round"/>
 </svg>
