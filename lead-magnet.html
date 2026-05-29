@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Free Guide · mindful7777</title>
+<meta name="description" content="The 7 Pillars of Mindful Living — free PDF on Gumroad."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink:   #1a1a2e;
+  --sage:  #7c9a7e;
+  --cream: #faf7f2;
+  --light: #f0ebe3;
+  --muted: #8a8478;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+.bg7 {
+  position: fixed;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 60vw;
+  font-weight: 300;
+  color: rgba(124,154,126,0.04);
+  line-height: 1;
+  pointer-events: none;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  user-select: none;
+}
+.wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.2rem;
+}
+
+.tag {
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 9vw, 4rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+h1 em { color: var(--sage); font-style: italic; }
+.sub {
+  font-size: 0.88rem;
+  color: #9a9080;
+  line-height: 1.7;
+  max-width: 340px;
+}
+
+/* PDF CARD */
+.card {
+  width: 100%;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 1.8rem;
+  border-top: 3px solid var(--sage);
+  text-align: left;
+}
+.card-badge {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 0.6rem;
+}
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  margin-bottom: 1.4rem;
+}
+.pill-item {
+  font-size: 0.74rem;
+  color: var(--muted);
+  display: flex;
+  gap: 0.4rem;
+  align-items: baseline;
+}
+.pill-item span { color: var(--sage); font-size: 0.6rem; }
+.btn-gumroad {
+  display: block;
+  width: 100%;
+  background: var(--sage);
+  color: var(--cream);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.95rem;
+  transition: opacity 0.2s;
+}
+.btn-gumroad:hover { opacity: 0.85; }
+.card-note {
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 0.6rem;
+}
+
+/* DIVIDER */
+.divider {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #3a3530;
+}
+
+/* CONTACT */
+.contact {
+  width: 100%;
+  border: 1px solid rgba(124,154,126,0.2);
+  padding: 1.6rem 1.8rem;
+  text-align: center;
+}
+.contact-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 0.4rem;
+}
+.contact-sub {
+  font-size: 0.78rem;
+  color: #9a9080;
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+}
+.btns { display: flex; flex-direction: column; gap: 0.6rem; }
+.btn-c {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.8rem 1rem;
+  border: 1px solid;
+  transition: background 0.2s;
+}
+.btn-wa { border-color: #25d366; color: #25d366; }
+.btn-wa:hover { background: rgba(37,211,102,0.08); }
+.btn-em { border-color: rgba(124,154,126,0.4); color: var(--sage); }
+.btn-em:hover { background: rgba(124,154,126,0.08); }
+.btn-c svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+
+footer {
+  margin-top: 2rem;
+  font-size: 0.65rem;
+  color: #3a3530;
+  text-align: center;
+}
+footer a { color: var(--sage); text-decoration: none; }
+</style>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+</head>
+<body>
+
+<div class="bg7">7</div>
+
+<div class="wrap">
+  <p class="tag">mindful7777 · Free Download</p>
+
+  <h1>The 7 Pillars of<br/><em>Mindful Living</em></h1>
+
+  <p class="sub">A practical PDF guide for more presence, better sleep, and aligned living. Free on Gumroad.</p>
+
+  <!-- PDF CARD -->
+  <div class="card">
+    <div class="card-badge">Free PDF · 12 pages · English</div>
+    <div class="card-title">The 7 Pillars of<br/>Mindful Living</div>
+    <div class="pillars">
+      <div class="pill-item"><span>✦</span> Presence</div>
+      <div class="pill-item"><span>✦</span> Morning Ritual</div>
+      <div class="pill-item"><span>✦</span> Breath</div>
+      <div class="pill-item"><span>✦</span> Sleep as Sacred</div>
+      <div class="pill-item"><span>✦</span> Walking in Nature</div>
+      <div class="pill-item"><span>✦</span> Inner Design</div>
+      <div class="pill-item"><span>✦</span> Gratitude</div>
+    </div>
+    <a href="https://mindful777.gumroad.com" class="btn-gumroad" target="_blank" rel="noopener">
+      ↓ Get it free on Gumroad
+    </a>
+    <p class="card-note">Pay what you want · including $0 · instant download</p>
+  </div>
+
+  <div class="divider">— or go deeper —</div>
+
+  <!-- CONTACT -->
+  <div class="contact">
+    <div class="contact-title">Ready for a 1:1 session?</div>
+    <p class="contact-sub">Write me directly. I read every message personally — no bots, no waiting lists.</p>
+    <div class="btns">
+      <a href="https://wa.me/4916346922255" class="btn-c btn-wa" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Message on WhatsApp
+      </a>
+      <a href="mailto:mindful7777@gmail.com" class="btn-c btn-em">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Send an Email
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    © mindful7777 · <a href="https://mindful7777.de">mindful7777.de</a> · Be the best version+
+  </footer>
+</div>
+
+<script src="assets/lang.js"></script>
+</body>
+</html>

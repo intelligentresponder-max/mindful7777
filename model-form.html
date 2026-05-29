@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Modell-Maße · Bewerbungsformular</title>
+<style>
+  :root {
+    --bg: #0a0a0a; --surface: #141414; --surface2: #1c1c1c;
+    --border: #252525; --text: #e0e0e0; --muted: #666;
+    --accent: #c8a96e; --white: #fff;
+    --green: #4caf50; --red: #e57373; --blue: #64b5f6;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: Georgia, serif; font-size: 15px; line-height: 1.7; }
+
+  /* ── NAV ── */
+  nav { background: rgba(10,10,10,0.97); border-bottom: 1px solid var(--border); padding: 0 40px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .nav-brand { font-size: 13px; letter-spacing: 0.14em; color: var(--white); text-decoration: none; }
+  .nav-tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 4px 10px; }
+
+  /* ── LAYOUT ── */
+  .wrap { max-width: 780px; margin: 0 auto; padding: 60px 40px 100px; }
+
+  /* ── HEADER ── */
+  .form-header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+  .eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: block; }
+  h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 400; color: var(--white); line-height: 1.2; margin-bottom: 12px; }
+  h1 em { font-style: italic; color: var(--accent); }
+  .form-intro { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* ── SECTIONS ── */
+  .form-section { margin-bottom: 44px; }
+  .section-title { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: block; }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid-1 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .span-2 { grid-column: span 2; }
+
+  /* ── FIELD ── */
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  label .req { color: var(--accent); margin-left: 3px; }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="date"],
+  select,
+  textarea {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 12px 14px;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+  input::placeholder, textarea::placeholder { color: #333; }
+  textarea { resize: vertical; min-height: 90px; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+
+  /* ── MEASUREMENT FIELD ── */
+  .meas-field { display: flex; align-items: center; gap: 8px; }
+  .meas-field input { flex: 1; }
+  .meas-unit { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; min-width: 28px; }
+
+  /* ── CHECKBOXES ── */
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .check-item { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); padding: 12px 14px; cursor: pointer; transition: border-color 0.2s; }
+  .check-item:hover { border-color: var(--accent); }
+  .check-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
+  .check-item label { font-size: 13px; text-transform: none; letter-spacing: 0; color: var(--text); cursor: pointer; margin: 0; }
+
+  /* ── FILE UPLOAD ── */
+  .upload-zone { border: 1px dashed var(--border); padding: 32px 24px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; position: relative; margin-bottom: 2px; }
+  .upload-zone:hover, .upload-zone.drag-over { border-color: var(--accent); background: rgba(200,169,110,0.04); }
+  .upload-zone input[type="file"] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+  .upload-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+  .upload-title { font-size: 14px; color: var(--white); margin-bottom: 4px; }
+  .upload-sub { font-size: 12px; color: var(--muted); }
+  .upload-limit { font-size: 11px; color: var(--accent); margin-top: 8px; letter-spacing: 0.08em; }
+
+  /* ── FILE LIST ── */
+  .file-list { margin-top: 2px; display: flex; flex-direction: column; gap: 2px; }
+  .file-item { background: var(--surface); border: 1px solid var(--border); padding: 10px 14px; display: flex; align-items: center; gap: 12px; }
+  .file-item .file-icon { font-size: 16px; flex-shrink: 0; }
+  .file-item .file-name { font-size: 13px; color: var(--white); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .file-item .file-size { font-size: 11px; color: var(--muted); flex-shrink: 0; }
+  .file-item .file-remove { background: none; border: none; color: var(--red); cursor: pointer; font-size: 16px; flex-shrink: 0; padding: 0 4px; }
+  .file-item.error { border-color: var(--red); }
+  .file-item.error .file-name { color: var(--red); }
+
+  /* ── PROGRESS ── */
+  .progress-bar { height: 2px; background: var(--border); margin-top: 2px; }
+  .progress-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
+
+  /* ── CONSENT ── */
+  .consent-box { background: var(--surface); border: 1px solid var(--border); padding: 20px; display: flex; gap: 14px; align-items: flex-start; }
+  .consent-box input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+  .consent-box p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .consent-box strong { color: var(--text); }
+
+  /* ── SUBMIT ── */
+  .submit-area { margin-top: 36px; display: flex; flex-direction: column; gap: 16px; }
+  .submit-btn { background: var(--accent); color: var(--bg); border: none; padding: 16px 40px; font-family: Georgia, serif; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; width: 100%; }
+  .submit-btn:hover { opacity: 0.88; }
+  .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .submit-note { font-size: 12px; color: var(--muted); text-align: center; }
+
+  /* ── SUCCESS ── */
+  #success-screen { display: none; text-align: center; padding: 80px 40px; }
+  .success-icon { font-size: 48px; margin-bottom: 20px; display: block; }
+  #success-screen h2 { font-size: 28px; font-weight: 400; color: var(--white); margin-bottom: 12px; }
+  #success-screen p { font-size: 15px; color: var(--muted); }
+
+  /* ── VALIDATION ── */
+  .field-error { font-size: 11px; color: var(--red); margin-top: 4px; display: none; }
+  .field.invalid input, .field.invalid select, .field.invalid textarea { border-color: var(--red); }
+  .field.invalid .field-error { display: block; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav { padding: 0 20px; }
+    .wrap { padding: 40px 20px 80px; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .span-2 { grid-column: span 1; }
+    .check-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Sportartikel Tester · Bewerbung</span>
+  <span class="nav-tag">Bewerbungsformular</span>
+</nav>
+<div class="lang-toggle"><button class="lang-btn active" data-lang="de" onclick="setLang('de')">DE</button><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button></div>
+
+<div class="wrap">
+
+  <!-- ── HEADER ── -->
+  <div class="form-header">
+    <span class="eyebrow">Sportartikel-Test-Programm &nbsp;&middot;&nbsp; Bewerbung</span>
+    <h1>Modell-Maße &amp;<br><em>Sedcard-Einreichung</em></h1>
+    <p class="form-intro">Bitte alle Maße so genau wie möglich eintragen. Felder mit <span style="color:var(--accent)">*</span> sind Pflichtfelder. Fotos und Videos werden verschlüsselt übertragen und vertraulich behandelt.</p>
+  </div>
+
+  <form id="model-form" novalidate>
+
+    <!-- ══ 1. PERSÖNLICHE DATEN ══════════════════════════════════ -->
+    <div class="form-section">
+      <span class="section-title">01 &nbsp;&middot;&nbsp; Persönliche Daten</span>
+
+      <div class="grid-2" style="margin-bottom:16px;">
+        <div class="field" id="f-vorname">
+          <label>Vorname <span class="req">*</span></label>
+          <input type="text" name="vorname" placeholder="Max" required>
+          <span class="field-error">Pflichtfeld</span>
+        </div>
+        <div class="field" id="f-nachname">
+          <label>Nachname <span class="req">*</span></label>
+          <input type="text" name="nachname" placeholder="Mustermann" required>
+          <span class="field-error">Pflichtfeld</span>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:16px;">
+        <div class="field" id="f-geburtsdatum">
+          <label>Geburtsdatum <span class="req">*</span></label>
+          <input type="date" name="geburtsdatum" required>
+          <span class="field-error">Pflichtfeld</span>
+        </div>
+        <div class="field">
+          <label>Geschlecht</label>
+          <select name="geschlecht">
+            <option value="">— Bitte wählen —</option>
+            <option>Männlich</option>
+            <option>Weiblich</option>
+            <option>Divers</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-1" style="margin-bottom:16px;">
+        <div class="field" id="f-adresse">
+          <label>Straße &amp; Hausnummer <span class="req">*</span></label>
+          <input type="text" name="adresse" placeholder="Musterstraße 1" required>
+          <span class="field-error">Pflichtfeld</span>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:16px;">
+        <div class="field">
+          <label>PLZ</label>
+          <input type="text" name="plz" placeholder="60311" maxlength="10">
+        </div>
+        <div class="field">
+          <label>Wohnort</label>
+          <input type="text" name="ort" placeholder="Frankfurt am Main">
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:16px;">
+        <div class="field">
+          <label>Telefon (privat)</label>
+          <input type="tel" name="tel_privat" placeholder="+49 69 ...">
+        </div>
+        <div class="field">
+          <label>Telefon (mobil)</label>
+          <input type="tel" name="tel_mobil" placeholder="+49 17x ...">
+        </div>
+      </div>
+
+      <div class="grid-1">
+        <div class="field" id="f-email">
+          <label>E-Mail <span class="req">*</span></label>
+          <input type="email" name="email" placeholder="name@beispiel.de" required>
+          <span class="field-error">Bitte gültige E-Mail eingeben</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 2. KÖRPERMASSE ═════════════════════════════════════════ -->
+    <div class="form-section">
+      <span class="section-title">02 &nbsp;&middot;&nbsp; Körpermaße</span>
+
+      <div class="grid-3" style="margin-bottom:16px;">
+        <div class="field" id="f-groesse">
+          <label>Körpergröße <span class="req">*</span></label>
+          <div class="meas-field">
+            <input type="number" name="groesse" placeholder="182" min="100" max="250" required>
+            <span class="meas-unit">cm</span>
+          </div>
+          <span class="field-error">Pflichtfeld</span>
+        </div>
+        <div class="field" id="f-gewicht">
+          <label>Gewicht <span class="req">*</span></label>
+          <div class="meas-field">
+            <input type="number" name="gewicht" placeholder="78" min="30" max="200" required>
+            <span class="meas-unit">kg</span>
+          </div>
+          <span class="field-error">Pflichtfeld</span>
+        </div>
+        <div class="field">
+          <label>Konfektionsgröße</label>
+          <select name="konfek_groesse">
+            <option value="">— Wählen —</option>
+            <option>XS</option><option>S</option><option>M</option>
+            <option>L</option><option>XL</option><option>XXL</option><option>XXXL</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-bottom:16px;">
+        <div class="field">
+          <label>Halsumfang</label>
+          <div class="meas-field">
+            <input type="number" name="hals" placeholder="38" min="20" max="70">
+            <span class="meas-unit">cm</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Brustumfang</label>
+          <div class="meas-field">
+            <input type="number" name="brust" placeholder="96" min="50" max="180">
+            <span class="meas-unit">cm</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Taillenumfang</label>
+          <div class="meas-field">
+            <input type="number" name="taille" placeholder="82" min="40" max="180">
+            <span class="meas-unit">cm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-bottom:16px;">
+        <div class="field">
+          <label>Hüftumfang</label>
+          <div class="meas-field">
+            <input type="number" name="huefte" placeholder="98" min="50" max="200">
+            <span class="meas-unit">cm</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Innenbeinlänge</label>
+          <div class="meas-field">
+            <input type="number" name="innenbein" placeholder="82" min="40" max="120">
+            <span class="meas-unit">cm</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Schulterbreite</label>
+          <div class="meas-field">
+            <input type="number" name="schulter" placeholder="46" min="20" max="80">
+            <span class="meas-unit">cm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-bottom:16px;">
+        <div class="field">
+          <label>Schuhgröße</label>
+          <select name="schuhgroesse">
+            <option value="">— Wählen —</option>
+            <option>36</option><option>37</option><option>38</option><option>39</option>
+            <option>40</option><option>41</option><option>42</option><option>43</option>
+            <option>44</option><option>45</option><option>46</option><option>47</option><option>48+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Kopfumfang</label>
+          <div class="meas-field">
+            <input type="number" name="kopf" placeholder="57" min="40" max="80">
+            <span class="meas-unit">cm</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Armumfang (Bizeps)</label>
+          <div class="meas-field">
+            <input type="number" name="bizeps" placeholder="34" min="15" max="70">
+            <span class="meas-unit">cm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-1">
+        <div class="field">
+          <label>Sonstige Maße / Anmerkungen</label>
+          <textarea name="sonstige_masse" placeholder="z.B. Wadenumfang, Handschuhgröße, besondere Maße..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 3. TESTBARE ARTIKEL ════════════════════════════════════ -->
+    <div class="form-section">
+      <span class="section-title">03 &nbsp;&middot;&nbsp; Testbare Artikel</span>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Welche Artikel können getestet werden? (Mehrfachauswahl möglich)</p>
+
+      <div class="check-grid">
+        <div class="check-item">
+          <input type="checkbox" name="artikel" value="nike" id="c-nike">
+          <label for="c-nike">Nike Produkte</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" name="artikel" value="adidas" id="c-adidas">
+          <label for="c-adidas">Adidas Produkte</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" name="artikel" value="puma" id="c-puma">
+          <label for="c-puma">Puma Produkte</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" name="artikel" value="sportsocken" id="c-socken">
+          <label for="c-socken">Sportsocken</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" name="artikel" value="boxershorts" id="c-boxer">
+          <label for="c-boxer">Boxershorts / Unterwäsche</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" name="artikel" value="schuhe" id="c-schuhe">
+          <label for="c-schuhe">Fußballschuhe / Sportschuhe</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" name="artikel" value="brille" id="c-brille">
+          <label for="c-brille">Sonnenbrille / Schutzbrille</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" name="artikel" value="smartwatch" id="c-watch">
+          <label for="c-watch">Smartwatch / Fitness-Tracker</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" name="artikel" value="bekleidung" id="c-bekleidung">
+          <label for="c-bekleidung">Allgemeine Sportbekleidung</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" name="artikel" value="sonstiges_artikel" id="c-sonstiges">
+          <label for="c-sonstiges">Sonstiges</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 4. FOTO-UPLOAD ════════════════════════════════════════ -->
+    <div class="form-section">
+      <span class="section-title">04 &nbsp;&middot;&nbsp; Fotos (Sedcard)</span>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Bitte Fotos im Format JPG, PNG oder WEBP hochladen. Front, Seite, Rücken. Maximale Dateigröße: <strong style="color:var(--accent);">29 MB pro Datei</strong>.</p>
+
+      <div class="upload-zone" id="photo-zone">
+        <input type="file" id="photo-input" multiple accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp">
+        <span class="upload-icon">📷</span>
+        <div class="upload-title">Fotos hierher ziehen oder klicken</div>
+        <div class="upload-sub">JPG · PNG · WEBP</div>
+        <div class="upload-limit">Max. 29 MB pro Datei</div>
+      </div>
+      <div class="file-list" id="photo-list"></div>
+    </div>
+
+    <!-- ══ 5. VIDEO / GOOGLE DRIVE ═══════════════════════════════ -->
+    <div class="form-section">
+      <span class="section-title">05 &nbsp;&middot;&nbsp; Video &amp; Google Drive Upload</span>
+
+      <!-- Upload folder CTA -->
+      <a href="https://drive.google.com/drive/folders/15yDo0zRKElEkuMkYsUxYPxWPmaIFxr4E" target="_blank" style="display:flex;align-items:center;justify-content:space-between;background:var(--accent);color:var(--bg);padding:18px 24px;text-decoration:none;margin-bottom:2px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+        <div>
+          <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:4px;opacity:0.7;">Upload-Ordner</div>
+          <div style="font-size:16px;font-family:Georgia,serif;font-weight:600;">📁 &nbsp;Dateien hier hochladen &rarr;</div>
+        </div>
+        <div style="font-size:12px;opacity:0.7;text-align:right;line-height:1.5;">Google Drive<br>Ordner öffnen</div>
+      </a>
+
+      <!-- Drive instructions box -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--accent);padding:20px 24px;margin-bottom:16px;">
+        <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">So geht's — Google Drive Upload</div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px 12px;font-size:13px;color:var(--muted);line-height:1.6;">
+          <span style="color:var(--accent);font-weight:600;">1.</span><span>Oben auf <strong style="color:var(--text);">"Dateien hier hochladen"</strong> klicken → Google Drive öffnet sich</span>
+          <span style="color:var(--accent);font-weight:600;">2.</span><span>Datei in den Ordner hochladen — <strong style="color:var(--text);">kein Google-Account nötig</strong></span>
+          <span style="color:var(--accent);font-weight:600;">3.</span><span>Nach dem Upload: Rechtsklick → <strong style="color:var(--text);">Link kopieren</strong> → unten einfügen</span>
+        </div>
+      </div>
+
+      <div class="grid-1" style="gap:12px;">
+        <div class="field">
+          <label>Google Drive Link — Video (MP4/MOV, bis 1 GB)</label>
+          <input type="url" name="drive_video" placeholder="https://drive.google.com/file/d/...">
+          <span style="font-size:11px;color:var(--muted);margin-top:4px;display:block;">Kurzes Bewegungsvideo 5–30 Sek., Laufstil, Bewegungsablauf</span>
+        </div>
+        <div class="field">
+          <label>Google Drive Link — Zusätzliche Fotos / Sedcard (optional)</label>
+          <input type="url" name="drive_fotos" placeholder="https://drive.google.com/drive/folders/...">
+          <span style="font-size:11px;color:var(--muted);margin-top:4px;display:block;">Ordner oder einzelne Datei — beliebige Größe möglich</span>
+        </div>
+        <div class="field">
+          <label>Google Drive Link — Sonstiges (optional)</label>
+          <input type="url" name="drive_sonstiges" placeholder="https://drive.google.com/...">
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div style="margin:28px 0 20px;display:flex;align-items:center;gap:14px;">
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+        <span style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">oder direkt hochladen</span>
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+      </div>
+
+      <!-- Direct video upload (smaller files) -->
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Kleinere Videodateien direkt hochladen (max. 25 MB über Formspree):</p>
+      <div class="upload-zone" id="video-zone">
+        <input type="file" id="video-input" name="video_datei" accept="video/mp4,video/quicktime,video/mov,.mp4,.mov">
+        <span class="upload-icon">🎬</span>
+        <div class="upload-title">Video hierher ziehen oder klicken</div>
+        <div class="upload-sub">MP4 · MOV</div>
+        <div class="upload-limit">Max. 25 MB direkt · Größere Videos → Google Drive Link oben</div>
+      </div>
+      <div class="file-list" id="video-list"></div>
+    </div>
+
+    <!-- ══ 6. ERFAHRUNG / NOTIZEN ════════════════════════════════ -->
+    <div class="form-section">
+      <span class="section-title">06 &nbsp;&middot;&nbsp; Erfahrung &amp; Anmerkungen</span>
+      <div class="grid-1" style="gap:16px;">
+        <div class="field">
+          <label>Bisherige Testerfahrung (Marken, Produkte)</label>
+          <textarea name="erfahrung" placeholder="z.B. Nike Laufschuhe 2023, Adidas Sportbekleidung ..."></textarea>
+        </div>
+        <div class="field">
+          <label>Sportarten / Aktivitäten</label>
+          <textarea name="sportarten" placeholder="z.B. Fußball, Laufen, Fitnessstudio, Radfahren ..."></textarea>
+        </div>
+        <div class="field">
+          <label>Sonstige Anmerkungen</label>
+          <textarea name="anmerkungen" placeholder="Allergien, Einschränkungen, besondere Wünsche ..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ EINVERSTÄNDNIS ════════════════════════════════════════ -->
+    <div class="form-section">
+      <span class="section-title">Einverständniserklärung</span>
+
+      <div class="consent-box" style="margin-bottom:12px;">
+        <input type="checkbox" id="consent1" required>
+        <p><strong>Ich bestätige</strong>, dass alle angegebenen Maße und Informationen der Wahrheit entsprechen. Die hochgeladenen Bilder und Videos zeigen meine Person und wurden mit meinem ausdrücklichen Einverständnis erstellt.</p>
+      </div>
+
+      <div class="consent-box">
+        <input type="checkbox" id="consent2" required>
+        <p><strong>Ich stimme zu</strong>, dass meine Daten und Medien für die Zwecke des Sportartikel-Test-Programms gespeichert und verarbeitet werden. Eine Weitergabe an Dritte erfolgt nur nach vorheriger Rücksprache. Datenschutzhinweis: Daten werden nach Abschluss des Programms gelöscht.</p>
+      </div>
+    </div>
+
+    <!-- ══ SUBMIT ════════════════════════════════════════════════ -->
+    <div class="submit-area">
+      <button type="submit" class="submit-btn" id="submit-btn">
+        Bewerbung absenden &rarr;
+      </button>
+      <p class="submit-note">Nach dem Absenden erhalten Sie eine Bestätigung per E-Mail.</p>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS -->
+  <div id="success-screen">
+    <span class="success-icon">✅</span>
+    <h2>Bewerbung eingegangen.</h2>
+    <p style="margin-bottom:8px;">Vielen Dank &mdash; Ihre Unterlagen wurden erfolgreich übermittelt.</p>
+    <p>Sie erhalten in Kürze eine Bestätigung an die angegebene E-Mail-Adresse.</p>
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+// ── File upload handler ──────────────────────────────────────────
+const PHOTO_LIMIT = 29 * 1024 * 1024;   // 29 MB
+const VIDEO_LIMIT = 1024 * 1024 * 1024; // 1 GB
+
+function formatSize(bytes) {
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  if (bytes < 1024 * 1024 * 1024) return (bytes / (1024*1024)).toFixed(1) + ' MB';
+  return (bytes / (1024*1024*1024)).toFixed(2) + ' GB';
+}
+
+function fileIcon(type) {
+  if (type.startsWith('image/')) return '🖼';
+  if (type.startsWith('video/')) return '🎬';
+  return '📄';
+}
+
+function setupUpload(inputId, zoneId, listId, limit, label) {
+  const input = document.getElementById(inputId);
+  const zone  = document.getElementById(zoneId);
+  const list  = document.getElementById(listId);
+  const files = [];
+
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    addFiles([...e.dataTransfer.files]);
+  });
+
+  input.addEventListener('change', () => addFiles([...input.files]));
+
+  function addFiles(newFiles) {
+    newFiles.forEach(f => {
+      const isOver = f.size > limit;
+      const item = document.createElement('div');
+      item.className = 'file-item' + (isOver ? ' error' : '');
+      item.innerHTML = `
+        <span class="file-icon">${fileIcon(f.type)}</span>
+        <span class="file-name">${isOver ? '⚠ ' : ''}${f.name}</span>
+        <span class="file-size">${formatSize(f.size)}${isOver ? ' — zu groß!' : ''}</span>
+        <button class="file-remove" type="button">&times;</button>
+      `;
+      item.querySelector('.file-remove').addEventListener('click', () => {
+        item.remove();
+        const idx = files.indexOf(f);
+        if (idx > -1) files.splice(idx, 1);
+      });
+      list.appendChild(item);
+      if (!isOver) files.push(f);
+    });
+    input.value = '';
+  }
+}
+
+setupUpload('photo-input', 'photo-zone', 'photo-list', PHOTO_LIMIT, 'Foto');
+setupUpload('video-input', 'video-zone', 'video-list', VIDEO_LIMIT, 'Video');
+
+// ── Drag & drop visual feedback ──────────────────────────────────
+['photo-zone', 'video-zone'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('dragover', e => e.preventDefault());
+});
+
+// ── Form validation & submit ─────────────────────────────────────
+const form = document.getElementById('model-form');
+
+function validateField(input) {
+  const wrapper = input.closest('.field');
+  if (!wrapper) return true;
+  const valid = input.checkValidity();
+  wrapper.classList.toggle('invalid', !valid);
+  return valid;
+}
+
+form.querySelectorAll('input, select, textarea').forEach(el => {
+  el.addEventListener('blur', () => validateField(el));
+});
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  // Check consents
+  const c1 = document.getElementById('consent1');
+  const c2 = document.getElementById('consent2');
+  if (!c1.checked || !c2.checked) {
+    alert('Bitte beide Einverständniserklärungen bestätigen.');
+    return;
+  }
+
+  // Validate required fields
+  let allValid = true;
+  form.querySelectorAll('[required]').forEach(el => {
+    if (!validateField(el)) allValid = false;
+  });
+  if (!allValid) {
+    form.querySelector('.field.invalid input, .field.invalid select')?.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
+  // Simulate submit
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Wird übertragen…';
+
+  const data = new FormData(form);
+
+  fetch('https://formspree.io/f/xbdbkvrj', {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function(r) {
+    if (r.ok) {
+      form.style.display = 'none';
+      document.getElementById('success-screen').style.display = 'block';
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Bewerbung absenden →';
+      alert('Fehler beim Senden. Bitte erneut versuchen.');
+    }
+  })
+  .catch(function() {
+    btn.disabled = false;
+    btn.textContent = 'Bewerbung absenden →';
+    alert('Verbindungsfehler. Bitte Internetverbindung prüfen und erneut versuchen.');
+  });
+});
+</script>
+<script src="assets/lang.js"></script>
+</body>
+</html>

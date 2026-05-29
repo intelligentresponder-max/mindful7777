@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Favicon Generator · mindful7777</title>
+<style>
+body{font-family:sans-serif;max-width:600px;margin:50px auto;padding:20px;background:#f5f5f5}
+h1{color:#1B2845;font-size:24px;margin-bottom:10px}
+.preview{display:flex;gap:20px;align-items:center;margin:30px 0;padding:20px;background:white;border-radius:8px}
+.preview img{border:1px solid #ddd}
+button{background:#D4A574;color:#1B2845;border:none;padding:12px 24px;border-radius:4px;cursor:pointer;font-weight:600;margin:5px}
+button:hover{background:#E8C49A}
+.info{background:#fff;padding:15px;border-left:3px solid #D4A574;margin:20px 0;font-size:14px}
+code{background:#f0f0f0;padding:2px 6px;border-radius:3px;font-family:monospace;font-size:12px}
+</style>
+
+</head>
+<body>
+
+<h1>Favicon Generator · mindful7777</h1>
+<p>Lade das SVG-Favicon in verschiedenen PNG-Größen herunter.</p>
+
+<div class="preview">
+  <div>
+    <p style="margin:0 0 10px;font-weight:600">Vorschau:</p>
+    <img id="prev16" width="16" height="16" style="image-rendering:pixelated">
+    <img id="prev32" width="32" height="32">
+    <img id="prev64" width="64" height="64">
+    <img id="prev180" width="180" height="180">
+  </div>
+</div>
+
+<button onclick="download(16)">Download favicon-16x16.png</button>
+<button onclick="download(32)">Download favicon-32x32.png</button>
+<button onclick="download(180)">Download apple-touch-icon.png</button>
+
+<div class="info">
+  <strong>So fügst du die Favicons in deine HTML ein:</strong><br><br>
+  Füge diese Zeilen in den <code>&lt;head&gt;</code> aller HTML-Dateien ein:<br><br>
+  <code>&lt;link rel="icon" type="image/svg+xml" href="favicon.svg"&gt;</code><br>
+  <code>&lt;link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"&gt;</code><br>
+  <code>&lt;link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"&gt;</code><br>
+  <code>&lt;link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"&gt;</code>
+</div>
+
+<div class="info">
+  <strong>Tipp:</strong> Lade alle generierten Dateien in dasselbe Verzeichnis wie deine HTML-Dateien hoch (z.B. ins Root-Verzeichnis deiner Website).
+</div>
+
+<script>
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#1B2845" rx="8"/>
+  <circle cx="32" cy="32" r="26" fill="none" stroke="#D4A574" stroke-width="0.5" opacity="0.15"/>
+  <text 
+    x="32" 
+    y="42" 
+    font-family="'Playfair Display', serif" 
+    font-size="28" 
+    font-weight="700" 
+    fill="#D4A574" 
+    text-anchor="middle"
+    letter-spacing="-1">7777</text>
+</svg>`;
+
+function renderPNG(size, callback) {
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  
+  const img = new Image();
+  const blob = new Blob([svg], {type: 'image/svg+xml;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0, size, size);
+    URL.revokeObjectURL(url);
+    callback(canvas);
+  };
+  img.src = url;
+}
+
+function download(size) {
+  renderPNG(size, function(canvas) {
+    canvas.toBlob(function(blob) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      if (size === 180) {
+        a.download = 'apple-touch-icon.png';
+      } else {
+        a.download = `favicon-${size}x${size}.png`;
+      }
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  });
+}
+
+// Preview
+window.onload = function() {
+  renderPNG(16, c => document.getElementById('prev16').src = c.toDataURL());
+  renderPNG(32, c => document.getElementById('prev32').src = c.toDataURL());
+  renderPNG(64, c => document.getElementById('prev64').src = c.toDataURL());
+  renderPNG(180, c => document.getElementById('prev180').src = c.toDataURL());
+};
+</script>
+
+<script src="assets/lang.js"></script>
+</body>
+</html>

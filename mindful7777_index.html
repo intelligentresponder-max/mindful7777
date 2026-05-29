@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>mindful7777 · Be the best version+</title>
+<meta name="description" content="Mindfulness guides, hypnosis sessions, and tools for aligned living. Free resources on Gumroad."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink:   #1a1a2e;
+  --sage:  #7c9a7e;
+  --warm:  #c4956a;
+  --cream: #faf7f2;
+  --light: #f0ebe3;
+  --muted: #8a8478;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--ink);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '7';
+  position: absolute;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40vw;
+  font-weight: 300;
+  color: rgba(124,154,126,0.06);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.hero h1 em { color: var(--sage); font-style: italic; }
+.hero-sub {
+  font-size: 1rem;
+  color: #9a9080;
+  max-width: 480px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+.hero-cta {
+  display: inline-block;
+  background: var(--sage);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  transition: opacity 0.2s;
+}
+.hero-cta:hover { opacity: 0.85; }
+.hero-cta.secondary {
+  background: transparent;
+  border: 1px solid rgba(124,154,126,0.5);
+  margin-left: 1rem;
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ── SECTION ── */
+section { padding: 6rem 2rem; }
+.container { max-width: 960px; margin: 0 auto; }
+
+.section-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 0.8rem;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.section-body {
+  color: var(--muted);
+  font-size: 0.95rem;
+  max-width: 520px;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+/* ── PILLARS GRID ── */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--light);
+  border: 1px solid var(--light);
+  margin-bottom: 3rem;
+}
+.pillar-item {
+  background: var(--cream);
+  padding: 1.8rem;
+  transition: background 0.2s;
+}
+.pillar-item:hover { background: var(--light); }
+.pillar-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--sage);
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.pillar-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.pillar-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+/* ── PRODUCTS ── */
+.products { background: var(--light); }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.product-card {
+  background: var(--cream);
+  padding: 2.4rem;
+  border-top: 3px solid var(--sage);
+  display: flex;
+  flex-direction: column;
+}
+.product-card.featured { border-top-color: var(--warm); }
+.product-badge {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1rem;
+}
+.product-badge.warm { color: var(--warm); }
+.product-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+}
+.product-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; flex: 1; margin-bottom: 1.5rem; }
+.product-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  margin-bottom: 1.2rem;
+}
+.product-price span { font-size: 0.75rem; color: var(--muted); font-family: 'DM Sans', sans-serif; }
+.btn-gumroad {
+  display: block;
+  text-align: center;
+  background: var(--ink);
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.9rem;
+  transition: opacity 0.2s;
+}
+.btn-gumroad:hover { opacity: 0.8; }
+.btn-gumroad.sage { background: var(--sage); }
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.about-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ink);
+  border-left: 3px solid var(--sage);
+  padding-left: 1.5rem;
+}
+.about-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+
+/* ── CONTACT ── */
+.contact { background: var(--ink); color: var(--cream); text-align: center; }
+.contact .section-title { color: var(--cream); }
+.contact .section-body { color: #9a9080; margin: 0 auto 2.5rem; }
+.contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.contact-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sage);
+  text-decoration: none;
+  border: 1px solid rgba(124,154,126,0.4);
+  padding: 0.7rem 1.5rem;
+  transition: all 0.2s;
+}
+.contact-link:hover { border-color: var(--sage); background: rgba(124,154,126,0.1); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--muted);
+  border-top: 1px solid var(--light);
+}
+
+/* ── DIVIDER ── */
+.divider {
+  width: 50px; height: 1px;
+  background: var(--sage);
+  margin: 2rem 0;
+}
+
+@media(max-width:640px) {
+  .hero-cta.secondary { margin-left: 0; margin-top: 0.8rem; display: block; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  section { padding: 4rem 1.5rem; }
+}
+</style>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <p class="hero-tag">mindful7777 · Frankfurt</p>
+  <h1>Be the <em>best<br/>version</em> of yourself+</h1>
+  <p class="hero-sub">Mindfulness guides, hypnosis sessions, and tools for aligned living — designed for real people in a fast world.</p>
+  <div>
+    <a href="#products" class="hero-cta">Free Resources</a>
+    <a href="#contact" class="hero-cta secondary">Book a Session</a>
+  </div>
+  <div class="scroll-hint">↓ scroll</div>
+</section>
+
+<!-- ── THE 7 PILLARS ── -->
+<section id="pillars">
+  <div class="container">
+    <p class="section-tag">The Framework</p>
+    <h2 class="section-title">Seven pillars.<br/>One aligned life.</h2>
+    <p class="section-body">A gentle system for building presence, clarity, and inner alignment — one practice at a time. No perfection required.</p>
+
+    <div class="pillars-grid">
+      <div class="pillar-item">
+        <div class="pillar-num">01</div>
+        <div class="pillar-name">Presence</div>
+        <p class="pillar-desc">The art of returning to now, again and again.</p>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-num">02</div>
+        <div class="pillar-name">Morning Ritual</div>
+        <p class="pillar-desc">How you begin shapes everything that follows.</p>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-num">03</div>
+        <div class="pillar-name">Breath</div>
+        <p class="pillar-desc">Your oldest anchor. Always available.</p>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-num">04</div>
+        <div class="pillar-name">Sleep as Sacred</div>
+        <p class="pillar-desc">Rest is not laziness. It's the foundation.</p>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-num">05</div>
+        <div class="pillar-name">Walking in Nature</div>
+        <p class="pillar-desc">The body knows what the mind forgets.</p>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-num">06</div>
+        <div class="pillar-name">Inner Design</div>
+        <p class="pillar-desc">Living aligned with your unique nature.</p>
+      </div>
+      <div class="pillar-item">
+        <div class="pillar-num">07</div>
+        <div class="pillar-name">Gratitude</div>
+        <p class="pillar-desc">Closing the day with intention and presence.</p>
+      </div>
+    </div>
+
+    <a href="https://mindful777.gumroad.com/l/fkyrhi" class="hero-cta" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none">
+      Download the Free Guide →
+    </a>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section id="products" class="products">
+  <div class="container">
+    <p class="section-tag">On Gumroad</p>
+    <h2 class="section-title">Free resources<br/>for your journey.</h2>
+    <p class="section-body">Pay what you want. Everything here is designed to be genuinely useful — no upsells, no pressure.</p>
+
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-badge">Free Download · PDF Guide</div>
+        <h3 class="product-title">The 7 Pillars of Mindful Living</h3>
+        <p class="product-desc">A beautiful, practical 12-page guide covering all seven pillars — with a daily practice and reflection prompt for each one. Available in English.</p>
+        <div class="product-price">Free <span>· pay what you want</span></div>
+        <a href="https://mindful777.gumroad.com" class="btn-gumroad sage" target="_blank" rel="noopener">
+          Get on Gumroad →
+        </a>
+      </div>
+
+      <div class="product-card featured">
+        <div class="product-badge warm">Free · Intake Form · DE / EN</div>
+        <h3 class="product-title">Session Intake Form</h3>
+        <p class="product-desc">Your first step before a 1:1 mindfulness or hypnosis session. A gentle, confidential questionnaire to help us make the most of our time together. Available in German & English.</p>
+        <div class="product-price">Free <span>· instant download</span></div>
+        <a href="https://mindful777.gumroad.com/l/fkyrhi" class="btn-gumroad" target="_blank" rel="noopener">
+          Download on Gumroad →
+        </a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-badge">Coming Soon · 1:1 Session</div>
+        <h3 class="product-title">Mindfulness & Hypnosis Session</h3>
+        <p class="product-desc">A personal 1:1 session tailored to where you are right now — stress, sleep, habits, or simply finding more calm in daily life. Online or in Frankfurt.</p>
+        <div class="product-price">On request <span>· contact below</span></div>
+        <a href="#contact" class="btn-gumroad" style="background:var(--muted)">
+          Book a Session →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="about-quote">"The deepest form of self-care is living in alignment with who you actually are."</div>
+      </div>
+      <div class="about-text">
+        <p class="section-tag">About mindful7777</p>
+        <p>mindful7777 is a space for people who want to slow down, get clear, and live with more intention — without making it complicated.</p>
+        <p>The work combines mindfulness practices, breathwork, hypnosis, and Human Design — not as separate systems, but as complementary tools for one thing: helping you feel more like yourself.</p>
+        <p>Based in Frankfurt. Working internationally.</p>
+        <div class="divider"></div>
+        <p style="font-size:0.8rem;color:var(--muted)">All sessions are confidential. All resources are designed with care. No fluff.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact" class="contact">
+  <div class="container">
+    <p class="section-tag" style="color:var(--sage)">Get in touch</p>
+    <h2 class="section-title">Ready to begin?</h2>
+    <p class="section-body">Book a session, ask a question, or just say hello. All communication is personal and confidential.</p>
+    <div class="contact-links">
+      <a href="https://mindful777.gumroad.com" class="contact-link" target="_blank" rel="noopener">Gumroad</a>
+      <a href="mailto:mindful7777@gmail.com" class="contact-link">Email</a>
+      <a href="https://wa.me/4916346922255" class="contact-link" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © mindful7777 · mindful7777.de · Be the best version+
+</footer>
+
+<script src="assets/lang.js"></script>
+</body>
+</html>
