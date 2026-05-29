@@ -31,13 +31,14 @@
         /* Footer */
         footer { border-top: 1px solid var(--border); padding: 40px; text-align: center; font-size: 12px; color: var(--muted); }
     </style>
+
 </head>
 <body>
 <nav style="position:fixed;top:0;left:0;right:0;z-index:999;background:#0d0d0d;border-bottom:1px solid #2a2a2a;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;">
   <a href="/" style="color:#c8a96e;font-size:13px;letter-spacing:0.15em;text-decoration:none;font-family:Georgia,serif;display:flex;align-items:center;gap:8px;"><img src="assets/images/logo.svg" alt="logo" style="height:28px;width:auto;">mindful7777</a>
   <a href="blog/" style="color:#e8e8e8;font-size:12px;letter-spacing:0.12em;text-decoration:none;text-transform:uppercase;">Blog</a>
   <a href="intern/login.html" style="color:#888;font-size:12px;letter-spacing:0.12em;text-decoration:none;text-transform:uppercase;">Mitglieder</a>
-</nav>
+</nav><div class="lang-toggle" style="display:flex;gap:6px;margin-left:12px;"><button class="lang-btn" data-lang="de" onclick="setLang('de')" style="font-size:10px;letter-spacing:2px;padding:5px 10px;border:1px solid rgba(212,165,116,.3);background:transparent;color:rgba(247,244,238,.6);cursor:pointer;">DE</button><button class="lang-btn" data-lang="en" onclick="setLang('en')" style="font-size:10px;letter-spacing:2px;padding:5px 10px;border:1px solid rgba(212,165,116,.3);background:transparent;color:rgba(247,244,238,.6);cursor:pointer;">EN</button></div>
 
 <!-- Hero / Header (vereinfacht, du kannst deinen originalen Hero wieder einsetzen) -->
 <section style="padding: 140px 40px 80px;">
@@ -94,5 +95,6 @@
     © mindful7777 · mindful7777.de · Be the best version+
 </footer>
 
+<script src="assets/lang.js"></script>
 </body>
 </html>

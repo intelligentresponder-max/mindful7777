@@ -67,13 +67,14 @@ nav{
 footer{background:var(--blau);padding:32px 5%;text-align:center;color:rgba(255,255,255,.3);font-size:12px}
 footer a{color:var(--gold)}
 </style>
+
 </head>
 <body>
 
 <nav>
   <a href="vip.html" class="nav-logo">mindful7777</a>
   <a href="vip.html" class="nav-back">← Zurück</a>
-</nav>
+</nav><div class="lang-toggle" style="display:flex;gap:6px;margin-left:12px;"><button class="lang-btn" data-lang="de" onclick="setLang('de')" style="font-size:10px;letter-spacing:2px;padding:5px 10px;border:1px solid rgba(212,165,116,.3);background:transparent;color:rgba(247,244,238,.6);cursor:pointer;">DE</button><button class="lang-btn" data-lang="en" onclick="setLang('en')" style="font-size:10px;letter-spacing:2px;padding:5px 10px;border:1px solid rgba(212,165,116,.3);background:transparent;color:rgba(247,244,238,.6);cursor:pointer;">EN</button></div>
 
 <div class="container">
   <h1 class="page-title">Impressum</h1>
@@ -196,5 +197,6 @@ function revealContactData() {
 }
 </script>
 
+<script src="assets/lang.js"></script>
 </body>
 </html>

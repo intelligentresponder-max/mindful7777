@@ -83,6 +83,7 @@
     .img-split,.img-right,.img-trio{grid-template-columns:1fr;}
   }
 </style>
+
 </head>
 <body>
 
@@ -106,6 +107,7 @@
       <button class="logout-btn" onclick="doLogout()">Exit</button>
     </div>
   </nav>
+<div class="lang-toggle"><button class="lang-btn active" data-lang="de" onclick="setLang('de')">DE</button><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button></div>
 
   <div class="wrap">
 
@@ -329,5 +331,6 @@
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 <div class="calendly-inline-widget" data-url="https://calendly.com/intelligent-responder/first-meeting" style="min-width:320px;height:630px;margin:40px auto;max-width:900px;"></div>
+<script src="assets/lang.js"></script>
 </body>
 </html>
