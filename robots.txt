@@ -1,0 +1,18 @@
+# robots.txt für mindful7777
+# Zugriffskontrolle für Suchmaschinen-Crawler
+
+User-agent: *
+Allow: /vip.html
+Allow: /favicon.svg
+Allow: /favicon-*.png
+Allow: /apple-touch-icon.png
+
+# Impressum und Datenschutz: indexierbar aber niedriger Prio
+Allow: /impressum.html
+Allow: /datenschutz.html
+
+# Tool-Seiten nicht indexieren
+Disallow: /favicon-generator.html
+
+# Sitemap
+Sitemap: https://intelligentresponder-max.github.io/mindful7777/sitemap.xml

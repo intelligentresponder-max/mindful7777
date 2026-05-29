@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Was ist Hypnose wirklich? — mindful7777</title>
+<meta name="description" content="Schlafzustand, Kontrollverlust, Gehirnwäsche — kaum ein Thema trägt mehr Mythen. Klare, ehrliche Antworten was Hypnose ist und was nicht.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:   #1a1714; --cream: #f5f1eb; --warm: #e8dfd4;
+    --gold:  #c8a96e; --muted: #8c7f74; --green: #4a5c4e;
+    --accent:#d4735a; --card-bg:#fffcf8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Cormorant Garamond', serif; background: var(--cream); color: var(--ink); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 2.5rem;
+    background: rgba(245,241,235,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(200,169,110,0.25);
+  }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 0.85rem; letter-spacing: 0.12em; color: var(--green); text-decoration: none; }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; }
+  .nav-back:hover { color: var(--gold); }
+
+  /* ARTICLE LAYOUT */
+  .article-hero {
+    padding: 8rem 2.5rem 4rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .article-tag {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .article-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 300; line-height: 1.08; letter-spacing: -0.02em;
+  }
+  .article-title em { font-style: italic; color: var(--green); }
+  .article-meta {
+    margin-top: 1.5rem;
+    font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.08em; color: var(--muted);
+    display: flex; gap: 2rem;
+  }
+
+  /* DISCLAIMER BOX */
+  .disclaimer-box {
+    max-width: 720px; margin: 0 auto 3rem;
+    padding: 0 2.5rem;
+  }
+  .disclaimer-box .inner {
+    background: var(--warm);
+    border-left: 3px solid var(--gold);
+    padding: 1.2rem 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+
+  /* BODY */
+  .article-body {
+    max-width: 720px; margin: 0 auto;
+    padding: 0 2.5rem 6rem;
+  }
+  .article-body p {
+    font-size: 1.2rem; font-weight: 300;
+    line-height: 1.8; color: var(--ink);
+    margin-bottom: 1.6rem;
+  }
+  .article-body h2 {
+    font-size: 1.9rem; font-weight: 400;
+    margin: 3rem 0 1.2rem;
+    letter-spacing: -0.01em;
+  }
+  .article-body h2 em { font-style: italic; color: var(--green); }
+  .article-body h3 {
+    font-size: 1.3rem; font-weight: 400;
+    color: var(--green); margin: 2rem 0 0.8rem;
+    font-style: italic;
+  }
+  .article-body strong { font-weight: 600; }
+
+  /* MYTH BOX */
+  .myth-box {
+    background: var(--card-bg);
+    border: 1px solid var(--warm);
+    border-top: 3px solid var(--accent);
+    padding: 1.8rem;
+    margin: 2.5rem 0;
+    border-radius: 0;
+  }
+  .myth-box .myth-label {
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.8rem;
+  }
+  .myth-box .myth-claim { font-size: 1.15rem; font-weight: 400; margin-bottom: 0.6rem; }
+  .myth-box .myth-truth { font-size: 1.05rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+  /* FACT BOX */
+  .fact-box {
+    background: var(--green);
+    color: var(--cream);
+    padding: 2rem 2rem;
+    margin: 2.5rem 0;
+  }
+  .fact-box p { font-size: 1.15rem; font-weight: 300; line-height: 1.7; color: rgba(245,241,235,0.9); }
+  .fact-box p strong { color: var(--gold); font-weight: 600; }
+
+  /* PULLQUOTE */
+  .pullquote {
+    border-left: 3px solid var(--gold);
+    padding: 1rem 0 1rem 2rem;
+    margin: 2.5rem 0;
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* CTA */
+  .article-cta {
+    background: var(--warm);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .article-cta h3 { font-size: 1.9rem; font-weight: 300; margin-bottom: 0.8rem; }
+  .article-cta p { font-size: 1.1rem; font-weight: 300; color: var(--muted); margin-bottom: 1.8rem; }
+  .btn-primary {
+    display: inline-block;
+    padding: 0.9rem 2.4rem;
+    background: var(--green);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.1em; color: var(--muted); text-decoration: none;
+  }
+  .back-link:hover { color: var(--gold); }
+
+  footer {
+    background: var(--ink); color: var(--muted);
+    padding: 2.5rem; text-align: center;
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.07em; line-height: 1.9;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.2rem; }
+    .article-hero, .article-body, .disclaimer-box { padding-left: 1.2rem; padding-right: 1.2rem; }
+  }
+</style>
+
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">mindful7777</a>
+  <a class="nav-back" href="blog.html">← Zurück zum Blog</a>
+</nav><div class="lang-toggle" style="display:flex;gap:6px;margin-left:12px;"><button class="lang-btn" data-lang="de" onclick="setLang('de')" style="font-size:10px;letter-spacing:2px;padding:5px 10px;border:1px solid rgba(212,165,116,.3);background:transparent;color:rgba(247,244,238,.6);cursor:pointer;">DE</button><button class="lang-btn" data-lang="en" onclick="setLang('en')" style="font-size:10px;letter-spacing:2px;padding:5px 10px;border:1px solid rgba(212,165,116,.3);background:transparent;color:rgba(247,244,238,.6);cursor:pointer;">EN</button></div>
+
+<!-- HERO -->
+<header class="article-hero">
+  <p class="article-tag">Hypnose · Grundlagen · Lesedauer: 7 Min</p>
+  <h1 class="article-title">Was ist Hypnose <em>wirklich</em> —<br>und was nicht?</h1>
+  <div class="article-meta">
+    <span>André · mindful7777</span>
+    <span>Mai 2025</span>
+    <span>Kategorie: Grundlagen</span>
+  </div>
+</header>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer-box">
+  <div class="inner">
+    ⚠️ Dieser Artikel dient ausschließlich der allgemeinen Information und Entspannung. Er ersetzt keine psychotherapeutische oder medizinische Beratung. Bei psychischen Beschwerden: Telefonseelsorge 0800 111 0 111 (kostenlos, 24/7). Nicht beim Fahren lesen. mindful7777.de/disclaimer
+  </div>
+</div>
+
+<!-- BODY -->
+<article class="article-body">
+
+  <p>Hypnose polarisiert. Für die einen ist sie Hokuspokus, für die anderen ein Allheilmittel. Beides stimmt nicht. Was Hypnose wirklich ist — und was du davon in deinem Alltag nutzen kannst — das erkläre ich dir hier ruhig und klar.</p>
+
+  <h2>Zuerst: Die <em>Mythen</em> aus dem Weg räumen</h2>
+
+  <div class="myth-box">
+    <div class="myth-label">Mythos 1</div>
+    <p class="myth-claim">"Hypnose ist ein Schlafzustand."</p>
+    <p class="myth-truth">Das Wort kommt zwar vom griechischen <em>hypnos</em> (Schlaf), aber Hypnose ist das Gegenteil von Schlaf. Dein Bewusstsein ist aktiv — du nimmst alles wahr, du erinnerst dich an alles. Dein Fokus ist nur anders ausgerichtet: nach innen.</p>
+  </div>
+
+  <div class="myth-box">
+    <div class="myth-label">Mythos 2</div>
+    <p class="myth-claim">"Ich verliere die Kontrolle über mich."</p>
+    <p class="myth-truth">Nein. Niemand kann dir unter Hypnose etwas aufzwingen, das gegen deine Werte oder Überzeugungen verstößt. Du kannst die Hypnose jederzeit selbst beenden. Viele Menschen berichten, dass sie sich gerade durch Hypnose <em>mehr</em> in Kontakt mit sich selbst fühlen.</p>
+  </div>
+
+  <div class="myth-box">
+    <div class="myth-label">Mythos 3</div>
+    <p class="myth-claim">"Nur bestimmte Menschen können hypnotisiert werden."</p>
+    <p class="myth-truth">Jeder, der schon einmal in ein gutes Buch vertieft war, beim Autofahren in Gedanken versunken ist oder beim Film weinen musste — kennt bereits einen hypnoseähnlichen Zustand. Konzentrationsfähigkeit und die Bereitschaft, sich darauf einzulassen, sind wichtiger als irgendeine spezielle Begabung.</p>
+  </div>
+
+  <h2>Was <em>tatsächlich</em> passiert</h2>
+
+  <p>Hypnose ist ein <strong>gezielt herbeigeführter, entspannter Bewusstseinszustand</strong>. Dein Geist ist fokussiert, dein Körper entspannt. Das Besondere: In diesem Zustand ist der Zugang zum sogenannten Unbewussten leichter — also zu dem Teil von dir, der Gewohnheiten steuert, Reaktionen automatisiert und Emotionen speichert.</p>
+
+  <div class="pullquote">
+    "Hypnose ist ein natürlicher Zustand — du kennst ihn vom Tagträumen."
+  </div>
+
+  <p>Das ist keine Esoterik. Neurowissenschaftliche Studien zeigen, dass sich die Aktivität bestimmter Hirnregionen unter Hypnose messbar verändert — zum Beispiel im präfrontalen Kortex, der für kritisches Denken und Selbstkontrolle zuständig ist. Dieser Bereich wird ruhiger. Das erklärt, warum Suggestionen in diesem Zustand tiefer wirken können als im normalen Wachzustand.</p>
+
+  <div class="fact-box">
+    <p><strong>Was Forschung sagt:</strong> Verschiedene Studien aus dem Bereich der klinischen Psychologie deuten darauf hin, dass Hypnose bei bestimmten Themen unterstützend wirken kann — zum Beispiel bei Entspannung, Schlaf, Stressbewältigung und Schmerzempfinden. Die Datenlage ist vielversprechend, aber nicht für alle Anwendungsbereiche gleich stark. Vorsicht vor Versprechen, die zu weit gehen.</p>
+  </div>
+
+  <h2>Die 4 Phasen einer <em>geführten Hypnose</em></h2>
+
+  <h3>Phase 1 — Induktion</h3>
+  <p>Die Einleitung. Dein Geist wird fokussiert, dein Körper eingeladen, loszulassen. Oft über Atemübungen, Bildvorstellungen oder körperliche Wahrnehmungen. Diese Phase dauert meist 2–4 Minuten.</p>
+
+  <h3>Phase 2 — Vertiefung</h3>
+  <p>Der Entspannungszustand wird intensiviert. Bekannte Techniken sind das Bild einer Treppe, die du langsam hinabgehst, oder eine progressive Muskelentspannung. Je tiefer die Entspannung, desto zugänglicher das Unbewusste.</p>
+
+  <h3>Phase 3 — Suggestionen</h3>
+  <p>Hier passiert die eigentliche Arbeit. Sprachliche Formulierungen — Suggestionen — lenken deinen Geist in eine bestimmte Richtung. Zum Beispiel: tieferes Schlafen, mehr Ruhe in stressigen Momenten, ein entspannterer Umgang mit körperlicher Erschöpfung.</p>
+
+  <h3>Phase 4 — Rückführung</h3>
+  <p>Du wirst sanft zurückgeführt in den normalen Wachzustand. Mit Orientierungsankern — "Wenn du bereit bist, öffne die Augen" — und einem klaren Abschluss. Viele Menschen berichten danach ein Gefühl von Frische und Klarheit.</p>
+
+  <h2>Was Hypnose <em>unterstützen</em> kann</h2>
+
+  <p>Hypnose kann dabei helfen, Prozesse zu begleiten. Viele Menschen berichten Verbesserungen in Bereichen wie:</p>
+  <p>— Einschlafen und Schlafqualität<br>— Stressbewältigung im Alltag<br>— Entspannungsfähigkeit insgesamt<br>— Konzentration und mentale Klarheit<br>— Umgang mit Nervosität vor wichtigen Momenten</p>
+
+  <p>Was Hypnose <strong>nicht</strong> ist und nicht kann: Sie ist kein Ersatz für Psychotherapie, ärztliche Behandlung oder Krisenintervention. Bei diagnostizierten psychischen Erkrankungen gehört Hypnose in die Hände ausgebildeter Fachpersonen (Hypnotherapeuten).</p>
+
+  <div class="pullquote">
+    "Viele Menschen berichten, dass sie nach unseren Audios besser schlafen — das motiviert uns jeden Tag neu."
+  </div>
+
+  <h2>Wie du heute noch anfangen kannst</h2>
+
+  <p>Der einfachste Einstieg: ein geführtes Hypnose-Audio. Du brauchst keine Vorkenntnisse, keine spezielle Ausrüstung — nur 15–20 Minuten, einen ruhigen Ort und Kopfhörer. Die Wirkung entfaltet sich durch regelmäßige Nutzung.</p>
+
+  <p>Unser kostenloser Lead-Magnet ist ein Einstiegs-Audio, das genau für diesen Schritt entwickelt wurde. Warm, klar, ohne esoterische Floskeln.</p>
+
+  <div class="article-cta">
+    <h3>Bereit für deine erste Erfahrung?</h3>
+    <p>Hol dir das kostenlose Einstiegs-Audio — 15 Minuten geführte Tiefenentspannung.</p>
+    <a class="btn-primary" href="apply.html">Audio kostenlos holen</a>
+  </div>
+
+  <a class="back-link" href="blog.html">← Zurück zur Übersicht</a>
+
+</article>
+
+<footer>
+  <p>© André · mindful7777 · <a href="#">mindful7777.de</a> · Stand: Mai 2025</p>
+  <p style="margin-top:.5rem;">Alle Inhalte dienen ausschließlich der Information und Entspannung. Kein Ersatz für professionelle medizinische oder psychotherapeutische Beratung. <a href="#">Disclaimer</a> · <a href="#">Impressum</a></p>
+</footer>
+
+<script src="assets/lang.js"></script>
+</body>
+</html>

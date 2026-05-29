@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Private Area · mindful7777</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#1a1a2e;--sage:#7c9a7e;--warm:#c4956a;--cream:#faf7f2;--muted:#8a8478;--gold:#c4a96a;--red:#c46a6a;--blue:#6a8ac4;--purple:#9a7cc4;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh;}
+.bg{position:fixed;font-family:'Cormorant Garamond',serif;font-size:50vw;font-weight:300;color:rgba(196,169,106,0.04);pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%);user-select:none;z-index:0;}
+
+/* GATE */
+#gate{position:fixed;inset:0;z-index:100;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;transition:opacity 0.6s ease;}
+#gate.fade-out{opacity:0;pointer-events:none;}
+.gate-icon{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--gold);opacity:0.4;margin-bottom:0.5rem;}
+.gate-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;line-height:1.15;margin-bottom:0.6rem;}
+.gate-title em{color:var(--gold);font-style:italic;}
+.gate-sub{font-size:0.82rem;color:var(--muted);margin-bottom:2rem;max-width:320px;line-height:1.7;}
+.pw-wrap{width:100%;max-width:340px;}
+.pw-row{display:flex;gap:0;margin-bottom:0.5rem;}
+.pw-in{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-right:none;color:var(--cream);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.85rem 1rem;outline:none;transition:border-color 0.2s;letter-spacing:0.1em;}
+.pw-in:focus{border-color:var(--gold);}
+.pw-in.err{border-color:var(--red);animation:shake 0.35s;}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}};
+.pw-btn{background:var(--gold);color:var(--ink);border:none;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0 1.4rem;cursor:pointer;transition:opacity 0.2s;}
+.pw-btn:hover{opacity:0.85;}
+.pw-err{font-size:0.72rem;color:var(--red);margin-top:0.3rem;min-height:1rem;}
+.gate-apply{font-size:0.7rem;color:var(--muted);margin-top:1.5rem;}
+.gate-apply a{color:var(--gold);text-decoration:none;}
+.att-warn{font-size:0.68rem;color:var(--red);margin-top:0.3rem;display:none;}
+
+/* CONTENT */
+#content{display:none;position:relative;z-index:1;}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid rgba(196,169,106,0.15);background:rgba(0,0,0,0.3);backdrop-filter:blur(8px);position:sticky;top:0;z-index:10;}
+.topbar-brand{font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--sage);}
+.topbar-brand a{color:var(--sage);text-decoration:none;}
+.topbar-badge{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(196,169,106,0.3);padding:0.2rem 0.7rem;}
+.topbar-logout{font-size:0.62rem;cursor:pointer;background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;letter-spacing:0.05em;}
+.topbar-logout:hover{color:var(--red);}
+
+.hero{padding:4rem 2rem 3rem;text-align:center;border-bottom:1px solid rgba(196,169,106,0.1);}
+.hero-tag{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:300;line-height:1.1;margin-bottom:0.8rem;}
+.hero h1 em{color:var(--gold);font-style:italic;}
+.hero p{font-size:0.88rem;color:#9a9080;max-width:440px;margin:0 auto;line-height:1.8;}
+
+/* ROOM GRID */
+.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(196,169,106,0.08);max-width:960px;margin:3rem auto;padding:0 1.5rem;}
+.room{background:var(--ink);padding:2rem;display:flex;flex-direction:column;transition:background 0.2s;text-decoration:none;color:var(--cream);position:relative;overflow:hidden;}
+.room:hover{background:rgba(196,169,106,0.04);}
+.room::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.room.c-gold::before{background:var(--gold);}
+.room.c-blue::before{background:var(--blue);}
+.room.c-purple::before{background:var(--purple);}
+.room.c-sage::before{background:var(--sage);}
+.room.c-warm::before{background:var(--warm);}
+.room-tag{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.8rem;}
+.c-gold .room-tag{color:var(--gold);}
+.c-blue .room-tag{color:var(--blue);}
+.c-purple .room-tag{color:var(--purple);}
+.c-sage .room-tag{color:var(--sage);}
+.c-warm .room-tag{color:var(--warm);}
+.room h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;line-height:1.2;margin-bottom:0.5rem;}
+.room p{font-size:0.78rem;color:var(--muted);line-height:1.7;flex:1;margin-bottom:1rem;}
+.room-arrow{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;}
+.c-gold .room-arrow{color:var(--gold);}
+.c-blue .room-arrow{color:var(--blue);}
+.c-purple .room-arrow{color:var(--purple);}
+.c-sage .room-arrow{color:var(--sage);}
+.c-warm .room-arrow{color:var(--warm);}
+.room-price{display:inline-block;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);background:rgba(196,169,106,0.1);padding:0.2rem 0.6rem;margin-bottom:0.8rem;}
+.vip-badge{position:absolute;top:1rem;right:1rem;font-size:0.55rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:var(--gold);color:var(--ink);padding:0.2rem 0.5rem;}
+
+/* CONTACT */
+.contact-section{max-width:500px;margin:0 auto;padding:0 1.5rem 4rem;text-align:center;}
+.contact-section h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin-bottom:0.5rem;}
+.contact-section p{font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7;}
+.btn-c{display:flex;align-items:center;justify-content:center;gap:0.6rem;text-decoration:none;font-size:0.78rem;font-weight:500;padding:0.85rem;border:1px solid;transition:background 0.2s;margin-bottom:0.6rem;}
+.btn-wa{border-color:#25d366;color:#25d366;}
+.btn-wa:hover{background:rgba(37,211,102,0.08);}
+.btn-em{border-color:rgba(124,154,126,0.4);color:var(--sage);}
+.btn-em:hover{background:rgba(124,154,126,0.08);}
+.btn-c svg{width:15px;height:15px;fill:currentColor;flex-shrink:0;}
+
+.foot{text-align:center;padding:2rem;font-size:0.67rem;color:var(--muted);border-top:1px solid rgba(255,255,255,0.05);}
+.foot a{color:var(--sage);text-decoration:none;}
+
+@media(max-width:600px){.rooms{grid-template-columns:1fr;padding:0 1rem;}}
+</style>
+
+</head>
+<body>
+<div class="bg">&#9670;</div>
+
+<!-- GATE -->
+<div id="gate">
+  <div class="gate-icon">&#9670;</div>
+  <h1 class="gate-title">Private <em>Area</em></h1>
+  <p class="gate-sub">This space is by invitation only. Enter your access code to continue.</p>
+  <div class="pw-wrap">
+    <div class="pw-row">
+      <input type="password" class="pw-in" id="pw" placeholder="Access code..." onkeydown="if(event.key==='Enter')unlock()"/>
+      <button class="pw-btn" onclick="unlock()">Enter</button>
+    </div>
+    <div class="pw-err" id="pw-err"></div>
+    <div class="att-warn" id="att-warn">Too many attempts. Please wait 15 minutes.</div>
+  </div>
+  <p class="gate-apply">
+    No code? &nbsp;<a href="apply.html">Apply for access &rarr;</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://intelligentresponder-max.github.io/mindful7777/">Back to mindful7777</a>
+  </p>
+</div>
+
+<!-- CONTENT -->
+<div id="content">
+  <div class="topbar">
+    <div class="topbar-brand"><a href="https://intelligentresponder-max.github.io/mindful7777/">mindful7777</a></div>
+    <span class="topbar-badge">&#9670; Private Area</span>
+    <button class="topbar-logout" onclick="logout()">Lock &amp; exit</button>
+  </div>
+
+  <div class="hero">
+    <div class="hero-tag">Welcome &mdash; you're in.</div>
+    <h1>Your private <em>rooms.</em></h1>
+    <p>Five spaces, each with its own focus. Take what you need, in whatever order feels right.</p>
+  </div>
+
+  <div class="rooms">
+
+    <!-- VIP -->
+    <a href="private-vip.html" class="room c-gold">
+      <span class="vip-badge">&#9670; Schnellstarter</span>
+      <div class="room-tag">VIP Service</div>
+      <div class="room-price">€7 · €77 · €777</div>
+      <h2>Fast Track</h2>
+      <p>Three investment levels. Real results, as fast as possible. From a first contact to a full transformation package.</p>
+      <span class="room-arrow">Enter &rarr;</span>
+    </a>
+
+    <!-- SLEEP -->
+    <a href="private-sleep.html" class="room c-blue">
+      <div class="room-tag">Exclusive Protocol</div>
+      <h2>The 7-Night<br/>Sleep Reset</h2>
+      <p>A private hypnosis-based sleep protocol. Seven nights, seven techniques. For minds that won't stop when the lights go out.</p>
+      <span class="room-arrow">Enter &rarr;</span>
+    </a>
+
+    <!-- IDENTITY -->
+    <a href="private-identity.html" class="room c-purple">
+      <div class="room-tag">Deep Work</div>
+      <h2>Identity &amp;<br/>Inner Design</h2>
+      <p>Human Design, shadow work, and aligned identity. Who you actually are underneath the roles you play.</p>
+      <span class="room-arrow">Enter &rarr;</span>
+    </a>
+
+    <!-- BOOKING — direct -->
+    <div class="room c-sage" style="cursor:default;">
+      <div class="room-tag">Direct Access</div>
+      <h2>Book a<br/>1:1 Session</h2>
+      <p>No waiting list. No intake form. Write directly and we find a time. 60 minutes, online or Frankfurt.</p>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;margin-top:auto;">
+        <a href="https://wa.me/4916346922255?text=Private%20Area%20%E2%80%94%20Book%20session" class="btn-c btn-wa" target="_blank" rel="noopener" style="font-size:0.72rem;padding:0.7rem;">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp &rarr;
+        </a>
+        <a href="mailto:mindful7777@gmail.com?subject=Session%20Booking%20%E2%80%94%20Private%20Member" class="btn-c btn-em" target="_blank" rel="noopener" style="font-size:0.72rem;padding:0.7rem;">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Email &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- HD READING -->
+    <a href="private-identity.html#reading" class="room c-warm">
+      <div class="room-tag">Personal Service</div>
+      <h2>Human Design<br/>Reading</h2>
+      <p>Send your birth data. Receive your personal written reading within 48 hours. Your type, strategy, authority, and profile — explained for real life.</p>
+      <span class="room-arrow">Request reading &rarr;</span>
+    </a>
+
+  </div>
+
+  <div class="contact-section">
+    <h2>Any questions?</h2>
+    <p>This space is personal. Write directly — I read everything myself.</p>
+    <a href="https://wa.me/4916346922255" class="btn-c btn-wa" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="mailto:mindful7777@gmail.com" class="btn-c btn-em" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      Email
+    </a>
+  </div>
+
+  <div class="foot">
+    &copy; mindful7777 &nbsp;&middot;&nbsp;
+    <a href="https://intelligentresponder-max.github.io/mindful7777/">Home</a> &nbsp;&middot;&nbsp;
+    <a href="onboarding.html">Onboarding</a> &nbsp;&middot;&nbsp;
+    <span style="cursor:pointer;color:var(--red);" onclick="logout()">Lock &amp; exit</span>
+  </div>
+</div>
+
+<script>
+const PASSWORD='MINDFUL7777PRIVATE';
+const KEY='m7_private_unlocked';
+const MAX=5;
+const LOCK=15*60*1000;
+
+function getAtt(){const d=JSON.parse(localStorage.getItem('m7_att')||'{"c":0,"t":0}');if(Date.now()-d.t>LOCK){d.c=0;d.t=0;save(d);}return d;}
+function save(d){localStorage.setItem('m7_att',JSON.stringify(d));}
+function addAtt(){const d=getAtt();d.c++;d.t=Date.now();save(d);return d.c;}
+
+function unlock(){
+  const d=getAtt();
+  if(d.c>=MAX){document.getElementById('att-warn').style.display='block';return;}
+  const inp=document.getElementById('pw');
+  if(inp.value===PASSWORD){
+    localStorage.setItem(KEY,'1');save({c:0,t:0});
+    const g=document.getElementById('gate');
+    g.classList.add('fade-out');
+    setTimeout(()=>{g.style.display='none';document.getElementById('content').style.display='block';},600);
+  } else {
+    const n=addAtt();
+    inp.classList.add('err');setTimeout(()=>inp.classList.remove('err'),380);
+    const left=MAX-n;
+    document.getElementById('pw-err').textContent=left>0?`Wrong code. ${left} attempt${left===1?'':'s'} left.`:'Locked for 15 minutes.';
+    if(n>=MAX)document.getElementById('att-warn').style.display='block';
+    inp.value='';inp.focus();
+  }
+}
+function logout(){localStorage.removeItem(KEY);window.location.reload();}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  if(localStorage.getItem(KEY)==='1'){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('content').style.display='block';
+  }
+  document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')unlock();});
+});
+</script>
+<script src="assets/lang.js"></script>
+</body>
+</html>

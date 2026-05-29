@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VIP Schnellstarter · mindful7777</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#1a1a2e;--sage:#7c9a7e;--warm:#c4956a;--cream:#faf7f2;--muted:#8a8478;--gold:#c4a96a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh;}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid rgba(196,169,106,0.15);background:rgba(0,0,0,0.3);position:sticky;top:0;z-index:10;}
+.topbar-brand{font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--sage);}
+.topbar-brand a{color:var(--sage);text-decoration:none;}
+.topbar-badge{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(196,169,106,0.3);padding:0.2rem 0.7rem;}
+.back{font-size:0.7rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.back:hover{color:var(--sage);}
+
+.hero{padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'7';position:absolute;font-family:'Cormorant Garamond',serif;font-size:60vw;font-weight:300;color:rgba(196,169,106,0.04);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.hero-tag{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:300;line-height:1.1;margin-bottom:1rem;}
+.hero h1 em{color:var(--gold);font-style:italic;}
+.hero p{font-size:0.9rem;color:#9a9080;max-width:440px;margin:0 auto;line-height:1.8;}
+
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:rgba(196,169,106,0.1);max-width:860px;margin:3rem auto;padding:0 1.5rem;}
+.plan{background:var(--ink);padding:2.5rem 2rem;display:flex;flex-direction:column;position:relative;transition:background 0.2s;}
+.plan:hover{background:rgba(196,169,106,0.04);}
+.plan.featured{background:rgba(196,169,106,0.06);border:1px solid rgba(196,169,106,0.2);}
+.plan-badge{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.plan-price{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;line-height:1;color:var(--gold);margin-bottom:0.3rem;}
+.plan-price span{font-size:1.2rem;vertical-align:super;font-size:1.5rem;}
+.plan-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;margin-bottom:1rem;}
+.plan-desc{font-size:0.8rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;flex:1;}
+.plan-list{list-style:none;margin-bottom:2rem;}
+.plan-list li{font-size:0.78rem;color:#9a9080;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:0.6rem;}
+.plan-list li::before{content:'✦';color:var(--gold);font-size:0.55rem;flex-shrink:0;margin-top:3px;}
+.btn-plan{display:block;text-align:center;padding:0.95rem;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:opacity 0.2s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;width:100%;}
+.btn-gold{background:var(--gold);color:var(--ink);}
+.btn-gold:hover{opacity:0.85;}
+.btn-outline{background:none;border:1px solid rgba(196,169,106,0.4);color:var(--gold);}
+.btn-outline:hover{background:rgba(196,169,106,0.08);}
+
+.popular-tag{position:absolute;top:-1px;right:1.5rem;background:var(--gold);color:var(--ink);font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:0.25rem 0.7rem;}
+
+.faq{max-width:600px;margin:0 auto;padding:3rem 1.5rem 5rem;}
+.faq h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:2rem;text-align:center;}
+.faq-item{border-bottom:1px solid rgba(255,255,255,0.07);padding:1.2rem 0;}
+.faq-q{font-size:0.88rem;font-weight:500;margin-bottom:0.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-q::after{content:'&#8964;';color:var(--gold);font-size:1rem;}
+.faq-a{font-size:0.82rem;color:var(--muted);line-height:1.75;display:none;padding-top:0.3rem;}
+.faq-item.open .faq-a{display:block;}
+
+.foot{text-align:center;padding:2rem;font-size:0.67rem;color:var(--muted);border-top:1px solid rgba(255,255,255,0.05);}
+.foot a{color:var(--sage);text-decoration:none;}
+
+@media(max-width:600px){.plans{grid-template-columns:1fr;}}
+</style>
+
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-brand"><a href="https://intelligentresponder-max.github.io/mindful7777/">mindful7777</a></div>
+  <span class="topbar-badge">&#9670; VIP Service</span>
+  <a href="private.html" class="back">&larr; Private Area</a>
+</div>
+
+<div class="hero">
+  <div class="hero-tag">Private Area &middot; VIP Schnellstarter</div>
+  <h1>Start fast.<br/>Go <em>deep.</em></h1>
+  <p>Three investment levels. One goal: real change, as fast as possible. Choose what fits where you are right now.</p>
+</div>
+
+<div class="plans">
+
+  <!-- 7 -->
+  <div class="plan">
+    <div class="plan-badge">Entry &middot; Quick Start</div>
+    <div class="plan-price"><span>€</span>7</div>
+    <div class="plan-name">The First Step</div>
+    <p class="plan-desc">For those who want to test the water before diving in. A real first contact — not a sales call.</p>
+    <ul class="plan-list">
+      <li>20-minute intro session (online)</li>
+      <li>Your hypnosis readiness assessed</li>
+      <li>Personalised starter recommendation</li>
+      <li>Starter guide PDF included</li>
+    </ul>
+    <a href="https://wa.me/4916346922255?text=VIP%207%E2%82%AC%20%E2%80%94%20The%20First%20Step" class="btn-plan btn-outline" target="_blank" rel="noopener">Book for €7 &rarr;</a>
+  </div>
+
+  <!-- 77 -->
+  <div class="plan featured">
+    <div class="popular-tag">Most chosen</div>
+    <div class="plan-badge">Core &middot; Accelerator</div>
+    <div class="plan-price"><span>€</span>77</div>
+    <div class="plan-name">The Accelerator</div>
+    <p class="plan-desc">A complete first session with everything included. This is where real work begins.</p>
+    <ul class="plan-list">
+      <li>60-minute live hypnosis session</li>
+      <li>Personal Human Design type revealed</li>
+      <li>Custom session tailored to your profile</li>
+      <li>48h follow-up via WhatsApp</li>
+      <li>Session recording (if desired)</li>
+    </ul>
+    <a href="https://wa.me/4916346922255?text=VIP%2077%E2%82%AC%20%E2%80%94%20The%20Accelerator" class="btn-plan btn-gold" target="_blank" rel="noopener">Book for €77 &rarr;</a>
+  </div>
+
+  <!-- 777 -->
+  <div class="plan">
+    <div class="plan-badge">Premium &middot; Full Transformation</div>
+    <div class="plan-price"><span>€</span>777</div>
+    <div class="plan-name">The 777 Package</div>
+    <p class="plan-desc">For those who are done with half-measures. A complete transformation programme — structured, personal, and thorough.</p>
+    <ul class="plan-list">
+      <li>3 &times; 60-minute live sessions</li>
+      <li>Full Human Design reading (written)</li>
+      <li>Private area access for life</li>
+      <li>30-day WhatsApp support between sessions</li>
+      <li>Custom audio recording created for you</li>
+      <li>Priority booking &mdash; always</li>
+    </ul>
+    <a href="https://wa.me/4916346922255?text=VIP%20777%E2%82%AC%20%E2%80%94%20The%20777%20Package" class="btn-plan btn-outline" target="_blank" rel="noopener">Book for €777 &rarr;</a>
+  </div>
+
+</div>
+
+<div class="faq">
+  <h2>Questions</h2>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">Is this online or in person?</div>
+    <div class="faq-a">All sessions are available online (video call) or in person in Frankfurt am Main. The choice is yours — both are equally effective.</div>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">How do I pay?</div>
+    <div class="faq-a">Payment details are shared after booking confirmation via WhatsApp or email. Bank transfer, PayPal, and cash (in-person) are all accepted.</div>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">What if I'm not sure which package is right?</div>
+    <div class="faq-a">Start with the €7 intro. It exists precisely for this. After 20 minutes, you'll know exactly which direction makes sense — and the €7 is credited toward any larger package.</div>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">Can I upgrade later?</div>
+    <div class="faq-a">Yes. Whatever you've already paid counts toward a larger package. There's no pressure, no lock-in, and no deadline.</div>
+  </div>
+</div>
+
+<div class="foot">
+  &copy; mindful7777 &nbsp;&middot;&nbsp;
+  <a href="private.html">Private Area</a> &nbsp;&middot;&nbsp;
+  <a href="https://intelligentresponder-max.github.io/mindful7777/">Home</a>
+</div>
+<script src="assets/lang.js"></script>
+</body>
+</html>

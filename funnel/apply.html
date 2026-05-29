@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Apply for Private Access · mindful7777</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#1a1a2e;--sage:#7c9a7e;--warm:#c4956a;--cream:#faf7f2;--light:#f0ebe3;--muted:#8a8478;--gold:#c4a96a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:3rem 1.5rem 5rem;}
+.bg{position:fixed;font-family:'Cormorant Garamond',serif;font-size:50vw;font-weight:300;color:rgba(196,169,106,0.04);pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%);user-select:none;}
+.wrap{position:relative;z-index:1;width:100%;max-width:500px;}
+.brand{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--sage);text-align:center;margin-bottom:2.5rem;}
+.brand a{color:var(--sage);text-decoration:none;}
+
+/* HEADER */
+.hdr{text-align:center;margin-bottom:3rem;}
+.hdr-icon{font-size:2rem;color:var(--gold);opacity:0.5;margin-bottom:0.5rem;}
+.hdr h1{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;line-height:1.15;margin-bottom:0.8rem;}
+.hdr h1 em{color:var(--gold);font-style:italic;}
+.hdr p{font-size:0.85rem;color:#9a9080;line-height:1.75;max-width:360px;margin:0 auto;}
+
+/* WHAT IS IT */
+.info-box{border:1px solid rgba(196,169,106,0.2);padding:1.5rem;margin-bottom:2rem;background:rgba(196,169,106,0.04);}
+.info-box h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--gold);margin-bottom:0.8rem;}
+.info-list{list-style:none;}
+.info-list li{font-size:0.82rem;color:#9a9080;padding:0.35rem 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:0.6rem;}
+.info-list li::before{content:'&#9670;';color:var(--gold);font-size:0.55rem;flex-shrink:0;margin-top:4px;}
+
+/* FORM */
+.field{margin-bottom:1.2rem;}
+.fl{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--sage);margin-bottom:0.35rem;display:block;}
+.fl .req{color:var(--warm);}
+input,textarea,select{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:0.85rem;padding:0.75rem 1rem;outline:none;transition:border-color 0.2s;}
+input:focus,textarea:focus,select:focus{border-color:var(--gold);}
+textarea{min-height:100px;resize:vertical;line-height:1.65;}
+select option{background:var(--ink);}
+
+/* SUBMIT */
+.btn-submit{width:100%;padding:1.1rem;background:var(--gold);color:var(--ink);border:none;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;margin-top:1.5rem;}
+.btn-submit:hover{opacity:0.85;}
+.disclaimer{font-size:0.68rem;color:var(--muted);text-align:center;margin-top:0.8rem;line-height:1.6;}
+
+/* CONFIRMATION */
+#confirm{display:none;text-align:center;padding:2rem 0;}
+.confirm-icon{font-size:3rem;color:var(--gold);opacity:0.6;margin-bottom:1rem;}
+.confirm-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:1rem;}
+.confirm-title em{color:var(--gold);font-style:italic;}
+.confirm-body{font-size:0.87rem;color:#9a9080;line-height:1.8;max-width:360px;margin:0 auto 2rem;}
+.back-link{font-size:0.75rem;color:var(--sage);text-decoration:none;letter-spacing:0.05em;}
+.back-link:hover{color:var(--cream);}
+
+/* PRIVATE AREA */
+#private-area{display:none;margin-top:2rem;}
+.pw-section{border:1px solid rgba(196,169,106,0.2);padding:1.5rem;background:rgba(196,169,106,0.03);}
+.pw-section h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--gold);margin-bottom:0.5rem;}
+.pw-section p{font-size:0.78rem;color:var(--muted);margin-bottom:1rem;line-height:1.6;}
+.pw-row{display:flex;gap:0.5rem;}
+.pw-in{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.7rem 1rem;outline:none;}
+.pw-in:focus{border-color:var(--gold);}
+.pw-in.err{border-color:var(--warm);animation:shake 0.3s;}
+@keyframes shake{0%,100%{transform:translateX(0);}33%{transform:translateX(-6px);}66%{transform:translateX(6px);}};
+.pw-btn{background:var(--gold);color:var(--ink);border:none;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0 1.2rem;cursor:pointer;}
+.pw-err{font-size:0.7rem;color:var(--warm);margin-top:0.4rem;display:none;}
+.unlocked-content{display:none;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(196,169,106,0.2);}
+.unlocked-content h4{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--gold);margin-bottom:0.8rem;}
+.unlocked-content p{font-size:0.84rem;color:#9a9080;line-height:1.8;margin-bottom:1rem;}
+.btn-wa{display:flex;align-items:center;justify-content:center;gap:0.6rem;text-decoration:none;font-size:0.78rem;font-weight:500;padding:0.85rem;border:1px solid #25d366;color:#25d366;transition:background 0.2s;margin-top:0.5rem;}
+.btn-wa:hover{background:rgba(37,211,102,0.08);}
+.btn-wa svg{width:15px;height:15px;fill:currentColor;}
+</style>
+
+</head>
+<body>
+<div class="bg">&#9670;</div>
+<div class="wrap">
+  <div class="brand">
+    <a href="https://intelligentresponder-max.github.io/mindful7777/">mindful7777</a>
+    &nbsp;&middot;&nbsp; Private Access
+  </div>
+
+  <!-- FORM -->
+  <div id="form-section">
+    <div class="hdr">
+      <div class="hdr-icon">&#9670;</div>
+      <h1>Apply for<br/><em>private access.</em></h1>
+      <p>This area is not open to everyone. Tell me about yourself — I'll review your application and send an access code within 48 hours if it's a match.</p>
+    </div>
+
+    <div class="info-box">
+      <h3>What the private area contains</h3>
+      <ul class="info-list">
+        <li>Advanced hypnosis techniques &amp; guided sessions</li>
+        <li>Personal Human Design reading (your exact type)</li>
+        <li>Direct 1:1 booking access — no waiting list</li>
+        <li>Private resources not shared publicly</li>
+        <li>Ongoing support between sessions</li>
+      </ul>
+    </div>
+
+    <div class="field">
+      <label class="fl">Your name <span class="req">*</span></label>
+      <input type="text" id="f-name" placeholder="First name is enough"/>
+    </div>
+
+    <div class="field">
+      <label class="fl">Email address <span class="req">*</span></label>
+      <input type="email" id="f-email" placeholder="your@email.com"/>
+    </div>
+
+    <div class="field">
+      <label class="fl">WhatsApp (optional)</label>
+      <input type="text" id="f-wa" placeholder="+49 ..."/>
+    </div>
+
+    <div class="field">
+      <label class="fl">Your experience with hypnosis or inner work</label>
+      <select id="f-exp">
+        <option value="">Select...</option>
+        <option value="none">None — complete beginner</option>
+        <option value="curious">I've read about it but never tried</option>
+        <option value="audio">I've used recordings or apps</option>
+        <option value="live">I've had live sessions before</option>
+        <option value="practice">I practice regularly (meditation, self-hypnosis)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="fl">Why do you want access? <span class="req">*</span></label>
+      <textarea id="f-why" placeholder="What are you working on? What have you already tried? What are you hoping to find here?"></textarea>
+    </div>
+
+    <div class="field">
+      <label class="fl">Anything else I should know?</label>
+      <textarea id="f-more" placeholder="Optional — health notes, schedule, specific questions, anything..." style="min-height:70px;"></textarea>
+    </div>
+
+    <button class="btn-submit" onclick="submitApplication()">Submit Application &rarr;</button>
+    <p class="disclaimer">Applications are reviewed personally. Not all are accepted. You will hear back within 48 hours either way.</p>
+  </div>
+
+  <!-- CONFIRMATION -->
+  <div id="confirm">
+    <div class="confirm-icon">&#10022;</div>
+    <h2 class="confirm-title">Application<br/><em>received.</em></h2>
+    <p class="confirm-body">Thank you for reaching out. I read every application personally and will reply within 48 hours. If accepted, your access code will arrive by email.</p>
+    <a href="https://intelligentresponder-max.github.io/mindful7777/" class="back-link">&larr; Back to mindful7777</a>
+
+    <!-- PRIVATE AREA — password entry (shown after confirmation too) -->
+    <div id="private-area">
+      <div class="pw-section">
+        <h3>Already have a code?</h3>
+        <p>If you've received your private access code, enter it here.</p>
+        <div class="pw-row">
+          <input type="password" class="pw-in" id="pw-input" placeholder="Enter your access code..."/>
+          <button class="pw-btn" onclick="checkAccess()">Enter</button>
+        </div>
+        <div class="pw-err" id="pw-err">Incorrect code. Check your email and try again.</div>
+
+        <div class="unlocked-content" id="private-unlocked">
+          <h4>Welcome to the private area.</h4>
+          <p>You're in. This space is reserved for people who are genuinely ready for deep, personal work. Everything from here is personal — no templates, no general content.</p>
+          <p>To book your session or continue the conversation, write directly:</p>
+          <a href="https://wa.me/4916346922255?text=Private%20access%20-%20I%20have%20my%20code" class="btn-wa" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Continue on WhatsApp &rarr;
+          </a>
+          <a href="mailto:mindful7777@gmail.com?subject=Private%20Area%20-%20Next%20Steps" class="btn-wa" style="border-color:var(--sage);color:var(--sage);margin-top:0.5rem;" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Or write by email &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// PRIVATE ACCESS CODE — change this to your real code!
+// André: set this to whatever code you send applicants
+const PRIVATE_CODE = 'MINDFUL7777PRIVATE';
+
+function submitApplication(){
+  const name=document.getElementById('f-name').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const why=document.getElementById('f-why').value.trim();
+  if(!name||!email||!why){alert('Please fill in name, email, and your reason for applying.');return;}
+  const wa=document.getElementById('f-wa').value.trim();
+  const exp=document.getElementById('f-exp').value;
+  const more=document.getElementById('f-more').value.trim();
+  const body=`mindful7777 — Private Access Application\n\nName: ${name}\nEmail: ${email}\nWhatsApp: ${wa||'—'}\nExperience: ${exp||'—'}\n\nWhy they want access:\n${why}\n\nAdditional notes:\n${more||'—'}`;
+  window.location.href=`mailto:mindful7777@gmail.com?subject=Private%20Access%20Application%20%E2%80%94%20${encodeURIComponent(name)}&body=${encodeURIComponent(body)}`;
+  setTimeout(()=>{
+    document.getElementById('form-section').style.display='none';
+    document.getElementById('confirm').style.display='block';
+    document.getElementById('private-area').style.display='block';
+    // Check if already unlocked
+    if(localStorage.getItem('m7_private')==='1'){
+      document.getElementById('private-unlocked').style.display='block';
+      document.querySelector('.pw-row').style.display='none';
+    }
+  },800);
+}
+
+function checkAccess(){
+  const inp=document.getElementById('pw-input');
+  const err=document.getElementById('pw-err');
+  if(inp.value===PRIVATE_CODE||localStorage.getItem('m7_private')==='1'){
+    localStorage.setItem('m7_private','1');
+    document.getElementById('private-unlocked').style.display='block';
+    document.querySelector('.pw-row').style.display='none';
+    err.style.display='none';
+  } else {
+    inp.classList.add('err');err.style.display='block';
+    setTimeout(()=>inp.classList.remove('err'),350);
+  }
+}
+
+// Auto-show pw area if landed directly
+window.addEventListener('DOMContentLoaded',()=>{
+  if(window.location.hash==='#access'){
+    document.getElementById('form-section').style.display='none';
+    document.getElementById('confirm').style.display='block';
+    document.getElementById('private-area').style.display='block';
+    if(localStorage.getItem('m7_private')==='1'){
+      document.getElementById('private-unlocked').style.display='block';
+      document.querySelector('.pw-row').style.display='none';
+    }
+  }
+});
+</script>
+<script src="assets/lang.js"></script>
+</body>
+</html>

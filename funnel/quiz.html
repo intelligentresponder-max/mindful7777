@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Your Journey Begins · mindful7777</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#1a1a2e;--sage:#7c9a7e;--warm:#c4956a;--cream:#faf7f2;--muted:#8a8478;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh;}
+.bg{position:fixed;font-size:55vw;font-family:'Cormorant Garamond',serif;font-weight:300;color:rgba(124,154,126,0.04);pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;user-select:none;}
+.topbar{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1.5rem 0;}
+.brand{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--sage);text-align:center;margin-bottom:1.2rem;}
+.prog-bar{width:100%;max-width:900px;height:1px;background:rgba(255,255,255,0.07);}
+.prog-fill{height:100%;background:linear-gradient(to right,var(--sage),var(--warm));transition:width 0.5s ease;}
+
+/* 3-COL */
+.stage{position:relative;z-index:1;display:grid;grid-template-columns:220px 1fr 220px;min-height:calc(100vh - 80px);align-items:stretch;}
+
+/* IMAGES */
+.img-side{position:sticky;top:0;height:100vh;overflow:hidden;}
+.img-side img{width:100%;height:100%;object-fit:cover;opacity:0;filter:saturate(0.55) brightness(0.75);transition:opacity 0.7s ease,filter 0.5s ease;}
+.img-side img.loaded{opacity:1;}
+.img-caption{position:absolute;bottom:1rem;left:0;right:0;text-align:center;font-size:0.55rem;color:rgba(255,255,255,0.25);letter-spacing:0.1em;text-transform:uppercase;padding:0 0.5rem;}
+.img-side.left{border-right:1px solid rgba(124,154,126,0.1);}
+.img-side.right{border-left:1px solid rgba(124,154,126,0.1);}
+
+/* CONTRAST LABEL */
+.contrast-bar{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:0.3rem;pointer-events:none;}
+.contrast-word{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;font-style:italic;color:rgba(255,255,255,0.35);letter-spacing:0.05em;text-shadow:0 1px 8px rgba(0,0,0,0.8);}
+.contrast-line{width:1px;height:40px;background:rgba(124,154,126,0.3);}
+
+/* CENTER */
+.center{padding:3rem 2.5rem 5rem;display:flex;flex-direction:column;}
+.screen{display:none;}
+.screen.active{display:block;animation:fadeUp 0.4s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* INTRO */
+#intro{text-align:center;padding:2rem 0;}
+.i-icon{font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--sage);opacity:0.35;margin-bottom:0.5rem;}
+.i-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:300;line-height:1.15;margin-bottom:1rem;}
+.i-title em{color:var(--sage);font-style:italic;}
+.i-sub{font-size:0.87rem;color:#9a9080;line-height:1.8;max-width:340px;margin:0 auto 0.7rem;}
+.i-note{font-size:0.67rem;color:var(--muted);margin-bottom:2.5rem;}
+.btn-start{background:var(--sage);color:var(--cream);border:none;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:1rem 2.5rem;cursor:pointer;transition:opacity 0.2s;}
+.btn-start:hover{opacity:0.85;}
+
+/* QUESTION */
+.q-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage);margin-bottom:0.8rem;}
+.q-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,3.5vw,1.85rem);font-weight:300;line-height:1.25;margin-bottom:0.4rem;}
+.q-hint{font-size:0.74rem;color:var(--muted);margin-bottom:1.5rem;font-style:italic;}
+.options{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.4rem;}
+.opt{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:0.8rem 1rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:flex-start;gap:0.8rem;text-align:left;color:var(--cream);font-family:'DM Sans',sans-serif;font-size:0.83rem;line-height:1.45;width:100%;}
+.opt:hover{border-color:rgba(124,154,126,0.4);background:rgba(124,154,126,0.05);}
+.opt.selected{border-color:var(--sage);background:rgba(124,154,126,0.1);}
+.dot{width:17px;height:17px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);flex-shrink:0;margin-top:2px;transition:all 0.2s;display:flex;align-items:center;justify-content:center;}
+.opt.selected .dot{border-color:var(--sage);background:var(--sage);}
+.opt.selected .dot::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--cream);}
+
+/* SCALE */
+.scale-labels{display:flex;justify-content:space-between;font-size:0.64rem;color:var(--muted);margin-bottom:0.5rem;}
+.scale-row{display:flex;gap:0.3rem;margin-bottom:1.4rem;}
+.sc-btn{flex:1;padding:0.65rem 0;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.78rem;cursor:pointer;transition:all 0.2s;text-align:center;}
+.sc-btn:hover{border-color:rgba(124,154,126,0.4);color:var(--cream);}
+.sc-btn.selected{border-color:var(--sage);background:rgba(124,154,126,0.1);color:var(--sage);}
+
+.btn-next{width:100%;padding:0.95rem;background:var(--sage);color:var(--cream);border:none;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;display:none;}
+.btn-next.show{display:block;}
+.btn-next:hover{opacity:0.85;}
+
+/* TRANSITION */
+#transition{text-align:center;padding:4rem 0;}
+.spinner{width:36px;height:36px;border:1px solid rgba(124,154,126,0.2);border-top-color:var(--sage);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1.5rem;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.t-msg{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;font-style:italic;color:var(--muted);}
+
+/* UNSPLASH CREDIT */
+.credit{position:absolute;bottom:0.5rem;right:0.7rem;font-size:0.5rem;color:rgba(255,255,255,0.2);text-decoration:none;letter-spacing:0.05em;}
+
+@media(max-width:800px){
+  .stage{grid-template-columns:1fr;}
+  .img-side{display:none;}
+  .center{padding:2rem 1.5rem 4rem;}
+}
+</style>
+
+</head>
+<body>
+<div class="bg">7</div>
+
+<div class="topbar">
+  <div class="brand">mindful7777 &middot; Onboarding</div>
+  <div class="prog-bar"><div class="prog-fill" id="prog" style="width:0%"></div></div>
+</div>
+
+<div class="stage">
+
+  <!-- LEFT IMAGE -->
+  <div class="img-side left" style="position:relative;">
+    <!--
+      UNSPLASH LICENSE: Alle Bilder kostenlos nutzbar.
+      Quelle: unsplash.com — Lizenz: unsplash.com/license
+      Kein Attributionserfordernis, aber empfohlen.
+    -->
+    <img id="img-left" src="" alt=""/>
+    <div class="contrast-bar">
+      <div class="contrast-word" id="label-left"></div>
+      <div class="contrast-line"></div>
+    </div>
+    <a class="credit" href="https://unsplash.com" target="_blank" rel="noopener">Photo: Unsplash</a>
+  </div>
+
+  <!-- CENTER -->
+  <div class="center">
+
+    <div class="screen active" id="intro">
+      <div class="i-icon">&#10022;</div>
+      <h1 class="i-title">Before we begin &mdash;<br/>tell me about <em>you.</em></h1>
+      <p class="i-sub">A few honest questions to help me understand where you are. No right or wrong answers &mdash; only yours.</p>
+      <p class="i-note">Confidential &nbsp;&middot;&nbsp; No account needed &nbsp;&middot;&nbsp; Takes a few minutes</p>
+      <button class="btn-start" onclick="go('q1')">I'm ready &rarr;</button>
+    </div>
+
+    <div class="screen" id="q1">
+      <div class="q-label">What brings you here</div>
+      <div class="q-text">What brings you here today?</div>
+      <div class="q-hint">Choose the one that feels most true right now.</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q1','goal')"><div class="dot"></div>There's something specific I want to change &mdash; a habit, a fear, a pattern</button>
+        <button class="opt" onclick="pick(this,'q1','stress')"><div class="dot"></div>I'm overwhelmed or burned out &mdash; I need to find calm again</button>
+        <button class="opt" onclick="pick(this,'q1','sleep')"><div class="dot"></div>My sleep or energy has been off &mdash; I need to restore something</button>
+        <button class="opt" onclick="pick(this,'q1','curious')"><div class="dot"></div>Curiosity &mdash; I want to understand myself better</button>
+        <button class="opt" onclick="pick(this,'q1','lost')"><div class="dot"></div>I'm not sure &mdash; something led me here and I'm following it</button>
+      </div>
+      <button class="btn-next" id="nx1" onclick="go('q2')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q2">
+      <div class="q-label">Your experience with hypnosis</div>
+      <div class="q-text">Have you experienced hypnosis before?</div>
+      <div class="q-hint">Any kind &mdash; live session, audio, stage show.</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q2','never')"><div class="dot"></div>Never &mdash; this would be my first time</button>
+        <button class="opt" onclick="pick(this,'q2','audio')"><div class="dot"></div>Yes, through recordings or apps</button>
+        <button class="opt" onclick="pick(this,'q2','live')"><div class="dot"></div>Yes, in a live session with a practitioner</button>
+        <button class="opt" onclick="pick(this,'q2','stage')"><div class="dot"></div>Only stage hypnosis &mdash; entertainment, not therapy</button>
+        <button class="opt" onclick="pick(this,'q2','self')"><div class="dot"></div>I practice self-hypnosis or deep meditation regularly</button>
+      </div>
+      <button class="btn-next" id="nx2" onclick="go('q3')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q3">
+      <div class="q-label">Your honest feeling</div>
+      <div class="q-text">When you think about being hypnotised &mdash; what comes up?</div>
+      <div class="q-hint">Your gut feeling matters here.</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q3','open')"><div class="dot"></div>Openness &mdash; I trust the process and I'm ready</button>
+        <button class="opt" onclick="pick(this,'q3','cautious')"><div class="dot"></div>Curious but cautious &mdash; I want to understand it first</button>
+        <button class="opt" onclick="pick(this,'q3','skeptic')"><div class="dot"></div>Skepticism &mdash; I'm not sure it actually works</button>
+        <button class="opt" onclick="pick(this,'q3','fear')"><div class="dot"></div>A little fear &mdash; of losing control or saying something private</button>
+        <button class="opt" onclick="pick(this,'q3','neutral')"><div class="dot"></div>Neutral &mdash; I have no strong feeling either way</button>
+      </div>
+      <button class="btn-next" id="nx3" onclick="go('q4')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q4">
+      <div class="q-label">How your mind works</div>
+      <div class="q-text">How easily do you get absorbed &mdash; in music, a film, a daydream?</div>
+      <div class="q-hint">This tells me something important about how to work with you.</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q4','deep')"><div class="dot"></div>Very easily &mdash; I lose track of time and forget the world around me</button>
+        <button class="opt" onclick="pick(this,'q4','sometimes')"><div class="dot"></div>Sometimes &mdash; when I feel safe and conditions are right</button>
+        <button class="opt" onclick="pick(this,'q4','rarely')"><div class="dot"></div>Rarely &mdash; my mind stays analytical and active</button>
+        <button class="opt" onclick="pick(this,'q4','never')"><div class="dot"></div>Almost never &mdash; I stay very aware of my surroundings</button>
+      </div>
+      <button class="btn-next" id="nx4" onclick="go('q5')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q5">
+      <div class="q-label">Where you are right now</div>
+      <div class="q-text">How would you rate your current stress or inner tension?</div>
+      <div class="q-hint">1 = very calm &nbsp;&middot;&nbsp; 10 = overwhelmed</div>
+      <div class="scale-labels"><span>Very calm</span><span>Overwhelmed</span></div>
+      <div class="scale-row" id="scale5"></div>
+      <button class="btn-next" id="nx5" onclick="go('q6')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q6">
+      <div class="q-label">Sleep &amp; restoration</div>
+      <div class="q-text">How has your sleep been &mdash; honestly?</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q6','good')"><div class="dot"></div>Generally good &mdash; I sleep well and wake restored</button>
+        <button class="opt" onclick="pick(this,'q6','light')"><div class="dot"></div>Light or fragmented &mdash; I wake often or too early</button>
+        <button class="opt" onclick="pick(this,'q6','falling')"><div class="dot"></div>Hard to fall asleep &mdash; thoughts won't stop at night</button>
+        <button class="opt" onclick="pick(this,'q6','exhausted')"><div class="dot"></div>I sleep but wake exhausted &mdash; rest doesn't restore me</button>
+        <button class="opt" onclick="pick(this,'q6','varies')"><div class="dot"></div>It varies &mdash; no consistent pattern</button>
+      </div>
+      <button class="btn-next" id="nx6" onclick="go('q7')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q7">
+      <div class="q-label">What you've already tried</div>
+      <div class="q-text">Have you worked on this before &mdash; with other methods?</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q7','nothing')"><div class="dot"></div>No &mdash; this is my first real attempt</button>
+        <button class="opt" onclick="pick(this,'q7','self')"><div class="dot"></div>Yes &mdash; books, apps, podcasts, self-help</button>
+        <button class="opt" onclick="pick(this,'q7','therapy')"><div class="dot"></div>Yes &mdash; therapy, coaching, or counselling</button>
+        <button class="opt" onclick="pick(this,'q7','many')"><div class="dot"></div>Many things &mdash; nothing has quite worked yet</button>
+        <button class="opt" onclick="pick(this,'q7','ongoing')"><div class="dot"></div>Currently working with another practitioner alongside this</button>
+      </div>
+      <button class="btn-next" id="nx7" onclick="go('q8')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q8">
+      <div class="q-label">Your goal</div>
+      <div class="q-text">What would a good result feel like?</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q8','concrete')"><div class="dot"></div>Concrete change &mdash; less fear, better sleep, different behaviour</button>
+        <button class="opt" onclick="pick(this,'q8','clarity')"><div class="dot"></div>Inner clarity &mdash; knowing what I want and why</button>
+        <button class="opt" onclick="pick(this,'q8','peace')"><div class="dot"></div>A quieter mind &mdash; less noise, more presence</button>
+        <button class="opt" onclick="pick(this,'q8','shift')"><div class="dot"></div>A deep shift &mdash; something lasting, not just symptom relief</button>
+        <button class="opt" onclick="pick(this,'q8','know')"><div class="dot"></div>I'll know it when I feel it &mdash; I can't describe it yet</button>
+      </div>
+      <button class="btn-next" id="nx8" onclick="go('q9')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q9">
+      <div class="q-label">A brief safety check</div>
+      <div class="q-text">Is there anything I should know before we work together?</div>
+      <div class="q-hint">All answers are voluntary and confidential.</div>
+      <div class="options">
+        <button class="opt" onclick="pick(this,'q9','nothing')"><div class="dot"></div>Nothing relevant &mdash; I'm generally in good health</button>
+        <button class="opt" onclick="pick(this,'q9','medication')"><div class="dot"></div>I'm currently taking medication (psychiatric or other)</button>
+        <button class="opt" onclick="pick(this,'q9','condition')"><div class="dot"></div>I have a diagnosed condition I'd want you to know about</button>
+        <button class="opt" onclick="pick(this,'q9','trauma')"><div class="dot"></div>I have trauma in my background that may be relevant</button>
+      </div>
+      <button class="btn-next" id="nx9" onclick="go('q10')">Continue &rarr;</button>
+    </div>
+
+    <div class="screen" id="q10">
+      <div class="q-label">One last thing</div>
+      <div class="q-text">How ready are you &mdash; right now &mdash; to do something different?</div>
+      <div class="q-hint">1 = just exploring &nbsp;&middot;&nbsp; 10 = fully committed</div>
+      <div class="scale-labels"><span>Just exploring</span><span>Fully committed</span></div>
+      <div class="scale-row" id="scale10"></div>
+      <button class="btn-next" id="nx10" onclick="finish()">See my result &rarr;</button>
+    </div>
+
+    <div class="screen" id="transition">
+      <div class="spinner"></div>
+      <div class="t-msg" id="tmsg">Reading your answers...</div>
+    </div>
+  </div>
+
+  <!-- RIGHT IMAGE -->
+  <div class="img-side right" style="position:relative;">
+    <img id="img-right" src="" alt=""/>
+    <div class="contrast-bar">
+      <div class="contrast-word" id="label-right"></div>
+      <div class="contrast-line"></div>
+    </div>
+    <a class="credit" href="https://unsplash.com" target="_blank" rel="noopener">Photo: Unsplash</a>
+  </div>
+
+</div>
+
+<script>
+const ans={};
+
+// ─────────────────────────────────────────────
+// BILDPAARE PRO FRAGE — Unsplash (kostenlos)
+// Format: [links_url, links_label, rechts_url, rechts_label]
+// Lizenz: unsplash.com/license — kostenfrei, keine Anmeldung
+// ─────────────────────────────────────────────
+const images = {
+  intro: [
+    'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&h=900&fit=crop', 'Night',
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=900&fit=crop', 'Dawn'
+  ],
+  q1: [
+    // Chaos vs. Ruhe — Stadt vs. Wald
+    'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&h=900&fit=crop', 'Noise',
+    'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=900&fit=crop', 'Silence'
+  ],
+  q2: [
+    // Unbekannt vs. Vertraut — geschlossene Tür vs. offene Tür
+    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=900&fit=crop', 'Unknown',
+    'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=900&fit=crop', 'Familiar'
+  ],
+  q3: [
+    // Angst/Dunkel vs. Vertrauen/Licht
+    'https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&h=900&fit=crop', 'Fear',
+    'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=600&h=900&fit=crop', 'Trust'
+  ],
+  q4: [
+    // Analytisch/Scharf vs. Verträumt/Verschwommen
+    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=900&fit=crop', 'Awake',
+    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=900&fit=crop', 'Dreaming'
+  ],
+  q5: [
+    // Druck/Spannung vs. Weite/Ruhe
+    'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&h=900&fit=crop', 'Pressure',
+    'https://images.unsplash.com/photo-1439853949212-36589f9cdd54?w=600&h=900&fit=crop', 'Release'
+  ],
+  q6: [
+    // Nacht/wach vs. Morgen/Licht
+    'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&h=900&fit=crop', 'Restless',
+    'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&h=900&fit=crop', 'Restored'
+  ],
+  q7: [
+    // Allein/verloren vs. Pfad/Richtung
+    'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=600&h=900&fit=crop', 'Alone',
+    'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=900&fit=crop', 'Guided'
+  ],
+  q8: [
+    // Eng/beschränkt vs. Weit/frei
+    'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=600&h=900&fit=crop', 'Stuck',
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=900&fit=crop', 'Free'
+  ],
+  q9: [
+    // Schutz/geschlossen vs. Offenheit
+    'https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=600&h=900&fit=crop', 'Protected',
+    'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&h=900&fit=crop', 'Open'
+  ],
+  q10: [
+    // Zögern/Rand vs. Schritt/Bewegung
+    'https://images.unsplash.com/photo-1455156218388-5e61b526818b?w=600&h=900&fit=crop', 'Hesitation',
+    'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=900&fit=crop', 'Commitment'
+  ]
+};
+
+function setImages(key) {
+  const data = images[key] || images.intro;
+  const [lSrc, lLabel, rSrc, rLabel] = data;
+  const lImg = document.getElementById('img-left');
+  const rImg = document.getElementById('img-right');
+  const lLbl = document.getElementById('label-left');
+  const rLbl = document.getElementById('label-right');
+
+  // Fade out
+  lImg.classList.remove('loaded');
+  rImg.classList.remove('loaded');
+
+  setTimeout(() => {
+    lImg.src = lSrc;
+    rImg.src = rSrc;
+    lLbl.textContent = lLabel;
+    rLbl.textContent = rLabel;
+    lImg.onload = () => lImg.classList.add('loaded');
+    rImg.onload = () => rImg.classList.add('loaded');
+  }, 200);
+}
+
+function buildScale(wrId, qKey, nextId) {
+  const wr = document.getElementById(wrId);
+  for(let i=1;i<=10;i++){
+    const b = document.createElement('button');
+    b.className = 'sc-btn'; b.textContent = i;
+    b.onclick = () => {
+      wr.querySelectorAll('.sc-btn').forEach(x=>x.classList.remove('selected'));
+      b.classList.add('selected');
+      ans[qKey] = i;
+      document.getElementById(nextId).classList.add('show');
+    };
+    wr.appendChild(b);
+  }
+}
+buildScale('scale5','q5','nx5');
+buildScale('scale10','q10','nx10');
+
+function pick(el, qKey, val) {
+  el.closest('.screen').querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  ans[qKey] = val;
+  document.getElementById('nx'+qKey.replace('q','')).classList.add('show');
+}
+
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const n = parseInt(id.replace('q',''))||0;
+  document.getElementById('prog').style.width = n>0 ? ((n-1)/10*100)+'%' : '0%';
+  setImages(id);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function finish() {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('transition').classList.add('active');
+  document.getElementById('prog').style.width = '100%';
+  let open=0,skeptic=0,experienced=0,seeker=0;
+  if(ans.q1==='goal') open+=2;
+  if(ans.q1==='stress'||ans.q1==='sleep') seeker+=2;
+  if(ans.q1==='curious') open+=1;
+  if(ans.q1==='lost') seeker+=2;
+  if(ans.q2==='never') seeker+=1;
+  if(ans.q2==='audio') open+=1;
+  if(ans.q2==='live'||ans.q2==='self') experienced+=3;
+  if(ans.q2==='stage') skeptic+=1;
+  if(ans.q3==='open') open+=3;
+  if(ans.q3==='cautious'){open+=1;skeptic+=1;}
+  if(ans.q3==='skeptic') skeptic+=3;
+  if(ans.q3==='fear') seeker+=2;
+  if(ans.q3==='neutral') skeptic+=1;
+  if(ans.q4==='deep') experienced+=2;
+  if(ans.q4==='sometimes') open+=1;
+  if(ans.q4==='rarely'||ans.q4==='never') skeptic+=2;
+  if(ans.q5>=7) seeker+=2;
+  if(ans.q5<=3) experienced+=1;
+  if(ans.q7==='many') seeker+=2;
+  if(ans.q7==='therapy'||ans.q7==='ongoing') experienced+=1;
+  if(ans.q7==='nothing') open+=1;
+  if(ans.q8==='shift'||ans.q8==='clarity') experienced+=1;
+  if(ans.q8==='concrete') open+=1;
+  if(ans.q8==='know') seeker+=1;
+  if(ans.q10>=8) open+=2;
+  if(ans.q10<=4) skeptic+=1;
+  const scores={open,skeptic,experienced,seeker};
+  const type=Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);
+  const msgs={open:'You are ready. Opening your path...',skeptic:'Your mind is sharp. Finding the right approach...',experienced:'You know this territory. Going deeper...',seeker:'You are searching. Lighting the way...'};
+  document.getElementById('tmsg').textContent = msgs[type];
+  sessionStorage.setItem('m7_type',type);
+  sessionStorage.setItem('m7_ans',JSON.stringify(ans));
+  setTimeout(()=>{ window.location.href='result-'+type+'.html'; },2200);
+}
+
+// Init
+setImages('intro');
+</script>
+<script src="assets/lang.js"></script>
+</body>
+</html>
