@@ -16,3 +16,4 @@ Disallow: /favicon-generator.html
 
 # Sitemap
 Sitemap: https://intelligentresponder-max.github.io/mindful7777/sitemap.xml
+Allow: /pages/glossar.html
