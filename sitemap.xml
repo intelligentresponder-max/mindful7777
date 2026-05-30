@@ -9,6 +9,14 @@
     <priority>1.0</priority>
   </url>
   
+<!-- Glossar -->
+<url>
+  <loc>https://intelligentresponder-max.github.io/mindful7777/pages/glossar.html</loc>
+  <lastmod>2026-05-30</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.4</priority>
+</url>
+
   <!-- Rechtliche Seiten -->
   <url>
     <loc>https://intelligentresponder-max.github.io/mindful7777/impressum.html</loc>
