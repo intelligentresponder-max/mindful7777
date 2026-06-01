@@ -1,152 +1,423 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog · mindful7777</title>
+<title>BLOG · mindful7777 · Ares Transformation</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0d0d0d;
-    --surface: #161616;
-    --border: #2a2a2a;
-    --text: #e8e8e8;
-    --muted: #888;
-    --accent: #c8a96e;
-    --white: #ffffff;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: Georgia, serif; font-size: 18px; line-height: 1.75; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,13,13,0.97); border-bottom: 1px solid var(--border); padding: 0 40px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
-  .nav-brand { font-size: 15px; letter-spacing: 0.12em; color: var(--white); text-decoration: none; text-transform: lowercase; }
-  .nav-links { display: flex; gap: 32px; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; letter-spacing: 0.08em; transition: color 0.2s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-  .header { padding: 120px 40px 60px; max-width: 860px; margin: 0 auto; }
-  .eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
-  h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 400; color: var(--white); margin-bottom: 20px; line-height: 1.2; }
-  h1 em { font-style: italic; color: var(--accent); }
-  .sub { font-size: 16px; color: var(--muted); }
-  .grid { max-width: 860px; margin: 0 auto; padding: 40px 40px 100px; display: grid; gap: 2px; }
-  .card { display: grid; grid-template-columns: 70px 1fr; border: 1px solid var(--border); text-decoration: none; color: var(--text); background: var(--surface); transition: border-color 0.25s, background 0.25s; }
-  .card:hover { border-color: var(--accent); background: #1a1a1a; }
-  .card.featured { grid-template-columns: 1fr; border-color: var(--accent); }
-  .num { display: flex; align-items: flex-start; justify-content: center; padding: 24px 0 0; font-size: 11px; letter-spacing: 0.15em; color: var(--border); font-family: Georgia, serif; }
-  .body { padding: 24px 24px 24px 0; }
-  .card.featured .body { padding: 36px; }
-  .tag { display: inline-block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
-  .title { font-size: 18px; font-weight: 400; color: var(--white); margin-bottom: 8px; line-height: 1.3; }
-  .card.featured .title { font-size: 26px; }
-  .title em { font-style: italic; color: var(--accent); }
-  .excerpt { font-size: 14px; color: var(--muted); margin-bottom: 12px; line-height: 1.5; }
-  .card.featured .excerpt { font-size: 15px; }
-  .meta { font-size: 11px; letter-spacing: 0.1em; color: var(--border); text-transform: uppercase; }
-  .arrow { margin-left: 6px; color: var(--accent); }
-  footer { border-top: 1px solid var(--border); padding: 40px; text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 0.08em; }
-  footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--accent); }
-  @media (max-width: 600px) {
-    nav { padding: 0 20px; }
-    .header, .grid { padding-left: 20px; padding-right: 20px; }
-    .card { grid-template-columns: 1fr; }
-    .num { display: none; }
-    .body { padding: 20px; }
+  :root{--black:#030303;--deep:#080c10;--orange:#ff4d00;--ice:#7ee8fa;--white:#f0f0ec;--glass:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--white);font-family:'Barlow Condensed',sans-serif;overflow-x:hidden;cursor:crosshair}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4}
+  a{color:inherit;text-decoration:none;}
+
+  /* ── GATE ── */
+  #gate{position:fixed;inset:0;z-index:99999;background:#030303;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+  #gate h2{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.15em}
+  #gate h2 span{color:var(--orange)}
+  #gate p{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.2em;opacity:.35;text-transform:uppercase}
+  #gate input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:14px 24px;font-family:'Space Mono',monospace;font-size:1rem;letter-spacing:.15em;text-align:center;outline:none;width:280px;transition:border-color .2s}
+  #gate input:focus{border-color:var(--orange)}
+  #gate button{background:var(--orange);color:#000;border:none;padding:14px 40px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.15em;cursor:pointer;transition:opacity .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+  #gate button:hover{opacity:.85}
+  #gate-err{color:var(--orange);font-family:'Space Mono',monospace;font-size:.75rem;display:none}
+  #content{display:none}
+
+  /* ── LANG SWITCH ── */
+  .lang-switch{position:fixed;top:22px;right:140px;z-index:200;display:flex;gap:6px}
+  .lang-switch a{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;padding:5px 10px;border:1px solid rgba(255,255,255,.2);color:rgba(240,240,236,.5);text-decoration:none;text-transform:uppercase;transition:all .2s}
+  .lang-switch a.active,.lang-switch a:hover{border-color:var(--orange);color:var(--orange)}
+
+  /* ── NAV ── */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:linear-gradient(to bottom,rgba(3,3,3,.95),transparent)}
+  .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.15em}
+  .nav-logo span{color:var(--orange)}
+  nav ul{list-style:none;display:flex;gap:28px}
+  nav ul a{text-decoration:none;color:var(--white);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;opacity:.5;transition:all .2s}
+  nav ul a:hover{opacity:1;color:var(--orange)}
+  .nav-stripe{background:var(--orange);color:#000;border:none;padding:8px 18px;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.15em;cursor:pointer;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+  .nav-stripe:hover{background:var(--white)}
+
+  /* ── HERO ── */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;padding:120px 24px 60px}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(255,77,0,.1) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 30% 20%,rgba(126,232,250,.04) 0%,transparent 60%),var(--deep)}
+  .hero-scan{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);animation:scan 4s ease-in-out infinite;opacity:.5}
+  @keyframes scan{0%{top:0;opacity:0}10%{opacity:.5}90%{opacity:.5}100%{top:100%;opacity:0}}
+  .sock-float{position:absolute;right:8%;top:50%;transform:translateY(-50%);font-size:8rem;opacity:.05;animation:floatSock 6s ease-in-out infinite;pointer-events:none;filter:blur(1px)}
+  @keyframes floatSock{0%,100%{transform:translateY(-50%) rotate(-5deg)}50%{transform:translateY(calc(-50% - 20px)) rotate(5deg)}}
+  .hero-eyebrow{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.3em;color:var(--orange);text-transform:uppercase;margin-bottom:24px;opacity:0;animation:fadeUp .8s .2s forwards}
+  .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,13vw,10rem);line-height:.9;letter-spacing:.02em;text-transform:uppercase;opacity:0;animation:fadeUp .8s .4s forwards;position:relative;z-index:2}
+  .hero-title .line-ice{color:var(--ice);display:block}
+  .hero-title .line-normal{display:block}
+  .hero-subtitle{font-size:clamp(1rem,2.5vw,1.3rem);letter-spacing:.08em;color:rgba(240,240,236,.5);margin-top:28px;max-width:520px;line-height:1.5;opacity:0;animation:fadeUp .8s .6s forwards}
+  .hero-cta-row{display:flex;gap:16px;margin-top:48px;opacity:0;animation:fadeUp .8s .8s forwards;flex-wrap:wrap;justify-content:center}
+  .btn-primary{background:var(--orange);color:#000;border:none;padding:16px 40px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.15em;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+  .btn-primary:hover{background:#fff;transform:translateY(-2px);box-shadow:0 0 30px rgba(255,77,0,.5)}
+  .btn-ghost{border:1px solid rgba(255,255,255,.2);color:var(--white);padding:16px 40px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.15em;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;background:transparent}
+  .btn-ghost:hover{border-color:var(--ice);color:var(--ice)}
+
+  /* ── TICKER ── */
+  .ticker-wrap{overflow:hidden;background:var(--orange);padding:10px 0;white-space:nowrap}
+  .ticker-track{display:inline-block;animation:ticker 22s linear infinite}
+  .ticker-track span{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.15em;color:#000;margin:0 30px}
+  @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+  /* ── ARTICLE GRID ── */
+  .articles-section{max-width:1100px;margin:0 auto;padding:100px 24px}
+  .section-label{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:block}
+  .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,7rem);line-height:.9;margin-bottom:60px}
+  .article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--glass-border)}
+  .article-card{background:var(--deep);padding:36px 28px;display:flex;flex-direction:column;gap:16px;transition:background .2s;position:relative;overflow:hidden}
+  .article-card::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--orange);transition:height .3s}
+  .article-card:hover{background:rgba(255,77,0,.04)}
+  .article-card:hover::before{height:100%}
+  .article-card.featured{grid-column:span 2;background:rgba(255,77,0,.04);border-left:2px solid var(--orange)}
+  .article-card.featured::before{display:none}
+  .article-cat{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--orange);opacity:.7}
+  .article-date{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.15em;color:rgba(240,240,236,.25);margin-top:-8px}
+  .article-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);line-height:.95;letter-spacing:.03em;color:var(--white)}
+  .article-card.featured .article-title{font-size:clamp(2.2rem,4vw,3.5rem)}
+  .article-excerpt{font-size:.95rem;line-height:1.65;color:rgba(240,240,236,.45);flex:1}
+  .article-link{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);opacity:.7;transition:opacity .2s;margin-top:auto}
+  .article-link:hover{opacity:1}
+  .article-card.vip-locked{background:rgba(126,232,250,.03);border-left:2px solid rgba(126,232,250,.2)}
+  .article-card.vip-locked::before{background:var(--ice)}
+  .article-card.vip-locked .article-cat{color:var(--ice)}
+  .article-card.vip-locked .article-link{color:var(--ice)}
+  .lock-badge{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;background:rgba(126,232,250,.08);border:1px solid rgba(126,232,250,.2);color:var(--ice);padding:3px 8px;display:inline-block;width:fit-content}
+
+  /* ── QUOTE ── */
+  .quote-wrap{max-width:1100px;margin:0 auto;padding:0 24px 80px}
+  .quote-block{border-left:2px solid var(--orange);padding:32px 40px;background:var(--glass)}
+  .quote-text{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;margin-bottom:16px}
+  .quote-source{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;opacity:.35;text-transform:uppercase}
+
+  /* ── PHASE STRIP ── */
+  .phase-strip{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:var(--glass);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);overflow:hidden}
+  .phase-block{padding:32px 48px}
+  .phase-block.beta{border-right:1px solid var(--glass-border)}
+  .phase-block.theta{border-left:1px solid var(--glass-border)}
+  .phase-tag{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;margin-bottom:8px}
+  .phase-block.beta .phase-tag{color:var(--orange)}
+  .phase-block.theta .phase-tag{color:var(--ice)}
+  .phase-name{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:.06em}
+  .phase-desc{font-size:.85rem;opacity:.5;margin-top:6px;max-width:220px}
+  .phase-hz{font-family:'Space Mono',monospace;font-size:.75rem;margin-top:10px;opacity:.4}
+  .phase-block.theta .phase-hz{color:var(--ice)}
+  .phase-arrow{text-align:center;padding:20px}
+  .arrow-icon{font-size:1.6rem;color:var(--orange);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+  .arrow-label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;color:var(--orange);display:block;margin-top:6px;text-transform:uppercase}
+
+  /* ── JOIN SECTION ── */
+  .join-section{background:var(--glass);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);padding:100px 24px;text-align:center}
+  .join-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,9rem);line-height:.9;margin:16px 0 32px}
+  .join-title span{color:var(--orange)}
+  .join-sub{max-width:500px;margin:0 auto 40px;opacity:.5;font-size:1.05rem;line-height:1.65;letter-spacing:.02em}
+  .join-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+  .join-note{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.18em;opacity:.3;text-transform:uppercase}
+  .join-note a{color:var(--ice);opacity:.6;border-bottom:1px solid rgba(126,232,250,.2)}
+
+  /* ── FOOTER ── */
+  footer{border-top:1px solid var(--glass-border);padding:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+  .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.15em}
+  .footer-logo span{color:var(--orange)}
+  .footer-links{display:flex;gap:24px;list-style:none}
+  .footer-links a{font-size:.75rem;letter-spacing:.1em;color:var(--white);opacity:.28;text-transform:uppercase;transition:opacity .2s}
+  .footer-links a:hover{opacity:1}
+  .footer-copy{font-family:'Space Mono',monospace;font-size:.6rem;opacity:.18;letter-spacing:.1em}
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  @media(max-width:768px){
+    nav{padding:16px 20px}nav ul{display:none}
+    .article-grid{grid-template-columns:1fr}
+    .article-card.featured{grid-column:span 1}
+    .phase-strip{grid-template-columns:1fr}
+    .phase-block.beta{border-right:none;border-bottom:1px solid var(--glass-border)}
+    .phase-block.theta{border-left:none;border-top:1px solid var(--glass-border)}
+    footer{flex-direction:column;text-align:center}
+    .lang-switch{right:20px;top:70px}
   }
 </style>
-
-  <meta name="description" content="Hypnose, Entspannung und mentale Stärke — Artikel und Protokolle von mindful7777." />
-  <link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/blog/" />
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="../index.html" style="display:flex;align-items:center;gap:8px;"><img src="../assets/images/logo.svg" alt="logo" style="height:26px;width:auto;" onerror="this.style.display='none'">mindful7777</a>
-  <div class="nav-links">
-    <a href="index.html" class="active">Blog</a>
-    <a href="../index.html#products">Resources</a>
-    <a href="../index.html#contact">Contact</a>
-  </div>
-</nav>
-<div class="lang-toggle"><button class="lang-btn active" data-lang="de" onclick="setLang('de')">DE</button><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button></div>
-
-<div class="header">
-  <div class="eyebrow">The mindful7777 Blog</div>
-  <h1>Thoughts on rest,<br><em>focus, and recovery.</em></h1>
-  <p class="sub">Science-based. Written for real people in fast lives.</p>
+<!-- ── GATE ── -->
+<div id="gate">
+  <h2>ARES<span>.</span> BLOG</h2>
+  <p>VIP Zugang · mindful7777</p>
+  <input type="password" id="pw-input" placeholder="PASSWORT" onkeydown="if(event.key==='Enter')checkPw()">
+  <button onclick="checkPw()">AKTIVIEREN</button>
+  <p id="gate-err" style="color:var(--orange);font-family:'Space Mono',monospace;font-size:.75rem;display:none">
+    Falsches Passwort. Zugang verweigert.
+  </p>
 </div>
 
-<a class="card" href="fernsitzungen.html">
-  <div class="num">06</div>
-  <div class="body">
-    <span class="tag">Tools · Recovery</span>
-    <h2 class="title">Hypnose von zu Hause <em>Funktionieren Fernsitzungen wirklich?</em></h2>
-    <p class="excerpt">Virtuelle Sitzungen sind längst kein Notbehelf mehr — sie sind ein vollwertiges Format mit echten Vorteilen.</p>
-    <div class="meta">20 min · Mai 2026 <span class="arrow">→</span></div>
+<!-- ── CONTENT ── -->
+<div id="content">
+
+  <div class="lang-switch">
+    <a href="index.html" class="active">DE</a>
+    <a href="index-en.html">EN</a>
   </div>
-</a>
 
-<main class="grid">
+  <nav>
+    <div class="nav-logo">ARES<span>.</span> BLOG</div>
+    <ul>
+      <li><a href="#articles">Protokolle</a></li>
+      <li><a href="ares-transformation.html">VIP Page</a></li>
+      <li><a href="../index.html">Start</a></li>
+      <li><a href="#join">Mitglied</a></li>
+    </ul>
+    <a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00"
+       class="nav-stripe" target="_blank" rel="noopener">
+      VIP WERDEN
+    </a>
+  </nav>
 
-  <a class="card featured" href="socken-anker.html">
-    <div class="body">
-      <span class="tag">&#9733; Featured &middot; Tools</span>
-      <h2 class="title">The <em>Sock Anchor</em> &mdash; One gesture. Instant reset.</h2>
-      <p class="excerpt">A simple physical movement triggers a measurable shift in your nervous system. Here is why it works, and how to make it yours.</p>
-      <div class="meta">5 min &middot; May 2025 <span class="arrow">&rarr;</span></div>
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-scan"></div>
+    <div class="sock-float">🧦</div>
+    <p class="hero-eyebrow">mindful7777 · Ares Transformation · Protokoll-Archiv</p>
+    <h1 class="hero-title">
+      <span class="line-normal">MENTALE</span>
+      <span class="line-ice">PROTOKOLLE</span>
+    </h1>
+    <p class="hero-subtitle">
+      Theta-State. Sock Anchor. After-Work Induktion. Deep Recovery.<br/>
+      Alle Protokolle. Für Spieler, die es ernst meinen.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#articles" class="btn-primary">Alle Protokolle</a>
+      <a href="https://mindful777.gumroad.com" class="btn-ghost" target="_blank" rel="noopener">Gumroad Store</a>
     </div>
-  </a>
+  </div>
 
-  <a class="card" href="theta-wellen.html">
-    <div class="num">02</div>
-    <div class="body">
-      <span class="tag">Science</span>
-      <h2 class="title">Theta Waves &mdash; Not mysticism. <em>Pure biology.</em></h2>
-      <p class="excerpt">4 to 8 Hz brain frequencies. Measurable, reproducible, and trainable.</p>
-      <div class="meta">4 min &middot; May 2025 <span class="arrow">&rarr;</span></div>
+  <!-- ── TICKER ── -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>SOCK ANCHOR PROTOCOL</span><span>BETA TO THETA</span><span>ARES TRANSFORMATION</span><span>432 HZ RESET</span><span>DEEP THETA STATE</span><span>AFTER WORK INDUCTION</span><span>MIND FLOW HYPNOSIS</span><span>mindful7777</span>
+      <span>SOCK ANCHOR PROTOCOL</span><span>BETA TO THETA</span><span>ARES TRANSFORMATION</span><span>432 HZ RESET</span><span>DEEP THETA STATE</span><span>AFTER WORK INDUCTION</span><span>MIND FLOW HYPNOSIS</span><span>mindful7777</span>
     </div>
-  </a>
+  </div>
 
-  <a class="card" href="hypnose-sportler.html">
-    <div class="num">03</div>
-    <div class="body">
-      <span class="tag">Hypnosis &middot; Recovery</span>
-      <h2 class="title">Why top athletes use <em>mental training.</em></h2>
-      <p class="excerpt">Mental rehearsal activates the same neural pathways as physical practice.</p>
-      <div class="meta">6 min &middot; May 2025 <span class="arrow">&rarr;</span></div>
+  <!-- ── PHASE STRIP ── -->
+  <div class="phase-strip">
+    <div class="phase-block beta">
+      <p class="phase-tag">Status vor dem Protokoll</p>
+      <h2 class="phase-name">BETA-MODUS</h2>
+      <p class="phase-desc">Vollgas. Hochspannung. Cortisol. Der Geist im Wettkampf — auch nach dem Training.</p>
+      <p class="phase-hz">12–30 Hz · Hohe Spannung</p>
     </div>
-  </a>
-
-  <a class="card" href="stress-reset.html">
-    <div class="num">04</div>
-    <div class="body">
-      <span class="tag">Tools &middot; Recovery</span>
-      <h2 class="title">3-minute reset. <em>Anywhere.</em></h2>
-      <p class="excerpt">Three techniques for high-pressure jobs and long shifts. No app needed.</p>
-      <div class="meta">3 min &middot; May 2025 <span class="arrow">&rarr;</span></div>
+    <div class="phase-arrow">
+      <div class="arrow-icon">→</div>
+      <span class="arrow-label">Trigger</span>
     </div>
-  </a>
-
-  <a class="card" href="recovery-training.html">
-    <div class="num">05</div>
-    <div class="body">
-      <span class="tag">Recovery &middot; Science</span>
-      <h2 class="title">Recovery begins in the mind &mdash; <em>not after the shower.</em></h2>
-      <p class="excerpt">When does real recovery actually start? The answer changes everything.</p>
-      <div class="meta">5 min &middot; May 2025 <span class="arrow">&rarr;</span></div>
+    <div class="phase-block theta">
+      <p class="phase-tag">Status nach dem Protokoll</p>
+      <h2 class="phase-name">THETA-STASE</h2>
+      <p class="phase-desc">Deep Freeze. Neuronale Regeneration. Das Unterbewusstsein übernimmt die Kontrolle.</p>
+      <p class="phase-hz">4–8 Hz · 432 Hz Reset</p>
     </div>
-  </a>
+  </div>
 
-</main>
+  <!-- ── ARTICLES ── -->
+  <div class="articles-section" id="articles">
+    <span class="section-label reveal">Protokoll-Archiv · VIP</span>
+    <h2 class="section-title reveal">ALLE<br>PROTOKOLLE</h2>
 
-<footer>
-  <p>
-    <a href="../index.html">mindful7777</a> &nbsp;&middot;&nbsp;
-    <a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a> &nbsp;&middot;&nbsp;
-    <a href="../index.html#contact">Contact</a>
-  </p>
-  <p style="margin-top:8px;">&#9888; For relaxation only &mdash; not a substitute for professional treatment.</p>
-  <p style="margin-top:8px;">&copy; 2025 mindful7777 &middot; Be the best version+</p>
-</footer>
+    <div class="article-grid">
 
-<script src="assets/lang.js"></script>
+      <!-- FEATURED -->
+      <article class="article-card featured reveal">
+        <span class="article-cat">Theta-Wissenschaft · Featured</span>
+        <span class="article-date">Mai 2026</span>
+        <h3 class="article-title">DEEP THETA STATE — WAS WIRKLICH PASSIERT</h3>
+        <p class="article-excerpt">
+          Im Theta-Zustand (4–8 Hz) öffnet sich das Unterbewusstsein für nachhaltige Veränderung.
+          Was Neurowissenschaftler wissen — und warum Spitzensportler diese Technik täglich nutzen.
+          Das Protokoll, das alles verändert.
+        </p>
+        <a href="theta-wellen.html" class="article-link">Protokoll öffnen →</a>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="article-card reveal">
+        <span class="article-cat">Anker-Technik</span>
+        <span class="article-date">April 2026</span>
+        <h3 class="article-title">SOCK ANCHOR — DER BIOLOGISCHE SCHALTER</h3>
+        <p class="article-excerpt">
+          Das langsame, millimeterweise Ausziehen deaktiviert den Beta-Modus.
+          Ein physischer Übergang vom Außen ins Innen. Konditioniert. Zuverlässig.
+        </p>
+        <a href="socken-anker.html" class="article-link">Protokoll öffnen →</a>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="article-card reveal">
+        <span class="article-cat">After Work</span>
+        <span class="article-date">Mai 2026</span>
+        <h3 class="article-title">AFTER WORK INDUCTION — 20 MINUTEN RESET</h3>
+        <p class="article-excerpt">
+          Vom Hochspannungs-Modus in tiefe Theta-Regeneration in 20 Minuten.
+          Das After-Work Protokoll für alle, die nach dem Tag wirklich abschalten müssen.
+        </p>
+        <a href="../mindful7777_afterwork.html" class="article-link">Protokoll öffnen →</a>
+      </article>
+
+      <!-- Article 4 -->
+      <article class="article-card reveal">
+        <span class="article-cat">Sport & Hypnose</span>
+        <span class="article-date">Mai 2026</span>
+        <h3 class="article-title">HYPNOSE FÜR SPORTLER — PERFORMANCE AUS DEM UNTERBEWUSSTSEIN</h3>
+        <p class="article-excerpt">
+          Geführte Hypnose beschleunigt Regeneration, schärft Fokus und löst mentale Blockaden.
+          Für Profis und alle, die auf dem nächsten Level spielen wollen.
+        </p>
+        <a href="hypnose-sportler.html" class="article-link">Protokoll öffnen →</a>
+      </article>
+
+      <!-- Article 5 -->
+      <article class="article-card reveal">
+        <span class="article-cat">Recovery</span>
+        <span class="article-date">April 2026</span>
+        <h3 class="article-title">RECOVERY TRAINING — DER SCHLAF DES CHAMPIONS</h3>
+        <p class="article-excerpt">
+          Wer härter trainiert, muss besser erholen. Theta-Wellen-Induktion als aktive
+          Regenerationsstrategie. Wissenschaftlich fundiert. Sofort anwendbar.
+        </p>
+        <a href="recovery-training.html" class="article-link">Protokoll öffnen →</a>
+      </article>
+
+      <!-- Article 6 - VIP Locked -->
+      <article class="article-card vip-locked reveal">
+        <span class="lock-badge">🔒 VIP EXKLUSIV</span>
+        <span class="article-cat">Fernsitzung</span>
+        <span class="article-date">März 2026</span>
+        <h3 class="article-title">FERNSITZUNGEN — HYPNOSE WIRKT AUCH ONLINE</h3>
+        <p class="article-excerpt">
+          Was bei Remote-Induktionen wirklich passiert — und warum die Ergebnisse
+          identisch sind. Das vollständige Protokoll für Online-Sessions.
+        </p>
+        <a href="fernsitzungen.html" class="article-link">Protokoll öffnen →</a>
+      </article>
+
+      <!-- Article 7 - Stress Reset -->
+      <article class="article-card reveal">
+        <span class="article-cat">Stress Reset</span>
+        <span class="article-date">April 2026</span>
+        <h3 class="article-title">STRESS RESET — DAS NERVENSYSTEM NEU STARTEN</h3>
+        <p class="article-excerpt">
+          Vom Kampfmodus in tiefe Entspannung. Das 20-Minuten-Protokoll,
+          das funktioniert — auch nach dem härtesten Tag.
+        </p>
+        <a href="stress-reset.html" class="article-link">Protokoll öffnen →</a>
+      </article>
+
+      <!-- Article 8 - VIP Stripe Teaser -->
+      <article class="article-card vip-locked reveal" style="grid-column:span 2;">
+        <span class="lock-badge">🔒 VIP ONLY — ALLE SKRIPTE & AUDIOS</span>
+        <span class="article-cat">VIP Mitgliedschaft</span>
+        <h3 class="article-title">VOLLSTÄNDIGE SESSION-PROTOKOLLE + 12 GEFÜHRTE AUDIOS</h3>
+        <p class="article-excerpt">
+          6 vollständige Hypnose-Skripte. 12 geführte Audios. Wöchentliche Live-Sessions.
+          Direkte 1:1 Betreuung mit André Schwarz. Nur für VIP-Mitglieder.
+          Jetzt einsteigen und sofort loslegen.
+        </p>
+        <a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00"
+           class="article-link" style="color:var(--ice);" target="_blank" rel="noopener">
+          VIP WERDEN — €47/MONAT →
+        </a>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- ── QUOTE ── -->
+  <div class="quote-wrap reveal">
+    <div class="quote-block">
+      <p class="quote-text">"You already carry the solution for your perfect recovery and your next win within yourself."</p>
+      <p class="quote-source">— Milton Erickson · Eingebettet im Ares-Protokoll · mindful7777</p>
+    </div>
+  </div>
+
+  <!-- ── JOIN SECTION ── -->
+  <div class="join-section" id="join">
+    <span class="section-label">🔥 Exklusiv · Limitierte Plätze</span>
+    <h2 class="join-title">JOIN<br><span>THE CLUB</span></h2>
+    <p class="join-sub">
+      Erhalte alle Ares-Protokolle. Die vollständigen Hypnose-Audios.
+      Den Sock Anchor Guide. Live-Sessions. Direkte Betreuung.
+      Nur für Spieler, die wirklich bereit sind.
+    </p>
+    <div class="join-btns">
+      <a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00"
+         class="btn-primary" target="_blank" rel="noopener">
+        🔥 VIP WERDEN — €47/MONAT
+      </a>
+      <a href="https://mindful777.gumroad.com"
+         class="btn-ghost" target="_blank" rel="noopener">
+        📅 EINZELSITZUNG BUCHEN
+      </a>
+    </div>
+    <p class="join-note">
+      Sichere Zahlung via Stripe · Jederzeit kündbar ·
+      <a href="https://mindful777.gumroad.com" target="_blank" rel="noopener">
+        Support our work →
+      </a>
+    </p>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">ARES<span>.</span> TRANSFORMATION · mindful7777</div>
+    <ul class="footer-links">
+      <li><a href="ares-transformation.html">VIP Page</a></li>
+      <li><a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a></li>
+      <li><a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00" target="_blank">Mitglied</a></li>
+      <li><a href="../impressum.html">Impressum</a></li>
+      <li><a href="../datenschutz.html">Datenschutz</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Ares Transformation · mindful7777</p>
+  </footer>
+
+</div><!-- /#content -->
+
+<script>
+  var PW = 'ares7777';
+  function checkPw() {
+    var val = document.getElementById('pw-input').value;
+    var err = document.getElementById('gate-err');
+    if (val === PW) {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+      sessionStorage.setItem('vip','1');
+      err.style.display = 'none';
+    } else {
+      err.style.display = 'block';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+  if (sessionStorage.getItem('vip') === '1') {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(en, i) {
+      if (en.isIntersecting) {
+        setTimeout(function() { en.target.classList.add('visible'); }, i * 80);
+      }
+    });
+  }, {threshold: 0.1});
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+</script>
 </body>
 </html>

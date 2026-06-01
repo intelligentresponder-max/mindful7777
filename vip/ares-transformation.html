@@ -86,12 +86,20 @@
   .quote-block{border-left:2px solid var(--orange);padding:32px 40px;margin:80px 0}
   .quote-text{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;margin-bottom:16px}
   .quote-source{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;opacity:.4;text-transform:uppercase}
+  /* ── JOIN SECTION ENHANCED ── */
   .join-section{background:var(--glass);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);padding:100px 24px;text-align:center}
   .join-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,9rem);line-height:.9;margin:16px 0 32px}
   .join-title span{color:var(--orange)}
   .join-sub{max-width:500px;margin:0 auto 40px;opacity:.55;font-size:1.1rem;line-height:1.6}
-  .join-form{display:flex;max-width:480px;margin:0 auto}
+  .join-actions{display:flex;gap:48px;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin-bottom:40px}
+  .join-btns{display:flex;flex-direction:column;gap:14px;align-items:center}
+  .qr-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+  .qr-img{width:180px;height:180px;display:block;border:1px solid var(--glass-border);padding:8px;background:rgba(255,255,255,.03)}
+  .qr-label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,240,236,.25)}
+  .join-form{display:flex;max-width:480px;margin:0 auto 0}
   .join-input{flex:1;background:var(--glass);border:1px solid var(--glass-border);border-right:none;color:var(--white);padding:16px 20px;font-family:'Space Mono',monospace;font-size:.85rem;outline:none}
+  .stripe-note{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;opacity:.25;text-transform:uppercase;margin-top:16px;display:block}
+  .stripe-note a{color:var(--ice);opacity:.6;border-bottom:1px solid rgba(126,232,250,.2);text-decoration:none}
   footer{border-top:1px solid var(--glass-border);padding:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
   .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.15em}
   .footer-logo span{color:var(--orange)}
@@ -102,7 +110,7 @@
   @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
   .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
   .reveal.visible{opacity:1;transform:none}
-  @media(max-width:768px){nav{padding:16px 20px}nav ul{display:none}.anchor-grid,.phase-strip{grid-template-columns:1fr}.phase-block.beta{border-right:none;border-bottom:1px solid var(--glass-border)}.phase-block.theta{border-left:none;border-top:1px solid var(--glass-border)}section{padding:60px 20px}footer{flex-direction:column;text-align:center}.lang-switch{right:20px;top:70px}}
+  @media(max-width:768px){nav{padding:16px 20px}nav ul{display:none}.anchor-grid,.phase-strip{grid-template-columns:1fr}.phase-block.beta{border-right:none;border-bottom:1px solid var(--glass-border)}.phase-block.theta{border-left:none;border-top:1px solid var(--glass-border)}section{padding:60px 20px}footer{flex-direction:column;text-align:center}.lang-switch{right:20px;top:70px}.join-actions{flex-direction:column;align-items:center}}
 </style>
 </head>
 <body>
@@ -124,6 +132,7 @@
     <ul>
       <li><a href="#anchor">Sock Anchor</a></li>
       <li><a href="#join">Join Club</a></li>
+      <li><a href="../blog/">Blog</a></li>
     </ul>
   </nav>
   <div class="hero">
@@ -175,21 +184,67 @@
       <p class="quote-source">— Milton Erickson · Eingebettet im Ares-Protokoll</p>
     </div>
   </div>
+
+  <!-- ── JOIN SECTION with QR + Stripe ── -->
   <div class="join-section" id="join">
     <p class="section-label">Exklusiv</p>
     <h2 class="join-title">JOIN<br><span>THE CLUB</span></h2>
     <p class="join-sub">Erhalte das vollständige Ares-Protokoll. Die Audio-Induktion. Den Sock Anchor Guide. Nur für Spieler, die bereit sind.</p>
+
+    <div class="join-actions">
+
+      <!-- QR Code -->
+      <div class="qr-wrap">
+        <img class="qr-img"
+             src="data:image/png;base64,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"
+             alt="QR Code — Ares Transformation VIP"/>
+        <span class="qr-label">Scan to access · ares transformation</span>
+        <span class="qr-label" style="color:rgba(126,232,250,.35);">intelligentresponder-max.github.io</span>
+      </div>
+
+      <!-- Buttons -->
+      <div class="join-btns">
+        <!-- STRIPE VIP -->
+        <a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00"
+           class="btn-primary" target="_blank" rel="noopener"
+           style="width:280px;text-align:center;">
+          🔥 VIP WERDEN — STRIPE
+        </a>
+        <!-- GUMROAD -->
+        <a href="https://mindful777.gumroad.com"
+           class="btn-ghost" target="_blank" rel="noopener"
+           style="width:280px;text-align:center;">
+          🎧 GUMROAD STORE
+        </a>
+        <!-- BOOK SESSION -->
+        <a href="https://mindful777.gumroad.com"
+           class="btn-ghost" target="_blank" rel="noopener"
+           style="width:280px;text-align:center;border-color:rgba(126,232,250,.3);color:var(--ice);">
+          📅 EINZELSITZUNG BUCHEN
+        </a>
+        <span class="stripe-note">
+          Sichere Zahlung · Jederzeit kündbar ·
+          <a href="https://mindful777.gumroad.com" target="_blank">Support our work →</a>
+        </span>
+      </div>
+
+    </div>
+
+    <!-- Email form -->
     <div class="join-form">
       <input class="join-input" type="email" placeholder="Deine E-Mail Adresse">
       <button class="btn-primary" style="clip-path:none;">Aktivieren</button>
     </div>
   </div>
+
   <footer>
     <div class="footer-logo">ARES<span>.</span> TRANSFORMATION</div>
     <ul class="footer-links">
+      <li><a href="../blog/">Blog</a></li>
       <li><a href="../impressum.html">Impressum</a></li>
       <li><a href="../datenschutz.html">Datenschutz</a></li>
       <li><a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a></li>
+      <li><a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00" target="_blank">VIP</a></li>
     </ul>
     <p class="footer-copy">© 2026 Ares Transformation · mindful7777</p>
   </footer>
