@@ -646,6 +646,7 @@
       .m-title{ font-size: 34px; }
     }
   </style>
+
 </head>
 
 <body>
@@ -686,7 +687,7 @@
         </div>
         <button class="nav-login-btn" type="button" onclick="openModal()">🔐 Login</button>
       </div>
-    </nav>
+    </nav><div class="lang-toggle" style="display:flex;gap:6px;margin-left:12px;"><button class="lang-btn" data-lang="de" onclick="setLang('de')" style="font-size:10px;letter-spacing:2px;padding:5px 10px;border:1px solid rgba(212,165,116,.3);background:transparent;color:rgba(247,244,238,.6);cursor:pointer;">DE</button><button class="lang-btn" data-lang="en" onclick="setLang('en')" style="font-size:10px;letter-spacing:2px;padding:5px 10px;border:1px solid rgba(212,165,116,.3);background:transparent;color:rgba(247,244,238,.6);cursor:pointer;">EN</button></div>
 
     <section class="hero">
       <div class="hero-content">
@@ -836,7 +837,7 @@
         <div class="foot-logo">mindful7777</div>
         <div class="foot-links">
           <a href="impressum.html">Impressum</a>
-          <a href="datenschutz.html">Datenschutz</a>
+          <a href="datenschutz.html">Datenschutz</a> · <a href="pages/glossar.html">Glossar</a>
           <a href="index.html">Kontakt</a>
         </div>
       </div>
@@ -1013,5 +1014,6 @@
 
   <!-- Stripe Buy Button Script -->
   <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+<script src="assets/lang.js"></script>
 </body>
 </html>

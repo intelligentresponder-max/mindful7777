@@ -653,7 +653,7 @@ GESAMT: ~5 Stunden pro Audio
 ## 18.1 Spezifikation
 
 ```
-ZIEL-URL:    https://mindful7777.de/start
+ZIEL-URL:    https:///start
              (oder Lead-Magnet-Subdomain — anpassen wenn live)
 
 QR-API:      https://api.qrserver.com/v1/create-qr-code/
@@ -683,7 +683,7 @@ STIL:
 ## 18.3 Direkter Canva-Import-Link
 
 ```
-https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fmindful7777.de%2Fstart&margin=6&color=1B2845&bgcolor=D4A574
+https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2F%2Fstart&margin=6&color=1B2845&bgcolor=D4A574
 ```
 
 → In Canva unter "Hochladen → über URL" einfügen.

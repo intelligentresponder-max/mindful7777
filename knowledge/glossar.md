@@ -1,107 +1,119 @@
----
-zweck: Einheitliche Fachbegriffe für alle 4 Agenten — sorgt für konsistente Sprache in allen Texten, Skripten und Kampagnen
-agenten: intelligence, content, visual, coaching
-stand: 12.05.2025
-verantwortlich: André
----
+# KNOWLEDGE: glossar.md
+Zuletzt aktualisiert: 2026-05-30
+Status: aktiv (v1)
 
-# 📖 mindful7777 — GLOSSAR
+Dieses Glossar ist die “Single Source of Truth” für Begriffe + Formulierungsregeln auf mindful7777.
+Ziel: klar, wissenschaftsnah, ohne Heilversprechen oder Garantien.
 
-> Regel: Diese Begriffe werden in ALLEN Texten, Skripten und Kampagnen einheitlich verwendet.
-> Eigene Umschreibungen oder Synonyme nur, wenn im Einzelfall begründet.
+--------------------------------------------------------------------------------
 
----
+## Regel: Claim-Sprache (Grundsatz)
+**Prinzip:** beschreibe Möglichkeiten und Erfahrungen, nicht Versprechen oder Beweise.
 
-## A — Hypnose & Methode
+**Sichere Formulierungen (Beispiele):**
+- „Viele Menschen berichten …“
+- „kann unterstützen …“
+- „kann helfen, X besser wahrzunehmen / zu üben …“
+- „ein möglicher Effekt ist …“
+- „Hinweise deuten darauf hin …“
+- „im Rahmen von Coaching / mentalem Training …“
 
-| Begriff (verwenden) | Bedeutung | NICHT verwenden |
-|---|---|---|
-| **Hypnose** | Gezielt herbeigeführter, entspannter Bewusstseinszustand | "Trance-Zustand", "Schlafzustand" |
-| **Hypnotherapie** | Therapeutische Anwendung von Hypnose durch ausgebildete Fachpersonen | "Hypno-Therapie" (mit Bindestrich) |
-| **Selbsthypnose** | Eigenständig angewandte Hypnosetechnik ohne Begleitung | "Autohypnose" (vermeiden) |
-| **Suggestion** | Sprachliche Formulierung, die den Geist in eine bestimmte Richtung lenkt | "Befehl", "Programmierung" |
-| **Induktion** | Phase 1 des Skripts: Einleitung und Fokussierung | "Einschlafphase", "Hypnose-Start" |
-| **Vertiefung** | Phase 2 des Skripts: Intensivierung des Entspannungszustands | "Tiefer gehen", "Trance vertiefen" |
-| **Rückführung** | Phase 4 des Skripts: Sanftes Zurückkehren in den Wachzustand | "Aufwachen", "Erwachen" |
-| **Tiefenentspannung** | Zustand tiefer körperlicher und mentaler Ruhe | "Schlafen", "Bewusstlosigkeit" |
-| **Ericksonsches Modell** | Sanfter, indirekter Hypnosestil nach Milton Erickson | "Erickson-Methode" (kurz ok) |
-| **Ideomotorische Reaktion** | Unwillkürliche Muskelbewegung als Zeichen der Tiefe | Technischer Jargon vermeiden im Klienten-Material |
+**Nicht sagen (Beispiele):**
+- „heilt“, „beweist“, „garantiert“, „wirkt immer“, „100%“, „sofortige Heilung“
+- medizinische Diagnosen oder Therapie-Versprechen
+- „wissenschaftlich bewiesen, dass du …“ (wenn nicht sauber belegt + eingegrenzt)
 
----
+--------------------------------------------------------------------------------
 
-## B — Brand & Produkt
+## Hypnose
+**Kurzdefinition:** Ein Zustand fokussierter Aufmerksamkeit, in dem Menschen leichter mit inneren Bildern, Gewohnheiten und Reaktionsmustern arbeiten können.
+**Wichtig:** Hypnose ist kein „Willensverlust“ und kein Schlaf. Viele Menschen erleben es eher wie ruhigen, klaren Fokus.
+**Sichere Formulierungen:**
+- „Hypnose kann dabei unterstützen, Zugang zu Ressourcen/inneren Bildern zu finden.“
+- „Viele Menschen berichten von mehr Ruhe/Fokus nach …“
+**Nicht sagen:**
+- „Hypnose macht dich gegen alles immun.“
+- „Hypnose heilt X.“
 
-| Begriff (verwenden) | Bedeutung | NICHT verwenden |
-|---|---|---|
-| **mindful7777** | Markenname — immer kleingeschrieben (m) | "Mindful7777", "MINDFUL7777" |
-| **Audio** | Hypnose-Aufnahme zum Anhören | "Track", "Recording", "Datei" |
-| **Hypnose-Audio** | Unser Hauptprodukt — geführte Hypnose als Aufnahme | "Hypno-Track" |
-| **Lead-Magnet** | Kostenloser Inhalt gegen E-Mail-Adresse | "Freebie", "Gratis-Download" (ok als Erklärung) |
-| **Klient** | Person im 1:1-Coaching | "Kunde", "Patient" |
-| **Teilnehmer** | Person im Gruppen- oder Online-Kurs-Kontext | "User", "Nutzer" |
-| **André** | Vorname des Gründers — immer ohne Nachname in öffentlichen Texten | Nachname in öffentlichen Texten vermeiden |
+## Trance
+**Kurzdefinition:** Ein natürlicher Fokus-Zustand (z. B. beim Lesen, Tagträumen, Autofahren), der in Hypnose gezielt genutzt wird.
+**Wichtig:** Trance ist alltagsnah und kein „esoterischer Ausnahmezustand“.
+**Sichere Formulierungen:**
+- „Trance ist ein bekanntes Alltagsphänomen.“
+- „In Trance kann sich Aufmerksamkeit stärker bündeln.“
+**Nicht sagen:**
+- „Trance = Kontrollverlust.“
 
----
+## Suggestion
+**Kurzdefinition:** Ein gezielter sprachlicher oder gedanklicher Impuls, der neue Perspektiven/Handlungsoptionen erleichtern kann.
+**Wichtig:** Suggestionen funktionieren am besten, wenn sie zu den eigenen Zielen/Werten passen.
+**Sichere Formulierungen:**
+- „Suggestionen sind Angebote an das Gehirn, nicht Befehle.“
+- „Viele Menschen erleben Suggestionen als hilfreich für …“
+**Nicht sagen:**
+- „Suggestionen programmieren dich.“
 
-## C — Wirkung & Versprechen
+## Mentales Training
+**Kurzdefinition:** Üben mit Vorstellungskraft (Visualisierung, mentale Abläufe), um Leistung, Ruhe oder Präzision zu verbessern.
+**Wichtig:** Mentales Training ist Training: Wirkung entsteht durch Wiederholung + gutes Setup.
+**Sichere Formulierungen:**
+- „Mentales Training kann Abläufe stabilisieren.“
+- „Viele Athlet:innen nutzen mentale Simulationen ergänzend.“
+**Nicht sagen:**
+- „Mentales Training ersetzt jedes körperliche Training.“
 
-| Begriff (verwenden) | Bedeutung | NICHT verwenden |
-|---|---|---|
-| **unterstützen** | Hypnose kann helfen, Prozesse zu begleiten | "heilen", "kurieren", "behandeln" |
-| **begleiten** | Unsere Rolle im Prozess | "therapieren" (ohne Heilpraktiker-Zulassung) |
-| **erleben** | Was Nutzer mit dem Audio machen | "spüren müssen", "garantiert fühlen" |
-| **kann helfen** | Vorsichtige, korrekte Wirkungsaussage | "wird helfen", "hilft immer" |
-| **viele Menschen berichten** | Erfahrungsbasierte Formulierung | "wissenschaftlich bewiesen, dass..." (ohne Quelle) |
-| **Entspannung** | Primäres, nachweisbares Ziel | "Heilung", "Genesung" |
-| **Wohlbefinden** | Übergeordnetes Ziel | "Gesundheit" (medizinischer Begriff — Vorsicht) |
+## Nervensystem (Stressreaktion / Ruhemodus)
+**Kurzdefinition:** Das Nervensystem steuert u. a. Aktivierung (Stressreaktion) und Erholung (Ruhezustand).
+**Wichtig:** Viele Effekte fühlen sich „psychisch“ an, sind aber auch körperlich (Atmung, Spannung, Herzrate, Aufmerksamkeit).
+**Sichere Formulierungen:**
+- „Aktivierung runterregeln“
+- „in einen ruhigeren Zustand finden“
+**Nicht sagen:**
+- „Du kannst dein Nervensystem in 10 Sekunden dauerhaft umprogrammieren.“
 
----
+## Regulation / Reset
+**Kurzdefinition:** Kleine Methoden, die helfen können, Stressreaktionen zu reduzieren und schneller in einen ruhigeren Zustand zurückzukehren.
+**Wichtig:** Reset heißt nicht „alles weg“, sondern „wieder steuerbarer“.
+**Sichere Formulierungen:**
+- „ein kurzer Reset“
+- „ein schneller Fokuswechsel“
+**Nicht sagen:**
+- „Reset = alle Probleme gelöst.“
 
-## D — SEO & Marketing-Keywords
+## Recovery / Erholung
+**Kurzdefinition:** Erholung beginnt nicht nur nach Belastung, sondern kann auch durch Mikro-Pausen währenddessen unterstützt werden.
+**Wichtig:** Recovery ist ein Prozess (Schlaf, Pausen, Nervensystem, Belastungsmanagement).
+**Sichere Formulierungen:**
+- „Erholung kann früher beginnen als man denkt.“
+- „Mikro-Pausen können unterstützen.“
+**Nicht sagen:**
+- „Du brauchst keinen Schlaf, nur Recovery-Mindset.“
 
-| Primär-Keyword | Sekundär-Keywords | Saison |
-|---|---|---|
-| Hypnose besser schlafen | Schlafhilfe Hypnose, Einschlafen Hypnose | Ganzjährig, Peak: Herbst |
-| Selbsthypnose lernen | Selbsthypnose Anleitung, Hypnose selbst machen | Januar (Vorsätze) |
-| geführte Meditation | Meditation Anleitung, Entspannungsübung | Ganzjährig |
-| Angst Hypnose | Angst loswerden Hypnose, Panik Hypnose | Ganzjährig |
-| Stress abbauen Hypnose | Burnout Prävention, Entspannung Stress | September–November |
-| Hypnose Gewohnheiten ändern | Schlechte Gewohnheiten loswerden | Januar |
+## Fernsitzung (Remote Session)
+**Kurzdefinition:** Sitzung per Video/Audio; viele Coaching- und Hypnoseformate funktionieren auch ohne Vor-Ort-Termin.
+**Wichtig:** Privatsphäre, ungestörtes Setting und stabile Verbindung sind entscheidend.
+**Sichere Formulierungen:**
+- „Für viele Themen ist eine Fernsitzung ein vollwertiges Format.“
+- „Viele Menschen fühlen sich zu Hause sogar sicherer.“
+**Nicht sagen:**
+- „Fernsitzungen funktionieren immer, egal wie.“
 
----
+## Theta-Wellen
+**Kurzdefinition:** Eine Frequenz-Spanne der Gehirnaktivität (ca. 4–8 Hz), die u. a. in Entspannung, Schläfrigkeit und Meditation beobachtet werden kann.
+**Wichtig:** Messbar heißt nicht automatisch „Zauber-Schalter“. Theta allein ist kein Beweis für konkrete Outcomes.
+**Sichere Formulierungen:**
+- „Theta-Wellen werden in bestimmten Zuständen häufiger beobachtet.“
+- „Manche Menschen verbinden Theta-Phasen mit Entspannung/inneren Bildern.“
+**Nicht sagen:**
+- „Theta heilt.“
+- „Theta garantiert Manifestation / Erfolg.“
 
-## E — Verbotene Begriffe (Kurzliste)
-
-Diese Begriffe NIEMALS in öffentlichen Texten verwenden:
-
-- ❌ heilen / Heilung
-- ❌ Diagnose / diagnostizieren
-- ❌ Behandlung (medizinisch gemeint)
-- ❌ Therapie (ohne Heilpraktiker-Kontext)
-- ❌ klinisch bewiesen (ohne genaue Studie)
-- ❌ 100% wirksam / garantiert
-- ❌ ersetzt Arztbesuch / ersetzt Therapie
-- ❌ Gehirnwäsche / Kontrolle
-- ❌ du schläfst ein (im Hypnose-Kontext — falsche Assoziation)
-
-> Vollständige Liste: siehe `knowledge/verbotene_phrasen.md`
-
----
-
-## F — Tonalität & Stil
-
-**Die Stimme von mindful7777:**
-- Warm, kompetent, ruhig — nie belehrend
-- Wissenschaftlich fundiert — nie esoterisch
-- Einladend — nie verkaufend
-- Du-Ansprache immer (kein Sie)
-
-**Satzbeispiele (richtig):**
-- "Viele Menschen berichten, dass sie nach unseren Audios besser schlafen."
-- "Dieses Audio kann dich dabei unterstützen, tiefer zu entspannen."
-- "Hypnose ist ein natürlicher Zustand — du kennst ihn vom Tagträumen."
-
-**Satzbeispiele (falsch):**
-- "Dieses Audio heilt deine Schlafstörung."
-- "Garantiert innerhalb von 3 Wochen entspannter!"
-- "Die einzige Methode, die wirklich funktioniert."
+## Erfahrungsbericht (Framing)
+**Kurzdefinition:** Eine Formulierung, die persönliche Erfahrungen beschreibt, ohne daraus allgemeine Beweise oder Versprechen abzuleiten.
+**Sichere Formulierungen:**
+- „Viele Menschen berichten …“
+- „In meiner Erfahrung / in Sessions berichten Klient:innen …“
+- „Ein mögliches Muster ist …“
+**Nicht sagen:**
+- „Das beweist, dass …“
+- „Wenn du das machst, passiert garantiert …“

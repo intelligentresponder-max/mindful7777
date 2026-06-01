@@ -83,6 +83,7 @@
     .img-split,.img-right,.img-trio{grid-template-columns:1fr;}
   }
 </style>
+
 </head>
 <body>
 
@@ -94,18 +95,19 @@
     <input type="password" id="pw-input" placeholder="Access code" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
     <button class="login-btn" onclick="doLogin()">Enter &rarr;</button>
     <div class="login-err" id="login-err">Incorrect code. Please try again.</div>
-    <p class="login-note">This page is private and not indexed.<br>mindful7777.de &middot; All content confidential.</p>
+    <p class="login-note">This page is private and not indexed.<br> &middot; All content confidential.</p>
   </div>
 </div>
 
 <div id="main-screen">
   <nav>
-    <a class="nav-brand" href="../index.html">mindful7777</a>
+    <a class="nav-brand" href="../index.html" style="display:flex;align-items:center;gap:8px;"><img src="../assets/images/logo.svg" alt="logo" style="height:26px;width:auto;" onerror="this.style.display='none'">mindful7777</a>
     <div class="nav-right">
       <span class="nav-tag">Private Session</span>
       <button class="logout-btn" onclick="doLogout()">Exit</button>
     </div>
   </nav>
+<div class="lang-toggle"><button class="lang-btn active" data-lang="de" onclick="setLang('de')">DE</button><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button></div>
 
   <div class="wrap">
 
@@ -310,7 +312,7 @@
   </div>
 
   <footer>
-    <p>mindful7777 &middot; Private Session &middot; mindful7777.de</p>
+    <p>mindful7777 &middot; Private Session &middot; </p>
     <p style="margin-top:8px;">&copy; 2025 mindful7777 &middot; All content confidential</p>
   </footer>
 </div>
@@ -326,5 +328,9 @@
   function showMain(){document.getElementById('login-screen').style.display='none';document.getElementById('main-screen').style.display='block';}
   window.onload=function(){if(sessionStorage.getItem('leo7_auth')==='ok')showMain();else document.getElementById('pw-input').focus();};
 </script>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<div class="calendly-inline-widget" data-url="https://calendly.com/intelligent-responder/first-meeting" style="min-width:320px;height:630px;margin:40px auto;max-width:900px;"></div>
+<script src="assets/lang.js"></script>
 </body>
 </html>

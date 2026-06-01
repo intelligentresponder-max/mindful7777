@@ -1,2 +1,5 @@
 *.save
 *.save.*
+intern/
+intern/
+*.bak
