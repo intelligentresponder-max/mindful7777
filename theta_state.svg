@@ -1,0 +1,63 @@
+<svg width="100%" viewBox="0 0 680 520" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Deep Theta State — mindful7777</title>
+<desc>Theta brainwave visualization with concentric amber rings, head silhouette, and sine wave</desc>
+<style>
+@keyframes rp{0%,100%{opacity:.38}50%{opacity:.95}}
+@keyframes wa{0%{stroke-dashoffset:340}100%{stroke-dashoffset:0}}
+@keyframes tw{0%,100%{opacity:.08}50%{opacity:.85}}
+@keyframes hf{0%,100%{opacity:.18}50%{opacity:.52}}
+.r1{animation:rp 3.6s ease-in-out infinite}
+.r2{animation:rp 3.6s .65s ease-in-out infinite}
+.r3{animation:rp 3.6s 1.3s ease-in-out infinite}
+.r4{animation:rp 3.6s 1.95s ease-in-out infinite}
+.r5{animation:rp 3.6s 2.6s ease-in-out infinite}
+.wv{stroke-dasharray:340;animation:wa 4.2s linear infinite}
+.hf{animation:hf 4s ease-in-out infinite}
+</style>
+<rect width="680" height="520" fill="#0D0A12"/>
+<circle cx="38" cy="42" r="1.5" fill="#F5C670" style="animation:tw 2.2s .1s ease-in-out infinite"/>
+<circle cx="112" cy="25" r="1" fill="#F5C670" style="animation:tw 2.8s .4s ease-in-out infinite"/>
+<circle cx="178" cy="55" r="1.5" fill="#D4A847" style="animation:tw 2.5s .8s ease-in-out infinite"/>
+<circle cx="48" cy="148" r="1" fill="#F5C670" style="animation:tw 3s 1s ease-in-out infinite"/>
+<circle cx="152" cy="108" r="2" fill="#F5C670" style="animation:tw 2.1s .3s ease-in-out infinite"/>
+<circle cx="38" cy="238" r="1" fill="#D4A847" style="animation:tw 2.6s .6s ease-in-out infinite"/>
+<circle cx="62" cy="318" r="1.5" fill="#F5C670" style="animation:tw 3.2s 1.2s ease-in-out infinite"/>
+<circle cx="152" cy="375" r="1" fill="#F5C670" style="animation:tw 2.4s .2s ease-in-out infinite"/>
+<circle cx="32" cy="412" r="1" fill="#D4A847" style="animation:tw 2.9s .9s ease-in-out infinite"/>
+<circle cx="182" cy="448" r="1.5" fill="#F5C670" style="animation:tw 3.1s .5s ease-in-out infinite"/>
+<circle cx="522" cy="35" r="1.5" fill="#F5C670" style="animation:tw 2.3s .7s ease-in-out infinite"/>
+<circle cx="612" cy="22" r="1" fill="#F5C670" style="animation:tw 2.7s 1.1s ease-in-out infinite"/>
+<circle cx="645" cy="88" r="1.5" fill="#D4A847" style="animation:tw 2.2s .3s ease-in-out infinite"/>
+<circle cx="548" cy="142" r="1" fill="#F5C670" style="animation:tw 2.9s .8s ease-in-out infinite"/>
+<circle cx="638" cy="195" r="2" fill="#F5C670" style="animation:tw 3.3s .4s ease-in-out infinite"/>
+<circle cx="518" cy="278" r="1" fill="#D4A847" style="animation:tw 2.6s 1s ease-in-out infinite"/>
+<circle cx="652" cy="338" r="1.5" fill="#F5C670" style="animation:tw 2.1s .6s ease-in-out infinite"/>
+<circle cx="538" cy="398" r="1" fill="#F5C670" style="animation:tw 3s .2s ease-in-out infinite"/>
+<circle cx="622" cy="445" r="1.5" fill="#D4A847" style="animation:tw 2.5s 1.3s ease-in-out infinite"/>
+<circle cx="255" cy="32" r="1" fill="#F5C670" style="animation:tw 2.8s .5s ease-in-out infinite"/>
+<circle cx="430" cy="26" r="1.5" fill="#F5C670" style="animation:tw 2.4s .9s ease-in-out infinite"/>
+<circle cx="315" cy="465" r="1" fill="#D4A847" style="animation:tw 3.1s .3s ease-in-out infinite"/>
+<circle cx="415" cy="452" r="1.5" fill="#F5C670" style="animation:tw 2.7s .7s ease-in-out infinite"/>
+<circle cx="222" cy="42" r="1" fill="#F5C670" style="animation:tw 2.3s .6s ease-in-out infinite"/>
+<circle cx="468" cy="48" r="1" fill="#D4A847" style="animation:tw 2.9s 1.1s ease-in-out infinite"/>
+<circle cx="192" cy="468" r="1" fill="#F5C670" style="animation:tw 3.2s .8s ease-in-out infinite"/>
+<circle cx="490" cy="472" r="1.5" fill="#D4A847" style="animation:tw 2.5s .4s ease-in-out infinite"/>
+<ellipse cx="340" cy="215" rx="72" ry="83" fill="none" stroke="#E8A020" stroke-width="1.3" class="r1"/>
+<ellipse cx="340" cy="215" rx="110" ry="124" fill="none" stroke="#E8A020" stroke-width="1" class="r2"/>
+<ellipse cx="340" cy="215" rx="153" ry="168" fill="none" stroke="#C88010" stroke-width=".8" class="r3"/>
+<ellipse cx="340" cy="215" rx="200" ry="214" fill="none" stroke="#A86A08" stroke-width=".65" class="r4"/>
+<ellipse cx="340" cy="215" rx="250" ry="262" fill="none" stroke="#885005" stroke-width=".5" class="r5"/>
+<path d="M 268 282 Q 305 262 328 272 L 328 292 Q 305 282 268 300 Z" fill="#100818"/>
+<path d="M 412 282 Q 375 262 352 272 L 352 292 Q 375 282 412 300 Z" fill="#100818"/>
+<rect x="326" y="252" width="28" height="32" rx="2" fill="#100818"/>
+<ellipse cx="340" cy="192" rx="52" ry="63" fill="#100818"/>
+<path d="M 305 182 Q 322 170 340 175 Q 358 170 375 182" fill="none" stroke="#1E0A2C" stroke-width="2.5"/>
+<path d="M 308 198 Q 324 188 340 192 Q 356 188 372 198" fill="none" stroke="#1E0A2C" stroke-width="2.5"/>
+<path d="M 310 214 Q 325 205 340 208 Q 355 205 370 214" fill="none" stroke="#1E0A2C" stroke-width="2.5"/>
+<text x="340" y="206" text-anchor="middle" font-family="Georgia,serif" font-size="32" fill="#E8A020" class="hf">θ</text>
+<path class="wv" d="M 25 442 C 57 420 89 420 121 442 C 153 464 185 464 217 442 C 249 420 281 420 313 442 C 345 464 377 464 409 442 C 441 420 473 420 505 442 C 537 464 569 464 601 442 C 633 420 655 420 658 442" fill="none" stroke="#E8A020" stroke-width="1.8"/>
+<text x="340" y="435" text-anchor="middle" font-family="Georgia,serif" font-size="9" letter-spacing="3" fill="#E8A020" opacity=".42">4 Hz · · · · · · · · · · · · 8 Hz</text>
+<text x="340" y="478" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="13" letter-spacing="7" fill="#F5C670">DEEP THETA STATE</text>
+<text x="340" y="497" text-anchor="middle" font-family="Georgia,serif" font-size="11" letter-spacing="3" fill="#D4A847" opacity=".62">θ · 4–8 Hz · Tiefe Entspannung</text>
+<text x="340" y="513" text-anchor="middle" font-family="Georgia,serif" font-size="9" letter-spacing="3" fill="#C49040" opacity=".4">mindful7777 · Mind Flow Hypnosis</text>
+</svg>

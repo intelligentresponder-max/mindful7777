@@ -1,0 +1,61 @@
+<svg width="100%" viewBox="0 0 680 490" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>White and Odd Socks — mindful7777 Look Book</title>
+<desc>Editorial fashion illustration: white crew sock, striped odd sock, ankle cut with gold cuff</desc>
+<defs>
+<clipPath id="s2c">
+  <path d="M 258 95 L 258 375 L 400 375 Q 420 375 420 355 Q 420 335 400 335 L 323 335 Q 308 335 308 315 L 308 95 Q 283 75 258 95 Z"/>
+</clipPath>
+<clipPath id="s3c">
+  <path d="M 476 198 L 476 375 L 618 375 Q 638 375 638 355 Q 638 335 618 335 L 541 335 Q 526 335 526 315 L 526 198 Q 501 183 476 198 Z"/>
+</clipPath>
+</defs>
+<rect width="680" height="490" fill="#0A090A"/>
+<line x1="40" y1="28" x2="640" y2="28" stroke="#D4A847" stroke-width=".5" opacity=".4"/>
+<text x="340" y="20" text-anchor="middle" font-family="Georgia,serif" font-size="9" letter-spacing="4" fill="#D4A847" opacity=".6">mindful7777 · LOOK BOOK · NO. 01</text>
+<text x="340" y="52" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="22" letter-spacing="6" fill="#F0EDEA">WHITE &amp; ODD SOCKS</text>
+<text x="340" y="70" text-anchor="middle" font-family="Georgia,serif" font-size="10" letter-spacing="3" fill="#D4A847" opacity=".5">AFTER WORK · THE LOOK</text>
+<line x1="40" y1="82" x2="640" y2="82" stroke="#D4A847" stroke-width=".5" opacity=".3"/>
+<path d="M 40 95 L 40 375 L 182 375 Q 202 375 202 355 Q 202 335 182 335 L 105 335 Q 90 335 90 315 L 90 95 Q 65 75 40 95 Z" fill="#F0EDEA"/>
+<line x1="43" y1="108" x2="87" y2="108" stroke="#C8C4BC" stroke-width="1.4"/>
+<line x1="43" y1="116" x2="87" y2="116" stroke="#C8C4BC" stroke-width="1.4"/>
+<line x1="43" y1="124" x2="87" y2="124" stroke="#C8C4BC" stroke-width="1.4"/>
+<line x1="43" y1="132" x2="87" y2="132" stroke="#C8C4BC" stroke-width="1.4"/>
+<line x1="43" y1="140" x2="87" y2="140" stroke="#C8C4BC" stroke-width="1.4"/>
+<line x1="43" y1="148" x2="87" y2="148" stroke="#C8C4BC" stroke-width="1.4"/>
+<line x1="43" y1="156" x2="87" y2="156" stroke="#C8C4BC" stroke-width="1.4"/>
+<path d="M 40 95 L 40 375 L 182 375 Q 202 375 202 355 Q 202 335 182 335 L 105 335 Q 90 335 90 315 L 90 95 Q 65 75 40 95 Z" fill="none" stroke="#A8A49E" stroke-width="1.2"/>
+<g clip-path="url(#s2c)">
+  <rect x="258" y="95" width="50" height="22" fill="#F0EDEA"/>
+  <rect x="258" y="117" width="50" height="22" fill="#D4A847"/>
+  <rect x="258" y="139" width="50" height="22" fill="#181614"/>
+  <rect x="258" y="161" width="50" height="22" fill="#F0EDEA"/>
+  <rect x="258" y="183" width="50" height="22" fill="#D4A847"/>
+  <rect x="258" y="205" width="50" height="22" fill="#181614"/>
+  <rect x="258" y="227" width="50" height="22" fill="#F0EDEA"/>
+  <rect x="258" y="249" width="50" height="22" fill="#D4A847"/>
+  <rect x="258" y="271" width="50" height="22" fill="#181614"/>
+  <rect x="258" y="293" width="50" height="22" fill="#F0EDEA"/>
+  <rect x="258" y="315" width="50" height="22" fill="#D4A847"/>
+  <rect x="258" y="333" width="165" height="44" fill="#F0EDEA"/>
+</g>
+<path d="M 258 95 L 258 375 L 400 375 Q 420 375 420 355 Q 420 335 400 335 L 323 335 Q 308 335 308 315 L 308 95 Q 283 75 258 95 Z" fill="none" stroke="#A8A49E" stroke-width="1.2"/>
+<path d="M 476 198 L 476 375 L 618 375 Q 638 375 638 355 Q 638 335 618 335 L 541 335 Q 526 335 526 315 L 526 198 Q 501 183 476 198 Z" fill="#F0EDEA"/>
+<g clip-path="url(#s3c)">
+  <rect x="476" y="198" width="50" height="24" fill="#D4A847"/>
+</g>
+<line x1="479" y1="228" x2="523" y2="228" stroke="#C8C4BC" stroke-width="1.3"/>
+<line x1="479" y1="236" x2="523" y2="236" stroke="#C8C4BC" stroke-width="1.3"/>
+<line x1="479" y1="244" x2="523" y2="244" stroke="#C8C4BC" stroke-width="1.3"/>
+<path d="M 476 198 L 476 375 L 618 375 Q 638 375 638 355 Q 638 335 618 335 L 541 335 Q 526 335 526 315 L 526 198 Q 501 183 476 198 Z" fill="none" stroke="#A8A49E" stroke-width="1.2"/>
+<text x="121" y="400" text-anchor="middle" font-family="Georgia,serif" font-size="9" letter-spacing="3" fill="#D4A847" opacity=".6">01</text>
+<text x="121" y="422" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="13" letter-spacing="3" fill="#F0EDEA">WHITE CREW</text>
+<text x="121" y="438" text-anchor="middle" font-family="Georgia,serif" font-size="10" letter-spacing="2" fill="#D4A847" opacity=".5">CLASSIC CUT</text>
+<text x="339" y="400" text-anchor="middle" font-family="Georgia,serif" font-size="9" letter-spacing="3" fill="#D4A847" opacity=".6">02</text>
+<text x="339" y="422" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="13" letter-spacing="3" fill="#F0EDEA">ODD SOCK</text>
+<text x="339" y="438" text-anchor="middle" font-family="Georgia,serif" font-size="10" letter-spacing="2" fill="#D4A847" opacity=".5">STATEMENT</text>
+<text x="557" y="400" text-anchor="middle" font-family="Georgia,serif" font-size="9" letter-spacing="3" fill="#D4A847" opacity=".6">03</text>
+<text x="557" y="422" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="13" letter-spacing="3" fill="#F0EDEA">ANKLE CUT</text>
+<text x="557" y="438" text-anchor="middle" font-family="Georgia,serif" font-size="10" letter-spacing="2" fill="#D4A847" opacity=".5">GOLD CUFF</text>
+<line x1="40" y1="452" x2="640" y2="452" stroke="#D4A847" stroke-width=".5" opacity=".3"/>
+<text x="340" y="470" text-anchor="middle" font-family="Georgia,serif" font-size="9" letter-spacing="3" fill="#D4A847" opacity=".4">mindful7777.gumroad.com</text>
+</svg>
