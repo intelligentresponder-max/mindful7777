@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="de" id="html-root">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title data-de="mindful7777 — White Socks Look Book" data-en="mindful7777 — White Socks Look Book">mindful7777 — White Socks Look Book</title>
+<meta name="author" content="mindful7777"/>
+<meta name="description" content="The After-Work Look · mindful7777 Look Book Edition 01"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --black: #0A090A;
+    --white: #F5F3EF;
+    --gold:  #D4A847;
+    --cream: #EDE8DF;
+    --dim:   #1C1A18;
+    --mid:   #6B6560;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999;
+    opacity: .5; mix-blend-mode: overlay;
+  }
+
+  /* ══════════════════════════════
+     STICKY NAV BAR
+  ══════════════════════════════ */
+  .site-nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 888;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: .85rem 2.5rem;
+    background: rgba(10,9,10,.82);
+    backdrop-filter: blur(14px);
+    border-bottom: .5px solid rgba(212,168,71,.15);
+    transition: background .3s;
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 12px; letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .nav-logo:hover { opacity: .7; }
+
+  .nav-right {
+    display: flex; align-items: center; gap: 1.2rem;
+  }
+  .nav-blog-tag {
+    font-family: 'Cinzel', serif; font-size: 9px;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: rgba(212,168,71,.55);
+    background: rgba(212,168,71,.07);
+    padding: .3rem .9rem; border-radius: 3px;
+    border: .5px solid rgba(212,168,71,.2);
+  }
+  /* LANGUAGE TOGGLE */
+  .lang-toggle {
+    display: flex; align-items: center;
+    background: rgba(212,168,71,.08);
+    border: .5px solid rgba(212,168,71,.3);
+    border-radius: 30px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .lang-btn {
+    padding: .3rem .85rem;
+    font-family: 'Cinzel', serif;
+    font-size: 10px; letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(245,243,239,.4);
+    border: none; background: none;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .lang-btn.active {
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 600;
+  }
+  .lang-btn:hover:not(.active) { color: var(--gold); }
+
+  /* ══════════════════════
+     BLOG POST HEADER
+  ══════════════════════ */
+  .blog-header {
+    background: var(--dim);
+    padding: 7rem 3.5rem 3rem;
+    border-bottom: .5px solid rgba(212,168,71,.12);
+  }
+  .blog-meta {
+    display: flex; align-items: center;
+    flex-wrap: wrap; gap: .8rem;
+    margin-bottom: 1.6rem;
+  }
+  .blog-meta-item {
+    font-family: 'Cinzel', serif;
+    font-size: 10px; letter-spacing: .22em;
+    text-transform: uppercase;
+    color: rgba(245,243,239,.35);
+  }
+  .blog-meta-dot {
+    width: 3px; height: 3px; border-radius: 50%;
+    background: rgba(212,168,71,.4);
+  }
+  .blog-meta-cat {
+    color: var(--gold); opacity: .8;
+  }
+  .blog-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(38px, 6vw, 72px);
+    line-height: .95;
+    color: var(--white);
+    letter-spacing: .02em;
+    margin-bottom: 1rem;
+  }
+  .blog-title em { color: var(--gold); font-style: normal; }
+  .blog-intro {
+    font-style: italic;
+    font-size: 18px; line-height: 1.7;
+    color: rgba(245,243,239,.6);
+    max-width: 620px;
+  }
+  .blog-share {
+    display: flex; align-items: center; gap: 1rem;
+    margin-top: 2rem; flex-wrap: wrap;
+  }
+  .share-label {
+    font-family: 'Cinzel', serif; font-size: 9px;
+    letter-spacing: .25em; text-transform: uppercase;
+    color: rgba(245,243,239,.3);
+  }
+  .share-btn {
+    display: inline-flex; align-items: center; gap: .4rem;
+    padding: .3rem .9rem;
+    font-family: 'Cinzel', serif; font-size: 9px;
+    letter-spacing: .15em; text-transform: uppercase;
+    color: var(--gold); opacity: .6;
+    border: .5px solid rgba(212,168,71,.25);
+    border-radius: 3px; text-decoration: none;
+    transition: opacity .2s;
+    background: none; cursor: pointer;
+  }
+  .share-btn:hover { opacity: 1; }
+
+  /* ══════════════════════
+     HERO
+  ══════════════════════ */
+  .hero {
+    position: relative;
+    width: 100%; height: 100vh; min-height: 600px;
+    display: flex; align-items: flex-end; overflow: hidden;
+  }
+  .hero-img {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=1600&q=90');
+    background-size: cover; background-position: center 20%;
+    filter: brightness(.65) contrast(1.05);
+    animation: zoomOut 12s ease forwards;
+  }
+  @keyframes zoomOut {
+    from { transform: scale(1.08); } to { transform: scale(1.0); }
+  }
+  .hero-grad {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,rgba(10,9,10,.1) 0%,rgba(10,9,10,.0) 30%,rgba(10,9,10,.55) 70%,rgba(10,9,10,.97) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 3rem 3.5rem 4rem; width: 100%;
+    animation: fadeUp .9s ease both; animation-delay: .3s;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-label {
+    font-family: 'Cinzel', serif; font-size: 11px;
+    letter-spacing: .35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem; opacity: .85;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(70px, 13vw, 160px);
+    line-height: .9; color: var(--white); letter-spacing: .01em; margin-bottom: 1.2rem;
+  }
+  .hero-title span { display: block; color: var(--gold); font-size: .65em; letter-spacing: .12em; }
+  .hero-sub { font-style: italic; font-size: 15px; color: rgba(245,243,239,.5); letter-spacing: .08em; }
+
+  /* ══════════════════════
+     ISSUE BAR
+  ══════════════════════ */
+  .issue-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 3.5rem;
+    border-bottom: .5px solid rgba(212,168,71,.2);
+    font-family: 'Cinzel', serif; font-size: 10px;
+    letter-spacing: .28em; text-transform: uppercase;
+    color: rgba(245,243,239,.4); background: var(--dim);
+  }
+  .issue-bar a {
+    color: var(--gold); text-decoration: none; opacity: .85;
+    transition: opacity .2s;
+  }
+  .issue-bar a:hover { opacity: 1; }
+  .issue-bar-gold { color: var(--gold); }
+
+  /* ══════════════════════
+     IMAGES
+  ══════════════════════ */
+  .img-full { width: 100%; display: block; object-fit: cover; filter: brightness(.82) contrast(1.06) saturate(.9); transition: filter .4s; }
+  .img-full:hover { filter: brightness(.9) contrast(1.06) saturate(1); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; background: var(--black); }
+  .grid-3 { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 3px; background: var(--black); }
+
+  .img-cell { position: relative; overflow: hidden; line-height: 0; }
+  .img-cell img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: brightness(.78) contrast(1.08);
+    transition: transform .6s ease, filter .4s;
+  }
+  .img-cell:hover img { transform: scale(1.03); filter: brightness(.88) contrast(1.06); }
+  .img-cell-tall   img { height: 620px; }
+  .img-cell-mid    img { height: 420px; }
+  .img-cell-square img { height: 500px; }
+
+  .img-cell-label {
+    position: absolute; bottom: 1.2rem; left: 1.4rem;
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--gold); opacity: .75;
+    background: rgba(10,9,10,.5); padding: .3rem .8rem; border-radius: 2px;
+    backdrop-filter: blur(4px); line-height: 1;
+  }
+  .img-cell-caption {
+    position: absolute; bottom: 1.2rem; right: 1.4rem;
+    font-style: italic; font-size: 12px; color: rgba(245,243,239,.5); letter-spacing: .05em;
+  }
+
+  /* ══════════════════════
+     TEXT
+  ══════════════════════ */
+  .text-block { padding: 5rem 3.5rem; max-width: 800px; margin: 0 auto; }
+  .text-block-center { text-align: center; }
+  .section-tag {
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .4em;
+    text-transform: uppercase; color: var(--gold);
+    display: block; margin-bottom: 2rem; opacity: .7;
+  }
+  .big-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 100px);
+    line-height: .92; color: var(--white);
+    letter-spacing: .02em; margin-bottom: 2rem;
+  }
+  .big-title em { color: var(--gold); font-style: normal; }
+  .body-text { font-size: 19px; line-height: 1.9; color: rgba(245,243,239,.75); margin-bottom: 1.6rem; }
+  .body-text strong { color: var(--white); font-weight: 500; }
+
+  /* ══════════════════════
+     LOOK CARDS
+  ══════════════════════ */
+  .look-number {
+    font-family: 'Bebas Neue', sans-serif; font-size: 120px;
+    color: rgba(212,168,71,.1); line-height: 1;
+    margin-bottom: -2rem; letter-spacing: -.02em;
+  }
+  .look-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    color: var(--white); letter-spacing: .04em; margin-bottom: .5rem;
+  }
+  .look-details {
+    list-style: none; font-size: 14px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--gold); opacity: .7;
+  }
+  .look-details li { padding: .25rem 0; border-bottom: .5px solid rgba(212,168,71,.15); }
+  .look-details li:first-child { border-top: .5px solid rgba(212,168,71,.15); }
+
+  /* ══════════════════════
+     SPLIT
+  ══════════════════════ */
+  .split { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; background: var(--dim); }
+  .split-text { padding: 5rem 3.5rem; display: flex; flex-direction: column; justify-content: center; }
+  .split-img { position: relative; overflow: hidden; line-height: 0; }
+  .split-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.8) contrast(1.06); transition: transform .6s; }
+  .split-img:hover img { transform: scale(1.04); }
+  .split.flip { direction: rtl; }
+  .split.flip > * { direction: ltr; }
+
+  /* ══════════════════════
+     QUOTE
+  ══════════════════════ */
+  .editorial-quote {
+    text-align: center; padding: 6rem 4rem;
+    background: var(--dim); position: relative; overflow: hidden;
+  }
+  .editorial-quote::before {
+    content: '"'; font-family: 'Bebas Neue', sans-serif; font-size: 400px;
+    color: var(--gold); opacity: .04; position: absolute;
+    top: -3rem; left: 50%; transform: translateX(-50%); line-height: 1; pointer-events: none;
+  }
+  .editorial-quote blockquote {
+    font-family: 'EB Garamond', serif; font-style: italic;
+    font-size: clamp(22px, 3.5vw, 36px); line-height: 1.55;
+    color: var(--white); max-width: 760px; margin: 0 auto 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .editorial-quote cite {
+    font-family: 'Cinzel', serif; font-size: 11px;
+    letter-spacing: .3em; color: var(--gold); opacity: .6; text-transform: uppercase;
+  }
+
+  /* ══════════════════════
+     DIVIDER
+  ══════════════════════ */
+  .divider { display: flex; align-items: center; gap: 1.5rem; padding: 3rem 3.5rem; }
+  .divider-line { flex: 1; height: .5px; background: linear-gradient(90deg, transparent, rgba(212,168,71,.35), transparent); }
+  .divider-icon { font-size: 18px; opacity: .5; color: var(--gold); letter-spacing: .2em; }
+
+  /* ══════════════════════
+     MOSAIC
+  ══════════════════════ */
+  .mosaic {
+    display: grid; grid-template-columns: 1.2fr .8fr 1fr;
+    grid-template-rows: 300px 300px; gap: 3px; background: var(--black);
+  }
+  .mosaic-cell { position: relative; overflow: hidden; line-height: 0; }
+  .mosaic-cell img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.75) contrast(1.08) saturate(.88); transition: transform .6s, filter .4s; }
+  .mosaic-cell:hover img { transform: scale(1.05); filter: brightness(.88) contrast(1.05); }
+  .mosaic-cell-span { grid-row: span 2; }
+  .mosaic-label {
+    position: absolute; top: 1rem; left: 1rem;
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--gold); opacity: .65;
+    background: rgba(10,9,10,.45); padding: .3rem .7rem; border-radius: 2px; backdrop-filter: blur(3px);
+  }
+
+  /* ══════════════════════
+     FOOTER
+  ══════════════════════ */
+  .footer {
+    background: #060508; padding: 4rem 3.5rem 3rem;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    align-items: center; border-top: .5px solid rgba(212,168,71,.12); gap: 2rem;
+  }
+  .footer-left { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .28em; color: rgba(245,243,239,.3); text-transform: uppercase; line-height: 2.2; }
+  .footer-left a { color: var(--gold); text-decoration: none; opacity: .75; transition: opacity .2s; }
+  .footer-left a:hover { opacity: 1; }
+  .footer-center { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: .15em; color: var(--gold); text-align: center; opacity: .7; }
+  .footer-center a { color: inherit; text-decoration: none; transition: opacity .2s; }
+  .footer-center a:hover { opacity: 1; }
+  .footer-right { font-size: 11px; color: rgba(245,243,239,.25); text-align: right; line-height: 2.2; letter-spacing: .06em; }
+
+  /* ══════════════════════
+     LANGUAGE TRANSITION
+  ══════════════════════ */
+  [data-de], [data-en] { transition: opacity .18s ease; }
+  .lang-switching { opacity: 0 !important; }
+
+  /* ══════════════════════
+     RESPONSIVE
+  ══════════════════════ */
+  @media (max-width: 768px) {
+    .grid-2, .grid-3, .split, .mosaic { grid-template-columns: 1fr !important; grid-template-rows: auto !important; }
+    .split.flip { direction: ltr; }
+    .img-cell-tall img, .img-cell-mid img, .img-cell-square img, .mosaic-cell img { height: 300px; }
+    .mosaic-cell-span { grid-row: span 1; }
+    .text-block { padding: 3.5rem 1.5rem; }
+    .split-text { padding: 3rem 1.5rem; }
+    .hero-content { padding: 2rem 1.5rem 3rem; }
+    .issue-bar, .footer, .divider { padding: 1rem 1.5rem; }
+    .footer { grid-template-columns: 1fr; text-align: center; }
+    .footer-right { text-align: center; }
+    .editorial-quote { padding: 4rem 1.5rem; }
+    .site-nav { padding: .75rem 1.2rem; }
+    .blog-header { padding: 6rem 1.5rem 2.5rem; }
+    .blog-share { gap: .6rem; }
+    .look-number { font-size: 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     STICKY NAV
+══════════════════════════════════════ -->
+<nav class="site-nav">
+  <a href="https://mindful7777.gumroad.com" class="nav-logo" target="_blank" rel="noopener">
+    mindful7777
+  </a>
+  <div class="nav-right">
+    <span class="nav-blog-tag" data-de="Look Book" data-en="Look Book">Look Book</span>
+    <div class="lang-toggle" role="group" aria-label="Language toggle">
+      <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════
+     BLOG POST HEADER
+══════════════════════════════════════ -->
+<header class="blog-header">
+  <div class="blog-meta">
+    <span class="blog-meta-item blog-meta-cat" data-de="Lifestyle" data-en="Lifestyle">Lifestyle</span>
+    <div class="blog-meta-dot"></div>
+    <span class="blog-meta-item" data-de="After Work Style" data-en="After Work Style">After Work Style</span>
+    <div class="blog-meta-dot"></div>
+    <span class="blog-meta-item" data-de="01. Juni 2026" data-en="June 1, 2026">01. Juni 2026</span>
+    <div class="blog-meta-dot"></div>
+    <span class="blog-meta-item" data-de="3 Min Lesezeit" data-en="3 min read">3 Min Lesezeit</span>
+    <div class="blog-meta-dot"></div>
+    <span class="blog-meta-item">
+      <a href="https://mindful7777.gumroad.com" target="_blank" rel="noopener" style="color:var(--gold);opacity:.7;text-decoration:none;">mindful7777</a>
+    </span>
+  </div>
+
+  <h1 class="blog-title">
+    <span data-de="WEISSE SOCKEN —" data-en="WHITE SOCKS —">WEISSE SOCKEN —</span><br/>
+    <em data-de="DER AFTER-WORK LOOK" data-en="THE AFTER-WORK LOOK">DER AFTER-WORK LOOK</em>
+  </h1>
+
+  <p class="blog-intro" data-de="Vier Outfits. Eine Haltung. Die Kunst, nach dem langen Tag ganz er selbst zu sein — bequem, selbstsicher, fertig." data-en="Four looks. One attitude. The art of being fully yourself after the long day — comfortable, confident, done.">
+    Vier Outfits. Eine Haltung. Die Kunst, nach dem langen Tag ganz er selbst zu sein — bequem, selbstsicher, fertig.
+  </p>
+
+  <div class="blog-share">
+    <span class="share-label" data-de="Teilen:" data-en="Share:">Teilen:</span>
+    <a class="share-btn" href="https://mindful7777.gumroad.com" target="_blank" rel="noopener">
+      ↗ <span data-de="Zur Seite" data-en="Visit Store">Zur Seite</span>
+    </a>
+    <button class="share-btn" onclick="copyURL()" id="copy-btn">
+      ⎘ <span data-de="Link kopieren" data-en="Copy link">Link kopieren</span>
+    </button>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-content">
+    <p class="hero-label" data-de="mindful7777 · Lifestyle Edition · No. 01" data-en="mindful7777 · Lifestyle Edition · No. 01">
+      mindful7777 · Lifestyle Edition · No. 01
+    </p>
+    <h2 class="hero-title">
+      WHITE<br/>SOCKS
+      <span data-de="Der After-Work Look" data-en="The After-Work Look">Der After-Work Look</span>
+    </h2>
+    <p class="hero-sub" data-de="Die Kunst, nach dem Tag ganz er selbst zu sein." data-en="The art of being yourself after the day is done.">
+      Die Kunst, nach dem Tag ganz er selbst zu sein.
+    </p>
+  </div>
+</div>
+
+<div class="issue-bar">
+  <a href="https://mindful7777.gumroad.com" target="_blank" rel="noopener">mindful7777.gumroad.com</a>
+  <span class="issue-bar-gold">✦ LOOK BOOK ✦</span>
+  <span data-de="After Work · Cozy · Entspannt" data-en="After Work · Cozy · Confident">After Work · Cozy · Entspannt</span>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     INTRO
+══════════════════════════════════════ -->
+<div class="text-block text-block-center">
+  <span class="section-tag" data-de="Das Outfit" data-en="The Outfit">Das Outfit</span>
+  <h2 class="big-title">
+    <span data-de="ENTSPANNT." data-en="RELAXED.">ENTSPANNT.</span><br/>
+    <em data-de="SELBSTSICHER." data-en="CONFIDENT.">SELBSTSICHER.</em><br/>
+    <span data-de="FERTIG." data-en="DONE.">FERTIG.</span>
+  </h2>
+  <p class="body-text" data-de="Weiße Socken. Einfache Hose. Sauberes Shirt. Der Look, der sagt: der Tag ist getan — und <strong>ich gehöre mir wieder</strong>. Kein Aufwand. Kein Auftritt. Nur du — in deiner besten Version." data-en="White socks. Simple trousers. Clean shirt. The look that says: the day is done — and <strong>I belong to myself again</strong>. No effort. No performance. Just you — at your best.">
+    Weiße Socken. Einfache Hose. Sauberes Shirt. Der Look, der sagt: der Tag ist getan — und <strong>ich gehöre mir wieder</strong>. Kein Aufwand. Kein Auftritt. Nur du — in deiner besten Version.
+  </p>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     LOOK 01 — Grid
+══════════════════════════════════════ -->
+<div class="grid-3">
+  <div class="img-cell img-cell-tall">
+    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=900&q=85" alt="Man in casual relaxed look" loading="lazy"/>
+    <span class="img-cell-label">Look 01</span>
+    <span class="img-cell-caption">The Classic</span>
+  </div>
+  <div class="img-cell img-cell-mid" style="align-self:start;">
+    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&q=85" alt="White sneaker detail" loading="lazy"/>
+    <span class="img-cell-label" data-de="Detail" data-en="Detail">Detail</span>
+  </div>
+  <div class="img-cell img-cell-mid" style="align-self:end;">
+    <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=700&q=85" alt="White sock sneaker" loading="lazy"/>
+    <span class="img-cell-label" data-de="Die Signatur" data-en="The Signature">Die Signatur</span>
+  </div>
+</div>
+
+<div class="text-block">
+  <div class="look-number">01</div>
+  <h3 class="look-name" data-de="The Classic After-Work" data-en="The Classic After-Work">The Classic After-Work</h3>
+  <ul class="look-details" id="look01-details">
+    <li data-de="Weiße Crew Socken · 100% Baumwolle" data-en="White Crew Socks · 100% Cotton">Weiße Crew Socken · 100% Baumwolle</li>
+    <li data-de="Dunkle Chino oder Jogger · entspannt rolliert" data-en="Dark Chinos or Joggers · casually rolled">Dunkle Chino oder Jogger · entspannt rolliert</li>
+    <li data-de="Weißes / graues Basic Shirt · clean fit" data-en="White / Grey Basic Shirt · clean fit">Weißes / graues Basic Shirt · clean fit</li>
+    <li data-de="Sneaker oder Loafer · kein Stress" data-en="Sneakers or Loafers · no stress">Sneaker oder Loafer · kein Stress</li>
+  </ul>
+  <p class="body-text" style="margin-top:2rem;" data-de="Der Klassiker. Anziehen, hinlegen, <strong>atmen</strong>. Nichts beweisen müssen. Weiße Socken = Signal: <em>ich bin zuhause</em>." data-en="The classic. Put it on, lie down, <strong>breathe</strong>. Nothing to prove. White socks = signal: <em>I'm home</em>.">
+    Der Klassiker. Anziehen, hinlegen, <strong>atmen</strong>. Nichts beweisen müssen. Weiße Socken = Signal: <em>ich bin zuhause</em>.
+  </p>
+</div>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-icon">✦ ✦ ✦</span>
+  <div class="divider-line"></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     LOOK 02 — Split
+══════════════════════════════════════ -->
+<div class="split">
+  <div class="split-img">
+    <img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=900&q=85" alt="Man relaxing on couch" loading="lazy"/>
+  </div>
+  <div class="split-text">
+    <div class="look-number" style="font-size:80px;">02</div>
+    <h3 class="look-name" data-de="The Lounge Lord" data-en="The Lounge Lord">The Lounge Lord</h3>
+    <ul class="look-details">
+      <li data-de="Weiße Quarter Socken" data-en="White Quarter Socks">Weiße Quarter Socken</li>
+      <li data-de="Weiche Jogginghose · Taupe / Ecru" data-en="Soft Sweatpants · Taupe / Ecru">Weiche Jogginghose · Taupe / Ecru</li>
+      <li data-de="Oversize Hoodie · ungebügelt erlaubt" data-en="Oversize Hoodie · creases allowed">Oversize Hoodie · ungebügelt erlaubt</li>
+      <li data-de="Barfuß oder Slipper drüber" data-en="Barefoot or slippers on top">Barfuß oder Slipper drüber</li>
+    </ul>
+    <p class="body-text" style="margin-top:1.5rem;" data-de="Wenn der Körper noch von der Arbeit spricht — aber der Geist schon <strong>abgeschaltet hat</strong>. Der Look der ehrlichen Stunde." data-en="When the body still speaks of work — but the mind has already <strong>switched off</strong>. The look of the honest hour.">
+      Wenn der Körper noch von der Arbeit spricht — aber der Geist schon <strong>abgeschaltet hat</strong>. Der Look der ehrlichen Stunde.
+    </p>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     QUOTE
+══════════════════════════════════════ -->
+<div class="editorial-quote">
+  <blockquote data-de='"Die weißen Socken sind kein Statement.<br/>Sie sind eine Erlaubnis —<br/>jetzt darf ich einfach <em>ich</em> sein."' data-en='"White socks are not a statement.<br/>They are permission —<br/>now I can simply be <em>myself</em>."'>
+    "Die weißen Socken sind kein Statement.<br/>Sie sind eine Erlaubnis —<br/>jetzt darf ich einfach <em>ich</em> sein."
+  </blockquote>
+  <cite>
+    <a href="https://mindful7777.gumroad.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">mindful7777</a>
+    <span data-de=" · After Work Philosophy" data-en=" · After Work Philosophy"> · After Work Philosophy</span>
+  </cite>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     LOOK 03 — Split flipped
+══════════════════════════════════════ -->
+<div class="split flip">
+  <div class="split-img">
+    <img src="https://images.unsplash.com/photo-1503341733017-1901578f9f1e?w=900&q=85" alt="Man in minimal casual look" loading="lazy"/>
+  </div>
+  <div class="split-text">
+    <div class="look-number" style="font-size:80px;">03</div>
+    <h3 class="look-name" data-de="The Minimal Man" data-en="The Minimal Man">The Minimal Man</h3>
+    <ul class="look-details">
+      <li data-de="Weiße Socken · kurz sichtbar" data-en="White Socks · briefly visible">Weiße Socken · kurz sichtbar</li>
+      <li data-de="Schwarze Sweathose · tailliert" data-en="Black Sweatpants · fitted">Schwarze Sweathose · tailliert</li>
+      <li data-de="Weißes Pocket Tee · tucked out" data-en="White Pocket Tee · tucked out">Weißes Pocket Tee · tucked out</li>
+      <li data-de="Saubere Low Top Sneaker" data-en="Clean Low Top Sneakers">Saubere Low Top Sneaker</li>
+    </ul>
+    <p class="body-text" style="margin-top:1.5rem;" data-de="Weniger ist mehr. Der Look, der sagt: ich habe es nicht nötig, es zu erklären. <strong>Stille ist eine Haltung.</strong>" data-en="Less is more. The look that says: I don't need to explain it. <strong>Stillness is an attitude.</strong>">
+      Weniger ist mehr. Der Look, der sagt: ich habe es nicht nötig, es zu erklären. <strong>Stille ist eine Haltung.</strong>
+    </p>
+  </div>
+</div>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-icon">✦</span>
+  <div class="divider-line"></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     LOOK 04 — Grid 2
+══════════════════════════════════════ -->
+<div class="grid-2">
+  <div class="img-cell img-cell-square">
+    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=900&q=85" alt="White sneaker detail" loading="lazy"/>
+    <span class="img-cell-label">Look 04 · A</span>
+    <span class="img-cell-caption" data-de="Das Detail" data-en="The Detail Shot">Das Detail</span>
+  </div>
+  <div class="img-cell img-cell-square">
+    <img src="https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=900&q=85" alt="Man streetwear minimal" loading="lazy"/>
+    <span class="img-cell-label">Look 04 · B</span>
+    <span class="img-cell-caption">Off Duty</span>
+  </div>
+</div>
+
+<div class="text-block">
+  <div class="look-number">04</div>
+  <h3 class="look-name" data-de="The Off-Duty Athlete" data-en="The Off-Duty Athlete">The Off-Duty Athlete</h3>
+  <ul class="look-details">
+    <li data-de="Weiße Crew Socken · sichtbar hochgezogen" data-en="White Crew Socks · visibly pulled up">Weiße Crew Socken · sichtbar hochgezogen</li>
+    <li data-de="Short oder Caprihose · sportlich" data-en="Shorts or Cropped Pants · sporty">Short oder Caprihose · sportlich</li>
+    <li data-de="Gym Shirt oder Tech-Fabric Shirt" data-en="Gym Shirt or Tech-Fabric Top">Gym Shirt oder Tech-Fabric Shirt</li>
+    <li data-de="Schlappen, Slides oder Clean Runner" data-en="Slides or Clean Runners">Schlappen, Slides oder Clean Runner</li>
+  </ul>
+  <p class="body-text" style="margin-top:2rem;" data-de="Der Körper hat alles gegeben — jetzt bekommt er <strong>Platz zum Atmen</strong>. Weiße Socken hochgezogen, Schultern runter, Kopf frei. Das ist Erholung als Statement." data-en="The body gave everything — now it gets <strong>room to breathe</strong>. White socks pulled up, shoulders down, head clear. Recovery as a statement.">
+    Der Körper hat alles gegeben — jetzt bekommt er <strong>Platz zum Atmen</strong>. Weiße Socken hochgezogen, Schultern runter, Kopf frei. Das ist Erholung als Statement.
+  </p>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     MOSAIC
+══════════════════════════════════════ -->
+<div class="mosaic">
+  <div class="mosaic-cell mosaic-cell-span">
+    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=85" alt="Man sitting relaxed" loading="lazy"/>
+    <span class="mosaic-label" data-de="Cozy Edition" data-en="Cozy Edition">Cozy Edition</span>
+  </div>
+  <div class="mosaic-cell">
+    <img src="https://images.unsplash.com/photo-1542060748-10c28b62716f?w=600&q=85" alt="White socks detail" loading="lazy"/>
+    <span class="mosaic-label" data-de="Socken-Detail" data-en="Sock Detail">Socken-Detail</span>
+  </div>
+  <div class="mosaic-cell">
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=85" alt="Casual shoe detail" loading="lazy"/>
+    <span class="mosaic-label" data-de="Klare Linien" data-en="Clean Lines">Klare Linien</span>
+  </div>
+  <div class="mosaic-cell">
+    <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=85" alt="Essentials flat lay" loading="lazy"/>
+    <span class="mosaic-label" data-de="Das Wesentliche" data-en="The Essentials">Das Wesentliche</span>
+  </div>
+  <div class="mosaic-cell">
+    <img src="https://images.unsplash.com/photo-1467043237213-65f2da53396f?w=600&q=85" alt="Feet up relaxing" loading="lazy"/>
+    <span class="mosaic-label" data-de="Endlich fertig." data-en="Done. Finally.">Endlich fertig.</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     CLOSING
+══════════════════════════════════════ -->
+<div class="text-block text-block-center" style="padding:6rem 3.5rem;">
+  <span class="section-tag">
+    <a href="https://mindful7777.gumroad.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">mindful7777</a>
+    <span data-de=" · After Work Philosophy" data-en=" · After Work Philosophy"> · After Work Philosophy</span>
+  </span>
+  <h2 class="big-title" style="margin-bottom:2.5rem;">
+    <span data-de="ZIEH DICH" data-en="DRESS">ZIEH DICH</span><br/>
+    <em data-de="FREI." data-en="FREE.">FREI.</em>
+  </h2>
+  <p class="body-text" style="max-width:560px;margin:0 auto 1.5rem;" data-de="Weiße Socken sind kein Zufall. Sie sind das erste Zeichen, dass du den Tag hinter dir gelassen hast. Der erste Schritt zur <strong>Tiefenentspannung</strong>." data-en="White socks are no coincidence. They are the first sign that you have left the day behind. The first step toward <strong>deep relaxation</strong>.">
+    Weiße Socken sind kein Zufall. Sie sind das erste Zeichen, dass du den Tag hinter dir gelassen hast. Der erste Schritt zur <strong>Tiefenentspannung</strong>.
+  </p>
+  <p class="body-text" style="max-width:560px;margin:0 auto;font-style:italic;opacity:.7;" data-de="Begleite das mit einem geführten Hypnose-Audio von mindful7777 — und der Abend gehört wirklich dir." data-en="Pair that with a guided hypnosis audio from mindful7777 — and the evening truly belongs to you.">
+    Begleite das mit einem geführten Hypnose-Audio von
+    <a href="https://mindful7777.gumroad.com" target="_blank" rel="noopener" style="color:var(--gold);opacity:.8;text-decoration:none;">mindful7777</a>
+    — und der Abend gehört wirklich dir.
+  </p>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-left">
+    <a href="https://mindful7777.gumroad.com" target="_blank" rel="noopener">mindful7777</a><br/>
+    <span data-de="Tiefe Entspannung" data-en="Deep Relaxation">Tiefe Entspannung</span><br/>
+    <span data-de="Mentale Stärke" data-en="Mental Strength">Mentale Stärke</span>
+  </div>
+  <div class="footer-center">
+    <a href="https://mindful7777.gumroad.com" target="_blank" rel="noopener">M7777</a>
+  </div>
+  <div class="footer-right">
+    <a href="https://mindful7777.gumroad.com" target="_blank" rel="noopener" style="color:var(--gold);opacity:.5;text-decoration:none;">mindful7777.gumroad.com</a><br/>
+    <span data-de="Look Book · Edition 01" data-en="Look Book · Edition 01">Look Book · Edition 01</span><br/>
+    © mindful7777
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════
+     LANGUAGE SWITCH SCRIPT
+══════════════════════════════════════ -->
+<script>
+  let currentLang = 'de';
+
+  function setLang(lang) {
+    if (lang === currentLang) return;
+
+    // Fade out
+    document.body.style.transition = 'opacity .15s';
+    document.body.style.opacity = '.5';
+
+    setTimeout(() => {
+      currentLang = lang;
+
+      // Update all [data-de] / [data-en] elements
+      document.querySelectorAll('[data-de], [data-en]').forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (text !== null) el.innerHTML = text;
+      });
+
+      // Update html lang
+      document.getElementById('html-root').lang = lang;
+
+      // Update page title
+      document.title = lang === 'de'
+        ? 'mindful7777 — White Socks Look Book'
+        : 'mindful7777 — White Socks Look Book';
+
+      // Update buttons
+      document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+      // Fade back in
+      document.body.style.opacity = '1';
+    }, 150);
+  }
+
+  function copyURL() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      const btn = document.getElementById('copy-btn');
+      const span = btn.querySelector('span');
+      const original = span.textContent;
+      span.textContent = currentLang === 'de' ? '✓ Kopiert!' : '✓ Copied!';
+      setTimeout(() => { span.textContent = original; }, 2000);
+    }).catch(() => {
+      // Fallback
+      const el = document.createElement('textarea');
+      el.value = url; document.body.appendChild(el);
+      el.select(); document.execCommand('copy');
+      document.body.removeChild(el);
+    });
+  }
+</script>
+
+</body>
+</html>
