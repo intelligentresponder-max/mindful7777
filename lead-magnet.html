@@ -1,250 +1,594 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Free Guide · mindful7777</title>
-<meta name="description" content="The 7 Pillars of Mindful Living — free PDF on Gumroad."/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<title>Sock-Anchor Protocol · Kostenlos · mindful7777</title>
+<meta name="description" content="90 Sekunden. Wissenschaftlich fundiert. Sofort anwendbar. Der Sock-Anchor — dein kostenloser Einstieg in funktionale Entspannung."/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="icon" type="image/png" href="favicon_spiral.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --ink:   #1a1a2e;
-  --sage:  #7c9a7e;
-  --cream: #faf7f2;
-  --light: #f0ebe3;
-  --muted: #8a8478;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#1B2845;--bg2:#162038;--bg3:#0f1828;
+  --gold:#D4A574;--gold2:#E8C49A;--gold3:#F5EDD8;
+  --beige:#F7F4EE;--white:#FFFFFF;
+  --text:rgba(247,244,238,.82);--text2:rgba(247,244,238,.5);
+  --border:rgba(212,165,116,.2);
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--ink);
-  color: var(--cream);
-  font-family: 'DM Sans', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem 1.5rem;
+body{font-family:'DM Sans',sans-serif;background:var(--bg3);color:var(--text);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* ── GRAIN ── */
+body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-index:9999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  padding:16px 5%;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(15,24,40,.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
 }
-.bg7 {
-  position: fixed;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 60vw;
-  font-weight: 300;
-  color: rgba(124,154,126,0.04);
-  line-height: 1;
-  pointer-events: none;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  user-select: none;
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-spiral{width:28px;height:28px}
+.nav-logo-name{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold)}
+.nav-cta{
+  font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  padding:8px 20px;background:var(--gold);color:var(--bg3);border-radius:2px;
+  transition:all .2s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;
 }
-.wrap {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 420px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 1.2rem;
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
+.nav-lang{display:flex;gap:6px}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.4);
+  padding:5px 10px;border-radius:2px;font-size:11px;letter-spacing:.1em;cursor:pointer;
+  transition:all .2s;font-family:'DM Sans',sans-serif}
+.lang-btn.active,.lang-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;padding:120px 5% 80px;
+  background:var(--bg);
+}
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 70% at 0% 50%,rgba(212,165,116,.06) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 50% at 100% 20%,rgba(27,40,69,.9) 0%,transparent 60%);
+}
+.hero-inner{
+  max-width:1100px;width:100%;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+}
+.hero-left{}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  border:1px solid rgba(212,165,116,.3);padding:6px 14px;border-radius:2px;
+  background:rgba(212,165,116,.06);margin-bottom:28px;
+}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+h1{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);line-height:1.08;color:var(--white);margin-bottom:12px}
+h1 em{color:var(--gold);font-style:italic;display:block}
+.hero-sub{font-size:16px;color:var(--text2);line-height:1.8;font-weight:300;margin:20px 0 32px;max-width:460px}
+.hero-divider{width:48px;height:2px;background:var(--gold);margin-bottom:32px;opacity:.6}
+.hero-facts{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:36px}
+.fact{text-align:left}
+.fact-num{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);line-height:1}
+.fact-label{font-size:11px;color:var(--text2);letter-spacing:.08em;margin-top:2px;text-transform:uppercase}
+
+/* CTA BUTTON HERO */
+.cta-hero{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--gold);color:var(--bg3);padding:18px 36px;border-radius:2px;
+  font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  transition:all .22s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;
+}
+.cta-hero:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(212,165,116,.25)}
+.cta-hero .arrow{font-size:18px;transition:transform .2s}
+.cta-hero:hover .arrow{transform:translateX(4px)}
+.free-note{font-size:12px;color:var(--text2);margin-top:12px;letter-spacing:.04em}
+.free-note span{color:var(--gold);font-weight:500}
+
+/* ── SPIRAL ANIMATION ── */
+.hero-right{display:flex;align-items:center;justify-content:center}
+.spiral-wrap{position:relative;width:380px;height:380px}
+.spiral-svg{width:100%;height:100%;animation:spiralRotate 18s linear infinite;transform-origin:center}
+.pendulum-wrap{position:absolute;top:8%;left:50%;transform:translateX(-50%);width:60%;height:70%}
+@keyframes spiralRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.pend-svg{width:100%;height:100%;overflow:visible}
+.pend-rod{transform-origin:50% 0%;animation:swing 4s ease-in-out infinite}
+@keyframes swing{0%,100%{transform:rotate(-22deg)}50%{transform:rotate(22deg)}}
+
+/* ── SOCIAL PROOF STRIP ── */
+.proof-strip{
+  background:rgba(212,165,116,.06);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:20px 5%;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;
+}
+.proof-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)}
+.proof-item .icon{color:var(--gold);font-size:16px}
+
+/* ── WHAT IS IT ── */
+.section{padding:80px 5%;max-width:1100px;margin:0 auto}
+.section-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:500}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);color:var(--white);line-height:1.15;margin-bottom:16px}
+.section-title em{color:var(--gold);font-style:italic}
+.section-sub{font-size:16px;color:var(--text2);line-height:1.8;font-weight:300;max-width:580px;margin-bottom:48px}
+
+/* Science Grid */
+.science-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:48px}
+.science-card{background:rgba(255,255,255,.03);border:1px solid var(--border);padding:28px 24px}
+.science-num{font-family:'Playfair Display',serif;font-size:36px;color:rgba(212,165,116,.2);margin-bottom:8px;line-height:1}
+.science-title{font-size:14px;font-weight:600;color:var(--gold);margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase}
+.science-desc{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* ── 5 STEPS ── */
+.steps-wrap{max-width:700px}
+.step{display:flex;gap:20px;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid rgba(212,165,116,.1)}
+.step:last-child{border-bottom:none}
+.step-num{
+  width:44px;height:44px;flex-shrink:0;border-radius:50%;
+  background:rgba(212,165,116,.1);border:1.5px solid rgba(212,165,116,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);
+}
+.step-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px}
+.step-desc{font-size:13px;color:var(--text2);line-height:1.6}
+.step-time{font-size:11px;font-family:'DM Mono',monospace;color:rgba(212,165,116,.5);margin-top:4px}
+
+/* ── WHAT YOU GET ── */
+.gets-wrap{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:48px}
+.get-card{
+  background:rgba(255,255,255,.03);border:1px solid var(--border);
+  padding:28px 24px;display:flex;gap:16px;align-items:flex-start;
+}
+.get-icon{font-size:24px;flex-shrink:0}
+.get-title{font-size:14px;font-weight:600;color:var(--gold);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.get-desc{font-size:13px;color:var(--text2);line-height:1.6}
+.get-tag{font-size:10px;font-family:'DM Mono',monospace;color:rgba(212,165,116,.4);margin-top:6px;letter-spacing:.08em}
+
+/* ── SCIENCE ── */
+.science-quote{
+  border-left:3px solid var(--gold);padding:20px 24px;
+  background:rgba(212,165,116,.04);border-radius:0 4px 4px 0;margin:32px 0;
+}
+.science-quote p{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--gold3);line-height:1.7}
+.science-quote cite{font-size:12px;color:var(--text2);display:block;margin-top:8px;letter-spacing:.06em}
+
+/* ── CTA SECTION ── */
+.cta-section{
+  background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:80px 5%;text-align:center;position:relative;overflow:hidden;
+}
+.cta-section::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(212,165,116,.06) 0%,transparent 60%)
+}
+.cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);color:var(--white);margin-bottom:12px}
+.cta-section h2 em{color:var(--gold);font-style:italic}
+.cta-section p{font-size:16px;color:var(--text2);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;font-weight:300;line-height:1.8}
+.cta-box{
+  display:inline-block;background:rgba(212,165,116,.08);
+  border:1px solid rgba(212,165,116,.25);border-radius:4px;
+  padding:32px 40px;max-width:480px;width:100%;margin-bottom:24px;
+}
+.cta-price{font-family:'Playfair Display',serif;font-size:48px;color:var(--gold);margin-bottom:4px;line-height:1}
+.cta-price-label{font-size:12px;color:var(--text2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px}
+.cta-includes{text-align:left;margin-bottom:24px}
+.cta-include{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);padding:6px 0;border-bottom:1px solid rgba(212,165,116,.08)}
+.cta-include:last-child{border-bottom:none}
+.cta-include .check{color:var(--gold);font-size:14px}
+.cta-btn{
+  display:block;width:100%;background:var(--gold);color:var(--bg3);
+  padding:18px;border-radius:2px;font-size:15px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;transition:all .2s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;
+}
+.cta-btn:hover{background:var(--gold2);transform:translateY(-1px)}
+.cta-fine{font-size:11px;color:var(--text2);margin-top:12px;letter-spacing:.04em}
+
+/* ── VIP TEASER ── */
+.vip-teaser{
+  background:rgba(212,165,116,.04);border:1px solid var(--border);
+  border-radius:4px;padding:32px;text-align:left;
+  max-width:560px;margin:0 auto;
+}
+.vip-teaser-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);margin-bottom:8px}
+.vip-teaser-desc{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:16px}
+.vip-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(212,165,116,.4);color:var(--gold);
+  padding:12px 24px;border-radius:2px;font-size:13px;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;transition:all .2s;
+  background:none;cursor:pointer;font-family:'DM Sans',sans-serif;
+}
+.vip-btn:hover{background:rgba(212,165,116,.08);border-color:var(--gold)}
+
+/* ── DISCLAIMER ── */
+.disclaimer{
+  padding:32px 5%;text-align:center;
+  font-size:11px;color:rgba(247,244,238,.25);line-height:1.8;
+  border-top:1px solid rgba(212,165,116,.08);max-width:800px;margin:0 auto;
 }
 
-.tag {
-  font-size: 0.62rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--sage);
+/* ── FOOTER ── */
+footer{
+  padding:24px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  border-top:1px solid var(--border);
 }
-h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.4rem, 9vw, 4rem);
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-}
-h1 em { color: var(--sage); font-style: italic; }
-.sub {
-  font-size: 0.88rem;
-  color: #9a9080;
-  line-height: 1.7;
-  max-width: 340px;
-}
+.footer-logo{font-family:'Playfair Display',serif;font-size:16px;color:var(--gold)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:11px;color:var(--text2);letter-spacing:.06em;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
 
-/* PDF CARD */
-.card {
-  width: 100%;
-  background: var(--cream);
-  color: var(--ink);
-  padding: 1.8rem;
-  border-top: 3px solid var(--sage);
-  text-align: left;
-}
-.card-badge {
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 0.6rem;
-}
-.card-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-.pillars {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.4rem;
-  margin-bottom: 1.4rem;
-}
-.pill-item {
-  font-size: 0.74rem;
-  color: var(--muted);
-  display: flex;
-  gap: 0.4rem;
-  align-items: baseline;
-}
-.pill-item span { color: var(--sage); font-size: 0.6rem; }
-.btn-gumroad {
-  display: block;
-  width: 100%;
-  background: var(--sage);
-  color: var(--cream);
-  text-align: center;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.95rem;
-  transition: opacity 0.2s;
-}
-.btn-gumroad:hover { opacity: 0.85; }
-.card-note {
-  font-size: 0.68rem;
-  color: var(--muted);
-  text-align: center;
-  margin-top: 0.6rem;
-}
+/* ── LANGUAGE ── */
+[data-lang="en"]{display:none}
+body.en [data-lang="de"]{display:none}
+body.en [data-lang="en"]{display:block}
 
-/* DIVIDER */
-.divider {
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #3a3530;
-}
+/* ── FADE IN ── */
+.fade{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.fade.in{opacity:1;transform:none}
 
-/* CONTACT */
-.contact {
-  width: 100%;
-  border: 1px solid rgba(124,154,126,0.2);
-  padding: 1.6rem 1.8rem;
-  text-align: center;
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr;gap:40px;text-align:center}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .hero-right{display:none}
+  .science-grid{grid-template-columns:1fr}
+  .gets-wrap{grid-template-columns:1fr}
+  .hero-facts{justify-content:center}
+  footer{flex-direction:column;align-items:flex-start}
+  .proof-strip{gap:20px}
 }
-.contact-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  font-style: italic;
-  font-weight: 300;
-  margin-bottom: 0.4rem;
-}
-.contact-sub {
-  font-size: 0.78rem;
-  color: #9a9080;
-  margin-bottom: 1.2rem;
-  line-height: 1.6;
-}
-.btns { display: flex; flex-direction: column; gap: 0.6rem; }
-.btn-c {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  text-decoration: none;
-  font-size: 0.78rem;
-  font-weight: 500;
-  padding: 0.8rem 1rem;
-  border: 1px solid;
-  transition: background 0.2s;
-}
-.btn-wa { border-color: #25d366; color: #25d366; }
-.btn-wa:hover { background: rgba(37,211,102,0.08); }
-.btn-em { border-color: rgba(124,154,126,0.4); color: var(--sage); }
-.btn-em:hover { background: rgba(124,154,126,0.08); }
-.btn-c svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
-
-footer {
-  margin-top: 2rem;
-  font-size: 0.65rem;
-  color: #3a3530;
-  text-align: center;
-}
-footer a { color: var(--sage); text-decoration: none; }
 </style>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-
 </head>
 <body>
 
-<div class="bg7">7</div>
-
-<div class="wrap">
-  <p class="tag">mindful7777 · Free Download</p>
-
-  <h1>The 7 Pillars of<br/><em>Mindful Living</em></h1>
-
-  <p class="sub">A practical PDF guide for more presence, better sleep, and aligned living. Free on Gumroad.</p>
-
-  <!-- PDF CARD -->
-  <div class="card">
-    <div class="card-badge">Free PDF · 12 pages · English</div>
-    <div class="card-title">The 7 Pillars of<br/>Mindful Living</div>
-    <div class="pillars">
-      <div class="pill-item"><span>✦</span> Presence</div>
-      <div class="pill-item"><span>✦</span> Morning Ritual</div>
-      <div class="pill-item"><span>✦</span> Breath</div>
-      <div class="pill-item"><span>✦</span> Sleep as Sacred</div>
-      <div class="pill-item"><span>✦</span> Walking in Nature</div>
-      <div class="pill-item"><span>✦</span> Inner Design</div>
-      <div class="pill-item"><span>✦</span> Gratitude</div>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg class="nav-logo-spiral" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="45" stroke="#D4A574" stroke-width="5.5" opacity=".9"/>
+      <circle cx="50" cy="50" r="34" stroke="#D4A574" stroke-width="4.2" opacity=".85"/>
+      <circle cx="50" cy="50" r="23.5" stroke="#D4A574" stroke-width="3.2" opacity=".8"/>
+      <circle cx="50" cy="50" r="13.5" stroke="#D4A574" stroke-width="2.4" opacity=".75"/>
+      <path d="M50,36 C58,36 65,43 65,51 C65,62 55,70 44,67 C33,64 27,53 31,42 C35,31 47,27 57,31 C62,34 63,41 58,44 C53,47 48,44 48,39" stroke="#D4A574" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".95"/>
+    </svg>
+    <span class="nav-logo-name">mindful7777</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="nav-lang">
+      <button class="lang-btn active" data-target="de" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" data-target="en" onclick="setLang('en')">EN</button>
     </div>
-    <a href="https://mindful777.gumroad.com" class="btn-gumroad" target="_blank" rel="noopener">
-      ↓ Get it free on Gumroad
+    <a href="https://mindful7777.gumroad.com/l/ucaan" target="_blank" rel="noopener">
+      <button class="nav-cta" data-lang="de">Kostenlos laden</button>
+      <button class="nav-cta" data-lang="en">Free Download</button>
     </a>
-    <p class="card-note">Pay what you want · including $0 · instant download</p>
   </div>
+</nav>
 
-  <div class="divider">— or go deeper —</div>
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-left fade">
 
-  <!-- CONTACT -->
-  <div class="contact">
-    <div class="contact-title">Ready for a 1:1 session?</div>
-    <p class="contact-sub">Write me directly. I read every message personally — no bots, no waiting lists.</p>
-    <div class="btns">
-      <a href="https://wa.me/4916346922255" class="btn-c btn-wa" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Message on WhatsApp
+      <div class="hero-badge" data-lang="de">🧠 Wissenschaftlich fundiert · Kostenlos</div>
+      <div class="hero-badge" data-lang="en">🧠 Science-based · Free of charge</div>
+
+      <h1 data-lang="de">Der Sock-Anchor<br><em>Protocol.</em></h1>
+      <h1 data-lang="en">The Sock-Anchor<br><em>Protocol.</em></h1>
+
+      <div class="hero-divider"></div>
+
+      <p class="hero-sub" data-lang="de">90 Sekunden. Jeden Abend. Dein Nervensystem schaltet von Beta auf Theta — ohne Esoterik, ohne Abo, ohne Vorwissen.</p>
+      <p class="hero-sub" data-lang="en">90 seconds. Every evening. Your nervous system shifts from Beta to Theta — no esoteric framing, no subscription, no prior knowledge.</p>
+
+      <div class="hero-facts">
+        <div class="fact"><div class="fact-num">90</div><div class="fact-label" data-lang="de">Sekunden</div><div class="fact-label" data-lang="en">Seconds</div></div>
+        <div class="fact"><div class="fact-num">8</div><div class="fact-label" data-lang="de">Seiten PDF</div><div class="fact-label" data-lang="en">Page PDF</div></div>
+        <div class="fact"><div class="fact-num">0€</div><div class="fact-label" data-lang="de">Kosten</div><div class="fact-label" data-lang="en">Cost</div></div>
+      </div>
+
+      <a href="https://mindful7777.gumroad.com/l/ucaan" target="_blank" rel="noopener">
+        <button class="cta-hero">
+          <span data-lang="de">Jetzt kostenlos laden</span>
+          <span data-lang="en">Download Free Now</span>
+          <span class="arrow">→</span>
+        </button>
       </a>
-      <a href="mailto:mindful7777@gmail.com" class="btn-c btn-em">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        Send an Email
-      </a>
+      <p class="free-note" data-lang="de">Kein Account nötig · <span>PDF + Audio · Sofort verfügbar</span></p>
+      <p class="free-note" data-lang="en">No account needed · <span>PDF + Audio · Available immediately</span></p>
+    </div>
+
+    <div class="hero-right fade">
+      <div class="spiral-wrap">
+        <!-- Animated Spiral -->
+        <svg class="spiral-svg" viewBox="-1.1 -1.1 2.2 2.2" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="0" cy="0" r="0.88" fill="none" stroke="#D4A574" stroke-width="0.055" opacity=".92"/>
+          <circle cx="0" cy="0" r="0.68" fill="none" stroke="#D4A574" stroke-width="0.042" opacity=".88"/>
+          <circle cx="0" cy="0" r="0.50" fill="none" stroke="#D4A574" stroke-width="0.032" opacity=".84"/>
+          <circle cx="0" cy="0" r="0.34" fill="none" stroke="#D4A574" stroke-width="0.024" opacity=".78"/>
+          <circle cx="0" cy="0" r="0.20" fill="none" stroke="#D4A574" stroke-width="0.016" opacity=".72"/>
+          <path d="M0,0 C0.12,0 0.22,0.08 0.28,0.18 C0.38,0.32 0.38,0.50 0.28,0.60 C0.14,0.74 -0.08,0.76 -0.22,0.62 C-0.38,0.46 -0.40,0.20 -0.28,0.04 C-0.16,-0.14 0.06,-0.22 0.22,-0.14 C0.32,-0.08 0.34,0.06 0.26,0.14 C0.18,0.22 0.04,0.20 0,-0.02"
+            fill="none" stroke="#D4A574" stroke-width="0.035" stroke-linecap="round" opacity=".95"/>
+          <circle cx="0" cy="0" r="0.035" fill="#E8C49A" opacity=".9"/>
+        </svg>
+
+        <!-- Pendulum overlay (not rotating) -->
+        <div class="pendulum-wrap" style="position:absolute;top:5%;left:25%;width:50%;height:65%">
+          <svg class="pend-svg" viewBox="0 0 100 160">
+            <!-- Pivot -->
+            <circle cx="50" cy="6" r="4" fill="#D4A574" opacity=".7"/>
+            <!-- Rod + Bob as animated group -->
+            <g class="pend-rod">
+              <line x1="50" y1="6" x2="50" y2="110" stroke="#E8C49A" stroke-width="1.2" stroke-dasharray="4 3" opacity=".45"/>
+              <!-- Bob glow -->
+              <circle cx="50" cy="115" r="16" fill="#D4A574" opacity=".08"/>
+              <circle cx="50" cy="115" r="10" fill="#D4A574" opacity=".18"/>
+              <circle cx="50" cy="115" r="6"  fill="#E8C49A" opacity=".88"/>
+            </g>
+          </svg>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <footer>
-    © mindful7777 · <a href="https://"></a> · Be the best version+
-  </footer>
+<!-- ════ PROOF STRIP ════ -->
+<div class="proof-strip">
+  <div class="proof-item"><span class="icon">🧬</span><span data-lang="de">Klassische Konditionierung</span><span data-lang="en">Classical Conditioning</span></div>
+  <div class="proof-item"><span class="icon">🫀</span><span data-lang="de">Vagus-Nerv Aktivierung</span><span data-lang="en">Vagus Nerve Activation</span></div>
+  <div class="proof-item"><span class="icon">🧠</span><span data-lang="de">Beta → Theta Übergang</span><span data-lang="en">Beta → Theta Transition</span></div>
+  <div class="proof-item"><span class="icon">⏱️</span><span data-lang="de">90 Sekunden Protokoll</span><span data-lang="en">90-Second Protocol</span></div>
 </div>
 
-<script src="assets/lang.js"></script>
+<!-- ════ WAS IST ES ════ -->
+<div style="background:var(--bg);padding:80px 5%">
+<div class="section fade" style="padding:0">
+  <div class="section-eyebrow" data-lang="de">Was ist der Sock-Anchor?</div>
+  <div class="section-eyebrow" data-lang="en">What is the Sock-Anchor?</div>
+  <h2 class="section-title" data-lang="de">Dein Nervensystem<br><em>gezielt konditionieren.</em></h2>
+  <h2 class="section-title" data-lang="en">Deliberately conditioning<br><em>your nervous system.</em></h2>
+  <p class="section-sub" data-lang="de">Das Sock-Anchor Protocol nutzt klassische Konditionierung (Pawlow), somatisches Ankern und Theta-Wellen-Induktion. Ein spezifischer Reiz — das Ausziehen weißer Socken — wird über 21 Tage mit tiefer Entspannung verknüpft. Danach reicht der Reiz allein.</p>
+  <p class="section-sub" data-lang="en">The Sock-Anchor Protocol uses classical conditioning (Pavlov), somatic anchoring, and theta wave induction. A specific stimulus — removing white socks — is paired with deep relaxation over 21 days. After that, the stimulus alone is enough.</p>
+
+  <div class="science-grid">
+    <div class="science-card">
+      <div class="science-num">01</div>
+      <div class="science-title" data-lang="de">Klassische Konditionierung</div>
+      <div class="science-title" data-lang="en">Classical Conditioning</div>
+      <div class="science-desc" data-lang="de">Pawlows Prinzip: Neutraler Reiz + unkonditionierte Reaktion = konditionierte Reaktion. Deine Socken werden zum Entspannungsanker.</div>
+      <div class="science-desc" data-lang="en">Pavlov's principle: neutral stimulus + unconditioned response = conditioned response. Your socks become the relaxation anchor.</div>
+    </div>
+    <div class="science-card">
+      <div class="science-num">02</div>
+      <div class="science-title" data-lang="de">Vagus-Nerv Aktivierung</div>
+      <div class="science-title" data-lang="en">Vagus Nerve Activation</div>
+      <div class="science-desc" data-lang="de">Spezifische Atemmuster aktivieren den Parasympathikus über den Vagus-Nerv. Herzrate sinkt. Cortisol fällt. Muskeltonus entspannt sich.</div>
+      <div class="science-desc" data-lang="en">Specific breathing patterns activate the parasympathetic nervous system via the vagus nerve. Heart rate drops. Cortisol falls. Muscle tone relaxes.</div>
+    </div>
+    <div class="science-card">
+      <div class="science-num">03</div>
+      <div class="science-title" data-lang="de">Theta-Wellen Induktion</div>
+      <div class="science-title" data-lang="en">Theta Wave Induction</div>
+      <div class="science-desc" data-lang="de">Das Protokoll führt das Gehirn sanft in den Theta-Bereich (4–8 Hz) — Zustand tiefer Entspannung, erhöhter Neuroplastizität und Einschlafvorbereitung.</div>
+      <div class="science-desc" data-lang="en">The protocol gently guides the brain into the Theta range (4–8 Hz) — a state of deep relaxation, heightened neuroplasticity, and sleep preparation.</div>
+    </div>
+  </div>
+
+  <div class="science-quote" data-lang="de">
+    <p>„Neuroplastizität bedeutet: Jedes Mal, wenn Reiz A mit Zustand B gemeinsam aktiviert wird, werden die entsprechenden Nervenpfade gestärkt. Wiederholung ist Architektur."</p>
+    <cite>— Grundprinzip der Hebbschen Lernregel</cite>
+  </div>
+  <div class="science-quote" data-lang="en">
+    <p>"Neuroplasticity means: every time stimulus A is co-activated with state B, the corresponding neural pathways are strengthened. Repetition is architecture."</p>
+    <cite>— Hebb's Rule of Learning, core principle</cite>
+  </div>
+</div>
+</div>
+
+<!-- ════ 5 SCHRITTE ════ -->
+<div style="padding:80px 5%;background:var(--bg3)">
+<div class="section fade" style="padding:0">
+  <div class="section-eyebrow" data-lang="de">Das Protokoll · 5 Schritte</div>
+  <div class="section-eyebrow" data-lang="en">The Protocol · 5 Steps</div>
+  <h2 class="section-title" data-lang="de">90 Sekunden.<br><em>Jeden Abend.</em></h2>
+  <h2 class="section-title" data-lang="en">90 seconds.<br><em>Every evening.</em></h2>
+
+  <div class="steps-wrap">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <div class="step-title" data-lang="de">Weisse Socken anziehen — immer dieselben</div>
+        <div class="step-title" data-lang="en">Put on white socks — always the same pair</div>
+        <div class="step-desc" data-lang="de">Der konditionierte Reiz wird festgelegt. Konsistenz ist entscheidend: gleiche Socken, gleiche Tageszeit, gleicher Ort.</div>
+        <div class="step-desc" data-lang="en">The conditioned stimulus is established. Consistency is key: same socks, same time of day, same location.</div>
+        <div class="step-time">00:00 — Setup</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <div class="step-title" data-lang="de">4-7-8 Atemzug · einmal</div>
+        <div class="step-title" data-lang="en">4-7-8 breath · once</div>
+        <div class="step-desc" data-lang="de">Einatmen 4 Sek, Halten 7 Sek, Ausatmen 8 Sek. Aktiviert den Parasympathikus. Cortisol beginnt zu sinken.</div>
+        <div class="step-desc" data-lang="en">Inhale 4 sec, hold 7 sec, exhale 8 sec. Activates the parasympathetic nervous system. Cortisol begins to drop.</div>
+        <div class="step-time">00:00–00:20 · Atemarbeit</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <div class="step-title" data-lang="de">Schultern einmal rückwärts rollen</div>
+        <div class="step-title" data-lang="en">Roll shoulders backward once</div>
+        <div class="step-desc" data-lang="de">Somatischer Reset. Löst den typischen Stressmuster-Rundrücken. Körper signalisiert: Bedrohung vorbei.</div>
+        <div class="step-desc" data-lang="en">Somatic reset. Releases the typical stress-pattern rounded back. The body signals: threat is over.</div>
+        <div class="step-time">00:20–00:30 · Körper</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <div class="step-title" data-lang="de">Socken ausziehen — langsam, bewusst</div>
+        <div class="step-title" data-lang="en">Remove socks — slowly, consciously</div>
+        <div class="step-desc" data-lang="de">Der Moment der Konditionierung. Reiz (Socken-Entfernen) trifft auf unkonditionierte Reaktion (Entspannung durch Schritt 2+3).</div>
+        <div class="step-desc" data-lang="en">The conditioning moment. Stimulus (sock removal) meets unconditioned response (relaxation from steps 2+3).</div>
+        <div class="step-time">00:30–01:00 · Konditionierung</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div>
+        <div class="step-title" data-lang="de">Interner Satz · still gesprochen</div>
+        <div class="step-title" data-lang="en">Internal phrase · spoken silently</div>
+        <div class="step-desc" data-lang="de">"Der Tag ist vorbei. Diese Zeit gehört mir." — Kognitiver Abschluss. Prefrontal Cortex schließt die Arbeitsschleife.</div>
+        <div class="step-desc" data-lang="en">"The day is done. This time is mine." — Cognitive closure. Prefrontal cortex closes the work loop.</div>
+        <div class="step-time">01:00–01:30 · Abschluss</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════ WAS DU BEKOMMST ════ -->
+<div style="background:var(--bg);padding:80px 5%">
+<div class="section fade" style="padding:0">
+  <div class="section-eyebrow" data-lang="de">Dein kostenloses Paket</div>
+  <div class="section-eyebrow" data-lang="en">Your free package</div>
+  <h2 class="section-title" data-lang="de">Was du<br><em>bekommst.</em></h2>
+  <h2 class="section-title" data-lang="en">What you<br><em>receive.</em></h2>
+
+  <div class="gets-wrap">
+    <div class="get-card">
+      <div class="get-icon">📄</div>
+      <div>
+        <div class="get-title" data-lang="de">PDF-Guide · 8 Seiten</div>
+        <div class="get-title" data-lang="en">PDF Guide · 8 Pages</div>
+        <div class="get-desc" data-lang="de">Das vollständige Protokoll mit wissenschaftlicher Erklärung, 21-Tage-Plan, Fehler-Checkliste und Progressions-Tracker.</div>
+        <div class="get-desc" data-lang="en">The complete protocol with scientific explanation, 21-day plan, error checklist, and progress tracker.</div>
+        <div class="get-tag">mindful7777 Design · Druckfertig</div>
+      </div>
+    </div>
+    <div class="get-card">
+      <div class="get-icon">🎧</div>
+      <div>
+        <div class="get-title" data-lang="de">Geführtes Audio · 8 Min</div>
+        <div class="get-title" data-lang="en">Guided Audio · 8 Min</div>
+        <div class="get-desc" data-lang="de">Professionell optimiertes Einschlaf-Audio mit Theta-Induktion, Pendel-Visualisierung und Atemführung von André.</div>
+        <div class="get-desc" data-lang="en">Professionally optimized sleep audio with theta induction, pendulum visualization, and breath guidance by André.</div>
+        <div class="get-tag">192kbps Stereo · Sofort streambar</div>
+      </div>
+    </div>
+    <div class="get-card">
+      <div class="get-icon">📋</div>
+      <div>
+        <div class="get-title" data-lang="de">21-Tage Tracker</div>
+        <div class="get-title" data-lang="en">21-Day Tracker</div>
+        <div class="get-desc" data-lang="de">Ausdruckbarer Konditionierungs-Plan. Abhaken, Notizen, Qualitätsbewertung pro Session.</div>
+        <div class="get-desc" data-lang="en">Printable conditioning plan. Check off, notes, quality rating per session.</div>
+        <div class="get-tag">Im PDF enthalten</div>
+      </div>
+    </div>
+    <div class="get-card">
+      <div class="get-icon">⚡</div>
+      <div>
+        <div class="get-title" data-lang="de">Sofort-Anwendung</div>
+        <div class="get-title" data-lang="en">Immediate Application</div>
+        <div class="get-desc" data-lang="de">Kein Vorwissen nötig. Kein Equipment. Kein Abo. Du kannst heute Abend starten.</div>
+        <div class="get-desc" data-lang="en">No prior knowledge needed. No equipment. No subscription. You can start tonight.</div>
+        <div class="get-tag">0€ · Für immer zugänglich</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════ CTA ════ -->
+<section class="cta-section fade">
+  <div data-lang="de">
+    <h2>Starte <em>heute Abend.</em></h2>
+    <p>Kostenlos. Sofort. Ohne Risiko. Dein Nervensystem wartet nicht.</p>
+  </div>
+  <div data-lang="en">
+    <h2>Start <em>tonight.</em></h2>
+    <p>Free. Instant. No risk. Your nervous system isn't waiting.</p>
+  </div>
+
+  <div class="cta-box">
+    <div class="cta-price">0,00€</div>
+    <div class="cta-price-label" data-lang="de">Kein Abo · Keine Kreditkarte · Sofortiger Download</div>
+    <div class="cta-price-label" data-lang="en">No subscription · No credit card · Instant download</div>
+    <div class="cta-includes">
+      <div class="cta-include"><span class="check">✦</span><span data-lang="de">PDF-Guide (8 Seiten, druckfertig)</span><span data-lang="en">PDF Guide (8 pages, print-ready)</span></div>
+      <div class="cta-include"><span class="check">✦</span><span data-lang="de">Geführtes Audio (8 Min, 192kbps)</span><span data-lang="en">Guided audio (8 min, 192kbps)</span></div>
+      <div class="cta-include"><span class="check">✦</span><span data-lang="de">21-Tage Konditionierungs-Tracker</span><span data-lang="en">21-day conditioning tracker</span></div>
+      <div class="cta-include"><span class="check">✦</span><span data-lang="de">Wissenschaftliche Erklärung</span><span data-lang="en">Scientific explanation</span></div>
+    </div>
+    <a href="https://mindful7777.gumroad.com/l/ucaan" target="_blank" rel="noopener">
+      <button class="cta-btn">
+        <span data-lang="de">Jetzt kostenlos laden →</span>
+        <span data-lang="en">Download Free Now →</span>
+      </button>
+    </a>
+    <div class="cta-fine" data-lang="de">via Gumroad · Keine Email-Pflicht · DSGVO-konform</div>
+    <div class="cta-fine" data-lang="en">via Gumroad · No email required · GDPR compliant</div>
+  </div>
+
+  <div style="height:48px"></div>
+
+  <div class="vip-teaser">
+    <div class="vip-teaser-title" data-lang="de">Bereit für mehr? → Premium7777</div>
+    <div class="vip-teaser-title" data-lang="en">Ready for more? → Premium7777</div>
+    <div class="vip-teaser-desc" data-lang="de">7 vollständige Bereiche: Tiefenentspannung, Schlaf, Selbsthypnose, Sporthypnose, Stressreduktion, Skript-Bibliothek, Audio-Studio. Einmalzahlung über Ko-fi. Passwort per Mail.</div>
+    <div class="vip-teaser-desc" data-lang="en">7 complete sections: deep relaxation, sleep, self-hypnosis, sports hypnosis, stress reduction, script library, audio studio. One-time payment via Ko-fi. Password by email.</div>
+    <a href="vip.html">
+      <button class="vip-btn">
+        <span data-lang="de">VIP-Bereich ansehen →</span>
+        <span data-lang="en">View VIP Area →</span>
+      </button>
+    </a>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <span data-lang="de">Alle Inhalte dienen ausschließlich der Entspannung und dem persönlichen Wohlbefinden. Sie ersetzen keine psychologische oder medizinische Beratung oder Behandlung. Nicht beim Autofahren oder Bedienen von Maschinen verwenden. Bei diagnostizierter psychischer Erkrankung: Rücksprache mit Fachkraft empfohlen. Telefonseelsorge: 0800 111 0 111 (kostenlos, 24/7).</span>
+  <span data-lang="en">All content is for relaxation and personal well-being only. Not a substitute for psychological or medical advice or treatment. Do not use while driving or operating machinery. With a diagnosed mental health condition: consult a professional first. Crisis line (DE): 0800 111 0 111 (free, 24/7).</span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">mindful7777</div>
+  <div class="footer-links">
+    <a href="impressum.html" data-lang="de">Impressum</a>
+    <a href="impressum.html" data-lang="en">Imprint</a>
+    <a href="datenschutz.html" data-lang="de">Datenschutz</a>
+    <a href="datenschutz.html" data-lang="en">Privacy</a>
+    <a href="vip.html">VIP</a>
+    <a href="index.html">Home</a>
+  </div>
+</footer>
+
+<script>
+// Lang
+function setLang(lang){
+  document.body.classList.toggle('en', lang==='en');
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.target===lang));
+}
+
+// Scroll fade-in
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
+},{threshold:.1});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
