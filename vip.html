@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>VIP Premium · mindful7777</title>
+  <title>VIP Protocol Stack · mindful7777</title>
+  <meta name="description" content="7 Protokolle. Kein Esoterik-Bullshit. Science-based. 25 €/Monat — monatlich kündbar." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
@@ -18,1002 +16,634 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
 
   <style>
-    /* =========================
-       THEME / RESET
-    ========================= */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
     :root{
-      --blue:#1B2845;
-      --blue2:#253659;
-      --gold:#D4A574;
-      --gold2:#E8C49A;
-      --beige:#F7F4EE;
-      --white:#FFFFFF;
-      --text:#3A3A3A;
-      --muted:#6B6B6B;
+      --bg:#060608;
+      --surface:#0f0f13;
+      --surface2:#16161c;
+      --gold:#d4af37;
+      --gold2:#e8cc6a;
+      --gold-dim:rgba(212,175,55,.12);
+      --border:rgba(212,175,55,.18);
+      --border2:rgba(212,175,55,.08);
+      --text:#e4e0d8;
+      --muted:rgba(228,224,216,.5);
+      --white:#fff;
+      --red:#c84b4b;
+      --green:#4ba87d;
+      --shadow:0 20px 60px rgba(0,0,0,.4);
+    }
+    body{background:var(--bg);color:var(--text);font-family:"DM Sans",system-ui,sans-serif;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
 
-      --bg-dark:#0d1710;
-      --bg-dark2:#111f15;
+    /* grain */
+    body::after{content:"";position:fixed;inset:0;opacity:.018;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-      --m-gold:#c8a84b;
-      --m-gold2:#e8d090;
-      --m-gold3:#f5edd8;
-      --border:rgba(200,168,75,.22);
-      --m-text:rgba(212,207,196,.6);
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,8,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .nav-logo{font-family:"Playfair Display",serif;font-size:18px;color:var(--gold);letter-spacing:.04em}
+    .nav-right{display:flex;gap:12px;align-items:center}
+    .nav-home{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+    .nav-home:hover{color:var(--gold)}
+    .nav-login-btn{background:var(--gold);color:#000;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:9px 20px;border:none;cursor:pointer;font-family:inherit;transition:opacity .2s}
+    .nav-login-btn:hover{opacity:.85}
 
-      --danger:#c84b4b;
-      --shadow:0 12px 40px rgba(0,0,0,.18);
-    }
+    /* ── PUBLIC SHELL ── */
+    #publicShell{display:block}
+    #memberShell{display:none}
 
-    body{
-      font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--blue);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-    a{ color: inherit; text-decoration: none; }
-    h1,h2,h3{ font-family:"Playfair Display", serif; }
+    /* HERO */
+    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 5% 80px;position:relative;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(212,175,55,.05) 0%,transparent 70%);pointer-events:none}
+    .hero-kicker{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+    .hero-title{font-family:"Playfair Display",serif;font-size:clamp(40px,7vw,80px);font-weight:400;line-height:1.0;max-width:860px;margin-bottom:24px;color:var(--white)}
+    .hero-title em{color:var(--gold);font-style:italic}
+    .hero-sub{font-size:17px;color:var(--muted);max-width:520px;line-height:1.8;margin-bottom:40px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:56px}
+    .btn-primary{background:var(--gold);color:#000;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:16px 36px;display:inline-block;transition:opacity .2s;border:none;cursor:pointer;font-family:inherit}
+    .btn-primary:hover{opacity:.85}
+    .btn-ghost{border:1px solid var(--border);color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:15px 28px;display:inline-block;transition:all .2s;cursor:pointer;background:transparent;font-family:inherit}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 
-    /* subtle grain overlay */
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      opacity:.025;
-      pointer-events:none;
-      z-index:9998;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
+    /* Price box in hero */
+    .hero-price-box{background:var(--surface);border:1px solid var(--gold);padding:28px 32px;max-width:440px;position:relative}
+    .price-box-badge{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+    .price-box-old{font-size:12px;color:var(--muted);text-decoration:line-through;margin-bottom:4px}
+    .price-box-main{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
+    .price-num{font-family:"Playfair Display",serif;font-size:44px;color:var(--gold)}
+    .price-period{font-size:14px;color:var(--muted)}
+    .price-includes{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+    .price-includes li{font-size:13px;color:var(--muted);padding-left:18px;position:relative}
+    .price-includes li::before{content:"→";position:absolute;left:0;color:var(--gold)}
+    .price-includes li strong{color:var(--text)}
+    .price-cta{display:block;width:100%;background:var(--gold);color:#000;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:15px;text-align:center;transition:opacity .2s}
+    .price-cta:hover{opacity:.85}
+    .price-note{font-size:10px;color:rgba(228,224,216,.3);text-align:center;margin-top:8px}
 
-    /* =========================
-       PUBLIC SHELL
-    ========================= */
-    #publicShell{ display:block; }
-    #memberShell{ display:none; }
+    /* PROTOCOL PREVIEW SECTION */
+    .proto-section{padding:100px 5%;background:var(--surface)}
+    .sec-kicker{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+    .sec-title{font-family:"Playfair Display",serif;font-size:clamp(28px,4vw,50px);font-weight:400;line-height:1.1;margin-bottom:20px;color:var(--white)}
+    .sec-title em{color:var(--gold);font-style:italic}
+    .sec-sub{font-size:15px;color:var(--muted);line-height:1.8;max-width:600px;margin-bottom:56px}
 
-    nav{
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      padding: 16px 5%;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      background: rgba(27,40,69,.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(212,165,116,.12);
-    }
-    .nav-left{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width: 180px;
-    }
-    .nav-logo{
-      font-family: "Playfair Display", serif;
-      font-size: 20px;
-      color: var(--gold);
-      letter-spacing: .04em;
-    }
-    .nav-badge{
-      font-size: 10px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(212,165,116,.35);
-      padding: 5px 10px;
-      border-radius: 2px;
-      background: rgba(212,165,116,.06);
-      white-space: nowrap;
-    }
+    .proto-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px}
+    .proto-card{background:var(--bg);border:1px solid var(--border2);padding:32px;position:relative;transition:border-color .2s}
+    .proto-card:hover{border-color:var(--border)}
+    .proto-card.live{border-color:rgba(75,168,125,.3)}
+    .proto-card.live:hover{border-color:var(--green)}
+    .proto-num{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.15em;color:rgba(212,175,55,.5);margin-bottom:12px}
+    .proto-status{position:absolute;top:20px;right:20px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:3px 8px;border:1px solid}
+    .proto-status.live{color:var(--green);border-color:rgba(75,168,125,.4);background:rgba(75,168,125,.06)}
+    .proto-status.build{color:var(--gold);border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.06)}
+    .proto-status.planned{color:var(--muted);border-color:rgba(228,224,216,.1);background:transparent}
+    .proto-title{font-family:"Playfair Display",serif;font-size:20px;font-weight:400;color:var(--white);margin-bottom:10px;line-height:1.2;padding-right:60px}
+    .proto-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+    .proto-tags{display:flex;flex-wrap:wrap;gap:6px}
+    .proto-tag{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(212,175,55,.5);border:1px solid rgba(212,175,55,.12);padding:3px 8px}
+    .proto-lock{font-size:11px;color:rgba(228,224,216,.3);margin-top:12px;letter-spacing:.05em}
+    .proto-lock.live{color:var(--green)}
 
-    .nav-right{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .nav-lang{
-      display:flex; gap:6px;
-    }
-    .lang-btn{
-      background:none;
-      border:1px solid rgba(255,255,255,.12);
-      color: rgba(255,255,255,.45);
-      padding:6px 10px;
-      border-radius: 2px;
-      font-size: 11px;
-      letter-spacing: .1em;
-      cursor:pointer;
-      transition: all .2s;
-    }
-    .lang-btn.active, .lang-btn:hover{
-      border-color: var(--gold);
-      color: var(--gold);
-    }
+    /* OBJECTION SECTION */
+    .obj-section{padding:80px 5%}
+    .obj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;margin-top:40px}
+    .obj-card{background:var(--surface);border:1px solid var(--border2);padding:28px}
+    .obj-einwand{font-size:12px;color:var(--muted);font-style:italic;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border2)}
+    .obj-counter{font-size:14px;color:var(--text);line-height:1.6}
 
-    .nav-login-btn{
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      padding: 7px 14px;
-      border: 1px solid rgba(212,165,116,.4);
-      border-radius: 2px;
-      color: var(--gold);
-      background: none;
-      cursor: pointer;
-      transition: all .2s;
-    }
-    .nav-login-btn:hover{ background: rgba(212,165,116,.08); }
+    /* STRIPE WIDGET */
+    .stripe-section{padding:60px 5%;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .stripe-inner{max-width:560px;margin:0 auto;text-align:center}
+    .stripe-kicker{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+    .stripe-title{font-family:"Playfair Display",serif;font-size:24px;font-weight:400;color:var(--white);margin-bottom:8px}
+    .stripe-sub{font-size:13px;color:var(--muted);margin-bottom:28px;line-height:1.7}
+    .stripe-widget-wrap{display:flex;justify-content:center;margin-bottom:12px}
+    .stripe-note{font-size:10px;color:rgba(228,224,216,.25)}
 
-    .hero{
-      min-height: 100vh;
-      display:flex;
-      align-items:center;
-      position: relative;
-      overflow:hidden;
-      background: var(--blue);
-    }
-    .hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(ellipse 70% 60% at 100% 0%,rgba(212,165,116,.08) 0%,transparent 60%),
-        radial-gradient(ellipse 50% 50% at 0% 100%,rgba(37,54,89,.85) 0%,transparent 60%);
-      pointer-events:none;
-    }
-    .hero-content{
-      position:relative;
-      z-index:2;
-      padding: 140px 5% 90px;
-      max-width: 920px;
-    }
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      font-size:11px;
-      letter-spacing:.22em;
-      color: var(--gold);
-      text-transform: uppercase;
-      font-weight: 500;
-      margin-bottom: 26px;
-      border:1px solid rgba(212,165,116,.28);
-      padding: 8px 16px;
-      border-radius: 2px;
-      background: rgba(212,165,116,.04);
-    }
-    .eyebrow::before{
-      content:"";
-      width:6px; height:6px;
-      background: var(--gold);
-      border-radius: 50%;
-      opacity: .9;
-    }
-    .hero h1{
-      font-size: clamp(40px, 6.5vw, 82px);
-      color: var(--white);
-      line-height: 1.06;
-    }
-    .hero h1 em{
-      display:block;
-      color: var(--gold);
-      font-style: italic;
-      margin-top: 6px;
-    }
-    .hero-sub{
-      margin-top: 22px;
-      font-size: 17px;
-      line-height: 1.85;
-      color: rgba(255,255,255,.58);
-      max-width: 640px;
-      font-weight: 300;
-    }
-    .hero-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap: wrap;
-      margin-top: 34px;
-      align-items:center;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 14px 18px;
-      border-radius: 2px;
-      font-size: 12px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      cursor:pointer;
-      border:1px solid transparent;
-      transition: all .2s;
-      font-weight: 600;
-    }
-    .btn.primary{
-      background: var(--gold);
-      color: var(--blue);
-    }
-    .btn.primary:hover{
-      background: var(--gold2);
-      transform: translateY(-1px);
-    }
-    .btn.ghost{
-      background: transparent;
-      border-color: rgba(212,165,116,.35);
-      color: rgba(255,255,255,.75);
-    }
-    .btn.ghost:hover{
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-1px);
-    }
+    /* PASSWORD MODAL */
+    #pwModal{position:fixed;inset:0;z-index:9000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(6,6,8,.88);backdrop-filter:blur(12px)}
+    #pwModal.open{display:flex}
+    .pw-box{background:var(--surface);border:1px solid var(--gold);padding:48px 40px;max-width:420px;width:100%;text-align:center;position:relative}
+    .pw-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;line-height:1;transition:color .2s}
+    .pw-close:hover{color:var(--gold)}
+    .pw-title{font-family:"Playfair Display",serif;font-size:28px;font-weight:400;color:var(--white);margin-bottom:4px}
+    .pw-title span{color:var(--gold)}
+    .pw-sub{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:32px}
+    .pw-label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;text-align:left}
+    .pw-input{width:100%;background:transparent;border:1px solid var(--border);color:var(--text);font-size:18px;font-family:"DM Mono",monospace;padding:14px 16px;letter-spacing:.3em;text-align:center;outline:none;margin-bottom:12px;transition:border-color .2s}
+    .pw-input:focus{border-color:var(--gold)}
+    .pw-err{font-size:12px;color:var(--red);margin-bottom:12px;min-height:18px;transition:opacity .3s;opacity:0}
+    .pw-err.show{opacity:1}
+    .pw-btn{width:100%;background:var(--gold);color:#000;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:15px;border:none;cursor:pointer;font-family:inherit;transition:opacity .2s;margin-bottom:16px}
+    .pw-btn:hover{opacity:.85}
+    .pw-hint{font-size:11px;color:var(--muted);line-height:1.6}
+    .pw-hint a{color:var(--gold);border-bottom:1px solid rgba(212,175,55,.3)}
 
-    /* Stripe Widget Wrapper */
-    .stripe-widget-wrap{
-      margin-top: 40px;
-      padding: 24px;
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(212,165,116,.18);
-      border-radius: 8px;
-      max-width: 480px;
-    }
-    .stripe-label{
-      font-size: 11px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 14px;
-      text-align: center;
-    }
+    /* ── MEMBER SHELL ── */
+    .m-shell{background:var(--bg);min-height:100vh}
+    .m-nav{position:sticky;top:0;z-index:100;background:rgba(6,6,8,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 5%;display:flex;align-items:center;justify-content:space-between}
+    .m-nav-logo{font-family:"Playfair Display",serif;font-size:16px;color:var(--gold)}
+    .m-nav-actions{display:flex;gap:12px;align-items:center}
+    .m-chip{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:4px 10px}
+    .m-logout{background:transparent;border:1px solid rgba(228,224,216,.1);color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:7px 14px;cursor:pointer;font-family:inherit;transition:all .2s}
+    .m-logout:hover{border-color:var(--red);color:var(--red)}
 
-    .sections{
-      background: var(--beige);
-      padding: 90px 5%;
-    }
-    .sec-head{
-      margin-bottom: 34px;
-    }
-    .sec-kicker{
-      font-size: 11px;
-      letter-spacing:.2em;
-      color: var(--gold);
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    .sec-title{
-      font-size: clamp(26px, 4vw, 44px);
-      color: var(--blue);
-      line-height: 1.15;
-      margin-bottom: 14px;
-    }
-    .sec-sub{
-      font-size: 16px;
-      line-height: 1.85;
-      color: var(--muted);
-      max-width: 650px;
-      font-weight: 300;
-    }
+    /* Member hero */
+    .m-hero{padding:80px 5% 60px;border-bottom:1px solid var(--border2)}
+    .m-hero-kicker{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+    .m-hero-title{font-family:"Playfair Display",serif;font-size:clamp(32px,5vw,56px);font-weight:400;color:var(--white);margin-bottom:12px;line-height:1.05}
+    .m-hero-title em{color:var(--gold);font-style:italic}
+    .m-hero-sub{font-size:15px;color:var(--muted);line-height:1.8;max-width:560px}
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-      gap: 2px;
-      margin-top: 28px;
-      background: rgba(0,0,0,.05);
-    }
-    .card{
-      background: var(--white);
-      padding: 28px 26px;
-      border-top: 2px solid transparent;
-      transition: all .25s;
-      cursor:pointer;
-      position: relative;
-      overflow:hidden;
-    }
-    .card::after{
-      content:"🔐";
-      position:absolute;
-      top:18px; right:18px;
-      opacity:.22;
-      font-size: 14px;
-    }
-    .card:hover{
-      border-top-color: var(--gold);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(27,40,69,.10);
-    }
-    .card-num{
-      font-family:"Playfair Display", serif;
-      font-size: 46px;
-      color: rgba(212,165,116,.18);
-      line-height:1;
-      margin-bottom: 8px;
-    }
-    .card-title{
-      font-family:"Playfair Display", serif;
-      font-size: 20px;
-      color: var(--blue);
-      margin-bottom: 8px;
-    }
-    .card-desc{
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
-    }
+    /* Member stats */
+    .m-stats{display:flex;gap:40px;flex-wrap:wrap;padding:28px 5%;border-bottom:1px solid var(--border2);background:var(--surface)}
+    .m-stat{display:flex;flex-direction:column;gap:4px}
+    .m-stat-num{font-family:"Playfair Display",serif;font-size:24px;color:var(--gold)}
+    .m-stat-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 
-    footer{
-      background: var(--blue);
-      padding: 28px 5%;
-      border-top: 1px solid rgba(212,165,116,.08);
-      color: rgba(255,255,255,.55);
-    }
-    .foot-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      flex-wrap:wrap;
-      gap: 18px;
-      margin-bottom: 14px;
-    }
-    .foot-logo{
-      font-family:"Playfair Display", serif;
-      font-size: 18px;
-      color: var(--gold);
-    }
-    .foot-links{
-      display:flex;
-      gap: 18px;
-      flex-wrap:wrap;
-    }
-    .foot-links a{
-      font-size: 12px;
-      color: rgba(255,255,255,.35);
-    }
-    .foot-links a:hover{ color: var(--gold); }
-    .foot-note{
-      font-size: 11px;
-      line-height: 1.8;
-      color: rgba(255,255,255,.22);
-      border-top: 1px solid rgba(255,255,255,.06);
-      padding-top: 14px;
-    }
+    /* Member protocol grid */
+    .m-protocols{padding:60px 5%}
+    .m-proto-header{margin-bottom:40px}
+    .m-proto-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px}
+    .m-proto-card{background:var(--surface);border:1px solid var(--border2);padding:32px;position:relative;transition:border-color .2s}
+    .m-proto-card:hover{border-color:var(--border)}
+    .m-proto-card.active{border-color:rgba(75,168,125,.35);background:rgba(75,168,125,.03)}
+    .m-proto-card.building{border-color:rgba(212,175,55,.25)}
+    .m-proto-card.locked{opacity:.6}
+    .m-proto-badge{position:absolute;top:20px;right:20px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:3px 8px;border:1px solid}
+    .m-proto-badge.active{color:var(--green);border-color:rgba(75,168,125,.4);background:rgba(75,168,125,.06)}
+    .m-proto-badge.building{color:var(--gold);border-color:rgba(212,175,55,.3)}
+    .m-proto-badge.locked{color:var(--muted);border-color:rgba(228,224,216,.1)}
+    .m-proto-num{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.15em;color:rgba(212,175,55,.5);margin-bottom:12px}
+    .m-proto-title{font-family:"Playfair Display",serif;font-size:20px;font-weight:400;color:var(--white);margin-bottom:10px;line-height:1.2;padding-right:60px}
+    .m-proto-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px}
 
-    /* =========================
-       LANGUAGE TOGGLE
-    ========================= */
-    [data-lang="en"]{ display:none; }
-    body.en [data-lang="de"]{ display:none; }
-    body.en [data-lang="en"]{ display:block; }
+    /* Content items inside card */
+    .m-proto-content{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+    .m-content-item{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);padding:8px 10px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04)}
+    .m-content-item .icon{font-size:13px;flex-shrink:0}
+    .m-content-item .label{flex:1}
+    .m-content-item .status{font-size:9px;letter-spacing:.1em;text-transform:uppercase}
+    .m-content-item .status.ready{color:var(--green)}
+    .m-content-item .status.soon{color:var(--gold)}
+    .m-content-item .status.planned{color:rgba(228,224,216,.2)}
+    .m-proto-action{display:block;background:var(--gold);color:#000;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:12px;text-align:center;transition:opacity .2s}
+    .m-proto-action:hover{opacity:.85}
+    .m-proto-action.ghost{background:transparent;color:var(--muted);border:1px solid var(--border2)}
 
-    /* =========================
-       PASSWORD MODAL
-    ========================= */
-    #pwModal{
-      display:none;
-      position:fixed;
-      inset:0;
-      z-index:9999;
-      background: rgba(13,23,16,.84);
-      backdrop-filter: blur(8px);
-      align-items:center;
-      justify-content:center;
-      padding: 18px;
-    }
-    #pwModal.open{ display:flex; }
+    /* Member upsell strip */
+    .m-upsell{background:var(--surface2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+    .m-upsell-text .label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+    .m-upsell-text .title{font-family:"Playfair Display",serif;font-size:18px;color:var(--white)}
+    .m-upsell-cta{background:var(--gold);color:#000;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:12px 24px;transition:opacity .2s;white-space:nowrap}
+    .m-upsell-cta:hover{opacity:.85}
 
-    .pw-box{
-      width: min(440px, 96vw);
-      background: var(--bg-dark2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 30px 26px 24px;
-      position:relative;
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .pw-box::before{
-      content:"";
-      position:absolute;
-      top:-70px; left:50%;
-      transform: translateX(-50%);
-      width: 240px; height: 240px;
-      background: radial-gradient(circle, rgba(200,168,75,.10) 0%, transparent 70%);
-      pointer-events:none;
-    }
-    .pw-close{
-      position:absolute;
-      top:12px; right:12px;
-      background:none;
-      border:none;
-      cursor:pointer;
-      color: rgba(200,168,75,.5);
-      font-size: 18px;
-    }
-    .pw-close:hover{ color: var(--m-gold); }
-    .pw-title{
-      font-family: "Cormorant Garamond", serif;
-      font-size: 34px;
-      font-weight: 300;
-      color: var(--m-gold3);
-      text-align:center;
-      margin-top: 2px;
-    }
-    .pw-title span{ color: var(--m-gold); }
-    .pw-sub{
-      text-align:center;
-      margin-top: 6px;
-      font-size: 11px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: rgba(200,168,75,.45);
-      margin-bottom: 18px;
-    }
-    .pw-label{
-      display:block;
-      font-size: 11px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--m-gold);
-      margin-bottom: 8px;
-    }
-    .pw-input{
-      width:100%;
-      background: rgba(0,0,0,.35);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 12px;
-      font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 15px;
-      color: var(--m-gold3);
-      outline:none;
-      letter-spacing: .10em;
-    }
-    .pw-input:focus{ border-color: var(--m-gold); }
-    .pw-err{
-      min-height: 18px;
-      margin-top: 10px;
-      font-size: 13px;
-      color: var(--danger);
-      text-align:center;
-      opacity:0;
-      transition: opacity .2s;
-    }
-    .pw-err.show{ opacity: 1; }
-    .pw-btn{
-      width:100%;
-      margin-top: 14px;
-      padding: 12px 14px;
-      border:none;
-      border-radius: 10px;
-      background: var(--m-gold);
-      color: #1a2e1f;
-      cursor:pointer;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      transition: all .2s;
-    }
-    .pw-btn:hover{
-      background: var(--m-gold2);
-      transform: translateY(-1px);
-    }
-    .pw-hint{
-      text-align:center;
-      margin-top: 12px;
-      font-size: 12px;
-      color: rgba(200,168,75,.35);
-    }
+    /* Member discord box */
+    .m-discord{padding:60px 5%;background:var(--surface);border-top:1px solid var(--border2)}
+    .m-discord-inner{max-width:640px}
+    .m-discord-title{font-family:"Playfair Display",serif;font-size:26px;font-weight:400;color:var(--white);margin-bottom:12px}
+    .m-discord-sub{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:24px}
+    .m-discord-rhythm{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+    .m-discord-day{display:flex;gap:16px;font-size:13px}
+    .m-discord-day .day{color:var(--gold);font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.08em;min-width:80px}
+    .m-discord-day .content{color:var(--muted)}
 
-    /* =========================
-       MEMBER SHELL
-    ========================= */
-    #memberShell{
-      min-height: 100vh;
-      background: var(--bg-dark);
-      color: var(--m-gold3);
-    }
-    .m-top{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 14px 5%;
-      background: rgba(13,23,16,.90);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .m-brand{
-      font-family:"Cormorant Garamond", serif;
-      font-weight: 300;
-      font-size: 22px;
-      letter-spacing: .04em;
-    }
-    .m-brand span{ color: var(--m-gold); }
-    .m-actions{
-      display:flex;
-      gap: 10px;
-      align-items:center;
-      flex-wrap: wrap;
-    }
-    .m-chip{
-      font-size: 11px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      padding: 7px 10px;
-      border: 1px solid rgba(200,168,75,.30);
-      border-radius: 999px;
-      color: var(--m-gold);
-      background: rgba(200,168,75,.06);
-      white-space: nowrap;
-    }
-    .m-logout{
-      border: 1px solid rgba(200,168,75,.30);
-      background: transparent;
-      color: rgba(200,168,75,.75);
-      padding: 8px 10px;
-      border-radius: 999px;
-      cursor:pointer;
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-    .m-logout:hover{ border-color: var(--m-gold); color: var(--m-gold); }
+    footer{border-top:1px solid var(--border2);padding:32px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+    .footer-logo{font-family:"Playfair Display",serif;color:var(--gold);font-size:14px}
+    .footer-links{display:flex;gap:20px;flex-wrap:wrap}
+    .footer-links a{font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+    .footer-links a:hover{color:var(--gold)}
+    .footer-copy{font-size:10px;color:rgba(228,224,216,.2);width:100%}
 
-    .m-wrap{
-      padding: 30px 5% 60px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .m-head{
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.02);
-      border-radius: 16px;
-      padding: 22px 20px;
-      box-shadow: 0 12px 30px rgba(0,0,0,.14);
-    }
-    .m-kicker{
-      font-size: 11px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--m-gold);
-      margin-bottom: 8px;
-    }
-    .m-title{
-      font-family:"Cormorant Garamond", serif;
-      font-weight: 300;
-      font-size: 42px;
-      line-height: 1.05;
-    }
-    .m-title em{ color: var(--m-gold); font-style: italic; }
-    .m-desc{
-      margin-top: 10px;
-      color: var(--m-text);
-      line-height: 1.9;
-      font-size: 15px;
-      max-width: 780px;
-    }
-
-    .m-grid{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
-      gap: 12px;
-    }
-    .m-card{
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.02);
-      border-radius: 14px;
-      padding: 16px 16px;
-      cursor:pointer;
-      transition: transform .2s, border-color .2s, background .2s;
-    }
-    .m-card:hover{
-      transform: translateY(-2px);
-      border-color: rgba(200,168,75,.55);
-      background: rgba(255,255,255,.03);
-    }
-    .m-card-num{
-      font-family:"DM Mono", monospace;
-      font-size: 11px;
-      color: rgba(200,168,75,.45);
-      letter-spacing: .12em;
-      margin-bottom: 10px;
-    }
-    .m-card-title{
-      font-family:"Cormorant Garamond", serif;
-      font-size: 20px;
-      font-weight: 300;
-      margin-bottom: 6px;
-      color: var(--m-gold3);
-    }
-    .m-card-desc{
-      color: var(--m-text);
-      line-height: 1.7;
-      font-size: 13px;
-    }
-
-    /* responsive */
-    @media (max-width: 640px){
-      .nav-left{ min-width: auto; }
-      .nav-badge{ display:none; }
-      .hero-content{ padding: 120px 5% 80px; }
-      .m-title{ font-size: 34px; }
+    @media(max-width:600px){
+      .hero{padding:100px 5% 60px}
+      .hero-price-box{margin-top:40px}
+      .m-hero{padding:60px 5% 40px}
+      nav,m-nav{padding:14px 5%}
     }
   </style>
-
 </head>
-
 <body>
-  <!-- =========================
-       PASSWORD MODAL
-  ========================= -->
-  <div id="pwModal" role="dialog" aria-modal="true" aria-label="Login">
-    <div class="pw-box">
-      <button class="pw-close" type="button" onclick="closeModal()" aria-label="Schließen">✕</button>
-      <div class="pw-title">mindful<span>7777</span></div>
-      <div class="pw-sub">Premium · Mitgliederbereich</div>
 
-      <label class="pw-label" for="pwInput">Passwort</label>
-      <input class="pw-input" id="pwInput" type="password" placeholder="••••••••" autocomplete="off" />
+<!-- ── NAV (shared) ── -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">mindful<span style="color:var(--muted)">7777</span></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-home">← Startseite</a>
+    <button class="nav-login-btn" onclick="openModal()">🔐 VIP Login</button>
+  </div>
+</nav>
 
-      <div class="pw-err" id="pwErr">Falsches Passwort. Bitte erneut versuchen.</div>
-      <button class="pw-btn" type="button" onclick="checkPw()">Eintreten ✦</button>
+<!-- ── PASSWORD MODAL ── -->
+<div id="pwModal" role="dialog" aria-modal="true">
+  <div class="pw-box">
+    <button class="pw-close" onclick="closeModal()">✕</button>
+    <div class="pw-title">mindful<span>7777</span></div>
+    <div class="pw-sub">VIP · Protocol Stack</div>
+    <label class="pw-label" for="pwInput">Passwort eingeben</label>
+    <input class="pw-input" id="pwInput" type="password" placeholder="••••" autocomplete="off" />
+    <div class="pw-err" id="pwErr">Falsches Passwort. Passwort per WhatsApp anfordern.</div>
+    <button class="pw-btn" onclick="checkPw()">Eintreten →</button>
+    <div class="pw-hint">Noch kein Passwort? <a href="https://ko-fi.com/mindf7777" target="_blank">VIP aktivieren →</a> oder <a href="https://wa.me/4916346922255" target="_blank">WhatsApp</a></div>
+  </div>
+</div>
 
-      <div class="pw-hint" data-lang="de">Passwort per privater Nachricht anfordern</div>
-      <div class="pw-hint" data-lang="en">Request the password via private message</div>
+<!-- ══════════════════════════════════
+     PUBLIC SHELL
+══════════════════════════════════ -->
+<div id="publicShell">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:start;width:100%">
+      <div>
+        <div class="hero-kicker">mindful7777 · VIP Protocol Stack</div>
+        <h1 class="hero-title">7 Protokolle.<br/>1 System.<br/><em>Kein Bullshit.</em></h1>
+        <p class="hero-sub">Science-based. Vagus-Nerv. Pavlov-Konditionierung. Beta→Theta. Alles, was du brauchst, um dein Nervensystem systematisch zu trainieren — messbar, reproduzierbar, on demand.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="openModal()">🔐 Ich habe ein Passwort</button>
+          <a href="https://ko-fi.com/mindf7777" class="btn-ghost" target="_blank">VIP aktivieren — 25 €/Monat →</a>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px">Noch kein Zugang? <a href="https://wa.me/4916346922255" style="color:var(--gold)" target="_blank">WhatsApp → Passwort in 5 Min.</a></p>
+      </div>
+      <div class="hero-price-box" style="min-width:320px;max-width:360px">
+        <div class="price-box-badge">Best Value · VIP Stack</div>
+        <div class="price-box-old">Normalerweise 47 €/Monat</div>
+        <div class="price-box-main">
+          <div class="price-num">25 €</div>
+          <div class="price-period">/ Monat<br/>monatl. kündbar</div>
+        </div>
+        <ul class="price-includes">
+          <li><strong>7 Protokolle</strong> (PDF + Audio je)</li>
+          <li><strong>Sock-Anchor Full Protocol</strong> — sofort verfügbar</li>
+          <li><strong>Focus-Stack</strong> — in Produktion</li>
+          <li>Sleep-Anchor, Stress-Response, Flow-State</li>
+          <li>Custom Script Builder + Community Q&A</li>
+          <li>Discord FFM-777 Community</li>
+          <li>Monatlich neue Protokolle</li>
+        </ul>
+        <a href="https://ko-fi.com/mindf7777" class="price-cta" target="_blank">VIP aktivieren auf Ko-fi →</a>
+        <div class="price-note">Passwort per Mail nach Aktivierung · monatl. kündbar</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIPE WIDGET -->
+  <div class="stripe-section">
+    <div class="stripe-inner">
+      <div class="stripe-kicker">Direkt unterstützen</div>
+      <div class="stripe-title">Oder zahle einmalig, was dir passt.</div>
+      <div class="stripe-sub">Kein Abo-Zwang. Einmalzahlung für sofortigen VIP-Zugang — schreib mir danach auf WhatsApp.</div>
+      <div class="stripe-widget-wrap">
+        <stripe-buy-button
+          buy-button-id="buy_btn_1TZPnAIxh6j8mxSl50pQvrHj"
+          publishable-key="pk_live_51TTvm4Ixh6j8mxSlPd0N9iDRE2kq8aR7pfmMC8BI5SGEO0BoQnCWtnGplL6WFxEQZzLfSz1GgUBHgYN5iLJYVdDN00C9g79Fuo"
+        ></stripe-buy-button>
+      </div>
+      <div class="stripe-note">Sicher über Stripe · keine Zahlungsdaten werden gespeichert</div>
     </div>
   </div>
 
-  <!-- =========================
-       PUBLIC SHELL
-  ========================= -->
-  <div id="publicShell">
-    <nav>
-      <div class="nav-left">
-        <a class="nav-logo" href="index.html">mindful7777</a>
-        <span class="nav-badge">VIP Premium</span>
-      </div>
+  <!-- PROTOKOLL PREVIEW -->
+  <section class="proto-section">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="sec-kicker">Was du bekommst</div>
+      <h2 class="sec-title">Das vollständige<br/><em>Protocol System.</em></h2>
+      <p class="sec-sub">Jedes Protokoll ist ein eigenständiges Trainingssystem — aufeinander aufgebaut, stapelbar, wissenschaftlich fundiert.</p>
 
-      <div class="nav-right">
-        <div class="nav-lang" aria-label="Language">
-          <button class="lang-btn active" type="button" data-target="de" onclick="setLang('de')">DE</button>
-          <button class="lang-btn" type="button" data-target="en" onclick="setLang('en')">EN</button>
+      <div class="proto-grid">
+        <div class="proto-card live">
+          <div class="proto-num">7777-1</div>
+          <div class="proto-status live">✓ Live</div>
+          <div class="proto-title">Sock-Anchor Full Protocol</div>
+          <div class="proto-desc">Das Basisprotokoll. 30-Tage Konditionierungsplan. Pavlov-Konditionierung trifft Vagus-Nerv. 90-Sekunden Neural Reset — on demand.</div>
+          <div class="proto-tags"><span class="proto-tag">PDF</span><span class="proto-tag">Audio 10min</span><span class="proto-tag">HRV-Tracking</span></div>
+          <div class="proto-lock live">→ Sofort verfügbar nach Login</div>
         </div>
-        <button class="nav-login-btn" type="button" onclick="openModal()">🔐 Login</button>
-      </div>
-    </nav><div class="lang-toggle" style="display:flex;gap:6px;margin-left:12px;"><button class="lang-btn" data-lang="de" onclick="setLang('de')" style="font-size:10px;letter-spacing:2px;padding:5px 10px;border:1px solid rgba(212,165,116,.3);background:transparent;color:rgba(247,244,238,.6);cursor:pointer;">DE</button><button class="lang-btn" data-lang="en" onclick="setLang('en')" style="font-size:10px;letter-spacing:2px;padding:5px 10px;border:1px solid rgba(212,165,116,.3);background:transparent;color:rgba(247,244,238,.6);cursor:pointer;">EN</button></div>
-
-    <section class="hero">
-      <div class="hero-content">
-        <div class="eyebrow">Private Member Area · mindful7777</div>
-
-        <h1 data-lang="de">
-          Willkommen.
-          <em>Kein Abo. Kein Zwang.<br/>Kein Bullshit.</em>
-        </h1>
-        <h1 data-lang="en">
-          Welcome.
-          <em>No subscription. No pressure.<br/>No nonsense.</em>
-        </h1>
-
-        <p class="hero-sub" data-lang="de">
-          Du bist hier, weil du eingeladen wurdest – nicht weil ein Algorithmus dich hierher gespült hat.
-          Dieser Bereich ist privat, werbefrei und handverlesen.
-        </p>
-        <p class="hero-sub" data-lang="en">
-          You're here because you were invited — not because an algorithm pushed you here.
-          This space is private, ad-free, and carefully curated.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="https://ig.me/m/intelligentresponder" target="_blank" rel="noopener">
-            💬 Passwort anfragen
-          </a>
-          <button class="btn ghost" type="button" onclick="openModal()">
-            🔐 Ich habe schon ein Passwort
-          </button>
-
-          <a class="btn ghost" href="https://throne.com/mindful7777" target="_blank" rel="noopener">
-            🎁 Wunschliste
-          </a>
+        <div class="proto-card build">
+          <div class="proto-num">7777-2</div>
+          <div class="proto-status build">⚙ Build</div>
+          <div class="proto-title">Focus-Stack Pre-Work Reset</div>
+          <div class="proto-desc">3 Minuten vor dem Deep-Work-Block. Gamma-Aktivierung, Attention-Anchoring, Arbeitsgedächtnis-Priming. Für reproduzierbaren Flow-State.</div>
+          <div class="proto-tags"><span class="proto-tag">3 PDFs</span><span class="proto-tag">3 Audios</span><span class="proto-tag">Gamma 40Hz</span></div>
+          <div class="proto-lock">→ Kommt diesen Monat</div>
         </div>
-
-        <!-- STRIPE BUY BUTTON -->
-        <div class="stripe-widget-wrap">
-          <div class="stripe-label" data-lang="de">Freiwillige Unterstützung</div>
-          <div class="stripe-label" data-lang="en">Voluntary Support</div>
-          <stripe-buy-button
-            buy-button-id="buy_btn_1TZPnAIxh6j8mxSl50pQvrHj"
-            publishable-key="pk_live_51TTvm4Ixh6j8mxSlPd0N9iDRE2kq8aR7pfmMC8BI5SGEO0BoQnCWtnGplL6WFxEQZzLfSz1GgUBHgYN5iLJYVdDN00C9g79Fuo"
-          ></stripe-buy-button>
+        <div class="proto-card">
+          <div class="proto-num">7777-3</div>
+          <div class="proto-status planned">Planned</div>
+          <div class="proto-title">Sleep-Anchor Protocol</div>
+          <div class="proto-desc">Einschlafzeit unter 10 Minuten — reproduzierbar. 4-7-8 Atemtechnik + modifizierte PMR-Sequenz + konditionierter Schlaf-Anker.</div>
+          <div class="proto-tags"><span class="proto-tag">PDF</span><span class="proto-tag">Audio</span><span class="proto-tag">Theta 6Hz</span></div>
+          <div class="proto-lock">→ Q3 2026</div>
+        </div>
+        <div class="proto-card">
+          <div class="proto-num">7777-4</div>
+          <div class="proto-status planned">Planned</div>
+          <div class="proto-title">Stress-Response Kalibrierung</div>
+          <div class="proto-desc">HRV-basiertes Protokoll für chronisch hohes Cortisol-Niveau. 6 Minuten. Für Einsatzkräfte, Athleten, Schichtarbeiter.</div>
+          <div class="proto-tags"><span class="proto-tag">PDF</span><span class="proto-tag">Audio</span><span class="proto-tag">HRV</span></div>
+          <div class="proto-lock">→ Q3 2026</div>
+        </div>
+        <div class="proto-card">
+          <div class="proto-num">7777-5</div>
+          <div class="proto-status planned">Planned</div>
+          <div class="proto-title">Flow-State Induktion</div>
+          <div class="proto-desc">3 differenzierte Induktionssequenzen: kreativ / analytisch / athletisch. 5–8 Minuten Investition, 90 Minuten stabiler Zielzustand.</div>
+          <div class="proto-tags"><span class="proto-tag">3 Varianten</span><span class="proto-tag">PDF</span><span class="proto-tag">Audio</span></div>
+          <div class="proto-lock">→ Q4 2026</div>
+        </div>
+        <div class="proto-card">
+          <div class="proto-num">7777-6 + 7777-7</div>
+          <div class="proto-status planned">Planned</div>
+          <div class="proto-title">Custom Script Builder + Community</div>
+          <div class="proto-desc">Persönliches Hypnose-Skript nach deinen Zielen. Monatliche Community Calls. Q&A Archive. Discord FFM-777.</div>
+          <div class="proto-tags"><span class="proto-tag">1:1</span><span class="proto-tag">Discord</span><span class="proto-tag">Live Q&A</span></div>
+          <div class="proto-lock">→ Ab VIP aktiv</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="sections">
-      <div class="sec-head" data-lang="de">
-        <div class="sec-kicker">So funktioniert's</div>
-        <h2 class="sec-title">Wähle deinen Bereich.<br/>Ich sende dir das Passwort.</h2>
-        <p class="sec-sub">
-          Schau dir die 7 Bereiche an – wähle aus, was zu dir passt. Schreib mir kurz im privaten Chat –
-          du erhältst dein Passwort persönlich und direkt.
-        </p>
-      </div>
-
-      <div class="sec-head" data-lang="en">
-        <div class="sec-kicker">How it works</div>
-        <h2 class="sec-title">Choose your section.<br/>I'll send you the password.</h2>
-        <p class="sec-sub">
-          Browse the 7 sections — choose what feels right. Drop me a private message —
-          you'll get your password personally and directly.
-        </p>
-      </div>
-
-      <div class="grid" data-lang="de">
-        <div class="card" onclick="openModal()">
-          <div class="card-num">1</div>
-          <div class="card-title">Tiefenentspannung</div>
-          <p class="card-desc">PMR, Körperscan, Atemarbeit — das Fundament für alle weiteren Praktiken.</p>
+  <!-- OBJECTION HANDLING -->
+  <section class="obj-section">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="sec-kicker">Häufige Einwände</div>
+      <h2 class="sec-title" style="font-size:clamp(24px,3vw,36px);margin-bottom:0"><em>Klingt esoterisch?</em> Stimmt nicht.</h2>
+      <div class="obj-grid">
+        <div class="obj-card">
+          <div class="obj-einwand">„Klingt esoterisch."</div>
+          <div class="obj-counter">Kein Chakra, kein Karma — reines Konditionierungsprinzip. Pavlov, 1897. Verhaltenstherapie, täglich angewandt. Der Sock ist nur der Reiz.</div>
         </div>
-        <div class="card" onclick="openModal()">
-          <div class="card-num">2</div>
-          <div class="card-title">Schlaf & Traumreise</div>
-          <p class="card-desc">Geführte Einschlaf-Meditationen und Traumreisen für erholsame Nächte.</p>
+        <div class="obj-card">
+          <div class="obj-einwand">„Zu simpel."</div>
+          <div class="obj-counter">Pavlov brauchte auch nur eine Glocke. Das Prinzip ist simpel. Die Konsequenz nicht: ein automatischer Reset, jederzeit, ohne Willensakt.</div>
         </div>
-        <div class="card" onclick="openModal()">
-          <div class="card-num">3</div>
-          <div class="card-title">Selbsthypnose</div>
-          <p class="card-desc">Induktion, Anker-Technik, Suggestionsformeln — eigenständige Praxis.</p>
+        <div class="obj-card">
+          <div class="obj-einwand">„Funktioniert das wirklich?"</div>
+          <div class="obj-counter">90 Sekunden testen kostet dich nichts. Das Starter-Protokoll ist gratis. Wenn es nach 3 Wochen nicht funktioniert, hast du 21 Tage verloren — aber es wird funktionieren.</div>
         </div>
-        <div class="card" onclick="openModal()">
-          <div class="card-num">4</div>
-          <div class="card-title">Sporthypnose</div>
-          <p class="card-desc">Pre-Game Focus, Flow-State, Visualisierung — Performance-Routinen.</p>
-        </div>
-        <div class="card" onclick="openModal()">
-          <div class="card-num">5</div>
-          <div class="card-title">Stressreduktion</div>
-          <p class="card-desc">Vagus, HRV-Atmung, Safe Place — akut & langfristig.</p>
-        </div>
-        <div class="card" onclick="openModal()">
-          <div class="card-num">6</div>
-          <div class="card-title">Skript-Bibliothek</div>
-          <p class="card-desc">Skripte & Vorlagen auf Deutsch/Englisch — ready to use.</p>
-        </div>
-        <div class="card" onclick="openModal()">
-          <div class="card-num">7</div>
-          <div class="card-title">Audio-Studio</div>
-          <p class="card-desc">Aufnehmen, schneiden, Musik hinzufügen — dein Klang-Atelier.</p>
+        <div class="obj-card">
+          <div class="obj-einwand">„Ich habe keine Zeit für Protokolle."</div>
+          <div class="obj-counter">90 Sekunden. Das ist das gesamte Protokoll in der Anwendungsphase. Die Aufbauphase dauert 5 Minuten täglich über 21 Tage. Danach: automatisch.</div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="grid" data-lang="en">
-        <div class="card" onclick="openModal()">
-          <div class="card-num">1</div>
-          <div class="card-title">Deep Relaxation</div>
-          <p class="card-desc">PMR, body scan, breathwork — the foundation for everything else.</p>
+  <footer>
+    <div class="footer-logo">mindful7777</div>
+    <div class="footer-links">
+      <a href="index.html">Startseite</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a>
+      <a href="https://ko-fi.com/mindf7777" target="_blank">Ko-fi</a>
+    </div>
+    <div class="footer-copy">© 2026 mindful7777 · André Schwarz · Frankfurt · WHY NOT? BE THE CHANGE. · Alle Inhalte dienen der Entspannung. Kein Ersatz für medizinische Beratung.</div>
+  </footer>
+
+</div><!-- /publicShell -->
+
+<!-- ══════════════════════════════════
+     MEMBER SHELL
+══════════════════════════════════ -->
+<div id="memberShell">
+  <div class="m-shell">
+
+    <div class="m-nav">
+      <div class="m-nav-logo">mindful<span style="color:var(--muted)">7777</span></div>
+      <div class="m-nav-actions">
+        <div class="m-chip">VIP Member</div>
+        <button class="m-logout" onclick="lockMember()">🔒 Logout</button>
+      </div>
+    </div>
+
+    <!-- Member Hero -->
+    <div class="m-hero">
+      <div style="max-width:1100px;margin:0 auto">
+        <div class="m-hero-kicker">Premium7777 · Member Area · Protocol Stack</div>
+        <div class="m-hero-title">Willkommen zurück.<br/><em>Dein Stack wartet.</em></div>
+        <p class="m-hero-sub">Hier sind alle deine Protokolle. Starte mit 7777-1 wenn du neu bist. Alles andere folgt darauf auf.</p>
+      </div>
+    </div>
+
+    <!-- Member Stats -->
+    <div class="m-stats">
+      <div class="m-stat"><span class="m-stat-num">1 / 7</span><span class="m-stat-label">Protokolle live</span></div>
+      <div class="m-stat"><span class="m-stat-num">21 Tage</span><span class="m-stat-label">Basis-Konditionierung</span></div>
+      <div class="m-stat"><span class="m-stat-num">90s</span><span class="m-stat-label">Reset on demand</span></div>
+      <div class="m-stat"><span class="m-stat-num">Monatlich</span><span class="m-stat-label">Neue Protokolle</span></div>
+    </div>
+
+    <!-- Protocol Grid -->
+    <div class="m-protocols">
+      <div style="max-width:1100px;margin:0 auto">
+        <div class="m-proto-header">
+          <div class="sec-kicker">Deine Protokolle</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);font-weight:400;color:var(--white)">Protocol Stack · <em style="color:var(--gold)">7777</em></h2>
         </div>
-        <div class="card" onclick="openModal()">
-          <div class="card-num">2</div>
-          <div class="card-title">Sleep & Dream Journey</div>
-          <p class="card-desc">Guided sleep meditations and dream journeys for restful nights.</p>
-        </div>
-        <div class="card" onclick="openModal()">
-          <div class="card-num">3</div>
-          <div class="card-title">Self-Hypnosis</div>
-          <p class="card-desc">Induction, anchors, suggestion formulas — independent practice.</p>
-        </div>
-        <div class="card" onclick="openModal()">
-          <div class="card-num">4</div>
-          <div class="card-title">Sports Hypnosis</div>
-          <p class="card-desc">Pre-game focus, flow, visualization — performance routines.</p>
-        </div>
-        <div class="card" onclick="openModal()">
-          <div class="card-num">5</div>
-          <div class="card-title">Stress Reduction</div>
-          <p class="card-desc">Vagus, HRV breathing, safe place — acute & long-term.</p>
-        </div>
-        <div class="card" onclick="openModal()">
-          <div class="card-num">6</div>
-          <div class="card-title">Script Library</div>
-          <p class="card-desc">Scripts & templates in DE/EN — ready to download and use.</p>
-        </div>
-        <div class="card" onclick="openModal()">
-          <div class="card-num">7</div>
-          <div class="card-title">Audio Studio</div>
-          <p class="card-desc">Record, edit, add music — your personal sound atelier.</p>
+        <div class="m-proto-grid">
+
+          <!-- 7777-1 LIVE -->
+          <div class="m-proto-card active">
+            <div class="m-proto-badge active">✓ Live</div>
+            <div class="m-proto-num">7777-1</div>
+            <div class="m-proto-title">Sock-Anchor Full Protocol</div>
+            <div class="m-proto-desc">Das Basisprotokoll. 30-Tage Konditionierungsplan. Starte hier — alles andere baut darauf auf.</div>
+            <div class="m-proto-content">
+              <div class="m-content-item"><span class="icon">📄</span><span class="label">30-Tage Konditionierungsplan (PDF)</span><span class="status ready">Bereit</span></div>
+              <div class="m-content-item"><span class="icon">🎵</span><span class="label">10-Min Induktions-Audio (MP3)</span><span class="status ready">Bereit</span></div>
+              <div class="m-content-item"><span class="icon">📊</span><span class="label">HRV-Tracking-Vorlage</span><span class="status ready">Bereit</span></div>
+              <div class="m-content-item"><span class="icon">📋</span><span class="label">Anker-Install-Sequenz</span><span class="status ready">Bereit</span></div>
+            </div>
+            <a href="https://mindful777.gumroad.com/l/ucaan" class="m-proto-action" target="_blank">→ Protokoll herunterladen</a>
+          </div>
+
+          <!-- 7777-2 BUILD -->
+          <div class="m-proto-card building">
+            <div class="m-proto-badge building">⚙ In Produktion</div>
+            <div class="m-proto-num">7777-2</div>
+            <div class="m-proto-title">Focus-Stack Pre-Work Reset</div>
+            <div class="m-proto-desc">3 Minuten vor dem Deep-Work-Block. Gamma-Aktivierung, Attention-Anchoring. Kommt diesen Monat.</div>
+            <div class="m-proto-content">
+              <div class="m-content-item"><span class="icon">📄</span><span class="label">Pre-Work Reset Protokoll</span><span class="status soon">Bald</span></div>
+              <div class="m-content-item"><span class="icon">📄</span><span class="label">Deep-Focus Anker Protokoll</span><span class="status soon">Bald</span></div>
+              <div class="m-content-item"><span class="icon">🎵</span><span class="label">3 × Audio mit Gamma-Overlay</span><span class="status soon">Bald</span></div>
+            </div>
+            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank">→ Notify me per WhatsApp</a>
+          </div>
+
+          <!-- 7777-3 PLANNED -->
+          <div class="m-proto-card locked">
+            <div class="m-proto-badge locked">Planned · Q3</div>
+            <div class="m-proto-num">7777-3</div>
+            <div class="m-proto-title">Sleep-Anchor Protocol</div>
+            <div class="m-proto-desc">Einschlafzeit unter 10 Minuten — reproduzierbar. Theta-Induktion, konditionierter Schlaf-Anker.</div>
+            <div class="m-proto-content">
+              <div class="m-content-item"><span class="icon">📄</span><span class="label">Sleep-Anchor Protokoll</span><span class="status planned">Planned</span></div>
+              <div class="m-content-item"><span class="icon">🎵</span><span class="label">Einschlaf-Audio mit Theta 6Hz</span><span class="status planned">Planned</span></div>
+            </div>
+            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank">→ Notify me</a>
+          </div>
+
+          <!-- 7777-4 PLANNED -->
+          <div class="m-proto-card locked">
+            <div class="m-proto-badge locked">Planned · Q3</div>
+            <div class="m-proto-num">7777-4</div>
+            <div class="m-proto-title">Stress-Response Kalibrierung</div>
+            <div class="m-proto-desc">HRV-basiert. 6 Minuten. Für Einsatzkräfte, Athleten und alle mit strukturell hohem Cortisol-Niveau.</div>
+            <div class="m-proto-content">
+              <div class="m-content-item"><span class="icon">📄</span><span class="label">Stress-Response Protokoll</span><span class="status planned">Planned</span></div>
+              <div class="m-content-item"><span class="icon">🎵</span><span class="label">HRV-Reset Audio</span><span class="status planned">Planned</span></div>
+            </div>
+            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank">→ Notify me</a>
+          </div>
+
+          <!-- 7777-5 PLANNED -->
+          <div class="m-proto-card locked">
+            <div class="m-proto-badge locked">Planned · Q4</div>
+            <div class="m-proto-num">7777-5</div>
+            <div class="m-proto-title">Flow-State Induktion</div>
+            <div class="m-proto-desc">3 Induktionen: kreativ / analytisch / athletisch. 5–8 Min. Danach 90 Min stabiler Zielzustand.</div>
+            <div class="m-proto-content">
+              <div class="m-content-item"><span class="icon">📄</span><span class="label">3 × Flow-Protokoll (Varianten)</span><span class="status planned">Planned</span></div>
+              <div class="m-content-item"><span class="icon">🎵</span><span class="label">3 × Audio-Induktion</span><span class="status planned">Planned</span></div>
+            </div>
+            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank">→ Notify me</a>
+          </div>
+
+          <!-- 7777-6+7 PLANNED -->
+          <div class="m-proto-card locked">
+            <div class="m-proto-badge locked">Ab VIP aktiv</div>
+            <div class="m-proto-num">7777-6 + 7777-7</div>
+            <div class="m-proto-title">Custom Builder + Community</div>
+            <div class="m-proto-desc">Persönliches Skript. Monatliche Live Q&As. Discord FFM-777. Wöchentlicher Content-Rhythmus.</div>
+            <div class="m-proto-content">
+              <div class="m-content-item"><span class="icon">💬</span><span class="label">Discord FFM-777 Einladung</span><span class="status soon">Link per Mail</span></div>
+              <div class="m-content-item"><span class="icon">📅</span><span class="label">Monatliches Live Q&A</span><span class="status soon">Termine folgen</span></div>
+              <div class="m-content-item"><span class="icon">✍️</span><span class="label">Custom Script Builder</span><span class="status planned">Planned</span></div>
+            </div>
+            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank">→ Discord-Link anfordern</a>
+          </div>
+
         </div>
       </div>
-    </section>
+    </div>
+
+    <!-- Discord / Community rhythm -->
+    <div class="m-discord">
+      <div style="max-width:1100px;margin:0 auto">
+        <div class="m-discord-inner">
+          <div class="m-discord-title">Discord FFM-777 — Content Rhythmus</div>
+          <p class="m-discord-sub">Als VIP-Mitglied bekommst du Zugang zum Discord-Server. Dort läuft der wöchentliche Rhythmus:</p>
+          <div class="m-discord-rhythm">
+            <div class="m-discord-day"><span class="day">Montag</span><span class="content">„Protokoll der Woche" — kurzes How-To</span></div>
+            <div class="m-discord-day"><span class="day">Mittwoch</span><span class="content">„Science Snippet" — 2–3 Sätze Forschungsfund</span></div>
+            <div class="m-discord-day"><span class="day">Freitag</span><span class="content">„Member Spotlight" oder AMA</span></div>
+            <div class="m-discord-day"><span class="day">On demand</span><span class="content">Neue Audios/PDFs → Ankündigung direkt im Channel</span></div>
+          </div>
+          <a href="https://wa.me/4916346922255" class="btn-primary" target="_blank" style="font-size:11px;padding:13px 28px">Discord-Link per WhatsApp anfordern →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Member upsell: Custom Session -->
+    <div class="m-upsell">
+      <div class="m-upsell-text">
+        <div class="label">Nächster Level</div>
+        <div class="title">1:1 Custom Session — Persönliches Skript ab 97 €</div>
+      </div>
+      <a href="https://wa.me/4916346922255" class="m-upsell-cta" target="_blank">Termin anfragen →</a>
+    </div>
 
     <footer>
-      <div class="foot-top">
-        <div class="foot-logo">mindful7777</div>
-        <div class="foot-links">
-          <a href="impressum.html">Impressum</a>
-          <a href="datenschutz.html">Datenschutz</a> · <a href="pages/glossar.html">Glossar</a>
-          <a href="index.html">Kontakt</a>
-        </div>
+      <div class="footer-logo">mindful7777</div>
+      <div class="footer-links">
+        <a href="index.html">Startseite</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="https://ko-fi.com/mindf7777" target="_blank">Ko-fi</a>
       </div>
-      <div class="foot-note">
-        Alle Inhalte dienen ausschließlich der Entspannung und dem persönlichen Wohlbefinden. Sie ersetzen keine psychologische oder medizinische Beratung.
-        Nicht beim Autofahren oder Bedienen von Maschinen verwenden. · All content is for relaxation and personal well-being only. Not a substitute for professional advice.
-        · © 2026 mindful7777
-      </div>
+      <div class="footer-copy">© 2026 mindful7777 · WHY NOT? BE THE CHANGE. · Alle Inhalte dienen der Entspannung. Kein Ersatz für medizinische Beratung.</div>
     </footer>
+
   </div>
+</div><!-- /memberShell -->
 
-  <!-- =========================
-       MEMBER SHELL
-  ========================= -->
-  <div id="memberShell">
-    <div class="m-top">
-      <div class="m-brand">mindful<span>7777</span></div>
-      <div class="m-actions">
-        <div class="m-chip">VIP Member</div>
-        <button class="m-logout" type="button" onclick="lockMember()">🔒 Logout</button>
-      </div>
-    </div>
+<script>
+  const PASS_HASH = "9755326d7bd5633b7a82043a4574c1d95d98606d798019ddd88ef43c6943ac7d";
+  const SESSION_KEY = "mf7777_auth";
 
-    <div class="m-wrap">
-      <div class="m-head">
-        <div class="m-kicker">Premium7777 · Member Area</div>
-        <div class="m-title">Willkommen im <em>geschlossenen Bereich</em></div>
-        <p class="m-desc">
-          Hier ist dein Hub. Du kannst die Karten später mit echten Inhalten/Links füllen
-          (z. B. separate HTML-Seiten oder interne Sektionen). Im Moment ist es bewusst stabil & minimal.
-        </p>
-      </div>
+  function openModal(){
+    document.getElementById("pwModal").style.display = "flex";
+    document.getElementById("pwInput").value = "";
+    document.getElementById("pwErr").classList.remove("show");
+    setTimeout(() => document.getElementById("pwInput").focus(), 50);
+  }
 
-      <div class="m-grid">
-        <div class="m-card">
-          <div class="m-card-num">7777-1</div>
-          <div class="m-card-title">Tiefenentspannung</div>
-          <div class="m-card-desc">PMR, Körperscan, Atemarbeit.</div>
-        </div>
-        <div class="m-card">
-          <div class="m-card-num">7777-2</div>
-          <div class="m-card-title">Schlaf & Traumreise</div>
-          <div class="m-card-desc">Einschlaf-Audios, Traumreisen.</div>
-        </div>
-        <div class="m-card">
-          <div class="m-card-num">7777-3</div>
-          <div class="m-card-title">Selbsthypnose</div>
-          <div class="m-card-desc">Induktionen, Anker, Suggestionsformeln.</div>
-        </div>
-        <div class="m-card">
-          <div class="m-card-num">7777-4</div>
-          <div class="m-card-title">Sporthypnose</div>
-          <div class="m-card-desc">Fokus, Flow, Visualisierung.</div>
-        </div>
-        <div class="m-card">
-          <div class="m-card-num">7777-5</div>
-          <div class="m-card-title">Stressreduktion</div>
-          <div class="m-card-desc">Vagus, HRV-Atmung, Safe Place.</div>
-        </div>
-        <div class="m-card">
-          <div class="m-card-num">7777-6</div>
-          <div class="m-card-title">Skript-Bibliothek</div>
-          <div class="m-card-desc">Downloads, Vorlagen, Protokolle.</div>
-        </div>
-        <div class="m-card">
-          <div class="m-card-num">7777-7</div>
-          <div class="m-card-title">Audio-Studio</div>
-          <div class="m-card-desc">Record, Edit, Export.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  function closeModal(){
+    document.getElementById("pwModal").style.display = "none";
+    document.getElementById("pwErr").classList.remove("show");
+    document.getElementById("pwInput").value = "";
+    document.getElementById("pwInput").style.borderColor = "";
+  }
 
-  <script>
-    /* =========================
-       CONFIG
-       Hinweis: Hash ist NICHT "echte Sicherheit" auf GitHub Pages,
-       aber besser als Klartext im Source.
-    ========================= */
-    const PASS_HASH = "9755326d7bd5633b7a82043a4574c1d95d98606d798019ddd88ef43c6943ac7d";
-    const SESSION_KEY = "mf7777_auth";
+  function showMember(){
+    document.getElementById("publicShell").style.display = "none";
+    document.getElementById("memberShell").style.display = "block";
+    document.getElementById("mainNav").style.display = "none";
+    window.scrollTo(0,0);
+  }
 
-    /* =========================
-       HELPERS
-    ========================= */
-    function setLang(lang){
-      document.body.classList.toggle("en", lang === "en");
-      document.querySelectorAll(".lang-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.target === lang);
-      });
+  function lockMember(){
+    sessionStorage.removeItem(SESSION_KEY);
+    document.getElementById("memberShell").style.display = "none";
+    document.getElementById("publicShell").style.display = "block";
+    document.getElementById("mainNav").style.display = "flex";
+    window.scrollTo(0,0);
+  }
+
+  async function sha256(str){
+    const enc = new TextEncoder().encode(str);
+    const buf = await crypto.subtle.digest("SHA-256", enc);
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,"0")).join("");
+  }
+
+  async function checkPw(){
+    const input = document.getElementById("pwInput");
+    const hash = await sha256(input.value);
+    if(hash === PASS_HASH){
+      sessionStorage.setItem(SESSION_KEY, "1");
+      closeModal();
+      showMember();
+    } else {
+      const err = document.getElementById("pwErr");
+      err.classList.add("show");
+      input.style.borderColor = "var(--red)";
+      setTimeout(() => {
+        err.classList.remove("show");
+        input.style.borderColor = "";
+      }, 3000);
     }
+  }
 
-    function openModal(){
-      const modal = document.getElementById("pwModal");
-      modal.classList.add("open");
-      const input = document.getElementById("pwInput");
-      input.value = "";
-      document.getElementById("pwErr").classList.remove("show");
-      setTimeout(() => input.focus(), 50);
-    }
+  // Click outside modal
+  document.getElementById("pwModal").addEventListener("click", e => {
+    if (e.target.id === "pwModal") closeModal();
+  });
+  document.getElementById("pwInput").addEventListener("keydown", e => {
+    if (e.key === "Enter") checkPw();
+    if (e.key === "Escape") closeModal();
+  });
+  document.addEventListener("keydown", e => { if(e.key === "Escape") closeModal(); });
 
-    function closeModal(){
-      document.getElementById("pwModal").classList.remove("open");
-      document.getElementById("pwErr").classList.remove("show");
-      const input = document.getElementById("pwInput");
-      input.style.borderColor = "";
-      input.value = "";
-    }
+  // Auto-login
+  if(sessionStorage.getItem(SESSION_KEY) === "1") showMember();
+</script>
 
-    function showMember(){
-      document.getElementById("publicShell").style.display = "none";
-      document.getElementById("memberShell").style.display = "block";
-      window.scrollTo(0,0);
-    }
-
-    function lockMember(){
-      sessionStorage.removeItem(SESSION_KEY);
-      document.getElementById("memberShell").style.display = "none";
-      document.getElementById("publicShell").style.display = "block";
-      window.scrollTo(0,0);
-    }
-
-    async function sha256(str){
-      const enc = new TextEncoder().encode(str);
-      const buf = await crypto.subtle.digest("SHA-256", enc);
-      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,"0")).join("");
-    }
-
-    /* =========================
-       AUTH
-    ========================= */
-    async function checkPw(){
-      const input = document.getElementById("pwInput");
-      const val = input.value;
-      const hash = await sha256(val);
-
-      if(hash === PASS_HASH){
-        sessionStorage.setItem(SESSION_KEY, "1");
-        closeModal();
-        showMember();
-      } else {
-        const err = document.getElementById("pwErr");
-        err.classList.add("show");
-        input.style.borderColor = "var(--danger)";
-        setTimeout(() => {
-          err.classList.remove("show");
-          input.style.borderColor = "";
-        }, 2500);
-      }
-    }
-
-    /* =========================
-       EVENTS
-    ========================= */
-    // click outside modal closes
-    document.getElementById("pwModal").addEventListener("click", (e) => {
-      if (e.target.id === "pwModal") closeModal();
-    });
-
-    // Enter triggers auth
-    document.getElementById("pwInput").addEventListener("keydown", (e) => {
-      if (e.key === "Enter") checkPw();
-      if (e.key === "Escape") closeModal();
-    });
-
-    // Esc anywhere closes modal if open
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
-    });
-
-    // auto-login if session exists
-    if (sessionStorage.getItem(SESSION_KEY) === "1") showMember();
-  </script>
-
-  <!-- Stripe Buy Button Script -->
-  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-<script src="assets/lang.js"></script>
+<!-- Stripe Buy Button -->
+<script async src="https://js.stripe.com/v3/buy-button.js"></script>
 </body>
 </html>
