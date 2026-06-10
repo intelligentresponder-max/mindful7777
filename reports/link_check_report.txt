@@ -1,0 +1,96 @@
+mindful7777 Link Check Report
+Datum: 2026-06-10 22:41:48
+Repo: C:\Users\Holy New\Projects\mindful7777
+======================================================================
+
+GESAMT: 28 Probleme gefunden
+
+
+------------------------------------------------------------
+Tote lokale Pfade (14 Treffer)
+------------------------------------------------------------
+
+  funnel\quiz.html
+    [Toter lokaler Pfad] | link=result- | resolved=funnel\result-
+
+  lead-magnet.html
+    [Toter lokaler Pfad] | link=favicon_spiral.png | resolved=favicon_spiral.png
+
+  pages\about.html
+    [Toter lokaler Pfad] | link=assets/lang.js | resolved=pages\assets\lang.js
+
+  pages\blog.html
+    [Toter lokaler Pfad] | link=assets/lang.js | resolved=pages\assets\lang.js
+
+  pages\contact.html
+    [Toter lokaler Pfad] | link=assets/lang.js | resolved=pages\assets\lang.js
+
+  pages\discord.html
+    [Toter lokaler Pfad] | link=assets/lang.js | resolved=pages\assets\lang.js
+
+  pages\membership.html
+    [Toter lokaler Pfad] | link=assets/lang.js | resolved=pages\assets\lang.js
+
+  pages\newsletter.html
+    [Toter lokaler Pfad] | link=assets/lang.js | resolved=pages\assets\lang.js
+
+  pages\sessions.html
+    [Toter lokaler Pfad] | link=assets/lang.js | resolved=pages\assets\lang.js
+
+  sessions\leo7.html
+    [Toter lokaler Pfad] | link=assets/lang.js | resolved=sessions\assets\lang.js
+
+  sock-anchor-ebook.html
+    [Toter lokaler Pfad] | link=assets/audio/sock-anchor-de.mp3 | resolved=assets\audio\sock-anchor-de.mp3
+    [Toter lokaler Pfad] | link=assets/audio/sock-anchor-en.mp3 | resolved=assets\audio\sock-anchor-en.mp3
+
+  sock-anchor-protocol.html
+    [Toter lokaler Pfad] | link=assets/audio/sock-anchor-session.mp3 | resolved=assets\audio\sock-anchor-session.mp3
+
+  sporthypnose.html
+    [Toter lokaler Pfad] | link=/mnt/user-data/uploads/1000010054.jpg | resolved=mnt\user-data\uploads\1000010054.jpg
+
+------------------------------------------------------------
+Externe URLs fehlerhaft (0 Treffer)
+------------------------------------------------------------
+  OK Keine Probleme
+
+------------------------------------------------------------
+Platzhalter / TODOs (10 Treffer)
+------------------------------------------------------------
+
+  ck_de_page.html
+    [Lorem Ipsum Text] | line=47 | match=Lorem ipsum dolor sit amet, consectetur adipiscing elit. Don
+    [Lorem Ipsum Text] | line=47 | match=Lorem ipsum dolor sit amet, consectetur adipiscing elit. Don
+
+  funnel\blog.html
+    [Leerer href-Anker] | line=372 | match=href="#">Bald →</a>     </div>   </article>    <!-- CARD 5 -
+    [Leerer href-Anker] | line=377 | match=href='#'">     <span class="card-tag">Stress · Alltag</span>
+    [Leerer href-Anker] | line=383 | match=href="#">Bald →</a>     </div>   </article>  </main>  <!-- N
+
+  mindful7777_index.html
+    [Coming Soon Marker] | line=381 | match=Coming Soon · 1:1 Session</div>         <h3 class="product-t
+
+  pages\about.html
+    [Coming Soon Marker] | line=41 | match=coming soon)</p>     </div>   </section> </main> <footer cla
+
+  pages\blog.html
+    [Coming Soon Marker] | line=41 | match=coming soon)</p>     </div>   </section> </main> <footer cla
+
+  pages\contact.html
+    [Coming Soon Marker] | line=41 | match=coming soon)</p>     </div>   </section> </main> <footer cla
+
+  sporthypnose.html
+    [Leerer href-Anker] | line=480 | match=href="#" class="btn-primary">Jetzt kaufen — 12,90 €</a>
+
+------------------------------------------------------------
+Audio-Probleme (4 Treffer)
+------------------------------------------------------------
+
+  sock-anchor-ebook.html
+    [Unfertiger Audio-Player] | line=490 | match=src="assets/audio/sock-anchor-de.mp3" type="audio/mpeg">         </audio>
+    [Audio-Datei fehlt] | line=490 | match=assets/audio/sock-anchor-de.mp3
+    [Audio-Datei fehlt] | line=504 | match=assets/audio/sock-anchor-en.mp3
+
+  sock-anchor-protocol.html
+    [Audio-Datei fehlt] | line=383 | match=assets/audio/sock-anchor-session.mp3
