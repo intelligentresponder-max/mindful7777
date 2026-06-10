@@ -11,14 +11,6 @@
   html{scroll-behavior:smooth}
   body{background:var(--black);color:var(--white);font-family:'Barlow Condensed',sans-serif;overflow-x:hidden;cursor:crosshair}
   body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4}
-  #gate{position:fixed;inset:0;z-index:99999;background:#030303;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px}
-  #gate h2{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.15em}
-  #gate h2 span{color:var(--orange)}
-  #gate input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:14px 24px;font-family:'Space Mono',monospace;font-size:1rem;letter-spacing:.15em;text-align:center;outline:none;width:280px}
-  #gate button{background:var(--orange);color:#000;border:none;padding:14px 40px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.15em;cursor:pointer;transition:opacity .2s}
-  #gate button:hover{opacity:.85}
-  #gate-err{color:var(--orange);font-family:'Space Mono',monospace;font-size:.75rem;display:none}
-  #content{display:none}
   .lang-switch{position:fixed;top:22px;right:140px;z-index:200;display:flex;gap:6px}
   .lang-switch a{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;padding:5px 10px;border:1px solid rgba(255,255,255,.2);color:rgba(240,240,236,.5);text-decoration:none;text-transform:uppercase;transition:all .2s}
   .lang-switch a.active,.lang-switch a:hover{border-color:var(--orange);color:var(--orange)}
@@ -115,14 +107,8 @@
 </head>
 <body>
 
-<div id="gate">
-  <h2>VIP<span>.</span> ACCESS</h2>
-  <input type="password" id="pw-input" placeholder="PASSWORT" onkeydown="if(event.key==='Enter')checkPw()">
-  <button onclick="checkPw()">AKTIVIEREN</button>
-  <p id="gate-err">Falsches Passwort. Zugang verweigert.</p>
-</div>
 
-<div id="content">
+<div id="content" style="display:block">
   <div class="lang-switch">
     <a href="ares-transformation.html" class="active">DE</a>
     <a href="ares-transformation-en.html">EN</a>
@@ -217,7 +203,7 @@
           🎧 GUMROAD STORE
         </a>
         <!-- BOOK SESSION -->
-        <a href="https://mindful777.gumroad.com"
+        <a href="https://wa.me/4916346922255"
            class="btn-ghost" target="_blank" rel="noopener"
            style="width:280px;text-align:center;border-color:rgba(126,232,250,.3);color:var(--ice);">
           📅 EINZELSITZUNG BUCHEN
@@ -251,23 +237,7 @@
 </div>
 
 <script>
-  var PW='ares7777';
-  function checkPw(){
-    if(document.getElementById('pw-input').value===PW){
-      document.getElementById('gate').style.display='none';
-      document.getElementById('content').style.display='block';
-      sessionStorage.setItem('vip','1');
-    }else{
-      document.getElementById('gate-err').style.display='block';
-      document.getElementById('pw-input').value='';
-    }
-  }
-  if(sessionStorage.getItem('vip')==='1'){
-    document.getElementById('gate').style.display='none';
-    document.getElementById('content').style.display='block';
-  }
-  const obs=new IntersectionObserver((e)=>{e.forEach((en,i)=>{if(en.isIntersecting)setTimeout(()=>en.target.classList.add('visible'),i*80)});},{threshold:0.1});
+  const obs=new IntersectionObserver((e)=>{e.forEach((en,idx)=>{if(en.isIntersecting)setTimeout(()=>en.target.classList.add('visible'),idx*80)});},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
 </body>
 </html>

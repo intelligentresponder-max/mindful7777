@@ -14,16 +14,6 @@
   a{color:inherit;text-decoration:none;}
 
   /* ── GATE ── */
-  #gate{position:fixed;inset:0;z-index:99999;background:#030303;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px}
-  #gate h2{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.15em}
-  #gate h2 span{color:var(--orange)}
-  #gate p{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.2em;opacity:.35;text-transform:uppercase}
-  #gate input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:14px 24px;font-family:'Space Mono',monospace;font-size:1rem;letter-spacing:.15em;text-align:center;outline:none;width:280px;transition:border-color .2s}
-  #gate input:focus{border-color:var(--orange)}
-  #gate button{background:var(--orange);color:#000;border:none;padding:14px 40px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.15em;cursor:pointer;transition:opacity .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
-  #gate button:hover{opacity:.85}
-  #gate-err{color:var(--orange);font-family:'Space Mono',monospace;font-size:.75rem;display:none}
-  #content{display:none}
 
   /* ── LANG SWITCH ── */
   .lang-switch{position:fixed;top:22px;right:140px;z-index:200;display:flex;gap:6px}
@@ -149,18 +139,9 @@
 <body>
 
 <!-- ── GATE ── -->
-<div id="gate">
-  <h2>ARES<span>.</span> BLOG</h2>
-  <p>VIP Zugang · mindful7777</p>
-  <input type="password" id="pw-input" placeholder="PASSWORT" onkeydown="if(event.key==='Enter')checkPw()">
-  <button onclick="checkPw()">AKTIVIEREN</button>
-  <p id="gate-err" style="color:var(--orange);font-family:'Space Mono',monospace;font-size:.75rem;display:none">
-    Falsches Passwort. Zugang verweigert.
-  </p>
-</div>
 
 <!-- ── CONTENT ── -->
-<div id="content">
+<div id="content" style="display:block">
 
   <div class="lang-switch">
     <a href="index.html" class="active">DE</a>
