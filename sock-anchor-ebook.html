@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Go Into Hypnosis · mindful7777</title>
+  <meta name="description" content="Das vollständige Induktions-System. Science-based. Kein Esoterik. PDF + Audio Bundle." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#1B2845;
+      --surface:#243358;
+      --surface2:#1a2440;
+      --gold:#D4A574;
+      --gold-dark:#b8884f;
+      --beige:#F7F4EE;
+      --text:#F7F4EE;
+      --muted:rgba(247,244,238,0.55);
+      --border:rgba(212,165,116,0.22);
+    }
+    body{background:var(--bg);color:var(--text);font-family:"DM Sans",system-ui,sans-serif;overflow-x:hidden;line-height:1.7}
+    a{color:inherit;text-decoration:none}
+
+    /* LANG BAR */
+    .lang-bar{background:var(--surface2);border-bottom:1px solid var(--border);padding:8px 32px;display:flex;justify-content:flex-end;gap:8px}
+    .lang-btn{font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;transition:all .2s}
+    .lang-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(212,165,116,0.08)}
+
+    /* NAV */
+    nav{padding:18px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+    .nav-logo{font-family:"Playfair Display",serif;font-size:16px;color:var(--gold)}
+    .nav-back{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+    .nav-back:hover{color:var(--gold)}
+
+    /* PROGRESS */
+    .progress-bar{height:2px;background:var(--border);position:sticky;top:0;z-index:100}
+    .progress-fill{height:2px;background:var(--gold);width:0%;transition:width .1s}
+
+    /* BOOK COVER */
+    .cover{max-width:760px;margin:0 auto;padding:80px 32px 60px;text-align:center;border-bottom:1px solid var(--border)}
+    .cover-badge{display:inline-block;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:5px 14px;margin-bottom:24px}
+    .cover-title{font-family:"Playfair Display",serif;font-size:clamp(36px,7vw,68px);font-weight:700;line-height:1.05;color:var(--beige);margin-bottom:16px}
+    .cover-title em{color:var(--gold);font-style:italic}
+    .cover-sub{font-size:16px;color:var(--muted);max-width:500px;margin:0 auto 32px;line-height:1.7}
+    .cover-meta{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:24px;border-top:1px solid var(--border);margin-top:32px}
+    .cover-meta span{display:flex;align-items:center;gap:6px}
+    .cover-meta strong{color:var(--gold)}
+
+    /* CHAPTER NAV */
+    .chapter-nav{background:var(--surface2);border-bottom:1px solid var(--border);padding:12px 32px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;position:sticky;top:2px;z-index:99}
+    .ch-btn{font-size:11px;letter-spacing:.08em;padding:5px 12px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap}
+    .ch-btn:hover,.ch-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(212,165,116,0.08)}
+    .ch-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+
+    /* CHAPTER */
+    .chapter{max-width:760px;margin:0 auto;padding:64px 32px;border-bottom:1px solid var(--border);display:none}
+    .chapter.active{display:block}
+    .ch-number{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+    .ch-title{font-family:"Playfair Display",serif;font-size:clamp(26px,5vw,44px);font-weight:700;color:var(--beige);margin-bottom:32px;line-height:1.1}
+    .ch-title em{color:var(--gold);font-style:italic}
+    .body-text{font-size:17px;line-height:1.9;color:var(--text)}
+    .body-text p{margin-bottom:1.5em}
+    .body-text h3{font-family:"Playfair Display",serif;font-size:22px;font-weight:400;color:var(--beige);margin:2em 0 .8em;border-left:3px solid var(--gold);padding-left:16px}
+    .body-text strong{color:var(--gold)}
+    .body-text em{color:var(--gold);font-style:italic}
+
+    /* INFO BOX */
+    .info-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--gold);padding:20px 24px;margin:2em 0;font-size:14px;color:var(--muted);line-height:1.7}
+    .info-box strong{color:var(--gold);display:block;margin-bottom:6px;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+
+    /* STEP CARDS */
+    .steps{display:flex;flex-direction:column;gap:16px;margin:2em 0}
+    .step-card{background:var(--surface);border:1px solid var(--border);padding:24px 28px;display:flex;gap:20px;align-items:flex-start}
+    .step-card:hover{border-color:var(--gold)}
+    .step-num{width:36px;height:36px;border:1px solid var(--gold);color:var(--gold);font-family:"Playfair Display",serif;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .step-body{flex:1}
+    .step-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+    .step-text{font-size:15px;color:var(--text);line-height:1.8}
+    .step-text em{color:var(--gold);font-style:italic}
+
+    /* INDUCTION SCRIPT */
+    .script-block{background:var(--surface2);border:1px solid var(--border);margin:2em 0}
+    .script-head{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+    .script-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+    .script-copy-btn{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;transition:all .2s}
+    .script-copy-btn:hover{border-color:var(--gold);color:var(--gold)}
+    .script-content{padding:28px 32px;font-family:"DM Mono",monospace;font-size:14px;line-height:2;color:var(--text);white-space:pre-wrap}
+    .script-pause{color:var(--gold);font-style:italic}
+    .script-action{color:var(--muted);font-size:12px}
+
+    /* AUDIO */
+    .audio-section{background:var(--surface);border:1px solid var(--border);padding:28px 32px;margin:2em 0}
+    .audio-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+    .audio-title{font-family:"Playfair Display",serif;font-size:20px;color:var(--beige);margin-bottom:16px}
+    .audio-placeholder{background:var(--surface2);border:1px dashed var(--border);padding:24px;text-align:center;font-size:13px;color:var(--muted);line-height:1.8}
+    .audio-placeholder code{color:var(--gold);font-family:"DM Mono",monospace;font-size:12px}
+    audio{width:100%;margin-top:4px;opacity:.9}
+
+    /* DOWNLOAD CTA */
+    .download-cta{background:var(--surface);border:1px solid var(--gold);padding:44px 40px;margin:2em 0;text-align:center}
+    .dl-kicker{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+    .dl-title{font-family:"Playfair Display",serif;font-size:clamp(22px,4vw,36px);font-weight:700;color:var(--beige);margin-bottom:14px}
+    .dl-title em{color:var(--gold);font-style:italic}
+    .dl-sub{font-size:14px;color:var(--muted);max-width:460px;margin:0 auto 28px;line-height:1.7}
+    .dl-includes{display:flex;flex-direction:column;gap:8px;max-width:340px;margin:0 auto 28px;text-align:left}
+    .dl-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text)}
+    .dl-check{color:var(--gold);flex-shrink:0}
+    .price-tag{display:inline-block;font-family:"Playfair Display",serif;font-size:32px;color:var(--gold);margin-bottom:20px}
+    .price-tag span{font-size:14px;color:var(--muted);font-family:"DM Sans",sans-serif}
+    .btn-primary{display:inline-block;background:var(--gold);color:#1B2845;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:18px 40px;transition:background .2s;cursor:pointer;border:none;font-family:inherit}
+    .btn-primary:hover{background:var(--gold-dark)}
+    .btn-ghost{display:inline-block;border:1px solid var(--border);color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:14px 24px;transition:all .2s;margin-left:10px}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+    /* CHAPTER NAV BUTTONS */
+    .ch-nav-btns{display:flex;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
+    .ch-nav-btn{font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:12px 20px;border:1px solid var(--border);color:var(--muted);cursor:pointer;background:transparent;font-family:inherit;transition:all .2s}
+    .ch-nav-btn:hover{border-color:var(--gold);color:var(--gold)}
+    .ch-nav-btn:disabled{opacity:.25;cursor:default}
+
+    footer{border-top:1px solid var(--border);padding:32px;text-align:center;font-size:10px;color:rgba(247,244,238,.2);letter-spacing:.05em}
+    footer a{color:inherit}
+    footer a:hover{color:var(--gold)}
+
+    @media(max-width:600px){
+      .cover{padding:50px 20px 40px}
+      .chapter{padding:44px 20px}
+      .script-content{padding:20px;font-size:13px}
+      .download-cta{padding:32px 20px}
+      .btn-ghost{margin:8px 0 0;display:block;text-align:center}
+      .chapter-nav{padding:10px 16px}
+    }
+
+    /* lang */
+    [data-lang]{display:none}[data-lang].on{display:block}
+    .il{display:none}.il.on{display:inline}
+  </style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('de')" id="btn-de">DE</button>
+  <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">mindful7777</a>
+  <a href="index.html" class="nav-back">
+    <span class="il on" data-l="de">← Zurück</span>
+    <span class="il" data-l="en">← Back</span>
+  </a>
+</nav>
+
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+
+<!-- COVER -->
+<div class="cover" id="ch-cover">
+  <div class="cover-badge">
+    <span class="il on" data-l="de">mindful7777 · eBook + Audio</span>
+    <span class="il" data-l="en">mindful7777 · eBook + Audio</span>
+  </div>
+  <h1 class="cover-title">
+    <span data-lang="de" class="on">How to Go<br/>Into <em>Hypnosis</em></span>
+    <span data-lang="en">How to Go<br/>Into <em>Hypnosis</em></span>
+  </h1>
+  <p class="cover-sub">
+    <span class="il on" data-l="de">Das vollständige Induktions-System. Vagus-Nerv, klassische Konditionierung, Brainwave-Transition. Kein Esoterik. Reproduzierbar, messbar, on demand.</span>
+    <span class="il" data-l="en">The complete induction system. Vagus nerve, classical conditioning, brainwave transition. No esoteric fluff. Reproducible, measurable, on demand.</span>
+  </p>
+  <div class="cover-meta">
+    <span><strong>André</strong> · mindful7777</span>
+    <span><strong>5</strong> <span class="il on" data-l="de">Kapitel</span><span class="il" data-l="en">Chapters</span></span>
+    <span><strong>~20 Min</strong> <span class="il on" data-l="de">Lesezeit</span><span class="il" data-l="en">read time</span></span>
+    <span><strong>Science-based</strong></span>
+  </div>
+  <div style="margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <button class="btn-primary" onclick="startReading()">
+      <span class="il on" data-l="de">Jetzt lesen →</span>
+      <span class="il" data-l="en">Start reading →</span>
+    </button>
+    <a href="https://mindful777.gumroad.com/l/csaf777" target="_blank" class="btn-ghost">
+      <span class="il on" data-l="de">PDF + Audio Download</span>
+      <span class="il" data-l="en">PDF + Audio download</span>
+    </a>
+  </div>
+</div>
+
+<!-- CHAPTER NAV -->
+<div class="chapter-nav" id="chapterNav" style="display:none">
+  <span class="ch-label">
+    <span class="il on" data-l="de">Kapitel:</span>
+    <span class="il" data-l="en">Chapter:</span>
+  </span>
+  <button class="ch-btn" onclick="goTo(1)" id="nav1">1 · <span class="il on" data-l="de">Was ist Hypnose?</span><span class="il" data-l="en">What is hypnosis?</span></button>
+  <button class="ch-btn" onclick="goTo(2)" id="nav2">2 · <span class="il on" data-l="de">Vorbereitung</span><span class="il" data-l="en">Preparation</span></button>
+  <button class="ch-btn" onclick="goTo(3)" id="nav3">3 · <span class="il on" data-l="de">Induktions-Skript</span><span class="il" data-l="en">Induction script</span></button>
+  <button class="ch-btn" onclick="goTo(4)" id="nav4">4 · <span class="il on" data-l="de">Audio-Session</span><span class="il" data-l="en">Audio session</span></button>
+  <button class="ch-btn" onclick="goTo(5)" id="nav5">5 · <span class="il on" data-l="de">Download</span><span class="il" data-l="en">Download</span></button>
+</div>
+
+<!-- CH 1: Was ist Hypnose -->
+<div class="chapter" id="ch1">
+  <div class="ch-number">
+    <span class="il on" data-l="de">Kapitel 1</span><span class="il" data-l="en">Chapter 1</span>
+  </div>
+  <h2 class="ch-title">
+    <span data-lang="de" class="on">Was ist<br/><em>Hypnose?</em></span>
+    <span data-lang="en">What is<br/><em>hypnosis?</em></span>
+  </h2>
+  <div class="body-text">
+    <div data-lang="de" class="on">
+      <p>Hypnose ist kein Schlaf. Keine Bewusstlosigkeit. Keine Magie. Es ist ein <strong>fokussierter, tiefer Entspannungszustand</strong> — den du täglich erlebst, ohne es zu wissen: die Sekunden vor dem Einschlafen, wenn dein Geist entspannt aber noch wach ist.</p>
+      <p>Hypnose hilft dir, <em>bewusst in diesen Zustand einzutreten</em> — und dort zu bleiben, solange du möchtest.</p>
+      <div class="info-box">
+        <strong>Science-Hintergrund</strong>
+        Während Hypnose verlangsamen sich die Hirnwellen von Beta (Alltagsbewusstsein, 12–30 Hz) auf Alpha (entspannte Wachheit, 8–12 Hz) oder Theta (tiefe Entspannung, 4–8 Hz). Der präfrontale Kortex — zuständig für kritisches Denken — tritt zurück. Suggestionen, Lernprozesse und konditionierte Reflexe werden zugänglicher.
+      </div>
+      <h3>Was Hypnose kann</h3>
+      <p>Tiefere Entspannung und besserer Schlaf · Alltagsstress reduzieren · Neue Gewohnheiten aufbauen · Fokus und innere Ruhe stärken · Konditionierte Reflexe installieren (Sock-Anchor Prinzip)</p>
+      <h3>Was Hypnose nicht ist</h3>
+      <p>Hypnose ist kein Kontrollverlust. Du bleibst während der gesamten Sitzung bewusst und kannst jederzeit zurückkehren. Niemand kann dich zu etwas zwingen, das gegen deine Werte verstößt. <strong>Du bist immer der Steuermann.</strong></p>
+    </div>
+    <div data-lang="en">
+      <p>Hypnosis is not sleep. Not unconsciousness. Not magic. It is a <strong>focused, deeply relaxed state</strong> — one you already experience daily without noticing: the moments just before sleep, when your mind is relaxed but still aware.</p>
+      <p>Hypnosis simply helps you <em>enter that state intentionally</em> — and stay there as long as you choose.</p>
+      <div class="info-box">
+        <strong>Science background</strong>
+        During hypnosis, brainwaves slow from Beta (everyday consciousness, 12–30 Hz) to Alpha (relaxed wakefulness, 8–12 Hz) or Theta (deep relaxation, 4–8 Hz). The prefrontal cortex — responsible for critical thinking — steps back. Suggestions, learning processes, and conditioned reflexes become more accessible.
+      </div>
+      <h3>What hypnosis can do</h3>
+      <p>Deeper relaxation and better sleep · Reduce everyday stress · Build new habits · Strengthen focus and inner calm · Install conditioned reflexes (Sock-Anchor principle)</p>
+      <h3>What hypnosis is not</h3>
+      <p>Hypnosis is not loss of control. You remain conscious throughout and can return at any time. No one can force you to do anything against your values. <strong>You are always in the driver's seat.</strong></p>
+    </div>
+  </div>
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" disabled>←</button>
+    <button class="ch-nav-btn" onclick="goTo(2)">
+      <span class="il on" data-l="de">Vorbereitung →</span>
+      <span class="il" data-l="en">Preparation →</span>
+    </button>
+  </div>
+</div>
+
+<!-- CH 2: Vorbereitung -->
+<div class="chapter" id="ch2">
+  <div class="ch-number"><span class="il on" data-l="de">Kapitel 2</span><span class="il" data-l="en">Chapter 2</span></div>
+  <h2 class="ch-title">
+    <span data-lang="de" class="on"><em>Vorbereitung</em><br/>— bevor du beginnst</span>
+    <span data-lang="en"><em>Preparation</em><br/>— before you begin</span>
+  </h2>
+  <div class="body-text">
+    <div data-lang="de" class="on">
+      <p>Hypnose richtig hinzubekommen ist weniger eine Frage des <em>Tuns</em> als des <em>Zulassens</em>. Diese vier Schritte schaffen die Voraussetzungen.</p>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-label">Ruhiger Raum</div>
+            <div class="step-text">Wähle einen Ort, an dem du mindestens 20 Minuten ungestört bist. Licht dimmen wenn möglich. Telefon stumm schalten.</div>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-label">Körper bequem</div>
+            <div class="step-text">Sitz oder leg dich hin. Enge Kleidung lockern. Dein Körper soll sich vollständig entspannt anfühlen können.</div>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-label">Intention setzen</div>
+            <div class="step-text">Entscheide vor dem Beginn, was du erleben möchtest: tiefere Ruhe, besserer Schlaf, den Anker installieren. <em>Eine Intention pro Session.</em></div>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-label">Erwartungen loslassen</div>
+            <div class="step-text">Es gibt kein „richtig" oder „falsch" beim Hypnose-Erleben. Dein Erlebnis ist valide — egal wie es sich anfühlt. Vertraue dem Prozess.</div>
+          </div>
+        </div>
+      </div>
+      <div class="info-box">
+        <strong>mindful7777 Tipp</strong>
+        Kopfhörer empfohlen — besonders für die Audio-Session in Kapitel 4. Der Theta-Binaural-Carrier (200/206 Hz) entfaltet seine Wirkung nur bei getrennten Kanälen (links/rechts). Lautstärke moderat halten.
+      </div>
+    </div>
+    <div data-lang="en">
+      <p>Getting hypnosis right is less about <em>doing</em> and more about <em>allowing</em>. These four steps create the right conditions.</p>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-label">Find a quiet space</div>
+            <div class="step-text">Choose a place where you won't be disturbed for at least 20 minutes. Dim the lights if you can. Silence your phone.</div>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-label">Get comfortable</div>
+            <div class="step-text">Sit or lie down. Loosen tight clothing. Your body should feel completely at ease.</div>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-label">Set an intention</div>
+            <div class="step-text">Before you begin, decide what you'd like to experience: deeper calm, better sleep, installing the anchor. <em>One intention per session.</em></div>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-label">Let go of expectations</div>
+            <div class="step-text">There is no "right" or "wrong" way to experience hypnosis. Your experience is valid — whatever it feels like. Trust the process.</div>
+          </div>
+        </div>
+      </div>
+      <div class="info-box">
+        <strong>mindful7777 tip</strong>
+        Headphones recommended — especially for the audio session in chapter 4. The Theta binaural carrier (200/206 Hz) only works with separated channels (left/right). Keep volume moderate.
+      </div>
+    </div>
+  </div>
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="goTo(1)">← <span class="il on" data-l="de">Was ist Hypnose</span><span class="il" data-l="en">What is hypnosis</span></button>
+    <button class="ch-nav-btn" onclick="goTo(3)"><span class="il on" data-l="de">Induktions-Skript</span><span class="il" data-l="en">Induction script</span> →</button>
+  </div>
+</div>
+
+<!-- CH 3: INDUKTIONS-SKRIPT -->
+<div class="chapter" id="ch3">
+  <div class="ch-number"><span class="il on" data-l="de">Kapitel 3</span><span class="il" data-l="en">Chapter 3</span></div>
+  <h2 class="ch-title">
+    <span data-lang="de" class="on">Das <em>Induktions-Skript</em><br/>— zum Selbst-Lesen</span>
+    <span data-lang="en">The <em>Induction Script</em><br/>— read to yourself</span>
+  </h2>
+  <div class="body-text">
+    <div data-lang="de" class="on">
+      <p>Lies dieses Skript einmal komplett durch — dann führe es mit geschlossenen Augen aus. Die <span style="color:var(--gold);font-style:italic">kursiven Pausen-Markierungen</span> zeigen, wo du langsamer wirst und inne hältst.</p>
+      <div class="script-block">
+        <div class="script-head">
+          <span class="script-tag">Induktions-Skript DE · Sock-Anchor Protocol</span>
+          <button class="script-copy-btn" onclick="copyScript('script-de')">Kopieren</button>
+        </div>
+        <div class="script-content" id="script-de">Setz dich bequem hin, oder leg dich hin.
+Schließ die Augen... <span class="script-pause">[ 3 Sekunden ]</span>
+
+<span class="script-action">// ATEMSEQUENZ — Vagus aktivieren</span>
+Atme tief ein durch die Nase... vier... drei... zwei... eins...
+Halte... zwei Sekunden...
+Und langsam aus durch den Mund... acht... sieben... sechs...
+fünf... vier... drei... zwei... eins. <span class="script-pause">[ Pause ]</span>
+
+Noch einmal. Einatmen... vier Sekunden...
+Halten...
+Langsam ausatmen... acht Sekunden. <span class="script-pause">[ Pause ]</span>
+
+<span class="script-action">// KÖRPER-SCAN — Muskelentspannung</span>
+Bring deine Aufmerksamkeit zum Scheitel deines Kopfes.
+Lass die Stirn glatt werden. <span class="script-pause">[ 2 Sekunden ]</span>
+Die Kiefer entspannen. Die Schultern sinken. <span class="script-pause">[ 2 Sekunden ]</span>
+Brust und Bauch. Arme. Hände. <span class="script-pause">[ 2 Sekunden ]</span>
+Beine. Füße. Zehen. <span class="script-pause">[ 3 Sekunden ]</span>
+
+<span class="script-action">// VERTIEFUNG — Countdown</span>
+Ich zähle jetzt von zehn auf eins.
+Mit jeder Zahl verdoppelt sich deine Entspannung.
+
+Zehn... tiefer...
+Neun... acht... noch tiefer...
+Sieben... sechs... fünf...
+Vier... drei... zwei...
+Eins. <span class="script-pause">[ 5 Sekunden Stille ]</span>
+
+<span class="script-action">// ANKER — Sock-Anchor Installation</span>
+Jetzt, in diesem Zustand tiefer Ruhe:
+Greif zu deiner Socke. Spür die Textur.
+Dein Nervensystem verbindet diesen Moment
+mit exakt diesem Zustand.
+Klassische Konditionierung. Pavlov-Prinzip.
+Neuroplastizität in Echtzeit. <span class="script-pause">[ 3 Sekunden ]</span>
+
+<span class="script-action">// SUGGESTION</span>
+Wiederhole innerlich:
+"Mein Nervensystem kennt diesen Zustand.
+Er ist jederzeit abrufbar."
+<span class="script-pause">[ 5 Sekunden ]</span>
+
+<span class="script-action">// RE-ORIENTIERUNG</span>
+In deinem eigenen Tempo:
+Eins... zwei... drei...
+Bei fünf bist du vollständig zurück.
+Vier... fünf.
+Tief einatmen. Augen auf. Willkommen zurück.</div>
+      </div>
+    </div>
+    <div data-lang="en">
+      <p>Read this script through once completely — then perform it with your eyes closed. The <span style="color:var(--gold);font-style:italic">italic pause markers</span> show where you slow down and pause.</p>
+      <div class="script-block">
+        <div class="script-head">
+          <span class="script-tag">Induction Script EN · Sock-Anchor Protocol</span>
+          <button class="script-copy-btn" onclick="copyScript('script-en')">Copy</button>
+        </div>
+        <div class="script-content" id="script-en">Find a comfortable position. Sit or lie down.
+Close your eyes... <span class="script-pause">[ 3 seconds ]</span>
+
+<span class="script-action">// BREATHING — vagus activation</span>
+Breathe in deeply through your nose... four... three... two... one...
+Hold... two seconds...
+And slowly out through your mouth... eight... seven... six...
+five... four... three... two... one. <span class="script-pause">[ pause ]</span>
+
+Once more. Inhale... four seconds...
+Hold...
+Slowly exhale... eight seconds. <span class="script-pause">[ pause ]</span>
+
+<span class="script-action">// BODY SCAN — muscle relaxation</span>
+Bring your attention to the top of your head.
+Let the forehead smooth out. <span class="script-pause">[ 2 seconds ]</span>
+Jaw releases. Shoulders drop. <span class="script-pause">[ 2 seconds ]</span>
+Chest and belly. Arms. Hands. <span class="script-pause">[ 2 seconds ]</span>
+Legs. Feet. Toes. <span class="script-pause">[ 3 seconds ]</span>
+
+<span class="script-action">// DEEPENING — countdown</span>
+I am counting now from ten down to one.
+With each number, your relaxation doubles.
+
+Ten... deeper...
+Nine... eight... deeper still...
+Seven... six... five...
+Four... three... two...
+One. <span class="script-pause">[ 5 seconds silence ]</span>
+
+<span class="script-action">// ANCHOR — Sock-Anchor installation</span>
+Now, in this state of deep calm:
+Reach for your sock. Feel the texture.
+Your nervous system is linking this moment
+to exactly this state.
+Classical conditioning. Pavlovian principle.
+Neuroplasticity in real time. <span class="script-pause">[ 3 seconds ]</span>
+
+<span class="script-action">// SUGGESTION</span>
+Repeat internally:
+"My nervous system knows this state.
+It is available on demand."
+<span class="script-pause">[ 5 seconds ]</span>
+
+<span class="script-action">// RE-ORIENTATION</span>
+In your own time:
+One... two... three...
+At five you are fully back.
+Four... five.
+Deep breath. Eyes open. Welcome back.</div>
+      </div>
+    </div>
+  </div>
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="goTo(2)">← <span class="il on" data-l="de">Vorbereitung</span><span class="il" data-l="en">Preparation</span></button>
+    <button class="ch-nav-btn" onclick="goTo(4)"><span class="il on" data-l="de">Audio-Session</span><span class="il" data-l="en">Audio session</span> →</button>
+  </div>
+</div>
+
+<!-- CH 4: AUDIO -->
+<div class="chapter" id="ch4">
+  <div class="ch-number"><span class="il on" data-l="de">Kapitel 4</span><span class="il" data-l="en">Chapter 4</span></div>
+  <h2 class="ch-title">
+    <span data-lang="de" class="on">Die <em>Audio-Session</em><br/>— geführte Induktion</span>
+    <span data-lang="en">The <em>Audio Session</em><br/>— guided induction</span>
+  </h2>
+  <div class="body-text">
+    <div data-lang="de" class="on">
+      <p>Die Audio-Session führt dich durch die vollständige Induktion — Atemsequenz, Körper-Scan, Anker-Installation, Re-Orientierung. Mit Theta-Binaural-Carrier (200/206 Hz) zur Unterstützung der Brainwave-Transition.</p>
+      <div class="audio-section">
+        <div class="audio-label">Audio · Theta-Binaural · DE</div>
+        <div class="audio-title">Sock-Anchor — 10 Min geführte Induktion</div>
+        <div class="audio-placeholder">
+          <span style="color:var(--gold);display:block;margin-bottom:8px;font-size:10px;letter-spacing:.15em;text-transform:uppercase">Audio-Datei einbinden</span>
+          Datei unter <code>assets/audio/sock-anchor-de.mp3</code> ablegen,<br/>
+          dann den &lt;audio&gt;-Tag einkommentieren.
+        </div>
+        <!-- AUDIO EINKOMMENTIEREN wenn Datei vorhanden:
+        <audio controls style="width:100%;margin-top:12px">
+          <source src="assets/audio/sock-anchor-de.mp3" type="audio/mpeg">
+        </audio>
+        -->
+      </div>
+      <div class="audio-section">
+        <div class="audio-label">Audio · Theta-Binaural · EN</div>
+        <div class="audio-title">Sock-Anchor — 10 Min guided induction</div>
+        <div class="audio-placeholder">
+          <span style="color:var(--gold);display:block;margin-bottom:8px;font-size:10px;letter-spacing:.15em;text-transform:uppercase">Audio file</span>
+          Place file at <code>assets/audio/sock-anchor-en.mp3</code>,<br/>
+          then uncomment the &lt;audio&gt; tag.
+        </div>
+        <!-- AUDIO EINKOMMENTIEREN wenn Datei vorhanden:
+        <audio controls style="width:100%;margin-top:12px">
+          <source src="assets/audio/sock-anchor-en.mp3" type="audio/mpeg">
+        </audio>
+        -->
+      </div>
+      <div class="info-box">
+        <strong>Termux — Audio selbst produzieren</strong>
+        ffmpeg -f lavfi -i "sine=frequency=200:duration=600" -f lavfi -i "sine=frequency=206:duration=600" -filter_complex "[0:a][1:a]amerge=inputs=2,pan=stereo|c0&lt;c0|c1&lt;c1" -b:a 192k assets/audio/theta_base.mp3
+      </div>
+    </div>
+    <div data-lang="en">
+      <p>The audio session guides you through the complete induction — breathing sequence, body scan, anchor installation, re-orientation. With Theta binaural carrier (200/206 Hz) to support brainwave transition.</p>
+      <div class="audio-section">
+        <div class="audio-label">Audio · Theta-Binaural · EN</div>
+        <div class="audio-title">Sock-Anchor — 10 min guided induction</div>
+        <div class="audio-placeholder">
+          <span style="color:var(--gold);display:block;margin-bottom:8px;font-size:10px;letter-spacing:.15em;text-transform:uppercase">Audio file</span>
+          Place file at <code>assets/audio/sock-anchor-en.mp3</code>,<br/>
+          then uncomment the &lt;audio&gt; tag below.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="goTo(3)">← <span class="il on" data-l="de">Induktions-Skript</span><span class="il" data-l="en">Induction script</span></button>
+    <button class="ch-nav-btn" onclick="goTo(5)"><span class="il on" data-l="de">Download</span><span class="il" data-l="en">Download</span> →</button>
+  </div>
+</div>
+
+<!-- CH 5: DOWNLOAD CTA -->
+<div class="chapter" id="ch5">
+  <div class="ch-number"><span class="il on" data-l="de">Kapitel 5</span><span class="il" data-l="en">Chapter 5</span></div>
+  <h2 class="ch-title">
+    <span data-lang="de" class="on">Das <em>Bundle</em><br/>— PDF + Audio</span>
+    <span data-lang="en">The <em>Bundle</em><br/>— PDF + Audio</span>
+  </h2>
+  <div class="body-text">
+    <div data-lang="de" class="on">
+      <p>Hol dir das vollständige Bundle als Download — PDF zum Offline-Lesen, MP3-Audio für unterwegs, plus die ffmpeg-Befehle um das Binaural-Audio selbst zu produzieren.</p>
+    </div>
+    <div data-lang="en">
+      <p>Get the complete bundle as download — PDF for offline reading, MP3 audio for anywhere, plus the ffmpeg commands to produce your own binaural audio.</p>
+    </div>
+  </div>
+  <div class="download-cta">
+    <div class="dl-kicker">Gumroad · mindful7777</div>
+    <div class="dl-title">
+      <span data-lang="de" class="on">How to Go Into Hypnosis<br/><em>PDF + Audio Bundle</em></span>
+      <span data-lang="en">How to Go Into Hypnosis<br/><em>PDF + Audio Bundle</em></span>
+    </div>
+    <div class="dl-includes">
+      <div class="dl-item"><span class="dl-check">✓</span><span><span class="il on" data-l="de">eBook PDF (ACCIO Design, DE+EN)</span><span class="il" data-l="en">eBook PDF (ACCIO design, DE+EN)</span></span></div>
+      <div class="dl-item"><span class="dl-check">✓</span><span><span class="il on" data-l="de">Induktions-Skript als separate PDF</span><span class="il" data-l="en">Induction script as separate PDF</span></span></div>
+      <div class="dl-item"><span class="dl-check">✓</span><span><span class="il on" data-l="de">10-Min Theta Audio-Session MP3 (DE)</span><span class="il" data-l="en">10-min Theta audio session MP3 (EN)</span></span></div>
+      <div class="dl-item"><span class="dl-check">✓</span><span><span class="il on" data-l="de">ffmpeg Audio-Produktions-Skript</span><span class="il" data-l="en">ffmpeg audio production script</span></span></div>
+    </div>
+    <div class="price-tag">€9 <span>einmalig / one-time</span></div>
+    <br/>
+    <a href="https://mindful777.gumroad.com/l/csaf777" target="_blank" class="btn-primary">
+      <span class="il on" data-l="de">Jetzt auf Gumroad kaufen →</span>
+      <span class="il" data-l="en">Buy now on Gumroad →</span>
+    </a>
+    <a href="https://ko-fi.com/mindf7777" target="_blank" class="btn-ghost">
+      <span class="il on" data-l="de">VIP — 25 €/Mo</span>
+      <span class="il" data-l="en">VIP — €25/mo</span>
+    </a>
+    <p style="font-size:11px;color:var(--muted);margin-top:20px;line-height:1.6">
+      <span class="il on" data-l="de">Auch erhältlich über Ko-fi und Throne. Kein Abo. Einmalige Zahlung.</span>
+      <span class="il" data-l="en">Also available via Ko-fi and Throne. No subscription. One-time payment.</span>
+    </p>
+  </div>
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="goTo(4)">← <span class="il on" data-l="de">Audio-Session</span><span class="il" data-l="en">Audio session</span></button>
+    <button class="ch-nav-btn" onclick="goTo(1)">
+      <span class="il on" data-l="de">↺ Von vorne</span>
+      <span class="il" data-l="en">↺ Start over</span>
+    </button>
+  </div>
+</div>
+
+<footer>
+  © 2026 mindful7777 · WHY NOT? BE THE CHANGE. ·
+  <a href="impressum.html">Impressum</a> ·
+  <a href="datenschutz.html">Datenschutz</a>
+</footer>
+
+<script>
+var currentChapter = 0;
+var currentLang = 'de';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-lang]').forEach(function(el) {
+    el.classList.toggle('on', el.getAttribute('data-lang') === lang);
+  });
+  document.querySelectorAll('.il').forEach(function(el) {
+    el.classList.toggle('on', el.getAttribute('data-l') === lang);
+  });
+  document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+}
+
+function startReading() {
+  document.getElementById('ch-cover').style.display = 'none';
+  document.getElementById('chapterNav').style.display = 'flex';
+  goTo(1);
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function goTo(n) {
+  for (var i = 1; i <= 5; i++) {
+    var ch = document.getElementById('ch' + i);
+    var nav = document.getElementById('nav' + i);
+    if (ch) ch.classList.toggle('active', i === n);
+    if (nav) nav.classList.toggle('active', i === n);
+  }
+  currentChapter = n;
+  updateProgress();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function updateProgress() {
+  var pct = (currentChapter / 5) * 100;
+  document.getElementById('prog').style.width = pct + '%';
+}
+
+function copyScript(id) {
+  var el = document.getElementById(id);
+  var text = el.innerText;
+  navigator.clipboard.writeText(text).then(function() {
+    var btns = document.querySelectorAll('.script-copy-btn');
+    btns.forEach(function(b) {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) {
+        var orig = b.textContent;
+        b.textContent = '✓ Kopiert';
+        setTimeout(function() { b.textContent = orig; }, 1500);
+      }
+    });
+  });
+}
+
+// scroll progress on cover
+window.addEventListener('scroll', function() {
+  if (currentChapter === 0) {
+    var scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    document.getElementById('prog').style.width = (scrolled * 100) + '%';
+  }
+});
+</script>
+</body>
+</html>
