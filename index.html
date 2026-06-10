@@ -1,292 +1,520 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="mindful7777 — Hypnose, mentale Stärke & Erholung. Geführte Theta-Wave-Sessions für Frankfurt und online.">
-<title>mindful7777 · Hypnose & mentale Stärke</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root{--black:#030303;--deep:#080c10;--orange:#ff4d00;--ice:#7ee8fa;--white:#f0f0ec;--glass:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08)}
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--black);color:var(--white);font-family:"Barlow Condensed",sans-serif;overflow-x:hidden;cursor:crosshair}
-  body::before{content:"";position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4}
-  a{color:inherit;text-decoration:none}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mindful7777 · Sock-Anchor Protocol & Neural Reset</title>
+  <meta name="description" content="Science-based. Kein Esoterik-Bullshit. 90-Sekunden Neural Reset — messbar, reproduzierbar, on demand." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    :root{
+      --bg:#060608;
+      --surface:#0f0f13;
+      --surface2:#16161c;
+      --gold:#d4af37;
+      --gold2:#e8cc6a;
+      --gold-dim:rgba(212,175,55,.15);
+      --border:rgba(212,175,55,.18);
+      --text:#e4e0d8;
+      --muted:rgba(228,224,216,.5);
+      --white:#fff;
+      --red:#c84b4b;
+    }
+    body{background:var(--bg);color:var(--text);font-family:"DM Sans",system-ui,sans-serif;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
 
-  /* NAV */
-  .lang-switch{position:fixed;top:22px;right:160px;z-index:200;display:flex;gap:6px}
-  .lang-switch a{font-family:"Space Mono",monospace;font-size:.65rem;letter-spacing:.2em;padding:5px 10px;border:1px solid rgba(255,255,255,.2);color:rgba(240,240,236,.5);text-transform:uppercase;transition:all .2s}
-  .lang-switch a.active,.lang-switch a:hover{border-color:var(--orange);color:var(--orange)}
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:linear-gradient(to bottom,rgba(3,3,3,.95),transparent)}
-  .nav-logo{font-family:"Bebas Neue",sans-serif;font-size:1.4rem;letter-spacing:.15em}
-  .nav-logo span{color:var(--orange)}
-  nav ul{list-style:none;display:flex;gap:32px}
-  nav ul a{font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;opacity:.55;transition:all .2s}
-  nav ul a:hover{opacity:1;color:var(--orange)}
-  .nav-stripe{background:var(--orange);color:#000;border:none;padding:8px 18px;font-family:"Bebas Neue",sans-serif;font-size:.9rem;letter-spacing:.15em;cursor:pointer;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:all .2s}
-  .nav-stripe:hover{background:var(--white)}
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:99;background:rgba(6,6,8,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:"Playfair Display",serif;font-size:18px;color:var(--gold);letter-spacing:.04em}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+    .nav-links a:hover{color:var(--gold)}
+    .nav-cta{background:var(--gold);color:#000;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:9px 20px;transition:opacity .2s}
+    .nav-cta:hover{opacity:.85;color:#000}
 
-  /* HERO */
-  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;padding:120px 24px 80px}
-  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(255,77,0,.1) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 30% 20%,rgba(126,232,250,.04) 0%,transparent 60%),var(--deep)}
-  .hero-scan{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);animation:scan 4s ease-in-out infinite;opacity:.5}
-  @keyframes scan{0%{top:0;opacity:0}10%{opacity:.5}90%{opacity:.5}100%{top:100%;opacity:0}}
-  .sock-float{position:absolute;right:8%;top:50%;transform:translateY(-50%);font-size:8rem;opacity:.05;animation:floatSock 6s ease-in-out infinite;pointer-events:none;filter:blur(1px)}
-  @keyframes floatSock{0%,100%{transform:translateY(-50%) rotate(-5deg)}50%{transform:translateY(calc(-50% - 20px)) rotate(5deg)}}
-  .hero-eyebrow{font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.3em;color:var(--orange);text-transform:uppercase;margin-bottom:24px;opacity:0;animation:fadeUp .8s .2s forwards}
-  .hero-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(4rem,13vw,10rem);line-height:.9;letter-spacing:.02em;opacity:0;animation:fadeUp .8s .4s forwards;z-index:2;position:relative}
-  .hero-title .line-ice{color:var(--ice);display:block}
-  .hero-title .line-orange{color:var(--orange);display:block}
-  .hero-subtitle{font-size:clamp(1rem,2.5vw,1.3rem);letter-spacing:.08em;color:rgba(240,240,236,.5);margin-top:28px;max-width:540px;line-height:1.55;opacity:0;animation:fadeUp .8s .6s forwards}
-  .hero-cta-row{display:flex;gap:16px;margin-top:48px;opacity:0;animation:fadeUp .8s .8s forwards;flex-wrap:wrap;justify-content:center}
-  .hero-location{font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.25em;color:rgba(240,240,236,.25);margin-top:20px;text-transform:uppercase;opacity:0;animation:fadeUp .8s 1s forwards}
+    /* ── HERO ── */
+    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 32px 80px;position:relative;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(212,175,55,.06) 0%,transparent 70%);pointer-events:none}
+    .hero-tag{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+    .hero-title{font-family:"Playfair Display",serif;font-size:clamp(42px,8vw,88px);font-weight:400;line-height:1.0;max-width:900px;margin-bottom:24px}
+    .hero-title em{color:var(--gold);font-style:italic}
+    .hero-sub{font-size:18px;color:var(--muted);max-width:560px;line-height:1.7;margin-bottom:48px}
+    .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+    .btn-primary{background:var(--gold);color:#000;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:16px 36px;display:inline-block;transition:opacity .2s}
+    .btn-primary:hover{opacity:.85}
+    .btn-ghost{border:1px solid var(--border);color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:15px 28px;display:inline-block;transition:all .2s}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+    .hero-proof{margin-top:60px;padding-top:40px;border-top:1px solid var(--border);display:flex;gap:48px;flex-wrap:wrap}
+    .proof-item{display:flex;flex-direction:column;gap:4px}
+    .proof-num{font-family:"Playfair Display",serif;font-size:32px;color:var(--gold)}
+    .proof-label{font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
 
-  /* BUTTONS */
-  .btn-primary{background:var(--orange);color:#000;border:none;padding:16px 40px;font-family:"Bebas Neue",sans-serif;font-size:1.1rem;letter-spacing:.15em;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
-  .btn-primary:hover{background:#fff;transform:translateY(-2px);box-shadow:0 0 30px rgba(255,77,0,.5)}
-  .btn-ghost{border:1px solid rgba(255,255,255,.2);color:var(--white);padding:16px 40px;font-family:"Bebas Neue",sans-serif;font-size:1.1rem;letter-spacing:.15em;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;background:transparent}
-  .btn-ghost:hover{border-color:var(--ice);color:var(--ice)}
+    /* ── SECTION BASE ── */
+    section{padding:100px 32px}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+    .sec-title{font-family:"Playfair Display",serif;font-size:clamp(28px,4vw,52px);font-weight:400;line-height:1.1;margin-bottom:20px}
+    .sec-title em{color:var(--gold);font-style:italic}
+    .sec-body{font-size:16px;color:var(--muted);line-height:1.8;max-width:640px}
 
-  /* TICKER */
-  .ticker-wrap{overflow:hidden;background:var(--orange);padding:10px 0;white-space:nowrap}
-  .ticker-track{display:inline-block;animation:ticker 22s linear infinite}
-  .ticker-track span{font-family:"Bebas Neue",sans-serif;font-size:.9rem;letter-spacing:.15em;color:#000;margin:0 30px}
-  @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    /* ── WHAT IS IT ── */
+    .what-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:60px}
+    .what-card{background:var(--surface);border:1px solid var(--border);padding:40px;position:relative}
+    .what-card.featured{background:var(--surface2);border-color:var(--gold)}
+    .what-num{font-family:"DM Mono",monospace;font-size:11px;color:var(--gold);margin-bottom:16px;letter-spacing:.1em}
+    .what-title{font-family:"Playfair Display",serif;font-size:22px;font-weight:400;margin-bottom:12px;color:var(--white)}
+    .what-body{font-size:14px;color:var(--muted);line-height:1.8}
+    @media(max-width:640px){.what-grid{grid-template-columns:1fr}}
 
-  /* PHASE STRIP */
-  .phase-strip{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:var(--glass);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)}
-  .phase-block{padding:32px 48px}
-  .phase-block.beta{border-right:1px solid var(--glass-border)}
-  .phase-block.theta{border-left:1px solid var(--glass-border)}
-  .phase-tag{font-family:"Space Mono",monospace;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;margin-bottom:8px}
-  .phase-block.beta .phase-tag{color:var(--orange)}
-  .phase-block.theta .phase-tag{color:var(--ice)}
-  .phase-name{font-family:"Bebas Neue",sans-serif;font-size:2.2rem;letter-spacing:.06em}
-  .phase-desc{font-size:.85rem;opacity:.5;margin-top:6px;max-width:220px}
-  .phase-hz{font-family:"Space Mono",monospace;font-size:.75rem;margin-top:10px;opacity:.4}
-  .phase-block.theta .phase-hz{color:var(--ice)}
-  .phase-arrow{text-align:center;padding:20px}
-  .arrow-icon{font-size:1.6rem;color:var(--orange);animation:pulse 2s ease-in-out infinite}
-  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
-  .arrow-label{font-family:"Space Mono",monospace;font-size:.55rem;letter-spacing:.2em;color:var(--orange);display:block;margin-top:6px;text-transform:uppercase}
+    /* ── BLUR PAYWALL SECTION ── */
+    .paywall-section{padding:80px 32px;background:var(--surface)}
+    .paywall-wrap{max-width:760px;margin:0 auto}
+    .paywall-header{margin-bottom:40px}
+    .paywall-article{position:relative}
+    .article-text{font-size:17px;line-height:1.9;color:var(--text)}
+    .article-text p{margin-bottom:1.4em}
+    .article-text h3{font-family:"Playfair Display",serif;font-size:22px;font-weight:400;color:var(--white);margin:2em 0 .8em}
+    .article-text strong{color:var(--gold)}
 
-  /* ARTICLES */
-  .articles-section{max-width:1100px;margin:0 auto;padding:100px 24px}
-  .section-label{font-family:"Space Mono",monospace;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:block}
-  .section-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(3rem,8vw,6rem);line-height:.9;margin-bottom:60px}
-  .article-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:2px;background:var(--glass-border)}
-  .article-card{background:var(--deep);padding:36px 28px;display:flex;flex-direction:column;gap:14px;transition:background .2s;position:relative;overflow:hidden}
-  .article-card::before{content:"";position:absolute;top:0;left:0;width:2px;height:0;background:var(--orange);transition:height .3s}
-  .article-card:hover{background:rgba(255,77,0,.04)}
-  .article-card:hover::before{height:100%}
-  .article-card.featured{background:rgba(255,77,0,.04);border-left:2px solid var(--orange)}
-  .article-card.featured::before{display:none}
-  .article-cat{font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--orange);opacity:.7}
-  .article-date{font-family:"Space Mono",monospace;font-size:.55rem;letter-spacing:.15em;color:rgba(240,240,236,.22);margin-top:-6px}
-  .article-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(1.5rem,2.5vw,2.2rem);line-height:.95;letter-spacing:.03em}
-  .article-card.featured .article-title{font-size:clamp(2rem,3.5vw,3rem)}
-  .article-excerpt{font-size:.95rem;line-height:1.65;color:rgba(240,240,236,.45);flex:1}
-  .article-link{display:inline-flex;align-items:center;gap:8px;font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);opacity:.7;transition:opacity .2s;margin-top:auto}
-  .article-link:hover{opacity:1}
-  .all-articles{display:flex;justify-content:center;margin-top:40px}
+    /* Blur overlay */
+    .blur-wrapper{position:relative;overflow:hidden}
+    .blur-content{/* visible top portion — no blur */}
+    .blur-gate{position:relative;margin-top:-120px;padding-top:120px;background:linear-gradient(to bottom,transparent 0%,var(--surface) 40%);display:flex;flex-direction:column;align-items:center;padding-bottom:60px;text-align:center}
+    .blurred-preview{filter:blur(5px);user-select:none;pointer-events:none;opacity:.7;margin-bottom:-200px}
+    .gate-card{background:var(--bg);border:1px solid var(--gold);padding:40px;max-width:480px;width:100%;position:relative;z-index:2}
+    .gate-icon{font-size:28px;margin-bottom:16px}
+    .gate-title{font-family:"Playfair Display",serif;font-size:24px;font-weight:400;color:var(--white);margin-bottom:12px}
+    .gate-body{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:28px}
+    .gate-actions{display:flex;flex-direction:column;gap:10px}
+    .gate-email{width:100%;background:transparent;border:1px solid var(--border);color:var(--text);font-size:14px;padding:13px 16px;font-family:inherit;outline:none;transition:border-color .2s}
+    .gate-email:focus{border-color:var(--gold)}
+    .gate-email::placeholder{color:var(--muted)}
+    .gate-submit{width:100%;background:var(--gold);color:#000;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:15px;border:none;cursor:pointer;font-family:inherit;transition:opacity .2s}
+    .gate-submit:hover{opacity:.85}
+    .gate-or{font-size:11px;color:var(--muted);text-align:center;letter-spacing:.1em;text-transform:uppercase}
+    .gate-vip{width:100%;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:13px;cursor:pointer;font-family:inherit;transition:all .2s}
+    .gate-vip:hover{border-color:var(--gold);color:var(--gold)}
+    .gate-note{font-size:10px;color:rgba(228,224,216,.3);margin-top:8px;text-align:center}
 
-  /* CONTACT / JOIN */
-  .join-section{background:var(--glass);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);padding:100px 24px;text-align:center}
-  .join-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(4rem,10vw,9rem);line-height:.9;margin:16px 0 32px}
-  .join-title span{color:var(--orange)}
-  .join-sub{max-width:500px;margin:0 auto 48px;opacity:.5;font-size:1.1rem;line-height:1.6}
-  .join-actions{display:flex;gap:48px;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin-bottom:48px}
-  .join-btns{display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
-  .qr-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
-  .qr-img{width:180px;height:180px;display:block;border:1px solid var(--glass-border);padding:8px;background:rgba(255,255,255,.03)}
-  .qr-label{font-family:"Space Mono",monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,240,236,.22)}
-  .contact-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:24px}
-  .contact-chip{font-family:"Space Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:10px 18px;border:1px solid var(--glass-border);color:rgba(240,240,236,.4);transition:all .2s}
-  .contact-chip:hover{border-color:var(--orange);color:var(--orange)}
-  .stripe-note{font-family:"Space Mono",monospace;font-size:.55rem;letter-spacing:.15em;opacity:.22;text-transform:uppercase;margin-top:16px;display:block}
-  .stripe-note a{color:var(--ice);opacity:.6;border-bottom:1px solid rgba(126,232,250,.2)}
+    /* Unlocked state */
+    .article-unlocked .blur-gate{display:none}
+    .article-unlocked .blurred-preview{filter:none;pointer-events:auto;opacity:1;margin-bottom:0}
+    .unlock-success{display:none;background:rgba(212,175,55,.08);border:1px solid var(--border);padding:16px 20px;font-size:13px;color:var(--gold);margin-bottom:32px;text-align:center;letter-spacing:.05em}
+    .article-unlocked .unlock-success{display:block}
 
-  /* QUOTE */
-  .quote-wrap{max-width:1100px;margin:0 auto;padding:0 24px 80px}
-  .quote-block{border-left:2px solid var(--orange);padding:32px 40px;background:var(--glass)}
-  .quote-text{font-family:"Bebas Neue",sans-serif;font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;margin-bottom:16px}
-  .quote-source{font-family:"Space Mono",monospace;font-size:.65rem;letter-spacing:.2em;opacity:.35;text-transform:uppercase}
+    /* ── PRODUCTS ── */
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;margin-top:60px}
+    .product-card{background:var(--surface);border:1px solid var(--border);padding:36px;display:flex;flex-direction:column;gap:16px;transition:border-color .2s}
+    .product-card:hover{border-color:var(--gold)}
+    .product-card.featured{border-color:var(--gold);background:var(--surface2)}
+    .product-badge{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+    .product-price-tag{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+    .product-title{font-family:"Playfair Display",serif;font-size:20px;font-weight:400;color:var(--white);line-height:1.2}
+    .product-desc{font-size:13px;color:var(--muted);line-height:1.7;flex:1}
+    .product-price{font-size:28px;font-family:"Playfair Display",serif;color:var(--gold)}
+    .product-price span{font-size:14px;color:var(--muted);font-family:"DM Sans",sans-serif}
+    .product-includes{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .product-includes li{font-size:12px;color:var(--muted);padding-left:16px;position:relative;line-height:1.5}
+    .product-includes li::before{content:"→";position:absolute;left:0;color:var(--gold)}
+    .btn-product{display:block;background:var(--gold);color:#000;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:14px;text-align:center;transition:opacity .2s;margin-top:auto}
+    .btn-product:hover{opacity:.85}
+    .btn-product.ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+    .btn-product.ghost:hover{border-color:var(--gold);color:var(--gold);opacity:1}
 
-  /* FOOTER */
-  footer{border-top:1px solid var(--glass-border);padding:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
-  .footer-logo{font-family:"Bebas Neue",sans-serif;font-size:1.2rem;letter-spacing:.15em}
-  .footer-logo span{color:var(--orange)}
-  .footer-links{display:flex;gap:24px;list-style:none}
-  .footer-links a{font-size:.75rem;letter-spacing:.1em;opacity:.28;text-transform:uppercase;transition:opacity .2s}
-  .footer-links a:hover{opacity:1}
-  .footer-copy{font-family:"Space Mono",monospace;font-size:.6rem;opacity:.18;letter-spacing:.1em}
+    /* ── UPSELL STRIP ── */
+    .upsell-strip{background:var(--gold);padding:24px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+    .upsell-strip-text{color:#000}
+    .upsell-strip-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px;opacity:.7}
+    .upsell-strip-title{font-family:"Playfair Display",serif;font-size:20px;font-weight:700}
+    .upsell-strip-cta{background:#000;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:14px 28px;white-space:nowrap;transition:opacity .2s;flex-shrink:0}
+    .upsell-strip-cta:hover{opacity:.8}
 
-  /* ANIMATIONS */
-  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-  .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.visible{opacity:1;transform:none}
-  @media(max-width:768px){
-    nav{padding:16px 20px}nav ul{display:none}
-    .article-grid{grid-template-columns:1fr}
-    .phase-strip{grid-template-columns:1fr}
-    .phase-block.beta{border-right:none;border-bottom:1px solid var(--glass-border)}
-    .phase-block.theta{border-left:none;border-top:1px solid var(--glass-border)}
-    footer{flex-direction:column;text-align:center}
-    .lang-switch{right:20px;top:70px}
-    .join-actions{flex-direction:column;align-items:center}
-  }
-</style>
+    /* ── TEASER GRID ── */
+    .teaser-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;margin-top:48px}
+    .teaser-card{background:var(--surface);border:1px solid var(--border);padding:32px;position:relative;overflow:hidden;cursor:pointer;transition:border-color .2s}
+    .teaser-card:hover{border-color:var(--gold)}
+    .teaser-lock{position:absolute;top:20px;right:20px;font-size:14px;opacity:.4}
+    .teaser-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+    .teaser-title{font-family:"Playfair Display",serif;font-size:20px;font-weight:400;color:var(--white);margin-bottom:10px;line-height:1.2}
+    .teaser-preview{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+    .teaser-preview-blurred{font-size:13px;color:var(--muted);line-height:1.7;filter:blur(4px);user-select:none;pointer-events:none;height:40px;overflow:hidden}
+    .teaser-unlock{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border-top:1px solid var(--border);padding-top:16px;margin-top:4px}
+
+    /* ── FOOTER ── */
+    footer{border-top:1px solid var(--border);padding:48px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+    .footer-logo{font-family:"Playfair Display",serif;color:var(--gold);font-size:16px}
+    .footer-links{display:flex;gap:24px;flex-wrap:wrap}
+    .footer-links a{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+    .footer-links a:hover{color:var(--gold)}
+    .footer-copy{font-size:10px;color:rgba(228,224,216,.25);letter-spacing:.05em;width:100%}
+
+    /* ── NOTIFY MODAL ── */
+    .modal-overlay{position:fixed;inset:0;background:rgba(6,6,8,.85);z-index:999;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)}
+    .modal-overlay.open{display:flex}
+    .modal{background:var(--surface);border:1px solid var(--gold);padding:48px 40px;max-width:460px;width:100%;text-align:center}
+    .modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1}
+    .modal h3{font-family:"Playfair Display",serif;font-size:26px;font-weight:400;color:var(--white);margin-bottom:12px}
+    .modal p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:28px}
+    .modal-input{width:100%;background:transparent;border:1px solid var(--border);color:var(--text);font-size:14px;padding:13px 16px;font-family:inherit;outline:none;margin-bottom:10px;transition:border-color .2s}
+    .modal-input:focus{border-color:var(--gold)}
+    .modal-input::placeholder{color:var(--muted)}
+    .modal-btn{width:100%;background:var(--gold);color:#000;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:15px;border:none;cursor:pointer;font-family:inherit;transition:opacity .2s}
+    .modal-btn:hover{opacity:.85}
+    .modal-success{display:none;color:var(--gold);font-size:14px;font-style:italic}
+    @media(max-width:480px){.modal{padding:32px 24px}}
+
+    @media(max-width:768px){
+      nav{padding:14px 20px}
+      .hero{padding:100px 20px 60px}
+      section{padding:70px 20px}
+      .upsell-strip{justify-content:center;text-align:center}
+    }
+  </style>
 </head>
 <body>
 
-<div class="lang-switch">
-  <a href="index.html" class="active">DE</a>
-  <a href="index-en.html">EN</a>
-</div>
-
+<!-- ── NAV ── -->
 <nav>
-  <div class="nav-logo">MIND<span>.</span>FUL</div>
-  <ul>
-    <li><a href="blog/">Blog</a></li>
-    <li><a href="vip/ares-transformation.html">VIP</a></li>
-    <li><a href="https://mindful777.gumroad.com" target="_blank" rel="noopener">Audios</a></li>
-  </ul>
-  <a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00"
-     class="nav-stripe" target="_blank" rel="noopener">VIP WERDEN</a>
+  <a href="/" class="nav-logo">mindful<span style="color:var(--muted)">7777</span></a>
+  <div class="nav-links">
+    <a href="#protokolle">Protokolle</a>
+    <a href="#produkte">Produkte</a>
+    <a href="vip.html" class="nav-cta">VIP-Zugang</a>
+  </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
+<!-- ── HERO ── -->
+<section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-scan"></div>
-  <div class="sock-float">🧦</div>
-  <p class="hero-eyebrow">mindful7777 · Frankfurt · Online</p>
-  <h1 class="hero-title">
-    <span class="line-normal">HYPNOSE &</span>
-    <span class="line-ice">MENTALE</span>
-    <span class="line-orange">STÄRKE</span>
-  </h1>
-  <p class="hero-subtitle">
-    Wissenschaftlich fundiert. Praxisnah.<br/>
-    Theta-Wave-Sessions für Sportler, Berufstätige und alle, die mehr wollen.
-  </p>
-  <div class="hero-cta-row">
-    <a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00" class="btn-primary" target="_blank" rel="noopener">🔥 VIP Mitglied werden</a>
-    <a href="blog/" class="btn-ghost">Protokolle lesen</a>
-  </div>
-  <p class="hero-location">📍 Frankfurt · Online · mindful7777@gmail.com</p>
-</div>
-
-<!-- TICKER -->
-<div class="ticker-wrap"><div class="ticker-track">
-  <span>SOCK ANCHOR PROTOCOL</span><span>BETA TO THETA</span><span>ARES TRANSFORMATION</span><span>432 HZ RESET</span><span>DEEP THETA STATE</span><span>MINDFUL7777</span><span>AFTER WORK INDUCTION</span><span>MIND FLOW HYPNOSIS</span>
-  <span>SOCK ANCHOR PROTOCOL</span><span>BETA TO THETA</span><span>ARES TRANSFORMATION</span><span>432 HZ RESET</span><span>DEEP THETA STATE</span><span>MINDFUL7777</span><span>AFTER WORK INDUCTION</span><span>MIND FLOW HYPNOSIS</span>
-</div></div>
-
-<!-- PHASE STRIP -->
-<div class="phase-strip">
-  <div class="phase-block beta">
-    <p class="phase-tag">Dein aktueller Zustand</p>
-    <h2 class="phase-name">BETA-MODUS</h2>
-    <p class="phase-desc">Vollgas. Hochspannung. Cortisol. Der Geist läuft weiter — auch nach Feierabend.</p>
-    <p class="phase-hz">12–30 Hz · Hohe Spannung</p>
-  </div>
-  <div class="phase-arrow"><div class="arrow-icon">→</div><span class="arrow-label">Trigger</span></div>
-  <div class="phase-block theta">
-    <p class="phase-tag">Nach dem Protokoll</p>
-    <h2 class="phase-name">THETA-STASE</h2>
-    <p class="phase-desc">Tiefe Ruhe. Neuronale Regeneration. Das Unterbewusstsein übernimmt die Kontrolle.</p>
-    <p class="phase-hz">4–8 Hz · 432 Hz Reset</p>
-  </div>
-</div>
-
-<!-- ARTICLES -->
-<div class="articles-section" id="blog">
-  <span class="section-label reveal">Aus dem Blog</span>
-  <h2 class="section-title reveal">GEDANKEN ÜBER<br>ERHOLUNG &amp; FOKUS</h2>
-  <div class="article-grid">
-    <article class="article-card featured reveal">
-      <span class="article-cat">⭐ Featured · Tools</span>
-      <span class="article-date">Immer aktuell</span>
-      <h3 class="article-title">DER SOCK ANCHOR — EIN GESTURE. INSTANT RESET.</h3>
-      <p class="article-excerpt">
-        Wie eine einfache physische Bewegung eine messbare Verschiebung im Nervensystem auslöst.
-        Der biologische Schalter vom Beta- in den Theta-Modus — zuverlässig, täglich, sofort.
-      </p>
-      <a href="blog/socken-anker.html" class="article-link">5 min → Protokoll lesen</a>
-    </article>
-    <article class="article-card reveal">
-      <span class="article-cat">Science</span>
-      <span class="article-date">Mai 2026</span>
-      <h3 class="article-title">THETA WELLEN — KEINE MYSTIK. PURE BIOLOGIE.</h3>
-      <p class="article-excerpt">4–8 Hz Gehirnfrequenzen — messbar, reproduzierbar, trainierbar.</p>
-      <a href="blog/theta-wellen.html" class="article-link">4 min → Lesen</a>
-    </article>
-    <article class="article-card reveal">
-      <span class="article-cat">Recovery · Science</span>
-      <span class="article-date">April 2026</span>
-      <h3 class="article-title">ERHOLUNG BEGINNT IM KOPF — NICHT NACH DER DUSCHE.</h3>
-      <p class="article-excerpt">Wann beginnt echte Regeneration wirklich? Die Antwort verändert alles.</p>
-      <a href="blog/recovery-training.html" class="article-link">5 min → Lesen</a>
-    </article>
-  </div>
-  <div class="all-articles reveal">
-    <a href="blog/" class="btn-ghost" style="padding:12px 32px;font-size:.9rem;">Alle Artikel →</a>
-  </div>
-</div>
-
-<!-- QUOTE -->
-<div class="quote-wrap reveal">
-  <div class="quote-block">
-    <p class="quote-text">"You already carry the solution for your perfect recovery and your next win within yourself."</p>
-    <p class="quote-source">— Milton Erickson · Eingebettet im Ares-Protokoll · mindful7777</p>
-  </div>
-</div>
-
-<!-- JOIN / CONTACT -->
-<div class="join-section" id="kontakt">
-  <p class="section-label">Bereit?</p>
-  <h2 class="join-title">LASS UNS<br><span>STARTEN</span></h2>
-  <p class="join-sub">
-    Session buchen, Frage stellen oder einfach Hallo sagen.
-    Frankfurt. Online. Jederzeit.
-  </p>
-  <div class="join-actions">
-    <div class="qr-wrap">
-      <img class="qr-img"
-           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjoAAAI6CAIAAAChKnWXAAAPAklEQVR4nO3csXEkyRFAUYIBFSJ0uEE/aAhNoSH0g25RPWGjb4+1tZl/8J66sdM93TX4UULl28fn198AYLe/T98AAPw5uQIgQK4ACJArAALkCoAAuQIgQK4ACJArAALkCoAAuQIgQK4ACJArAALkCoAAuQIgQK4ACJArAALkCoAAuQIgQK4ACJArAALkCoAAuQIgQK4ACJArAALkCoAAuQIgQK4ACJArAALkCoAAuQIgQK4ACJArAALkCoAAuQIgQK4ACJArAALkCoAAuQIgQK4ACHifuvB///3PqUtf8o9//Wf6Fn7g+TkX7/mee0/j3jc6ueeTtTH1f6fc+75FU+/I7gqAALkCIECuAAiQKwAC5AqAALkCIECuAAiQKwAC5AqAgLGpFs+KJ9unPnnnLIaTu5qaibDzLdybmFD8lU2933uKb2GK3RUAAXIFQIBcARAgVwAEyBUAAXIFQIBcARAgVwAEyBUAAUunWjy7d+J6akLEyeSCk6cxNUHg3tyKk/97b37Es6mnsXNywYl7z2pK8W/dPXZXAATIFQABcgVAgFwBECBXAATIFQABcgVAgFwBECBXAAQkp1rwRztPp++8q+LkgpMneW9exrN7z3nqDe5cz9+N3RUAAXIFQIBcARAgVwAEyBUAAXIFQIBcARAgVwAEyBUAAaZa/Cb35gucnPMvfvJOU99o6h09/997EzGmViwb2F0BECBXAATIFQABcgVAgFwBECBXAATIFQABcgVAgFwBEJCcavF658+L0yWm3sLU/Ih73/feNzq556n3e++eT+ZlTNl5V1PsrgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIWDrVYmpywT33TtTfO8l/8hbuXff1vu+Unc9552SKe9d9vb9199hdARAgVwAEyBUAAXIFQIBcARAgVwAEyBUAAXIFQIBcARDw9vH5NX0POOf/m657MkHgu32j15tbsfPt8/PsrgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIeMGpFlPn/E8++dl3O+e/c17GTq83bWHnW9j5nHf+fu+xuwIgQK4ACJArAALkCoAAuQIgQK4ACJArAALkCoAAuQIg4H36Bn5s6mR7cZ7Cd3tWU15vesiUk5Wzc7Xze9hdARAgVwAEyBUAAXIFQIBcARAgVwAEyBUAAXIFQIBcARCwdKrFPSdn5nfOJpiatnDyyVOTGu7NU/CNfpWpb3Tvt/B603Cm1obdFQABcgVAgFwBECBXAATIFQABcgVAgFwBECBXAATIFQABY1MtimfXd56Kd93f4+Qk/9Q32jm34tnUXU1NACmu5yl2VwAEyBUAAXIFQIBcARAgVwAEyBUAAXIFQIBcARAgVwAEjE21eDY1t+LZd5sRMDUBZOpJFlfdPVNTS57tnGhzonjPU+yuAAiQKwAC5AqAALkCIECuAAiQKwAC5AqAALkCIECuAAgYm2rx3U62F2cTnDzJne/o3jSNe9ctTmmZWu0nds5/ObFzdswJuysAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAsamWuw8q38yqeFZcULEztkEU993avbEieLkgp3zX56f5NSMnnt23pXdFQABcgVAgFwBECBXAATIFQABcgVAgFwBECBXAATIFQABbx+fX9P3wJF7sxjunV2/Nx/k5LrFGRDPpuaw3LNzPT+7d1dTv6MpdlcABMgVAAFyBUCAXAEQIFcABMgVAAFyBUCAXAEQIFcABLxP38CvN3Xe/sS9s/onT+O7zcs4+eR7b6E4feDZybOaer/Pdk6muPckp9ak3RUAAXIFQIBcARAgVwAEyBUAAXIFQIBcARAgVwAEyBUAAWNTLe6dqS7OF7g3A+Le0zhx77r33tHOJ3li6hvdW+3Ft/Bs6re/c5aK3RUAAXIFQIBcARAgVwAEyBUAAXIFQIBcARAgVwAEyBUAAW8fn1/T9/CLnZzWvjfzoniGfGpGwL25BsVPfjY1mWJqtU9NpZn6/b7eGzxhdwVAgFwBECBXAATIFQABcgVAgFwBECBXAATIFQABcgVAwPvUhV/vtPbJN5qaxLHTzhP1J3auup1P0tv/+X99vWf1zO4KgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgICxqRYnTk5r35sgsHM2wXc7937Pvec8NfXgxL0ZLif/997T2PlL2fnX7B67KwAC5AqAALkCIECuAAiQKwAC5AqAALkCIECuAAiQKwAClk61mDqdPjWb4MTUfIGdT3Lnc54yNfVgal3ds/O6U/N9pthdARAgVwAEyBUAAXIFQIBcARAgVwAEyBUAAXIFQIBcARCwdKrFPVMzIHbORJiaTXBiatrCiXsrZ+f3PTE1x6G4Nu6ZmtHzzO4KgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgICxqRY7T5gXZzGc3PPUnI7ne7Y2fv66957Gve977xtNzWKYWhtTv8EpdlcABMgVAAFyBUCAXAEQIFcABMgVAAFyBUCAXAEQIFcABIxNtXi2c67B1HSJnfMFilMezFPYb+f7PbFzbdybiHGP3RUAAXIFQIBcARAgVwAEyBUAAXIFQIBcARAgVwAEyBUAAWNTLU5Oet+bH/Fs6iz31JSH13NvrsF3m/Hxeivn9WZAvN4btLsCIECuAAiQKwAC5AqAALkCIECuAAiQKwAC5AqAALkCIGBsqsWze6fxT65bdO9ZPZs6UW9t/NHUzIui4to4eUfFOR12VwAEyBUAAXIFQIBcARAgVwAEyBUAAXIFQIBcARAgVwAEvH18fk3fw1927wz51GntZ/fOn7/eJ997g/dmQEx93+KTvGfn+71n59+6Z3ZXAATIFQABcgVAgFwBECBXAATIFQABcgVAgFwBECBXAAS8T11452SKnVMeTuw8b29uxc+bmlsxtWKf7byrne/3xM7JI3ZXAATIFQABcgVAgFwBECBXAATIFQABcgVAgFwBECBXAAS8fXx+jVx46rz91EyEezyrP9o502TndZ9NTXh5vfU89TSmZk/cY3cFQIBcARAgVwAEyBUAAXIFQIBcARAgVwAEyBUAAXIFQMDSqRZFU3MNprzeefupe369GR/Pdq6c4hSPnXM67rG7AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiDgffoGfmzn1IOinVMApj55al3dmxHw/MmvNy3lxNSKPflGrzcv44TdFQABcgVAgFwBECBXAATIFQABcgVAgFwBECBXAATIFQABS6da7DR1dn3KvTPzO6c87Jx58ezes7p33Wf37upkxZ5c91lx8sgUuysAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAt4+Pr+m7+Evu3cOvHg6/eSs/tT/PTF13Sn33tGJqXX1rPiXYef73cnuCoAAuQIgQK4ACJArAALkCoAAuQIgQK4ACJArAALkCoCA9+kb+LGdswm+25n5qeveO6u/cxLHs6nfQnGewtQUj9ez8+3bXQEQIFcABMgVAAFyBUCAXAEQIFcABMgVAAFyBUCAXAEQsHSqxbPibIIT906Y35s9sfNUfHFt7JzUsPP9nti52u/9rSu+I7srAALkCoAAuQIgQK4ACJArAALkCoAAuQIgQK4ACJArAAKWTrWYmltx75OfFac8TP3f7zbF495dPZv6DT6bmqax8/1OXXeK3RUAAXIFQIBcARAgVwAEyBUAAXIFQIBcARAgVwAEyBUAAUunWkydxi9OH3i2cybCs+82W+TZ1BSPqRkfO6el3FuTU3+viuyuAAiQKwAC5AqAALkCIECuAAiQKwAC5AqAALkCIECuAAh4+/j8mr6HH5g6yz01T+HZ1ISIqXP+J6bO+U9NS7lnauLJzukwxfkvO+/5hN0VAAFyBUCAXAEQIFcABMgVAAFyBUCAXAEQIFcABMgVAAHv0zfw/7h3HnvqhPnUJ7/edafu+dnJXe2cAfF6E0+e77n46975Fk7YXQEQIFcABMgVAAFyBUCAXAEQIFcABMgVAAFyBUCAXAEQ8Pbx+TVy4XsnrqemLTybmqdwz84z88VpC892rpydsxjMgPh5xekwdlcABMgVAAFyBUCAXAEQIFcABMgVAAFyBUCAXAEQIFcABIxNtfhuTk6J7/y/383UtJSpCQLFt1+cpvFs6i3snKVidwVAgFwBECBXAATIFQABcgVAgFwBECBXAATIFQABcgVAwPvUhYtn5p/tPAdevKt7a+PedV9vMsW9Z7VzPsh3Wxv3puHcY3cFQIBcARAgVwAEyBUAAXIFQIBcARAgVwAEyBUAAXIFQMDYVItnO2cx7DzJ/+ze6fTiafypeRk73ZtrMDWzZudb2PlLKbK7AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBg6VSLZ8XZBPemSzzbOX3g2c7T+FPP6mTl3Jtb8Wxq1U1dtzjFY+ov0gm7KwAC5AqAALkCIECuAAiQKwAC5AqAALkCIECuAAiQKwACklMtqDuZArDzvP29+QL3/u89997v8yfvXFf35kdMzemY+g3aXQEQIFcABMgVAAFyBUCAXAEQIFcABMgVAAFyBUCAXAEQYKrFbzJ1Zv7ZyQSBe06e1b1vdPLJz//33lyDnZ98z867erZzTe6clmJ3BUCAXAEQIFcABMgVAAFyBUCAXAEQIFcABMgVAAFyBUBAcqpF8ez6iamz61NzHHZO09g55WHnFI97pp7z1Nu/9xZ2zq14ZncFQIBcARAgVwAEyBUAAXIFQIBcARAgVwAEyBUAAXIFQMDSqRbFE9cndp6ZP1Gcp7BzRkDx7d+zc7bIs50TT57t/AtsdwVAgFwBECBXAATIFQABcgVAgFwBECBXAATIFQABcgVAwNvH59f0PQDAn7C7AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAuQKgAC5AiBArgAIkCsAAv4Hy29HFXIvzu4AAAAASUVORK5CYII="
-           alt="QR Code — Ares Transformation VIP"/>
-      <span class="qr-label">Scan → VIP Access</span>
-      <span class="qr-label" style="color:rgba(126,232,250,.3);">ares-transformation.html</span>
+  <div class="container">
+    <div class="hero-tag">mindful7777 · Frankfurt · Science-based</div>
+    <h1 class="hero-title">90 Sekunden.<br/><em>Echter Reset.</em><br/>Kein Esoterik-Bullshit.</h1>
+    <p class="hero-sub">Pavlov-Konditionierung trifft Vagus-Nerv. Der Sock-Anchor ist das meistgenutzte Protokoll im mindful7777-System — messbar, reproduzierbar, on demand.</p>
+    <div class="hero-actions">
+      <a href="https://mindful777.gumroad.com/l/ucaan" class="btn-primary" target="_blank">Gratis Protokoll holen</a>
+      <a href="#was-ist-das" class="btn-ghost">Wie es funktioniert →</a>
     </div>
-    <div class="join-btns">
-      <a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00" class="btn-primary" target="_blank" rel="noopener" style="width:260px;text-align:center;">🔥 VIP Mitglied werden</a>
-      <a href="https://mindful777.gumroad.com" class="btn-ghost" target="_blank" rel="noopener" style="width:260px;text-align:center;">🎧 Gumroad Store</a>
-      <a href="https://wa.me/4916346922255" class="btn-ghost" target="_blank" rel="noopener" style="width:260px;text-align:center;border-color:rgba(126,232,250,.3);color:var(--ice);">💬 WhatsApp</a>
-      <a href="mailto:mindful7777@gmail.com" class="btn-ghost" style="width:260px;text-align:center;border-color:rgba(126,232,250,.3);color:var(--ice);">✉️ E-Mail</a>
-      <span class="stripe-note">Sichere Zahlung · Jederzeit kündbar · <a href="https://mindful777.gumroad.com" target="_blank">Support our work →</a></span>
+    <div class="hero-proof">
+      <div class="proof-item"><span class="proof-num">90s</span><span class="proof-label">Bis zum Reset</span></div>
+      <div class="proof-item"><span class="proof-num">Beta→Theta</span><span class="proof-label">Brainwave Shift</span></div>
+      <div class="proof-item"><span class="proof-num">On Demand</span><span class="proof-label">Jederzeit aktivierbar</span></div>
+      <div class="proof-item"><span class="proof-num">0 €</span><span class="proof-label">Einstieg gratis</span></div>
     </div>
   </div>
+</section>
+
+<!-- ── UPSELL STRIP ── -->
+<div class="upsell-strip">
+  <div class="upsell-strip-text">
+    <div class="upsell-strip-label">Limitiertes Angebot</div>
+    <div class="upsell-strip-title">VIP Stack — 7 Protokolle · 25 €/Monat</div>
+  </div>
+  <a href="vip.html" class="upsell-strip-cta">VIP-Zugang aktivieren →</a>
 </div>
 
-<!-- FOOTER -->
+<!-- ── WAS IST DAS ── -->
+<section id="was-ist-das">
+  <div class="container">
+    <div class="sec-tag">Das System</div>
+    <h2 class="sec-title">Kein Chakra.<br/>Kein Karma.<br/><em>Reines Konditionierungsprinzip.</em></h2>
+    <p class="sec-body">Pavlov brauchte auch nur eine Glocke. Der Sock-Anchor funktioniert nach demselben Prinzip — aber du bist dein eigener Labortechniker.</p>
+    <div class="what-grid">
+      <div class="what-card featured">
+        <div class="what-num">01 · MECHANISMUS</div>
+        <div class="what-title">Klassische Konditionierung</div>
+        <div class="what-body">Ein neutraler Reiz (Socke anziehen) wird durch Wiederholung mit einem Zielzustand (Tiefenentspannung, Fokus) verknüpft. Nach 21–30 Wiederholungen: automatische Aktivierung. Kein Willensakt. Kein Ritual.</div>
+      </div>
+      <div class="what-card">
+        <div class="what-num">02 · PHYSIOLOGIE</div>
+        <div class="what-title">Vagus-Nerv Aktivierung</div>
+        <div class="what-body">Die spezifische Atemsequenz im Protokoll aktiviert den N. vagus — den direkten Schalter des parasympathischen Nervensystems. Messbar via HRV. Beta→Theta in unter 90 Sekunden.</div>
+      </div>
+      <div class="what-card">
+        <div class="what-num">03 · SKALIERUNG</div>
+        <div class="what-title">Stack-Prinzip</div>
+        <div class="what-body">Ein Anker allein ist ein Tool. Drei gestackte Anker sind ein System. Das VIP-Paket enthält 7 aufeinander aufbauende Protokolle — vom 90-Sekunden-Reset bis zum Flow-State.</div>
+      </div>
+      <div class="what-card">
+        <div class="what-num">04 · ERGEBNIS</div>
+        <div class="what-title">Messbar. Reproduzierbar.</div>
+        <div class="what-body">Kein „Ich glaube, es hilft." Stattdessen: HRV-Messung vor/nach. Subjektive Stressskala 1–10. Schlafdauer-Tracking. Du weißt, ob es funktioniert — nach der ersten Woche.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BLUR PAYWALL ARTICLE ── -->
+<section class="paywall-section" id="protokoll-details">
+  <div class="paywall-wrap">
+    <div class="paywall-header">
+      <div class="sec-tag">Deep Dive · Gratis freischalten</div>
+      <h2 class="sec-title" style="font-size:clamp(24px,3vw,38px)">Das vollständige<br/><em>Sock-Anchor Protokoll</em></h2>
+      <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-top:12px">Wie du es aufbaust, wann du es einsetzt, und warum es nach 3 Wochen automatisch läuft.</p>
+    </div>
+
+    <div class="paywall-article" id="paywallArticle">
+      <div class="unlock-success">✓ Zugang freigeschaltet — viel Erfolg mit dem Protokoll.</div>
+
+      <div class="blur-wrapper">
+        <!-- Visible portion — ca. 2000 Zeichen -->
+        <div class="blur-content article-text">
+          <p>Der Sock-Anchor ist das Einstiegsprotokoll des mindful7777-Systems. Nicht weil es das einfachste ist — sondern weil es das robusteste ist. Es funktioniert unter Stress, Zeitdruck, schlechtem Schlaf und in Situationen, wo du keine 20 Minuten für eine Meditation hast.</p>
+
+          <h3>Phase 1: Die Baseline (Woche 1–3)</h3>
+          <p>Du baust den Anker, bevor du ihn brauchst. Das ist der häufigste Fehler: Menschen versuchen, ein Konditionierungsprogramm im Moment der Krise zu starten. Das funktioniert nicht. Konditionierung braucht neutralen Boden.</p>
+          <p>In den ersten drei Wochen führst du das Protokoll täglich in einem definierten Zeitfenster durch — idealerweise morgens oder nach dem Training. Der Anker-Reiz (das Anziehen der Socken) findet immer in derselben Situation statt: nach der Atemübung, im Sitzen, mit geschlossenen Augen.</p>
+          <p><strong>Warum morgens?</strong> Weil das Gehirn in den ersten 20 Minuten nach dem Aufwachen besonders plastisch ist. Beta-Wellen sind noch niedrig, Theta dominiert. Der Konditionierungseffekt ist in diesem Fenster messbar stärker als zu anderen Tageszeiten — das zeigen Studien zur Hypnose-Suszeptibilität und zur pavlovschen Konditionierung beim Menschen (Pearce et al., 2018).</p>
+
+          <h3>Phase 2: Der Transfer (Woche 4–6)</h3>
+          <p>Ab Woche vier beginnt der eigentliche Test. Du transferierst den Anker in reale Situationen: vor wichtigen Meetings, nach stressigen Schichten (relevant für alle im medizinischen oder Einsatzbereich), vor Schlaf. Hier zeigt sich, ob der Anker robust ist oder ob er nur in kontrollierten Bedingungen funktioniert.</p>
+          <p>Ein stabiler Anker erkennt sich daran, dass der Zielzustand (Entspannung, Fokus) innerhalb von <strong>15–30 Sekunden</strong> nach dem Reiz einsetzt — ohne bewussten Willensakt. Du tust den Schuh aus. Ziehst die Socke aus und wieder an. Dein Nervensystem schaltet um.</p>
+        </div>
+
+        <!-- Blurred continuation (visible but unreadable) -->
+        <div class="blurred-preview article-text">
+          <h3>Phase 3: Stack-Integration (ab Woche 7)</h3>
+          <p>Jetzt wird der Sock-Anchor Teil eines größeren Systems. Du kombinierst ihn mit dem Focus-Stack-Protokoll (7777-2) und dem Sleep-Anchor (7777-3). Das Ergebnis ist ein vollständiges Tages-Reset-System: Morgens Aktivierung, Mittag Fokus-Reset, Abends Schlaf-Vorbereitung.</p>
+          <p>Die Synergie zwischen den drei Ankern entsteht durch deliberates Chaining — eine Technik aus der Verhaltensmodifikation, bei der mehrere konditionierte Reize sequenziell aktiviert werden, um einen kumulativen Effekt zu erzeugen. Dein Nervensystem lernt nicht nur einzelne Zustände, sondern den Übergang zwischen ihnen.</p>
+          <p>Die genaue Sequenz, die Atemübungen für jede Phase, und die Checkliste für die ersten 30 Tage findest du im vollständigen PDF — kostenlos auf Gumroad.</p>
+        </div>
+
+        <!-- Gate -->
+        <div class="blur-gate" id="blurGate">
+          <div class="gate-card">
+            <div class="gate-icon">🔒</div>
+            <div class="gate-title">Phase 3 freischalten</div>
+            <div class="gate-body">E-Mail eingeben → vollständiges Protokoll als PDF + die Stack-Integration für Woche 7+. Kostenlos. Keine Paywall dahinter.</div>
+            <div class="gate-actions">
+              <input type="email" class="gate-email" id="gateEmail" placeholder="deine@email.de" />
+              <button class="gate-submit" onclick="unlockContent()">Vollständiges Protokoll holen →</button>
+              <div class="gate-or">— oder —</div>
+              <button class="gate-vip" onclick="window.location.href='vip.html'">Ich bin VIP-Mitglied · Login →</button>
+            </div>
+            <div class="gate-note">Kein Spam. Kein Newsletter-Bullshit. Nur das Protokoll.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEASER PROTOKOLLE ── -->
+<section id="protokolle">
+  <div class="container">
+    <div class="sec-tag">VIP-Protokolle · Vorschau</div>
+    <h2 class="sec-title">7 Protokolle.<br/><em>Ein System.</em></h2>
+    <p class="sec-body">Das Starter-Protokoll ist gratis. Alles weitere ist Teil des VIP-Stacks — 25 €/Monat, monatlich kündbar.</p>
+    <div class="teaser-grid">
+      <a href="https://mindful777.gumroad.com/l/ucaan" class="teaser-card" target="_blank" style="border-color:var(--gold)">
+        <div class="teaser-tag">7777-1 · Gratis</div>
+        <div class="teaser-title">Sock-Anchor<br/>Full Protocol</div>
+        <div class="teaser-preview">Das vollständige 30-Tage-Konditionierungsprogramm. PDF + Audio. Vagus-Nerv-Aktivierung, klassische Konditionierung, Anker-Install-Sequenz.</div>
+        <div class="teaser-unlock" style="color:var(--gold)">→ Jetzt gratis holen</div>
+      </a>
+      <div class="teaser-card" onclick="openModal('focus')">
+        <div class="teaser-lock">🔒</div>
+        <div class="teaser-tag">7777-2 · VIP</div>
+        <div class="teaser-title">Focus-Stack<br/>Pre-Work Reset</div>
+        <div class="teaser-preview">3 Minuten vor dem Deep-Work-Block. Gamma-Aktivierung, Attention-Anchoring, Arbeitsgedächtnis-Priming. Für alle, die Flow-State nicht dem Zufall überlassen wollen.</div>
+        <div class="teaser-preview-blurred">Die genaue Sequenz kombiniert spezifische Atemratios mit einer bilateralen Stimulationstechnik, die ursprünglich aus der EMDR-Therapie stammt. Der Effekt: messbare Reduktion des Task-Switching-Overheads in den ersten 20 Minuten der Arbeitsphase.</div>
+        <div class="teaser-unlock">VIP-Zugang aktivieren →</div>
+      </div>
+      <div class="teaser-card" onclick="openModal('sleep')">
+        <div class="teaser-lock">🔒</div>
+        <div class="teaser-tag">7777-3 · VIP</div>
+        <div class="teaser-title">Sleep-Anchor<br/>Protocol</div>
+        <div class="teaser-preview">Einschlafzeit unter 10 Minuten — reproduzierbar. Theta-Induktion via Atemführung, Körperscan-Sequenz, konditionierter Schlaf-Anker.</div>
+        <div class="teaser-preview-blurred">Das Protokoll kombiniert die Atemtechnik 4-7-8 mit einer modifizierten PMR-Sequenz und einem spezifischen Schlaf-Anker-Reiz. Nach 21 Tagen: automatische Schläfrigkeit innerhalb von 90 Sekunden nach Aktivierung des Ankers.</div>
+        <div class="teaser-unlock">VIP-Zugang aktivieren →</div>
+      </div>
+      <div class="teaser-card" onclick="openModal('stress')">
+        <div class="teaser-lock">🔒</div>
+        <div class="teaser-tag">7777-4 · VIP</div>
+        <div class="teaser-title">Stress-Response<br/>Kalibrierung</div>
+        <div class="teaser-preview">Für Einsatzkräfte, Athleten, alle mit chronisch hohem Cortisol. HRV-basierte Rückmeldung, physiologischer Seufzer, Cortisol-Abbau-Sequenz.</div>
+        <div class="teaser-preview-blurred">Entwickelt mit Blick auf Berufsgruppen mit strukturell erhöhtem Stressniveau. Die Sequenz dauert 6 Minuten und lässt sich in jede Schichtpause integrieren.</div>
+        <div class="teaser-unlock">VIP-Zugang aktivieren →</div>
+      </div>
+      <div class="teaser-card" onclick="openModal('flow')">
+        <div class="teaser-lock">🔒</div>
+        <div class="teaser-tag">7777-5 · VIP</div>
+        <div class="teaser-title">Flow-State<br/>Induktion</div>
+        <div class="teaser-preview">Nicht jeder Flow-State ist gleich. Dieses Protokoll differenziert zwischen kreativem Flow, analytischem Flow und athletischem Flow — und gibt für jeden eine eigene Induktionssequenz.</div>
+        <div class="teaser-preview-blurred">Die drei Varianten unterscheiden sich in Atemfrequenz, Körperhaltung und Anker-Reiz. Gemeinsam ist ihnen: 5–8 Minuten Investition, danach mindestens 90 Minuten stabiler Zielzustand.</div>
+        <div class="teaser-unlock">VIP-Zugang aktivieren →</div>
+      </div>
+      <div class="teaser-card" onclick="window.location.href='vip.html'">
+        <div class="teaser-lock">🔒</div>
+        <div class="teaser-tag">7777-6 + 7777-7 · VIP</div>
+        <div class="teaser-title">Custom Script Builder<br/>+ Community</div>
+        <div class="teaser-preview">Persönliches Skript nach deinen Zielen. Monatliche Live-Q&A. Community-Calls. Das komplette Stack-System in einem Zugang.</div>
+        <div class="teaser-preview-blurred">Vollständiger Zugang zu allen Protokollen, Audio-Guides, dem Community-Discord und monatlich neuen Inhalten — für 25 €/Monat.</div>
+        <div class="teaser-unlock">VIP — 25 €/Monat aktivieren →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUKTE ── -->
+<section id="produkte" style="background:var(--surface)">
+  <div class="container">
+    <div class="sec-tag">Produkte · 20/80-Auswahl</div>
+    <h2 class="sec-title">Starte gratis.<br/><em>Scale wenn bereit.</em></h2>
+    <p class="sec-body">80% des Ergebnisses erreichst du mit 20% des Systems. Deshalb ist der Einstieg kostenlos.</p>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-badge">Starter · Lead Magnet</div>
+        <div class="product-title">Sock-Anchor Protocol</div>
+        <div class="product-desc">Das Basisprotokoll. PDF + 10-Minuten-Audio. Alles, was du brauchst, um den Anker in 3 Wochen aufzubauen.</div>
+        <div class="product-price">0 € <span>· pay what you want</span></div>
+        <ul class="product-includes">
+          <li>30-Tage Konditionierungsplan (PDF)</li>
+          <li>10-Min Induktions-Audio</li>
+          <li>HRV-Tracking-Vorlage</li>
+          <li>Anker-Install-Sequenz</li>
+        </ul>
+        <a href="https://mindful777.gumroad.com/l/ucaan" class="btn-product" target="_blank">Gratis holen auf Gumroad →</a>
+      </div>
+      <div class="product-card">
+        <div class="product-badge">Micro-Product · Impuls</div>
+        <div class="product-title">Focus Protocol</div>
+        <div class="product-desc">3 PDFs + 3 Audios. Pre-Work Reset, Deep-Focus Anker, Post-Work Recovery. Für alle, die Produktivität nicht dem Zufall überlassen wollen.</div>
+        <div class="product-price">9 € <span>· einmalig</span></div>
+        <ul class="product-includes">
+          <li>Focus-Stack (7777-2) vollständig</li>
+          <li>3 Audio-Guides (je 8–12 Min)</li>
+          <li>Wochenplan-Template</li>
+        </ul>
+        <a href="https://ko-fi.com/mindf7777" class="btn-product" target="_blank">Jetzt kaufen →</a>
+      </div>
+      <div class="product-card featured">
+        <div class="product-badge">Best Value · VIP</div>
+        <div class="product-price-tag">Normalerweise 47 €/Monat</div>
+        <div class="product-title">VIP Protocol Stack</div>
+        <div class="product-desc">Alle 7 Protokolle. Monatlich neue Inhalte. Community-Zugang. Das komplette System — wissenschaftlich fundiert, kein Esoterik-Bullshit.</div>
+        <div class="product-price">25 € <span>· pro Monat · monatl. kündbar</span></div>
+        <ul class="product-includes">
+          <li>Alle 7777-Protokolle (PDF + Audio)</li>
+          <li>Monatlich neue Protokolle</li>
+          <li>Discord Community FFM-777</li>
+          <li>Monatliches Live-Q&A</li>
+          <li>VIP-Bereich auf GitHub Pages</li>
+        </ul>
+        <a href="https://ko-fi.com/mindf7777" class="btn-product" target="_blank">VIP aktivieren — 25 €/Monat →</a>
+      </div>
+      <div class="product-card">
+        <div class="product-badge">High-Ticket · 1:1</div>
+        <div class="product-title">Custom Session</div>
+        <div class="product-desc">Persönliches Skript, individuelle Anker-Entwicklung, 1:1 Session. Für High-Performer, die ein maßgeschneidertes System wollen.</div>
+        <div class="product-price">97 € <span>· ab</span></div>
+        <ul class="product-includes">
+          <li>Intake-Fragebogen + Analyse</li>
+          <li>Persönliches Hypnose-Skript</li>
+          <li>60-Min 1:1 Session (Zoom)</li>
+          <li>Follow-up Protokoll</li>
+        </ul>
+        <a href="https://wa.me/4916346922255" class="btn-product ghost" target="_blank">WhatsApp — Termin anfragen →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECOND UPSELL ── -->
+<div class="upsell-strip" style="background:var(--surface2);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)">
+  <div class="upsell-strip-text" style="color:var(--text)">
+    <div class="upsell-strip-label" style="color:var(--muted)">Klingt esoterisch?</div>
+    <div class="upsell-strip-title" style="color:var(--white)">„Kein Chakra, kein Karma — reines Konditionierungsprinzip."</div>
+  </div>
+  <a href="https://mindful777.gumroad.com/l/ucaan" class="upsell-strip-cta" style="background:var(--gold);color:#000" target="_blank">90 Sekunden testen — kostenlos →</a>
+</div>
+
+<!-- ── FOOTER ── -->
 <footer>
-  <div class="footer-logo">MIND<span>.</span>FUL7777</div>
-  <ul class="footer-links">
-    <li><a href="blog/">Blog</a></li>
-    <li><a href="vip/ares-transformation.html">VIP</a></li>
-    <li><a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a></li>
-    <li><a href="impressum.html">Impressum</a></li>
-    <li><a href="datenschutz.html">Datenschutz</a></li>
-  </ul>
-  <p class="footer-copy">© 2026 mindful7777 · Be the best version+</p>
+  <div class="footer-logo">mindful7777</div>
+  <div class="footer-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="vip.html">VIP-Bereich</a>
+    <a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a>
+    <a href="https://wa.me/4916346922255" target="_blank">WhatsApp</a>
+  </div>
+  <div class="footer-copy">© 2026 mindful7777 · André Schwarz · Frankfurt · WHY NOT? BE THE CHANGE. · Alle Inhalte dienen der Entspannung und dem persönlichen Wohlbefinden. Kein Ersatz für medizinische Beratung.</div>
 </footer>
 
+<!-- ── VIP/UPSELL MODAL ── -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" style="position:relative" id="modalBox">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div id="modalInner">
+      <div class="gate-icon" style="font-size:32px;margin-bottom:16px">🔒</div>
+      <h3 id="modalTitle">Dieses Protokoll ist VIP-exklusiv</h3>
+      <p id="modalBody">Hol dir Zugang zu allen 7 Protokollen — 25 €/Monat, monatlich kündbar. Oder starte gratis mit dem Sock-Anchor.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+        <a href="https://ko-fi.com/mindf7777" class="modal-btn" target="_blank">VIP aktivieren — 25 €/Monat →</a>
+        <a href="https://mindful777.gumroad.com/l/ucaan" style="display:block;border:1px solid var(--border);color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:13px;text-align:center;transition:all .2s;text-decoration:none" target="_blank">Gratis Starter-Protokoll holen</a>
+      </div>
+      <div class="gate-note" style="margin-top:16px">Oder: <a href="https://wa.me/4916346922255" style="color:var(--gold)" target="_blank">Per WhatsApp fragen →</a></div>
+    </div>
+    <div class="modal-success" id="modalSuccess">✓ Link gesendet. Check dein Postfach.</div>
+  </div>
+</div>
+
 <script>
-  const obs=new IntersectionObserver((e)=>{e.forEach((en,i)=>{if(en.isIntersecting)setTimeout(()=>en.target.classList.add("visible"),i*80)});},{threshold:0.1});
-  document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+  /* ── BLUR PAYWALL ── */
+  function unlockContent() {
+    const email = document.getElementById('gateEmail').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('gateEmail').style.borderColor = 'var(--red)';
+      setTimeout(() => document.getElementById('gateEmail').style.borderColor = '', 2000);
+      return;
+    }
+    // Store in sessionStorage
+    sessionStorage.setItem('mf7-unlocked', '1');
+    sessionStorage.setItem('mf7-email', email);
+    // Unlock UI
+    document.getElementById('paywallArticle').classList.add('article-unlocked');
+    // Redirect to Gumroad with email context (Zapier/webhook can be added later)
+    setTimeout(() => {
+      window.open('https://mindful777.gumroad.com/l/ucaan', '_blank');
+    }, 800);
+  }
+
+  // Check if already unlocked
+  if (sessionStorage.getItem('mf7-unlocked')) {
+    document.addEventListener('DOMContentLoaded', () => {
+      const el = document.getElementById('paywallArticle');
+      if (el) el.classList.add('article-unlocked');
+    });
+  }
+
+  /* ── MODAL ── */
+  const modalTitles = {
+    focus: ['Focus-Stack ist VIP-exklusiv', 'Pre-Work Reset, Deep-Focus Anker, Post-Work Recovery — Teil des VIP-Stacks.'],
+    sleep: ['Sleep-Anchor ist VIP-exklusiv', 'Einschlafzeit unter 10 Minuten. Reproduzierbar. Teil des vollständigen VIP-Systems.'],
+    stress: ['Stress-Response Kalibrierung — VIP', 'HRV-basiertes Protokoll für chronisch hohes Stressniveau. 6 Minuten. Messbar.'],
+    flow: ['Flow-State Induktion — VIP', '3 differenzierte Induktionssequenzen für kreativ, analytisch und athletisch. VIP-exklusiv.'],
+  };
+
+  function openModal(type) {
+    const [title, body] = modalTitles[type] || ['VIP-Protokoll', 'Dieser Inhalt ist für VIP-Mitglieder.'];
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalBody').textContent = body;
+    document.getElementById('modalOverlay').classList.add('open');
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+  }
+
+  function closeModalDirect() {
+    document.getElementById('modalOverlay').classList.remove('open');
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
 </script>
 </body>
 </html>

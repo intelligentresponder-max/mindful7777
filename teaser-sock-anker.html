@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sock-Anchor Protocol · Teaser · mindful7777</title>
+  <meta name="description" content="90-Sekunden Neural Reset. Pavlov-Konditionierung trifft Vagus-Nerv. Gratis Protokoll holen." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#060608;--surface:#0f0f13;--gold:#d4af37;--border:rgba(212,175,55,.18);--text:#e4e0d8;--muted:rgba(228,224,216,.5);--white:#fff}
+    body{background:var(--bg);color:var(--text);font-family:"DM Sans",system-ui,sans-serif;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+
+    /* Minimal nav */
+    nav{padding:20px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+    .nav-logo{font-family:"Playfair Display",serif;font-size:16px;color:var(--gold)}
+    .nav-back{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+    .nav-back:hover{color:var(--gold)}
+
+    /* Article layout */
+    .article-wrap{max-width:720px;margin:0 auto;padding:80px 32px 0}
+    .article-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+    .article-title{font-family:"Playfair Display",serif;font-size:clamp(32px,6vw,58px);font-weight:400;line-height:1.0;color:var(--white);margin-bottom:20px}
+    .article-title em{color:var(--gold);font-style:italic}
+    .article-meta{font-size:12px;color:var(--muted);letter-spacing:.08em;margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+    .article-text{font-size:17px;line-height:1.9;color:var(--text)}
+    .article-text p{margin-bottom:1.4em}
+    .article-text h3{font-family:"Playfair Display",serif;font-size:24px;font-weight:400;color:var(--white);margin:2em 0 .8em}
+    .article-text strong{color:var(--gold)}
+    .article-text em{font-style:italic;color:var(--gold2)}
+
+    /* Stats inline */
+    .stats-row{display:flex;gap:32px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);padding:24px 28px;margin:2em 0}
+    .stat{display:flex;flex-direction:column;gap:4px}
+    .stat-num{font-family:"Playfair Display",serif;font-size:24px;color:var(--gold)}
+    .stat-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+    /* Blur gate — teaser version */
+    .teaser-blur-wrap{position:relative;overflow:hidden;margin-top:0}
+    .teaser-visible{/* normal */}
+    .teaser-blurred{filter:blur(5px);user-select:none;pointer-events:none;opacity:.6;max-height:180px;overflow:hidden}
+    .teaser-gate{background:linear-gradient(to bottom,transparent 0%,var(--bg) 35%);padding:60px 0 80px;display:flex;justify-content:center;margin-top:-120px;position:relative;z-index:2}
+    .gate-box{background:var(--surface);border:1px solid var(--gold);padding:40px;max-width:480px;width:100%;text-align:center}
+    .gate-kicker{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+    .gate-title{font-family:"Playfair Display",serif;font-size:22px;font-weight:400;color:var(--white);margin-bottom:12px}
+    .gate-sub{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:24px}
+    .gate-form{display:flex;flex-direction:column;gap:10px}
+    .gate-input{background:transparent;border:1px solid var(--border);color:var(--text);font-size:14px;padding:13px 16px;font-family:inherit;outline:none;width:100%;transition:border-color .2s}
+    .gate-input:focus{border-color:var(--gold)}
+    .gate-input::placeholder{color:var(--muted)}
+    .gate-btn{background:var(--gold);color:#000;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:15px;border:none;cursor:pointer;font-family:inherit;width:100%;transition:opacity .2s}
+    .gate-btn:hover{opacity:.85}
+    .gate-or{font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;text-align:center}
+    .gate-vip-link{display:block;border:1px solid var(--border);color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:13px;text-align:center;transition:all .2s;cursor:pointer;background:transparent}
+    .gate-vip-link:hover{border-color:var(--gold);color:var(--gold)}
+    .gate-note{font-size:10px;color:rgba(228,224,216,.25);margin-top:6px}
+
+    /* Unlocked state */
+    .unlocked .teaser-blurred{filter:none;pointer-events:auto;opacity:1;max-height:none}
+    .unlocked .teaser-gate{display:none}
+    .unlock-bar{display:none;background:rgba(212,175,55,.08);border:1px solid var(--border);padding:12px 16px;font-size:12px;color:var(--gold);text-align:center;letter-spacing:.06em;margin-bottom:32px}
+    .unlocked .unlock-bar{display:block}
+
+    /* Bottom CTA section */
+    .bottom-cta{background:var(--surface);border-top:1px solid var(--border);padding:80px 32px;text-align:center}
+    .bottom-cta h2{font-family:"Playfair Display",serif;font-size:clamp(24px,4vw,40px);font-weight:400;color:var(--white);margin-bottom:16px}
+    .bottom-cta h2 em{color:var(--gold);font-style:italic}
+    .bottom-cta p{font-size:15px;color:var(--muted);max-width:480px;margin:0 auto 36px;line-height:1.7}
+    .bottom-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{background:var(--gold);color:#000;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:16px 36px;display:inline-block;transition:opacity .2s}
+    .btn-primary:hover{opacity:.85}
+    .btn-ghost{border:1px solid var(--border);color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:15px 28px;display:inline-block;transition:all .2s}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+    /* Related teasers */
+    .related{padding:60px 32px;max-width:1100px;margin:0 auto}
+    .related-title{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:32px}
+    .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px}
+    .related-card{background:var(--surface);border:1px solid var(--border);padding:28px;cursor:pointer;transition:border-color .2s}
+    .related-card:hover{border-color:var(--gold)}
+    .related-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+    .related-name{font-family:"Playfair Display",serif;font-size:18px;font-weight:400;color:var(--white);margin-bottom:8px}
+    .related-desc{font-size:12px;color:var(--muted);line-height:1.6}
+    .related-lock{font-size:11px;color:var(--muted);margin-top:12px;letter-spacing:.05em}
+
+    footer{border-top:1px solid var(--border);padding:32px;text-align:center;font-size:10px;color:rgba(228,224,216,.2);letter-spacing:.05em}
+    @media(max-width:600px){.article-wrap{padding:60px 20px 0}.stats-row{gap:20px}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">mindful7777</a>
+  <a href="index.html" class="nav-back">← Zurück</a>
+</nav>
+
+<div class="article-wrap" id="articleWrap">
+  <div class="article-tag">7777-1 · Protokoll · Gratis</div>
+  <h1 class="article-title">Der Sock-Anchor:<br/><em>90 Sekunden</em><br/>echter Reset.</h1>
+  <div class="article-meta">Lesezeit 6 Min · Science-based · Kein Esoterik-Bullshit · mindful7777</div>
+
+  <div class="unlock-bar">✓ Vollständiges Protokoll freigeschaltet — hol dir das PDF auf Gumroad.</div>
+
+  <div class="article-text teaser-visible">
+    <p>Pavlov brauchte eine Glocke. Du brauchst eine Socke. Das ist der gesamte Unterschied zwischen dem, was gleich beschrieben wird, und dem, was die meisten Menschen für „Meditation" oder „Entspannung" halten.</p>
+
+    <p>Der Sock-Anchor ist kein Ritual. Kein Achtsamkeits-Tool. Kein Wellness-Konzept. Er ist ein <strong>konditionierter Reflex</strong> — aufgebaut nach denselben Prinzipien, die Pavlov 1897 beschrieben hat, und die Verhaltenstherapeuten heute noch täglich einsetzen.</p>
+
+    <div class="stats-row">
+      <div class="stat"><span class="stat-num">90s</span><span class="stat-label">Bis zum Reset</span></div>
+      <div class="stat"><span class="stat-num">21 Tage</span><span class="stat-label">Konditionierungsphase</span></div>
+      <div class="stat"><span class="stat-num">Beta→Theta</span><span class="stat-label">Messbarer Brainwave-Shift</span></div>
+      <div class="stat"><span class="stat-num">On demand</span><span class="stat-label">Jederzeit aktivierbar</span></div>
+    </div>
+
+    <h3>Warum eine Socke?</h3>
+    <p>Der Anker-Reiz muss zwei Kriterien erfüllen: Er muss <strong>spezifisch genug</strong> sein, um vom Gehirn als eindeutiger Trigger erkannt zu werden. Und er muss <strong>alltagstauglich</strong> sein — du kannst ihn überall ausführen, ohne Aufmerksamkeit zu erregen.</p>
+    <p>Das Anziehen einer Socke ist ein motorischer Akt, der: (1) eine definierte Körperhaltung erzeugt, (2) taktile Reize produziert, (3) in jeder Situation replizierbar ist, und (4) sozial völlig unauffällig bleibt. In einer Einsatzbesprechung, in der Umkleide, im Büro, nach dem Training.</p>
+
+    <h3>Die Physiologie dahinter</h3>
+    <p>Der Vagus-Nerv ist der direkte Kommunikationskanal zwischen Gehirn und Körper — und der einzige parasympathische Nerv, der sich durch <strong>willentliche Atemführung</strong> aktivieren lässt. Das Protokoll nutzt genau das: eine spezifische Atemsequenz, die im Moment des Anker-Reizes ausgeführt wird, trainiert das autonome Nervensystem, diesen Reiz mit Parasympathikus-Dominanz zu assoziieren.</p>
+    <p>Nach 21–30 Wiederholungen passiert das automatisch. Du ziehst die Socke an. Dein Körper beginnt die Sequenz, <em>ohne dass du es bewusst initiierst.</em></p>
+  </div>
+
+  <!-- Blur gate section -->
+  <div class="teaser-blur-wrap" id="blurSection">
+    <div class="teaser-blurred article-text">
+      <h3>Das vollständige Protokoll: Schritt für Schritt</h3>
+      <p>Phase 1 ist die Konditionierungsphase — 21 Tage täglich, idealerweise morgens. Du kombinierst die Atemsequenz mit dem Anker-Reiz und einem spezifischen Suggestion-Frame. Die genaue Sequenz, Atemratios und Timing findest du im PDF.</p>
+      <p>Phase 2 ist der Transfer: Der Anker wird in reale Situationen gebracht. Vor wichtigen Meetings. Nach Schichten. Vor dem Einschlafen. Hier zeigt sich, ob der Anker robust ist.</p>
+      <p>Phase 3 ist die Stack-Integration: Der Sock-Anchor wird Teil eines größeren Systems. Focus-Stack. Sleep-Anchor. Stress-Response. Das ist das VIP-System.</p>
+    </div>
+    <div class="teaser-gate" id="teaserGate">
+      <div class="gate-box">
+        <div class="gate-kicker">Protokoll freischalten</div>
+        <div class="gate-title">Phase 1–3 + vollständiges PDF</div>
+        <div class="gate-sub">E-Mail eingeben → komplettes Protokoll als PDF + 10-Min Audio. Kostenlos auf Gumroad. Kein Spam.</div>
+        <div class="gate-form">
+          <input type="email" class="gate-input" id="teaserEmail" placeholder="deine@email.de" />
+          <button class="gate-btn" onclick="unlockTeaser()">Vollständiges Protokoll holen →</button>
+          <div class="gate-or">— bereits VIP? —</div>
+          <button class="gate-vip-link" onclick="window.location.href='vip.html'">VIP-Login →</button>
+        </div>
+        <div class="gate-note">Kein Newsletter. Kein Bullshit. Nur das Protokoll.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom CTA -->
+<div class="bottom-cta">
+  <h2>Bereit für das<br/><em>vollständige System?</em></h2>
+  <p>Das Starter-Protokoll ist gratis. Wer weitermacht, holt sich den kompletten VIP-Stack — 7 Protokolle, monatliche Updates, Community. 25 €/Monat.</p>
+  <div class="bottom-actions">
+    <a href="https://mindful777.gumroad.com/l/ucaan" class="btn-primary" target="_blank">Gratis Protokoll holen</a>
+    <a href="vip.html" class="btn-ghost">VIP — 25 €/Monat →</a>
+  </div>
+</div>
+
+<!-- Related teasers -->
+<div class="related">
+  <div class="related-title">Weitere Protokolle im System</div>
+  <div class="related-grid">
+    <div class="related-card" onclick="window.location.href='vip.html'">
+      <div class="related-tag">7777-2 · VIP</div>
+      <div class="related-name">Focus-Stack</div>
+      <div class="related-desc">3 Minuten Pre-Work Reset. Gamma-Aktivierung. Attention-Anchoring. Für Tage, wo Konzentration nicht optional ist.</div>
+      <div class="related-lock">🔒 VIP-exklusiv · 25 €/Monat →</div>
+    </div>
+    <div class="related-card" onclick="window.location.href='vip.html'">
+      <div class="related-tag">7777-3 · VIP</div>
+      <div class="related-name">Sleep-Anchor</div>
+      <div class="related-desc">Einschlafzeit unter 10 Minuten — reproduzierbar. Theta-Induktion, Körperscan, konditionierter Schlaf-Anker.</div>
+      <div class="related-lock">🔒 VIP-exklusiv · 25 €/Monat →</div>
+    </div>
+    <div class="related-card" onclick="window.location.href='vip.html'">
+      <div class="related-tag">7777-4 · VIP</div>
+      <div class="related-name">Stress-Response</div>
+      <div class="related-desc">HRV-basiertes Protokoll. 6 Minuten. Für Einsatzkräfte, Athleten und alle mit chronisch hohem Cortisol-Niveau.</div>
+      <div class="related-lock">🔒 VIP-exklusiv · 25 €/Monat →</div>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 mindful7777 · WHY NOT? BE THE CHANGE. · <a href="impressum.html" style="color:inherit">Impressum</a> · <a href="datenschutz.html" style="color:inherit">Datenschutz</a></footer>
+
+<script>
+  function unlockTeaser() {
+    const email = document.getElementById('teaserEmail').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('teaserEmail').style.borderColor = '#c84b4b';
+      setTimeout(() => document.getElementById('teaserEmail').style.borderColor = '', 2000);
+      return;
+    }
+    sessionStorage.setItem('mf7-unlocked', '1');
+    document.getElementById('blurSection').classList.add('unlocked');
+    document.getElementById('articleWrap').querySelector('.unlock-bar').style.display = 'block';
+    setTimeout(() => {
+      window.open('https://mindful777.gumroad.com/l/ucaan', '_blank');
+    }, 600);
+  }
+
+  // Auto-unlock if already unlocked
+  if (sessionStorage.getItem('mf7-unlocked')) {
+    document.addEventListener('DOMContentLoaded', () => {
+      const s = document.getElementById('blurSection');
+      if (s) s.classList.add('unlocked');
+    });
+  }
+</script>
+</body>
+</html>

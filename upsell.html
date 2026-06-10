@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dein Protokoll ist bereit · mindful7777</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#060608;--surface:#0f0f13;--gold:#d4af37;--gold2:#e8cc6a;--border:rgba(212,175,55,.18);--text:#e4e0d8;--muted:rgba(228,224,216,.5);--white:#fff}
+    body{background:var(--bg);color:var(--text);font-family:"DM Sans",system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;overflow-x:hidden}
+
+    .logo{font-family:"Playfair Display",serif;color:var(--gold);font-size:16px;letter-spacing:.04em;margin-bottom:64px;text-align:center}
+
+    .main{max-width:560px;width:100%;text-align:center}
+    .success-icon{font-size:40px;margin-bottom:24px}
+    .kicker{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+    h1{font-family:"Playfair Display",serif;font-size:clamp(28px,6vw,44px);font-weight:400;line-height:1.05;color:var(--white);margin-bottom:20px}
+    h1 em{color:var(--gold);font-style:italic}
+    .sub{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:48px}
+
+    /* Confirmation box */
+    .confirm-box{background:rgba(212,175,55,.06);border:1px solid var(--border);padding:24px 28px;text-align:left;margin-bottom:48px}
+    .confirm-row{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+    .confirm-row:last-child{border-bottom:none}
+    .confirm-check{color:var(--gold);font-size:14px;flex-shrink:0}
+    .confirm-label{color:var(--white);font-size:13px}
+
+    /* Upsell card */
+    .upsell-card{background:var(--surface);border:1px solid var(--gold);padding:40px;text-align:left;position:relative;margin-bottom:16px}
+    .upsell-badge{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+    .upsell-old-price{font-size:11px;color:var(--muted);text-decoration:line-through;margin-bottom:4px}
+    .upsell-title{font-family:"Playfair Display",serif;font-size:24px;font-weight:400;color:var(--white);margin-bottom:12px}
+    .upsell-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px}
+    .upsell-includes{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+    .upsell-includes li{font-size:13px;color:var(--muted);padding-left:20px;position:relative;line-height:1.5}
+    .upsell-includes li::before{content:"→";position:absolute;left:0;color:var(--gold)}
+    .upsell-includes li strong{color:var(--white)}
+    .upsell-price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:24px}
+    .upsell-price{font-family:"Playfair Display",serif;font-size:36px;color:var(--gold)}
+    .upsell-period{font-size:14px;color:var(--muted)}
+    .btn-upsell{display:block;width:100%;background:var(--gold);color:#000;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:18px;text-align:center;text-decoration:none;transition:opacity .2s}
+    .btn-upsell:hover{opacity:.85}
+
+    .skip{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+    .skip a{color:var(--muted);text-decoration:underline;cursor:pointer;transition:color .2s}
+    .skip a:hover{color:var(--gold)}
+
+    /* Urgency */
+    .urgency{display:flex;align-items:center;justify-content:center;gap:8px;font-size:11px;color:var(--muted);margin-bottom:32px}
+    .urgency-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+    /* Testimonial */
+    .testi{border-left:2px solid var(--gold);padding:16px 20px;margin-bottom:32px;text-align:left}
+    .testi-text{font-size:14px;font-style:italic;color:var(--muted);line-height:1.7;margin-bottom:8px}
+    .testi-author{font-size:11px;color:var(--gold);letter-spacing:.08em}
+
+    .countdown{font-family:"DM Mono",monospace;font-size:11px;color:var(--gold);text-align:center;letter-spacing:.1em;margin-bottom:8px}
+
+    footer{margin-top:64px;font-size:10px;color:rgba(228,224,216,.2);text-align:center;letter-spacing:.05em;max-width:480px}
+  </style>
+</head>
+<body>
+
+<div class="logo">mindful7777</div>
+
+<div class="main">
+  <div class="success-icon">✓</div>
+  <div class="kicker">Protokoll gesichert</div>
+  <h1>Dein Sock-Anchor<br/>ist <em>unterwegs.</em></h1>
+  <p class="sub">Check dein Postfach — PDF + Audio kommen in den nächsten Minuten. Während du wartest: ein Angebot, das nur hier gilt.</p>
+
+  <div class="confirm-box">
+    <div class="confirm-row"><span class="confirm-check">✓</span><span><span class="confirm-label">Sock-Anchor Protocol PDF</span> — 30-Tage Konditionierungsplan</span></div>
+    <div class="confirm-row"><span class="confirm-check">✓</span><span><span class="confirm-label">10-Min Induktions-Audio</span> — Beta→Theta Brainwave Shift</span></div>
+    <div class="confirm-row"><span class="confirm-check">✓</span><span><span class="confirm-label">HRV-Tracking-Vorlage</span> — Ergebnisse messen, nicht glauben</span></div>
+    <div class="confirm-row"><span class="confirm-check">✓</span><span><span class="confirm-label">Anker-Install-Sequenz</span> — Schritt-für-Schritt für Woche 1–3</span></div>
+  </div>
+
+  <div class="testi">
+    <div class="testi-text">„Nach 3 Wochen läuft es automatisch. Ich ziehe die Socken an und mein Kopf schaltet um — ohne Willensakt. Klingt verrückt, funktioniert aber."</div>
+    <div class="testi-author">— Maximilian R. · Junior Consultant · Frankfurt</div>
+  </div>
+
+  <!-- UPSELL -->
+  <div class="urgency"><div class="urgency-dot"></div>Dieses Angebot gilt nur auf dieser Seite</div>
+
+  <div class="upsell-card">
+    <div class="upsell-badge">Einmaliges Upsell-Angebot · Nur hier</div>
+    <div class="upsell-old-price">Normalerweise 47 €/Monat</div>
+    <div class="upsell-title">VIP Protocol Stack<br/>— 6 weitere Protokolle</div>
+    <div class="upsell-desc">Du hast gerade den ersten Schritt gemacht. Das VIP-System gibt dir das komplette Arsenal: Focus-Stack, Sleep-Anchor, Stress-Response, Flow-State, Custom Script Builder — alles, was du brauchst, um dein Nervensystem systematisch zu trainieren.</div>
+    <ul class="upsell-includes">
+      <li><strong>7777-2: Focus-Stack</strong> — Pre-Work Reset, 3 Min, Gamma-Aktivierung</li>
+      <li><strong>7777-3: Sleep-Anchor</strong> — Einschlaf unter 10 Min, reproduzierbar</li>
+      <li><strong>7777-4: Stress-Response</strong> — HRV-basiert, für Einsatzkräfte & Athleten</li>
+      <li><strong>7777-5: Flow-State</strong> — 3 differenzierte Induktionen (kreativ/analytisch/athletisch)</li>
+      <li><strong>7777-6 + 7: Custom Script + Community</strong> — monatlich neue Protokolle, Discord, Live-Q&A</li>
+    </ul>
+    <div class="upsell-price-row">
+      <div class="upsell-price">25 €</div>
+      <div class="upsell-period">/ Monat · monatlich kündbar</div>
+    </div>
+    <a href="https://ko-fi.com/mindf7777" class="btn-upsell" target="_blank">Jetzt VIP werden — 25 €/Monat →</a>
+  </div>
+  <div class="skip">Kein Interesse. <a href="index.html">Zurück zur Startseite →</a></div>
+</div>
+
+<footer>© 2026 mindful7777 · André Schwarz · WHY NOT? BE THE CHANGE. · Alle Inhalte dienen der Entspannung. Kein Ersatz für medizinische Beratung. · <a href="impressum.html" style="color:inherit">Impressum</a> · <a href="datenschutz.html" style="color:inherit">Datenschutz</a></footer>
+
+</body>
+</html>
