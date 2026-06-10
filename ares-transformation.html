@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARES TRANSFORMATION – VIP · mindful7777</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#030303;--deep:#080c10;--orange:#ff4d00;--ice:#7ee8fa;--white:#f0f0ec;--glass:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--white);font-family:'Barlow Condensed',sans-serif;overflow-x:hidden;cursor:crosshair}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4}
+  #gate{position:fixed;inset:0;z-index:99999;background:#030303;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+  #gate h2{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.15em}
+  #gate h2 span{color:var(--orange)}
+  #gate input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:var(--white);padding:14px 24px;font-family:'Space Mono',monospace;font-size:1rem;letter-spacing:.15em;text-align:center;outline:none;width:280px}
+  #gate button{background:var(--orange);color:#000;border:none;padding:14px 40px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.15em;cursor:pointer;transition:opacity .2s}
+  #gate button:hover{opacity:.85}
+  #gate-err{color:var(--orange);font-family:'Space Mono',monospace;font-size:.75rem;display:none}
+  #content{display:none}
+  .lang-switch{position:fixed;top:22px;right:140px;z-index:200;display:flex;gap:6px}
+  .lang-switch a{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;padding:5px 10px;border:1px solid rgba(255,255,255,.2);color:rgba(240,240,236,.5);text-decoration:none;text-transform:uppercase;transition:all .2s}
+  .lang-switch a.active,.lang-switch a:hover{border-color:var(--orange);color:var(--orange)}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:linear-gradient(to bottom,rgba(3,3,3,.95),transparent)}
+  .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.15em}
+  .nav-logo span{color:var(--orange)}
+  nav ul{list-style:none;display:flex;gap:32px}
+  nav ul a{text-decoration:none;color:var(--white);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;opacity:.6;transition:opacity .2s}
+  nav ul a:hover{opacity:1;color:var(--orange)}
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;padding:120px 24px 60px}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(255,77,0,.12) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 30% 20%,rgba(126,232,250,.05) 0%,transparent 60%),var(--deep)}
+  .hero-scan{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);animation:scan 4s ease-in-out infinite;opacity:.5}
+  @keyframes scan{0%{top:0;opacity:0}10%{opacity:.5}90%{opacity:.5}100%{top:100%;opacity:0}}
+  .hero-eyebrow{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.3em;color:var(--orange);text-transform:uppercase;margin-bottom:24px;opacity:0;animation:fadeUp .8s .2s forwards}
+  .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,14vw,11rem);line-height:.9;letter-spacing:.02em;text-transform:uppercase;opacity:0;animation:fadeUp .8s .4s forwards;position:relative;z-index:2}
+  .hero-title .line-ice{color:var(--ice);display:block}
+  .hero-title .line-normal{display:block}
+  .hero-subtitle{font-size:clamp(1rem,2.5vw,1.4rem);letter-spacing:.08em;color:rgba(240,240,236,.55);margin-top:28px;max-width:520px;line-height:1.5;opacity:0;animation:fadeUp .8s .6s forwards}
+  .hero-cta-row{display:flex;gap:16px;margin-top:48px;opacity:0;animation:fadeUp .8s .8s forwards;flex-wrap:wrap;justify-content:center}
+  .sock-float{position:absolute;right:8%;top:50%;transform:translateY(-50%);font-size:8rem;opacity:.06;animation:floatSock 6s ease-in-out infinite;pointer-events:none;filter:blur(1px)}
+  @keyframes floatSock{0%,100%{transform:translateY(-50%) rotate(-5deg)}50%{transform:translateY(calc(-50% - 20px)) rotate(5deg)}}
+  .btn-primary{background:var(--orange);color:#000;border:none;padding:16px 40px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.15em;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+  .btn-primary:hover{background:#fff;transform:translateY(-2px);box-shadow:0 0 30px rgba(255,77,0,.5)}
+  .btn-ghost{border:1px solid rgba(255,255,255,.2);color:var(--white);padding:16px 40px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.15em;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;background:transparent}
+  .btn-ghost:hover{border-color:var(--ice);color:var(--ice)}
+  .ticker-wrap{overflow:hidden;background:var(--orange);padding:10px 0;white-space:nowrap}
+  .ticker-track{display:inline-block;animation:ticker 20s linear infinite}
+  .ticker-track span{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.15em;color:#000;margin:0 30px}
+  @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .phase-strip{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:var(--glass);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);overflow:hidden}
+  .phase-block{padding:32px 48px}
+  .phase-block.beta{border-right:1px solid var(--glass-border)}
+  .phase-block.theta{border-left:1px solid var(--glass-border)}
+  .phase-tag{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;margin-bottom:8px}
+  .phase-block.beta .phase-tag{color:var(--orange)}
+  .phase-block.theta .phase-tag{color:var(--ice)}
+  .phase-name{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:.06em}
+  .phase-desc{font-size:.85rem;opacity:.5;margin-top:6px;max-width:220px}
+  .phase-hz{font-family:'Space Mono',monospace;font-size:.75rem;margin-top:10px;opacity:.4}
+  .phase-block.theta .phase-hz{color:var(--ice)}
+  .phase-arrow{text-align:center;padding:20px}
+  .arrow-icon{font-size:1.6rem;color:var(--orange);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+  .arrow-label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;color:var(--orange);display:block;margin-top:6px;text-transform:uppercase}
+  section{max-width:1100px;margin:0 auto;padding:100px 24px}
+  .section-label{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:block}
+  .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,7rem);line-height:.9;margin-bottom:60px}
+  .anchor-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .anchor-visual{text-align:center}
+  .sock-big{font-size:8rem;display:block;margin-bottom:16px}
+  .mm-label{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;opacity:.4}
+  .anchor-steps{display:flex;flex-direction:column;gap:32px}
+  .step{display:flex;gap:24px;align-items:flex-start}
+  .step-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--orange);line-height:1;flex-shrink:0;opacity:.4}
+  .step-content h3{font-size:1.3rem;letter-spacing:.06em;margin-bottom:8px}
+  .step-content p{font-size:.95rem;line-height:1.6;opacity:.55;max-width:380px}
+  .proto-table{width:100%;border-collapse:collapse;margin-top:40px}
+  .proto-table th{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;padding:16px;border-bottom:1px solid var(--glass-border);text-align:left;opacity:.4}
+  .proto-table td{padding:20px 16px;border-bottom:1px solid var(--glass-border);font-size:.95rem}
+  .status-dot{display:inline-flex;align-items:center;gap:8px}
+  .status-dot::before{content:'';width:8px;height:8px;border-radius:50%;display:inline-block}
+  .status-beta::before{background:var(--orange)}
+  .status-theta::before{background:var(--ice)}
+  .status-reset::before{background:#4ade80}
+  .quote-block{border-left:2px solid var(--orange);padding:32px 40px;margin:80px 0}
+  .quote-text{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;margin-bottom:16px}
+  .quote-source{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;opacity:.4;text-transform:uppercase}
+  /* ── JOIN SECTION ENHANCED ── */
+  .join-section{background:var(--glass);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);padding:100px 24px;text-align:center}
+  .join-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,9rem);line-height:.9;margin:16px 0 32px}
+  .join-title span{color:var(--orange)}
+  .join-sub{max-width:500px;margin:0 auto 40px;opacity:.55;font-size:1.1rem;line-height:1.6}
+  .join-actions{display:flex;gap:48px;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin-bottom:40px}
+  .join-btns{display:flex;flex-direction:column;gap:14px;align-items:center}
+  .qr-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+  .qr-img{width:180px;height:180px;display:block;border:1px solid var(--glass-border);padding:8px;background:rgba(255,255,255,.03)}
+  .qr-label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,240,236,.25)}
+  .join-form{display:flex;max-width:480px;margin:0 auto 0}
+  .join-input{flex:1;background:var(--glass);border:1px solid var(--glass-border);border-right:none;color:var(--white);padding:16px 20px;font-family:'Space Mono',monospace;font-size:.85rem;outline:none}
+  .stripe-note{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;opacity:.25;text-transform:uppercase;margin-top:16px;display:block}
+  .stripe-note a{color:var(--ice);opacity:.6;border-bottom:1px solid rgba(126,232,250,.2);text-decoration:none}
+  footer{border-top:1px solid var(--glass-border);padding:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+  .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.15em}
+  .footer-logo span{color:var(--orange)}
+  .footer-links{display:flex;gap:24px;list-style:none}
+  .footer-links a{text-decoration:none;font-size:.75rem;letter-spacing:.1em;color:var(--white);opacity:.3;text-transform:uppercase;transition:opacity .2s}
+  .footer-links a:hover{opacity:1}
+  .footer-copy{font-family:'Space Mono',monospace;font-size:.6rem;opacity:.2;letter-spacing:.1em}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:none}
+  @media(max-width:768px){nav{padding:16px 20px}nav ul{display:none}.anchor-grid,.phase-strip{grid-template-columns:1fr}.phase-block.beta{border-right:none;border-bottom:1px solid var(--glass-border)}.phase-block.theta{border-left:none;border-top:1px solid var(--glass-border)}section{padding:60px 20px}footer{flex-direction:column;text-align:center}.lang-switch{right:20px;top:70px}.join-actions{flex-direction:column;align-items:center}}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <h2>VIP<span>.</span> ACCESS</h2>
+  <input type="password" id="pw-input" placeholder="PASSWORT" onkeydown="if(event.key==='Enter')checkPw()">
+  <button onclick="checkPw()">AKTIVIEREN</button>
+  <p id="gate-err">Falsches Passwort. Zugang verweigert.</p>
+</div>
+
+<div id="content">
+  <div class="lang-switch">
+    <a href="ares-transformation.html" class="active">DE</a>
+    <a href="ares-transformation-en.html">EN</a>
+  </div>
+  <nav>
+    <div class="nav-logo">ARES<span>.</span></div>
+    <ul>
+      <li><a href="#anchor">Sock Anchor</a></li>
+      <li><a href="#join">Join Club</a></li>
+      <li><a href="../blog/">Blog</a></li>
+    </ul>
+  </nav>
+  <div class="hero">
+    <div class="hero-bg"></div><div class="hero-scan"></div>
+    <div class="sock-float">🧦</div>
+    <p class="hero-eyebrow">Ares Transformation · Protokoll v1.0</p>
+    <h1 class="hero-title"><span class="line-normal">DIE ARCHITEKTUR</span><span class="line-ice">DER STASE</span></h1>
+    <p class="hero-subtitle">Vom Beta-Modus in tiefe Theta-Regeneration — ausgelöst durch einen einzigen Anker.</p>
+    <div class="hero-cta-row">
+      <a href="#anchor" class="btn-primary">Protokoll aktivieren</a>
+      <a href="#join" class="btn-ghost">Join the Club</a>
+    </div>
+  </div>
+  <div class="ticker-wrap"><div class="ticker-track">
+    <span>SOCK ANCHOR PROTOCOL</span><span>BETA TO THETA</span><span>ARES TRANSFORMATION</span><span>432 HZ RESET</span><span>MINDLESS SUSPENSION</span><span>SOCK ANCHOR PROTOCOL</span><span>BETA TO THETA</span><span>ARES TRANSFORMATION</span><span>432 HZ RESET</span><span>MINDLESS SUSPENSION</span>
+  </div></div>
+  <div class="phase-strip">
+    <div class="phase-block beta"><p class="phase-tag">Phase 01</p><h2 class="phase-name">BETA-MODUS</h2><p class="phase-desc">100% Action. Hochspannung. Kinetische Energie. Der Körper im vollen Wettkampf-Modus.</p><p class="phase-hz">12–30 Hz · Hohe Spannung</p></div>
+    <div class="phase-arrow"><div class="arrow-icon">→</div><span class="arrow-label">Trigger</span></div>
+    <div class="phase-block theta"><p class="phase-tag">Phase 02</p><h2 class="phase-name">THETA-STASE</h2><p class="phase-desc">Deep Freeze. Absolute Rigidität. Neuronale Regeneration bei maximalem Fokus.</p><p class="phase-hz">4–8 Hz · 432 Hz Reset</p></div>
+  </div>
+  <section id="anchor">
+    <p class="section-label reveal">Der Mechanismus</p>
+    <h2 class="section-title reveal">SOCK<br>ANCHOR</h2>
+    <div class="anchor-grid">
+      <div class="anchor-visual reveal"><span class="sock-big">🧦</span><p class="mm-label">Millimetre by Millimetre</p></div>
+      <div class="anchor-steps">
+        <div class="step reveal"><span class="step-num">01</span><div class="step-content"><h3>Der biologische Schalter</h3><p>Das langsame, millimeterweise Ausziehen der Socken deaktiviert den Action-Modus des Nervensystems — ein physischer Übergang vom Außen ins Innen.</p></div></div>
+        <div class="step reveal"><span class="step-num">02</span><div class="step-content"><h3>Sensorischer Reset</h3><p>Die kühle Luft auf der Haut signalisiert dem Unterbewusstsein: Training beendet. Regeneration beginnt. Jede Anspannung gleitet mit dem Stoff ab.</p></div></div>
+        <div class="step reveal"><span class="step-num">03</span><div class="step-content"><h3>Theta-Eintritt</h3><p>Das Unterbewusstsein — verantwortlich für 90% deiner Moves — ist bereits im Theta-Bereich aktiv. Der Sock Anchor öffnet die Tür.</p></div></div>
+      </div>
+    </div>
+  </section>
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px 80px">
+    <p class="section-label reveal">Daten-Vergleich</p>
+    <h2 class="section-title reveal">ZUSTÄNDE WÄHREND<br>DES PROTOKOLLS</h2>
+    <table class="proto-table reveal">
+      <thead><tr><th>Phase</th><th>Gehirnwellen</th><th>Physischer Status</th><th>Ergebnis</th></tr></thead>
+      <tbody>
+        <tr><td><span class="status-dot status-beta">Action-Modus</span></td><td>Beta-Bereich</td><td>Hohe Spannung</td><td>Maximale Performance</td></tr>
+        <tr><td><span class="status-dot status-theta">Stase-Modus</span></td><td>Theta (432 Hz)</td><td>Absolute Rigidität</td><td>5 Min. Temporal Gap</td></tr>
+        <tr><td><span class="status-dot status-reset">Regeneration</span></td><td>Post-Stase Reset</td><td>Maximaler Fokus</td><td>System neu geladen</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px">
+    <div class="quote-block reveal">
+      <p class="quote-text">"You already carry the solution for your perfect recovery and your next win within yourself."</p>
+      <p class="quote-source">— Milton Erickson · Eingebettet im Ares-Protokoll</p>
+    </div>
+  </div>
+
+  <!-- ── JOIN SECTION with QR + Stripe ── -->
+  <div class="join-section" id="join">
+    <p class="section-label">Exklusiv</p>
+    <h2 class="join-title">JOIN<br><span>THE CLUB</span></h2>
+    <p class="join-sub">Erhalte das vollständige Ares-Protokoll. Die Audio-Induktion. Den Sock Anchor Guide. Nur für Spieler, die bereit sind.</p>
+
+    <div class="join-actions">
+
+      <!-- QR Code -->
+      <div class="qr-wrap">
+        <img class="qr-img"
+             src="data:image/png;base64,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"
+             alt="QR Code — Ares Transformation VIP"/>
+        <span class="qr-label">Scan to access · ares transformation</span>
+        <span class="qr-label" style="color:rgba(126,232,250,.35);">intelligentresponder-max.github.io</span>
+      </div>
+
+      <!-- Buttons -->
+      <div class="join-btns">
+        <!-- STRIPE VIP -->
+        <a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00"
+           class="btn-primary" target="_blank" rel="noopener"
+           style="width:280px;text-align:center;">
+          🔥 VIP WERDEN — STRIPE
+        </a>
+        <!-- GUMROAD -->
+        <a href="https://mindful777.gumroad.com"
+           class="btn-ghost" target="_blank" rel="noopener"
+           style="width:280px;text-align:center;">
+          🎧 GUMROAD STORE
+        </a>
+        <!-- BOOK SESSION -->
+        <a href="https://mindful777.gumroad.com"
+           class="btn-ghost" target="_blank" rel="noopener"
+           style="width:280px;text-align:center;border-color:rgba(126,232,250,.3);color:var(--ice);">
+          📅 EINZELSITZUNG BUCHEN
+        </a>
+        <span class="stripe-note">
+          Sichere Zahlung · Jederzeit kündbar ·
+          <a href="https://mindful777.gumroad.com" target="_blank">Support our work →</a>
+        </span>
+      </div>
+
+    </div>
+
+    <!-- Email form -->
+    <div class="join-form">
+      <input class="join-input" type="email" placeholder="Deine E-Mail Adresse">
+      <button class="btn-primary" style="clip-path:none;">Aktivieren</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">ARES<span>.</span> TRANSFORMATION</div>
+    <ul class="footer-links">
+      <li><a href="../blog/">Blog</a></li>
+      <li><a href="../impressum.html">Impressum</a></li>
+      <li><a href="../datenschutz.html">Datenschutz</a></li>
+      <li><a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a></li>
+      <li><a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00" target="_blank">VIP</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Ares Transformation · mindful7777</p>
+  </footer>
+</div>
+
+<script>
+  var PW='ares7777';
+  function checkPw(){
+    if(document.getElementById('pw-input').value===PW){
+      document.getElementById('gate').style.display='none';
+      document.getElementById('content').style.display='block';
+      sessionStorage.setItem('vip','1');
+    }else{
+      document.getElementById('gate-err').style.display='block';
+      document.getElementById('pw-input').value='';
+    }
+  }
+  if(sessionStorage.getItem('vip')==='1'){
+    document.getElementById('gate').style.display='none';
+    document.getElementById('content').style.display='block';
+  }
+  const obs=new IntersectionObserver((e)=>{e.forEach((en,i)=>{if(en.isIntersecting)setTimeout(()=>en.target.classList.add('visible'),i*80)});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
