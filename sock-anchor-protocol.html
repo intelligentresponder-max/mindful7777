@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sock-Anchor Protocol · mindful7777</title>
+  <meta name="description" content="90-Sekunden Neural Reset. Pavlov-Konditionierung trifft Vagus-Nerv. Kostenloses Protokoll + Induktions-Skript." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Georgia:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#1B2845;
+      --surface:#243358;
+      --surface2:#1a2440;
+      --gold:#D4A574;
+      --gold-dark:#b8884f;
+      --beige:#F7F4EE;
+      --text:#F7F4EE;
+      --muted:rgba(247,244,238,0.55);
+      --border:rgba(212,165,116,0.2);
+      --deep:#3A3A3A;
+    }
+    body{background:var(--bg);color:var(--text);font-family:"DM Sans",system-ui,sans-serif;overflow-x:hidden;line-height:1.7}
+    a{color:inherit;text-decoration:none}
+
+    /* LANG SWITCHER */
+    .lang-bar{background:var(--surface2);border-bottom:1px solid var(--border);padding:8px 32px;display:flex;justify-content:flex-end;align-items:center;gap:8px}
+    .lang-btn{font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;transition:all .2s}
+    .lang-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(212,165,116,0.08)}
+    .lang-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+    /* NAV */
+    nav{padding:20px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+    .nav-logo{font-family:Georgia,serif;font-size:17px;color:var(--gold);letter-spacing:.04em}
+    .nav-back{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+    .nav-back:hover{color:var(--gold)}
+
+    /* HERO */
+    .hero{max-width:760px;margin:0 auto;padding:80px 32px 0}
+    .hero-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+    .hero-title{font-family:Georgia,serif;font-size:clamp(34px,6vw,60px);font-weight:700;line-height:1.05;color:var(--beige);margin-bottom:20px}
+    .hero-title em{color:var(--gold);font-style:italic}
+    .hero-meta{font-size:12px;color:var(--muted);letter-spacing:.08em;margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+
+    /* ARTICLE */
+    .article-text{font-size:17px;line-height:1.9;color:var(--text)}
+    .article-text p{margin-bottom:1.4em}
+    .article-text h3{font-family:Georgia,serif;font-size:24px;font-weight:700;color:var(--beige);margin:2em 0 .8em;border-left:3px solid var(--gold);padding-left:16px}
+    .article-text strong{color:var(--gold)}
+
+    /* STATS */
+    .stats-row{display:flex;gap:28px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);padding:24px 28px;margin:2em 0}
+    .stat{display:flex;flex-direction:column;gap:4px}
+    .stat-num{font-family:Georgia,serif;font-size:26px;color:var(--gold)}
+    .stat-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+    /* ACCIO INFO BOX */
+    .info-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--gold);padding:20px 24px;margin:2em 0;font-size:14px;color:var(--muted);line-height:1.7}
+    .info-box strong{color:var(--gold);display:block;margin-bottom:6px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+
+    /* BLUR GATE */
+    .teaser-blur-wrap{position:relative;overflow:hidden;margin-top:0}
+    .teaser-blurred{filter:blur(5px);user-select:none;pointer-events:none;opacity:.55;max-height:200px;overflow:hidden}
+    .teaser-gate{background:linear-gradient(to bottom,transparent 0%,var(--bg) 30%);padding:60px 0 80px;display:flex;justify-content:center;margin-top:-140px;position:relative;z-index:2}
+    .gate-box{background:var(--surface);border:1px solid var(--gold);padding:44px 40px;max-width:500px;width:100%;text-align:center}
+    .gate-kicker{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+    .gate-title{font-family:Georgia,serif;font-size:24px;font-weight:700;color:var(--beige);margin-bottom:12px}
+    .gate-sub{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:28px}
+    .gate-btn{display:block;background:var(--gold);color:#1B2845;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:18px 32px;border:none;cursor:pointer;font-family:inherit;width:100%;transition:background .2s;text-align:center}
+    .gate-btn:hover{background:var(--gold-dark)}
+    .gate-or{font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin:14px 0}
+    .gate-vip{display:block;border:1px solid var(--border);color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:14px;text-align:center;transition:all .2s;cursor:pointer}
+    .gate-vip:hover{border-color:var(--gold);color:var(--gold)}
+    .gate-note{font-size:10px;color:rgba(247,244,238,.2);margin-top:10px}
+
+    /* UNLOCKED */
+    .unlocked .teaser-blurred{filter:none;pointer-events:auto;opacity:1;max-height:none}
+    .unlocked .teaser-gate{display:none}
+    .unlock-bar{display:none;background:rgba(212,165,116,.1);border:1px solid var(--border);padding:12px 16px;font-size:12px;color:var(--gold);text-align:center;letter-spacing:.06em;margin-bottom:32px}
+    .unlocked-visible .unlock-bar{display:block}
+
+    /* SCRIPT SECTION */
+    .script-section{background:var(--surface2);border:1px solid var(--border);margin:2em 0;overflow:hidden}
+    .script-header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;gap:12px}
+    .script-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+    .script-title{font-family:Georgia,serif;font-size:18px;color:var(--beige)}
+    .script-body{padding:28px 32px}
+    .script-step{display:flex;gap:16px;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+    .script-step:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+    .step-num{width:32px;height:32px;border:1px solid var(--gold);color:var(--gold);font-family:Georgia,serif;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+    .step-content{flex:1}
+    .step-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+    .step-text{font-size:15px;color:var(--text);line-height:1.8}
+    .step-text em{color:var(--gold);font-style:italic}
+
+    /* AUDIO PLAYER */
+    .audio-section{background:var(--surface);border:1px solid var(--border);padding:28px 32px;margin:2em 0}
+    .audio-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+    .audio-title{font-family:Georgia,serif;font-size:20px;color:var(--beige);margin-bottom:16px}
+    .audio-player{width:100%;height:40px;opacity:.85;filter:sepia(20%) saturate(80%)}
+    .audio-note{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.6}
+    .audio-placeholder{background:var(--surface2);border:1px solid var(--border);padding:20px;text-align:center;font-size:13px;color:var(--muted)}
+    .audio-placeholder span{display:block;color:var(--gold);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+
+    /* UPSELL */
+    .upsell{background:var(--surface);border:1px solid var(--gold);padding:44px 40px;margin:3em 0;text-align:center}
+    .upsell-kicker{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+    .upsell-title{font-family:Georgia,serif;font-size:clamp(22px,4vw,36px);font-weight:700;color:var(--beige);margin-bottom:14px}
+    .upsell-title em{color:var(--gold);font-style:italic}
+    .upsell-sub{font-size:15px;color:var(--muted);max-width:480px;margin:0 auto 28px;line-height:1.7}
+    .upsell-list{display:flex;flex-direction:column;gap:8px;max-width:360px;margin:0 auto 28px;text-align:left}
+    .upsell-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text)}
+    .upsell-check{color:var(--gold);font-size:16px;flex-shrink:0;margin-top:1px}
+    .btn-primary{display:inline-block;background:var(--gold);color:#1B2845;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:18px 40px;transition:background .2s;border:none;cursor:pointer;font-family:inherit}
+    .btn-primary:hover{background:var(--gold-dark)}
+    .btn-ghost{display:inline-block;border:1px solid var(--border);color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:14px 28px;transition:all .2s;margin-left:12px}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:32px;text-align:center;font-size:10px;color:rgba(247,244,238,.2);letter-spacing:.05em}
+    footer a{color:inherit;transition:color .2s}
+    footer a:hover{color:var(--gold)}
+
+    @media(max-width:600px){
+      .hero{padding:50px 20px 0}
+      .gate-box{padding:32px 24px}
+      .script-body{padding:20px}
+      .upsell{padding:32px 20px}
+      .stats-row{gap:16px}
+      .btn-ghost{margin-left:0;margin-top:8px}
+    }
+
+    /* hidden lang content */
+    [data-lang]{display:none}
+    [data-lang].lang-active{display:block}
+    .inline-lang{display:none}
+    .inline-lang.lang-active{display:inline}
+  </style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('de')" id="btn-de">DE</button>
+  <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">mindful7777</a>
+  <a href="index.html" class="nav-back">
+    <span class="inline-lang lang-active" data-l="de">← Zurück</span>
+    <span class="inline-lang" data-l="en">← Back</span>
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="articleWrap">
+  <div class="hero-tag">
+    <span class="inline-lang lang-active" data-l="de">7777-1 · Protokoll · Gratis</span>
+    <span class="inline-lang" data-l="en">7777-1 · Protocol · Free</span>
+  </div>
+
+  <h1 class="hero-title">
+    <span data-lang="de" class="lang-active">Der Sock-Anchor:<br/><em>90 Sekunden</em><br/>echter Reset.</span>
+    <span data-lang="en">The Sock-Anchor:<br/><em>90 Seconds</em><br/>real reset.</span>
+  </h1>
+
+  <div class="hero-meta">
+    <span class="inline-lang lang-active" data-l="de">Lesezeit 8 Min · Science-based · Kein Esoterik · mindful7777</span>
+    <span class="inline-lang" data-l="en">8 min read · Science-based · No esoteric fluff · mindful7777</span>
+  </div>
+
+  <div class="unlock-bar" id="unlockBar">
+    <span class="inline-lang lang-active" data-l="de">✓ Vollständiges Protokoll freigeschaltet</span>
+    <span class="inline-lang" data-l="en">✓ Full protocol unlocked</span>
+  </div>
+
+  <!-- VISIBLE TEASER TEXT -->
+  <div class="article-text">
+
+    <div data-lang="de" class="lang-active">
+      <p>Pavlov brauchte eine Glocke. Du brauchst eine Socke. Das ist der gesamte Unterschied zwischen dem, was gleich beschrieben wird, und dem, was die meisten Menschen für „Meditation" oder „Entspannung" halten.</p>
+      <p>Der Sock-Anchor ist kein Ritual. Kein Achtsamkeits-Tool. Er ist ein <strong>konditionierter Reflex</strong> — aufgebaut nach denselben Prinzipien, die Pavlov 1897 beschrieben hat.</p>
+    </div>
+    <div data-lang="en">
+      <p>Pavlov needed a bell. You need a sock. That is the entire difference between what is described below and what most people call "meditation" or "relaxation."</p>
+      <p>The Sock-Anchor is not a ritual. Not a mindfulness tool. It is a <strong>conditioned reflex</strong> — built on the same principles Pavlov described in 1897.</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat"><span class="stat-num">90s</span><span class="stat-label"><span class="inline-lang lang-active" data-l="de">Bis zum Reset</span><span class="inline-lang" data-l="en">To reset</span></span></div>
+      <div class="stat"><span class="stat-num">21</span><span class="stat-label"><span class="inline-lang lang-active" data-l="de">Tage Konditionierung</span><span class="inline-lang" data-l="en">Days conditioning</span></span></div>
+      <div class="stat"><span class="stat-num">Beta→Θ</span><span class="stat-label"><span class="inline-lang lang-active" data-l="de">Brainwave-Shift</span><span class="inline-lang" data-l="en">Brainwave shift</span></span></div>
+      <div class="stat"><span class="stat-num">On demand</span><span class="stat-label"><span class="inline-lang lang-active" data-l="de">Jederzeit</span><span class="inline-lang" data-l="en">Any time</span></span></div>
+    </div>
+
+    <div data-lang="de" class="lang-active">
+      <h3>Warum eine Socke?</h3>
+      <p>Der Anker-Reiz muss zwei Kriterien erfüllen: <strong>spezifisch genug</strong>, um vom Gehirn als eindeutiger Trigger erkannt zu werden — und <strong>alltagstauglich</strong>, überall replizierbar, sozial unauffällig.</p>
+      <h3>Die Physiologie</h3>
+      <p>Der Vagus-Nerv ist der direkte Kommunikationskanal zwischen Gehirn und Körper — der einzige parasympathische Nerv, der sich durch <strong>willentliche Atemführung</strong> aktivieren lässt. Nach 21–30 Wiederholungen passiert die Aktivierung automatisch. Du ziehst die Socke an. Dein Körper startet die Sequenz, <em>ohne dass du es bewusst initiierst.</em></p>
+    </div>
+    <div data-lang="en">
+      <h3>Why a sock?</h3>
+      <p>The anchor stimulus must meet two criteria: <strong>specific enough</strong> for the brain to recognize as a clear trigger — and <strong>practical</strong>, replicable anywhere, socially invisible.</p>
+      <h3>The physiology</h3>
+      <p>The vagus nerve is the direct communication channel between brain and body — the only parasympathetic nerve that can be activated through <strong>intentional breathing</strong>. After 21–30 repetitions, activation happens automatically. You put on the sock. Your body initiates the sequence, <em>without conscious intent.</em></p>
+    </div>
+
+    <div class="info-box">
+      <strong><span class="inline-lang lang-active" data-l="de">Wissenschaftlicher Hintergrund</span><span class="inline-lang" data-l="en">Scientific background</span></strong>
+      <span class="inline-lang lang-active" data-l="de">Klassische Konditionierung (Pavlov, 1897) + Vagus-Nerv-Aktivierung + Beta→Theta Brainwave-Transition. Kein Esoterik. Reproduzierbar, messbar, on demand.</span>
+      <span class="inline-lang" data-l="en">Classical conditioning (Pavlov, 1897) + vagus nerve activation + Beta→Theta brainwave transition. No esoteric content. Reproducible, measurable, on demand.</span>
+    </div>
+
+  </div><!-- /visible teaser -->
+
+  <!-- BLUR GATE SECTION -->
+  <div class="teaser-blur-wrap" id="blurSection">
+    <div class="teaser-blurred article-text">
+      <h3>Das vollständige Protokoll: Phase 1–3</h3>
+      <p>Phase 1 ist die Konditionierungsphase — 21 Tage täglich, idealerweise morgens. Du kombinierst die Atemsequenz mit dem Anker-Reiz. Phase 2 ist der Transfer in reale Situationen. Phase 3 ist die Stack-Integration.</p>
+    </div>
+
+    <div class="teaser-gate" id="teaserGate">
+      <div class="gate-box">
+        <div class="gate-kicker">
+          <span class="inline-lang lang-active" data-l="de">Protokoll freischalten</span>
+          <span class="inline-lang" data-l="en">Unlock protocol</span>
+        </div>
+        <div class="gate-title">
+          <span data-lang="de" class="lang-active">Induktions-Skript + Audio + Upsell</span>
+          <span data-lang="en">Induction script + audio + full system</span>
+        </div>
+        <div class="gate-sub">
+          <span class="inline-lang lang-active" data-l="de">Hol dir das vollständige Protokoll auf Gumroad — Induktions-Skript, Audio-Session und den Weg ins VIP-System.</span>
+          <span class="inline-lang" data-l="en">Get the complete protocol on Gumroad — induction script, audio session, and access to the full VIP system.</span>
+        </div>
+        <a href="https://mindful777.gumroad.com/l/csaf777" target="_blank" class="gate-btn" onclick="unlockContent()">
+          <span class="inline-lang lang-active" data-l="de">Jetzt kostenlos holen →</span>
+          <span class="inline-lang" data-l="en">Get it free now →</span>
+        </a>
+        <div class="gate-or">—
+          <span class="inline-lang lang-active" data-l="de">bereits VIP?</span>
+          <span class="inline-lang" data-l="en">already VIP?</span>
+          —
+        </div>
+        <a href="vip.html" class="gate-vip">
+          <span class="inline-lang lang-active" data-l="de">VIP-Login →</span>
+          <span class="inline-lang" data-l="en">VIP login →</span>
+        </a>
+        <div class="gate-note">
+          <span class="inline-lang lang-active" data-l="de">Kein Newsletter. Kein Bullshit. Nur das Protokoll.</span>
+          <span class="inline-lang" data-l="en">No newsletter. No fluff. Just the protocol.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNLOCKED CONTENT -->
+  <div id="unlockedContent" style="display:none">
+
+    <!-- INDUKTIONS-SKRIPT -->
+    <div class="script-section">
+      <div class="script-header">
+        <div>
+          <div class="script-tag">
+            <span class="inline-lang lang-active" data-l="de">Induktions-Skript · Selbst-Anwendung</span>
+            <span class="inline-lang" data-l="en">Induction script · Self-application</span>
+          </div>
+          <div class="script-title">
+            <span data-lang="de" class="lang-active">Sock-Anchor: Vollständige Sequenz</span>
+            <span data-lang="en">Sock-Anchor: Complete Sequence</span>
+          </div>
+        </div>
+      </div>
+      <div class="script-body">
+
+        <!-- DE SCRIPT -->
+        <div data-lang="de" class="lang-active">
+          <div class="script-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <div class="step-label">Vorbereitung</div>
+              <div class="step-text">Setz dich aufrecht hin. Halte die Socke in der Hand. Schließe die Augen oder richte den Blick auf einen Punkt vor dir. Du hast 90 Sekunden. Nichts anderes zählt.</div>
+            </div>
+          </div>
+          <div class="script-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <div class="step-label">Atemsequenz — Vagus aktivieren</div>
+              <div class="step-text">Einatmen: <em>4 Sekunden</em> durch die Nase. Halten: <em>2 Sekunden</em>. Ausatmen: <em>8 Sekunden</em> durch den Mund. Die verlängerte Ausatmung aktiviert den Nervus vagus direkt — parasympathische Dominanz beginnt.</div>
+            </div>
+          </div>
+          <div class="script-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <div class="step-label">Anker setzen — Konditionierungsmoment</div>
+              <div class="step-text">Im Moment des Ausatmens: ziehe die Socke langsam an. Spüre die Textur. Dein Gehirn verknüpft jetzt diesen taktilen Reiz mit dem parasympathischen Zustand. <em>Pavlov in Echtzeit.</em></div>
+            </div>
+          </div>
+          <div class="script-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <div class="step-label">Suggestion — Beta→Theta</div>
+              <div class="step-text">Wiederhole innerlich: <em>„Mein Nervensystem kennt diesen Zustand. Er ist jederzeit abrufbar."</em> Keine Magie. Das ist Selbstinstruktion — ein kognitiver Anker, der den konditionierten Reflex verstärkt.</div>
+            </div>
+          </div>
+          <div class="script-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <div class="step-label">Re-Orientierung</div>
+              <div class="step-text">Zähle innerlich von 1 bis 5. Bei 5: Augen auf, tief einatmen, weitermachen. Der Reset ist abgeschlossen. <em>21 Wiederholungen</em> — dann läuft die Sequenz automatisch beim Anziehen der Socke.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EN SCRIPT -->
+        <div data-lang="en">
+          <div class="script-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <div class="step-label">Preparation</div>
+              <div class="step-text">Sit upright. Hold the sock in your hand. Close your eyes or fix your gaze on a point in front of you. You have 90 seconds. Nothing else matters.</div>
+            </div>
+          </div>
+          <div class="script-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <div class="step-label">Breathing sequence — vagus activation</div>
+              <div class="step-text">Inhale: <em>4 seconds</em> through the nose. Hold: <em>2 seconds</em>. Exhale: <em>8 seconds</em> through the mouth. The extended exhale directly activates the vagus nerve — parasympathetic dominance begins.</div>
+            </div>
+          </div>
+          <div class="script-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <div class="step-label">Set the anchor — conditioning moment</div>
+              <div class="step-text">At the moment of exhale: slowly put on the sock. Feel the texture. Your brain is now linking this tactile stimulus to the parasympathetic state. <em>Pavlov in real time.</em></div>
+            </div>
+          </div>
+          <div class="script-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <div class="step-label">Suggestion — Beta→Theta</div>
+              <div class="step-text">Repeat internally: <em>"My nervous system knows this state. It is available on demand."</em> No magic. This is self-instruction — a cognitive anchor reinforcing the conditioned reflex.</div>
+            </div>
+          </div>
+          <div class="script-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <div class="step-label">Re-orientation</div>
+              <div class="step-text">Count internally from 1 to 5. At 5: eyes open, deep breath, continue. Reset complete. <em>21 repetitions</em> — then the sequence runs automatically when you put on the sock.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /script -->
+
+    <!-- AUDIO PLAYER -->
+    <div class="audio-section">
+      <div class="audio-label">
+        <span class="inline-lang lang-active" data-l="de">Audio-Session · Geführte Induktion</span>
+        <span class="inline-lang" data-l="en">Audio session · Guided induction</span>
+      </div>
+      <div class="audio-title">
+        <span data-lang="de" class="lang-active">Sock-Anchor — 10 Min Theta-Induktion</span>
+        <span data-lang="en">Sock-Anchor — 10 Min Theta Induction</span>
+      </div>
+      <div class="audio-placeholder" id="audioArea">
+        <span>
+          <span class="inline-lang lang-active" data-l="de">Audio-Player</span>
+          <span class="inline-lang" data-l="en">Audio player</span>
+        </span>
+        <span class="inline-lang lang-active" data-l="de">Platziere deine Audio-Datei unter <code>assets/audio/sock-anchor-session.mp3</code> und ersetze diesen Block durch einen &lt;audio&gt;-Tag.</span>
+        <span class="inline-lang" data-l="en">Place your audio file at <code>assets/audio/sock-anchor-session.mp3</code> and replace this block with an &lt;audio&gt; tag.</span>
+      </div>
+      <!-- Sobald Audio-Datei vorhanden: diesen Block einkommentieren
+      <audio class="audio-player" controls>
+        <source src="assets/audio/sock-anchor-session.mp3" type="audio/mpeg">
+      </audio>
+      -->
+      <div class="audio-note">
+        <span class="inline-lang lang-active" data-l="de">Kopfhörer empfohlen. Theta-Binaural-Carrier 200/206 Hz. Lautstärke moderat halten.</span>
+        <span class="inline-lang" data-l="en">Headphones recommended. Theta binaural carrier 200/206 Hz. Keep volume moderate.</span>
+      </div>
+    </div>
+
+    <!-- UPSELL -->
+    <div class="upsell">
+      <div class="upsell-kicker">
+        <span class="inline-lang lang-active" data-l="de">Das vollständige System</span>
+        <span class="inline-lang" data-l="en">The complete system</span>
+      </div>
+      <h2 class="upsell-title">
+        <span data-lang="de" class="lang-active">Bereit für den<br/><em>kompletten VIP-Stack?</em></span>
+        <span data-lang="en">Ready for the<br/><em>complete VIP stack?</em></span>
+      </h2>
+      <p class="upsell-sub">
+        <span class="inline-lang lang-active" data-l="de">Das Starter-Protokoll ist der Einstieg. Der VIP-Stack ist das System — 7 Protokolle, monatliche Updates, Community.</span>
+        <span class="inline-lang" data-l="en">The starter protocol is the entry point. The VIP stack is the system — 7 protocols, monthly updates, community.</span>
+      </p>
+      <div class="upsell-list">
+        <div class="upsell-item"><span class="upsell-check">✓</span><span><span class="inline-lang lang-active" data-l="de">Focus-Stack: 3-Min Pre-Work Reset (7777-2)</span><span class="inline-lang" data-l="en">Focus-Stack: 3-min pre-work reset (7777-2)</span></span></div>
+        <div class="upsell-item"><span class="upsell-check">✓</span><span><span class="inline-lang lang-active" data-l="de">Sleep-Anchor: Einschlafzeit unter 10 Min (7777-3)</span><span class="inline-lang" data-l="en">Sleep-Anchor: fall asleep under 10 min (7777-3)</span></span></div>
+        <div class="upsell-item"><span class="upsell-check">✓</span><span><span class="inline-lang lang-active" data-l="de">Stress-Response Protokoll HRV-basiert (7777-4)</span><span class="inline-lang" data-l="en">Stress-Response protocol HRV-based (7777-4)</span></span></div>
+        <div class="upsell-item"><span class="upsell-check">✓</span><span><span class="inline-lang lang-active" data-l="de">+ 3 weitere Protokolle, monatliche Updates</span><span class="inline-lang" data-l="en">+ 3 more protocols, monthly updates</span></span></div>
+      </div>
+      <a href="https://ko-fi.com/mindf7777" target="_blank" class="btn-primary">
+        <span class="inline-lang lang-active" data-l="de">VIP — 25 €/Monat →</span>
+        <span class="inline-lang" data-l="en">VIP — €25/month →</span>
+      </a>
+      <a href="https://mindful777.gumroad.com/l/csaf777" target="_blank" class="btn-ghost">
+        <span class="inline-lang lang-active" data-l="de">Nochmal zum Gratis-Protokoll</span>
+        <span class="inline-lang" data-l="en">Back to free protocol</span>
+      </a>
+    </div>
+
+  </div><!-- /unlocked content -->
+
+</div><!-- /hero -->
+
+<!-- FOOTER -->
+<footer>
+  © 2026 mindful7777 · WHY NOT? BE THE CHANGE. ·
+  <a href="impressum.html">Impressum</a> ·
+  <a href="datenschutz.html">Datenschutz</a>
+</footer>
+
+<script>
+  // LANG SWITCHER
+  var currentLang = 'de';
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-lang]').forEach(function(el) {
+      el.classList.toggle('lang-active', el.getAttribute('data-lang') === lang);
+    });
+    document.querySelectorAll('.inline-lang').forEach(function(el) {
+      el.classList.toggle('lang-active', el.getAttribute('data-l') === lang);
+    });
+    document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  }
+
+  // UNLOCK
+  function unlockContent() {
+    sessionStorage.setItem('mf7-unlocked', '1');
+    document.getElementById('blurSection').style.display = 'none';
+    document.getElementById('unlockedContent').style.display = 'block';
+    document.getElementById('unlockBar').style.display = 'block';
+    document.getElementById('articleWrap').classList.add('unlocked-visible');
+  }
+
+  // Auto-unlock if returning visitor
+  if (sessionStorage.getItem('mf7-unlocked')) {
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('blurSection').style.display = 'none';
+      document.getElementById('unlockedContent').style.display = 'block';
+      document.getElementById('unlockBar').style.display = 'block';
+    });
+  }
+</script>
+</body>
+</html>
