@@ -116,4 +116,77 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Bestehende Blog-Artikel (DE/EN) -->
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/blog/theta-wellen.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/theta-wellen.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/theta-wellen.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/theta-wellen.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/blog/stress-reset.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/stress-reset.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/stress-reset.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/stress-reset.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/blog/socken-anker.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/socken-anker.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/socken-anker.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/socken-anker.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/blog/recovery-training.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/recovery-training.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/recovery-training.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/recovery-training.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/blog/hypnose-sportler.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/hypnose-sportler.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/hypnose-sportler.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/hypnose-sportler.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/blog/fernsitzungen.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/fernsitzungen.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/fernsitzungen.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/fernsitzungen.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induktion-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induktion-de.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induction-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induktion-de.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induction-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induktion-de.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induction-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induktion-de.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
