@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta.title">Beta-Wellen & Stress: warum dein Kopf nicht abschaltet | mindful7777</title>
+<meta name="description" data-i18n="meta.desc" content="Beta-Wellen halten dich wach und leistungsfähig – aber im Dauerbetrieb auch gestresst. Was Beta-Wellen sind, wie der Kampf-oder-Flucht-Modus entsteht und wie du aussteigst.">
+<meta name="keywords" content="Beta-Wellen, Kampf-oder-Flucht, Stress, Sympathikus, Gehirnwellen, Cortisol, mindful7777">
+<link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/blog/02-beta-wellen-stress.html">
+<link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/02-beta-wellen-stress.html?lang=de">
+<link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/02-beta-wellen-stress.html?lang=en">
+<link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/blog/02-beta-wellen-stress.html?lang=fr">
+<link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/02-beta-wellen-stress.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Beta-Wellen: warum dein Kopf abends nicht abschalten will">
+<meta property="og:description" content="Beta-Wellen halten dich wach und leistungsfähig – aber im Dauerbetrieb auch gestresst. Was Beta-Wellen sind, wie der Kampf-oder-Flucht-Modus entsteht und wie du aussteigst.">
+<meta property="og:site_name" content="mindful7777">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Beta-Wellen: warum dein Kopf abends nicht abschalten will","author":{"@type":"Person","name":"André"},"publisher":{"@type":"Organization","name":"mindful7777"},"inLanguage":"de"}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
+
+:root{
+  --primary:#1B2845;   /* Dunkelblau */
+  --accent:#D4A574;    /* Gold */
+  --bg:#F7F4EE;        /* Beige */
+  --text:#3A3A3A;      /* Grau */
+  --theta:#3FB6A8;     /* Türkis (Theta) */
+  --beta:#C75D52;      /* Rot (Beta) */
+  --line:rgba(27,40,69,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:"Playfair Display",Georgia,"Times New Roman",serif}
+
+/* ---- Top bar / language switch ---- */
+.bar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(18px,5vw,48px);
+  background:rgba(27,40,69,.96);backdrop-filter:blur(6px);
+  color:var(--bg);
+}
+.brand{font-weight:700;letter-spacing:.04em;font-size:1rem}
+.brand b{color:var(--accent)}
+.lang{display:flex;gap:4px;background:rgba(247,244,238,.1);border-radius:999px;padding:4px}
+.lang button{
+  font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;
+  border:0;border-radius:999px;padding:6px 14px;color:var(--bg);
+  background:transparent;transition:.18s;
+}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--primary)}
+.lang button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---- Hero ---- */
+.hero{padding:clamp(48px,9vw,110px) clamp(18px,5vw,48px) clamp(36px,6vw,72px);max-width:780px;margin:0 auto}
+.eyebrow{
+  display:inline-block;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;margin-bottom:20px;
+}
+.hero h1{
+  font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.04;color:var(--primary);
+  font-weight:800;letter-spacing:-.01em;
+}
+.hero .sub{margin-top:22px;font-size:clamp(1.05rem,2.4vw,1.3rem);max-width:60ch;color:#54616e}
+
+/* ---- Wave signature ---- */
+.wave-sig{max-width:780px;margin:40px auto;padding:0 clamp(18px,5vw,48px)}
+.wave-sig svg{width:100%;height:auto;display:block}
+.wave-cap{display:flex;justify-content:space-between;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-top:8px}
+.wave-cap .b{color:var(--beta)} .wave-cap .t{color:var(--theta)}
+
+/* ---- Body ---- */
+main{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px) 40px}
+h2{
+  font-family:"Playfair Display",Georgia,serif;color:var(--primary);
+  font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:700;
+  margin:48px 0 16px;line-height:1.15;
+}
+h2 .n{color:var(--accent);font-size:.7em;margin-right:.5ch;font-style:italic}
+p{margin:0 0 18px}
+p .term{
+  border-bottom:2px dotted var(--accent);cursor:help;font-weight:600;color:var(--primary);
+}
+.lead{font-size:1.12rem}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.compare .card{border-radius:14px;padding:20px;background:#fff;border:1px solid var(--line)}
+.compare .card h3{font-size:.95rem;letter-spacing:.04em;margin-bottom:6px}
+.compare .beta h3{color:var(--beta)} .compare .theta h3{color:var(--theta)}
+.compare .hz{font-size:.78rem;color:#7b8794;margin-bottom:12px;font-weight:600}
+.compare ul{list-style:none;font-size:.92rem}
+.compare li{padding:4px 0 4px 18px;position:relative}
+.compare li::before{content:"›";position:absolute;left:0;color:var(--accent);font-weight:700}
+@media(max-width:540px){.compare{grid-template-columns:1fr}}
+
+/* ---- Glossary ---- */
+.glossary{background:var(--primary);color:var(--bg);margin-top:64px;padding:clamp(40px,7vw,72px) 0}
+.glossary .inner{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.glossary h2{color:var(--bg)}
+.glossary h2 .n{color:var(--accent)}
+.gitem{border-top:1px solid rgba(247,244,238,.16);padding:18px 0}
+.gitem dt{font-weight:700;color:var(--accent);font-size:1.02rem;margin-bottom:4px}
+.gitem dd{font-size:.95rem;color:rgba(247,244,238,.86)}
+
+/* ---- CTA (only place with persuasive language patterns) ---- */
+.cta{max-width:720px;margin:56px auto;padding:0 clamp(18px,5vw,48px)}
+.cta-box{
+  background:linear-gradient(135deg,#fff, #fbf7ef);
+  border:1px solid var(--line);border-radius:20px;
+  padding:clamp(28px,5vw,44px);text-align:center;box-shadow:0 18px 40px -28px rgba(27,40,69,.5);
+}
+.cta-box h2{margin-top:0}
+.cta-box p{max-width:48ch;margin-inline:auto;color:#54616e}
+.cta-btn{
+  display:inline-block;margin-top:20px;background:var(--primary);color:var(--bg);
+  text-decoration:none;font-weight:700;letter-spacing:.02em;
+  padding:16px 34px;border-radius:999px;transition:.2s;
+}
+.cta-btn:hover{background:var(--accent);color:var(--primary)}
+.cta-btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.cta-fine{font-size:.78rem;color:#8a949e;margin-top:14px}
+
+footer{text-align:center;padding:40px 18px;font-size:.8rem;color:#8a949e}
+
+.disclaimer{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.disclaimer p{font-size:.8rem;color:#8a949e;border-top:1px solid var(--line);padding-top:18px}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* ===== magic layer (language-neutral) ===== */
+@keyframes breathe { 0%,100%{transform:scale(1);opacity:.55} 40%{transform:scale(1.18);opacity:.9} }
+@keyframes drift   { 0%{transform:translateX(0)} 100%{transform:translateX(-50px)} }
+@keyframes floatUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+/* ambient theta wave behind hero */
+.hero{position:relative;overflow:hidden}
+.hero .ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5}
+.hero .ambient svg{position:absolute;bottom:18%;left:0;width:160%;height:auto}
+.hero .ambient path{animation:drift 14s linear infinite alternate}
+
+/* concept icon chip next to eyebrows / h2 */
+.ico{display:inline-flex;vertical-align:middle;width:1.05em;height:1.05em;margin-right:.5ch;color:var(--accent)}
+.ico svg{width:100%;height:100%;display:block}
+h2 .ico{width:.9em;height:.9em;margin-right:.45ch;opacity:.9}
+
+/* glossary term hover lift */
+p .term{transition:color .15s, border-color .15s}
+p .term:hover{color:var(--accent);border-bottom-style:solid}
+
+/* scroll reveal */
+.reveal{opacity:0}
+.reveal.in{animation:floatUp .7s ease both}
+
+/* breathing dot at CTA (4-6 rhythm ~ 10s) */
+.cta-box{position:relative}
+.breath{width:14px;height:14px;border-radius:50%;background:var(--accent);
+  margin:0 auto 14px;animation:breathe 10s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){
+  .hero .ambient path{animation:none}
+  .breath{animation:none}
+  .reveal{opacity:1}
+  .reveal.in{animation:none}
+}
+
+</style>
+<noscript><style>.reveal{opacity:1!important}.hero .ambient,.breath{display:none}</style></noscript>
+</head>
+<body>
+
+<div class="bar">
+  <div class="brand">mindful<b>7777</b></div>
+  <div class="lang" role="group" aria-label="Sprache / Language / Langue">
+    <button data-lang="de" aria-pressed="true">DE</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+    <button data-lang="fr" aria-pressed="false">FR</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="ambient" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,100 Q60,40 120,100 T240,100 T360,100 T480,100 T600,100 T720,100 T840,100 T960,100 T1080,100 T1200,100" fill="none" stroke="#3FB6A8" stroke-width="2.5"/></svg></div>
+  <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l3-6 3 9 3-9 3 9 3-6 3 3"/></svg></span><span class="eyebrow" data-i18n="hero.eyebrow">Gehirnwellen verstehen</span>
+  <h1 class="serif" data-i18n="hero.h1">Beta-Wellen: warum dein Kopf abends nicht abschalten will</h1>
+  <p class="sub" data-i18n="hero.sub">Beta-Wellen sind der Takt deines wachen Tages – fokussiert und leistungsbereit. Doch wenn sie nicht mehr aufhören, kippt Konzentration in Dauerstress. Hier liest du, warum das passiert.</p>
+</header>
+
+
+
+<main>
+  <p class="lead" data-i18n="b.lead">Konzentriert arbeiten, schnell reagieren, präsent sein – dafür brauchst du <span class="term" title="Schnelle Gehirnwellen (13–30 Hz), aktiv bei Wachheit, Konzentration und Stress.">Beta-Wellen</span>. Das Problem beginnt erst, wenn sie nicht mehr herunterfahren.</p>
+Konzentriert arbeiten, schnell reagieren, präsent sein – dafür brauchst du <span class="term" title="Schnelle Gehirnwellen (13–30 Hz), aktiv bei Wachheit, Konzentration und Stress.">Beta-Wellen</span>. Das Problem beginnt erst, wenn sie nicht mehr herunterfahren.
+  <h2 data-i18n="b.h2a"><span class="n">01</span>Was Beta-Wellen leisten</h2>
+  <p data-i18n="b.h2a.p1">Beta ist der Normalzustand des wachen Gehirns: Du planst, sprichst, löst Aufgaben. In diesem Tempo bist du aufmerksam und reaktionsschnell – genau das, was ein anspruchsvoller Tag verlangt.</p>
+  <p data-i18n="b.h2a.p2">Solange sich Phasen hoher Beta-Aktivität mit Erholung abwechseln, ist alles in Ordnung. Der Körper kann zwischen Anspannung und Entspannung pendeln.</p>
+
+  <h2 data-i18n="b.h2b"><span class="n">02</span>Wenn Beta zum Dauerzustand wird</h2>
+  <p data-i18n="b.h2b.p1">Bei anhaltendem Druck bleibt das Gehirn in hoher Beta-Aktivität hängen. Das aktiviert den <span class="term" title="Der aktivierende Teil des vegetativen Nervensystems – Kampf-oder-Flucht.">Sympathikus</span> und damit den <span class="term" title="Reflexhafte Stressreaktion des Körpers auf wahrgenommene Bedrohung.">Kampf-oder-Flucht</span>-Modus.</p>
+  <p data-i18n="b.h2b.p2">Kurzfristig steigt <span class="term" title="Stresshormon, das Herzschlag und Wachheit kurzfristig steigert.">Adrenalin</span>, langfristig bleibt <span class="term" title="Längerfristig wirkendes Stresshormon; chronisch erhöht belastet es Körper und Schlaf.">Cortisol</span> erhöht. Das ist der Grund, warum du abends im Bett liegst und der Kopf einfach weiterrattert.</p>
+
+  <h2 data-i18n="b.h2c"><span class="n">03</span>Der Weg hinaus</h2>
+  <p data-i18n="b.h2c.p1">Du kommst aus Beta nicht durch Willenskraft heraus – im Gegenteil, „jetzt entspann dich endlich" ist selbst ein Beta-Befehl. Der Ausweg führt über das <span class="term" title="Steuert unbewusst Atmung, Puls und Verdauung; teilt sich in Sympathikus und Parasympathikus.">vegetative Nervensystem</span>: ruhige, lange Ausatmung und ein klares körperliches Schlusssignal.</p>
+  <p data-i18n="b.h2c.p2">Genau hier setzt der Sock-Anchor an – ein bewusster Schalter, der dem Gehirn sagt: Der Leistungsmodus ist jetzt aus.</p>
+
+</main>
+
+<section class="glossary" id="glossar">
+  <div class="inner">
+    <h2><span class="n">★</span><span data-i18n="g.title">Glossar</span></h2>
+    <dl>
+      <div class="gitem"><dt data-i18n="g.1.t">Beta-Wellen</dt><dd data-i18n="g.1.d">Schnelle Gehirnwellen (13–30 Hz), aktiv bei Wachheit, Konzentration und Stress.</dd></div>
+      <div class="gitem"><dt data-i18n="g.2.t">Sympathikus</dt><dd data-i18n="g.2.d">Der aktivierende Teil des vegetativen Nervensystems – Kampf-oder-Flucht.</dd></div>
+      <div class="gitem"><dt data-i18n="g.3.t">Kampf-oder-Flucht</dt><dd data-i18n="g.3.d">Reflexhafte Stressreaktion des Körpers auf wahrgenommene Bedrohung.</dd></div>
+      <div class="gitem"><dt data-i18n="g.4.t">Adrenalin</dt><dd data-i18n="g.4.d">Stresshormon, das Herzschlag und Wachheit kurzfristig steigert.</dd></div>
+      <div class="gitem"><dt data-i18n="g.5.t">Cortisol</dt><dd data-i18n="g.5.d">Längerfristig wirkendes Stresshormon; chronisch erhöht belastet es Körper und Schlaf.</dd></div>
+      <div class="gitem"><dt data-i18n="g.6.t">Vegetatives Nervensystem</dt><dd data-i18n="g.6.d">Steuert unbewusst Atmung, Puls und Verdauung; teilt sich in Sympathikus und Parasympathikus.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- CTA: the ONLY section using nls/rhetoric patterns (Sog statt Druck).
+     · Presupposition  (sets an action as given, shifts focus to the HOW)
+     · Embedded command (a disguised imperative inside a subordinate clause)
+     Deliberately sparse: max 2 patterns, no pressure/fear language, no health claims. -->
+<section class="cta">
+  <div class="cta-box">
+    <div class="breath" aria-hidden="true"></div>
+    <h2 class="serif" data-i18n="cta.h">Raus aus dem Dauerlauf?</h2>
+    <p data-i18n="cta.p">Während du das hier liest, spürst du vielleicht schon, wie gut ein klarer Feierabend-Schalter täte – und genau deshalb beginnt der einfachste Ausstieg mit 90 Sekunden. Der Sock-Anchor zeigt dir den ersten Schritt.</p>
+    <a class="cta-btn" href="https://intelligentresponder-max.github.io/mindful7777/vip.html" data-i18n="cta.btn">Protokoll gratis holen</a>
+    <p class="cta-fine" data-i18n="cta.fine">PDF + 3-Min-Audio · kein Abo · kein Zwang</p>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <p data-i18n="disc">Hinweis: Dieser Beitrag dient der Information und Entspannung. Er ersetzt keine medizinische Beratung und macht keine Heilversprechen. Bei anhaltendem Stress wende dich an ärztliches Fachpersonal.</p>
+</div>
+
+<footer>© 2026 mindful7777 · <a href="#glossar" style="color:inherit" data-i18n="foot.link">Zum Glossar</a></footer>
+
+<script>
+const i18n = {
+  de: null,
+  en: {
+    "meta.title":"Beta Waves & Stress: why your mind won't switch off | mindful7777",
+    "meta.desc":"Beta waves keep you awake and sharp – but running non-stop, they keep you stressed too. What beta waves are, how fight-or-flight kicks in, and how to step out.",
+    "hero.eyebrow":"Understanding brain waves",
+    "hero.h1":"Beta waves: why your mind won't switch off at night",
+    "hero.sub":"Beta waves are the beat of your waking day – focused and ready to perform. But when they never stop, focus tips into chronic stress. Here's why that happens.",
+    "b.lead":"Working with focus, reacting fast, staying present – that takes <span class=\"term\" title=\"Fast brain waves (13–30 Hz), active during wakefulness, focus and stress.\">beta waves</span>. The trouble only starts when they no longer wind down.",
+    "b.h2a":"<span class=\"n\">01</span>What beta waves do",
+    "b.h2a.p1":"Beta is the default of the waking brain: you plan, speak, solve. At this speed you're alert and quick to react – exactly what a demanding day asks for.",
+    "b.h2a.p2":"As long as high-beta phases alternate with recovery, all is well. The body can swing between tension and release.",
+    "b.h2b":"<span class=\"n\">02</span>When beta becomes permanent",
+    "b.h2b.p1":"Under sustained pressure the brain gets stuck in high beta. That activates the <span class=\"term\" title=\"The activating branch of the autonomic nervous system – fight or flight.\">sympathetic</span> system and with it the <span class=\"term\" title=\"The body's reflexive stress response to a perceived threat.\">fight-or-flight</span> mode.",
+    "b.h2b.p2":"Short term, <span class=\"term\" title=\"Stress hormone that briefly raises heart rate and alertness.\">adrenaline</span> rises; long term, <span class=\"term\" title=\"Longer-acting stress hormone; chronically elevated, it strains body and sleep.\">cortisol</span> stays high. That's why you lie in bed at night while your head keeps racing.",
+    "b.h2c":"<span class=\"n\">03</span>The way out",
+    "b.h2c.p1":"You don't leave beta through willpower – \"just relax now\" is itself a beta command. The exit runs through the <span class=\"term\" title=\"Unconsciously controls breathing, pulse and digestion; split into sympathetic and parasympathetic.\">autonomic nervous system</span>: calm, long exhales and one clear physical closing signal.",
+    "b.h2c.p2":"That's exactly where the Sock-Anchor comes in – a deliberate switch that tells the brain: performance mode is off now.",
+    "g.title":"Glossary",
+    "g.1.t":"Beta waves",
+    "g.1.d":"Fast brain waves (13–30 Hz), active during wakefulness, focus and stress.",
+    "g.2.t":"Sympathetic nervous system",
+    "g.2.d":"The activating branch of the autonomic nervous system – fight or flight.",
+    "g.3.t":"Fight-or-flight",
+    "g.3.d":"The body's reflexive stress response to a perceived threat.",
+    "g.4.t":"Adrenaline",
+    "g.4.d":"Stress hormone that briefly raises heart rate and alertness.",
+    "g.5.t":"Cortisol",
+    "g.5.d":"Longer-acting stress hormone; chronically elevated, it strains body and sleep.",
+    "g.6.t":"Autonomic nervous system",
+    "g.6.d":"Unconsciously controls breathing, pulse and digestion; split into sympathetic and parasympathetic.",
+    "cta.h":"Ready to step off the treadmill?",
+    "cta.p":"As you read this, you can perhaps already feel how good a clear end-of-day switch would be – and that's exactly why the simplest exit starts with 90 seconds. The Sock-Anchor shows you the first step.",
+    "cta.btn":"Get the protocol free",
+    "cta.fine":"PDF + 3-min audio · no subscription · no pressure",
+    "disc":"Note: This article is for information and relaxation. It is not medical advice and makes no health claims. For persistent stress, consult a medical professional.",
+    "foot.link":"Go to glossary"
+  },
+  fr: {
+    "meta.title":"Ondes bêta & stress : pourquoi ton esprit ne s'éteint pas | mindful7777",
+    "meta.desc":"Les ondes bêta te gardent éveillé et performant – mais en continu, elles te gardent aussi stressé. Ce que sont les ondes bêta, comment la lutte-ou-fuite s'enclenche et comment en sortir.",
+    "hero.eyebrow":"Comprendre les ondes cérébrales",
+    "hero.h1":"Ondes bêta : pourquoi ton esprit refuse de s'éteindre le soir",
+    "hero.sub":"Les ondes bêta sont le rythme de ta journée éveillée – concentré et prêt à performer. Mais quand elles ne s'arrêtent plus, la concentration bascule en stress chronique. Voici pourquoi.",
+    "b.lead":"Travailler concentré, réagir vite, rester présent – cela demande des <span class=\"term\" title=\"Ondes cérébrales rapides (13–30 Hz), actives en éveil, concentration et stress.\">ondes bêta</span>. Le problème ne commence que lorsqu'elles ne redescendent plus.",
+    "b.h2a":"<span class=\"n\">01</span>Ce que font les ondes bêta",
+    "b.h2a.p1":"Le bêta est l'état par défaut du cerveau éveillé : tu planifies, tu parles, tu résous. À cette vitesse, tu es vigilant et réactif – exactement ce qu'exige une journée intense.",
+    "b.h2a.p2":"Tant que les phases de bêta élevé alternent avec la récupération, tout va bien. Le corps peut osciller entre tension et détente.",
+    "b.h2b":"<span class=\"n\">02</span>Quand le bêta devient permanent",
+    "b.h2b.p1":"Sous une pression continue, le cerveau reste bloqué en bêta élevé. Cela active le système <span class=\"term\" title=\"La branche activatrice du système nerveux autonome – lutte ou fuite.\">sympathique</span> et donc le mode <span class=\"term\" title=\"Réaction réflexe de stress du corps face à une menace perçue.\">lutte ou fuite</span>.",
+    "b.h2b.p2":"À court terme, l'<span class=\"term\" title=\"Hormone du stress qui augmente brièvement le rythme cardiaque et la vigilance.\">adrénaline</span> monte ; à long terme, le <span class=\"term\" title=\"Hormone du stress à action prolongée ; élevée de façon chronique, elle pèse sur le corps et le sommeil.\">cortisol</span> reste élevé. C'est pour ça que tu es au lit le soir et que ta tête continue de tourner.",
+    "b.h2c":"<span class=\"n\">03</span>La sortie",
+    "b.h2c.p1":"On ne quitte pas le bêta par la volonté – « détends-toi maintenant » est lui-même un ordre bêta. La sortie passe par le <span class=\"term\" title=\"Contrôle inconsciemment respiration, pouls et digestion ; divisé en sympathique et parasympathique.\">système nerveux autonome</span> : des expirations longues et calmes et un signal corporel de clôture clair.",
+    "b.h2c.p2":"C'est précisément là qu'intervient le Sock-Anchor – un interrupteur volontaire qui dit au cerveau : le mode performance est coupé.",
+    "g.title":"Glossaire",
+    "g.1.t":"Ondes bêta",
+    "g.1.d":"Ondes cérébrales rapides (13–30 Hz), actives en éveil, concentration et stress.",
+    "g.2.t":"Système sympathique",
+    "g.2.d":"La branche activatrice du système nerveux autonome – lutte ou fuite.",
+    "g.3.t":"Lutte ou fuite",
+    "g.3.d":"Réaction réflexe de stress du corps face à une menace perçue.",
+    "g.4.t":"Adrénaline",
+    "g.4.d":"Hormone du stress qui augmente brièvement le rythme cardiaque et la vigilance.",
+    "g.5.t":"Cortisol",
+    "g.5.d":"Hormone du stress à action prolongée ; élevée de façon chronique, elle pèse sur le corps et le sommeil.",
+    "g.6.t":"Système nerveux autonome",
+    "g.6.d":"Contrôle inconsciemment respiration, pouls et digestion ; divisé en sympathique et parasympathique.",
+    "cta.h":"Prêt à descendre du tapis roulant ?",
+    "cta.p":"Pendant que tu lis ceci, tu sens peut-être déjà à quel point un interrupteur de fin de journée ferait du bien – et c'est justement pour ça que la sortie la plus simple commence par 90 secondes. Le Sock-Anchor te montre le premier pas.",
+    "cta.btn":"Obtenir le protocole gratuitement",
+    "cta.fine":"PDF + audio de 3 min · sans abonnement · sans pression",
+    "disc":"Remarque : cet article a une vocation d'information et de détente. Il ne remplace pas un avis médical et ne formule aucune promesse de guérison. En cas de stress persistant, consulte un professionnel de santé.",
+    "foot.link":"Aller au glossaire"
+  }
+};
+const nodes = document.querySelectorAll('[data-i18n]');
+const defaults = {};
+nodes.forEach(n => defaults[n.getAttribute('data-i18n')] = n.tagName==='TITLE'||n.tagName==='META' ? (n.content||n.textContent) : n.innerHTML);
+function setLang(lang){
+  const dict = i18n[lang];
+  nodes.forEach(n=>{
+    const key=n.getAttribute('data-i18n');
+    const val = dict ? (dict[key] ?? defaults[key]) : defaults[key];
+    if(n.tagName==='META'){ n.setAttribute('content',val); }
+    else if(n.tagName==='TITLE'){ n.textContent=val; }
+    else { n.innerHTML=val; }
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang button').forEach(b=>
+    b.setAttribute('aria-pressed', b.dataset.lang===lang ? 'true':'false'));
+}
+document.querySelectorAll('.lang button').forEach(b=>
+  b.addEventListener('click',()=>setLang(b.dataset.lang)));
+
+// --- deep-link language via ?lang= (for hreflang crawling & sharing) ---
+(function(){
+  var p=new URLSearchParams(location.search).get('lang');
+  if(p && ['de','en','fr'].includes(p)){ setLang(p); }
+})();
+document.querySelectorAll('.lang button').forEach(function(b){
+  b.addEventListener('click', function(){
+    var u=new URL(location.href); u.searchParams.set('lang', b.dataset.lang);
+    history.replaceState(null,'',u);
+  });
+});
+
+</script>
+<script>
+/* ===== magic layer JS (language-neutral) ===== */
+(function(){
+  // scroll reveal
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('main h2, main p, .step, .card2, .cluster a, .gitem').forEach(function(el){
+    el.classList.add('reveal'); io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>

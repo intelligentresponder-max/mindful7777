@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta.title">Blog – mindful7777</title>
+<meta name="description" data-i18n="meta.desc" content="Verstehe dein Nervensystem: 7 Beiträge über Theta, Vagusnerv, Cortisol &amp; den 90-Sekunden-Reset.">
+<link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html">
+<link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html?lang=de">
+<link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html?lang=en">
+<link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html?lang=fr">
+<link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blog – mindful7777">
+<meta property="og:site_name" content="mindful7777">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
+
+:root{
+  --primary:#1B2845;   /* Dunkelblau */
+  --accent:#D4A574;    /* Gold */
+  --bg:#F7F4EE;        /* Beige */
+  --text:#3A3A3A;      /* Grau */
+  --theta:#3FB6A8;     /* Türkis (Theta) */
+  --beta:#C75D52;      /* Rot (Beta) */
+  --line:rgba(27,40,69,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:"Playfair Display",Georgia,"Times New Roman",serif}
+
+/* ---- Top bar / language switch ---- */
+.bar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(18px,5vw,48px);
+  background:rgba(27,40,69,.96);backdrop-filter:blur(6px);
+  color:var(--bg);
+}
+.brand{font-weight:700;letter-spacing:.04em;font-size:1rem}
+.brand b{color:var(--accent)}
+.lang{display:flex;gap:4px;background:rgba(247,244,238,.1);border-radius:999px;padding:4px}
+.lang button{
+  font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;
+  border:0;border-radius:999px;padding:6px 14px;color:var(--bg);
+  background:transparent;transition:.18s;
+}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--primary)}
+.lang button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---- Hero ---- */
+.hero{padding:clamp(48px,9vw,110px) clamp(18px,5vw,48px) clamp(36px,6vw,72px);max-width:780px;margin:0 auto}
+.eyebrow{
+  display:inline-block;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;margin-bottom:20px;
+}
+.hero h1{
+  font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.04;color:var(--primary);
+  font-weight:800;letter-spacing:-.01em;
+}
+.hero .sub{margin-top:22px;font-size:clamp(1.05rem,2.4vw,1.3rem);max-width:60ch;color:#54616e}
+
+/* ---- Wave signature ---- */
+.wave-sig{max-width:780px;margin:40px auto;padding:0 clamp(18px,5vw,48px)}
+.wave-sig svg{width:100%;height:auto;display:block}
+.wave-cap{display:flex;justify-content:space-between;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-top:8px}
+.wave-cap .b{color:var(--beta)} .wave-cap .t{color:var(--theta)}
+
+/* ---- Body ---- */
+main{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px) 40px}
+h2{
+  font-family:"Playfair Display",Georgia,serif;color:var(--primary);
+  font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:700;
+  margin:48px 0 16px;line-height:1.15;
+}
+h2 .n{color:var(--accent);font-size:.7em;margin-right:.5ch;font-style:italic}
+p{margin:0 0 18px}
+p .term{
+  border-bottom:2px dotted var(--accent);cursor:help;font-weight:600;color:var(--primary);
+}
+.lead{font-size:1.12rem}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.compare .card{border-radius:14px;padding:20px;background:#fff;border:1px solid var(--line)}
+.compare .card h3{font-size:.95rem;letter-spacing:.04em;margin-bottom:6px}
+.compare .beta h3{color:var(--beta)} .compare .theta h3{color:var(--theta)}
+.compare .hz{font-size:.78rem;color:#7b8794;margin-bottom:12px;font-weight:600}
+.compare ul{list-style:none;font-size:.92rem}
+.compare li{padding:4px 0 4px 18px;position:relative}
+.compare li::before{content:"›";position:absolute;left:0;color:var(--accent);font-weight:700}
+@media(max-width:540px){.compare{grid-template-columns:1fr}}
+
+/* ---- Glossary ---- */
+.glossary{background:var(--primary);color:var(--bg);margin-top:64px;padding:clamp(40px,7vw,72px) 0}
+.glossary .inner{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.glossary h2{color:var(--bg)}
+.glossary h2 .n{color:var(--accent)}
+.gitem{border-top:1px solid rgba(247,244,238,.16);padding:18px 0}
+.gitem dt{font-weight:700;color:var(--accent);font-size:1.02rem;margin-bottom:4px}
+.gitem dd{font-size:.95rem;color:rgba(247,244,238,.86)}
+
+/* ---- CTA (only place with persuasive language patterns) ---- */
+.cta{max-width:720px;margin:56px auto;padding:0 clamp(18px,5vw,48px)}
+.cta-box{
+  background:linear-gradient(135deg,#fff, #fbf7ef);
+  border:1px solid var(--line);border-radius:20px;
+  padding:clamp(28px,5vw,44px);text-align:center;box-shadow:0 18px 40px -28px rgba(27,40,69,.5);
+}
+.cta-box h2{margin-top:0}
+.cta-box p{max-width:48ch;margin-inline:auto;color:#54616e}
+.cta-btn{
+  display:inline-block;margin-top:20px;background:var(--primary);color:var(--bg);
+  text-decoration:none;font-weight:700;letter-spacing:.02em;
+  padding:16px 34px;border-radius:999px;transition:.2s;
+}
+.cta-btn:hover{background:var(--accent);color:var(--primary)}
+.cta-btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.cta-fine{font-size:.78rem;color:#8a949e;margin-top:14px}
+
+footer{text-align:center;padding:40px 18px;font-size:.8rem;color:#8a949e}
+
+.disclaimer{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.disclaimer p{font-size:.8rem;color:#8a949e;border-top:1px solid var(--line);padding-top:18px}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+.grid{max-width:760px;margin:8px auto 0;padding:0 clamp(18px,5vw,48px)}
+.pillar-card{display:block;text-decoration:none;background:var(--primary);color:var(--bg);
+  border-radius:18px;padding:clamp(24px,4vw,36px);margin-bottom:22px;transition:.18s}
+.pillar-card:hover{transform:translateY(-2px);box-shadow:0 18px 40px -24px rgba(27,40,69,.6)}
+.pillar-card .tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.pillar-card h3{font-family:"Playfair Display",serif;font-size:1.5rem;margin:8px 0 6px;color:var(--bg)}
+.pillar-card p{color:rgba(247,244,238,.8);font-size:.95rem;margin:0}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.cards{grid-template-columns:1fr}}
+.card2{text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:20px;transition:.16s;display:block}
+.card2:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card2 .num{font-family:"Playfair Display",serif;font-weight:800;color:var(--accent);font-size:1.1rem}
+.card2 h4{color:var(--primary);font-size:1.05rem;margin:4px 0 4px;line-height:1.25}
+.card2 p{color:#54616e;font-size:.86rem;margin:0}
+
+
+/* ===== magic layer (language-neutral) ===== */
+@keyframes breathe { 0%,100%{transform:scale(1);opacity:.55} 40%{transform:scale(1.18);opacity:.9} }
+@keyframes drift   { 0%{transform:translateX(0)} 100%{transform:translateX(-50px)} }
+@keyframes floatUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+/* ambient theta wave behind hero */
+.hero{position:relative;overflow:hidden}
+.hero .ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5}
+.hero .ambient svg{position:absolute;bottom:18%;left:0;width:160%;height:auto}
+.hero .ambient path{animation:drift 14s linear infinite alternate}
+
+/* concept icon chip next to eyebrows / h2 */
+.ico{display:inline-flex;vertical-align:middle;width:1.05em;height:1.05em;margin-right:.5ch;color:var(--accent)}
+.ico svg{width:100%;height:100%;display:block}
+h2 .ico{width:.9em;height:.9em;margin-right:.45ch;opacity:.9}
+
+/* glossary term hover lift */
+p .term{transition:color .15s, border-color .15s}
+p .term:hover{color:var(--accent);border-bottom-style:solid}
+
+/* scroll reveal */
+.reveal{opacity:0}
+.reveal.in{animation:floatUp .7s ease both}
+
+/* breathing dot at CTA (4-6 rhythm ~ 10s) */
+.cta-box{position:relative}
+.breath{width:14px;height:14px;border-radius:50%;background:var(--accent);
+  margin:0 auto 14px;animation:breathe 10s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){
+  .hero .ambient path{animation:none}
+  .breath{animation:none}
+  .reveal{opacity:1}
+  .reveal.in{animation:none}
+}
+
+</style>
+<noscript><style>.reveal{opacity:1!important}.hero .ambient,.breath{display:none}</style></noscript>
+</head>
+<body>
+<div class="bar">
+  <div class="brand">mindful<b>7777</b></div>
+  <div class="lang" role="group" aria-label="Sprache / Language / Langue">
+    <button data-lang="de" aria-pressed="true">DE</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+    <button data-lang="fr" aria-pressed="false">FR</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="ambient" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,100 Q60,40 120,100 T240,100 T360,100 T480,100 T600,100 T720,100 T840,100 T960,100 T1080,100 T1200,100" fill="none" stroke="#3FB6A8" stroke-width="2.5"/></svg></div>
+  <span class="eyebrow" data-i18n="hero.eyebrow">Der Wissens-Cluster</span>
+  <h1 class="serif" data-i18n="hero.h1">Ruhe, verständlich erklärt</h1>
+  <p class="sub" data-i18n="hero.sub">Sieben Beiträge führen dich vom einzelnen Begriff bis zum kompletten Protokoll. Starte beim Gesamtbild – oder pick dir heraus, was dich interessiert.</p>
+</header>
+
+<div class="grid">
+  <a class="pillar-card" href="https://intelligentresponder-max.github.io/mindful7777/blog/07-sock-anchor-protokoll.html" data-i18n-card="pillar">
+    <span class="tag" data-i18n="pillar.tag">Start hier · Das Protokoll</span>
+    <h3 data-i18n="pillar.t">Das Sock-Anchor-Protokoll</h3>
+    <p data-i18n="pillar.d">Der komplette 90-Sekunden-Reset, Schritt für Schritt – plus alle Grundlagen.</p>
+  </a>
+  <div class="cards">
+    <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/01-theta-zustand.html">
+      <span class="num">01</span>
+      <h4 data-i18n="p1.t">Theta-Zustand</h4>
+      <p data-i18n="p1.d">Was Theta-Wellen sind und wie du sie auslöst.</p>
+    </a>
+    <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/02-beta-wellen-stress.html">
+      <span class="num">02</span>
+      <h4 data-i18n="p2.t">Beta-Wellen & Stress</h4>
+      <p data-i18n="p2.d">Warum dein Kopf abends nicht abschaltet.</p>
+    </a>
+    <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/03-vagusnerv-atmung.html">
+      <span class="num">03</span>
+      <h4 data-i18n="p3.t">Vagusnerv & 4-6-Atmung</h4>
+      <p data-i18n="p3.d">Dein eingebauter Ruhe-Schalter.</p>
+    </a>
+    <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/04-cortisol-stress.html">
+      <span class="num">04</span>
+      <h4 data-i18n="p4.t">Cortisol</h4>
+      <p data-i18n="p4.d">Das Stresshormon steuern, nicht abschalten.</p>
+    </a>
+    <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/05-klassische-konditionierung-anker.html">
+      <span class="num">05</span>
+      <h4 data-i18n="p5.t">Konditionierung</h4>
+      <p data-i18n="p5.d">Wie aus einem Signal ein Schalter wird.</p>
+    </a>
+    <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/06-parasympathikus-regeneration.html">
+      <span class="num">06</span>
+      <h4 data-i18n="p6.t">Parasympathikus</h4>
+      <p data-i18n="p6.d">Warum Erholung ein aktiver Modus ist.</p>
+    </a>
+  </div>
+</div>
+
+<footer style="margin-top:48px" data-i18n="foot">© 2026 mindful7777</footer>
+
+<script>
+const i18n = {
+  de: null,
+  en: {
+    "meta.title":"Blog – mindful7777",
+    "meta.desc":"Understand your nervous system: 7 articles on theta, the vagus nerve, cortisol & the 90-second reset.",
+    "hero.eyebrow":"The knowledge cluster",
+    "hero.h1":"Calm, clearly explained",
+    "hero.sub":"Seven articles take you from a single concept to the complete protocol. Start with the big picture – or pick whatever interests you.",
+    "pillar.tag":"Start here · The protocol",
+    "pillar.t":"The Sock-Anchor Protocol",
+    "pillar.d":"The complete 90-second reset, step by step – plus all the fundamentals.",
+    "p1.t":"Theta State",
+    "p1.d":"What theta waves are and how to trigger them.",
+    "p2.t":"Beta Waves & Stress",
+    "p2.d":"Why your mind won't switch off at night.",
+    "p3.t":"Vagus Nerve & 4-6 Breathing",
+    "p3.d":"Your built-in calm switch.",
+    "p4.t":"Cortisol",
+    "p4.d":"Steer the stress hormone, don't switch it off.",
+    "p5.t":"Conditioning",
+    "p5.d":"How a signal becomes a switch.",
+    "p6.t":"Parasympathetic",
+    "p6.d":"Why recovery is an active mode.",
+    "foot":"© 2026 mindful7777"
+  },
+  fr: {
+    "meta.title":"Blog – mindful7777",
+    "meta.desc":"Comprends ton système nerveux : 7 articles sur le thêta, le nerf vague, le cortisol & le reset de 90 secondes.",
+    "hero.eyebrow":"Le cluster de connaissances",
+    "hero.h1":"Le calme, clairement expliqué",
+    "hero.sub":"Sept articles te mènent d'un seul concept au protocole complet. Commence par la vue d'ensemble – ou choisis ce qui t'intéresse.",
+    "pillar.tag":"Commence ici · Le protocole",
+    "pillar.t":"Le protocole Sock-Anchor",
+    "pillar.d":"Le reset complet de 90 secondes, étape par étape – plus toutes les bases.",
+    "p1.t":"État thêta",
+    "p1.d":"Ce que sont les ondes thêta et comment les déclencher.",
+    "p2.t":"Ondes bêta & stress",
+    "p2.d":"Pourquoi ton esprit ne s'éteint pas le soir.",
+    "p3.t":"Nerf vague & respiration 4-6",
+    "p3.d":"Ton interrupteur de calme intégré.",
+    "p4.t":"Cortisol",
+    "p4.d":"Piloter l'hormone du stress, pas l'éteindre.",
+    "p5.t":"Conditionnement",
+    "p5.d":"Comment un signal devient un interrupteur.",
+    "p6.t":"Parasympathique",
+    "p6.d":"Pourquoi la récupération est un mode actif.",
+    "foot":"© 2026 mindful7777"
+  }
+};
+const nodes=document.querySelectorAll('[data-i18n]');
+const defaults={};
+nodes.forEach(n=>defaults[n.getAttribute('data-i18n')]=n.tagName==='TITLE'||n.tagName==='META'?(n.content||n.textContent):n.innerHTML);
+function setLang(lang){
+  const dict=i18n[lang];
+  nodes.forEach(n=>{
+    const k=n.getAttribute('data-i18n');
+    const v=dict?(dict[k]??defaults[k]):defaults[k];
+    if(n.tagName==='META'){n.setAttribute('content',v);}
+    else if(n.tagName==='TITLE'){n.textContent=v;}
+    else{n.innerHTML=v;}
+  });
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang?'true':'false'));
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+(function(){var p=new URLSearchParams(location.search).get('lang');if(p&&['de','en','fr'].includes(p))setLang(p);})();
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){var u=new URL(location.href);u.searchParams.set('lang',b.dataset.lang);history.replaceState(null,'',u);});});
+</script>
+<script>
+/* ===== magic layer JS (language-neutral) ===== */
+(function(){
+  // scroll reveal
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('main h2, main p, .step, .card2, .cluster a, .gitem').forEach(function(el){
+    el.classList.add('reveal'); io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>

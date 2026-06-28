@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta.title">Parasympathikus & Regeneration: so erholt sich dein Körper | mindful7777</title>
+<meta name="description" data-i18n="meta.desc" content="Der Parasympathikus ist dein Erholungsmodus. Wie er funktioniert, warum echte Regeneration nicht von allein kommt und wie du gezielt umschaltest.">
+<meta name="keywords" content="Parasympathikus, Regeneration, Erholung, Ruhenerv, Schlaf, Recovery, mindful7777">
+<link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/blog/06-parasympathikus-regeneration.html">
+<link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/06-parasympathikus-regeneration.html?lang=de">
+<link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/06-parasympathikus-regeneration.html?lang=en">
+<link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/blog/06-parasympathikus-regeneration.html?lang=fr">
+<link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/06-parasympathikus-regeneration.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der Parasympathikus: warum Erholung ein aktiver Modus ist">
+<meta property="og:description" content="Der Parasympathikus ist dein Erholungsmodus. Wie er funktioniert, warum echte Regeneration nicht von allein kommt und wie du gezielt umschaltest.">
+<meta property="og:site_name" content="mindful7777">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Der Parasympathikus: warum Erholung ein aktiver Modus ist","author":{"@type":"Person","name":"André"},"publisher":{"@type":"Organization","name":"mindful7777"},"inLanguage":"de"}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
+
+:root{
+  --primary:#1B2845;   /* Dunkelblau */
+  --accent:#D4A574;    /* Gold */
+  --bg:#F7F4EE;        /* Beige */
+  --text:#3A3A3A;      /* Grau */
+  --theta:#3FB6A8;     /* Türkis (Theta) */
+  --beta:#C75D52;      /* Rot (Beta) */
+  --line:rgba(27,40,69,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:"Playfair Display",Georgia,"Times New Roman",serif}
+
+/* ---- Top bar / language switch ---- */
+.bar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(18px,5vw,48px);
+  background:rgba(27,40,69,.96);backdrop-filter:blur(6px);
+  color:var(--bg);
+}
+.brand{font-weight:700;letter-spacing:.04em;font-size:1rem}
+.brand b{color:var(--accent)}
+.lang{display:flex;gap:4px;background:rgba(247,244,238,.1);border-radius:999px;padding:4px}
+.lang button{
+  font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;
+  border:0;border-radius:999px;padding:6px 14px;color:var(--bg);
+  background:transparent;transition:.18s;
+}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--primary)}
+.lang button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---- Hero ---- */
+.hero{padding:clamp(48px,9vw,110px) clamp(18px,5vw,48px) clamp(36px,6vw,72px);max-width:780px;margin:0 auto}
+.eyebrow{
+  display:inline-block;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;margin-bottom:20px;
+}
+.hero h1{
+  font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.04;color:var(--primary);
+  font-weight:800;letter-spacing:-.01em;
+}
+.hero .sub{margin-top:22px;font-size:clamp(1.05rem,2.4vw,1.3rem);max-width:60ch;color:#54616e}
+
+/* ---- Wave signature ---- */
+.wave-sig{max-width:780px;margin:40px auto;padding:0 clamp(18px,5vw,48px)}
+.wave-sig svg{width:100%;height:auto;display:block}
+.wave-cap{display:flex;justify-content:space-between;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-top:8px}
+.wave-cap .b{color:var(--beta)} .wave-cap .t{color:var(--theta)}
+
+/* ---- Body ---- */
+main{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px) 40px}
+h2{
+  font-family:"Playfair Display",Georgia,serif;color:var(--primary);
+  font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:700;
+  margin:48px 0 16px;line-height:1.15;
+}
+h2 .n{color:var(--accent);font-size:.7em;margin-right:.5ch;font-style:italic}
+p{margin:0 0 18px}
+p .term{
+  border-bottom:2px dotted var(--accent);cursor:help;font-weight:600;color:var(--primary);
+}
+.lead{font-size:1.12rem}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.compare .card{border-radius:14px;padding:20px;background:#fff;border:1px solid var(--line)}
+.compare .card h3{font-size:.95rem;letter-spacing:.04em;margin-bottom:6px}
+.compare .beta h3{color:var(--beta)} .compare .theta h3{color:var(--theta)}
+.compare .hz{font-size:.78rem;color:#7b8794;margin-bottom:12px;font-weight:600}
+.compare ul{list-style:none;font-size:.92rem}
+.compare li{padding:4px 0 4px 18px;position:relative}
+.compare li::before{content:"›";position:absolute;left:0;color:var(--accent);font-weight:700}
+@media(max-width:540px){.compare{grid-template-columns:1fr}}
+
+/* ---- Glossary ---- */
+.glossary{background:var(--primary);color:var(--bg);margin-top:64px;padding:clamp(40px,7vw,72px) 0}
+.glossary .inner{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.glossary h2{color:var(--bg)}
+.glossary h2 .n{color:var(--accent)}
+.gitem{border-top:1px solid rgba(247,244,238,.16);padding:18px 0}
+.gitem dt{font-weight:700;color:var(--accent);font-size:1.02rem;margin-bottom:4px}
+.gitem dd{font-size:.95rem;color:rgba(247,244,238,.86)}
+
+/* ---- CTA (only place with persuasive language patterns) ---- */
+.cta{max-width:720px;margin:56px auto;padding:0 clamp(18px,5vw,48px)}
+.cta-box{
+  background:linear-gradient(135deg,#fff, #fbf7ef);
+  border:1px solid var(--line);border-radius:20px;
+  padding:clamp(28px,5vw,44px);text-align:center;box-shadow:0 18px 40px -28px rgba(27,40,69,.5);
+}
+.cta-box h2{margin-top:0}
+.cta-box p{max-width:48ch;margin-inline:auto;color:#54616e}
+.cta-btn{
+  display:inline-block;margin-top:20px;background:var(--primary);color:var(--bg);
+  text-decoration:none;font-weight:700;letter-spacing:.02em;
+  padding:16px 34px;border-radius:999px;transition:.2s;
+}
+.cta-btn:hover{background:var(--accent);color:var(--primary)}
+.cta-btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.cta-fine{font-size:.78rem;color:#8a949e;margin-top:14px}
+
+footer{text-align:center;padding:40px 18px;font-size:.8rem;color:#8a949e}
+
+.disclaimer{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.disclaimer p{font-size:.8rem;color:#8a949e;border-top:1px solid var(--line);padding-top:18px}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* ===== magic layer (language-neutral) ===== */
+@keyframes breathe { 0%,100%{transform:scale(1);opacity:.55} 40%{transform:scale(1.18);opacity:.9} }
+@keyframes drift   { 0%{transform:translateX(0)} 100%{transform:translateX(-50px)} }
+@keyframes floatUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+/* ambient theta wave behind hero */
+.hero{position:relative;overflow:hidden}
+.hero .ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5}
+.hero .ambient svg{position:absolute;bottom:18%;left:0;width:160%;height:auto}
+.hero .ambient path{animation:drift 14s linear infinite alternate}
+
+/* concept icon chip next to eyebrows / h2 */
+.ico{display:inline-flex;vertical-align:middle;width:1.05em;height:1.05em;margin-right:.5ch;color:var(--accent)}
+.ico svg{width:100%;height:100%;display:block}
+h2 .ico{width:.9em;height:.9em;margin-right:.45ch;opacity:.9}
+
+/* glossary term hover lift */
+p .term{transition:color .15s, border-color .15s}
+p .term:hover{color:var(--accent);border-bottom-style:solid}
+
+/* scroll reveal */
+.reveal{opacity:0}
+.reveal.in{animation:floatUp .7s ease both}
+
+/* breathing dot at CTA (4-6 rhythm ~ 10s) */
+.cta-box{position:relative}
+.breath{width:14px;height:14px;border-radius:50%;background:var(--accent);
+  margin:0 auto 14px;animation:breathe 10s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){
+  .hero .ambient path{animation:none}
+  .breath{animation:none}
+  .reveal{opacity:1}
+  .reveal.in{animation:none}
+}
+
+</style>
+<noscript><style>.reveal{opacity:1!important}.hero .ambient,.breath{display:none}</style></noscript>
+</head>
+<body>
+
+<div class="bar">
+  <div class="brand">mindful<b>7777</b></div>
+  <div class="lang" role="group" aria-label="Sprache / Language / Langue">
+    <button data-lang="de" aria-pressed="true">DE</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+    <button data-lang="fr" aria-pressed="false">FR</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="ambient" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,100 Q60,40 120,100 T240,100 T360,100 T480,100 T600,100 T720,100 T840,100 T960,100 T1080,100 T1200,100" fill="none" stroke="#3FB6A8" stroke-width="2.5"/></svg></div>
+  <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13c0-5 4-9 9-9 4 0 7 2 7 2s-1 14-9 14z"/><path d="M11 20c0-6 3-10 7-12"/></svg></span><span class="eyebrow" data-i18n="hero.eyebrow">Körper & Nervensystem</span>
+  <h1 class="serif" data-i18n="hero.h1">Der Parasympathikus: warum Erholung ein aktiver Modus ist</h1>
+  <p class="sub" data-i18n="hero.sub">Erholung ist kein „Nichtstun". Es ist ein eigener Betriebszustand deines Nervensystems – und du kannst lernen, ihn bewusst einzuschalten, statt darauf zu warten.</p>
+</header>
+
+
+
+<main>
+  <p class="lead" data-i18n="b.lead">Dein Nervensystem kennt zwei Modi. Den einen kennst du gut: Leistung. Den anderen – den <span class="term" title="Der „Ruhe-und-Verdauungs" -Teil des Nervensystems; zuständig für Erholung.">Parasympathikus</span> – vernachlässigen die meisten. Dabei findet hier die eigentliche Erholung statt.</p>
+Dein Nervensystem kennt zwei Modi. Den einen kennst du gut: Leistung. Den anderen – den <span class="term" title="Der „Ruhe-und-Verdauungs" -Teil des Nervensystems; zuständig für Erholung.">Parasympathikus</span> – vernachlässigen die meisten. Dabei findet hier die eigentliche Erholung statt.
+  <h2 data-i18n="b.h2a"><span class="n">01</span>Die zwei Modi des Nervensystems</h2>
+  <p data-i18n="b.h2a.p1">Der <span class="term" title="Der aktivierende Gegenspieler; mobilisiert Reserven für Leistung und Stress.">Sympathikus</span> gibt Gas: Antrieb, Wachheit, Tempo. Der Parasympathikus bremst: Puls runter, Verdauung an, Reparatur läuft.</p>
+  <p data-i18n="b.h2a.p2">Beide sind nötig. Gesund ist die <span class="term" title="Das gesunde Wechselspiel zwischen Anspannung (Sympathikus) und Erholung (Parasympathikus).">autonome Balance</span> – das flüssige Hin und Her zwischen beiden.</p>
+
+  <h2 data-i18n="b.h2b"><span class="n">02</span>Warum Regeneration aktiv ist</h2>
+  <p data-i18n="b.h2b.p1">Im Zustand <span class="term" title="Zustand, in dem der Körper Reserven spart, verdaut und repariert.">Ruhe-und-Verdauung</span> repariert der Körper Gewebe, sortiert das Nervensystem Eindrücke, sinkt der Verbrauch. Das ist echte <span class="term" title="Die aktive Erholungsphase, in der sich Körper und Geist reparieren.">Regeneration</span>.</p>
+  <p data-i18n="b.h2b.p2">Das Problem moderner Tage: Wir bleiben so lange im Leistungsmodus, dass der Parasympathikus oft erst spät in der Nacht – wenn überhaupt – zum Zug kommt.</p>
+
+  <h2 data-i18n="b.h2c"><span class="n">03</span>Bewusst umschalten</h2>
+  <p data-i18n="b.h2c.p1">Du kannst den Wechsel anstoßen, statt auf ihn zu warten: langes Ausatmen, ein ruhiger Moment ohne Reize, ein klares Schluss-Signal für den Tag.</p>
+  <p data-i18n="b.h2c.p2">Der Sock-Anchor bündelt genau diese Elemente in 90 Sekunden – ein kleiner, wiederholbarer Anstoß, der deinem System sagt: Jetzt darf erholt werden.</p>
+
+</main>
+
+<section class="glossary" id="glossar">
+  <div class="inner">
+    <h2><span class="n">★</span><span data-i18n="g.title">Glossar</span></h2>
+    <dl>
+      <div class="gitem"><dt data-i18n="g.1.t">Parasympathikus</dt><dd data-i18n="g.1.d">Der „Ruhe-und-Verdauungs"-Teil des Nervensystems; zuständig für Erholung.</dd></div>
+      <div class="gitem"><dt data-i18n="g.2.t">Sympathikus</dt><dd data-i18n="g.2.d">Der aktivierende Gegenspieler; mobilisiert Reserven für Leistung und Stress.</dd></div>
+      <div class="gitem"><dt data-i18n="g.3.t">Autonome Balance</dt><dd data-i18n="g.3.d">Das gesunde Wechselspiel zwischen Anspannung (Sympathikus) und Erholung (Parasympathikus).</dd></div>
+      <div class="gitem"><dt data-i18n="g.4.t">Regeneration</dt><dd data-i18n="g.4.d">Die aktive Erholungsphase, in der sich Körper und Geist reparieren.</dd></div>
+      <div class="gitem"><dt data-i18n="g.5.t">Ruhe-und-Verdauung</dt><dd data-i18n="g.5.d">Zustand, in dem der Körper Reserven spart, verdaut und repariert.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- CTA: the ONLY section using nls/rhetoric patterns (Sog statt Druck).
+     · Presupposition  (sets an action as given, shifts focus to the HOW)
+     · Embedded command (a disguised imperative inside a subordinate clause)
+     Deliberately sparse: max 2 patterns, no pressure/fear language, no health claims. -->
+<section class="cta">
+  <div class="cta-box">
+    <div class="breath" aria-hidden="true"></div>
+    <h2 class="serif" data-i18n="cta.h">Bereit, bewusst umzuschalten?</h2>
+    <p data-i18n="cta.p">Während du das hier liest, kannst du schon spüren, wie gut ein klarer Wechsel in den Erholungsmodus täte – und genau deshalb lohnt sich ein erster, ruhiger Moment heute Abend. Der Sock-Anchor gibt dir den Anstoß.</p>
+    <a class="cta-btn" href="https://intelligentresponder-max.github.io/mindful7777/vip.html" data-i18n="cta.btn">Protokoll gratis holen</a>
+    <p class="cta-fine" data-i18n="cta.fine">PDF + 3-Min-Audio · kein Abo · kein Zwang</p>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <p data-i18n="disc">Hinweis: Dieser Beitrag dient der Information und Entspannung. Er ersetzt keine medizinische Beratung. Bei anhaltender Erschöpfung wende dich an ärztliches Fachpersonal.</p>
+</div>
+
+<footer>© 2026 mindful7777 · <a href="#glossar" style="color:inherit" data-i18n="foot.link">Zum Glossar</a></footer>
+
+<script>
+const i18n = {
+  de: null,
+  en: {
+    "meta.title":"Parasympathetic & Recovery: how your body rests | mindful7777",
+    "meta.desc":"The parasympathetic system is your recovery mode. How it works, why real recovery doesn't just happen, and how to switch on purpose.",
+    "hero.eyebrow":"Body & nervous system",
+    "hero.h1":"The parasympathetic system: why recovery is an active mode",
+    "hero.sub":"Recovery isn't \"doing nothing\". It's a distinct operating state of your nervous system – and you can learn to switch it on deliberately instead of waiting for it.",
+    "b.lead":"Your nervous system has two modes. One you know well: performance. The other – the <span class=\"term\" title=\"The \\\"rest and digest\\\" branch of the nervous system; in charge of recovery.\">parasympathetic</span> – most people neglect. Yet this is where real recovery happens.",
+    "b.h2a":"<span class=\"n\">01</span>The two modes",
+    "b.h2a.p1":"The <span class=\"term\" title=\"The activating counterpart; mobilises reserves for performance and stress.\">sympathetic</span> system hits the gas: drive, alertness, pace. The parasympathetic brakes: pulse down, digestion on, repair running.",
+    "b.h2a.p2":"Both are needed. Health is <span class=\"term\" title=\"The healthy interplay between tension (sympathetic) and recovery (parasympathetic).\">autonomic balance</span> – the fluid back-and-forth between them.",
+    "b.h2b":"<span class=\"n\">02</span>Why recovery is active",
+    "b.h2b.p1":"In <span class=\"term\" title=\"The state in which the body conserves reserves, digests and repairs.\">rest and digest</span>, the body repairs tissue, the nervous system sorts impressions, consumption drops. That's real <span class=\"term\" title=\"The active recovery phase in which body and mind repair.\">recovery</span>.",
+    "b.h2b.p2":"The problem with modern days: we stay in performance mode so long that the parasympathetic often only gets its turn late at night – if at all.",
+    "b.h2c":"<span class=\"n\">03</span>Switching on purpose",
+    "b.h2c.p1":"You can trigger the shift instead of waiting for it: long exhales, a quiet moment without stimulation, a clear closing signal for the day.",
+    "b.h2c.p2":"The Sock-Anchor bundles exactly these elements into 90 seconds – a small, repeatable nudge that tells your system: recovery is allowed now.",
+    "g.title":"Glossary",
+    "g.1.t":"Parasympathetic system",
+    "g.1.d":"The \"rest and digest\" branch of the nervous system; in charge of recovery.",
+    "g.2.t":"Sympathetic system",
+    "g.2.d":"The activating counterpart; mobilises reserves for performance and stress.",
+    "g.3.t":"Autonomic balance",
+    "g.3.d":"The healthy interplay between tension (sympathetic) and recovery (parasympathetic).",
+    "g.4.t":"Recovery",
+    "g.4.d":"The active recovery phase in which body and mind repair.",
+    "g.5.t":"Rest and digest",
+    "g.5.d":"The state in which the body conserves reserves, digests and repairs.",
+    "cta.h":"Ready to switch on purpose?",
+    "cta.p":"As you read this, you can already feel how good a clear shift into recovery mode would be – and that's exactly why a first, quiet moment tonight is worth it. The Sock-Anchor gives you the nudge.",
+    "cta.btn":"Get the protocol free",
+    "cta.fine":"PDF + 3-min audio · no subscription · no pressure",
+    "disc":"Note: This article is for information and relaxation. It is not medical advice. For persistent exhaustion, consult a medical professional.",
+    "foot.link":"Go to glossary"
+  },
+  fr: {
+    "meta.title":"Parasympathique & récupération : comment ton corps se repose | mindful7777",
+    "meta.desc":"Le système parasympathique est ton mode récupération. Comment il fonctionne, pourquoi la vraie récupération n'arrive pas toute seule et comment basculer volontairement.",
+    "hero.eyebrow":"Corps & système nerveux",
+    "hero.h1":"Le système parasympathique : pourquoi la récupération est un mode actif",
+    "hero.sub":"La récupération, ce n'est pas « ne rien faire ». C'est un état de fonctionnement à part entière de ton système nerveux – et tu peux apprendre à l'activer volontairement au lieu de l'attendre.",
+    "b.lead":"Ton système nerveux a deux modes. Tu connais bien le premier : la performance. L'autre – le <span class=\"term\" title=\"La branche « repos et digestion » du système nerveux ; responsable de la récupération.\">parasympathique</span> – la plupart le négligent. Pourtant, c'est là que se produit la vraie récupération.",
+    "b.h2a":"<span class=\"n\">01</span>Les deux modes",
+    "b.h2a.p1":"Le système <span class=\"term\" title=\"Le contrepoids activateur ; mobilise les réserves pour la performance et le stress.\">sympathique</span> appuie sur l'accélérateur : allant, vigilance, rythme. Le parasympathique freine : pouls en baisse, digestion activée, réparation en cours.",
+    "b.h2a.p2":"Les deux sont nécessaires. La santé, c'est l'<span class=\"term\" title=\"L'interaction saine entre tension (sympathique) et récupération (parasympathique).\">équilibre autonome</span> – le va-et-vient fluide entre les deux.",
+    "b.h2b":"<span class=\"n\">02</span>Pourquoi la récupération est active",
+    "b.h2b.p1":"En mode <span class=\"term\" title=\"État dans lequel le corps économise ses réserves, digère et se répare.\">repos et digestion</span>, le corps répare les tissus, le système nerveux trie les impressions, la dépense baisse. C'est la vraie <span class=\"term\" title=\"La phase de récupération active pendant laquelle le corps et l'esprit se réparent.\">récupération</span>.",
+    "b.h2b.p2":"Le problème des journées modernes : on reste si longtemps en mode performance que le parasympathique n'a souvent son tour que tard dans la nuit – si tant est qu'il l'ait.",
+    "b.h2c":"<span class=\"n\">03</span>Basculer volontairement",
+    "b.h2c.p1":"Tu peux amorcer le changement au lieu de l'attendre : de longues expirations, un moment calme sans stimulation, un signal de clôture clair pour la journée.",
+    "b.h2c.p2":"Le Sock-Anchor réunit précisément ces éléments en 90 secondes – une petite impulsion répétable qui dit à ton système : la récupération est permise maintenant.",
+    "g.title":"Glossaire",
+    "g.1.t":"Système parasympathique",
+    "g.1.d":"La branche « repos et digestion » du système nerveux ; responsable de la récupération.",
+    "g.2.t":"Système sympathique",
+    "g.2.d":"Le contrepoids activateur ; mobilise les réserves pour la performance et le stress.",
+    "g.3.t":"Équilibre autonome",
+    "g.3.d":"L'interaction saine entre tension (sympathique) et récupération (parasympathique).",
+    "g.4.t":"Récupération",
+    "g.4.d":"La phase de récupération active pendant laquelle le corps et l'esprit se réparent.",
+    "g.5.t":"Repos et digestion",
+    "g.5.d":"État dans lequel le corps économise ses réserves, digère et se répare.",
+    "cta.h":"Prêt à basculer volontairement ?",
+    "cta.p":"Pendant que tu lis ceci, tu peux déjà sentir comme un basculement clair vers le mode récupération ferait du bien – et c'est justement pour ça qu'un premier moment calme ce soir en vaut la peine. Le Sock-Anchor te donne l'impulsion.",
+    "cta.btn":"Obtenir le protocole gratuitement",
+    "cta.fine":"PDF + audio de 3 min · sans abonnement · sans pression",
+    "disc":"Remarque : cet article a une vocation d'information et de détente. Il ne remplace pas un avis médical. En cas d'épuisement persistant, consulte un professionnel de santé.",
+    "foot.link":"Aller au glossaire"
+  }
+};
+const nodes = document.querySelectorAll('[data-i18n]');
+const defaults = {};
+nodes.forEach(n => defaults[n.getAttribute('data-i18n')] = n.tagName==='TITLE'||n.tagName==='META' ? (n.content||n.textContent) : n.innerHTML);
+function setLang(lang){
+  const dict = i18n[lang];
+  nodes.forEach(n=>{
+    const key=n.getAttribute('data-i18n');
+    const val = dict ? (dict[key] ?? defaults[key]) : defaults[key];
+    if(n.tagName==='META'){ n.setAttribute('content',val); }
+    else if(n.tagName==='TITLE'){ n.textContent=val; }
+    else { n.innerHTML=val; }
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang button').forEach(b=>
+    b.setAttribute('aria-pressed', b.dataset.lang===lang ? 'true':'false'));
+}
+document.querySelectorAll('.lang button').forEach(b=>
+  b.addEventListener('click',()=>setLang(b.dataset.lang)));
+
+// --- deep-link language via ?lang= (for hreflang crawling & sharing) ---
+(function(){
+  var p=new URLSearchParams(location.search).get('lang');
+  if(p && ['de','en','fr'].includes(p)){ setLang(p); }
+})();
+document.querySelectorAll('.lang button').forEach(function(b){
+  b.addEventListener('click', function(){
+    var u=new URL(location.href); u.searchParams.set('lang', b.dataset.lang);
+    history.replaceState(null,'',u);
+  });
+});
+
+</script>
+<script>
+/* ===== magic layer JS (language-neutral) ===== */
+(function(){
+  // scroll reveal
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('main h2, main p, .step, .card2, .cluster a, .gitem').forEach(function(el){
+    el.classList.add('reveal'); io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>

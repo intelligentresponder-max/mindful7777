@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============ SEO ============ -->
+<title data-i18n="meta.title">Theta-Zustand: Was Theta-Wellen sind & wie du sie auslöst | mindful7777</title>
+<meta name="description" data-i18n="meta.desc" content="Theta-Wellen sind der Schlüssel zu tiefer Regeneration. Erfahre, was der Theta-Zustand ist, wie er sich von Beta unterscheidet und wie du ihn in unter 2 Minuten erreichst.">
+<meta name="keywords" content="Theta-Zustand, Theta-Wellen, Beta Wellen, Gehirnwellen, Entspannung, Regeneration, mindful7777">
+<link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/blog/01-theta-zustand.html">
+<link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/01-theta-zustand.html?lang=de">
+<link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/01-theta-zustand.html?lang=en">
+<link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/blog/01-theta-zustand.html?lang=fr">
+<link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/01-theta-zustand.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Theta-Zustand: Was Theta-Wellen sind & wie du sie auslöst">
+<meta property="og:description" content="Der neuronale Shift von Beta zu Theta – verständlich erklärt, mit Glossar.">
+<meta property="og:site_name" content="mindful7777">
+
+<!-- Article structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Theta-Zustand: Was Theta-Wellen sind und wie du sie bewusst auslöst",
+  "author": { "@type": "Person", "name": "André" },
+  "publisher": { "@type": "Organization", "name": "mindful7777" },
+  "inLanguage": "de",
+  "about": "Theta-Wellen und neuronale Regeneration"
+}
+</script>
+
+<style>
+:root{
+  --primary:#1B2845;   /* Dunkelblau */
+  --accent:#D4A574;    /* Gold */
+  --bg:#F7F4EE;        /* Beige */
+  --text:#3A3A3A;      /* Grau */
+  --theta:#3FB6A8;     /* Türkis (Theta) */
+  --beta:#C75D52;      /* Rot (Beta) */
+  --line:rgba(27,40,69,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:"Playfair Display",Georgia,"Times New Roman",serif}
+
+/* ---- Top bar / language switch ---- */
+.bar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(18px,5vw,48px);
+  background:rgba(27,40,69,.96);backdrop-filter:blur(6px);
+  color:var(--bg);
+}
+.brand{font-weight:700;letter-spacing:.04em;font-size:1rem}
+.brand b{color:var(--accent)}
+.lang{display:flex;gap:4px;background:rgba(247,244,238,.1);border-radius:999px;padding:4px}
+.lang button{
+  font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;
+  border:0;border-radius:999px;padding:6px 14px;color:var(--bg);
+  background:transparent;transition:.18s;
+}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--primary)}
+.lang button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---- Hero ---- */
+.hero{padding:clamp(48px,9vw,110px) clamp(18px,5vw,48px) clamp(36px,6vw,72px);max-width:780px;margin:0 auto}
+.eyebrow{
+  display:inline-block;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;margin-bottom:20px;
+}
+.hero h1{
+  font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.04;color:var(--primary);
+  font-weight:800;letter-spacing:-.01em;
+}
+.hero .sub{margin-top:22px;font-size:clamp(1.05rem,2.4vw,1.3rem);max-width:60ch;color:#54616e}
+
+/* ---- Wave signature ---- */
+.wave-sig{max-width:780px;margin:40px auto;padding:0 clamp(18px,5vw,48px)}
+.wave-sig svg{width:100%;height:auto;display:block}
+.wave-cap{display:flex;justify-content:space-between;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-top:8px}
+.wave-cap .b{color:var(--beta)} .wave-cap .t{color:var(--theta)}
+
+/* ---- Body ---- */
+main{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px) 40px}
+h2{
+  font-family:"Playfair Display",Georgia,serif;color:var(--primary);
+  font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:700;
+  margin:48px 0 16px;line-height:1.15;
+}
+h2 .n{color:var(--accent);font-size:.7em;margin-right:.5ch;font-style:italic}
+p{margin:0 0 18px}
+p .term{
+  border-bottom:2px dotted var(--accent);cursor:help;font-weight:600;color:var(--primary);
+}
+.lead{font-size:1.12rem}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.compare .card{border-radius:14px;padding:20px;background:#fff;border:1px solid var(--line)}
+.compare .card h3{font-size:.95rem;letter-spacing:.04em;margin-bottom:6px}
+.compare .beta h3{color:var(--beta)} .compare .theta h3{color:var(--theta)}
+.compare .hz{font-size:.78rem;color:#7b8794;margin-bottom:12px;font-weight:600}
+.compare ul{list-style:none;font-size:.92rem}
+.compare li{padding:4px 0 4px 18px;position:relative}
+.compare li::before{content:"›";position:absolute;left:0;color:var(--accent);font-weight:700}
+@media(max-width:540px){.compare{grid-template-columns:1fr}}
+
+/* ---- Glossary ---- */
+.glossary{background:var(--primary);color:var(--bg);margin-top:64px;padding:clamp(40px,7vw,72px) 0}
+.glossary .inner{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.glossary h2{color:var(--bg)}
+.glossary h2 .n{color:var(--accent)}
+.gitem{border-top:1px solid rgba(247,244,238,.16);padding:18px 0}
+.gitem dt{font-weight:700;color:var(--accent);font-size:1.02rem;margin-bottom:4px}
+.gitem dd{font-size:.95rem;color:rgba(247,244,238,.86)}
+
+/* ---- CTA (only place with persuasive language patterns) ---- */
+.cta{max-width:720px;margin:56px auto;padding:0 clamp(18px,5vw,48px)}
+.cta-box{
+  background:linear-gradient(135deg,#fff, #fbf7ef);
+  border:1px solid var(--line);border-radius:20px;
+  padding:clamp(28px,5vw,44px);text-align:center;box-shadow:0 18px 40px -28px rgba(27,40,69,.5);
+}
+.cta-box h2{margin-top:0}
+.cta-box p{max-width:48ch;margin-inline:auto;color:#54616e}
+.cta-btn{
+  display:inline-block;margin-top:20px;background:var(--primary);color:var(--bg);
+  text-decoration:none;font-weight:700;letter-spacing:.02em;
+  padding:16px 34px;border-radius:999px;transition:.2s;
+}
+.cta-btn:hover{background:var(--accent);color:var(--primary)}
+.cta-btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.cta-fine{font-size:.78rem;color:#8a949e;margin-top:14px}
+
+footer{text-align:center;padding:40px 18px;font-size:.8rem;color:#8a949e}
+
+.disclaimer{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.disclaimer p{font-size:.8rem;color:#8a949e;border-top:1px solid var(--line);padding-top:18px}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
+
+/* ===== magic layer (language-neutral) ===== */
+@keyframes breathe { 0%,100%{transform:scale(1);opacity:.55} 40%{transform:scale(1.18);opacity:.9} }
+@keyframes drift   { 0%{transform:translateX(0)} 100%{transform:translateX(-50px)} }
+@keyframes floatUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+/* ambient theta wave behind hero */
+.hero{position:relative;overflow:hidden}
+.hero .ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5}
+.hero .ambient svg{position:absolute;bottom:18%;left:0;width:160%;height:auto}
+.hero .ambient path{animation:drift 14s linear infinite alternate}
+
+/* concept icon chip next to eyebrows / h2 */
+.ico{display:inline-flex;vertical-align:middle;width:1.05em;height:1.05em;margin-right:.5ch;color:var(--accent)}
+.ico svg{width:100%;height:100%;display:block}
+h2 .ico{width:.9em;height:.9em;margin-right:.45ch;opacity:.9}
+
+/* glossary term hover lift */
+p .term{transition:color .15s, border-color .15s}
+p .term:hover{color:var(--accent);border-bottom-style:solid}
+
+/* scroll reveal */
+.reveal{opacity:0}
+.reveal.in{animation:floatUp .7s ease both}
+
+/* breathing dot at CTA (4-6 rhythm ~ 10s) */
+.cta-box{position:relative}
+.breath{width:14px;height:14px;border-radius:50%;background:var(--accent);
+  margin:0 auto 14px;animation:breathe 10s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){
+  .hero .ambient path{animation:none}
+  .breath{animation:none}
+  .reveal{opacity:1}
+  .reveal.in{animation:none}
+}
+
+</style>
+<noscript><style>.reveal{opacity:1!important}.hero .ambient,.breath{display:none}</style></noscript>
+</head>
+<body>
+
+<div class="bar">
+  <div class="brand">mindful<b>7777</b></div>
+  <div class="lang" role="group" aria-label="Sprache / Language">
+    <button data-lang="de" aria-pressed="true">DE</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+    <button data-lang="fr" aria-pressed="false">FR</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="ambient" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,100 Q60,40 120,100 T240,100 T360,100 T480,100 T600,100 T720,100 T840,100 T960,100 T1080,100 T1200,100" fill="none" stroke="#3FB6A8" stroke-width="2.5"/></svg></div>
+  <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/></svg></span><span class="eyebrow" data-i18n="hero.eyebrow">Gehirnwellen verstehen</span>
+  <h1 class="serif" data-i18n="hero.h1">Der Theta-Zustand: was wirklich passiert, wenn dein Kopf endlich ruhig wird</h1>
+  <p class="sub" data-i18n="hero.sub">Theta-Wellen sind der Zustand tiefer Regeneration – der Zustand zwischen wach und schlafend, in dem dein Nervensystem repariert statt rennt. Hier erfährst du, was das heißt und wie du ihn bewusst erreichst.</p>
+</header>
+
+<div class="wave-sig" aria-hidden="true">
+  <svg viewBox="0 0 760 120" preserveAspectRatio="none" role="img">
+    <path d="M0,60 L20,20 L40,100 L60,25 L80,95 L100,28 L120,92 L140,30 L160,90 L180,35 L200,85 L220,40 L240,80 L260,50"
+          fill="none" stroke="#C75D52" stroke-width="3"/>
+    <path d="M260,50 Q300,10 340,55 T420,55 T500,55 T580,55 T660,55 T760,55"
+          fill="none" stroke="#3FB6A8" stroke-width="3"/>
+  </svg>
+  <div class="wave-cap"><span class="b" data-i18n="wave.beta">Beta · 13–30 Hz</span><span class="t" data-i18n="wave.theta">Theta · 4–8 Hz</span></div>
+</div>
+
+<main>
+  <p class="lead" data-i18n="b.lead">Dein Gehirn arbeitet nie still. Es sendet ständig elektrische Rhythmen – <span class="term" title="Messbare elektrische Rhythmen der Hirnaktivität, eingeteilt nach Geschwindigkeit (Hertz).">Gehirnwellen</span> –, und ihre Geschwindigkeit verrät, in welchem Zustand du gerade bist.</p>
+
+  <h2 data-i18n="b.h2a"><span class="n">01</span>Was Theta-Wellen sind</h2>
+  <p data-i18n="b.p1">Im Wachzustand dominieren <span class="term" title="Schnelle Gehirnwellen (13–30 Hz). Aktiv bei Konzentration, Stress und Alarmbereitschaft.">Beta-Wellen</span>: schnell, wach, leistungsbereit – aber auch der Takt von Grübeln und Anspannung. <span class="term" title="Langsame Gehirnwellen (4–8 Hz). Verbunden mit tiefer Entspannung, Tagträumen und dem Übergang zum Schlaf.">Theta-Wellen</span> liegen deutlich tiefer. Sie tauchen in der Dämmerzone zwischen Wachsein und Schlaf auf, in tiefer Meditation und in den Momenten, in denen Ideen scheinbar aus dem Nichts kommen.</p>
+
+  <div class="compare">
+    <div class="card beta">
+      <h3 data-i18n="b.beta.t">Beta</h3>
+      <div class="hz">13–30 Hz</div>
+      <ul>
+        <li data-i18n="b.beta.1">Wach &amp; konzentriert</li>
+        <li data-i18n="b.beta.2">Alarmbereitschaft</li>
+        <li data-i18n="b.beta.3">Stress steigt</li>
+      </ul>
+    </div>
+    <div class="card theta">
+      <h3 data-i18n="b.theta.t">Theta</h3>
+      <div class="hz">4–8 Hz</div>
+      <ul>
+        <li data-i18n="b.theta.1">Tiefe Entspannung</li>
+        <li data-i18n="b.theta.2">Regeneration</li>
+        <li data-i18n="b.theta.3">Ruhiger Geist</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 data-i18n="b.h2b"><span class="n">02</span>Warum der Shift für High-Performer zählt</h2>
+  <p data-i18n="b.p2">Wer den ganzen Tag in Beta läuft, hält das Nervensystem im <span class="term" title="Teil des vegetativen Nervensystems. Aktiviert Kampf-oder-Flucht-Reaktionen.">Sympathikus</span> – im Kampf-oder-Flucht-Modus. Der Gegenspieler, der <span class="term" title="Der „Ruhe-und-Verdauungs“-Teil des Nervensystems. Senkt Puls und fördert Erholung.">Parasympathikus</span>, kommt dann kaum zum Zug. Ein bewusster Wechsel Richtung Theta gibt dem Körper das Signal: Du darfst jetzt herunterfahren.</p>
+  <p data-i18n="b.p3">Eine zentrale Rolle spielt der <span class="term" title="Längster Hirnnerv. Steuert Entspannung und kann über langsames Ausatmen aktiviert werden.">Vagusnerv</span>. Wird er aktiviert – etwa durch betont langes Ausatmen –, sinkt der Puls, und das Stresshormon <span class="term" title="Stresshormon. Steigt bei Belastung, sinkt in Entspannungsphasen.">Cortisol</span> bekommt die Chance, wieder zu fallen.</p>
+
+  <h2 data-i18n="b.h2c"><span class="n">03</span>Wie du Theta bewusst auslöst</h2>
+  <p data-i18n="b.p4">Du brauchst dafür keine App und keine 20-Tage-Challenge. Zwei Hebel reichen, um den Übergang einzuleiten: eine verlängerte Ausatmung (etwa <span class="term" title="Atemtechnik: 4 Sekunden ein, 6 Sekunden aus. Verlängertes Ausatmen aktiviert den Vagusnerv.">4-6-Atmung</span>) und ein wiederholtes, immer gleiches Signal, das dein Gehirn mit Entspannung verknüpft – das Prinzip der <span class="term" title="Lernen durch Kopplung: Ein neutraler Reiz wird mit einer Reaktion verknüpft, bis er sie allein auslöst (Pawlow).">klassischen Konditionierung</span>.</p>
+  <p data-i18n="b.p5">Genau auf diesem zweiten Hebel baut das Sock-Anchor-Protokoll auf: ein körperliches Signal, langsam und bewusst ausgeführt, das nach einigen Tagen Training den Theta-Zustand fast von selbst abruft.</p>
+</main>
+
+<!-- ===== GLOSSARY (self-explaining) ===== -->
+<section class="glossary" id="glossar">
+  <div class="inner">
+    <h2><span class="n">★</span><span data-i18n="g.title">Glossar</span></h2>
+    <dl>
+      <div class="gitem"><dt data-i18n="g.1.t">Gehirnwellen</dt><dd data-i18n="g.1.d">Messbare elektrische Rhythmen der Hirnaktivität, eingeteilt nach Geschwindigkeit in Hertz (Hz).</dd></div>
+      <div class="gitem"><dt data-i18n="g.2.t">Beta-Wellen (13–30 Hz)</dt><dd data-i18n="g.2.d">Schnelle Wellen des wachen Alltags – Konzentration, aber auch Stress und Grübeln.</dd></div>
+      <div class="gitem"><dt data-i18n="g.3.t">Theta-Wellen (4–8 Hz)</dt><dd data-i18n="g.3.d">Langsame Wellen tiefer Entspannung, im Übergang zwischen Wachsein und Schlaf.</dd></div>
+      <div class="gitem"><dt data-i18n="g.4.t">Sympathikus</dt><dd data-i18n="g.4.d">Der „Gas“-Teil des vegetativen Nervensystems – Kampf-oder-Flucht.</dd></div>
+      <div class="gitem"><dt data-i18n="g.5.t">Parasympathikus</dt><dd data-i18n="g.5.d">Der „Bremse“-Teil – zuständig für Ruhe, Verdauung und Erholung.</dd></div>
+      <div class="gitem"><dt data-i18n="g.6.t">Vagusnerv</dt><dd data-i18n="g.6.d">Längster Hirnnerv; über langsames Ausatmen aktivierbar und Schlüssel zur Entspannung.</dd></div>
+      <div class="gitem"><dt data-i18n="g.7.t">Cortisol</dt><dd data-i18n="g.7.d">Stresshormon, das bei Belastung steigt und in Ruhephasen wieder sinken kann.</dd></div>
+      <div class="gitem"><dt data-i18n="g.8.t">Klassische Konditionierung</dt><dd data-i18n="g.8.d">Lernprinzip nach Pawlow: Ein wiederholtes Signal wird mit einer Reaktion gekoppelt.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ===== CTA: the ONLY section using nls/rhetoric language patterns ===== -->
+<!-- Patterns used (Sog statt Druck):
+     · Presupposition  -> "während du das hier liest" setzt das Lesen als gegeben voraus, Fokus auf das WIE
+     · Embedded command -> "stell dir vor, wie ruhig" als getarnter Imperativ im Nebensatz
+     · Causal linkage   -> "und genau deshalb" verbindet pacing + leading
+     Bewusst sparsam: max. 2 Muster, keine Druck-/Angstsprache, kein Heilversprechen. -->
+<section class="cta">
+  <div class="cta-box">
+    <div class="breath" aria-hidden="true"></div>
+    <h2 class="serif" data-i18n="cta.h">Bereit, Theta selbst zu erleben?</h2>
+    <p data-i18n="cta.p">Während du diese Zeilen liest, kannst du dir schon vorstellen, wie sich diese Ruhe nach einem langen Tag anfühlt – und genau deshalb lohnt sich der erste, einfache Schritt. Das Sock-Anchor-Protokoll zeigt ihn dir in 90 Sekunden.</p>
+    <a class="cta-btn" href="https://intelligentresponder-max.github.io/mindful7777/vip.html" data-i18n="cta.btn">Protokoll gratis holen</a>
+    <p class="cta-fine" data-i18n="cta.fine">PDF + 3-Min-Audio · kein Abo · kein Zwang</p>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <p data-i18n="disc">Hinweis: Dieser Beitrag dient der Information und Entspannung. Er ersetzt keine medizinische Beratung und macht keine Heilversprechen. Angaben zu Gehirnwellen und Wirkungen sind allgemein gehalten; individuelle Reaktionen können abweichen.</p>
+</div>
+
+<footer>© 2026 mindful7777 · <a href="#glossar" style="color:inherit" data-i18n="foot.link">Zum Glossar</a></footer>
+
+<script>
+/* ---- i18n / language switcher ----
+   DE is fully written. EN is a prepared scaffold:
+   fill in the en{} strings (or swap to your final languages) and the switch works instantly. */
+const i18n = {
+  de: null, // DE = the markup as written (default)
+  en: {
+    "meta.title":"Theta State: What Theta Waves Are & How to Trigger Them | mindful7777",
+    "meta.desc":"Theta waves are the key to deep recovery. Learn what the theta state is, how it differs from beta, and how to reach it in under two minutes.",
+    "hero.eyebrow":"Understanding brain waves",
+    "hero.h1":"The theta state: what actually happens when your mind finally goes quiet",
+    "hero.sub":"Theta waves are the state of deep recovery – the state between waking and sleep where your nervous system repairs instead of races. Here's what that means and how to reach it on purpose.",
+    "wave.beta":"Beta · 13–30 Hz","wave.theta":"Theta · 4–8 Hz",
+    "b.lead":"Your brain is never silent. It constantly sends electrical rhythms – <span class=\"term\" title=\"Measurable electrical rhythms of brain activity, classified by speed (Hertz).\">brain waves</span> – and their speed reveals the state you're in.",
+    "b.h2a":"<span class=\"n\">01</span>What theta waves are",
+    "b.p1":"When you're awake, <span class=\"term\" title=\"Fast brain waves (13–30 Hz). Active during focus, stress and alertness.\">beta waves</span> dominate: fast, alert, ready to perform – but also the rhythm of overthinking. <span class=\"term\" title=\"Slow brain waves (4–8 Hz). Linked to deep relaxation, daydreaming and the edge of sleep.\">Theta waves</span> sit much lower, in the twilight zone between waking and sleep.",
+    "b.beta.t":"Beta","b.beta.1":"Awake & focused","b.beta.2":"On alert","b.beta.3":"Stress rises",
+    "b.theta.t":"Theta","b.theta.1":"Deep relaxation","b.theta.2":"Recovery","b.theta.3":"Quiet mind",
+    "b.h2b":"<span class=\"n\">02</span>Why the shift matters for high-performers",
+    "b.p2":"Running in beta all day keeps the nervous system in the <span class=\"term\" title=\"Part of the autonomic nervous system. Drives fight-or-flight.\">sympathetic</span> fight-or-flight mode, leaving little room for its counterpart, the <span class=\"term\" title=\"The rest-and-digest branch. Lowers heart rate and supports recovery.\">parasympathetic</span> branch. A deliberate shift toward theta tells the body it's safe to power down.",
+    "b.p3":"The <span class=\"term\" title=\"Longest cranial nerve. Governs relaxation and can be activated by slow exhaling.\">vagus nerve</span> plays a central role. Activate it – for example through long exhales – and your pulse drops, giving the stress hormone <span class=\"term\" title=\"Stress hormone. Rises under load, falls during relaxation.\">cortisol</span> a chance to fall.",
+    "b.h2c":"<span class=\"n\">03</span>How to trigger theta on purpose",
+    "b.p4":"No app, no 20-day challenge required. Two levers start the transition: a longer exhale (such as <span class=\"term\" title=\"Breathing technique: inhale 4s, exhale 6s. The longer exhale activates the vagus nerve.\">4-6 breathing</span>) and one repeated, identical signal your brain learns to tie to relaxation – the principle of <span class=\"term\" title=\"Learning by pairing: a neutral cue becomes linked to a response until it triggers it alone (Pavlov).\">classical conditioning</span>.",
+    "b.p5":"This second lever is exactly what the Sock-Anchor protocol is built on: a slow, deliberate physical signal that, after a few days of practice, calls up the theta state almost on its own.",
+    "g.title":"Glossary",
+    "g.1.t":"Brain waves","g.1.d":"Measurable electrical rhythms of brain activity, classified by speed in Hertz (Hz).",
+    "g.2.t":"Beta waves (13–30 Hz)","g.2.d":"Fast everyday waves – focus, but also stress and overthinking.",
+    "g.3.t":"Theta waves (4–8 Hz)","g.3.d":"Slow waves of deep relaxation, on the edge between waking and sleep.",
+    "g.4.t":"Sympathetic","g.4.d":"The “gas pedal” of the autonomic nervous system – fight or flight.",
+    "g.5.t":"Parasympathetic","g.5.d":"The “brake” – rest, digestion and recovery.",
+    "g.6.t":"Vagus nerve","g.6.d":"Longest cranial nerve; activated by slow exhaling and key to relaxation.",
+    "g.7.t":"Cortisol","g.7.d":"Stress hormone that rises under load and can fall again during rest.",
+    "g.8.t":"Classical conditioning","g.8.d":"Pavlov's learning principle: a repeated cue gets paired with a response.",
+    "cta.h":"Ready to feel theta yourself?",
+    "cta.p":"As you read these lines, you can already picture how this calm feels after a long day – and that's exactly why the first, simple step is worth it. The Sock-Anchor protocol shows it to you in 90 seconds.",
+    "cta.btn":"Get the protocol free",
+    "cta.fine":"PDF + 3-min audio · no subscription · no pressure",
+    "disc":"Note: This article is for information and relaxation. It is not medical advice and makes no health claims. Figures on brain waves and effects are general; individual responses may vary.",
+    "foot.link":"Go to glossary"
+  },
+  fr: {
+    "meta.title":"État thêta : ce que sont les ondes thêta et comment les déclencher | mindful7777",
+    "meta.desc":"Les ondes thêta sont la clé d'une récupération profonde. Découvre ce qu'est l'état thêta, en quoi il diffère du bêta et comment l'atteindre en moins de deux minutes.",
+    "hero.eyebrow":"Comprendre les ondes cérébrales",
+    "hero.h1":"L'état thêta : ce qui se passe vraiment quand ton esprit s'apaise enfin",
+    "hero.sub":"Les ondes thêta sont l'état de la récupération profonde – cet état entre veille et sommeil où ton système nerveux répare au lieu de courir. Voici ce que cela signifie et comment l'atteindre volontairement.",
+    "wave.beta":"Bêta · 13–30 Hz","wave.theta":"Thêta · 4–8 Hz",
+    "b.lead":"Ton cerveau n'est jamais silencieux. Il émet en permanence des rythmes électriques – les <span class=\"term\" title=\"Rythmes électriques mesurables de l'activité cérébrale, classés par vitesse (Hertz).\">ondes cérébrales</span> – et leur vitesse révèle l'état dans lequel tu te trouves.",
+    "b.h2a":"<span class=\"n\">01</span>Ce que sont les ondes thêta",
+    "b.p1":"À l'état de veille, les <span class=\"term\" title=\"Ondes cérébrales rapides (13–30 Hz). Actives lors de la concentration, du stress et de la vigilance.\">ondes bêta</span> dominent : rapides, alertes, prêtes à performer – mais aussi le rythme de la rumination. Les <span class=\"term\" title=\"Ondes cérébrales lentes (4–8 Hz). Liées à la détente profonde, à la rêverie et au seuil du sommeil.\">ondes thêta</span> se situent bien plus bas, dans la zone crépusculaire entre veille et sommeil.",
+    "b.beta.t":"Bêta","b.beta.1":"Éveillé &amp; concentré","b.beta.2":"En alerte","b.beta.3":"Le stress monte",
+    "b.theta.t":"Thêta","b.theta.1":"Détente profonde","b.theta.2":"Récupération","b.theta.3":"Esprit calme",
+    "b.h2b":"<span class=\"n\">02</span>Pourquoi ce passage compte pour les performeurs",
+    "b.p2":"Rester en bêta toute la journée maintient le système nerveux en mode <span class=\"term\" title=\"Partie du système nerveux autonome. Déclenche la réaction de lutte ou de fuite.\">sympathique</span> – lutte ou fuite. Son opposé, le <span class=\"term\" title=\"La branche « repos et digestion ». Ralentit le pouls et favorise la récupération.\">parasympathique</span>, n'a alors guère sa place. Un passage volontaire vers le thêta signale au corps qu'il peut enfin lever le pied.",
+    "b.p3":"Le <span class=\"term\" title=\"Le plus long nerf crânien. Gouverne la détente et s'active par une expiration lente.\">nerf vague</span> joue un rôle central. Une fois activé – par exemple par de longues expirations –, le pouls baisse, et l'hormone du stress, le <span class=\"term\" title=\"Hormone du stress. Augmente sous tension, diminue pendant la détente.\">cortisol</span>, a la possibilité de redescendre.",
+    "b.h2c":"<span class=\"n\">03</span>Comment déclencher le thêta volontairement",
+    "b.p4":"Pas besoin d'appli ni de défi de 20 jours. Deux leviers suffisent pour amorcer la transition : une expiration prolongée (comme la <span class=\"term\" title=\"Technique de respiration : inspire 4 s, expire 6 s. L'expiration prolongée active le nerf vague.\">respiration 4-6</span>) et un signal répété, toujours identique, que ton cerveau apprend à associer à la détente – le principe du <span class=\"term\" title=\"Apprentissage par association : un stimulus neutre se lie à une réaction jusqu'à la déclencher seul (Pavlov).\">conditionnement classique</span>.",
+    "b.p5":"C'est précisément sur ce second levier que repose le protocole Sock-Anchor : un signal corporel, lent et délibéré, qui après quelques jours de pratique rappelle l'état thêta presque tout seul.",
+    "g.title":"Glossaire",
+    "g.1.t":"Ondes cérébrales","g.1.d":"Rythmes électriques mesurables de l'activité cérébrale, classés par vitesse en Hertz (Hz).",
+    "g.2.t":"Ondes bêta (13–30 Hz)","g.2.d":"Ondes rapides du quotidien éveillé – concentration, mais aussi stress et rumination.",
+    "g.3.t":"Ondes thêta (4–8 Hz)","g.3.d":"Ondes lentes de détente profonde, au seuil entre veille et sommeil.",
+    "g.4.t":"Sympathique","g.4.d":"La « pédale d'accélérateur » du système nerveux autonome – lutte ou fuite.",
+    "g.5.t":"Parasympathique","g.5.d":"Le « frein » – repos, digestion et récupération.",
+    "g.6.t":"Nerf vague","g.6.d":"Le plus long nerf crânien ; activé par une expiration lente, clé de la détente.",
+    "g.7.t":"Cortisol","g.7.d":"Hormone du stress qui monte sous tension et peut redescendre au repos.",
+    "g.8.t":"Conditionnement classique","g.8.d":"Principe d'apprentissage de Pavlov : un signal répété s'associe à une réaction.",
+    "cta.h":"Prêt à ressentir le thêta toi-même ?",
+    "cta.p":"Pendant que tu lis ces lignes, tu peux déjà imaginer à quel point ce calme fait du bien après une longue journée – et c'est justement pour ça que ce premier pas, tout simple, en vaut la peine. Le protocole Sock-Anchor te le montre en 90 secondes.",
+    "cta.btn":"Obtenir le protocole gratuitement",
+    "cta.fine":"PDF + audio de 3 min · sans abonnement · sans pression",
+    "disc":"Remarque : cet article a une vocation d'information et de détente. Il ne remplace pas un avis médical et ne formule aucune promesse de guérison. Les données sur les ondes cérébrales et les effets sont générales ; les réactions individuelles peuvent varier.",
+    "foot.link":"Aller au glossaire"
+  }
+};
+
+const nodes = document.querySelectorAll('[data-i18n]');
+const defaults = {};
+nodes.forEach(n => defaults[n.getAttribute('data-i18n')] = n.tagName==='TITLE'||n.tagName==='META' ? (n.content||n.textContent) : n.innerHTML);
+
+function setLang(lang){
+  const dict = i18n[lang];
+  nodes.forEach(n=>{
+    const key=n.getAttribute('data-i18n');
+    const val = dict ? (dict[key] ?? defaults[key]) : defaults[key];
+    if(n.tagName==='META'){ n.setAttribute('content',val); }
+    else if(n.tagName==='TITLE'){ n.textContent=val; }
+    else { n.innerHTML=val; }
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang button').forEach(b=>
+    b.setAttribute('aria-pressed', b.dataset.lang===lang ? 'true':'false'));
+}
+document.querySelectorAll('.lang button').forEach(b=>
+  b.addEventListener('click',()=>setLang(b.dataset.lang)));
+
+// --- deep-link language via ?lang= (for hreflang crawling & sharing) ---
+(function(){
+  var p=new URLSearchParams(location.search).get('lang');
+  if(p && ['de','en','fr'].includes(p)){ setLang(p); }
+})();
+document.querySelectorAll('.lang button').forEach(function(b){
+  b.addEventListener('click', function(){
+    var u=new URL(location.href); u.searchParams.set('lang', b.dataset.lang);
+    history.replaceState(null,'',u);
+  });
+});
+
+</script>
+<script>
+/* ===== magic layer JS (language-neutral) ===== */
+(function(){
+  // scroll reveal
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('main h2, main p, .step, .card2, .cluster a, .gitem').forEach(function(el){
+    el.classList.add('reveal'); io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>

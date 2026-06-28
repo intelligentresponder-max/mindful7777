@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta.title">Klassische Konditionierung: wie ein Anker funktioniert | mindful7777</title>
+<meta name="description" data-i18n="meta.desc" content="Von Pawlows Hund zum Entspannungs-Anker: Wie klassische Konditionierung funktioniert und wie du dir einen Schalter für Ruhe antrainierst.">
+<meta name="keywords" content="klassische Konditionierung, Anker, Pawlow, Reiz-Reaktion, Gewohnheit, NLP-Anker, mindful7777">
+<link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/blog/05-klassische-konditionierung-anker.html">
+<link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/05-klassische-konditionierung-anker.html?lang=de">
+<link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/05-klassische-konditionierung-anker.html?lang=en">
+<link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/blog/05-klassische-konditionierung-anker.html?lang=fr">
+<link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/05-klassische-konditionierung-anker.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Klassische Konditionierung: wie aus einem Signal ein Schalter wird">
+<meta property="og:description" content="Von Pawlows Hund zum Entspannungs-Anker: Wie klassische Konditionierung funktioniert und wie du dir einen Schalter für Ruhe antrainierst.">
+<meta property="og:site_name" content="mindful7777">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Klassische Konditionierung: wie aus einem Signal ein Schalter wird","author":{"@type":"Person","name":"André"},"publisher":{"@type":"Organization","name":"mindful7777"},"inLanguage":"de"}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
+
+:root{
+  --primary:#1B2845;   /* Dunkelblau */
+  --accent:#D4A574;    /* Gold */
+  --bg:#F7F4EE;        /* Beige */
+  --text:#3A3A3A;      /* Grau */
+  --theta:#3FB6A8;     /* Türkis (Theta) */
+  --beta:#C75D52;      /* Rot (Beta) */
+  --line:rgba(27,40,69,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:"Playfair Display",Georgia,"Times New Roman",serif}
+
+/* ---- Top bar / language switch ---- */
+.bar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(18px,5vw,48px);
+  background:rgba(27,40,69,.96);backdrop-filter:blur(6px);
+  color:var(--bg);
+}
+.brand{font-weight:700;letter-spacing:.04em;font-size:1rem}
+.brand b{color:var(--accent)}
+.lang{display:flex;gap:4px;background:rgba(247,244,238,.1);border-radius:999px;padding:4px}
+.lang button{
+  font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;
+  border:0;border-radius:999px;padding:6px 14px;color:var(--bg);
+  background:transparent;transition:.18s;
+}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--primary)}
+.lang button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---- Hero ---- */
+.hero{padding:clamp(48px,9vw,110px) clamp(18px,5vw,48px) clamp(36px,6vw,72px);max-width:780px;margin:0 auto}
+.eyebrow{
+  display:inline-block;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;margin-bottom:20px;
+}
+.hero h1{
+  font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.04;color:var(--primary);
+  font-weight:800;letter-spacing:-.01em;
+}
+.hero .sub{margin-top:22px;font-size:clamp(1.05rem,2.4vw,1.3rem);max-width:60ch;color:#54616e}
+
+/* ---- Wave signature ---- */
+.wave-sig{max-width:780px;margin:40px auto;padding:0 clamp(18px,5vw,48px)}
+.wave-sig svg{width:100%;height:auto;display:block}
+.wave-cap{display:flex;justify-content:space-between;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-top:8px}
+.wave-cap .b{color:var(--beta)} .wave-cap .t{color:var(--theta)}
+
+/* ---- Body ---- */
+main{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px) 40px}
+h2{
+  font-family:"Playfair Display",Georgia,serif;color:var(--primary);
+  font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:700;
+  margin:48px 0 16px;line-height:1.15;
+}
+h2 .n{color:var(--accent);font-size:.7em;margin-right:.5ch;font-style:italic}
+p{margin:0 0 18px}
+p .term{
+  border-bottom:2px dotted var(--accent);cursor:help;font-weight:600;color:var(--primary);
+}
+.lead{font-size:1.12rem}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.compare .card{border-radius:14px;padding:20px;background:#fff;border:1px solid var(--line)}
+.compare .card h3{font-size:.95rem;letter-spacing:.04em;margin-bottom:6px}
+.compare .beta h3{color:var(--beta)} .compare .theta h3{color:var(--theta)}
+.compare .hz{font-size:.78rem;color:#7b8794;margin-bottom:12px;font-weight:600}
+.compare ul{list-style:none;font-size:.92rem}
+.compare li{padding:4px 0 4px 18px;position:relative}
+.compare li::before{content:"›";position:absolute;left:0;color:var(--accent);font-weight:700}
+@media(max-width:540px){.compare{grid-template-columns:1fr}}
+
+/* ---- Glossary ---- */
+.glossary{background:var(--primary);color:var(--bg);margin-top:64px;padding:clamp(40px,7vw,72px) 0}
+.glossary .inner{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.glossary h2{color:var(--bg)}
+.glossary h2 .n{color:var(--accent)}
+.gitem{border-top:1px solid rgba(247,244,238,.16);padding:18px 0}
+.gitem dt{font-weight:700;color:var(--accent);font-size:1.02rem;margin-bottom:4px}
+.gitem dd{font-size:.95rem;color:rgba(247,244,238,.86)}
+
+/* ---- CTA (only place with persuasive language patterns) ---- */
+.cta{max-width:720px;margin:56px auto;padding:0 clamp(18px,5vw,48px)}
+.cta-box{
+  background:linear-gradient(135deg,#fff, #fbf7ef);
+  border:1px solid var(--line);border-radius:20px;
+  padding:clamp(28px,5vw,44px);text-align:center;box-shadow:0 18px 40px -28px rgba(27,40,69,.5);
+}
+.cta-box h2{margin-top:0}
+.cta-box p{max-width:48ch;margin-inline:auto;color:#54616e}
+.cta-btn{
+  display:inline-block;margin-top:20px;background:var(--primary);color:var(--bg);
+  text-decoration:none;font-weight:700;letter-spacing:.02em;
+  padding:16px 34px;border-radius:999px;transition:.2s;
+}
+.cta-btn:hover{background:var(--accent);color:var(--primary)}
+.cta-btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.cta-fine{font-size:.78rem;color:#8a949e;margin-top:14px}
+
+footer{text-align:center;padding:40px 18px;font-size:.8rem;color:#8a949e}
+
+.disclaimer{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.disclaimer p{font-size:.8rem;color:#8a949e;border-top:1px solid var(--line);padding-top:18px}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* ===== magic layer (language-neutral) ===== */
+@keyframes breathe { 0%,100%{transform:scale(1);opacity:.55} 40%{transform:scale(1.18);opacity:.9} }
+@keyframes drift   { 0%{transform:translateX(0)} 100%{transform:translateX(-50px)} }
+@keyframes floatUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+/* ambient theta wave behind hero */
+.hero{position:relative;overflow:hidden}
+.hero .ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5}
+.hero .ambient svg{position:absolute;bottom:18%;left:0;width:160%;height:auto}
+.hero .ambient path{animation:drift 14s linear infinite alternate}
+
+/* concept icon chip next to eyebrows / h2 */
+.ico{display:inline-flex;vertical-align:middle;width:1.05em;height:1.05em;margin-right:.5ch;color:var(--accent)}
+.ico svg{width:100%;height:100%;display:block}
+h2 .ico{width:.9em;height:.9em;margin-right:.45ch;opacity:.9}
+
+/* glossary term hover lift */
+p .term{transition:color .15s, border-color .15s}
+p .term:hover{color:var(--accent);border-bottom-style:solid}
+
+/* scroll reveal */
+.reveal{opacity:0}
+.reveal.in{animation:floatUp .7s ease both}
+
+/* breathing dot at CTA (4-6 rhythm ~ 10s) */
+.cta-box{position:relative}
+.breath{width:14px;height:14px;border-radius:50%;background:var(--accent);
+  margin:0 auto 14px;animation:breathe 10s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){
+  .hero .ambient path{animation:none}
+  .breath{animation:none}
+  .reveal{opacity:1}
+  .reveal.in{animation:none}
+}
+
+</style>
+<noscript><style>.reveal{opacity:1!important}.hero .ambient,.breath{display:none}</style></noscript>
+</head>
+<body>
+
+<div class="bar">
+  <div class="brand">mindful<b>7777</b></div>
+  <div class="lang" role="group" aria-label="Sprache / Language / Langue">
+    <button data-lang="de" aria-pressed="true">DE</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+    <button data-lang="fr" aria-pressed="false">FR</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="ambient" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,100 Q60,40 120,100 T240,100 T360,100 T480,100 T600,100 T720,100 T840,100 T960,100 T1080,100 T1200,100" fill="none" stroke="#3FB6A8" stroke-width="2.5"/></svg></div>
+  <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span><span class="eyebrow" data-i18n="hero.eyebrow">Lernen & Gewohnheit</span>
+  <h1 class="serif" data-i18n="hero.h1">Klassische Konditionierung: wie aus einem Signal ein Schalter wird</h1>
+  <p class="sub" data-i18n="hero.sub">Dein Gehirn lernt durch Verknüpfung. Was ein Hund vor über hundert Jahren gezeigt hat, kannst du heute nutzen, um dir einen verlässlichen Ruhe-Auslöser aufzubauen.</p>
+</header>
+
+
+
+<main>
+  <p class="lead" data-i18n="b.lead">Die <span class="term" title="Lernen durch Kopplung: Ein neutraler Reiz wird mit einer Reaktion verknüpft (Pawlow).">klassische Konditionierung</span> ist eines der am besten belegten Lernprinzipien überhaupt – und die Grundlage dafür, dass ein einfaches Signal später Entspannung auslösen kann.</p>
+Die <span class="term" title="Lernen durch Kopplung: Ein neutraler Reiz wird mit einer Reaktion verknüpft (Pawlow).">klassische Konditionierung</span> ist eines der am besten belegten Lernprinzipien überhaupt – und die Grundlage dafür, dass ein einfaches Signal später Entspannung auslösen kann.
+  <h2 data-i18n="b.h2a"><span class="n">01</span>Was Pawlow entdeckte</h2>
+  <p data-i18n="b.h2a.p1">Iwan Pawlow läutete eine Glocke, bevor er seine Hunde fütterte. Nach einigen Wiederholungen genügte der Glockenton allein, damit den Hunden das Wasser im Mund zusammenlief.</p>
+  <p data-i18n="b.h2a.p2">Aus einem <span class="term" title="Ein Auslöser, der anfangs keine Reaktion hervorruft, bis er gekoppelt wird.">neutralen Reiz</span> – der Glocke – war ein Auslöser geworden. Das ist der Kern jeder <span class="term" title="Die feste Verbindung zwischen einem Auslöser und der darauf folgenden Reaktion.">Reiz-Reaktions-Kopplung</span>.</p>
+
+  <h2 data-i18n="b.h2b"><span class="n">02</span>Vom Reflex zum Anker</h2>
+  <p data-i18n="b.h2b.p1">Was bei Speichel funktioniert, funktioniert auch bei Zuständen. Koppelst du einen klaren, immer gleichen Reiz wiederholt mit tiefer Entspannung, entsteht ein <span class="term" title="Ein bewusst gesetzter Auslöser, der einen bestimmten Zustand abrufbar macht.">Anker</span>.</p>
+  <p data-i18n="b.h2b.p2">Entscheidend ist die <span class="term" title="Der Mechanismus, der eine Kopplung festigt; ohne sie verblasst der Anker.">Wiederholung</span>. Eine einzelne Kopplung verblasst; erst die regelmäßige Wiederholung über etwa zwei bis drei Wochen macht den Anker stabil.</p>
+
+  <h2 data-i18n="b.h2c"><span class="n">03</span>Der Sock-Anchor als Ruhe-Anker</h2>
+  <p data-i18n="b.h2c.p1">Das Sock-Anchor-Protokoll nutzt genau diesen Mechanismus: Eine bewusste, langsame Geste – das Ausziehen einer immer gleichen Socke – wird wiederholt mit dem Entspannungszustand gekoppelt.</p>
+  <p data-i18n="b.h2c.p2">Nach der Konditionierungsphase wirkt die Geste wie Pawlows Glocke: Signal an – Ruhe an, ohne dass du dich dazu zwingen musst.</p>
+
+</main>
+
+<section class="glossary" id="glossar">
+  <div class="inner">
+    <h2><span class="n">★</span><span data-i18n="g.title">Glossar</span></h2>
+    <dl>
+      <div class="gitem"><dt data-i18n="g.1.t">Klassische Konditionierung</dt><dd data-i18n="g.1.d">Lernen durch Kopplung: Ein neutraler Reiz wird mit einer Reaktion verknüpft (Pawlow).</dd></div>
+      <div class="gitem"><dt data-i18n="g.2.t">Reiz-Reaktions-Kopplung</dt><dd data-i18n="g.2.d">Die feste Verbindung zwischen einem Auslöser und der darauf folgenden Reaktion.</dd></div>
+      <div class="gitem"><dt data-i18n="g.3.t">Anker</dt><dd data-i18n="g.3.d">Ein bewusst gesetzter Auslöser, der einen bestimmten Zustand abrufbar macht.</dd></div>
+      <div class="gitem"><dt data-i18n="g.4.t">Neutraler Reiz</dt><dd data-i18n="g.4.d">Ein Auslöser, der anfangs keine Reaktion hervorruft, bis er gekoppelt wird.</dd></div>
+      <div class="gitem"><dt data-i18n="g.5.t">Wiederholung</dt><dd data-i18n="g.5.d">Der Mechanismus, der eine Kopplung festigt; ohne sie verblasst der Anker.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- CTA: the ONLY section using nls/rhetoric patterns (Sog statt Druck).
+     · Presupposition  (sets an action as given, shifts focus to the HOW)
+     · Embedded command (a disguised imperative inside a subordinate clause)
+     Deliberately sparse: max 2 patterns, no pressure/fear language, no health claims. -->
+<section class="cta">
+  <div class="cta-box">
+    <div class="breath" aria-hidden="true"></div>
+    <h2 class="serif" data-i18n="cta.h">Willst du dir deinen Anker bauen?</h2>
+    <p data-i18n="cta.p">Während du das Prinzip jetzt verstehst, kannst du dir schon vorstellen, wie verlässlich so ein Schalter im Alltag wäre – und genau deshalb lohnt sich der Start mit einem einzigen, klaren Signal. Der Sock-Anchor zeigt dir, wie.</p>
+    <a class="cta-btn" href="https://intelligentresponder-max.github.io/mindful7777/vip.html" data-i18n="cta.btn">Protokoll gratis holen</a>
+    <p class="cta-fine" data-i18n="cta.fine">PDF + 3-Min-Audio · kein Abo · kein Zwang</p>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <p data-i18n="disc">Hinweis: Dieser Beitrag dient der Information und Entspannung und ersetzt keine medizinische oder psychologische Beratung.</p>
+</div>
+
+<footer>© 2026 mindful7777 · <a href="#glossar" style="color:inherit" data-i18n="foot.link">Zum Glossar</a></footer>
+
+<script>
+const i18n = {
+  de: null,
+  en: {
+    "meta.title":"Classical Conditioning: how an anchor works | mindful7777",
+    "meta.desc":"From Pavlov's dog to a relaxation anchor: how classical conditioning works and how to train yourself a switch for calm.",
+    "hero.eyebrow":"Learning & habit",
+    "hero.h1":"Classical conditioning: how a signal becomes a switch",
+    "hero.sub":"Your brain learns by association. What a dog showed over a hundred years ago, you can use today to build yourself a reliable trigger for calm.",
+    "b.lead":"<span class=\"term\" title=\"Learning by pairing: a neutral cue becomes linked to a response (Pavlov).\">Classical conditioning</span> is one of the best-evidenced learning principles there is – and the basis for how a simple signal can later trigger relaxation.",
+    "b.h2a":"<span class=\"n\">01</span>What Pavlov discovered",
+    "b.h2a.p1":"Ivan Pavlov rang a bell before feeding his dogs. After a few repetitions, the bell alone was enough to make the dogs salivate.",
+    "b.h2a.p2":"A <span class=\"term\" title=\"A trigger that at first causes no response, until it's paired.\">neutral stimulus</span> – the bell – had become a trigger. That's the core of every <span class=\"term\" title=\"The fixed connection between a trigger and the response that follows.\">stimulus-response link</span>.",
+    "b.h2b":"<span class=\"n\">02</span>From reflex to anchor",
+    "b.h2b.p1":"What works for saliva works for states too. Pair a clear, identical cue repeatedly with deep relaxation and you build an <span class=\"term\" title=\"A deliberately set trigger that makes a particular state retrievable.\">anchor</span>.",
+    "b.h2b.p2":"<span class=\"term\" title=\"The mechanism that strengthens a pairing; without it the anchor fades.\">Repetition</span> is decisive. A single pairing fades; only regular repetition over roughly two to three weeks makes the anchor stable.",
+    "b.h2c":"<span class=\"n\">03</span>The Sock-Anchor as a calm anchor",
+    "b.h2c.p1":"The Sock-Anchor protocol uses exactly this mechanism: a deliberate, slow gesture – removing one identical sock – is repeatedly paired with the relaxed state.",
+    "b.h2c.p2":"After the conditioning phase the gesture works like Pavlov's bell: signal on – calm on, without forcing yourself.",
+    "g.title":"Glossary",
+    "g.1.t":"Classical conditioning",
+    "g.1.d":"Learning by pairing: a neutral cue becomes linked to a response (Pavlov).",
+    "g.2.t":"Stimulus-response link",
+    "g.2.d":"The fixed connection between a trigger and the response that follows.",
+    "g.3.t":"Anchor",
+    "g.3.d":"A deliberately set trigger that makes a particular state retrievable.",
+    "g.4.t":"Neutral stimulus",
+    "g.4.d":"A trigger that at first causes no response, until it's paired.",
+    "g.5.t":"Repetition",
+    "g.5.d":"The mechanism that strengthens a pairing; without it the anchor fades.",
+    "cta.h":"Want to build your anchor?",
+    "cta.p":"Now that you understand the principle, you can already picture how reliable such a switch would be day to day – and that's exactly why starting with a single, clear signal is worth it. The Sock-Anchor shows you how.",
+    "cta.btn":"Get the protocol free",
+    "cta.fine":"PDF + 3-min audio · no subscription · no pressure",
+    "disc":"Note: This article is for information and relaxation and is not a substitute for medical or psychological advice.",
+    "foot.link":"Go to glossary"
+  },
+  fr: {
+    "meta.title":"Conditionnement classique : comment fonctionne une ancre | mindful7777",
+    "meta.desc":"Du chien de Pavlov à une ancre de détente : comment fonctionne le conditionnement classique et comment t'entraîner un interrupteur pour le calme.",
+    "hero.eyebrow":"Apprentissage & habitude",
+    "hero.h1":"Conditionnement classique : comment un signal devient un interrupteur",
+    "hero.sub":"Ton cerveau apprend par association. Ce qu'un chien a montré il y a plus de cent ans, tu peux l'utiliser aujourd'hui pour te construire un déclencheur fiable de calme.",
+    "b.lead":"Le <span class=\"term\" title=\"Apprentissage par association : un stimulus neutre se lie à une réaction (Pavlov).\">conditionnement classique</span> est l'un des principes d'apprentissage les mieux étayés qui soient – et la base sur laquelle un signal simple peut plus tard déclencher la détente.",
+    "b.h2a":"<span class=\"n\">01</span>Ce que Pavlov a découvert",
+    "b.h2a.p1":"Ivan Pavlov faisait sonner une cloche avant de nourrir ses chiens. Après quelques répétitions, la cloche seule suffisait à les faire saliver.",
+    "b.h2a.p2":"Un <span class=\"term\" title=\"Un déclencheur qui, au départ, ne provoque aucune réaction, jusqu'à ce qu'il soit associé.\">stimulus neutre</span> – la cloche – était devenu un déclencheur. C'est le cœur de tout <span class=\"term\" title=\"Le lien fixe entre un déclencheur et la réaction qui suit.\">couplage stimulus-réaction</span>.",
+    "b.h2b":"<span class=\"n\">02</span>Du réflexe à l'ancre",
+    "b.h2b.p1":"Ce qui marche pour la salive marche aussi pour les états. Associe un signal clair et identique de façon répétée à une détente profonde, et tu construis une <span class=\"term\" title=\"Un déclencheur posé volontairement qui rend un état donné rappelable.\">ancre</span>.",
+    "b.h2b.p2":"La <span class=\"term\" title=\"Le mécanisme qui renforce une association ; sans elle, l'ancre s'estompe.\">répétition</span> est décisive. Une seule association s'estompe ; seule une répétition régulière sur environ deux à trois semaines rend l'ancre stable.",
+    "b.h2c":"<span class=\"n\">03</span>Le Sock-Anchor comme ancre de calme",
+    "b.h2c.p1":"Le protocole Sock-Anchor utilise exactement ce mécanisme : un geste lent et volontaire – retirer une chaussette toujours identique – est associé de façon répétée à l'état de détente.",
+    "b.h2c.p2":"Après la phase de conditionnement, le geste agit comme la cloche de Pavlov : signal activé – calme activé, sans avoir à te forcer.",
+    "g.title":"Glossaire",
+    "g.1.t":"Conditionnement classique",
+    "g.1.d":"Apprentissage par association : un stimulus neutre se lie à une réaction (Pavlov).",
+    "g.2.t":"Couplage stimulus-réaction",
+    "g.2.d":"Le lien fixe entre un déclencheur et la réaction qui suit.",
+    "g.3.t":"Ancre",
+    "g.3.d":"Un déclencheur posé volontairement qui rend un état donné rappelable.",
+    "g.4.t":"Stimulus neutre",
+    "g.4.d":"Un déclencheur qui, au départ, ne provoque aucune réaction, jusqu'à ce qu'il soit associé.",
+    "g.5.t":"Répétition",
+    "g.5.d":"Le mécanisme qui renforce une association ; sans elle, l'ancre s'estompe.",
+    "cta.h":"Envie de construire ton ancre ?",
+    "cta.p":"Maintenant que tu comprends le principe, tu peux déjà imaginer à quel point un tel interrupteur serait fiable au quotidien – et c'est justement pour ça que commencer par un seul signal clair en vaut la peine. Le Sock-Anchor te montre comment.",
+    "cta.btn":"Obtenir le protocole gratuitement",
+    "cta.fine":"PDF + audio de 3 min · sans abonnement · sans pression",
+    "disc":"Remarque : cet article a une vocation d'information et de détente et ne remplace pas un avis médical ou psychologique.",
+    "foot.link":"Aller au glossaire"
+  }
+};
+const nodes = document.querySelectorAll('[data-i18n]');
+const defaults = {};
+nodes.forEach(n => defaults[n.getAttribute('data-i18n')] = n.tagName==='TITLE'||n.tagName==='META' ? (n.content||n.textContent) : n.innerHTML);
+function setLang(lang){
+  const dict = i18n[lang];
+  nodes.forEach(n=>{
+    const key=n.getAttribute('data-i18n');
+    const val = dict ? (dict[key] ?? defaults[key]) : defaults[key];
+    if(n.tagName==='META'){ n.setAttribute('content',val); }
+    else if(n.tagName==='TITLE'){ n.textContent=val; }
+    else { n.innerHTML=val; }
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang button').forEach(b=>
+    b.setAttribute('aria-pressed', b.dataset.lang===lang ? 'true':'false'));
+}
+document.querySelectorAll('.lang button').forEach(b=>
+  b.addEventListener('click',()=>setLang(b.dataset.lang)));
+
+// --- deep-link language via ?lang= (for hreflang crawling & sharing) ---
+(function(){
+  var p=new URLSearchParams(location.search).get('lang');
+  if(p && ['de','en','fr'].includes(p)){ setLang(p); }
+})();
+document.querySelectorAll('.lang button').forEach(function(b){
+  b.addEventListener('click', function(){
+    var u=new URL(location.href); u.searchParams.set('lang', b.dataset.lang);
+    history.replaceState(null,'',u);
+  });
+});
+
+</script>
+<script>
+/* ===== magic layer JS (language-neutral) ===== */
+(function(){
+  // scroll reveal
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('main h2, main p, .step, .card2, .cluster a, .gitem').forEach(function(el){
+    el.classList.add('reveal'); io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
