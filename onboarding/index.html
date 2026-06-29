@@ -1,1 +1,413 @@
-[Inhalt aus onboarding_index.html]
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title data-i18n="meta.title">Erstgespräch · mindful7777</title>
+<meta name="description" data-i18n="meta.desc" content="Finde in wenigen Schritten deinen idealen Sock-Anchor-Weg. Science-based, kein Esoterik-Bullshit.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/onboarding/index.html">
+<link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/onboarding/index.html?lang=de">
+<link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/onboarding/index.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/onboarding/index.html">
+
+<link rel="icon" href="https://intelligentresponder-max.github.io/mindful7777/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://intelligentresponder-max.github.io/mindful7777/assets/style.css">
+<noscript><style>.reveal{opacity:1!important}</style></noscript>
+
+<style>
+.ob{max-width:640px;margin:0 auto;padding:0 clamp(18px,5vw,40px) 60px}
+/* ambient wave hinter hero */
+.hero{position:relative;overflow:hidden}
+.hero .ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.45;overflow:hidden}
+.hero .ambient svg{position:absolute;bottom:18%;left:-10%;width:130%}
+.hero .ambient path{animation:drift 16s linear infinite alternate}
+/* Progress */
+.progress{display:flex;gap:6px;margin:24px 0 8px}
+.progress .dot{flex:1;height:5px;border-radius:99px;background:var(--line);transition:.3s}
+.progress .dot.done{background:var(--gold)}
+.progress .dot.active{background:linear-gradient(90deg,var(--gold),var(--cyan))}
+.step-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
+
+/* Phase */
+.phase h2{margin:10px 0 6px}
+.phase .hint{color:var(--ink-soft);font-size:.95rem;margin-bottom:20px}
+
+/* Felder */
+.field{margin:16px 0}
+.field label{display:block;font-weight:600;margin-bottom:6px;font-size:.95rem}
+.field input[type=text],.field input[type=email],.field input[type=number],.field select,.field textarea{
+  width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;
+  font:inherit;background:var(--surface);color:var(--ink);transition:.16s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--gold);box-shadow:var(--glow-gold)}
+
+/* Auswahl-Karten */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+@media(max-width:480px){.cards{grid-template-columns:1fr}}
+.opt{position:relative;cursor:pointer}
+.opt input{position:absolute;opacity:0}
+.opt .box{border:1.5px solid var(--line);border-radius:14px;padding:16px;transition:.16s;background:var(--surface);height:100%}
+.opt .box .t{font-weight:700;font-family:var(--serif);color:var(--ink)}
+.opt .box .d{font-size:.84rem;color:var(--ink-soft);margin-top:2px}
+.opt input:checked + .box{border-color:var(--gold);box-shadow:var(--glow-gold);background:linear-gradient(135deg,#fff,#fbf7ef)}
+.opt input:focus-visible + .box{outline:2px solid var(--gold);outline-offset:2px}
+
+/* Skala */
+.scale{display:flex;gap:6px;margin-top:8px}
+.scale .s{flex:1;text-align:center;padding:12px 0;border:1.5px solid var(--line);border-radius:10px;cursor:pointer;font-family:var(--mono);transition:.14s;background:var(--surface)}
+.scale .s.sel{border-color:var(--gold);background:var(--ink);color:var(--bg)}
+
+/* Nav-Buttons */
+.nav-row{display:flex;justify-content:space-between;gap:12px;margin-top:28px}
+.nav-row .btn-back{background:transparent;color:var(--ink-soft);border:1px solid var(--line)}
+.nav-row .btn-back:hover{background:var(--surface);color:var(--ink);box-shadow:none}
+
+/* Ergebnis */
+#result{display:none}
+#result.show{display:block;animation:floatUp .6s ease both}
+.result-box{background:var(--ink);color:var(--bg);border-radius:var(--radius-lg);padding:clamp(24px,5vw,40px);box-shadow:var(--glow-cyan);text-align:center}
+.result-box .check{width:54px;height:54px;border-radius:50%;background:var(--gold);color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 16px}
+.result-box h2{color:var(--bg)}
+.result-box .session{font-family:var(--serif);font-size:1.6rem;color:var(--gold);margin:10px 0}
+.result-box .followups{text-align:left;max-width:380px;margin:18px auto 0;font-size:.9rem;color:rgba(247,244,238,.85)}
+.result-box .followups li{padding:4px 0 4px 18px;position:relative;list-style:none}
+.result-box .followups li::before{content:"›";position:absolute;left:0;color:var(--gold)}
+
+/* ✦ Magic: Ergebnis-Funken */
+@keyframes sparkle{0%{transform:scale(0) rotate(0);opacity:0}50%{opacity:1}100%{transform:scale(1.4) rotate(180deg);opacity:0}}
+.spark{position:absolute;width:10px;height:10px;pointer-events:none;color:var(--gold);animation:sparkle 1.1s ease-out forwards}
+.spark::before{content:"✦";font-size:10px}
+.result-box{position:relative;overflow:hidden}
+/* Weiter-Button disabled-Zustand */
+.cta-btn.is-disabled{opacity:.45;cursor:not-allowed;box-shadow:none;pointer-events:none}
+/* Phasen-Übergang smooth */
+.phase{display:none}
+.phase.active{display:block;animation:floatUp .45s cubic-bezier(.2,.7,.3,1) both}
+</style>
+</head>
+<body>
+
+<div class="watermark-spiral" aria-hidden="true">
+  <svg viewBox="0 0 100 100"><path d="M50,50 m0,-4 a4,4 0 1,1 -4,4 a8,8 0 1,1 8,8 a12,12 0 1,1 -12,-12 a16,16 0 1,1 16,16 a20,20 0 1,1 -20,-20" fill="none" stroke="#D4A574" stroke-width="2"/></svg>
+</div>
+
+<div class="bar">
+  <div class="brand"><a href="https://intelligentresponder-max.github.io/mindful7777/index.html" style="color:inherit;text-decoration:none">mindful<b>7777</b></a></div>
+  <div class="lang" role="group" aria-label="Sprache / Language">
+    <button data-lang="de" aria-pressed="true">DE</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</div>
+
+<header class="hero" style="text-align:center;padding-bottom:6px">
+  <div class="ambient" aria-hidden="true">
+    <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+      <path d="M0,100 Q60,40 120,100 T240,100 T360,100 T480,100 T600,100 T720,100 T840,100 T960,100 T1080,100 T1200,100" fill="none" stroke="#3FB6A8" stroke-width="2.5"/>
+    </svg>
+  </div>
+  <span class="eyebrow" data-i18n="eyebrow">ERSTGESPRÄCH · 2 MIN</span>
+  <h1 class="serif" data-i18n="h1">Finde deinen Weg</h1>
+  <p class="sub" data-i18n="sub" style="margin-inline:auto">Ein paar Fragen, dann kennst du dein passendes Protokoll. Kein Account nötig.</p>
+</header>
+
+<div class="ob">
+  <!-- ALTERSBESTÄTIGUNG (≥18) — Gate vor dem Formular -->
+  <div id="ageGate">
+    <div class="card" style="text-align:center;padding:clamp(26px,5vw,40px)">
+      <div class="mono" style="color:var(--gold-deep);letter-spacing:.16em;font-size:.72rem" data-i18n="age.eyebrow">NUR FÜR VOLLJÄHRIGE</div>
+      <h2 class="serif" style="margin:10px 0" data-i18n="age.h">Bist du 18 oder älter?</h2>
+      <p class="hint" data-i18n="age.hint">Dieses Erstgespräch richtet sich ausschließlich an volljährige Personen.</p>
+      <div class="pill-row" style="display:flex;gap:10px;justify-content:center;margin-top:18px">
+        <button type="button" class="cta-btn btn-magic" id="ageYes" data-i18n="age.yes">Ja, ich bin 18+</button>
+        <button type="button" class="cta-btn btn-back" id="ageNo" style="background:transparent;border:1px solid var(--line);color:var(--ink-soft)" data-i18n="age.no">Nein</button>
+      </div>
+      <p id="ageDeny" style="display:none;color:var(--beta);margin-top:16px;font-size:.9rem" data-i18n="age.deny">Dieses Angebot ist leider nur für Volljährige. Schau dich gern im <a href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html" style="color:var(--gold-deep)">Blog</a> um.</p>
+    </div>
+  </div>
+
+  <!-- Formular-Wrapper (erst nach Altersbestätigung sichtbar) -->
+  <div id="obWrap" style="display:none">
+  <div class="step-label" id="stepLabel">Schritt 01 / 07</div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <form id="obForm" novalidate>
+    <!-- PHASE 1: Basis -->
+    <section class="phase active" data-phase="1">
+      <h2 class="serif" data-i18n="p1.h"><span class="mono" style="color:var(--gold)">01</span> Wer bist du?</h2>
+      <p class="hint" data-i18n="p1.hint">Nur das Nötigste — für deine persönliche Empfehlung.</p>
+      <div class="field"><label data-i18n="p1.name">Vorname</label><input type="text" name="name" data-i18n-ph="p1.name.ph" placeholder="Dein Vorname"></div>
+      <div class="field"><label data-i18n="p1.email">E-Mail</label><input type="email" name="email" placeholder="du@beispiel.de"></div>
+    </section>
+
+    <!-- PHASE 2: Ziel (steuert Kaskade) -->
+    <section class="phase" data-phase="2">
+      <h2 class="serif" data-i18n="p2.h"><span class="mono" style="color:var(--gold)">02</span> Was ist dein Hauptziel?</h2>
+      <p class="hint" data-i18n="p2.hint">Wähle, was am besten passt. Das bestimmt deinen Weg.</p>
+      <div class="cards">
+        <label class="opt"><input type="radio" name="ziel" value="sport_focus">
+          <div class="box"><div class="t" data-i18n="p2.sport.t">Sport & Fokus</div><div class="d" data-i18n="p2.sport.d">Leistung, Training, Wettkampf</div></div></label>
+        <label class="opt"><input type="radio" name="ziel" value="stress_relief">
+          <div class="box"><div class="t" data-i18n="p2.stress.t">Stress & Schlaf</div><div class="d" data-i18n="p2.stress.d">Ruhe, Regeneration, Entspannung</div></div></label>
+        <label class="opt"><input type="radio" name="ziel" value="urban_flow">
+          <div class="box"><div class="t" data-i18n="p2.urban.t">Arbeit & Alltag</div><div class="d" data-i18n="p2.urban.d">Business, Meetings, Fokus</div></div></label>
+        <label class="opt"><input type="radio" name="ziel" value="explore">
+          <div class="box"><div class="t" data-i18n="p2.explore.t">Einfach ausprobieren</div><div class="d" data-i18n="p2.explore.d">Neugier, erstes Mal</div></div></label>
+      </div>
+    </section>
+
+    <!-- PHASE 3: VAK -->
+    <section class="phase" data-phase="3">
+      <h2 class="serif" data-i18n="p3.h"><span class="mono" style="color:var(--gold)">03</span> Wie nimmst du am stärksten wahr?</h2>
+      <p class="hint" data-i18n="p3.hint">Es gibt kein Richtig oder Falsch.</p>
+      <div class="cards">
+        <label class="opt"><input type="radio" name="vak" value="visual">
+          <div class="box"><div class="t" data-i18n="p3.v.t">Bilder</div><div class="d" data-i18n="p3.v.d">Ich sehe Dinge vor mir</div></div></label>
+        <label class="opt"><input type="radio" name="vak" value="auditory">
+          <div class="box"><div class="t" data-i18n="p3.a.t">Klänge</div><div class="d" data-i18n="p3.a.d">Ich höre innere Stimmen/Musik</div></div></label>
+        <label class="opt"><input type="radio" name="vak" value="kinesthetic">
+          <div class="box"><div class="t" data-i18n="p3.k.t">Gefühle</div><div class="d" data-i18n="p3.k.d">Ich spüre es körperlich</div></div></label>
+      </div>
+    </section>
+
+    <!-- PHASE 4: Erfahrung -->
+    <section class="phase" data-phase="4">
+      <h2 class="serif" data-i18n="p4.h"><span class="mono" style="color:var(--gold)">04</span> Deine Erfahrung mit Entspannungstechniken?</h2>
+      <p class="hint" data-i18n="p4.hint">1 = noch nie · 5 = sehr erfahren</p>
+      <div class="scale" id="scaleExp" data-name="erfahrung">
+        <div class="s" data-v="1">1</div><div class="s" data-v="2">2</div><div class="s" data-v="3">3</div><div class="s" data-v="4">4</div><div class="s" data-v="5">5</div>
+      </div>
+    </section>
+
+    <!-- PHASE 5: Blockaden (harmlos, offen) -->
+    <section class="phase" data-phase="5">
+      <h2 class="serif" data-i18n="p5.h"><span class="mono" style="color:var(--gold)">05</span> Was hält dich gerade am meisten auf?</h2>
+      <p class="hint" data-i18n="p5.hint">Stichworte reichen. (z.B. wenig Zeit, viele Gedanken)</p>
+      <div class="field"><textarea name="blockaden" rows="3" data-i18n-ph="p5.ph" placeholder="In deinen Worten …"></textarea></div>
+    </section>
+
+    <!-- PHASE 6: Metapher (dynamisch nach VAK) -->
+    <section class="phase" data-phase="6">
+      <h2 class="serif" data-i18n="p6.h"><span class="mono" style="color:var(--gold)">06</span> <span id="p6dyn">Dein emotionaler Anker</span></h2>
+      <p class="hint" id="p6hint" data-i18n="p6.hint">Das hilft, deine Session persönlich zu gestalten.</p>
+      <div class="field"><input type="text" name="metapher" data-i18n-ph="p6.ph" placeholder="z.B. ein Film, ein Ort, ein Song …"></div>
+    </section>
+
+    <!-- PHASE 7: Session-Typ -->
+    <section class="phase" data-phase="7">
+      <h2 class="serif" data-i18n="p7.h"><span class="mono" style="color:var(--gold)">07</span> Wie möchtest du starten?</h2>
+      <p class="hint" data-i18n="p7.hint">Du kannst jederzeit wechseln.</p>
+      <div class="cards">
+        <label class="opt"><input type="radio" name="session_typ" value="kostenlos">
+          <div class="box"><div class="t" data-i18n="p7.free.t">Gratis starten</div><div class="d" data-i18n="p7.free.d">Sock-Anchor Basis</div></div></label>
+        <label class="opt"><input type="radio" name="session_typ" value="vip">
+          <div class="box"><div class="t" data-i18n="p7.vip.t">VIP-Stack</div><div class="d" data-i18n="p7.vip.d">Alle 7 Protokolle</div></div></label>
+      </div>
+    </section>
+
+    <div class="nav-row">
+      <button type="button" class="cta-btn btn-back" id="btnBack" data-i18n="nav.back" style="visibility:hidden">Zurück</button>
+      <button type="button" class="cta-btn btn-magic" id="btnNext" data-i18n="nav.next">Weiter</button>
+    </div>
+  </form>
+
+  <!-- ERGEBNIS -->
+  <div id="result">
+    <div class="result-box">
+      <div class="check">✓</div>
+      <h2 class="serif" data-i18n="res.h">Dein Weg steht</h2>
+      <p data-i18n="res.sub" style="color:rgba(247,244,238,.85)">Basierend auf deinen Antworten empfehlen wir:</p>
+      <div class="session" id="resSession">—</div>
+      <ul class="followups" id="resFollowups"></ul>
+      <a class="cta-btn" id="resCta" href="#" style="margin-top:22px" data-i18n="res.cta">Los geht's</a>
+    </div>
+  </div>
+
+  <div class="disclaimer" style="margin-top:30px">
+    <p data-i18n="disc">Diese Inhalte dienen ausschließlich zur Entspannung und persönlichen Weiterentwicklung. Sie ersetzen keine medizinische oder therapeutische Behandlung.</p>
+  </div>
+  </div><!-- /obWrap -->
+</div>
+
+<footer class="site-footer">© 2026 mindful7777 · WHY NOT? BE THE CHANGE.</footer>
+
+<script>
+/* ============================================================
+   SCORING ENGINE — lokal, kein Backend (aus Briefing)
+   ============================================================ */
+const PROFILE_DB = {
+  sport_focus:  { session:"Sport-Anker",  audio:"training.html", depth:"medium",
+                  followups:{de:["Welche Sportart?","Wettkampf oder Training?"],en:["Which sport?","Competition or training?"]} },
+  stress_relief:{ session:"Nature-Anker", audio:"shower.html",   depth:"deep",
+                  followups:{de:["Wie viele Stunden schläfst du?","Wann ist der Stress am stärksten?"],en:["How many hours do you sleep?","When is stress strongest?"]} },
+  urban_flow:   { session:"Urban-Anker",  audio:"street.html",   depth:"light",
+                  followups:{de:["Homeoffice oder Büro?","Wann brauchst du den Fokus am meisten?"],en:["Home office or office?","When do you need focus most?"]} },
+  explore:      { session:"Sock-Anchor Basis", audio:"sock-anchor-protocol.html", depth:"light",
+                  followups:{de:["Was hat dich neugierig gemacht?","Lieber morgens oder abends?"],en:["What made you curious?","Mornings or evenings?"]} }
+};
+const BASE="https://intelligentresponder-max.github.io/mindful7777";
+const FORMSPREE="https://formspree.io/f/xpqnorbq";
+
+/* ---------- State + Kaskade ---------- */
+let phase=1; const TOTAL=7;
+const data={name:"",email:"",ziel:"",vak:"",erfahrung:null,blockaden:"",metapher:"",session_typ:""};
+let LANG='de';
+
+const phases=[...document.querySelectorAll('.phase')];
+const progress=document.getElementById('progress');
+phases.forEach(()=>{const d=document.createElement('div');d.className='dot';progress.appendChild(d);});
+const dots=[...progress.children];
+
+function renderProgress(){
+  dots.forEach((d,i)=>{d.className='dot'+(i<phase-1?' done':i===phase-1?' active':'');});
+  const lbl=String(phase).padStart(2,'0');
+  document.getElementById('stepLabel').textContent=(LANG==='de'?'Schritt ':'Step ')+lbl+' / 07';
+}
+function showPhase(n){
+  phases.forEach(p=>p.classList.toggle('active',+p.dataset.phase===n));
+  document.getElementById('btnBack').style.visibility = n>1?'visible':'hidden';
+  document.getElementById('btnNext').textContent = (n===TOTAL)?(LANG==='de'?'Abschließen':'Finish'):(LANG==='de'?'Weiter':'Next');
+  renderProgress();
+  // Kaskade: Phase 6 dynamisch nach VAK
+  if(n===6) applyVakCascade();
+}
+function applyVakCascade(){
+  const map={
+    visual:{de:"Welche Filmszene berührt dich?",en:"Which film scene moves you?",ph_de:"z.B. eine Szene, ein Bild …",ph_en:"e.g. a scene, an image …"},
+    auditory:{de:"Welcher Klang/Song erdet dich?",en:"Which sound/song grounds you?",ph_de:"z.B. ein Song, ein Geräusch …",ph_en:"e.g. a song, a sound …"},
+    kinesthetic:{de:"Welche Bewegung gibt dir Kraft?",en:"Which movement gives you strength?",ph_de:"z.B. Laufen, Stretching …",ph_en:"e.g. running, stretching …"}
+  };
+  const m=map[data.vak]; if(!m) return;
+  document.getElementById('p6dyn').textContent=m[LANG];
+  document.querySelector('[name=metapher]').placeholder=LANG==='de'?m.ph_de:m.ph_en;
+}
+
+/* ---------- Felder einsammeln ---------- */
+function collect(){
+  data.name=document.querySelector('[name=name]').value.trim();
+  data.email=document.querySelector('[name=email]').value.trim();
+  data.ziel=(document.querySelector('[name=ziel]:checked')||{}).value||"";
+  data.vak=(document.querySelector('[name=vak]:checked')||{}).value||"";
+  data.blockaden=document.querySelector('[name=blockaden]').value.trim();
+  data.metapher=document.querySelector('[name=metapher]').value.trim();
+  data.session_typ=(document.querySelector('[name=session_typ]:checked')||{}).value||"";
+}
+
+/* Skala */
+document.querySelectorAll('#scaleExp .s').forEach(s=>{
+  s.addEventListener('click',()=>{
+    document.querySelectorAll('#scaleExp .s').forEach(x=>x.classList.remove('sel'));
+    s.classList.add('sel'); data.erfahrung=+s.dataset.v;
+  });
+});
+
+/* ---------- Navigation ---------- */
+document.getElementById('btnNext').addEventListener('click',()=>{
+  collect();
+  if(phase<TOTAL){ phase++; showPhase(phase); window.scrollTo({top:0,behavior:'smooth'}); }
+  else finish();
+});
+document.getElementById('btnBack').addEventListener('click',()=>{
+  if(phase>1){ phase--; showPhase(phase); window.scrollTo({top:0,behavior:'smooth'}); }
+});
+
+/* ---------- Abschluss + Formspree ---------- */
+function spawnSparkles(box){
+  for(let i=0;i<14;i++){
+    const s=document.createElement('span');s.className='spark';
+    s.style.left=(Math.random()*100)+'%';s.style.top=(Math.random()*100)+'%';
+    s.style.animationDelay=(Math.random()*0.4)+'s';
+    box.appendChild(s); setTimeout(()=>s.remove(),1600);
+  }
+}
+function finish(){
+  collect();
+  const prof=PROFILE_DB[data.ziel]||PROFILE_DB.explore;
+  const fu=prof.followups[LANG];
+  // Ergebnis-Screen
+  document.getElementById('obForm').style.display='none';
+  document.getElementById('resSession').textContent=prof.session;
+  const ul=document.getElementById('resFollowups'); ul.innerHTML='';
+  fu.forEach(q=>{const li=document.createElement('li');li.textContent=q;ul.appendChild(li);});
+  document.getElementById('resCta').href = BASE+'/'+(data.session_typ==='vip'?'vip.html':'sock-anchor-protocol.html');
+  document.getElementById('result').classList.add('show');
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+  spawnSparkles(document.querySelector('.result-box'));
+  // Formspree POST (Felder ohne sensible Daten)
+  const payload={
+    name:data.name, email:data.email, ziel:data.ziel, vak_type:data.vak,
+    erfahrung:data.erfahrung, blockaden:data.blockaden, metapher:data.metapher,
+    empfohlene_session:prof.session+' · '+prof.audio,
+    followup_fragen:fu, session_typ:data.session_typ,
+    _subject:'Neues Onboarding: '+(data.name||'?')+' → '+prof.session
+  };
+  fetch(FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
+    .catch(()=>{/* still zeigt Ergebnis; Mailversand best-effort */});
+}
+
+/* ---------- i18n ---------- */
+const i18n={de:null,en:{
+  "meta.title":"Intake · mindful7777","meta.desc":"Find your ideal Sock-Anchor path in a few steps. Science-based, no esoteric BS.",
+  "age.eyebrow":"ADULTS ONLY","age.h":"Are you 18 or older?","age.hint":"This intake is intended exclusively for adults.",
+  "age.yes":"Yes, I'm 18+","age.no":"No","age.deny":"Sorry, this offer is for adults only. Feel free to explore the <a href=\"https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html\" style=\"color:var(--gold-deep)\">blog</a>.",
+  "eyebrow":"INTAKE · 2 MIN","h1":"Find your path","sub":"A few questions, then you'll know your matching protocol. No account needed.",
+  "p1.h":"<span class=\"mono\" style=\"color:var(--gold)\">01</span> Who are you?","p1.hint":"Just the essentials — for your personal recommendation.",
+  "p1.name":"First name","p1.email":"Email",
+  "p2.h":"<span class=\"mono\" style=\"color:var(--gold)\">02</span> What's your main goal?","p2.hint":"Pick what fits best. This sets your path.",
+  "p2.sport.t":"Sport & Focus","p2.sport.d":"Performance, training, competition",
+  "p2.stress.t":"Stress & Sleep","p2.stress.d":"Calm, recovery, relaxation",
+  "p2.urban.t":"Work & Daily life","p2.urban.d":"Business, meetings, focus",
+  "p2.explore.t":"Just explore","p2.explore.d":"Curiosity, first time",
+  "p3.h":"<span class=\"mono\" style=\"color:var(--gold)\">03</span> How do you perceive most strongly?","p3.hint":"There's no right or wrong.",
+  "p3.v.t":"Images","p3.v.d":"I see things in front of me","p3.a.t":"Sounds","p3.a.d":"I hear inner voices/music","p3.k.t":"Feelings","p3.k.d":"I feel it in my body",
+  "p4.h":"<span class=\"mono\" style=\"color:var(--gold)\">04</span> Your experience with relaxation techniques?","p4.hint":"1 = never · 5 = very experienced",
+  "p5.h":"<span class=\"mono\" style=\"color:var(--gold)\">05</span> What holds you back most right now?","p5.hint":"Keywords are fine. (e.g. little time, racing thoughts)",
+  "p6.hint":"This helps us shape your session personally.",
+  "p7.h":"<span class=\"mono\" style=\"color:var(--gold)\">07</span> How would you like to start?","p7.hint":"You can switch anytime.",
+  "p7.free.t":"Start free","p7.free.d":"Sock-Anchor basics","p7.vip.t":"VIP stack","p7.vip.d":"All 7 protocols",
+  "nav.back":"Back","nav.next":"Next",
+  "res.h":"Your path is set","res.sub":"Based on your answers we recommend:","res.cta":"Let's go",
+  "disc":"These resources are for relaxation and personal development only. They do not replace medical or therapeutic treatment."
+}};
+const nodes=document.querySelectorAll('[data-i18n]');
+const phNodes=document.querySelectorAll('[data-i18n-ph]');
+const defaults={};
+nodes.forEach(n=>defaults[n.getAttribute('data-i18n')]=n.tagName==='TITLE'||n.tagName==='META'?(n.content||n.textContent):n.innerHTML);
+const phDefaults={};
+phNodes.forEach(n=>phDefaults[n.getAttribute('data-i18n-ph')]=n.placeholder);
+const phEN={"p1.name.ph":"Your first name","p5.ph":"In your words …","p6.ph":"e.g. a film, a place, a song …"};
+function setLang(lang){
+  LANG=lang; const dict=i18n[lang];
+  nodes.forEach(n=>{const k=n.getAttribute('data-i18n');const v=dict?(dict[k]??defaults[k]):defaults[k];
+    if(n.tagName==='META'){n.setAttribute('content',v);}else if(n.tagName==='TITLE'){n.textContent=v;}else{n.innerHTML=v;}});
+  phNodes.forEach(n=>{const k=n.getAttribute('data-i18n-ph');n.placeholder=lang==='en'?(phEN[k]??phDefaults[k]):phDefaults[k];});
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang?'true':'false'));
+  showPhase(phase);
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+(function(){var p=new URLSearchParams(location.search).get('lang');if(p&&['de','en'].includes(p))setLang(p);})();
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){try{if(location.protocol!=='about:'){var u=new URL(location.href);u.searchParams.set('lang',b.dataset.lang);history.replaceState(null,'',u);}}catch(e){/* Vorschau-Umgebung: URL-Update übersprungen */}});});
+
+// init
+showPhase(1);
+
+/* ---------- Magic: Enter-Taste = Weiter ---------- */
+document.addEventListener('keydown',function(e){
+  if(e.key==='Enter' && document.getElementById('obWrap').style.display!=='none'){
+    const active=document.querySelector('textarea:focus');
+    if(active) return; // im Textfeld normal Zeilenumbruch
+    e.preventDefault(); document.getElementById('btnNext').click();
+  }
+});
+document.getElementById('ageYes').addEventListener('click',function(){
+  document.getElementById('ageGate').style.display='none';
+  document.getElementById('obWrap').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+document.getElementById('ageNo').addEventListener('click',function(){
+  document.getElementById('ageDeny').style.display='block';
+});
+</script>
+</body>
+</html>
