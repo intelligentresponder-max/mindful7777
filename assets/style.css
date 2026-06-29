@@ -1,0 +1,178 @@
+/* ============================================================
+   mindful7777 — GLOBALES DESIGN-SYSTEM  "Hybrid"
+   Hell + ARES-Magie-Akzente · Gold + dezentes Cyan-Glow
+   Playfair (Headlines) · DM Mono (Akzente) · DM Sans (Body)
+   ------------------------------------------------------------
+   Einbinden in jede Seite:
+     <link rel="stylesheet" href="/mindful7777/assets/style.css">
+   (relativer Pfad je nach Ordnertiefe anpassen: ../assets/…)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap');
+
+/* ---------- Design Tokens ---------- */
+:root{
+  /* Basis (hell) */
+  --bg:        #F7F4EE;   /* Beige Haupthintergrund */
+  --surface:   #FFFFFF;   /* Karten, helle Flächen */
+  --ink:       #1B2845;   /* Mitternachtsblau — Text & dunkle Flächen */
+  --ink-soft:  #54616e;   /* gedämpfter Text */
+  --line:      rgba(27,40,69,.14);
+
+  /* Akzente */
+  --gold:      #D4A574;   /* Hauptakzent */
+  --gold-deep: #b9854f;
+  --cyan:      #7ee8fa;   /* magisches Glow-Cyan (sparsam!) */
+  --cyan-deep: #3FB6A8;
+
+  /* semantisch (Brainwaves) */
+  --beta:      #C75D52;
+  --theta:     #3FB6A8;
+
+  /* Fonts */
+  --serif: "Playfair Display", Georgia, serif;
+  --sans:  "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --mono:  "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* Glow / Schatten */
+  --glow-gold: 0 0 0 1px rgba(212,165,116,.35), 0 8px 30px -12px rgba(212,165,116,.5);
+  --glow-cyan: 0 0 22px -6px rgba(126,232,250,.55);
+  --shadow-card: 0 18px 40px -28px rgba(27,40,69,.5);
+
+  --radius: 16px;
+  --radius-lg: 22px;
+}
+
+/* ---------- Reset ---------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+
+/* ---------- magischer Ambient-Hintergrund (dezent) ---------- */
+/* zarte Gold/Cyan-Lichter, die "Magie" andeuten ohne zu stören */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(60vw 60vw at 85% -10%, rgba(212,165,116,.10), transparent 60%),
+    radial-gradient(50vw 50vw at -10% 110%, rgba(126,232,250,.08), transparent 60%);
+}
+
+/* ---------- Typografie ---------- */
+h1,h2,h3{font-family:var(--serif);color:var(--ink);line-height:1.12;font-weight:700}
+h1{font-size:clamp(2.1rem,6vw,3.6rem);font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(1.5rem,3.6vw,2.1rem);margin:42px 0 14px}
+h3{font-size:1.2rem}
+.eyebrow{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold-deep);font-weight:500;
+}
+.mono{font-family:var(--mono)}
+a{color:var(--gold-deep)}
+
+/* nummerierte H2-Akzente (wie im Blog) */
+h2 .n{font-family:var(--mono);color:var(--gold);font-size:.7em;margin-right:.5ch}
+
+/* ---------- Navigation / Topbar ---------- */
+.bar{
+  position:sticky;top:0;z-index:30;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(18px,5vw,48px);
+  background:rgba(27,40,69,.96);backdrop-filter:blur(8px);
+  color:var(--bg);
+}
+.brand{font-family:var(--serif);font-weight:800;letter-spacing:.02em;font-size:1.05rem}
+.brand b{color:var(--gold)}
+
+/* ---------- Sprachumschalter ---------- */
+.lang{display:flex;gap:4px;background:rgba(247,244,238,.1);border-radius:999px;padding:4px}
+.lang button{
+  font:inherit;font-family:var(--mono);font-size:.78rem;cursor:pointer;
+  border:0;border-radius:999px;padding:6px 13px;color:var(--bg);background:transparent;transition:.18s;
+}
+.lang button[aria-pressed="true"]{background:var(--gold);color:var(--ink)}
+.lang button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* ---------- Buttons ---------- */
+.btn,.cta-btn{
+  display:inline-block;font-family:var(--sans);font-weight:700;letter-spacing:.02em;
+  text-decoration:none;cursor:pointer;border:0;
+  background:var(--ink);color:var(--bg);
+  padding:15px 32px;border-radius:999px;transition:.2s;
+}
+.btn:hover,.cta-btn:hover{background:var(--gold);color:var(--ink);box-shadow:var(--glow-gold)}
+.btn:focus-visible,.cta-btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+/* magischer Button-Variant */
+.btn-magic{
+  background:linear-gradient(135deg,var(--ink),#243358);
+  color:var(--bg);position:relative;overflow:hidden;
+}
+.btn-magic:hover{box-shadow:var(--glow-cyan);color:#fff}
+
+/* ---------- Karten / Flächen ---------- */
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;box-shadow:var(--shadow-card);
+}
+.surface-dark{background:var(--ink);color:var(--bg)}
+.surface-dark h1,.surface-dark h2,.surface-dark h3{color:var(--bg)}
+
+/* ---------- Glow-Divider (magisches Element) ---------- */
+.divider-glow{
+  height:1px;border:0;margin:40px 0;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--cyan),transparent);
+  opacity:.7;
+}
+
+/* ---------- Glossar-Begriffe / Tooltips ---------- */
+.term{border-bottom:2px dotted var(--gold);cursor:help;font-weight:600;color:var(--ink);transition:.15s}
+.term:hover{color:var(--gold-deep);border-bottom-style:solid}
+
+/* ---------- Layout-Container ---------- */
+.container{max-width:760px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.hero{padding:clamp(48px,9vw,100px) clamp(18px,5vw,48px) clamp(36px,6vw,64px);max-width:780px;margin:0 auto;position:relative;overflow:hidden}
+.hero .sub{margin-top:20px;font-size:clamp(1.05rem,2.4vw,1.28rem);max-width:60ch;color:var(--ink-soft)}
+
+/* ---------- Animationen (Magic Layer) ---------- */
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.55}40%{transform:scale(1.18);opacity:.9}}
+@keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-50px)}}
+@keyframes floatUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+.breath{width:14px;height:14px;border-radius:50%;background:var(--gold);margin:0 auto 14px;animation:breathe 10s ease-in-out infinite;box-shadow:var(--glow-cyan)}
+.reveal{opacity:0}
+.reveal.in{animation:floatUp .7s ease both}
+
+/* magischer Schimmer-Text (für Headlines optional) */
+.shimmer{
+  background:linear-gradient(90deg,var(--ink) 30%,var(--gold) 50%,var(--ink) 70%);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;animation:shimmer 6s linear infinite;
+}
+
+/* ---------- Footer ---------- */
+.site-footer{text-align:center;padding:40px 18px;font-size:.82rem;color:var(--ink-soft);font-family:var(--mono)}
+
+/* ---------- Disclaimer ---------- */
+.disclaimer p{font-size:.8rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:18px;max-width:760px;margin:0 auto}
+
+/* ---------- Accessibility ---------- */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+  .reveal{opacity:1}
+}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* ---------- Gold-Spiral Watermark (ACCIO-Regel, dezent) ---------- */
+.watermark-spiral{
+  position:fixed;right:14px;bottom:14px;width:54px;height:54px;z-index:5;
+  opacity:.38;pointer-events:none;
+}
+.watermark-spiral svg{width:100%;height:100%;display:block}

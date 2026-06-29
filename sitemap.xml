@@ -189,4 +189,23 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Gluecksraeder -->
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>

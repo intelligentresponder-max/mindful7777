@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title data-i18n="meta.title">VIP Glücksrad · mindful7777</title>
+<meta name="description" data-i18n="meta.desc" content="Dein VIP-Bonus dreht sich. Sock-Anchor Glücksrad für mindful7777 VIP-Mitglieder.">
+<link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html">
+<link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html?lang=de">
+<link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VIP Glücksrad · mindful7777">
+<meta property="og:site_name" content="mindful7777">
+
+<link rel="icon" href="https://intelligentresponder-max.github.io/mindful7777/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://intelligentresponder-max.github.io/mindful7777/assets/style.css">
+<noscript><style>.reveal{opacity:1!important}</style></noscript>
+
+<style>
+.wheel-wrap{max-width:520px;margin:0 auto;padding:0 clamp(18px,5vw,40px) 40px;text-align:center}
+.wheel-stage{position:relative;width:min(88vw,420px);aspect-ratio:1;margin:18px auto}
+#wheel{width:100%;height:100%;display:block;border-radius:50%;
+  box-shadow:0 0 0 8px var(--surface),0 0 0 10px var(--gold),var(--shadow-card),var(--glow-cyan)}
+/* Zeiger (Gold) oben */
+.pointer{position:absolute;top:-6px;left:50%;transform:translateX(-50%);z-index:5;
+  width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;
+  border-top:26px solid var(--gold);filter:drop-shadow(0 2px 4px rgba(27,40,69,.4))}
+/* Nabe in der Mitte */
+.hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:4;
+  width:64px;height:64px;border-radius:50%;background:var(--ink);color:var(--bg);
+  display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;
+  box-shadow:0 0 0 4px var(--gold),var(--glow-cyan);font-size:.8rem;letter-spacing:.04em}
+.spin-btn{margin-top:24px}
+.spin-btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
+.result{margin-top:26px;min-height:80px}
+.result.show .result-card{animation:floatUp .5s ease both}
+.result-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;box-shadow:var(--shadow-card);display:none}
+.result.show .result-card{display:block}
+.result-card.joker{background:var(--ink);color:var(--bg);box-shadow:var(--glow-cyan)}
+.result-card h3{font-family:var(--serif);color:var(--gold);margin-bottom:6px}
+.result-card.joker h3{color:var(--gold)}
+.result-card p{font-size:.95rem;color:var(--ink-soft)}
+.result-card.joker p{color:rgba(247,244,238,.85)}
+.claim-btn{margin-top:14px;display:inline-block}
+.spins-left{font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);margin-top:10px;letter-spacing:.06em}
+</style>
+</head>
+<body>
+
+<div class="watermark-spiral" aria-hidden="true">
+  <svg viewBox="0 0 100 100"><path d="M50,50 m0,-4 a4,4 0 1,1 -4,4 a8,8 0 1,1 8,8 a12,12 0 1,1 -12,-12 a16,16 0 1,1 16,16 a20,20 0 1,1 -20,-20" fill="none" stroke="#D4A574" stroke-width="2"/></svg>
+</div>
+
+<div class="bar">
+  <div class="brand">mindful<b>7777</b></div>
+  <div class="lang" role="group" aria-label="Sprache / Language">
+    <button data-lang="de" aria-pressed="true">DE</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</div>
+
+<header class="hero" style="text-align:center;padding-bottom:10px">
+  <span class="eyebrow" data-i18n="eyebrow">VIP · EXKLUSIV</span>
+  <h1 class="serif" data-i18n="h1">Dein VIP-Bonus dreht sich</h1>
+  <p class="sub" data-i18n="sub" style="margin-inline:auto">Ein Dreh pro Tag. Jedes Segment ist ein echter Vorteil für deine Praxis. Viel Erfolg.</p>
+</header>
+
+<div class="wheel-wrap">
+  <div class="wheel-stage">
+    <div class="pointer" aria-hidden="true"></div>
+    <canvas id="wheel" width="600" height="600" role="img" aria-label="Glücksrad"></canvas>
+    <div class="hub">7777</div>
+  </div>
+  <button class="cta-btn btn-magic spin-btn" id="spinBtn" data-i18n="spin">Drehen</button>
+  <div class="spins-left" id="spinsLeft"></div>
+
+  <div class="result" id="result" aria-live="polite">
+    <div class="result-card" id="resultCard">
+      <h3 id="resultTitle"></h3>
+      <p id="resultText"></p>
+      <a class="cta-btn claim-btn" id="claimBtn" href="#" data-i18n="claim">Einlösen</a>
+    </div>
+  </div>
+</div>
+
+<div class="disclaimer container">
+  <p data-i18n="disc">Hinweis: Boni sind freiwillige Leistungen ohne Rechtsanspruch. mindful7777 ersetzt keine medizinische Behandlung.</p>
+</div>
+
+<footer class="site-footer">© 2026 mindful7777 · WHY NOT? BE THE CHANGE.</footer>
+
+<script>
+/* ============================================================
+   ⚙️  KONFIGURATION — HIER PREISE/SEGMENTE ÄNDERN
+   ------------------------------------------------------------
+   • Reihenfolge = Reihenfolge auf dem Rad (im Uhrzeigersinn)
+   • title / text  : DE + EN (für Sprachumschalter)
+   • weight        : Gewinnchance (höher = häufiger). Frei wählbar.
+   • joker:true     : Hebt das Segment als Jackpot hervor (dunkel)
+   • claim          : Link/Aktion beim "Einlösen"-Button
+   • Segmente hinzufügen/entfernen: einfach Objekte ergänzen/löschen.
+   ============================================================ */
+const WHEEL_CONFIG = {
+  spinsPerDay: 1,                 // wie oft pro Tag drehbar (0 = unbegrenzt)
+  claimDefault: "https://ko-fi.com/mindf7777",   // Standard-Einlöselink
+  segments: [
+    { de:{title:"Gratis Theta-Session", text:"Eine geführte 10-Min Theta-Session gratis. Schreib uns 'THETA'."},
+      en:{title:"Free Theta Session",   text:"One guided 10-min theta session, free. Message us 'THETA'."},
+      weight:18, joker:false },
+
+    { de:{title:"10% VIP-Rabatt", text:"10% auf deinen nächsten VIP-Monat."},
+      en:{title:"10% VIP Discount", text:"10% off your next VIP month."},
+      weight:16, joker:false },
+
+    { de:{title:"🃏 JOKER 7777", text:"DER JACKPOT! Schreib uns '7777 JOKER' für deinen größten Bonus — frei verhandelbar."},
+      en:{title:"🃏 JOKER 7777", text:"THE JACKPOT! Message us '7777 JOKER' for your biggest bonus — fully negotiable."},
+      weight:4, joker:true },
+
+    { de:{title:"Bonus-Protokoll", text:"Schalte ein zusätzliches Protokoll aus dem VIP-Stack frei."},
+      en:{title:"Bonus Protocol", text:"Unlock one extra protocol from the VIP stack."},
+      weight:14, joker:false },
+
+    { de:{title:"Priorität", text:"Deine nächste Anfrage wird bevorzugt bearbeitet."},
+      en:{title:"Priority", text:"Your next request gets priority handling."},
+      weight:16, joker:false },
+
+    { de:{title:"Nochmal drehen", text:"Glück gehabt — du darfst direkt nochmal drehen!"},
+      en:{title:"Spin again", text:"Lucky — you get another spin right away!"},
+      weight:10, joker:false, again:true },
+
+    { de:{title:"Mystery-Bonus", text:"Schreib uns das Codewort 'MYSTERY' und lass dich überraschen."},
+      en:{title:"Mystery Bonus", text:"Message us the codeword 'MYSTERY' and get surprised."},
+      weight:12, joker:false },
+
+    { de:{title:"Free Audio", text:"Gratis Sock-Anchor Audio-Session (MP3) für deine Sammlung."},
+      en:{title:"Free Audio", text:"Free Sock-Anchor audio session (MP3) for your collection."},
+      weight:10, joker:false }
+  ]
+};
+/* ====================== ENDE KONFIG ====================== */
+
+let LANG = 'de';
+const canvas = document.getElementById('wheel');
+const ctx = canvas.getContext('2d');
+const SIZE = canvas.width, R = SIZE/2;
+const segs = WHEEL_CONFIG.segments;
+const N = segs.length;
+const ARC = (2*Math.PI)/N;
+
+// Hybrid-Farbpalette (Weiß-Basis + Beige/Gold, Joker dunkelblau)
+const COL = {
+  white:"#FFFFFF", beige:"#F7F4EE", gold:"#D4A574", ink:"#1B2845",
+  goldLine:"#b9854f", inkText:"#1B2845", lightText:"#1B2845", darkSeg:"#1B2845"
+};
+
+function segFill(i){
+  if(segs[i].joker) return COL.ink;          // Joker = dunkelblau
+  return (i % 2 === 0) ? COL.white : COL.beige;  // abwechselnd weiß/beige
+}
+function segTextColor(i){ return segs[i].joker ? COL.gold : COL.ink; }
+
+function drawWheel(rot=0){
+  ctx.clearRect(0,0,SIZE,SIZE);
+  ctx.save(); ctx.translate(R,R); ctx.rotate(rot);
+  for(let i=0;i<N;i++){
+    const a0 = i*ARC, a1 = a0+ARC;
+    // Segment
+    ctx.beginPath(); ctx.moveTo(0,0); ctx.arc(0,0,R-6,a0,a1); ctx.closePath();
+    ctx.fillStyle = segFill(i); ctx.fill();
+    ctx.lineWidth = 3; ctx.strokeStyle = COL.gold; ctx.stroke();
+    // Label
+    ctx.save(); ctx.rotate(a0+ARC/2);
+    ctx.textAlign="right"; ctx.fillStyle=segTextColor(i);
+    ctx.font = `600 ${Math.round(SIZE*0.034)}px "DM Sans", sans-serif`;
+    const label = segs[i][LANG].title.replace(/^🃏\s*/,'🃏 ');
+    ctx.fillText(label.length>16 ? label.slice(0,15)+'…' : label, R-26, 6);
+    ctx.restore();
+  }
+  ctx.restore();
+  // Goldring
+  ctx.beginPath(); ctx.arc(R,R,R-6,0,2*Math.PI); ctx.lineWidth=6; ctx.strokeStyle=COL.gold; ctx.stroke();
+}
+
+// gewichtete Zufallsauswahl
+function pickIndex(){
+  const total = segs.reduce((s,x)=>s+(x.weight||1),0);
+  let r = Math.random()*total;
+  for(let i=0;i<N;i++){ r -= (segs[i].weight||1); if(r<=0) return i; }
+  return N-1;
+}
+
+let spinning=false, currentRot=0;
+function spin(){
+  if(spinning) return;
+  if(!canSpin()){ return; }
+  spinning=true;
+  document.getElementById('spinBtn').disabled=true;
+  document.getElementById('result').classList.remove('show');
+
+  const target = pickIndex();
+  // Zielwinkel: Zeiger oben (−90°). Segmentmitte unter Zeiger bringen.
+  const segCenter = target*ARC + ARC/2;
+  const spins = 5 + Math.floor(Math.random()*3);
+  const finalRot = (spins*2*Math.PI) + (-Math.PI/2 - segCenter);
+
+  const startRot = currentRot, dur = 4200, t0 = performance.now();
+  function frame(t){
+    const p = Math.min((t-t0)/dur,1);
+    const ease = 1 - Math.pow(1-p,3); // easeOutCubic
+    currentRot = startRot + (finalRot-startRot)*ease;
+    drawWheel(currentRot);
+    if(p<1){ requestAnimationFrame(frame); }
+    else { spinning=false; showResult(target); registerSpin(); }
+  }
+  requestAnimationFrame(frame);
+}
+
+function showResult(i){
+  const s = segs[i][LANG];
+  const card = document.getElementById('resultCard');
+  card.classList.toggle('joker', !!segs[i].joker);
+  document.getElementById('resultTitle').textContent = s.title;
+  document.getElementById('resultText').textContent = s.text;
+  const claim = document.getElementById('claimBtn');
+  claim.href = segs[i].claim || WHEEL_CONFIG.claimDefault;
+  document.getElementById('result').classList.add('show');
+  // "Nochmal drehen"
+  const btn=document.getElementById('spinBtn');
+  if(segs[i].again){ btn.disabled=false; }
+  updateSpinsLeft();
+}
+
+/* --- Tageslimit (ohne localStorage -> In-Memory + Datumscheck via Variable) ---
+   Hinweis: In-Memory hält nur für die Session. Für echtes Tageslimit über
+   Sessions hinweg müsste serverseitig/Backend gezählt werden. */
+let spinsUsed = 0;
+function canSpin(){
+  if(WHEEL_CONFIG.spinsPerDay===0) return true;
+  return spinsUsed < WHEEL_CONFIG.spinsPerDay;
+}
+function registerSpin(){ spinsUsed++; updateSpinsLeft();
+  if(!canSpin()){ document.getElementById('spinBtn').disabled=true; }
+}
+function updateSpinsLeft(){
+  const el=document.getElementById('spinsLeft');
+  if(WHEEL_CONFIG.spinsPerDay===0){ el.textContent=''; return; }
+  const left=Math.max(0,WHEEL_CONFIG.spinsPerDay-spinsUsed);
+  el.textContent = (LANG==='de'?'Drehs übrig: ':'Spins left: ')+left;
+}
+
+document.getElementById('spinBtn').addEventListener('click',spin);
+
+/* ---------- i18n ---------- */
+const i18n={ de:null, en:{
+  "meta.title":"VIP Wheel of Fortune · mindful7777",
+  "meta.desc":"Your VIP bonus is spinning. Sock-Anchor wheel for mindful7777 VIP members.",
+  "eyebrow":"VIP · EXCLUSIVE",
+  "h1":"Your VIP bonus is spinning",
+  "sub":"One spin per day. Every segment is a real perk for your practice. Good luck.",
+  "spin":"Spin","claim":"Claim",
+  "disc":"Note: Bonuses are voluntary benefits with no legal entitlement. mindful7777 does not replace medical treatment."
+}};
+const nodes=document.querySelectorAll('[data-i18n]');
+const defaults={};
+nodes.forEach(n=>defaults[n.getAttribute('data-i18n')]=n.tagName==='TITLE'||n.tagName==='META'?(n.content||n.textContent):n.innerHTML);
+function setLang(lang){
+  LANG=lang; const dict=i18n[lang];
+  nodes.forEach(n=>{const k=n.getAttribute('data-i18n');const v=dict?(dict[k]??defaults[k]):defaults[k];
+    if(n.tagName==='META'){n.setAttribute('content',v);}else if(n.tagName==='TITLE'){n.textContent=v;}else{n.innerHTML=v;}});
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang?'true':'false'));
+  drawWheel(currentRot); updateSpinsLeft();
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+(function(){var p=new URLSearchParams(location.search).get('lang');if(p&&['de','en'].includes(p))setLang(p);})();
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){var u=new URL(location.href);u.searchParams.set('lang',b.dataset.lang);history.replaceState(null,'',u);});});
+
+// init
+drawWheel(0); updateSpinsLeft();
+</script>
+</body>
+</html>
