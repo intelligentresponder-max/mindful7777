@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>VIP Protocol Stack · mindful7777</title>
-  <meta name="description" content="7 Protokolle. Kein Esoterik-Bullshit. Science-based. 25 €/Monat — monatlich kündbar." />
+  <meta name="description" content="7 Protokolle. Kein Esoterik-Bullshit. Science-based. 77,77 €/Monat — monatlich kündbar." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -48,6 +48,10 @@
     .nav-home:hover{color:var(--gold)}
     .nav-login-btn{background:var(--gold);color:#000;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:9px 20px;border:none;cursor:pointer;font-family:inherit;transition:opacity .2s}
     .nav-login-btn:hover{opacity:.85}
+    .lang-toggle{display:flex;gap:4px;border:1px solid var(--border);padding:3px}
+    .lang-btn{background:none;border:none;color:var(--muted);font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.1em;padding:5px 10px;cursor:pointer;transition:all .2s}
+    .lang-btn.active{background:var(--gold);color:#000}
+    .lang-btn:not(.active):hover{color:var(--gold)}
 
     /* ── PUBLIC SHELL ── */
     #publicShell{display:block}
@@ -230,7 +234,8 @@
 <nav id="mainNav">
   <a href="index.html" class="nav-logo">mindful<span style="color:var(--muted)">7777</span></a>
   <div class="nav-right">
-    <a href="index.html" class="nav-home">← Startseite</a>
+    <a href="index.html" class="nav-home" data-i18n="nav.home">← Startseite</a>
+    <div class="lang-toggle"><button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button></div>
     <button class="nav-login-btn" onclick="openModal()">🔐 VIP Login</button>
   </div>
 </nav>
@@ -241,11 +246,11 @@
     <button class="pw-close" onclick="closeModal()">✕</button>
     <div class="pw-title">mindful<span>7777</span></div>
     <div class="pw-sub">VIP · Protocol Stack</div>
-    <label class="pw-label" for="pwInput">Passwort eingeben</label>
+    <label class="pw-label" for="pwInput" data-i18n="pw.label">Passwort eingeben</label>
     <input class="pw-input" id="pwInput" type="password" placeholder="••••" autocomplete="off" />
-    <div class="pw-err" id="pwErr">Falsches Passwort. Passwort per WhatsApp anfordern.</div>
-    <button class="pw-btn" onclick="checkPw()">Eintreten →</button>
-    <div class="pw-hint">Noch kein Passwort? <a href="https://ko-fi.com/mindf7777" target="_blank">VIP aktivieren →</a> oder <a href="https://wa.me/4916346922255" target="_blank">WhatsApp</a></div>
+    <div class="pw-err" id="pwErr" data-i18n="pw.err">Falsches Passwort. Passwort per WhatsApp anfordern.</div>
+    <button class="pw-btn" onclick="checkPw()" data-i18n="pw.btn">Eintreten →</button>
+    <div class="pw-hint" data-i18n="pw.hint">Noch kein Passwort? <a href="https://ko-fi.com/mindf7777" target="_blank">VIP aktivieren →</a> oder <a href="https://wa.me/4916346922255" target="_blank">WhatsApp</a></div>
   </div>
 </div>
 
@@ -260,32 +265,31 @@
     <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:start;width:100%">
       <div>
         <div class="hero-kicker">mindful7777 · VIP Protocol Stack</div>
-        <h1 class="hero-title">7 Protokolle.<br/>1 System.<br/><em>Kein Bullshit.</em></h1>
-        <p class="hero-sub">Science-based. Vagus-Nerv. Pavlov-Konditionierung. Beta→Theta. Alles, was du brauchst, um dein Nervensystem systematisch zu trainieren — messbar, reproduzierbar, on demand.</p>
+        <h1 class="hero-title" data-i18n="hero.title">7 Protokolle.<br/>1 System.<br/><em>Kein Bullshit.</em></h1>
+        <p class="hero-sub" data-i18n="hero.sub">Science-based. Vagus-Nerv. Pavlov-Konditionierung. Beta→Theta. Alles, was du brauchst, um dein Nervensystem systematisch zu trainieren — messbar, reproduzierbar, on demand.</p>
         <div class="hero-actions">
-          <button class="btn-primary" onclick="openModal()">🔐 Ich habe ein Passwort</button>
-          <a href="https://ko-fi.com/mindf7777" class="btn-ghost" target="_blank">VIP aktivieren — 25 €/Monat →</a>
+          <button class="btn-primary" onclick="openModal()" data-i18n="hero.btnPassword">🔐 Ich habe ein Passwort</button>
+          <a href="https://ko-fi.com/mindf7777" class="btn-ghost" target="_blank" data-i18n="hero.ctaKofi">VIP aktivieren — 77,77 €/Monat →</a>
         </div>
-        <p style="font-size:12px;color:var(--muted);margin-top:12px">Noch kein Zugang? <a href="https://wa.me/4916346922255" style="color:var(--gold)" target="_blank">WhatsApp → Passwort in 5 Min.</a></p>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px" data-i18n="hero.noAccess">Noch kein Zugang? <a href="https://wa.me/4916346922255" style="color:var(--gold)" target="_blank">WhatsApp → Passwort in 5 Min.</a></p>
       </div>
       <div class="hero-price-box" style="min-width:320px;max-width:360px">
-        <div class="price-box-badge">Best Value · VIP Stack</div>
-        <div class="price-box-old">Normalerweise 47 €/Monat</div>
-        <div class="price-box-main">
-          <div class="price-num">25 €</div>
-          <div class="price-period">/ Monat<br/>monatl. kündbar</div>
+        <div class="price-box-badge" data-i18n="price.badge">Best Value · VIP Stack</div>
+        <div class="price-box-main" style="margin-top:8px">
+          <div class="price-num" data-i18n="price.num">77,77 €</div>
+          <div class="price-period" data-i18n="price.period">/ Monat<br/>monatl. kündbar</div>
         </div>
         <ul class="price-includes">
-          <li><strong>7 Protokolle</strong> (PDF + Audio je)</li>
-          <li><strong>Sock-Anchor Full Protocol</strong> — sofort verfügbar</li>
-          <li><strong>Focus-Stack</strong> — in Produktion</li>
-          <li>Sleep-Anchor, Stress-Response, Flow-State</li>
-          <li>Custom Script Builder + Community Q&A</li>
-          <li>Discord FFM-777 Community</li>
-          <li>Monatlich neue Protokolle</li>
+          <li data-i18n="price.li1"><strong>7 Protokolle</strong> (PDF + Audio je)</li>
+          <li data-i18n="price.li2"><strong>Sock-Anchor Full Protocol</strong> — sofort verfügbar</li>
+          <li data-i18n="price.li3"><strong>Focus-Stack</strong> — in Produktion</li>
+          <li data-i18n="price.li4">Sleep-Anchor, Stress-Response, Flow-State</li>
+          <li data-i18n="price.li5">Custom Script Builder + Community Q&A</li>
+          <li data-i18n="price.li6">Discord FFM-777 Community</li>
+          <li data-i18n="price.li7">Monatlich neue Protokolle</li>
         </ul>
-        <a href="https://ko-fi.com/mindf7777" class="price-cta" target="_blank">VIP aktivieren auf Ko-fi →</a>
-        <div class="price-note">Passwort per Mail nach Aktivierung · monatl. kündbar</div>
+        <a href="https://ko-fi.com/mindf7777" class="price-cta" target="_blank" data-i18n="price.cta">VIP aktivieren auf Ko-fi →</a>
+        <div class="price-note" data-i18n="price.note">Passwort per Mail nach Aktivierung · monatl. kündbar</div>
       </div>
     </div>
   </section>
@@ -293,74 +297,74 @@
   <!-- STRIPE WIDGET -->
   <div class="stripe-section">
     <div class="stripe-inner">
-      <div class="stripe-kicker">Direkt unterstützen</div>
-      <div class="stripe-title">Oder zahle einmalig, was dir passt.</div>
-      <div class="stripe-sub">Kein Abo-Zwang. Einmalzahlung für sofortigen VIP-Zugang — schreib mir danach auf WhatsApp.</div>
+      <div class="stripe-kicker" data-i18n="stripe.kicker">Direkt unterstützen</div>
+      <div class="stripe-title" data-i18n="stripe.title">Oder zahle einmalig, was dir passt.</div>
+      <div class="stripe-sub" data-i18n="stripe.sub">Kein Abo-Zwang. Einmalzahlung für sofortigen VIP-Zugang — schreib mir danach auf WhatsApp.</div>
       <div class="stripe-widget-wrap">
         <stripe-buy-button
           buy-button-id="buy_btn_1TZPnAIxh6j8mxSl50pQvrHj"
           publishable-key="pk_live_51TTvm4Ixh6j8mxSlPd0N9iDRE2kq8aR7pfmMC8BI5SGEO0BoQnCWtnGplL6WFxEQZzLfSz1GgUBHgYN5iLJYVdDN00C9g79Fuo"
         ></stripe-buy-button>
       </div>
-      <div class="stripe-note">Sicher über Stripe · keine Zahlungsdaten werden gespeichert</div>
+      <div class="stripe-note" data-i18n="stripe.note">Sicher über Stripe · keine Zahlungsdaten werden gespeichert</div>
     </div>
   </div>
 
   <!-- PROTOKOLL PREVIEW -->
   <section class="proto-section">
     <div style="max-width:1200px;margin:0 auto">
-      <div class="sec-kicker">Was du bekommst</div>
-      <h2 class="sec-title">Das vollständige<br/><em>Protocol System.</em></h2>
-      <p class="sec-sub">Jedes Protokoll ist ein eigenständiges Trainingssystem — aufeinander aufgebaut, stapelbar, wissenschaftlich fundiert.</p>
+      <div class="sec-kicker" data-i18n="proto.kicker">Was du bekommst</div>
+      <h2 class="sec-title" data-i18n="proto.title">Das vollständige<br/><em>Protocol System.</em></h2>
+      <p class="sec-sub" data-i18n="proto.sub">Jedes Protokoll ist ein eigenständiges Trainingssystem — aufeinander aufgebaut, stapelbar, wissenschaftlich fundiert.</p>
 
       <div class="proto-grid">
         <div class="proto-card live">
           <div class="proto-num">7777-1</div>
           <div class="proto-status live">✓ Live</div>
           <div class="proto-title">Sock-Anchor Full Protocol</div>
-          <div class="proto-desc">Das Basisprotokoll. 30-Tage Konditionierungsplan. Pavlov-Konditionierung trifft Vagus-Nerv. 90-Sekunden Neural Reset — on demand.</div>
+          <div class="proto-desc" data-i18n="proto.card1.desc">Das Basisprotokoll. 30-Tage Konditionierungsplan. Pavlov-Konditionierung trifft Vagus-Nerv. 90-Sekunden Neural Reset — on demand.</div>
           <div class="proto-tags"><span class="proto-tag">PDF</span><span class="proto-tag">Audio 10min</span><span class="proto-tag">HRV-Tracking</span></div>
-          <div class="proto-lock live">→ Sofort verfügbar nach Login</div>
+          <div class="proto-lock live" data-i18n="proto.card1.lock">→ Sofort verfügbar nach Login</div>
         </div>
         <div class="proto-card build">
           <div class="proto-num">7777-2</div>
           <div class="proto-status build">⚙ Build</div>
           <div class="proto-title">Focus-Stack Pre-Work Reset</div>
-          <div class="proto-desc">3 Minuten vor dem Deep-Work-Block. Gamma-Aktivierung, Attention-Anchoring, Arbeitsgedächtnis-Priming. Für reproduzierbaren Flow-State.</div>
+          <div class="proto-desc" data-i18n="proto.card2.desc">3 Minuten vor dem Deep-Work-Block. Gamma-Aktivierung, Attention-Anchoring, Arbeitsgedächtnis-Priming. Für reproduzierbaren Flow-State.</div>
           <div class="proto-tags"><span class="proto-tag">3 PDFs</span><span class="proto-tag">3 Audios</span><span class="proto-tag">Gamma 40Hz</span></div>
-          <div class="proto-lock">→ Kommt diesen Monat</div>
+          <div class="proto-lock" data-i18n="proto.card2.lock">→ Kommt diesen Monat</div>
         </div>
         <div class="proto-card">
           <div class="proto-num">7777-3</div>
           <div class="proto-status planned">Planned</div>
-          <div class="proto-title">Sleep-Anchor Protocol</div>
-          <div class="proto-desc">Einschlafzeit unter 10 Minuten — reproduzierbar. 4-7-8 Atemtechnik + modifizierte PMR-Sequenz + konditionierter Schlaf-Anker.</div>
+          <div class="proto-title" data-i18n="proto.card3.title">Sleep-Anchor Protocol</div>
+          <div class="proto-desc" data-i18n="proto.card3.desc">Einschlafzeit unter 10 Minuten — reproduzierbar. 4-7-8 Atemtechnik + modifizierte PMR-Sequenz + konditionierter Schlaf-Anker.</div>
           <div class="proto-tags"><span class="proto-tag">PDF</span><span class="proto-tag">Audio</span><span class="proto-tag">Theta 6Hz</span></div>
           <div class="proto-lock">→ Q3 2026</div>
         </div>
         <div class="proto-card">
           <div class="proto-num">7777-4</div>
           <div class="proto-status planned">Planned</div>
-          <div class="proto-title">Stress-Response Kalibrierung</div>
-          <div class="proto-desc">HRV-basiertes Protokoll für chronisch hohes Cortisol-Niveau. 6 Minuten. Für Einsatzkräfte, Athleten, Schichtarbeiter.</div>
+          <div class="proto-title" data-i18n="proto.card4.title">Stress-Response Kalibrierung</div>
+          <div class="proto-desc" data-i18n="proto.card4.desc">HRV-basiertes Protokoll für chronisch hohes Cortisol-Niveau. 6 Minuten. Für Einsatzkräfte, Athleten, Schichtarbeiter.</div>
           <div class="proto-tags"><span class="proto-tag">PDF</span><span class="proto-tag">Audio</span><span class="proto-tag">HRV</span></div>
           <div class="proto-lock">→ Q3 2026</div>
         </div>
         <div class="proto-card">
           <div class="proto-num">7777-5</div>
           <div class="proto-status planned">Planned</div>
-          <div class="proto-title">Flow-State Induktion</div>
-          <div class="proto-desc">3 differenzierte Induktionssequenzen: kreativ / analytisch / athletisch. 5–8 Minuten Investition, 90 Minuten stabiler Zielzustand.</div>
+          <div class="proto-title" data-i18n="proto.card5.title">Flow-State Induktion</div>
+          <div class="proto-desc" data-i18n="proto.card5.desc">3 differenzierte Induktionssequenzen: kreativ / analytisch / athletisch. 5–8 Minuten Investition, 90 Minuten stabiler Zielzustand.</div>
           <div class="proto-tags"><span class="proto-tag">3 Varianten</span><span class="proto-tag">PDF</span><span class="proto-tag">Audio</span></div>
-          <div class="proto-lock">→ Q4 2026</div>
+          <div class="proto-lock" data-i18n="proto.card5.lock">→ Q4 2026</div>
         </div>
         <div class="proto-card">
           <div class="proto-num">7777-6 + 7777-7</div>
           <div class="proto-status planned">Planned</div>
-          <div class="proto-title">Custom Script Builder + Community</div>
-          <div class="proto-desc">Persönliches Hypnose-Skript nach deinen Zielen. Monatliche Community Calls. Q&A Archive. Discord FFM-777.</div>
+          <div class="proto-title" data-i18n="proto.card6.title">Custom Script Builder + Community</div>
+          <div class="proto-desc" data-i18n="proto.card6.desc">Persönliches Hypnose-Skript nach deinen Zielen. Monatliche Community Calls. Q&A Archive. Discord FFM-777.</div>
           <div class="proto-tags"><span class="proto-tag">1:1</span><span class="proto-tag">Discord</span><span class="proto-tag">Live Q&A</span></div>
-          <div class="proto-lock">→ Ab VIP aktiv</div>
+          <div class="proto-lock" data-i18n="proto.card6.lock">→ Ab VIP aktiv</div>
         </div>
       </div>
     </div>
@@ -369,24 +373,24 @@
   <!-- OBJECTION HANDLING -->
   <section class="obj-section">
     <div style="max-width:1200px;margin:0 auto">
-      <div class="sec-kicker">Häufige Einwände</div>
-      <h2 class="sec-title" style="font-size:clamp(24px,3vw,36px);margin-bottom:0"><em>Klingt esoterisch?</em> Stimmt nicht.</h2>
+      <div class="sec-kicker" data-i18n="obj.kicker">Häufige Einwände</div>
+      <h2 class="sec-title" style="font-size:clamp(24px,3vw,36px);margin-bottom:0" data-i18n="obj.title"><em>Klingt esoterisch?</em> Stimmt nicht.</h2>
       <div class="obj-grid">
         <div class="obj-card">
-          <div class="obj-einwand">„Klingt esoterisch."</div>
-          <div class="obj-counter">Kein Chakra, kein Karma — reines Konditionierungsprinzip. Pavlov, 1897. Verhaltenstherapie, täglich angewandt. Der Sock ist nur der Reiz.</div>
+          <div class="obj-einwand" data-i18n="obj.card1.q">„Klingt esoterisch."</div>
+          <div class="obj-counter" data-i18n="obj.card1.a">Kein Chakra, kein Karma — reines Konditionierungsprinzip. Pavlov, 1897. Verhaltenstherapie, täglich angewandt. Der Sock ist nur der Reiz.</div>
         </div>
         <div class="obj-card">
-          <div class="obj-einwand">„Zu simpel."</div>
-          <div class="obj-counter">Pavlov brauchte auch nur eine Glocke. Das Prinzip ist simpel. Die Konsequenz nicht: ein automatischer Reset, jederzeit, ohne Willensakt.</div>
+          <div class="obj-einwand" data-i18n="obj.card2.q">„Zu simpel."</div>
+          <div class="obj-counter" data-i18n="obj.card2.a">Pavlov brauchte auch nur eine Glocke. Das Prinzip ist simpel. Die Konsequenz nicht: ein automatischer Reset, jederzeit, ohne Willensakt.</div>
         </div>
         <div class="obj-card">
-          <div class="obj-einwand">„Funktioniert das wirklich?"</div>
-          <div class="obj-counter">90 Sekunden testen kostet dich nichts. Das Starter-Protokoll ist gratis. Wenn es nach 3 Wochen nicht funktioniert, hast du 21 Tage verloren — aber es wird funktionieren.</div>
+          <div class="obj-einwand" data-i18n="obj.card3.q">„Funktioniert das wirklich?"</div>
+          <div class="obj-counter" data-i18n="obj.card3.a">90 Sekunden testen kostet dich nichts. Das Starter-Protokoll ist gratis. Wenn es nach 3 Wochen nicht funktioniert, hast du 21 Tage verloren — aber es wird funktionieren.</div>
         </div>
         <div class="obj-card">
-          <div class="obj-einwand">„Ich habe keine Zeit für Protokolle."</div>
-          <div class="obj-counter">90 Sekunden. Das ist das gesamte Protokoll in der Anwendungsphase. Die Aufbauphase dauert 5 Minuten täglich über 21 Tage. Danach: automatisch.</div>
+          <div class="obj-einwand" data-i18n="obj.card4.q">„Ich habe keine Zeit für Protokolle."</div>
+          <div class="obj-counter" data-i18n="obj.card4.a">90 Sekunden. Das ist das gesamte Protokoll in der Anwendungsphase. Die Aufbauphase dauert 5 Minuten täglich über 21 Tage. Danach: automatisch.</div>
         </div>
       </div>
     </div>
@@ -395,13 +399,13 @@
   <footer>
     <div class="footer-logo">mindful7777</div>
     <div class="footer-links">
-      <a href="index.html">Startseite</a>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
+      <a href="index.html" data-i18n="footer.home">Startseite</a>
+      <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
+      <a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>
       <a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a>
       <a href="https://ko-fi.com/mindf7777" target="_blank">Ko-fi</a>
     </div>
-    <div class="footer-copy">© 2026 mindful7777 · André Schwarz · Frankfurt · WHY NOT? BE THE CHANGE. · Alle Inhalte dienen der Entspannung. Kein Ersatz für medizinische Beratung.</div>
+    <div class="footer-copy" data-i18n="footer.copy">© 2026 mindful7777 · André Schwarz · Frankfurt · WHY NOT? BE THE CHANGE. · Alle Inhalte dienen der Entspannung. Kein Ersatz für medizinische Beratung.</div>
   </footer>
 
 </div><!-- /publicShell -->
@@ -416,7 +420,8 @@
       <div class="m-nav-logo">mindful<span style="color:var(--muted)">7777</span></div>
       <div class="m-nav-actions">
         <div class="m-chip">VIP Member</div>
-        <button class="m-logout" onclick="lockMember()">🔒 Logout</button>
+        <div class="lang-toggle"><button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button><button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button></div>
+        <button class="m-logout" onclick="lockMember()" data-i18n="member.logout">🔒 Logout</button>
       </div>
     </div>
 
@@ -424,24 +429,24 @@
     <div class="m-hero">
       <div style="max-width:1100px;margin:0 auto">
         <div class="m-hero-kicker">Premium7777 · Member Area · Protocol Stack</div>
-        <div class="m-hero-title">Willkommen zurück.<br/><em>Dein Stack wartet.</em></div>
-        <p class="m-hero-sub">Hier sind alle deine Protokolle. Starte mit 7777-1 wenn du neu bist. Alles andere folgt darauf auf.</p>
+        <div class="m-hero-title" data-i18n="member.hero.title">Willkommen zurück.<br/><em>Dein Stack wartet.</em></div>
+        <p class="m-hero-sub" data-i18n="member.hero.sub">Hier sind alle deine Protokolle. Starte mit 7777-1 wenn du neu bist. Alles andere folgt darauf auf.</p>
       </div>
     </div>
 
     <!-- Member Stats -->
     <div class="m-stats">
-      <div class="m-stat"><span class="m-stat-num">1 / 7</span><span class="m-stat-label">Protokolle live</span></div>
-      <div class="m-stat"><span class="m-stat-num">21 Tage</span><span class="m-stat-label">Basis-Konditionierung</span></div>
+      <div class="m-stat"><span class="m-stat-num">1 / 7</span><span class="m-stat-label" data-i18n="member.stats.protocols">Protokolle live</span></div>
+      <div class="m-stat"><span class="m-stat-num" data-i18n="member.stats.daysNum">21 Tage</span><span class="m-stat-label" data-i18n="member.stats.days">Basis-Konditionierung</span></div>
       <div class="m-stat"><span class="m-stat-num">90s</span><span class="m-stat-label">Reset on demand</span></div>
-      <div class="m-stat"><span class="m-stat-num">Monatlich</span><span class="m-stat-label">Neue Protokolle</span></div>
+      <div class="m-stat"><span class="m-stat-num" data-i18n="member.stats.monthlyNum">Monatlich</span><span class="m-stat-label" data-i18n="member.stats.monthly">Neue Protokolle</span></div>
     </div>
 
     <!-- Protocol Grid -->
     <div class="m-protocols">
       <div style="max-width:1100px;margin:0 auto">
         <div class="m-proto-header">
-          <div class="sec-kicker">Deine Protokolle</div>
+          <div class="sec-kicker" data-i18n="member.proto.kicker">Deine Protokolle</div>
           <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);font-weight:400;color:var(--white)">Protocol Stack · <em style="color:var(--gold)">7777</em></h2>
         </div>
         <div class="m-proto-grid">
@@ -451,81 +456,81 @@
             <div class="m-proto-badge active">✓ Live</div>
             <div class="m-proto-num">7777-1</div>
             <div class="m-proto-title">Sock-Anchor Full Protocol</div>
-            <div class="m-proto-desc">Das Basisprotokoll. 30-Tage Konditionierungsplan. Starte hier — alles andere baut darauf auf.</div>
+            <div class="m-proto-desc" data-i18n="member.card1.desc">Das Basisprotokoll. 30-Tage Konditionierungsplan. Starte hier — alles andere baut darauf auf.</div>
             <div class="m-proto-content">
-              <div class="m-content-item"><span class="icon">📄</span><span class="label">30-Tage Konditionierungsplan (PDF)</span><span class="status ready">Bereit</span></div>
-              <div class="m-content-item"><span class="icon">🎵</span><span class="label">10-Min Induktions-Audio (MP3)</span><span class="status ready">Bereit</span></div>
-              <div class="m-content-item"><span class="icon">📊</span><span class="label">HRV-Tracking-Vorlage</span><span class="status ready">Bereit</span></div>
-              <div class="m-content-item"><span class="icon">📋</span><span class="label">Anker-Install-Sequenz</span><span class="status ready">Bereit</span></div>
+              <div class="m-content-item"><span class="icon">📄</span><span class="label" data-i18n="member.card1.item1">30-Tage Konditionierungsplan (PDF)</span><span class="status ready" data-i18n="member.status.ready">Bereit</span></div>
+              <div class="m-content-item"><span class="icon">🎵</span><span class="label" data-i18n="member.card1.item2">10-Min Induktions-Audio (MP3)</span><span class="status ready" data-i18n="member.status.ready">Bereit</span></div>
+              <div class="m-content-item"><span class="icon">📊</span><span class="label" data-i18n="member.card1.item3">HRV-Tracking-Vorlage</span><span class="status ready" data-i18n="member.status.ready">Bereit</span></div>
+              <div class="m-content-item"><span class="icon">📋</span><span class="label" data-i18n="member.card1.item4">Anker-Install-Sequenz</span><span class="status ready" data-i18n="member.status.ready">Bereit</span></div>
             </div>
-            <a href="https://mindful777.gumroad.com/l/ucaan" class="m-proto-action" target="_blank">→ Protokoll herunterladen</a>
+            <a href="https://mindful777.gumroad.com/l/ucaan" class="m-proto-action" target="_blank" data-i18n="member.card1.action">→ Protokoll herunterladen</a>
           </div>
 
           <!-- 7777-2 BUILD -->
           <div class="m-proto-card building">
-            <div class="m-proto-badge building">⚙ In Produktion</div>
+            <div class="m-proto-badge building" data-i18n="member.card2.badge">⚙ In Produktion</div>
             <div class="m-proto-num">7777-2</div>
             <div class="m-proto-title">Focus-Stack Pre-Work Reset</div>
-            <div class="m-proto-desc">3 Minuten vor dem Deep-Work-Block. Gamma-Aktivierung, Attention-Anchoring. Kommt diesen Monat.</div>
+            <div class="m-proto-desc" data-i18n="member.card2.desc">3 Minuten vor dem Deep-Work-Block. Gamma-Aktivierung, Attention-Anchoring. Kommt diesen Monat.</div>
             <div class="m-proto-content">
-              <div class="m-content-item"><span class="icon">📄</span><span class="label">Pre-Work Reset Protokoll</span><span class="status soon">Bald</span></div>
-              <div class="m-content-item"><span class="icon">📄</span><span class="label">Deep-Focus Anker Protokoll</span><span class="status soon">Bald</span></div>
-              <div class="m-content-item"><span class="icon">🎵</span><span class="label">3 × Audio mit Gamma-Overlay</span><span class="status soon">Bald</span></div>
+              <div class="m-content-item"><span class="icon">📄</span><span class="label" data-i18n="member.card2.item1">Pre-Work Reset Protokoll</span><span class="status soon" data-i18n="member.status.soon">Bald</span></div>
+              <div class="m-content-item"><span class="icon">📄</span><span class="label" data-i18n="member.card2.item2">Deep-Focus Anker Protokoll</span><span class="status soon" data-i18n="member.status.soon">Bald</span></div>
+              <div class="m-content-item"><span class="icon">🎵</span><span class="label" data-i18n="member.card2.item3">3 × Audio mit Gamma-Overlay</span><span class="status soon" data-i18n="member.status.soon">Bald</span></div>
             </div>
-            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank">→ Notify me per WhatsApp</a>
+            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank" data-i18n="member.card2.action">→ Notify me per WhatsApp</a>
           </div>
 
           <!-- 7777-3 PLANNED -->
           <div class="m-proto-card locked">
             <div class="m-proto-badge locked">Planned · Q3</div>
             <div class="m-proto-num">7777-3</div>
-            <div class="m-proto-title">Sleep-Anchor Protocol</div>
-            <div class="m-proto-desc">Einschlafzeit unter 10 Minuten — reproduzierbar. Theta-Induktion, konditionierter Schlaf-Anker.</div>
+            <div class="m-proto-title" data-i18n="proto.card3.title">Sleep-Anchor Protocol</div>
+            <div class="m-proto-desc" data-i18n="member.card3.desc">Einschlafzeit unter 10 Minuten — reproduzierbar. Theta-Induktion, konditionierter Schlaf-Anker.</div>
             <div class="m-proto-content">
-              <div class="m-content-item"><span class="icon">📄</span><span class="label">Sleep-Anchor Protokoll</span><span class="status planned">Planned</span></div>
-              <div class="m-content-item"><span class="icon">🎵</span><span class="label">Einschlaf-Audio mit Theta 6Hz</span><span class="status planned">Planned</span></div>
+              <div class="m-content-item"><span class="icon">📄</span><span class="label" data-i18n="member.card3.item1">Sleep-Anchor Protokoll</span><span class="status planned">Planned</span></div>
+              <div class="m-content-item"><span class="icon">🎵</span><span class="label" data-i18n="member.card3.item2">Einschlaf-Audio mit Theta 6Hz</span><span class="status planned">Planned</span></div>
             </div>
-            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank">→ Notify me</a>
+            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank" data-i18n="member.notifyMe">→ Notify me</a>
           </div>
 
           <!-- 7777-4 PLANNED -->
           <div class="m-proto-card locked">
             <div class="m-proto-badge locked">Planned · Q3</div>
             <div class="m-proto-num">7777-4</div>
-            <div class="m-proto-title">Stress-Response Kalibrierung</div>
-            <div class="m-proto-desc">HRV-basiert. 6 Minuten. Für Einsatzkräfte, Athleten und alle mit strukturell hohem Cortisol-Niveau.</div>
+            <div class="m-proto-title" data-i18n="proto.card4.title">Stress-Response Kalibrierung</div>
+            <div class="m-proto-desc" data-i18n="member.card4.desc">HRV-basiert. 6 Minuten. Für Einsatzkräfte, Athleten und alle mit strukturell hohem Cortisol-Niveau.</div>
             <div class="m-proto-content">
-              <div class="m-content-item"><span class="icon">📄</span><span class="label">Stress-Response Protokoll</span><span class="status planned">Planned</span></div>
-              <div class="m-content-item"><span class="icon">🎵</span><span class="label">HRV-Reset Audio</span><span class="status planned">Planned</span></div>
+              <div class="m-content-item"><span class="icon">📄</span><span class="label" data-i18n="member.card4.item1">Stress-Response Protokoll</span><span class="status planned">Planned</span></div>
+              <div class="m-content-item"><span class="icon">🎵</span><span class="label" data-i18n="member.card4.item2">HRV-Reset Audio</span><span class="status planned">Planned</span></div>
             </div>
-            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank">→ Notify me</a>
+            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank" data-i18n="member.notifyMe">→ Notify me</a>
           </div>
 
           <!-- 7777-5 PLANNED -->
           <div class="m-proto-card locked">
             <div class="m-proto-badge locked">Planned · Q4</div>
             <div class="m-proto-num">7777-5</div>
-            <div class="m-proto-title">Flow-State Induktion</div>
-            <div class="m-proto-desc">3 Induktionen: kreativ / analytisch / athletisch. 5–8 Min. Danach 90 Min stabiler Zielzustand.</div>
+            <div class="m-proto-title" data-i18n="proto.card5.title">Flow-State Induktion</div>
+            <div class="m-proto-desc" data-i18n="member.card5.desc">3 Induktionen: kreativ / analytisch / athletisch. 5–8 Min. Danach 90 Min stabiler Zielzustand.</div>
             <div class="m-proto-content">
-              <div class="m-content-item"><span class="icon">📄</span><span class="label">3 × Flow-Protokoll (Varianten)</span><span class="status planned">Planned</span></div>
-              <div class="m-content-item"><span class="icon">🎵</span><span class="label">3 × Audio-Induktion</span><span class="status planned">Planned</span></div>
+              <div class="m-content-item"><span class="icon">📄</span><span class="label" data-i18n="member.card5.item1">3 × Flow-Protokoll (Varianten)</span><span class="status planned">Planned</span></div>
+              <div class="m-content-item"><span class="icon">🎵</span><span class="label" data-i18n="member.card5.item2">3 × Audio-Induktion</span><span class="status planned">Planned</span></div>
             </div>
-            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank">→ Notify me</a>
+            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank" data-i18n="member.notifyMe">→ Notify me</a>
           </div>
 
           <!-- 7777-6+7 PLANNED -->
           <div class="m-proto-card locked">
-            <div class="m-proto-badge locked">Ab VIP aktiv</div>
+            <div class="m-proto-badge locked" data-i18n="member.card6.badge">Ab VIP aktiv</div>
             <div class="m-proto-num">7777-6 + 7777-7</div>
-            <div class="m-proto-title">Custom Builder + Community</div>
-            <div class="m-proto-desc">Persönliches Skript. Monatliche Live Q&As. Discord FFM-777. Wöchentlicher Content-Rhythmus.</div>
+            <div class="m-proto-title" data-i18n="member.card6.title">Custom Builder + Community</div>
+            <div class="m-proto-desc" data-i18n="member.card6.desc">Persönliches Skript. Monatliche Live Q&As. Discord FFM-777. Wöchentlicher Content-Rhythmus.</div>
             <div class="m-proto-content">
-              <div class="m-content-item"><span class="icon">💬</span><span class="label">Discord FFM-777 Einladung</span><span class="status soon">Link per Mail</span></div>
-              <div class="m-content-item"><span class="icon">📅</span><span class="label">Monatliches Live Q&A</span><span class="status soon">Termine folgen</span></div>
-              <div class="m-content-item"><span class="icon">✍️</span><span class="label">Custom Script Builder</span><span class="status planned">Planned</span></div>
+              <div class="m-content-item"><span class="icon">💬</span><span class="label" data-i18n="member.card6.item1">Discord FFM-777 Einladung</span><span class="status soon" data-i18n="member.card6.item1status">Link per Mail</span></div>
+              <div class="m-content-item"><span class="icon">📅</span><span class="label" data-i18n="member.card6.item2">Monatliches Live Q&A</span><span class="status soon" data-i18n="member.card6.item2status">Termine folgen</span></div>
+              <div class="m-content-item"><span class="icon">✍️</span><span class="label" data-i18n="member.card6.item3">Custom Script Builder</span><span class="status planned">Planned</span></div>
             </div>
-            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank">→ Discord-Link anfordern</a>
+            <a href="https://wa.me/4916346922255" class="m-proto-action ghost" target="_blank" data-i18n="member.card6.action">→ Discord-Link anfordern</a>
           </div>
 
         </div>
@@ -536,15 +541,15 @@
     <div class="m-discord">
       <div style="max-width:1100px;margin:0 auto">
         <div class="m-discord-inner">
-          <div class="m-discord-title">Discord FFM-777 — Content Rhythmus</div>
-          <p class="m-discord-sub">Als VIP-Mitglied bekommst du Zugang zum Discord-Server. Dort läuft der wöchentliche Rhythmus:</p>
+          <div class="m-discord-title" data-i18n="discord.title">Discord FFM-777 — Content Rhythmus</div>
+          <p class="m-discord-sub" data-i18n="discord.sub">Als VIP-Mitglied bekommst du Zugang zum Discord-Server. Dort läuft der wöchentliche Rhythmus:</p>
           <div class="m-discord-rhythm">
-            <div class="m-discord-day"><span class="day">Montag</span><span class="content">„Protokoll der Woche" — kurzes How-To</span></div>
-            <div class="m-discord-day"><span class="day">Mittwoch</span><span class="content">„Science Snippet" — 2–3 Sätze Forschungsfund</span></div>
-            <div class="m-discord-day"><span class="day">Freitag</span><span class="content">„Member Spotlight" oder AMA</span></div>
-            <div class="m-discord-day"><span class="day">On demand</span><span class="content">Neue Audios/PDFs → Ankündigung direkt im Channel</span></div>
+            <div class="m-discord-day"><span class="day" data-i18n="discord.mon">Montag</span><span class="content" data-i18n="discord.monText">„Protokoll der Woche" — kurzes How-To</span></div>
+            <div class="m-discord-day"><span class="day" data-i18n="discord.wed">Mittwoch</span><span class="content" data-i18n="discord.wedText">„Science Snippet" — 2–3 Sätze Forschungsfund</span></div>
+            <div class="m-discord-day"><span class="day" data-i18n="discord.fri">Freitag</span><span class="content" data-i18n="discord.friText">„Member Spotlight" oder AMA</span></div>
+            <div class="m-discord-day"><span class="day">On demand</span><span class="content" data-i18n="discord.onDemandText">Neue Audios/PDFs → Ankündigung direkt im Channel</span></div>
           </div>
-          <a href="https://wa.me/4916346922255" class="btn-primary" target="_blank" style="font-size:11px;padding:13px 28px">Discord-Link per WhatsApp anfordern →</a>
+          <a href="https://wa.me/4916346922255" class="btn-primary" target="_blank" style="font-size:11px;padding:13px 28px" data-i18n="discord.cta">Discord-Link per WhatsApp anfordern →</a>
         </div>
       </div>
     </div>
@@ -552,21 +557,21 @@
     <!-- Member upsell: Custom Session -->
     <div class="m-upsell">
       <div class="m-upsell-text">
-        <div class="label">Nächster Level</div>
-        <div class="title">1:1 Custom Session — Persönliches Skript ab 97 €</div>
+        <div class="label" data-i18n="upsell.label">Nächster Level</div>
+        <div class="title" data-i18n="upsell.title">1:1 Custom Session — Persönliches Skript ab 97 €</div>
       </div>
-      <a href="https://wa.me/4916346922255" class="m-upsell-cta" target="_blank">Termin anfragen →</a>
+      <a href="https://wa.me/4916346922255" class="m-upsell-cta" target="_blank" data-i18n="upsell.cta">Termin anfragen →</a>
     </div>
 
     <footer>
       <div class="footer-logo">mindful7777</div>
       <div class="footer-links">
-        <a href="index.html">Startseite</a>
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
+        <a href="index.html" data-i18n="footer.home">Startseite</a>
+        <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
+        <a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>
         <a href="https://ko-fi.com/mindf7777" target="_blank">Ko-fi</a>
       </div>
-      <div class="footer-copy">© 2026 mindful7777 · WHY NOT? BE THE CHANGE. · Alle Inhalte dienen der Entspannung. Kein Ersatz für medizinische Beratung.</div>
+      <div class="footer-copy" data-i18n="footer.copy">© 2026 mindful7777 · WHY NOT? BE THE CHANGE. · Alle Inhalte dienen der Entspannung. Kein Ersatz für medizinische Beratung.</div>
     </footer>
 
   </div>
@@ -641,6 +646,254 @@
 
   // Auto-login
   if(sessionStorage.getItem(SESSION_KEY) === "1") showMember();
+
+  // ── i18n (DE/EN) ──
+  const LANG_KEY = "m7_lang";
+  const I18N = {
+    de: {
+      "nav.home": "← Startseite",
+      "pw.label": "Passwort eingeben",
+      "pw.err": "Falsches Passwort. Passwort per WhatsApp anfordern.",
+      "pw.btn": "Eintreten →",
+      "pw.hint": 'Noch kein Passwort? <a href="https://ko-fi.com/mindf7777" target="_blank">VIP aktivieren →</a> oder <a href="https://wa.me/4916346922255" target="_blank">WhatsApp</a>',
+      "hero.title": "7 Protokolle.<br/>1 System.<br/><em>Kein Bullshit.</em>",
+      "hero.sub": "Science-based. Vagus-Nerv. Pavlov-Konditionierung. Beta→Theta. Alles, was du brauchst, um dein Nervensystem systematisch zu trainieren — messbar, reproduzierbar, on demand.",
+      "hero.btnPassword": "🔐 Ich habe ein Passwort",
+      "hero.ctaKofi": "VIP aktivieren — 77,77 €/Monat →",
+      "hero.noAccess": 'Noch kein Zugang? <a href="https://wa.me/4916346922255" style="color:var(--gold)" target="_blank">WhatsApp → Passwort in 5 Min.</a>',
+      "price.badge": "Best Value · VIP Stack",
+      "price.num": "77,77 €",
+      "price.period": "/ Monat<br/>monatl. kündbar",
+      "price.li1": "<strong>7 Protokolle</strong> (PDF + Audio je)",
+      "price.li2": "<strong>Sock-Anchor Full Protocol</strong> — sofort verfügbar",
+      "price.li3": "<strong>Focus-Stack</strong> — in Produktion",
+      "price.li4": "Sleep-Anchor, Stress-Response, Flow-State",
+      "price.li5": "Custom Script Builder + Community Q&A",
+      "price.li6": "Discord FFM-777 Community",
+      "price.li7": "Monatlich neue Protokolle",
+      "price.cta": "VIP aktivieren auf Ko-fi →",
+      "price.note": "Passwort per Mail nach Aktivierung · monatl. kündbar",
+      "stripe.kicker": "Direkt unterstützen",
+      "stripe.title": "Oder zahle einmalig, was dir passt.",
+      "stripe.sub": "Kein Abo-Zwang. Einmalzahlung für sofortigen VIP-Zugang — schreib mir danach auf WhatsApp.",
+      "stripe.note": "Sicher über Stripe · keine Zahlungsdaten werden gespeichert",
+      "proto.kicker": "Was du bekommst",
+      "proto.title": "Das vollständige<br/><em>Protocol System.</em>",
+      "proto.sub": "Jedes Protokoll ist ein eigenständiges Trainingssystem — aufeinander aufgebaut, stapelbar, wissenschaftlich fundiert.",
+      "proto.card1.desc": "Das Basisprotokoll. 30-Tage Konditionierungsplan. Pavlov-Konditionierung trifft Vagus-Nerv. 90-Sekunden Neural Reset — on demand.",
+      "proto.card1.lock": "→ Sofort verfügbar nach Login",
+      "proto.card2.desc": "3 Minuten vor dem Deep-Work-Block. Gamma-Aktivierung, Attention-Anchoring, Arbeitsgedächtnis-Priming. Für reproduzierbaren Flow-State.",
+      "proto.card2.lock": "→ Kommt diesen Monat",
+      "proto.card3.title": "Sleep-Anchor Protocol",
+      "proto.card3.desc": "Einschlafzeit unter 10 Minuten — reproduzierbar. 4-7-8 Atemtechnik + modifizierte PMR-Sequenz + konditionierter Schlaf-Anker.",
+      "proto.card4.title": "Stress-Response Kalibrierung",
+      "proto.card4.desc": "HRV-basiertes Protokoll für chronisch hohes Cortisol-Niveau. 6 Minuten. Für Einsatzkräfte, Athleten, Schichtarbeiter.",
+      "proto.card5.title": "Flow-State Induktion",
+      "proto.card5.desc": "3 differenzierte Induktionssequenzen: kreativ / analytisch / athletisch. 5–8 Minuten Investition, 90 Minuten stabiler Zielzustand.",
+      "proto.card5.lock": "→ Q4 2026",
+      "proto.card6.title": "Custom Script Builder + Community",
+      "proto.card6.desc": "Persönliches Hypnose-Skript nach deinen Zielen. Monatliche Community Calls. Q&A Archive. Discord FFM-777.",
+      "proto.card6.lock": "→ Ab VIP aktiv",
+      "obj.kicker": "Häufige Einwände",
+      "obj.title": "<em>Klingt esoterisch?</em> Stimmt nicht.",
+      "obj.card1.q": "„Klingt esoterisch.“",
+      "obj.card1.a": "Kein Chakra, kein Karma — reines Konditionierungsprinzip. Pavlov, 1897. Verhaltenstherapie, täglich angewandt. Der Sock ist nur der Reiz.",
+      "obj.card2.q": "„Zu simpel.“",
+      "obj.card2.a": "Pavlov brauchte auch nur eine Glocke. Das Prinzip ist simpel. Die Konsequenz nicht: ein automatischer Reset, jederzeit, ohne Willensakt.",
+      "obj.card3.q": "„Funktioniert das wirklich?\"",
+      "obj.card3.a": "90 Sekunden testen kostet dich nichts. Das Starter-Protokoll ist gratis. Wenn es nach 3 Wochen nicht funktioniert, hast du 21 Tage verloren — aber es wird funktionieren.",
+      "obj.card4.q": "„Ich habe keine Zeit für Protokolle.\"",
+      "obj.card4.a": "90 Sekunden. Das ist das gesamte Protokoll in der Anwendungsphase. Die Aufbauphase dauert 5 Minuten täglich über 21 Tage. Danach: automatisch.",
+      "footer.home": "Startseite",
+      "footer.impressum": "Impressum",
+      "footer.datenschutz": "Datenschutz",
+      "footer.copy": "© 2026 mindful7777 · André Schwarz · Frankfurt · WHY NOT? BE THE CHANGE. · Alle Inhalte dienen der Entspannung. Kein Ersatz für medizinische Beratung.",
+      "member.logout": "🔒 Logout",
+      "member.hero.title": "Willkommen zurück.<br/><em>Dein Stack wartet.</em>",
+      "member.hero.sub": "Hier sind alle deine Protokolle. Starte mit 7777-1 wenn du neu bist. Alles andere folgt darauf auf.",
+      "member.stats.protocols": "Protokolle live",
+      "member.stats.daysNum": "21 Tage",
+      "member.stats.days": "Basis-Konditionierung",
+      "member.stats.monthlyNum": "Monatlich",
+      "member.stats.monthly": "Neue Protokolle",
+      "member.proto.kicker": "Deine Protokolle",
+      "member.card1.desc": "Das Basisprotokoll. 30-Tage Konditionierungsplan. Starte hier — alles andere baut darauf auf.",
+      "member.card1.item1": "30-Tage Konditionierungsplan (PDF)",
+      "member.card1.item2": "10-Min Induktions-Audio (MP3)",
+      "member.card1.item3": "HRV-Tracking-Vorlage",
+      "member.card1.item4": "Anker-Install-Sequenz",
+      "member.card1.action": "→ Protokoll herunterladen",
+      "member.card2.badge": "⚙ In Produktion",
+      "member.card2.desc": "3 Minuten vor dem Deep-Work-Block. Gamma-Aktivierung, Attention-Anchoring. Kommt diesen Monat.",
+      "member.card2.item1": "Pre-Work Reset Protokoll",
+      "member.card2.item2": "Deep-Focus Anker Protokoll",
+      "member.card2.item3": "3 × Audio mit Gamma-Overlay",
+      "member.card2.action": "→ Notify me per WhatsApp",
+      "member.card3.desc": "Einschlafzeit unter 10 Minuten — reproduzierbar. Theta-Induktion, konditionierter Schlaf-Anker.",
+      "member.card3.item1": "Sleep-Anchor Protokoll",
+      "member.card3.item2": "Einschlaf-Audio mit Theta 6Hz",
+      "member.card4.desc": "HRV-basiert. 6 Minuten. Für Einsatzkräfte, Athleten und alle mit strukturell hohem Cortisol-Niveau.",
+      "member.card4.item1": "Stress-Response Protokoll",
+      "member.card4.item2": "HRV-Reset Audio",
+      "member.card5.desc": "3 Induktionen: kreativ / analytisch / athletisch. 5–8 Min. Danach 90 Min stabiler Zielzustand.",
+      "member.card5.item1": "3 × Flow-Protokoll (Varianten)",
+      "member.card5.item2": "3 × Audio-Induktion",
+      "member.card6.badge": "Ab VIP aktiv",
+      "member.card6.title": "Custom Builder + Community",
+      "member.card6.desc": "Persönliches Skript. Monatliche Live Q&As. Discord FFM-777. Wöchentlicher Content-Rhythmus.",
+      "member.card6.item1": "Discord FFM-777 Einladung",
+      "member.card6.item1status": "Link per Mail",
+      "member.card6.item2": "Monatliches Live Q&A",
+      "member.card6.item2status": "Termine folgen",
+      "member.card6.item3": "Custom Script Builder",
+      "member.card6.action": "→ Discord-Link anfordern",
+      "member.notifyMe": "→ Notify me",
+      "member.status.ready": "Bereit",
+      "member.status.soon": "Bald",
+      "discord.title": "Discord FFM-777 — Content Rhythmus",
+      "discord.sub": "Als VIP-Mitglied bekommst du Zugang zum Discord-Server. Dort läuft der wöchentliche Rhythmus:",
+      "discord.mon": "Montag",
+      "discord.monText": "„Protokoll der Woche“ — kurzes How-To",
+      "discord.wed": "Mittwoch",
+      "discord.wedText": "„Science Snippet“ — 2–3 Sätze Forschungsfund",
+      "discord.fri": "Freitag",
+      "discord.friText": "„Member Spotlight“ oder AMA",
+      "discord.onDemandText": "Neue Audios/PDFs → Ankündigung direkt im Channel",
+      "discord.cta": "Discord-Link per WhatsApp anfordern →",
+      "upsell.label": "Nächster Level",
+      "upsell.title": "1:1 Custom Session — Persönliches Skript ab 97 €",
+      "upsell.cta": "Termin anfragen →"
+    },
+    en: {
+      "nav.home": "← Home",
+      "pw.label": "Enter password",
+      "pw.err": "Wrong password. Request password via WhatsApp.",
+      "pw.btn": "Enter →",
+      "pw.hint": 'No password yet? <a href="https://ko-fi.com/mindf7777" target="_blank">Activate VIP →</a> or <a href="https://wa.me/4916346922255" target="_blank">WhatsApp</a>',
+      "hero.title": "7 Protocols.<br/>1 System.<br/><em>No bullshit.</em>",
+      "hero.sub": "Science-based. Vagus nerve. Pavlovian conditioning. Beta→Theta. Everything you need to train your nervous system systematically — measurable, reproducible, on demand.",
+      "hero.btnPassword": "🔐 I have a password",
+      "hero.ctaKofi": "Activate VIP — €77.77/month →",
+      "hero.noAccess": 'No access yet? <a href="https://wa.me/4916346922255" style="color:var(--gold)" target="_blank">WhatsApp → password in 5 min.</a>',
+      "price.badge": "Best Value · VIP Stack",
+      "price.num": "€77.77",
+      "price.period": "/ month<br/>cancel anytime",
+      "price.li1": "<strong>7 protocols</strong> (PDF + audio each)",
+      "price.li2": "<strong>Sock-Anchor Full Protocol</strong> — available instantly",
+      "price.li3": "<strong>Focus-Stack</strong> — in production",
+      "price.li4": "Sleep-Anchor, Stress-Response, Flow-State",
+      "price.li5": "Custom Script Builder + Community Q&A",
+      "price.li6": "Discord FFM-777 Community",
+      "price.li7": "New protocols every month",
+      "price.cta": "Activate VIP on Ko-fi →",
+      "price.note": "Password by email after activation · cancel anytime",
+      "stripe.kicker": "Support directly",
+      "stripe.title": "Or pay once, whatever fits.",
+      "stripe.sub": "No subscription required. One-time payment for instant VIP access — message me on WhatsApp afterwards.",
+      "stripe.note": "Secured via Stripe · no payment data is stored",
+      "proto.kicker": "What you get",
+      "proto.title": "The complete<br/><em>Protocol System.</em>",
+      "proto.sub": "Each protocol is a standalone training system — built on top of each other, stackable, scientifically grounded.",
+      "proto.card1.desc": "The base protocol. 30-day conditioning plan. Pavlovian conditioning meets the vagus nerve. 90-second neural reset — on demand.",
+      "proto.card1.lock": "→ Available instantly after login",
+      "proto.card2.desc": "3 minutes before your deep-work block. Gamma activation, attention anchoring, working-memory priming. For reproducible flow state.",
+      "proto.card2.lock": "→ Coming this month",
+      "proto.card3.title": "Sleep-Anchor Protocol",
+      "proto.card3.desc": "Falling asleep in under 10 minutes — reproducibly. 4-7-8 breathing + modified PMR sequence + conditioned sleep anchor.",
+      "proto.card4.title": "Stress-Response Calibration",
+      "proto.card4.desc": "HRV-based protocol for chronically elevated cortisol. 6 minutes. For first responders, athletes, shift workers.",
+      "proto.card5.title": "Flow-State Induction",
+      "proto.card5.desc": "3 differentiated induction sequences: creative / analytical / athletic. 5–8 minutes invested, 90 minutes of stable target state.",
+      "proto.card5.lock": "→ Q4 2026",
+      "proto.card6.title": "Custom Script Builder + Community",
+      "proto.card6.desc": "A personal hypnosis script built around your goals. Monthly community calls. Q&A archive. Discord FFM-777.",
+      "proto.card6.lock": "→ Once VIP is active",
+      "obj.kicker": "Common objections",
+      "obj.title": "<em>Sounds esoteric?</em> It isn't.",
+      "obj.card1.q": "“Sounds esoteric.”",
+      "obj.card1.a": "No chakras, no karma — a pure conditioning principle. Pavlov, 1897. Behavioral therapy, applied daily. The sock is just the stimulus.",
+      "obj.card2.q": "“Too simple.”",
+      "obj.card2.a": "Pavlov only needed a bell. The principle is simple. The consequence isn't: an automatic reset, anytime, without willpower.",
+      "obj.card3.q": "“Does this actually work?”",
+      "obj.card3.a": "Testing it costs you 90 seconds and nothing else. The starter protocol is free. If it hasn't worked after 3 weeks, you've lost 21 days — but it will work.",
+      "obj.card4.q": "“I don't have time for protocols.”",
+      "obj.card4.a": "90 seconds. That's the entire protocol in the application phase. The build-up phase takes 5 minutes a day over 21 days. After that: automatic.",
+      "footer.home": "Home",
+      "footer.impressum": "Imprint",
+      "footer.datenschutz": "Privacy Policy",
+      "footer.copy": "© 2026 mindful7777 · André Schwarz · Frankfurt · WHY NOT? BE THE CHANGE. · All content is for relaxation purposes. Not a substitute for medical advice.",
+      "member.logout": "🔒 Logout",
+      "member.hero.title": "Welcome back.<br/><em>Your stack awaits.</em>",
+      "member.hero.sub": "Here are all your protocols. Start with 7777-1 if you're new — everything else builds on top of it.",
+      "member.stats.protocols": "Protocols live",
+      "member.stats.daysNum": "21 days",
+      "member.stats.days": "Base conditioning",
+      "member.stats.monthlyNum": "Monthly",
+      "member.stats.monthly": "New protocols",
+      "member.proto.kicker": "Your Protocols",
+      "member.card1.desc": "The base protocol. 30-day conditioning plan. Start here — everything else builds on this.",
+      "member.card1.item1": "30-day conditioning plan (PDF)",
+      "member.card1.item2": "10-min induction audio (MP3)",
+      "member.card1.item3": "HRV tracking template",
+      "member.card1.item4": "Anchor install sequence",
+      "member.card1.action": "→ Download protocol",
+      "member.card2.badge": "⚙ In production",
+      "member.card2.desc": "3 minutes before your deep-work block. Gamma activation, attention anchoring. Coming this month.",
+      "member.card2.item1": "Pre-work reset protocol",
+      "member.card2.item2": "Deep-focus anchor protocol",
+      "member.card2.item3": "3 × audio with gamma overlay",
+      "member.card2.action": "→ Notify me via WhatsApp",
+      "member.card3.desc": "Falling asleep in under 10 minutes — reproducibly. Theta induction, conditioned sleep anchor.",
+      "member.card3.item1": "Sleep-Anchor protocol",
+      "member.card3.item2": "Sleep audio with theta 6Hz",
+      "member.card4.desc": "HRV-based. 6 minutes. For first responders, athletes, and anyone with structurally elevated cortisol.",
+      "member.card4.item1": "Stress-Response protocol",
+      "member.card4.item2": "HRV reset audio",
+      "member.card5.desc": "3 inductions: creative / analytical / athletic. 5–8 min. Then 90 min of stable target state.",
+      "member.card5.item1": "3 × flow protocol (variants)",
+      "member.card5.item2": "3 × audio induction",
+      "member.card6.badge": "Once VIP is active",
+      "member.card6.title": "Custom Builder + Community",
+      "member.card6.desc": "A personal script. Monthly live Q&As. Discord FFM-777. Weekly content rhythm.",
+      "member.card6.item1": "Discord FFM-777 invite",
+      "member.card6.item1status": "Link by email",
+      "member.card6.item2": "Monthly live Q&A",
+      "member.card6.item2status": "Dates to follow",
+      "member.card6.item3": "Custom Script Builder",
+      "member.card6.action": "→ Request Discord link",
+      "member.notifyMe": "→ Notify me",
+      "member.status.ready": "Ready",
+      "member.status.soon": "Soon",
+      "discord.title": "Discord FFM-777 — Content Rhythm",
+      "discord.sub": "As a VIP member you get access to the Discord server. That's where the weekly rhythm runs:",
+      "discord.mon": "Monday",
+      "discord.monText": "“Protocol of the week” — a short how-to",
+      "discord.wed": "Wednesday",
+      "discord.wedText": "“Science snippet” — 2–3 sentences of research",
+      "discord.fri": "Friday",
+      "discord.friText": "“Member spotlight” or AMA",
+      "discord.onDemandText": "New audio/PDFs → announced directly in the channel",
+      "discord.cta": "Request Discord link via WhatsApp →",
+      "upsell.label": "Next level",
+      "upsell.title": "1:1 Custom Session — personal script from €97",
+      "upsell.cta": "Request appointment →"
+    }
+  };
+
+  function setLang(lang){
+    const dict = I18N[lang] || I18N.de;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      const key = el.getAttribute("data-i18n");
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll(".lang-btn[data-lang]").forEach(function(b){
+      b.classList.toggle("active", b.dataset.lang === lang);
+    });
+    document.documentElement.setAttribute("lang", lang);
+    localStorage.setItem(LANG_KEY, lang);
+  }
+
+  setLang(localStorage.getItem(LANG_KEY) || "de");
 </script>
 
 <!-- Stripe Buy Button -->
