@@ -1,0 +1,9 @@
+{
+  "name": "mindful7777-stripe-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Serverless Stripe backend (Payments, Billing, Tax) for mindful7777 — deployed separately on Vercel, called from the static GitHub Pages site.",
+  "dependencies": {
+    "stripe": "^17.0.0"
+  }
+}

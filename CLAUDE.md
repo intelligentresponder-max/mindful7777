@@ -50,8 +50,14 @@ Sprach-Switcher: assets/lang.js (DE/EN auf allen Seiten)
 | Gumroad | mindful777.gumroad.com (Username: mindful777 — 3 Sevens!) | Digitale Produkte |
 | Ko-fi | ko-fi.com/mindf7777 | VIP Membership €25/Mo |
 | Throne | throne.com/mindful7777 | Wishlist / Support |
-| Stripe | Links direkt — je nach Produkt | Direktzahlung |
+| Stripe | Checkout via stripe-api (Vercel) | Membership + Direktzahlung, Tax |
 | Discord | FFM-777 Server | Community |
+
+### Stripe-Backend
+Eigene Vercel-Deployment unter `stripe-api/` (Payments, Billing, Tax) —
+GitHub Pages kann keinen Secret Key/Webhook halten. Details, Deploy-Schritte
+und offene Punkte: `docs/stripe-setup.md` und `stripe-api/README.md`.
+Connect und Invoicing bewusst noch nicht gebaut (kein Bedarf aktuell).
 
 ### Aktive Produkt-Links
 - Lead Magnet (gratis): mindful777.gumroad.com/l/ucaan
