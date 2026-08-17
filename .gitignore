@@ -1,7 +1,6 @@
 *.save
 *.save.*
 intern/
-intern/
 *.bak
 
 # Stripe backend (secrets, local deps, Vercel link metadata)
@@ -10,3 +9,4 @@ stripe-api/.env.*
 !stripe-api/.env.example
 stripe-api/node_modules/
 stripe-api/.vercel/
+node_modules/

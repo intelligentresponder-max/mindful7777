@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============ SEO ============ -->
+<title data-i18n="meta.title">Technik-Glossar · Zahlungen, Webhooks, Deployment</title>
+<meta name="description" data-i18n="meta.desc" content="Interne Begriffsübersicht zu Zahlungsabwicklung, Webhooks und Deployment.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/tech-glossar.html">
+
+<!-- hreflang -->
+<link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/tech-glossar.html?lang=de">
+<link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/tech-glossar.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/tech-glossar.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Technik-Glossar · Zahlungen, Webhooks, Deployment">
+<meta property="og:description" content="Interne Begriffsübersicht zu Zahlungsabwicklung, Webhooks und Deployment.">
+<meta property="og:site_name" content="mindful7777">
+<meta property="og:url" content="https://intelligentresponder-max.github.io/mindful7777/tech-glossar.html">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "DefinedTermSet", "name": "Technik-Glossar", "inLanguage": ["de", "en"], "hasDefinedTerm": [{"@type": "DefinedTerm", "name": "Payment Link", "description": "Eine fertige Bezahlseite hinter einer URL. Du verschickst den Link, die Zahlung läuft beim Anbieter — kein eigener Shop nötig."}, {"@type": "DefinedTerm", "name": "Checkout Session", "description": "Ein einzelner Bezahlvorgang bei Stripe. Hat eine eigene ID und einen Status, an dem du erkennst, ob bezahlt wurde."}, {"@type": "DefinedTerm", "name": "PSP", "description": "Payment Service Provider. Die Firma, die die Zahlung technisch abwickelt — Stripe, PayPal, SumUp."}, {"@type": "DefinedTerm", "name": "Merchant of Record", "description": "Wer rechtlich als Verkäufer auftritt. Ist es die Plattform, kümmert sie sich um die Umsatzsteuer. Bist du es, musst du selbst melden."}, {"@type": "DefinedTerm", "name": "3D Secure / SCA", "description": "Zusätzliche Kundenbestätigung per App oder TAN. Im europäischen Zahlungsverkehr vorgeschrieben."}, {"@type": "DefinedTerm", "name": "Rückbuchung", "description": "Die Bank holt eine Zahlung auf Wunsch des Kunden zurück. Kostet zusätzlich eine Gebühr, auch wenn du im Recht bist."}, {"@type": "DefinedTerm", "name": "SEPA-Lastschrift", "description": "Einzug direkt vom Konto. Meist ein fester Betrag pro Vorgang statt eines Prozentsatzes — bei großen Summen deutlich günstiger."}, {"@type": "DefinedTerm", "name": "Auszahlung", "description": "Die Überweisung deines Guthabens vom Zahlungsanbieter auf dein Bankkonto, meist mit einigen Tagen Verzögerung."}, {"@type": "DefinedTerm", "name": "Fulfillment", "description": "Alles, was nach der Zahlung passiert: Download freigeben, Zugang schalten, Mail verschicken."}, {"@type": "DefinedTerm", "name": "OSS-Verfahren", "description": "EU-Meldeverfahren, über das du die Umsatzsteuer für Kunden in anderen Mitgliedstaaten zentral abführst."}, {"@type": "DefinedTerm", "name": "Webhook", "description": "Eine Nachricht, die ein fremdes System von sich aus an deine Adresse schickt, sobald etwas passiert. Du fragst nicht — du wirst benachrichtigt."}, {"@type": "DefinedTerm", "name": "Endpoint", "description": "Die URL, an die diese Nachrichten gehen. Muss exakt stimmen: Weiterleitungen und Schrägstriche am Ende führen zu Fehlern."}, {"@type": "DefinedTerm", "name": "Event", "description": "Das gemeldete Ereignis selbst, zum Beispiel eine abgeschlossene Zahlung. Hat einen Typ und eine eindeutige ID."}, {"@type": "DefinedTerm", "name": "Payload", "description": "Der Inhalt der Nachricht — die eigentlichen Daten als JSON."}, {"@type": "DefinedTerm", "name": "Roher Body", "description": "Der unveränderte Text der Nachricht. Für die Signaturprüfung zwingend nötig; wird er vorher in JSON umgewandelt, schlägt die Prüfung fehl."}, {"@type": "DefinedTerm", "name": "Signing Secret", "description": "Der geheime Schlüssel, mit dem der Absender die Nachricht unterschreibt. Beginnt bei Stripe mit whsec_ und ist pro Endpoint verschieden."}, {"@type": "DefinedTerm", "name": "Signaturprüfung", "description": "Der Abgleich von Nachricht und Unterschrift. Erst danach darfst du dem Inhalt glauben — sonst könnte jeder Zahlungen vortäuschen."}, {"@type": "DefinedTerm", "name": "Idempotenz", "description": "Dieselbe Nachricht mehrfach zu verarbeiten darf nichts doppelt auslösen. Wichtig, weil Anbieter bei Störungen erneut zustellen."}, {"@type": "DefinedTerm", "name": "Test- und Live-Modus", "description": "Zwei getrennte Welten mit eigenen Schlüsseln. Ein Schlüssel aus der falschen Welt lässt die Prüfung immer scheitern."}, {"@type": "DefinedTerm", "name": "Statuscode 200 / 400", "description": "Die Antwort deines Servers. 200 heißt angenommen, 400 heißt abgelehnt. Der Absender wiederholt so lange, bis eine 2xx-Antwort kommt."}, {"@type": "DefinedTerm", "name": "API", "description": "Eine definierte Schnittstelle, über die zwei Programme miteinander sprechen."}, {"@type": "DefinedTerm", "name": "Publishable Key", "description": "Der öffentliche Schlüssel, beginnt mit pk_. Darf im Browser stehen — er kann allein nichts anrichten."}, {"@type": "DefinedTerm", "name": "Secret Key", "description": "Der geheime Schlüssel, beginnt mit sk_. Gehört ausschließlich auf den Server. Nie ins Repo, nie in einen Screenshot."}, {"@type": "DefinedTerm", "name": "Umgebungsvariable", "description": "Ein Wert, der außerhalb des Codes hinterlegt wird. So bleiben Schlüssel aus dem Repository heraus."}, {"@type": "DefinedTerm", "name": "HTTPS / TLS", "description": "Verschlüsselte Verbindung zwischen Browser und Server. Für Zahlungsseiten Pflicht."}, {"@type": "DefinedTerm", "name": "PCI DSS", "description": "Sicherheitsstandard für Kartendaten. Wer die Eingabe dem Anbieter überlässt, reduziert seinen eigenen Aufwand erheblich."}, {"@type": "DefinedTerm", "name": "Repository", "description": "Der versionierte Projektordner. Enthält den Verlauf aller Änderungen."}, {"@type": "DefinedTerm", "name": "Commit", "description": "Ein gespeicherter Änderungsstand mit Beschreibung. Die kleinste Einheit der Versionsgeschichte."}, {"@type": "DefinedTerm", "name": "Push", "description": "Die lokalen Commits zum Server übertragen — bei dir zu GitHub."}, {"@type": "DefinedTerm", "name": "Branch", "description": "Ein paralleler Entwicklungsstrang. Deiner heißt main."}, {"@type": "DefinedTerm", "name": ".gitignore", "description": "Liste von Dateien und Ordnern, die bewusst nicht mitversioniert werden — allen voran node_modules."}, {"@type": "DefinedTerm", "name": "package.json", "description": "Verzeichnis der Pakete, die dein Projekt braucht. Danach richtet sich, was beim Deploy installiert wird."}, {"@type": "DefinedTerm", "name": "npm", "description": "Das Paketwerkzeug für Node.js. Installiert Bibliotheken in den Ordner node_modules."}, {"@type": "DefinedTerm", "name": "Serverless Function", "description": "Eine einzelne Datei, die auf Anfrage startet, antwortet und wieder verschwindet. Kein Server, den du selbst betreiben musst."}, {"@type": "DefinedTerm", "name": "Deployment", "description": "Die Veröffentlichung eines Stands. Neue Umgebungsvariablen greifen erst nach einem erneuten Deployment."}, {"@type": "DefinedTerm", "name": "Statische Seite", "description": "Eine Seite aus fertigen Dateien ohne Programm dahinter. Schnell und günstig — kann aber keine Webhooks empfangen."}]}
+</script>
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<!-- GLOBAL DESIGN SYSTEM -->
+<link rel="stylesheet" href="assets/style.css">
+
+<noscript><style>.reveal{opacity:1!important}.tools{display:none}</style></noscript>
+
+<style>
+/* seitenspezifisch (Glossar) */
+.glos-hero{padding:clamp(34px,6vw,64px) 0 8px}
+.glos-hero h1{font-size:clamp(2rem,5.5vw,3.2rem)}
+.glos-hero .sub{max-width:62ch;color:var(--ink-soft);margin-top:14px}
+
+.tools{position:sticky;top:56px;z-index:20;padding:14px 0 10px;
+  background:linear-gradient(var(--bg) 72%,transparent)}
+.search{width:100%;font:inherit;font-family:var(--mono);font-size:.92rem;
+  padding:13px 18px;border-radius:999px;border:1px solid var(--line);
+  background:var(--surface);color:var(--ink);transition:.18s}
+.search::placeholder{color:var(--ink-soft);opacity:.75}
+.search:focus{outline:0;border-color:var(--gold);box-shadow:var(--glow-gold)}
+.count{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold-deep);margin-top:10px}
+
+.grp h2{margin:38px 0 6px}
+.terms{border-top:1px solid var(--line)}
+.term{padding:16px 0;border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:minmax(160px,25%) 1fr;gap:6px 28px;align-items:baseline}
+.term dt{font-family:var(--mono);font-weight:500;font-size:.94rem;
+  color:var(--ink);letter-spacing:.01em}
+.term dd{color:var(--ink-soft);font-size:.97rem}
+.term mark{background:rgba(212,165,116,.38);color:var(--ink);border-radius:3px;padding:0 2px}
+@media(max-width:640px){.term{grid-template-columns:1fr;gap:4px}}
+
+.empty{padding:38px 0;color:var(--ink-soft);font-family:var(--mono);font-size:.9rem}
+.foot-note{margin:52px 0 40px;padding-top:18px;border-top:1px solid var(--line);
+  color:var(--ink-soft);font-size:.86rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="brand">mindful<b>7777</b></div>
+  <div class="lang">
+    <button data-lang="de" aria-pressed="true">DE</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="glos-hero">
+    <div class="eyebrow" data-i18n="eyebrow">INTERN · NACHSCHLAGEN</div>
+    <h1 data-i18n="h1">Technik-Glossar</h1>
+    <p class="sub" data-i18n="sub">Alles, was beim Aufbau der Zahlungsabwicklung vorkommt — vom Payment Link bis zum Signing Secret. Tippe los, um zu filtern.</p>
+  </div>
+
+  <div class="tools">
+    <input id="q" class="search" type="search" autocomplete="off"
+           data-i18n-ph="search" placeholder="Begriff suchen …" aria-controls="list">
+    <div class="count" id="count" aria-live="polite"></div>
+  </div>
+
+  <div id="list">
+    <section class="grp">
+      <h2 data-i18n="g1"><span class="n">01</span>Zahlungen</h2>
+      <dl class="terms">
+        <div class="term">
+          <dt data-i18n="t1">Payment Link</dt>
+          <dd data-i18n="d1">Eine fertige Bezahlseite hinter einer URL. Du verschickst den Link, die Zahlung läuft beim Anbieter — kein eigener Shop nötig.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t2">Checkout Session</dt>
+          <dd data-i18n="d2">Ein einzelner Bezahlvorgang bei Stripe. Hat eine eigene ID und einen Status, an dem du erkennst, ob bezahlt wurde.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t3">PSP</dt>
+          <dd data-i18n="d3">Payment Service Provider. Die Firma, die die Zahlung technisch abwickelt — Stripe, PayPal, SumUp.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t4">Merchant of Record</dt>
+          <dd data-i18n="d4">Wer rechtlich als Verkäufer auftritt. Ist es die Plattform, kümmert sie sich um die Umsatzsteuer. Bist du es, musst du selbst melden.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t5">3D Secure / SCA</dt>
+          <dd data-i18n="d5">Zusätzliche Kundenbestätigung per App oder TAN. Im europäischen Zahlungsverkehr vorgeschrieben.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t6">Rückbuchung</dt>
+          <dd data-i18n="d6">Die Bank holt eine Zahlung auf Wunsch des Kunden zurück. Kostet zusätzlich eine Gebühr, auch wenn du im Recht bist.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t7">SEPA-Lastschrift</dt>
+          <dd data-i18n="d7">Einzug direkt vom Konto. Meist ein fester Betrag pro Vorgang statt eines Prozentsatzes — bei großen Summen deutlich günstiger.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t8">Auszahlung</dt>
+          <dd data-i18n="d8">Die Überweisung deines Guthabens vom Zahlungsanbieter auf dein Bankkonto, meist mit einigen Tagen Verzögerung.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t9">Fulfillment</dt>
+          <dd data-i18n="d9">Alles, was nach der Zahlung passiert: Download freigeben, Zugang schalten, Mail verschicken.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t10">OSS-Verfahren</dt>
+          <dd data-i18n="d10">EU-Meldeverfahren, über das du die Umsatzsteuer für Kunden in anderen Mitgliedstaaten zentral abführst.</dd>
+        </div>
+      </dl>
+    </section>
+    <section class="grp">
+      <h2 data-i18n="g2"><span class="n">02</span>Webhooks</h2>
+      <dl class="terms">
+        <div class="term">
+          <dt data-i18n="t11">Webhook</dt>
+          <dd data-i18n="d11">Eine Nachricht, die ein fremdes System von sich aus an deine Adresse schickt, sobald etwas passiert. Du fragst nicht — du wirst benachrichtigt.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t12">Endpoint</dt>
+          <dd data-i18n="d12">Die URL, an die diese Nachrichten gehen. Muss exakt stimmen: Weiterleitungen und Schrägstriche am Ende führen zu Fehlern.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t13">Event</dt>
+          <dd data-i18n="d13">Das gemeldete Ereignis selbst, zum Beispiel eine abgeschlossene Zahlung. Hat einen Typ und eine eindeutige ID.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t14">Payload</dt>
+          <dd data-i18n="d14">Der Inhalt der Nachricht — die eigentlichen Daten als JSON.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t15">Roher Body</dt>
+          <dd data-i18n="d15">Der unveränderte Text der Nachricht. Für die Signaturprüfung zwingend nötig; wird er vorher in JSON umgewandelt, schlägt die Prüfung fehl.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t16">Signing Secret</dt>
+          <dd data-i18n="d16">Der geheime Schlüssel, mit dem der Absender die Nachricht unterschreibt. Beginnt bei Stripe mit whsec_ und ist pro Endpoint verschieden.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t17">Signaturprüfung</dt>
+          <dd data-i18n="d17">Der Abgleich von Nachricht und Unterschrift. Erst danach darfst du dem Inhalt glauben — sonst könnte jeder Zahlungen vortäuschen.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t18">Idempotenz</dt>
+          <dd data-i18n="d18">Dieselbe Nachricht mehrfach zu verarbeiten darf nichts doppelt auslösen. Wichtig, weil Anbieter bei Störungen erneut zustellen.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t19">Test- und Live-Modus</dt>
+          <dd data-i18n="d19">Zwei getrennte Welten mit eigenen Schlüsseln. Ein Schlüssel aus der falschen Welt lässt die Prüfung immer scheitern.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t20">Statuscode 200 / 400</dt>
+          <dd data-i18n="d20">Die Antwort deines Servers. 200 heißt angenommen, 400 heißt abgelehnt. Der Absender wiederholt so lange, bis eine 2xx-Antwort kommt.</dd>
+        </div>
+      </dl>
+    </section>
+    <section class="grp">
+      <h2 data-i18n="g3"><span class="n">03</span>Schlüssel &amp; Sicherheit</h2>
+      <dl class="terms">
+        <div class="term">
+          <dt data-i18n="t21">API</dt>
+          <dd data-i18n="d21">Eine definierte Schnittstelle, über die zwei Programme miteinander sprechen.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t22">Publishable Key</dt>
+          <dd data-i18n="d22">Der öffentliche Schlüssel, beginnt mit pk_. Darf im Browser stehen — er kann allein nichts anrichten.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t23">Secret Key</dt>
+          <dd data-i18n="d23">Der geheime Schlüssel, beginnt mit sk_. Gehört ausschließlich auf den Server. Nie ins Repo, nie in einen Screenshot.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t24">Umgebungsvariable</dt>
+          <dd data-i18n="d24">Ein Wert, der außerhalb des Codes hinterlegt wird. So bleiben Schlüssel aus dem Repository heraus.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t25">HTTPS / TLS</dt>
+          <dd data-i18n="d25">Verschlüsselte Verbindung zwischen Browser und Server. Für Zahlungsseiten Pflicht.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t26">PCI DSS</dt>
+          <dd data-i18n="d26">Sicherheitsstandard für Kartendaten. Wer die Eingabe dem Anbieter überlässt, reduziert seinen eigenen Aufwand erheblich.</dd>
+        </div>
+      </dl>
+    </section>
+    <section class="grp">
+      <h2 data-i18n="g4"><span class="n">04</span>Code &amp; Deployment</h2>
+      <dl class="terms">
+        <div class="term">
+          <dt data-i18n="t27">Repository</dt>
+          <dd data-i18n="d27">Der versionierte Projektordner. Enthält den Verlauf aller Änderungen.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t28">Commit</dt>
+          <dd data-i18n="d28">Ein gespeicherter Änderungsstand mit Beschreibung. Die kleinste Einheit der Versionsgeschichte.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t29">Push</dt>
+          <dd data-i18n="d29">Die lokalen Commits zum Server übertragen — bei dir zu GitHub.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t30">Branch</dt>
+          <dd data-i18n="d30">Ein paralleler Entwicklungsstrang. Deiner heißt main.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t31">.gitignore</dt>
+          <dd data-i18n="d31">Liste von Dateien und Ordnern, die bewusst nicht mitversioniert werden — allen voran node_modules.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t32">package.json</dt>
+          <dd data-i18n="d32">Verzeichnis der Pakete, die dein Projekt braucht. Danach richtet sich, was beim Deploy installiert wird.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t33">npm</dt>
+          <dd data-i18n="d33">Das Paketwerkzeug für Node.js. Installiert Bibliotheken in den Ordner node_modules.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t34">Serverless Function</dt>
+          <dd data-i18n="d34">Eine einzelne Datei, die auf Anfrage startet, antwortet und wieder verschwindet. Kein Server, den du selbst betreiben musst.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t35">Deployment</dt>
+          <dd data-i18n="d35">Die Veröffentlichung eines Stands. Neue Umgebungsvariablen greifen erst nach einem erneuten Deployment.</dd>
+        </div>
+        <div class="term">
+          <dt data-i18n="t36">Statische Seite</dt>
+          <dd data-i18n="d36">Eine Seite aus fertigen Dateien ohne Programm dahinter. Schnell und günstig — kann aber keine Webhooks empfangen.</dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+
+  <p class="empty" id="empty" hidden data-i18n="empty">Kein Begriff gefunden. Versuch es mit einem kürzeren Wort.</p>
+
+  <p class="foot-note" data-i18n="disc">Interne Seite. Nicht für Suchmaschinen freigegeben und nicht Teil des öffentlichen Angebots.</p>
+
+</main>
+
+<script>
+const i18n = { "en": {
+ "g1": "Payments",
+ "t1": "Payment link",
+ "d1": "A ready-made payment page behind a URL. You send the link, the payment runs at the provider — no shop of your own needed.",
+ "t2": "Checkout session",
+ "d2": "A single payment process at Stripe. Has its own ID and a status telling you whether payment went through.",
+ "t3": "PSP",
+ "d3": "Payment service provider. The company that technically processes the payment — Stripe, PayPal, SumUp.",
+ "t4": "Merchant of record",
+ "d4": "Whoever is legally the seller. If the platform takes that role, it handles VAT. If it is you, you file yourself.",
+ "t5": "3D Secure / SCA",
+ "d5": "Extra customer confirmation via app or one-time code. Mandatory in European payments.",
+ "t6": "Chargeback",
+ "d6": "The bank reverses a payment at the customer's request. Costs an extra fee even when you are in the right.",
+ "t7": "SEPA direct debit",
+ "d7": "Collection straight from the bank account. Usually a flat fee per transaction instead of a percentage — much cheaper on large amounts.",
+ "t8": "Payout",
+ "d8": "The transfer of your balance from the payment provider to your bank account, usually with a few days' delay.",
+ "t9": "Fulfillment",
+ "d9": "Everything that happens after payment: releasing a download, granting access, sending an email.",
+ "t10": "OSS scheme",
+ "d10": "EU filing scheme through which you remit VAT for customers in other member states centrally.",
+ "g2": "Webhooks",
+ "t11": "Webhook",
+ "d11": "A message an external system sends to your address on its own once something happens. You do not poll — you get notified.",
+ "t12": "Endpoint",
+ "d12": "The URL those messages go to. Must match exactly: redirects and trailing slashes cause failures.",
+ "t13": "Event",
+ "d13": "The reported occurrence itself, for example a completed payment. Has a type and a unique ID.",
+ "t14": "Payload",
+ "d14": "The content of the message — the actual data as JSON.",
+ "t15": "Raw body",
+ "d15": "The untouched text of the message. Required for signature verification; if it is parsed into JSON first, verification fails.",
+ "t16": "Signing secret",
+ "d16": "The secret key the sender signs the message with. At Stripe it starts with whsec_ and differs per endpoint.",
+ "t17": "Signature verification",
+ "d17": "Comparing message and signature. Only afterwards may you trust the content — otherwise anyone could fake payments.",
+ "t18": "Idempotency",
+ "d18": "Processing the same message twice must not trigger anything twice. Important because providers redeliver after failures.",
+ "t19": "Test and live mode",
+ "d19": "Two separate worlds with their own keys. A key from the wrong world always makes verification fail.",
+ "t20": "Status code 200 / 400",
+ "d20": "Your server's reply. 200 means accepted, 400 means rejected. The sender retries until it gets a 2xx response.",
+ "g3": "Keys & security",
+ "t21": "API",
+ "d21": "A defined interface through which two programs talk to each other.",
+ "t22": "Publishable key",
+ "d22": "The public key, starting with pk_. May sit in the browser — on its own it can do no harm.",
+ "t23": "Secret key",
+ "d23": "The secret key, starting with sk_. Belongs on the server only. Never in a repository, never in a screenshot.",
+ "t24": "Environment variable",
+ "d24": "A value stored outside the code. This keeps keys out of the repository.",
+ "t25": "HTTPS / TLS",
+ "d25": "Encrypted connection between browser and server. Mandatory for payment pages.",
+ "t26": "PCI DSS",
+ "d26": "Security standard for card data. Letting the provider handle card entry reduces your own burden considerably.",
+ "g4": "Code & deployment",
+ "t27": "Repository",
+ "d27": "The version-controlled project folder. Contains the history of every change.",
+ "t28": "Commit",
+ "d28": "A saved set of changes with a description. The smallest unit of version history.",
+ "t29": "Push",
+ "d29": "Transferring local commits to the server — in your case to GitHub.",
+ "t30": "Branch",
+ "d30": "A parallel line of development. Yours is called main.",
+ "t31": ".gitignore",
+ "d31": "A list of files and folders deliberately kept out of version control — node_modules above all.",
+ "t32": "package.json",
+ "d32": "The index of packages your project needs. It determines what gets installed on deployment.",
+ "t33": "npm",
+ "d33": "The package tool for Node.js. Installs libraries into the node_modules folder.",
+ "t34": "Serverless function",
+ "d34": "A single file that starts on request, replies, and disappears again. No server for you to run yourself.",
+ "t35": "Deployment",
+ "d35": "Publishing a version. New environment variables only take effect after a fresh deployment.",
+ "t36": "Static site",
+ "d36": "A site made of finished files with no program behind it. Fast and cheap — but cannot receive webhooks.",
+ "meta.title": "Tech glossary · Payments, webhooks, deployment",
+ "meta.desc": "Internal reference for payment processing, webhooks and deployment.",
+ "h1": "Tech glossary",
+ "sub": "Everything that comes up while building the payment flow — from payment link to signing secret. Start typing to filter.",
+ "eyebrow": "INTERNAL · REFERENCE",
+ "search": "Search a term …",
+ "empty": "No term found. Try a shorter word.",
+ "back": "Back to start",
+ "disc": "Internal page. Not released to search engines and not part of the public offering."
+} };
+
+const nodes=document.querySelectorAll('[data-i18n]');
+const phNodes=document.querySelectorAll('[data-i18n-ph]');
+const defaults={};
+nodes.forEach(n=>defaults[n.getAttribute('data-i18n')]=
+  (n.tagName==='TITLE'||n.tagName==='META')?(n.content||n.textContent):n.innerHTML);
+phNodes.forEach(n=>defaults[n.getAttribute('data-i18n-ph')]=n.placeholder);
+
+function setLang(lang){
+  const dict=i18n[lang];
+  nodes.forEach(n=>{
+    const k=n.getAttribute('data-i18n');
+    const v=dict?(dict[k]??defaults[k]):defaults[k];
+    if(n.tagName==='META'){n.setAttribute('content',v);}
+    else if(n.tagName==='TITLE'){n.textContent=v;}
+    else{n.innerHTML=v;}
+  });
+  phNodes.forEach(n=>{
+    const k=n.getAttribute('data-i18n-ph');
+    n.placeholder=dict?(dict[k]??defaults[k]):defaults[k];
+  });
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.lang button').forEach(b=>
+    b.setAttribute('aria-pressed',b.dataset.lang===lang?'true':'false'));
+  filter();
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{
+  setLang(b.dataset.lang);
+  const u=new URL(location.href); u.searchParams.set('lang',b.dataset.lang);
+  history.replaceState(null,'',u);
+}));
+
+/* Filter */
+const q=document.getElementById('q');
+const countEl=document.getElementById('count');
+const emptyEl=document.getElementById('empty');
+const items=[...document.querySelectorAll('.term')];
+const groupsEl=[...document.querySelectorAll('.grp')];
+
+function filter(){
+  const s=q.value.trim().toLowerCase();
+  let hits=0;
+  items.forEach(it=>{
+    const txt=it.textContent.toLowerCase();
+    const show=!s||txt.includes(s);
+    it.hidden=!show;
+    if(show)hits++;
+  });
+  groupsEl.forEach(g=>{
+    g.hidden=![...g.querySelectorAll('.term')].some(t=>!t.hidden);
+  });
+  emptyEl.hidden=hits>0;
+  countEl.textContent=hits+' / '+items.length;
+}
+q.addEventListener('input',filter);
+
+(function(){
+  const p=new URLSearchParams(location.search).get('lang');
+  if(p&&['de','en'].includes(p)) setLang(p); else filter();
+})();
+</script>
+</body>
+</html>
