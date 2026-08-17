@@ -10,3 +10,5 @@ stripe-api/.env.*
 stripe-api/node_modules/
 stripe-api/.vercel/
 node_modules/
+
+.vercel
