@@ -44,7 +44,13 @@ async function handler(req, res) {
   switch (event.type) {
     case 'checkout.session.completed': {
       const session = event.data.object;
-      console.log('Checkout completed', session.id, session.metadata);
+      const product = session.metadata && session.metadata.product;
+      console.log('Checkout completed', session.id, product, session.customer_details && session.customer_details.email);
+      // NOTE: for session_standard / session_vip / session_premium this only
+      // confirms payment — the client still books their slot themselves via
+      // the Calendly link on pages/sessions.html. No automatic booking
+      // confirmation, calendar hold, or emailed instructions is wired up
+      // here; add that here if/when it's needed.
       break;
     }
     case 'customer.subscription.deleted': {

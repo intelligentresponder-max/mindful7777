@@ -3,6 +3,10 @@ const { applyCors } = require('./_lib/cors');
 
 // Server-side allowlist: the client only ever sends a product key, never a
 // price or amount, so nobody can tamper with what they pay.
+//
+// urlBaseEnv is optional — when a product's page isn't pages/membership.html,
+// point it at that page's own success/cancel base instead (falls back to
+// SUCCESS_URL_BASE / CANCEL_URL_BASE when unset).
 const PRODUCTS = {
   membership: {
     mode: 'subscription',
@@ -11,6 +15,24 @@ const PRODUCTS = {
   support: {
     mode: 'payment',
     priceEnv: 'STRIPE_PRICE_SUPPORT',
+  },
+  // One-time paid 1:1 hypnosis sessions — payment happens up front, the
+  // client books their slot afterwards via the existing Calendly link on
+  // pages/sessions.html (no calendar/booking automation is wired up here).
+  session_standard: {
+    mode: 'payment',
+    priceEnv: 'STRIPE_PRICE_SESSION_STANDARD',
+    urlBaseEnv: 'SESSIONS_URL_BASE',
+  },
+  session_vip: {
+    mode: 'payment',
+    priceEnv: 'STRIPE_PRICE_SESSION_VIP',
+    urlBaseEnv: 'SESSIONS_URL_BASE',
+  },
+  session_premium: {
+    mode: 'payment',
+    priceEnv: 'STRIPE_PRICE_SESSION_PREMIUM',
+    urlBaseEnv: 'SESSIONS_URL_BASE',
   },
 };
 
@@ -35,8 +57,8 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const successBase = process.env.SUCCESS_URL_BASE;
-  const cancelBase = process.env.CANCEL_URL_BASE;
+  const successBase = (config.urlBaseEnv && process.env[`${config.urlBaseEnv}_SUCCESS`]) || process.env.SUCCESS_URL_BASE;
+  const cancelBase = (config.urlBaseEnv && process.env[`${config.urlBaseEnv}_CANCEL`]) || process.env.CANCEL_URL_BASE;
   if (!successBase || !cancelBase) {
     res.status(500).json({ error: 'SUCCESS_URL_BASE / CANCEL_URL_BASE are not configured' });
     return;
@@ -51,6 +73,7 @@ module.exports = async (req, res) => {
       automatic_tax: { enabled: true },
       billing_address_collection: 'auto',
       locale: locale === 'en' ? 'en' : 'de',
+      metadata: { product },
       ...(config.mode === 'subscription'
         ? { subscription_data: { metadata: { product } } }
         : { payment_intent_data: { metadata: { product } } }),
