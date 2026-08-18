@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mindful7777 · PDF Maker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d1226;
+    --ink-soft:#2a3050;
+    --paper:#fbf9f4;
+    --gold:#c9a24a;
+    --gold-soft:#e6d4a6;
+    --theta:#5f8f92;
+    --line:rgba(201,162,74,.35);
+    --display:"Cormorant Garamond", Georgia, serif;
+    --body:"Inter", system-ui, -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(120% 80% at 50% -10%, #1b2244 0%, var(--ink) 55%, #070a17 100%);
+    color:#e8e6e0; font-family:var(--body); font-weight:300;
+    min-height:100vh;
+  }
+
+  /* ---------- Werkzeug-Oberfläche ---------- */
+  .shell{max-width:1180px;margin:0 auto;padding:22px 16px 80px}
+  header.top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  .mark{font-family:var(--display);font-size:30px;letter-spacing:.16em;color:var(--gold);font-weight:500}
+  .top p{margin:0;font-size:13px;color:#9aa0b8;letter-spacing:.02em}
+
+  .grid{display:grid;gap:22px;grid-template-columns:1fr}
+  @media(min-width:960px){.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}}
+
+  .panel{
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(201,162,74,.18);
+    border-radius:2px;padding:18px;
+  }
+  label{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-soft);margin:14px 0 6px}
+  label:first-of-type{margin-top:0}
+  input[type=text],textarea,select{
+    width:100%;background:rgba(7,10,23,.6);color:#f2f0ea;
+    border:1px solid rgba(255,255,255,.14);border-radius:2px;
+    padding:11px 12px;font-family:var(--body);font-size:15px;font-weight:300;
+  }
+  textarea{min-height:340px;line-height:1.65;resize:vertical}
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+  .row{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+  .row>div{flex:1 1 150px}
+  .checks{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:13px;color:#c8cbdb}
+  .checks label{display:flex;align-items:center;gap:7px;margin:0;text-transform:none;letter-spacing:0;font-size:13px;color:#c8cbdb}
+  input[type=checkbox]{accent-color:var(--gold);width:16px;height:16px}
+
+  .hint{font-size:12px;line-height:1.6;color:#8d93ab;margin-top:14px;border-top:1px solid rgba(255,255,255,.08);padding-top:12px}
+  .hint code{background:rgba(201,162,74,.14);color:var(--gold-soft);padding:1px 5px;border-radius:2px;font-size:11.5px}
+
+  .actions{position:sticky;bottom:0;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+    background:linear-gradient(to top,rgba(7,10,23,.96),rgba(7,10,23,0));padding:16px 0 4px;margin-top:18px}
+  button{
+    font-family:var(--body);font-size:14px;letter-spacing:.06em;cursor:pointer;
+    background:var(--gold);color:#12142a;border:0;border-radius:2px;padding:13px 22px;font-weight:500;
+  }
+  button.ghost{background:transparent;color:var(--gold-soft);border:1px solid var(--line)}
+  button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  .count{font-size:12px;color:#8d93ab;margin-left:auto}
+
+  .preview-wrap{background:rgba(255,255,255,.04);border:1px solid rgba(201,162,74,.18);padding:14px;border-radius:2px}
+  .preview-wrap>span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-soft)}
+  .scaler{margin-top:12px;max-height:74vh;overflow:auto;background:#2a2d3d;padding:14px;border-radius:2px}
+
+  /* ---------- Das Dokument ---------- */
+  .paper{
+    background:var(--paper);color:#14161f;
+    font-family:var(--body);font-size:11pt;line-height:1.72;
+    padding:22mm 20mm;margin:0 auto;max-width:210mm;
+    box-shadow:0 12px 40px rgba(0,0,0,.45);
+  }
+  .paper h1,.paper h2,.paper h3{font-family:var(--display);font-weight:500;color:#101526;line-height:1.2}
+  .paper h1{font-size:26pt;margin:0 0 6pt}
+  .paper h2{font-size:17pt;margin:22pt 0 6pt;border-bottom:1px solid var(--line);padding-bottom:5pt}
+  .paper h3{font-size:13pt;margin:16pt 0 4pt;color:var(--ink-soft)}
+  .paper p{margin:0 0 9pt}
+  .paper ul,.paper ol{margin:0 0 10pt;padding-left:18pt}
+  .paper li{margin-bottom:4pt}
+  .paper blockquote{
+    margin:12pt 0;padding:8pt 0 8pt 14pt;border-left:2px solid var(--gold);
+    font-family:var(--display);font-size:14pt;font-style:italic;color:var(--ink-soft)
+  }
+  .paper strong{font-weight:500;color:#000}
+  .paper hr{border:0;border-top:1px solid var(--line);margin:16pt 0}
+  .pagebreak{break-after:page;page-break-after:always;height:0}
+
+  /* Deckblatt — Theta-Ring als Signatur */
+  .cover{
+    break-after:page;page-break-after:always;
+    min-height:232mm;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  }
+  .cover .sigil{width:88mm;height:88mm;margin-bottom:14mm}
+  .cover h1{font-size:34pt;font-weight:300;letter-spacing:.02em;margin:0}
+  .cover .sub{font-family:var(--display);font-size:15pt;font-style:italic;color:var(--ink-soft);margin-top:6pt}
+  .cover .brand{margin-top:16mm;font-size:9pt;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+
+  .toc{margin:0 0 14pt}
+  .toc h2{border:0;margin-top:0}
+  .toc ol{list-style:none;padding:0;counter-reset:t}
+  .toc li{counter-increment:t;border-bottom:1px dotted rgba(0,0,0,.18);padding:5pt 0;font-size:10.5pt}
+  .toc li::before{content:counter(t,decimal-leading-zero);color:var(--gold);margin-right:10pt;font-size:9pt}
+
+  .foot{margin-top:18pt;padding-top:8pt;border-top:1px solid var(--line);font-size:8.5pt;letter-spacing:.2em;text-transform:uppercase;color:#8a8f9e;text-align:center}
+
+  /* ---------- Druck ---------- */
+  @page{size:A4;margin:0}
+  body.a5 .paper{max-width:148mm;font-size:10.5pt;padding:16mm 15mm}
+  body.a5 .cover{min-height:170mm}
+  @media print{
+    :root{color-scheme:light}
+    body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .shell>header, .panel, .actions, .preview-wrap>span{display:none!important}
+    .grid{display:block}
+    .shell{padding:0;max-width:none}
+    .preview-wrap{background:none;border:0;padding:0}
+    .scaler{max-height:none;overflow:visible;background:none;padding:0}
+    .paper{box-shadow:none;margin:0;max-width:none;padding:20mm 18mm}
+    body.a5{}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .paper{transition:opacity .18s ease}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="top">
+    <span class="mark">mindful7777</span>
+    <p>Text rein, druckfertiges PDF raus.</p>
+  </header>
+
+  <div class="grid">
+    <!-- Eingabe -->
+    <section class="panel">
+      <label for="title">Titel</label>
+      <input id="title" type="text" value="Hypnosis 1 &amp; 2" spellcheck="false">
+
+      <label for="sub">Untertitel</label>
+      <input id="sub" type="text" value="Protokoll für tiefe Entspannung">
+
+      <div class="row">
+        <div>
+          <label for="brand">Fußzeile</label>
+          <input id="brand" type="text" value="mindful7777">
+        </div>
+        <div>
+          <label for="size">Format</label>
+          <select id="size">
+            <option value="a4">A4</option>
+            <option value="a5">A5 (E-Book)</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="src">Inhalt</label>
+      <textarea id="src" spellcheck="false"># Einstieg
+
+Setz dich bequem hin und lass die Schultern schwer werden.
+
+## Vorbereitung
+
+- Handy stumm schalten
+- 20 Minuten ungestörte Zeit
+- Warmes, gedimmtes Licht
+
+> Atme vier Sekunden ein, sechs Sekunden aus.
+
+---
+
+## Die Induktion
+
+Zähle langsam von **zehn** rückwärts. Mit jeder Zahl sinkt der Körper eine Stufe tiefer.
+
+### Vertiefung
+
+1. Füße und Beine lösen
+2. Bauch und Brust weich werden lassen
+3. Kiefer öffnen, Stirn glätten
+</textarea>
+
+      <div class="checks">
+        <label><input type="checkbox" id="optCover" checked> Deckblatt</label>
+        <label><input type="checkbox" id="optToc"> Inhaltsverzeichnis</label>
+        <label><input type="checkbox" id="optFoot" checked> Fußzeile</label>
+      </div>
+
+      <div class="hint">
+        <code>#</code> Überschrift · <code>##</code> Kapitel · <code>###</code> Zwischentitel · <code>-</code> Liste ·
+        <code>1.</code> Nummerierung · <code>&gt;</code> Zitat · <code>**fett**</code> · <code>---</code> neue Seite
+      </div>
+
+      <div class="actions">
+        <button id="print">PDF erstellen</button>
+        <button class="ghost" id="clear">Inhalt leeren</button>
+        <span class="count" id="count"></span>
+      </div>
+    </section>
+
+    <!-- Vorschau -->
+    <section class="preview-wrap">
+      <span>Vorschau</span>
+      <div class="scaler">
+        <article class="paper" id="paper"></article>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const inline = s => esc(s)
+  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+  .replace(/(^|[^*])\*([^*]+)\*/g, '$1<em>$2</em>');
+
+const sigil = `<svg class="sigil" viewBox="0 0 200 200" role="img" aria-label="Theta-Ring">
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#c9a24a" stroke-width="0.6" opacity=".55"/>
+  <circle cx="100" cy="100" r="70" fill="none" stroke="#c9a24a" stroke-width="0.6" opacity=".4"/>
+  <circle cx="100" cy="100" r="52" fill="none" stroke="#5f8f92" stroke-width="0.6" opacity=".5"/>
+  <path d="M12 100 q11 -26 22 0 t22 0 t22 0 t22 0 t22 0 t22 0 t22 0 t22 0"
+        fill="none" stroke="#5f8f92" stroke-width="1.1" opacity=".85"/>
+  <text x="100" y="76" text-anchor="middle" font-family="Cormorant Garamond, serif"
+        font-size="26" letter-spacing="6" fill="#c9a24a">7777</text>
+</svg>`;
+
+function build(){
+  const md = $('src').value;
+  const lines = md.split(/\r?\n/);
+  let html = '', list = null, quote = false;
+  const chapters = [];
+
+  const closeList = () => { if(list){ html += `</${list}>`; list = null; } };
+  const closeQuote = () => { if(quote){ html += '</blockquote>'; quote = false; } };
+
+  for(const raw of lines){
+    const line = raw.trim();
+    if(!line){ closeList(); closeQuote(); continue; }
+
+    if(line === '---'){ closeList(); closeQuote(); html += '<div class="pagebreak"></div>'; continue; }
+
+    let m;
+    if((m = line.match(/^###\s+(.*)/))){ closeList(); closeQuote(); html += `<h3>${inline(m[1])}</h3>`; continue; }
+    if((m = line.match(/^##\s+(.*)/))){ closeList(); closeQuote(); chapters.push(m[1]);
+      html += `<h2 id="k${chapters.length}">${inline(m[1])}</h2>`; continue; }
+    if((m = line.match(/^#\s+(.*)/))){ closeList(); closeQuote(); html += `<h1>${inline(m[1])}</h1>`; continue; }
+
+    if((m = line.match(/^>\s?(.*)/))){ closeList();
+      if(!quote){ html += '<blockquote>'; quote = true; }
+      html += `<p>${inline(m[1])}</p>`; continue; }
+    closeQuote();
+
+    if((m = line.match(/^[-*]\s+(.*)/))){
+      if(list !== 'ul'){ closeList(); html += '<ul>'; list = 'ul'; }
+      html += `<li>${inline(m[1])}</li>`; continue; }
+    if((m = line.match(/^\d+[.)]\s+(.*)/))){
+      if(list !== 'ol'){ closeList(); html += '<ol>'; list = 'ol'; }
+      html += `<li>${inline(m[1])}</li>`; continue; }
+
+    closeList();
+    html += `<p>${inline(line)}</p>`;
+  }
+  closeList(); closeQuote();
+
+  const title = $('title').value.trim();
+  const sub = $('sub').value.trim();
+  const brand = $('brand').value.trim();
+
+  let out = '';
+  if($('optCover').checked){
+    out += `<section class="cover">${sigil}<h1>${esc(title)}</h1>` +
+           (sub ? `<div class="sub">${esc(sub)}</div>` : '') +
+           (brand ? `<div class="brand">${esc(brand)}</div>` : '') + `</section>`;
+  }
+  if($('optToc').checked && chapters.length){
+    out += `<nav class="toc"><h2>Inhalt</h2><ol>` +
+           chapters.map(c => `<li>${esc(c)}</li>`).join('') +
+           `</ol></nav><div class="pagebreak"></div>`;
+  }
+  out += html;
+  if($('optFoot').checked && brand) out += `<div class="foot">${esc(brand)}</div>`;
+
+  $('paper').innerHTML = out;
+
+  const words = md.trim() ? md.trim().split(/\s+/).length : 0;
+  $('count').textContent = `${words} Wörter · ca. ${Math.max(1, Math.ceil(words/380))} Seiten`;
+  document.body.classList.toggle('a5', $('size').value === 'a5');
+}
+
+['src','title','sub','brand'].forEach(id => $(id).addEventListener('input', build));
+['optCover','optToc','optFoot','size'].forEach(id => $(id).addEventListener('change', build));
+$('print').addEventListener('click', () => window.print());
+$('clear').addEventListener('click', () => { $('src').value = ''; build(); $('src').focus(); });
+build();
+</script>
+</body>
+</html>
