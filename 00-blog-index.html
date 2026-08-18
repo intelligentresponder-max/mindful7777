@@ -145,6 +145,17 @@ footer{text-align:center;padding:40px 18px;font-size:.8rem;color:#8a949e}
 .card2 h4{color:var(--primary);font-size:1.05rem;margin:4px 0 4px;line-height:1.25}
 .card2 p{color:#54616e;font-size:.86rem;margin:0}
 
+/* ===== Bonus / Extras ===== */
+.bonus{max-width:760px;margin:44px auto 0;padding:0 clamp(18px,5vw,48px)}
+.bonus .eyebrow{margin-bottom:14px}
+.wheel{position:relative;background:linear-gradient(180deg,#fff 0%,#fdf8ef 100%);border-color:rgba(212,165,116,.55)}
+.wheel .num{font-size:1.2rem}
+.wheel-mark{position:absolute;top:16px;right:16px;width:34px;height:34px;opacity:.9}
+.wheel-mark svg{width:100%;height:100%;display:block}
+@media(prefers-reduced-motion:no-preference){
+  .wheel:hover .wheel-mark svg{transform:rotate(45deg);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+}
+
 
 /* ===== magic layer (language-neutral) ===== */
 @keyframes breathe { 0%,100%{transform:scale(1);opacity:.55} 40%{transform:scale(1.18);opacity:.9} }
@@ -241,6 +252,31 @@ p .term:hover{color:var(--accent);border-bottom-style:solid}
   </div>
 </div>
 
+<section class="bonus">
+  <span class="eyebrow" data-i18n="bonus.eyebrow">Extras</span>
+  <div class="cards">
+    <a class="card2 wheel" href="https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html">
+      <span class="wheel-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="none" stroke="#D4A574" stroke-width="1.4"/><path d="M20 3v34M3 20h34M8 8l24 24M32 8L8 32" stroke="#D4A574" stroke-width=".8" opacity=".55"/><circle cx="20" cy="20" r="3.2" fill="#D4A574"/></svg></span>
+      <span class="num">&#9733;</span>
+      <h4 data-i18n="wheel.t">Gl&uuml;cksrad</h4>
+      <p data-i18n="wheel.d">Einmal drehen und deinen Gratis-Bonus sichern.</p>
+    </a>
+    <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/lead-magnet.html">
+      <span class="num">&#8595;</span>
+      <h4 data-i18n="lead.t">Gratis-Guide</h4>
+      <p data-i18n="lead.d">Der 90-Sekunden-Reset zum Mitnehmen.</p>
+    </a>
+  </div>
+
+  <!-- PDF hinzufuegen: PDF ins Repo laden (z. B. downloads/name.pdf) und diesen Block in <div class="cards"> kopieren:
+  <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/downloads/DATEINAME.pdf" download>
+    <span class="num">PDF</span>
+    <h4>Titel des PDFs</h4>
+    <p>Ein Satz, worum es geht.</p>
+  </a>
+  -->
+</section>
+
 <footer style="margin-top:48px" data-i18n="foot">© 2026 mindful7777</footer>
 
 <script>
@@ -267,6 +303,11 @@ const i18n = {
     "p5.d":"How a signal becomes a switch.",
     "p6.t":"Parasympathetic",
     "p6.d":"Why recovery is an active mode.",
+    "bonus.eyebrow":"Extras",
+    "wheel.t":"Wheel of Fortune",
+    "wheel.d":"One spin, one free bonus.",
+    "lead.t":"Free guide",
+    "lead.d":"The 90-second reset to take with you.",
     "foot":"© 2026 mindful7777"
   },
   fr: {
@@ -290,6 +331,11 @@ const i18n = {
     "p5.d":"Comment un signal devient un interrupteur.",
     "p6.t":"Parasympathique",
     "p6.d":"Pourquoi la récupération est un mode actif.",
+    "bonus.eyebrow":"Bonus",
+    "wheel.t":"Roue de la fortune",
+    "wheel.d":"Un tour, un bonus gratuit.",
+    "lead.t":"Guide gratuit",
+    "lead.d":"Le reset de 90 secondes à emporter.",
     "foot":"© 2026 mindful7777"
   }
 };
