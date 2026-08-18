@@ -135,6 +135,55 @@
   </div>
 </main>
 
+
+<style>
+/* ===== Alles im Ueberblick ===== */
+.hub{margin:56px auto 0}
+.hub .n{font-family:var(--mono,monospace);color:var(--gold,#c9a24a);font-size:.74rem;letter-spacing:.16em}
+.hub h2{margin:6px 0 4px}
+.hub .lead{color:#8a949e;font-size:.92rem;margin:0 0 22px}
+.hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.hub-card{display:block;text-decoration:none;background:var(--surface,rgba(255,255,255,.04));
+  border:1px solid var(--line,rgba(255,255,255,.12));border-radius:var(--radius,14px);padding:18px;transition:.16s}
+.hub-card:hover{border-color:var(--gold,#c9a24a);transform:translateY(-3px)}
+.hub-card .k{font-family:var(--mono,monospace);color:var(--gold,#c9a24a);font-size:.72rem;letter-spacing:.12em}
+.hub-card h3{font-size:1.02rem;margin:6px 0 4px}
+.hub-card p{font-size:.85rem;opacity:.75;margin:0}
+.site-footer a{color:inherit}
+</style>
+
+<section class="hub container">
+  <span class="n">04</span>
+  <h2 class="serif" data-i18n="hub.h">Alles im &Uuml;berblick</h2>
+  <p class="lead" data-i18n="hub.p">Jede Seite des mindful7777-Systems an einem Ort.</p>
+  <div class="hub-grid">
+    <a class="hub-card" href="https://intelligentresponder-max.github.io/mindful7777/sock-anchor-protocol.html">
+      <span class="k">GRATIS</span><h3 data-i18n="hub.1t">Sock-Anchor Protokoll</h3>
+      <p data-i18n="hub.1d">Der komplette 90-Sekunden-Reset.</p></a>
+    <a class="hub-card" href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html">
+      <span class="k">WISSEN</span><h3 data-i18n="hub.2t">Blog</h3>
+      <p data-i18n="hub.2d">Sieben Beitr&auml;ge: Theta, Vagusnerv, Cortisol.</p></a>
+    <a class="hub-card" href="https://intelligentresponder-max.github.io/mindful7777/glossar.html">
+      <span class="k">NACHSCHLAGEN</span><h3 data-i18n="hub.3t">Glossar</h3>
+      <p data-i18n="hub.3d">Alle Begriffe kurz erkl&auml;rt.</p></a>
+    <a class="hub-card" href="https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html">
+      <span class="k">BONUS</span><h3 data-i18n="hub.4t">Gl&uuml;cksrad</h3>
+      <p data-i18n="hub.4d">Einmal drehen, Gratis-Bonus sichern.</p></a>
+    <a class="hub-card" href="https://intelligentresponder-max.github.io/mindful7777/sporthypnose.html">
+      <span class="k">ANWENDUNG</span><h3 data-i18n="hub.5t">Sporthypnose</h3>
+      <p data-i18n="hub.5d">Mentale Vorbereitung f&uuml;r Training und Wettkampf.</p></a>
+    <a class="hub-card" href="https://intelligentresponder-max.github.io/mindful7777/fernsitzungen.html">
+      <span class="k">1:1</span><h3 data-i18n="hub.6t">Fernsitzungen</h3>
+      <p data-i18n="hub.6d">Hypnose von zu Hause aus.</p></a>
+    <a class="hub-card" href="https://intelligentresponder-max.github.io/mindful7777/afterwork.html">
+      <span class="k">ROUTINE</span><h3 data-i18n="hub.7t">After-Work-Induktion</h3>
+      <p data-i18n="hub.7d">Abschalten nach dem Arbeitstag.</p></a>
+    <a class="hub-card" href="https://intelligentresponder-max.github.io/mindful7777/vip.html">
+      <span class="k">VIP</span><h3 data-i18n="hub.8t">Protocol Stack</h3>
+      <p data-i18n="hub.8d">Alle sieben Protokolle im Abo.</p></a>
+  </div>
+</section>
+
 <section class="cta-final">
   <div class="breath" aria-hidden="true"></div>
   <h2 class="serif" data-i18n="cta.h" style="margin-top:0">Starte gratis. Scale wenn bereit.</h2>
@@ -150,12 +199,22 @@
   <p data-i18n="disc">Hinweis: mindful7777 dient der Information und Entspannung und ersetzt keine medizinische oder therapeutische Behandlung.</p>
 </div>
 
-<footer class="site-footer">© 2026 mindful7777 · WHY NOT? BE THE CHANGE.</footer>
+<footer class="site-footer">© 2026 mindful7777 · WHY NOT? BE THE CHANGE.<br><a href="https://intelligentresponder-max.github.io/mindful7777/impressum.html">Impressum</a> · <a href="https://intelligentresponder-max.github.io/mindful7777/datenschutz.html">Datenschutz</a></footer>
 
 <script>
 const i18n = {
   de: null,
   en: {
+    "hub.h":"Everything at a glance",
+    "hub.p":"Every page of the mindful7777 system in one place.",
+    "hub.1t":"Sock-Anchor Protocol","hub.1d":"The complete 90-second reset.",
+    "hub.2t":"Blog","hub.2d":"Seven articles: theta, vagus nerve, cortisol.",
+    "hub.3t":"Glossary","hub.3d":"Every term, briefly explained.",
+    "hub.4t":"Wheel of Fortune","hub.4d":"One spin, one free bonus.",
+    "hub.5t":"Sports Hypnosis","hub.5d":"Mental prep for training and competition.",
+    "hub.6t":"Remote Sessions","hub.6d":"Hypnosis from home.",
+    "hub.7t":"After-Work Induction","hub.7d":"Switch off after the working day.",
+    "hub.8t":"Protocol Stack","hub.8d":"All seven protocols, by subscription.",
     "meta.title":"mindful7777 · Sock-Anchor Protocol & Neural Reset",
     "meta.desc":"Science-based. No esoteric BS. 90-second neural reset — measurable, reproducible, on demand. Pavlovian conditioning meets the vagus nerve.",
     "h1":"90 seconds. A real reset. No esoteric BS.",
