@@ -13,13 +13,18 @@ solo-creator storefront. Add them here later if that changes.
 
 | Endpoint | Purpose |
 |---|---|
-| `POST /api/create-checkout-session` | Body: `{ "product": "membership" \| "support" \| "session_standard" \| "session_vip" \| "session_premium", "locale": "de" \| "en" }`. Returns `{ url }` — redirect the browser there. |
+| `POST /api/create-checkout-session` | Body: `{ "product": "membership" \| "support", "locale": "de" \| "en" }`. Returns `{ url }` — redirect the browser there. |
 | `POST /api/create-portal-session` | Body: `{ "session_id": "<checkout session id from the success redirect>" }`. Returns `{ url }` for Stripe's Customer Portal (cancel/update payment method). |
 | `POST /api/webhook` | Stripe webhook receiver. Configure this URL in the Stripe Dashboard. |
 
+The 1:1-session tiers (`session_standard`/`session_vip`/`session_premium`,
+Calendly-based) that used to live here have been dropped — that offer is
+retired, its page (`pages/sessions.html`) is archived. Only VIP membership
+automation is in scope for now.
+
 ## First-time setup
 
-1. **Create five Prices in Stripe** (Dashboard → Product catalog):
+1. **Create two Prices in Stripe** (Dashboard → Product catalog):
    - `membership` — recurring, **77,77 €/month** — this is the current
      `vip.html` price (was €25/month when this backend was first drafted;
      `pages/membership.html` it originally targeted has since been archived,
@@ -27,25 +32,7 @@ solo-creator storefront. Add them here later if that changes.
    - `support` — one-time, "pay what you can" or fixed amount — `vip.html`
      currently handles this via a Ko-fi link instead; wire this product in
      only if/when you want a Stripe-native alternative to that.
-   - `session_standard` / `session_vip` / `session_premium` — one-time,
-     €77 / €100 / €150 (90 min) — **stale product line, review before use**:
-     these targeted `pages/sessions.html` (archived), which had its own
-     Calendly link and these three tiers. `vip.html` now advertises a
-     differently-scoped "1:1 Custom Session ab 97€" instead — confirm
-     pricing and booking flow (Calendly link still active?) before creating
-     these Prices, or drop them from `PRODUCTS` in
-     `api/create-checkout-session.js` if that offer no longer exists.
    Copy each **Price ID** (`price_...`, not the Payment Link/Buy Button ID).
-
-   Optional product metadata for the three session Prices, if you want it
-   for your own filtering/reporting in the Dashboard (nothing in this
-   codebase reads it — Checkout doesn't need it to work):
-   ```
-   product_category = service_consultation
-   duration_minutes = 90        # session_premium only
-   priority          = high | vip_access   # session_premium / session_vip
-   rate_type         = special_offer       # session_standard
-   ```
 
 2. **Deploy this folder as its own Vercel project**, with this subdirectory
    (`stripe-api/`) set as the project's Root Directory:
@@ -56,13 +43,8 @@ solo-creator storefront. Add them here later if that changes.
    npx vercel env add STRIPE_WEBHOOK_SECRET
    npx vercel env add STRIPE_PRICE_MEMBERSHIP
    npx vercel env add STRIPE_PRICE_SUPPORT
-   npx vercel env add STRIPE_PRICE_SESSION_STANDARD
-   npx vercel env add STRIPE_PRICE_SESSION_VIP
-   npx vercel env add STRIPE_PRICE_SESSION_PREMIUM
    npx vercel env add SUCCESS_URL_BASE
    npx vercel env add CANCEL_URL_BASE
-   npx vercel env add SESSIONS_URL_BASE_SUCCESS
-   npx vercel env add SESSIONS_URL_BASE_CANCEL
    npx vercel env add ALLOWED_ORIGINS
    npx vercel deploy --prod
    ```
@@ -95,19 +77,17 @@ not yet wired up.** To connect it:
 
 1. Add `<script src="assets/stripe-checkout.js"></script>` to `vip.html`.
 2. Set `STRIPE_API_BASE` in `assets/stripe-checkout.js` to your deployed API
-   URL (see step 2/3 below — there is no deployment yet, so this is still a
+   URL (see step 2/3 above — there is no deployment yet, so this is still a
    placeholder).
 3. Add a button calling `startCheckout('membership', lang)` on `vip.html`.
    Ko-fi remains the only working payment path there today — add the Stripe
    button alongside it, don't replace it, until this backend is deployed and
    tested end-to-end.
 
-Paying for a session only confirms payment — the customer still books their
-slot themselves via a Calendly link. There's no automatic calendar hold,
-tier-specific booking link, or emailed confirmation; `api/webhook.js` just
-logs the purchase. Build that out if you want the paid tier to actually gate
-which Calendly event type someone can book — and note the session-tier
-Calendly link needs to be reconfirmed first, see the setup step above.
+`checkout.session.completed` webhook events for `membership` only confirm
+and log the subscription (see `api/webhook.js`) — no automatic VIP-password
+delivery is wired up yet. Build that out (e.g. an email step in the webhook
+handler) if/when you want signup to be fully hands-off.
 
 ## Why Checkout Sessions instead of Payment Links / Buy Buttons
 

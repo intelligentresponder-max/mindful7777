@@ -46,11 +46,9 @@ async function handler(req, res) {
       const session = event.data.object;
       const product = session.metadata && session.metadata.product;
       console.log('Checkout completed', session.id, product, session.customer_details && session.customer_details.email);
-      // NOTE: for session_standard / session_vip / session_premium this only
-      // confirms payment — the client still books their slot themselves via
-      // the Calendly link on pages/sessions.html. No automatic booking
-      // confirmation, calendar hold, or emailed instructions is wired up
-      // here; add that here if/when it's needed.
+      // Only confirms and logs the payment — no automatic VIP-password
+      // delivery is wired up here yet. Add that if/when signup should be
+      // fully hands-off (e.g. an email step for the `membership` product).
       break;
     }
     case 'customer.subscription.deleted': {
