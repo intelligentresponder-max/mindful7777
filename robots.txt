@@ -14,6 +14,9 @@ Allow: /datenschutz.html
 # Tool-Seiten nicht indexieren
 Disallow: /favicon-generator.html
 
+# Archiv: veraltete/doppelte Seiten, nicht indexieren
+Disallow: /archiv/
+
 # Sitemap
 Sitemap: https://intelligentresponder-max.github.io/mindful7777/sitemap.xml
-Allow: /pages/glossar.html
+Allow: /glossar.html
