@@ -222,6 +222,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Top-Beitrag -->
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/blog/08-weisse-socke-modetrend.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- Bestehende Blog-Artikel (DE/EN) -->
   <url>
     <loc>https://intelligentresponder-max.github.io/mindful7777/blog/theta-wellen.html</loc>
