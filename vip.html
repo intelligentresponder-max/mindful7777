@@ -67,6 +67,7 @@
     /* HERO */
     .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 5% 80px;position:relative;overflow:hidden}
     .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(212,175,55,.05) 0%,transparent 70%);pointer-events:none}
+    .hero-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:start;width:100%}
     .hero-kicker{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
     .hero-title{font-family:"Playfair Display",serif;font-size:clamp(40px,7vw,80px);font-weight:400;line-height:1.0;max-width:860px;margin-bottom:24px;color:var(--white)}
     .hero-title em{color:var(--gold);font-style:italic}
@@ -78,7 +79,7 @@
     .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 
     /* Price box in hero */
-    .hero-price-box{background:var(--surface);border:1px solid var(--gold);padding:28px 32px;max-width:440px;position:relative}
+    .hero-price-box{background:var(--surface);border:1px solid var(--gold);padding:28px 32px;width:100%;max-width:360px;min-width:320px;position:relative}
     .price-box-badge{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
     .price-box-old{font-size:12px;color:var(--muted);text-decoration:line-through;margin-bottom:4px}
     .price-box-main{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
@@ -229,9 +230,12 @@
 
     @media(max-width:600px){
       .hero{padding:100px 5% 60px}
-      .hero-price-box{margin-top:40px}
+      .hero-grid{grid-template-columns:1fr;gap:32px}
+      .hero-price-box{margin-top:0;min-width:0;max-width:100%}
       .m-hero{padding:60px 5% 40px}
-      nav,m-nav{padding:14px 5%}
+      nav,.m-nav{padding:14px 5%}
+      .nav-right{gap:8px}
+      .nav-home{display:none}
     }
   </style>
 </head>
@@ -269,7 +273,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:start;width:100%">
+    <div class="hero-grid">
       <div>
         <div class="hero-kicker">mindful7777 · VIP Protocol Stack</div>
         <h1 class="hero-title" data-i18n="hero.title">7 Protokolle.<br/>1 System.<br/><em>Kein Bullshit.</em></h1>
@@ -281,7 +285,7 @@
         <p style="font-size:12px;color:var(--muted);margin-top:12px" data-i18n="hero.noAccess">Noch kein Zugang? <a href="https://ko-fi.com/mindf7777" style="color:var(--gold)" target="_blank">Auf Ko-fi aktivieren → Passwort per Mail.</a></p>
         <p style="font-size:11px;color:var(--muted);opacity:.7;margin-top:6px" data-i18n="hero.kofiTip">Tipp: Auf Ko-fi kannst du auch einen frei wählbaren Betrag als Geschenk hinterlassen.</p>
       </div>
-      <div class="hero-price-box" style="min-width:320px;max-width:360px">
+      <div class="hero-price-box">
         <div class="price-box-badge" data-i18n="price.badge">Best Value · VIP Stack</div>
         <div class="price-box-main" style="margin-top:8px">
           <div class="price-num" data-i18n="price.num">77,77 €</div>
