@@ -230,6 +230,34 @@
     <priority>0.85</priority>
   </url>
 
+  <!-- Neu im Startseiten-Hub verlinkt -->
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/sock-anchor-ebook.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/ares-transformation.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/ares-transformation.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/ares-transformation-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/ares-transformation.html"/>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/ares-transformation-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/ares-transformation.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/ares-transformation-en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/ares-transformation.html"/>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Bestehende Blog-Artikel (DE/EN) -->
   <url>
     <loc>https://intelligentresponder-max.github.io/mindful7777/blog/theta-wellen.html</loc>
