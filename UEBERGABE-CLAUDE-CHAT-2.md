@@ -104,19 +104,22 @@ Beim Schreiben dieser Übergabe wurde die Erreichbarkeit neu geprüft (Link-Grap
 
 ---
 
-## 4. Offene Punkte für die nächste Session
+## 4. Offene Punkte — Stand nach Nachkontrolle (19.08., später Nachmittag)
 
-**Direkt entscheidungsbedürftig:**
-- `teaser-sock-anker.html` verlinken oder bewusst als externe Landingpage stehen lassen? (1.9)
+**Erledigt seit der ersten Fassung dieses Abschnitts:**
+- `teaser-sock-anker.html` verlinkt (Nutzer-Entscheidung: verlinken), neue Extras-Karte in `00-blog-index.html`
+- SEO: fehlendes `<link rel="canonical">` auf 23 öffentlichen Seiten ergänzt (u. a. `vip.html`, `sock-anchor-protocol.html`), 7 davon zusätzlich Meta-Description ergänzt, `mindful7_guide.html`/`_komplett.html` fehlendes `viewport`-Meta ergänzt, `_komplett.html` komplette OG-Tags ergänzt (Commit `cdaf98f`)
+- `blog/blog-remote-sessions-en.html` (vollständiger, eigenständiger EN-Artikel) war komplett unverlinkt — jetzt über Extras-Karte erreichbar
+- **Ko-fi-Produktlinks für alte Gumroad-Slugs: geklärt, kein offener Punkt.** Nutzer bestätigt: es existiert nur die eine generische Ko-fi-Seite (`ko-fi.com/mindf7777`), keine separaten Produktseiten. Die aktuelle Verlinkung (alle alten Gumroad-Links → generisches Profil) ist damit korrekt und final.
 
-**Aus der Vorgänger-Übergabe weiterhin offen:**
-- Schritt 4 — VIP-Zugang automatisieren (Ko-fi-Webhook vs. Stripe Payment Links; Passwort liegt aktuell als Klartext-Hash im Client-Code, `vip.html`)
+**Weiterhin offen, braucht Entscheidung/Zugangsdaten vom Nutzer:**
+- **VIP-Zugang automatisieren (Schritt 4):** Es existiert bereits ein fertiges Stripe-Backend (`stripe-api/`, Serverless-Functions für Vercel, Checkout Sessions + Webhook, siehe `stripe-api/README.md`) — zielt aber auf die **archivierten** alten Seiten (`pages/membership.html`, `pages/sessions.html`, `vip-updated.html`), nicht auf das aktuelle `vip.html`. `assets/stripe-checkout.js` liegt im Repo, wird aber von keiner aktuellen Seite geladen — komplett verwaist. `vip.html` läuft aktuell rein über Ko-fi (der „Stripe"-Bereich dort ist nur noch ein Ko-fi-Button mit alten CSS-Klassennamen). Um zu automatisieren: entweder (a) Stripe-Backend an `vip.html` anpassen + echte Stripe-Keys + eigenes Vercel-Deployment, oder (b) Ko-fi-Webhook. Passwort liegt aktuell als Hash im Client-Code (`vip.html`).
 - Schritt 5 — PDF-Erzeugung serverseitig prüfen; `pdf-maker-client.html` fehlt weiterhin komplett im Repo
-- Fehlende Ko-fi-Produktlinks für 3 alte Gumroad-Slugs (Lead-Magnet, Sock-Anchor-Bundle, 12,90-€-Sporthypnose-Produkt) — zeigen aktuell alle auf das generische Ko-fi-Profil statt auf eigene Produktseiten
-- SEO-Lücken auf den noch nicht angefassten Seiten: fehlende Meta-Description auf ~8 Seiten, fehlendes `<link rel="canonical">` auf ~20+ Seiten (Liste in Teil-1-Übergabe, Abschnitt 4) — der `og:image`-Punkt von dort ist jetzt erledigt
-- 3 leere (0-Byte) Bilddateien weiterhin ohne Ersatz: `assets/images/banner_home.jpg`, `logo.png`, `banner_newsletter.jpg`
-- Der jetzt neu entdeckte `blog/blog-remote-sessions-en.html` bleibt isoliert — falls die EN-Fernsitzungen-Seite gebraucht wird, fehlt noch ein Link dorthin
+- 3 leere (0-Byte) Bilddateien weiterhin ohne Ersatz: `assets/images/banner_home.jpg`, `logo.png`, `banner_newsletter.jpg` — bestätigt: nirgends im Live-Code referenziert, also aktuell unschädlich, nur relevant falls gebraucht
+
+**Neu entdeckt, nur als Hinweis (keine Entscheidung erzwungen):**
+- 3 überlappende „Fernsitzungen auf Englisch"-Seiten (`fernsitzungen.html?lang=en`, `blog/fernsitzungen.html?lang=en`, `blog/blog-remote-sessions-en.html`) — inhaltlich unterschiedlich geschrieben, gleiches Thema. Nicht konsolidiert, da Content-Strategie-Entscheidung, keine Bugfix-Frage.
 
 **Zahlungen (unverändert):**
-- Stripe-Konto „mindful7777" (`acct_1U5HoDRFsSeIZjZL`) steht im Testmodus
+- Stripe-Konto „mindful7777" (`acct_1U5HoDRFsSeIZjZL`) steht im Testmodus, das oben beschriebene `stripe-api/`-Backend ist dafür vorbereitet aber nicht aktiv angebunden
 - Ko-fi verschickt kein automatisches VIP-Passwort — Versand aktuell manuell
