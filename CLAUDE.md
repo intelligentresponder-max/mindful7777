@@ -47,11 +47,15 @@ Sprach-Switcher: assets/lang.js (DE/EN auf allen Seiten)
 | Plattform | URL | Zweck |
 |-----------|-----|-------|
 | GitHub Pages | intelligentresponder-max.github.io/mindful7777 | Hosting |
-| Gumroad | mindful777.gumroad.com (Username: mindful777 — 3 Sevens!) | Digitale Produkte |
-| Ko-fi | ko-fi.com/mindf7777 | VIP Membership €25/Mo |
+| Ko-fi | ko-fi.com/mindf7777 | VIP Membership 77,77 €/Mo, digitale Produkte, Support |
 | Throne | throne.com/mindful7777 | Wishlist / Support |
 | Stripe | Checkout via stripe-api (Vercel) | Membership + Direktzahlung, Tax |
 | Discord | FFM-777 Server | Community |
+
+Gumroad (mindful777.gumroad.com) ist abgeloest — alle Kauf-/Support-Links im
+Repo zeigen jetzt auf Ko-fi. Ausnahme: `intern/links_0.html` und
+`intern/links_2.html` verlinken bewusst noch auf das Gumroad-Verkaeufer-
+Dashboard fuer Andres eigene Verwaltung/Historie, nicht fuer Kunden.
 
 ### Stripe-Backend
 Eigene Vercel-Deployment unter `stripe-api/` (Payments, Billing, Tax) —
@@ -60,14 +64,15 @@ und offene Punkte: `docs/stripe-setup.md` und `stripe-api/README.md`.
 Connect und Invoicing bewusst noch nicht gebaut (kein Bedarf aktuell).
 
 ### Aktive Produkt-Links
-- Lead Magnet (gratis): mindful777.gumroad.com/l/ucaan
-- Sock-Anchor Bundle (€9): mindful777.gumroad.com/l/csaf777
-- VIP Membership (€25/Mo): ko-fi.com/mindf7777
+- VIP Membership (77,77 €/Mo): ko-fi.com/mindf7777
+- Lead Magnet, Sock-Anchor Bundle, sonstige Downloads: ebenfalls ko-fi.com/mindf7777
+  (frueher einzelne Gumroad-Produktseiten /l/ucaan, /l/csaf777, /l/kxhkot —
+  falls es dafuer eigene Ko-fi-Produktseiten gibt, hier eintragen)
 - eBook HTML: /sock-anchor-ebook.html (self-hosted)
 
 ### Plattform-Regeln
-- Gumroad Username ist mindful777 (3 Sevens) — NICHT mindful7777
-- Ko-fi für Membership/Recurring — Stripe für Einmalzahlungen
+- Ko-fi-Username ist mindf7777
+- Ko-fi für Membership/Recurring und Einmalzahlungen/Downloads
 - Throne für Wishlist-Items und Community-Support
 - Alle Download-Produkte: ZIP mit PDF + MP3 + README.txt
 
