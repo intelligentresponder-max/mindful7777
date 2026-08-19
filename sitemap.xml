@@ -2,40 +2,146 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Bestehende Seiten -->
+  <!-- Startseite -->
   <url>
-    <loc>https://intelligentresponder-max.github.io/mindful7777/vip.html</loc>
-    <lastmod>2026-05-24</lastmod>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/index.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/index.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/index.html"/>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- VIP und Protokoll -->
   <url>
-    <loc>https://intelligentresponder-max.github.io/mindful7777/pages/glossar.html</loc>
-    <lastmod>2026-05-30</lastmod>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/vip.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/vip.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/vip.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/vip.html"/>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/sock-anchor-protocol.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Blog-Index -->
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html"/>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Weitere oeffentliche Seiten (Root) -->
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/lead-magnet.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/mindful7_guide.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/mindful7_guide.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/mindful7_guide.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/mindful7_guide.html"/>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/mindful7777_lookbook.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/mindful7777-pdf-maker.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/afterwork.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/fernsitzungen.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/glossar.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/glossar.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/glossar.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/glossar.html"/>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/tech-glossar.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/tech-glossar.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/tech-glossar.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/tech-glossar.html"/>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
     <loc>https://intelligentresponder-max.github.io/mindful7777/impressum.html</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://intelligentresponder-max.github.io/mindful7777/datenschutz.html</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
 
+  <!-- Gluecksraeder -->
   <url>
-    <loc>https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html"/>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html"/>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <!-- Blog-Cluster (DE/EN/FR via ?lang=) -->
@@ -45,7 +151,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/01-theta-zustand.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/blog/01-theta-zustand.html?lang=fr"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/01-theta-zustand.html"/>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -56,7 +162,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/02-beta-wellen-stress.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/blog/02-beta-wellen-stress.html?lang=fr"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/02-beta-wellen-stress.html"/>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -67,7 +173,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/03-vagusnerv-atmung.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/blog/03-vagusnerv-atmung.html?lang=fr"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/03-vagusnerv-atmung.html"/>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -78,7 +184,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/04-cortisol-stress.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/blog/04-cortisol-stress.html?lang=fr"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/04-cortisol-stress.html"/>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -89,7 +195,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/05-klassische-konditionierung-anker.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/blog/05-klassische-konditionierung-anker.html?lang=fr"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/05-klassische-konditionierung-anker.html"/>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -100,7 +206,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/06-parasympathikus-regeneration.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/blog/06-parasympathikus-regeneration.html?lang=fr"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/06-parasympathikus-regeneration.html"/>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -111,7 +217,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/07-sock-anchor-protokoll.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://intelligentresponder-max.github.io/mindful7777/blog/07-sock-anchor-protokoll.html?lang=fr"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/07-sock-anchor-protokoll.html"/>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -122,6 +228,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/theta-wellen.html?lang=de"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/theta-wellen.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/theta-wellen.html"/>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -131,6 +238,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/stress-reset.html?lang=de"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/stress-reset.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/stress-reset.html"/>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -140,6 +248,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/socken-anker.html?lang=de"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/socken-anker.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/socken-anker.html"/>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -149,6 +258,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/recovery-training.html?lang=de"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/recovery-training.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/recovery-training.html"/>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -158,6 +268,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/hypnose-sportler.html?lang=de"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/hypnose-sportler.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/hypnose-sportler.html"/>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -167,6 +278,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/fernsitzungen.html?lang=de"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/fernsitzungen.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/fernsitzungen.html"/>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -176,6 +288,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induktion-de.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induction-en.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induktion-de.html"/>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -185,27 +298,9 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induktion-de.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induction-en.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induktion-de.html"/>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-
-  <!-- Gluecksraeder -->
-  <url>
-    <loc>https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/vip/gluecksrad.html"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
 
 </urlset>
