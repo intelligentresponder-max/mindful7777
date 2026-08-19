@@ -20,13 +20,21 @@ solo-creator storefront. Add them here later if that changes.
 ## First-time setup
 
 1. **Create five Prices in Stripe** (Dashboard → Product catalog):
-   - `membership` — recurring, €25/month (or your amount) — this replaces the
-     existing `buy.stripe.com/...` Payment Link on `pages/membership.html`.
-   - `support` — one-time, "pay what you can" or fixed amount — this replaces
-     the `stripe-buy-button` on `vip-updated.html`.
-   - `session_standard` — one-time, €77 — "Standard Session".
-   - `session_vip` — one-time, €100 — "VIP Session".
-   - `session_premium` — one-time, €150 — "Premium Session" (90 min).
+   - `membership` — recurring, **77,77 €/month** — this is the current
+     `vip.html` price (was €25/month when this backend was first drafted;
+     `pages/membership.html` it originally targeted has since been archived,
+     see "Frontend wiring" below).
+   - `support` — one-time, "pay what you can" or fixed amount — `vip.html`
+     currently handles this via a Ko-fi link instead; wire this product in
+     only if/when you want a Stripe-native alternative to that.
+   - `session_standard` / `session_vip` / `session_premium` — one-time,
+     €77 / €100 / €150 (90 min) — **stale product line, review before use**:
+     these targeted `pages/sessions.html` (archived), which had its own
+     Calendly link and these three tiers. `vip.html` now advertises a
+     differently-scoped "1:1 Custom Session ab 97€" instead — confirm
+     pricing and booking flow (Calendly link still active?) before creating
+     these Prices, or drop them from `PRODUCTS` in
+     `api/create-checkout-session.js` if that offer no longer exists.
    Copy each **Price ID** (`price_...`, not the Payment Link/Buy Button ID).
 
    Optional product metadata for the three session Prices, if you want it
@@ -80,19 +88,26 @@ solo-creator storefront. Add them here later if that changes.
 
 ## Frontend wiring
 
-`pages/membership.html` and `pages/sessions.html` both load
-`assets/stripe-checkout.js`, which holds `STRIPE_API_BASE` and the shared
-`startCheckout(product, lang)` helper — set `STRIPE_API_BASE` there once and
-both pages pick it up. Copy the same pattern onto other pages using the old
-`stripe-buy-button` / Payment Link embeds (e.g. `vip-updated.html`) when
-you're ready to migrate them.
+`pages/membership.html`, `pages/sessions.html`, and `vip-updated.html` — the
+pages this backend originally targeted — have since been archived (see
+`UEBERGABE-CLAUDE-CHAT-2.md` §4). **`vip.html` is the current VIP page and is
+not yet wired up.** To connect it:
+
+1. Add `<script src="assets/stripe-checkout.js"></script>` to `vip.html`.
+2. Set `STRIPE_API_BASE` in `assets/stripe-checkout.js` to your deployed API
+   URL (see step 2/3 below — there is no deployment yet, so this is still a
+   placeholder).
+3. Add a button calling `startCheckout('membership', lang)` on `vip.html`.
+   Ko-fi remains the only working payment path there today — add the Stripe
+   button alongside it, don't replace it, until this backend is deployed and
+   tested end-to-end.
 
 Paying for a session only confirms payment — the customer still books their
-slot themselves via the existing Calendly link on `pages/sessions.html`.
-There's no automatic calendar hold, tier-specific booking link, or emailed
-confirmation; `api/webhook.js` just logs the purchase. Build that out if you
-want the paid tier to actually gate which Calendly event type someone can
-book.
+slot themselves via a Calendly link. There's no automatic calendar hold,
+tier-specific booking link, or emailed confirmation; `api/webhook.js` just
+logs the purchase. Build that out if you want the paid tier to actually gate
+which Calendly event type someone can book — and note the session-tier
+Calendly link needs to be reconfirmed first, see the setup step above.
 
 ## Why Checkout Sessions instead of Payment Links / Buy Buttons
 
