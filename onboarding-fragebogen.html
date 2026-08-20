@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trance-Profil — Onboarding | mindful7777</title>
+<meta name="description" content="Zehn Fragen, vier Minuten: Dein persönliches Trance-Profil für die erste Hypnose-Session.">
+<link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/onboarding-fragebogen.html">
+<link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/onboarding-fragebogen.html?lang=de">
+<link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/onboarding-fragebogen.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/onboarding-fragebogen.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinte:#0E1220; --tiefe:#161C31; --kante:#26304C;
+  --nebel:#ECE7DC; --dampf:#8D97B4; --gold:#C9A227; --theta:#79AEC6;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--tinte);color:var(--nebel);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:17px;line-height:1.6}
+.wrap{max-width:36rem;margin:0 auto;padding:0 1.25rem}
+a{color:var(--theta)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+.langbar{display:flex;justify-content:flex-end;gap:.35rem;padding:1rem 0 0}
+.langbar button{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.12em;
+  background:transparent;border:1px solid var(--kante);color:var(--dampf);
+  border-radius:3px;padding:.3rem .55rem;cursor:pointer}
+.langbar button[aria-pressed=true]{border-color:var(--gold);color:var(--gold)}
+
+header{padding:1rem 0 1.25rem}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);margin:0 0 .9rem}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:clamp(1.9rem,7vw,2.6rem);
+  line-height:1.1;margin:0 0 .75rem;letter-spacing:-.01em}
+.lede{color:var(--dampf);margin:0}
+
+.bar{height:2px;background:var(--kante);margin:1.5rem 0 0;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--gold);width:0;transition:width .4s ease}
+.zaehler{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.14em;
+  color:var(--dampf);margin:.6rem 0 0}
+
+main{padding:1.5rem 0 1rem;min-height:58vh}
+.frage{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.5rem;
+  line-height:1.22;margin:0 0 .5rem;letter-spacing:-.005em}
+.hinweis{color:var(--dampf);font-size:.94rem;margin:0 0 1.25rem}
+
+.optionen{display:grid;gap:.5rem;margin:0 0 1rem}
+.opt{display:flex;gap:.7rem;align-items:flex-start;padding:.8rem .9rem;
+  background:var(--tiefe);border:1px solid var(--kante);border-radius:4px;cursor:pointer;
+  transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--theta)}
+.opt input{accent-color:var(--gold);margin:.25rem 0 0;flex:0 0 auto;width:1.05rem;height:1.05rem}
+.opt.an{border-color:var(--gold);background:rgba(201,162,39,.09)}
+.opt span small{display:block;color:var(--dampf);font-size:.85rem;line-height:1.4;margin-top:.1rem}
+
+textarea,input[type=text],input[type=email],input[type=tel]{
+  width:100%;background:var(--tiefe);border:1px solid var(--kante);border-radius:4px;
+  color:var(--nebel);font:inherit;font-size:1rem;padding:.75rem .85rem;margin:0 0 .75rem}
+textarea{min-height:6.5rem;resize:vertical}
+label.feld{display:block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--dampf);margin:0 0 .3rem}
+
+nav.steuerung{display:flex;gap:.6rem;align-items:center;padding:.5rem 0 2.5rem}
+button{font:inherit;border-radius:4px;cursor:pointer;padding:.7rem 1.2rem;
+  border:1px solid var(--kante);background:transparent;color:var(--dampf)}
+button.weiter{background:var(--gold);border-color:var(--gold);color:#0E1220;font-weight:500;flex:1}
+button.weiter:hover{filter:brightness(1.08)}
+button.zurueck:hover{color:var(--nebel);border-color:var(--dampf)}
+
+.karte{background:var(--tiefe);border:1px solid var(--kante);border-radius:4px;
+  padding:1.1rem 1.1rem .35rem;margin:0 0 1rem}
+.karte h3{font-family:"Fraunces",Georgia,serif;font-size:1.05rem;margin:0 0 .5rem}
+.zeile{display:flex;justify-content:space-between;gap:1rem;padding:.45rem 0;
+  border-top:1px solid var(--kante);font-size:.94rem}
+.zeile:first-of-type{border-top:0}
+.zeile b{font-weight:500;color:var(--dampf);font-family:"IBM Plex Mono",monospace;
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding-top:.25rem;flex:0 0 auto}
+.zeile span{text-align:right}
+.spiegel{border-left:2px solid var(--theta);padding:.1rem 0 .1rem .9rem;margin:0 0 1.25rem;
+  font-family:"Fraunces",Georgia,serif;font-size:1.08rem;line-height:1.5}
+.einwand{padding:.55rem 0;border-top:1px solid var(--kante);font-size:.94rem}
+.einwand:first-child{border-top:0}
+.einwand b{display:block;font-family:"IBM Plex Mono",monospace;font-size:.66rem;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:.15rem}
+.achtung{border-color:var(--theta)}
+.achtung h3{color:var(--theta)}
+
+footer{padding:0 0 3rem;font-size:.83rem;color:var(--dampf);
+  border-top:1px solid var(--kante);margin-top:1rem}
+footer .wrap{padding-top:1.25rem}
+footer nav a{margin-right:1rem;display:inline-block;margin-bottom:.35rem}
+.hidden{display:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="langbar">
+    <button type="button" data-set="de" aria-pressed="true">DE</button>
+    <button type="button" data-set="en" aria-pressed="false">EN</button>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow" id="eyebrow">mindful7777 · Onboarding</p>
+    <h1 id="titel"></h1>
+    <p class="lede" id="untertitel"></p>
+    <div class="bar"><i id="balken"></i></div>
+    <p class="zaehler" id="zaehler"></p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div id="buehne"></div>
+    <nav class="steuerung">
+      <button class="zurueck hidden" id="btnZurueck" type="button"></button>
+      <button class="weiter" id="btnWeiter" type="button"></button>
+    </nav>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav id="fussnav"></nav>
+    <p id="fusstext"></p>
+  </div>
+</footer>
+
+<script>
+var MAIL = "intelligent.responder@gmail.com";
+var L = "de";
+
+/* ---------- Oberfläche ---------- */
+var UI = {
+  titelStart:{de:"Bevor wir anfangen", en:"Before we start"},
+  ledeStart:{de:"Zehn Fragen, ungefähr vier Minuten. Am Ende steht dein Trance-Profil: der Sinneskanal, über den du am leichtesten hineingehst, dein Tempo und die Session-Länge, mit der du starten wirst.",
+             en:"Ten questions, about four minutes. At the end you get your trance profile: the sensory channel you go in through most easily, your pace, and the session length you'll start with."},
+  titelLauf:{de:"Trance-Profil", en:"Trance profile"},
+  ledeLauf:{de:"Antworte so, wie es heute stimmt. Ändern kannst du es jederzeit.", en:"Answer as it is today. You can change any of it later."},
+  titelEnde:{de:"Dein Trance-Profil", en:"Your trance profile"},
+  start:{de:"Start", en:"Start"},
+  frageVon:{de:["Frage "," von "], en:["Question "," of "]},
+  fertig:{de:"Fertig", en:"Done"},
+  losgehts:{de:"Los geht’s", en:"Let's begin"},
+  weiter:{de:"Weiter", en:"Next"},
+  zurueck:{de:"Zurück", en:"Back"},
+  erstellen:{de:"Profil erstellen", en:"Create profile"},
+  senden:{de:"Profil senden", en:"Send profile"},
+  kopieren:{de:"Kopieren", en:"Copy"},
+  kopiert:{de:"Kopiert", en:"Copied"},
+  bitte:{de:"Bitte noch beantworten", en:"One answer still missing"},
+  startFrage:{de:"Trance beginnt vor der Trance", en:"Trance begins before the trance"},
+  startText:{de:"Die Fragen sind kein Formular, sondern der erste Teil der Arbeit: Sie schärfen, wo du stehst und woran du die Veränderung erkennen willst. Beides brauchen wir für die erste Session — und du hörst dir dabei selbst zu.",
+             en:"These questions aren't a form, they're the first part of the work: they sharpen where you are and how you want to recognise the change. We need both for the first session — and you get to hear yourself say it."},
+  startKarte:{de:"Was du am Ende bekommst", en:"What you get at the end"},
+  sKanal:{de:["Kanal","Über welchen Sinn du am leichtesten hineingehst"], en:["Channel","Which sense takes you in most easily"]},
+  sRahmen:{de:["Rahmen","Tageszeit, Länge und Ansprache deiner Sessions"], en:["Frame","Time of day, length and tone of your sessions"]},
+  sAntwort:{de:["Antwort","Auf jeden Punkt, der dich bisher zurückhält"], en:["Answer","To every point that's held you back so far"]},
+  ergTitel:{de:"Aufbau deiner Session", en:"How your session is built"},
+  ergKanal:{de:"Kanal", en:"Channel"},
+  ergInd:{de:"Induktion", en:"Induction"},
+  ergLaenge:{de:"Länge", en:"Length"},
+  ergRhythmus:{de:"Rhythmus", en:"Rhythm"},
+  ergAnsprache:{de:"Ansprache", en:"Tone"},
+  ergThema:{de:"Thema", en:"Topic"},
+  minuten:{de:" Minuten", en:" minutes"},
+  einwandTitel:{de:"Zu dem, was dich zurückhält", en:"About what's holding you back"},
+  achtungTitel:{de:"Ein Schritt vorher", en:"One step first"},
+  achtungText:{de:"Danke für die Offenheit. Bei einem deiner Punkte klären wir vor der ersten Session kurz ab, ob und wie wir arbeiten — gegebenenfalls in Absprache mit deiner Ärztin oder Therapeutin. Hypnose ersetzt keine Behandlung, sie kann sie in manchen Fällen begleiten. Wir melden uns dazu persönlich.",
+              en:"Thank you for saying so. On one of your points we'll clarify before the first session whether and how we work — where appropriate together with your doctor or therapist. Hypnosis doesn't replace treatment; in some cases it can accompany it. We'll get in touch about that personally."},
+  nextTitel:{de:"Der nächste Schritt", en:"The next step"},
+  fussnav:{de:[["index.html","Start"],["verkaufsgespraech-als-copy.html?lang=de","Blogbeitrag"],["glossar.html","Glossar"],["vip.html","VIP"],["impressum.html","Impressum"],["datenschutz.html","Datenschutz"]],
+           en:[["index.html","Home"],["verkaufsgespraech-als-copy.html?lang=en","Article"],["glossar.html","Glossary"],["vip.html","VIP"],["impressum.html","Imprint"],["datenschutz.html","Privacy"]]},
+  fusstext:{de:"Deine Antworten bleiben in diesem Browserfenster. Nichts wird automatisch gespeichert oder versendet — erst wenn du am Ende auf „Profil senden“ tippst, geht es an mindful7777. Hypnose ersetzt keine ärztliche oder psychotherapeutische Behandlung.",
+            en:"Your answers stay in this browser window. Nothing is stored or sent automatically — it only goes to mindful7777 when you tap “Send profile” at the end. Hypnosis does not replace medical or psychotherapeutic treatment."}
+};
+
+/* ---------- Fragen ---------- */
+var schritte = [
+{ id:"anlass", typ:"einfach",
+  frage:{de:"Was bringt dich her?", en:"What brings you here?"},
+  hinweis:{de:"Eine Auswahl reicht — das Feinere klären wir gleich.", en:"One choice is enough — we'll get to the detail next."},
+  optionen:[
+    {w:"schlaf", t:{de:"Schlaf und Abschalten",en:"Sleep and switching off"}, s:{de:"Der Kopf hört abends nicht auf.",en:"Your head won't stop in the evening."}},
+    {w:"stress", t:{de:"Anspannung und Stress",en:"Tension and stress"}, s:{de:"Dauerdruck, kurze Zündschnur, flacher Atem.",en:"Constant pressure, short fuse, shallow breath."}},
+    {w:"gewohnheit", t:{de:"Eine Gewohnheit ändern",en:"Changing a habit"}, s:{de:"Etwas festhalten oder loslassen.",en:"Holding on to something, or letting go."}},
+    {w:"auftreten", t:{de:"Auftreten und Selbstsicherheit",en:"Presence and confidence"}, s:{de:"Vor Menschen, in Gesprächen, auf Bühnen.",en:"With people, in conversation, on stage."}},
+    {w:"fokus", t:{de:"Fokus und Leistung",en:"Focus and performance"}, s:{de:"Konzentration, Vorbereitung, Wettkampf.",en:"Concentration, preparation, competition."}},
+    {w:"anderes", t:{de:"Etwas anderes",en:"Something else"}, s:{de:"Du beschreibst es gleich selbst.",en:"You'll describe it yourself in a moment."}}
+  ]},
+
+{ id:"wegvon", typ:"text",
+  frage:{de:"Was passiert gerade, das so nicht bleiben soll?", en:"What's happening right now that shouldn't stay this way?"},
+  hinweis:{de:"So konkret wie möglich: eine Situation, nicht ein Adjektiv. Was siehst, hörst, spürst du dabei?",
+           en:"As concrete as you can: a situation, not an adjective. What do you see, hear, feel?"},
+  platzhalter:{de:"Zum Beispiel: Ich liege um halb eins wach und gehe die Woche noch einmal durch …",
+               en:"For example: it's half past twelve and I'm running through the week again …"} },
+
+{ id:"hinzu", typ:"text",
+  frage:{de:"Woran wirst du zuerst merken, dass sich etwas verändert hat?", en:"What will you notice first when something has changed?"},
+  hinweis:{de:"Nicht das große Ziel — das erste kleine Zeichen. Das ist der Satz, mit dem wir in der Session arbeiten.",
+           en:"Not the big goal — the first small sign. That's the sentence we work with in the session."},
+  platzhalter:{de:"Zum Beispiel: Ich lege das Handy weg und merke, dass ich müde bin, statt es zu beschließen …",
+               en:"For example: I put the phone down and notice I'm tired, instead of deciding to be …"} },
+
+{ id:"kanal", typ:"einfach",
+  frage:{de:"Stell dir diesen Moment kurz vor. Was ist zuerst da?", en:"Picture that moment for a second. What comes first?"},
+  hinweis:{de:"Es gibt keine falsche Antwort — das entscheidet nur, wie deine Session aufgebaut wird.",
+           en:"There's no wrong answer — it only decides how your session is built."},
+  optionen:[
+    {w:"visuell", t:{de:"Ein Bild",en:"An image"}, s:{de:"Ich sehe die Szene vor mir.",en:"I see the scene in front of me."}},
+    {w:"auditiv", t:{de:"Ein Klang oder eine Stimme",en:"A sound or a voice"}, s:{de:"Ich höre etwas, oder es wird still.",en:"I hear something, or it goes quiet."}},
+    {w:"kinaesthetisch", t:{de:"Ein Körpergefühl",en:"A body sensation"}, s:{de:"Ich spüre es zuerst — Schultern, Bauch, Atem.",en:"I feel it first — shoulders, stomach, breath."}},
+    {w:"digital", t:{de:"Worte und Gedanken",en:"Words and thoughts"}, s:{de:"Ich denke es eher, als dass ich es sehe oder spüre.",en:"I think it rather than see or feel it."}}
+  ]},
+
+{ id:"erfahrung", typ:"einfach",
+  frage:{de:"Wie viel Trance kennst du schon?", en:"How much trance do you already know?"},
+  optionen:[
+    {w:"keine", t:{de:"Noch gar keine",en:"None at all"}, s:{de:"Das ist der häufigste Start.",en:"That's the most common starting point."}},
+    {w:"einmal", t:{de:"Einmal ausprobiert",en:"Tried it once"}, s:{de:"Audio, App oder eine Sitzung.",en:"An audio, an app or one session."}},
+    {w:"mehrfach", t:{de:"Mehrfach erlebt",en:"Several times"}, s:{de:"Ich weiß ungefähr, wie sich das anfühlt.",en:"I roughly know how it feels."}},
+    {w:"regelmaessig", t:{de:"Regelmäßig",en:"Regularly"}, s:{de:"Gehört bei mir zur Routine.",en:"It's part of my routine."}}
+  ]},
+
+{ id:"bedenken", typ:"mehrfach",
+  frage:{de:"Was hält dich am ehesten zurück?", en:"What holds you back most?"},
+  hinweis:{de:"Mehrfachauswahl. Auf jeden Punkt bekommst du am Ende eine klare Antwort.",
+           en:"Choose as many as apply. You'll get a clear answer to each at the end."},
+  optionen:[
+    {w:"kontrolle", t:{de:"Kontrolle abgeben",en:"Giving up control"}},
+    {w:"unfaehig", t:{de:"„Ich bin bestimmt nicht hypnotisierbar“",en:"“I'm probably not hypnotisable”"}},
+    {w:"zeit", t:{de:"Zeit — ich weiß nicht, wann ich üben soll",en:"Time — I don't know when I'd practise"}},
+    {w:"kosten", t:{de:"Die Kosten",en:"The cost"}},
+    {w:"wirkung", t:{de:"Skepsis, ob das überhaupt wirkt",en:"Doubt that it works at all"}},
+    {w:"nichts", t:{de:"Nichts davon",en:"None of these"}}
+  ]},
+
+{ id:"sicherheit", typ:"mehrfach",
+  frage:{de:"Gibt es etwas, das wir vorher wissen müssen?", en:"Is there anything we should know beforehand?"},
+  hinweis:{de:"Damit wir sicher arbeiten. Kein Punkt hier schließt dich aus — bei manchen klären wir vorher kurz ärztlich ab.",
+           en:"So we work safely. Nothing here rules you out — for some points we check medically first."},
+  optionen:[
+    {w:"epilepsie", t:{de:"Krampfanfälle oder Epilepsie",en:"Seizures or epilepsy"}},
+    {w:"behandlung", t:{de:"Ich bin aktuell in psychiatrischer oder psychotherapeutischer Behandlung",en:"I'm currently in psychiatric or psychotherapeutic treatment"}},
+    {w:"schwer", t:{de:"Erfahrungen mit Psychose oder starker Dissoziation",en:"Experience of psychosis or strong dissociation"}},
+    {w:"schwanger", t:{de:"Schwangerschaft",en:"Pregnancy"}},
+    {w:"nichts", t:{de:"Nichts davon",en:"None of these"}}
+  ]},
+
+{ id:"fenster", typ:"einfach",
+  frage:{de:"Wann fällt es dir leichter zu üben — morgens oder abends?", en:"When is practice easier for you — morning or evening?"},
+  hinweis:{de:"Danach richtet sich, welches Protokoll du zuerst bekommst.", en:"This decides which protocol you get first."},
+  optionen:[
+    {w:"morgens", t:{de:"Morgens",en:"Morning"}, s:{de:"Vor dem Tag, aktivierend aufgebaut.",en:"Before the day, built to activate."}},
+    {w:"mittags", t:{de:"Zwischendurch",en:"In between"}, s:{de:"Kurze Einheiten in der Pause.",en:"Short units during a break."}},
+    {w:"abends", t:{de:"Abends",en:"Evening"}, s:{de:"Zum Herunterfahren, ohne Weckerende.",en:"To wind down, with no wake-up ending."}},
+    {w:"wechselnd", t:{de:"Wechselnd",en:"It varies"}, s:{de:"Schichtdienst oder unregelmäßige Tage.",en:"Shift work or irregular days."}}
+  ]},
+
+{ id:"laenge", typ:"einfach",
+  frage:{de:"Mit welcher Länge willst du starten?", en:"Which length do you want to start with?"},
+  optionen:[
+    {w:"10", t:{de:"10 Minuten",en:"10 minutes"}, s:{de:"Passt fast immer rein.",en:"Fits almost any day."}},
+    {w:"20", t:{de:"20 Minuten",en:"20 minutes"}, s:{de:"Der übliche Einstieg.",en:"The usual starting point."}},
+    {w:"30", t:{de:"30 Minuten und mehr",en:"30 minutes or more"}, s:{de:"Wenn du Zeit blocken kannst.",en:"If you can block out time."}}
+  ]},
+
+{ id:"tempo", typ:"einfach",
+  frage:{de:"Welche Ansprache liegt dir?", en:"Which tone suits you?"},
+  optionen:[
+    {w:"sanft", t:{de:"Sanft und langsam",en:"Gentle and slow"}, s:{de:"Viel Raum, wenig Anweisung.",en:"Lots of room, little instruction."}},
+    {w:"klar", t:{de:"Klar und strukturiert",en:"Clear and structured"}, s:{de:"Ruhig, aber mit deutlicher Führung.",en:"Calm, but clearly led."}},
+    {w:"direkt", t:{de:"Direkt und fordernd",en:"Direct and demanding"}, s:{de:"Kurze Sätze, klare Ansagen.",en:"Short sentences, clear calls."}}
+  ]},
+
+{ id:"kontakt", typ:"kontakt",
+  frage:{de:"Wohin schicken wir dein Profil?", en:"Where should we send your profile?"},
+  hinweis:{de:"Nur was nötig ist. Du bekommst dein Profil und den Vorschlag für den ersten Termin.",
+           en:"Only what's needed. You get your profile and a suggested first appointment."} }
+];
+
+var FELD = {
+  vorname:{de:"Vorname", en:"First name"},
+  mail:{de:"E-Mail", en:"Email"},
+  tel:{de:"Telefon (freiwillig)", en:"Phone (optional)"},
+  ok:{de:"Ich bin einverstanden, dass mindful7777 mich zu diesen Angaben kontaktiert.",
+      en:"I agree that mindful7777 may contact me about these answers."},
+  okKlein:{de:"Kein Newsletter. Jederzeit widerrufbar.", en:"No newsletter. Revocable at any time."}
+};
+
+var kanalText = {
+  visuell:{name:{de:"Visuell",en:"Visual"}, tipp:{de:"Induktion über Bilder: Ort, Licht, Weite. Vertiefung über eine Szene, die sich langsam verändert.",
+    en:"Induction through images: place, light, space. Deepening through a scene that slowly changes."}},
+  auditiv:{name:{de:"Auditiv",en:"Auditory"}, tipp:{de:"Induktion über Stimme und Rhythmus: Tempowechsel, Pausen, ein wiederkehrender Klang als Anker.",
+    en:"Induction through voice and rhythm: pace changes, pauses, a recurring sound as anchor."}},
+  kinaesthetisch:{name:{de:"Kinästhetisch",en:"Kinaesthetic"}, tipp:{de:"Induktion über Körperempfinden: Atem, Gewicht, Wärme. Ein Handanker macht den Zustand später abrufbar.",
+    en:"Induction through body sensation: breath, weight, warmth. A hand anchor makes the state recallable later."}},
+  digital:{name:{de:"Sprachlich",en:"Verbal"}, tipp:{de:"Induktion über Zählen, Struktur und klare Schritte. Erst der Rahmen, dann das Bild.",
+    en:"Induction through counting, structure and clear steps. Frame first, image second."}}
+};
+var tempoText = {sanft:{de:"sanft und langsam",en:"gentle and slow"}, klar:{de:"klar und strukturiert",en:"clear and structured"}, direkt:{de:"direkt und fordernd",en:"direct and demanding"}};
+var fensterText = {morgens:{de:"morgens",en:"in the morning"}, mittags:{de:"zwischendurch",en:"in between"}, abends:{de:"abends",en:"in the evening"}, wechselnd:{de:"zu wechselnden Zeiten",en:"at varying times"}};
+var anlassText = {schlaf:{de:"Schlaf und Abschalten",en:"sleep and switching off"}, stress:{de:"Anspannung",en:"tension"}, gewohnheit:{de:"eine Gewohnheit",en:"a habit"}, auftreten:{de:"Auftreten",en:"presence"}, fokus:{de:"Fokus",en:"focus"}, anderes:{de:"dein Thema",en:"your topic"}};
+
+var einwandAntwort = {
+  kontrolle:{titel:{de:"Kontrolle abgeben",en:"Giving up control"}, text:{
+    de:"In Trance bist du ansprechbar, du hörst mit und kannst jederzeit aufhören. Was nachlässt, ist die Anstrengung — nicht die Kontrolle. Genau davon hast du im Alltag ohnehin zu viel.",
+    en:"In trance you stay responsive, you hear everything and you can stop at any point. What lets go is the effort, not the control. You have too much of that in daily life anyway."}},
+  unfaehig:{titel:{de:"„Ich bin nicht hypnotisierbar“",en:"“I'm not hypnotisable”"}, text:{
+    de:"Trance ist kein Talent, sondern ein Alltagszustand: Autobahnfahrt, guter Film, die letzten Minuten vor dem Einschlafen. Wir bauen dir nur einen Weg dorthin, den du absichtlich gehen kannst.",
+    en:"Trance isn't a talent, it's an everyday state: a motorway drive, a good film, the last minutes before sleep. We're only building you a route there you can take on purpose."}},
+  zeit:{titel:{de:"Zeit",en:"Time"}, text:{
+    de:"Zehn Minuten am Abend sind in einer Woche fast nichts — und in einem Jahr sechzig Stunden. Wir fangen mit der kleinen Zahl an, damit die große von selbst zustande kommt.",
+    en:"Ten minutes an evening is almost nothing in a week — and sixty hours in a year. We start with the small number so the big one happens by itself."}},
+  kosten:{titel:{de:"Kosten",en:"Cost"}, text:{
+    de:"Die Frage ist weniger, was eine Session kostet, sondern was der nächste Monat in der jetzigen Lage kostet — an Schlaf, Geduld und Konzentration. Rechne beide Seiten, nicht nur eine.",
+    en:"The question isn't so much what a session costs, but what another month like this costs — in sleep, patience and concentration. Count both sides, not one."}},
+  wirkung:{titel:{de:"Skepsis",en:"Scepticism"}, text:{
+    de:"Skepsis ist kein Hindernis, sondern eine Prüfstrategie. Deshalb steht deine Antwort auf Frage 3 im Profil: Du hast selbst festgelegt, woran du es merken willst. Daran messen wir.",
+    en:"Scepticism isn't an obstacle, it's a testing strategy. That's why your answer to question 3 is in the profile: you defined how you want to notice it. That's what we measure against."}}
+};
+
+/* ---------- Ablauf ---------- */
+var antworten = {}, i = -1;
+var buehne = document.getElementById("buehne");
+var btnW = document.getElementById("btnWeiter");
+var btnZ = document.getElementById("btnZurueck");
+var balken = document.getElementById("balken");
+var zaehler = document.getElementById("zaehler");
+var titel = document.getElementById("titel");
+var untertitel = document.getElementById("untertitel");
+
+function t(o){ return o ? (o[L] || o.de) : ""; }
+function esc(x){ return String(x).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function zeile(b,s){ return '<div class="zeile"><b>'+b+'</b><span>'+esc(s)+'</span></div>'; }
+
+function render(){
+  btnZ.classList.toggle("hidden", i <= 0);
+  btnZ.textContent = t(UI.zurueck);
+  if(i === -1){ zeigeStart(); return; }
+  if(i >= schritte.length){ zeigeErgebnis(); return; }
+
+  var s = schritte[i];
+  titel.textContent = t(UI.titelLauf);
+  untertitel.textContent = t(UI.ledeLauf);
+  balken.style.width = (i / schritte.length * 100) + "%";
+  zaehler.textContent = t(UI.frageVon)[0] + (i+1) + t(UI.frageVon)[1] + schritte.length;
+  btnW.textContent = (i === schritte.length-1) ? t(UI.erstellen) : t(UI.weiter);
+
+  var html = '<p class="frage">'+t(s.frage)+'</p>';
+  if(s.hinweis) html += '<p class="hinweis">'+t(s.hinweis)+'</p>';
+
+  if(s.typ === "einfach" || s.typ === "mehrfach"){
+    var mehr = s.typ === "mehrfach";
+    var gew = antworten[s.id] || (mehr ? [] : null);
+    html += '<div class="optionen">';
+    s.optionen.forEach(function(o){
+      var an = mehr ? gew.indexOf(o.w) > -1 : gew === o.w;
+      html += '<label class="opt'+(an?' an':'')+'">'
+        + '<input type="'+(mehr?'checkbox':'radio')+'" name="'+s.id+'" value="'+o.w+'"'+(an?' checked':'')+'>'
+        + '<span>'+t(o.t)+(o.s?'<small>'+t(o.s)+'</small>':'')+'</span></label>';
+    });
+    html += '</div>';
+  }
+  if(s.typ === "text"){
+    html += '<textarea id="freitext" placeholder="'+t(s.platzhalter)+'">'+(antworten[s.id]||"")+'</textarea>';
+  }
+  if(s.typ === "kontakt"){
+    var k = antworten.kontakt || {};
+    html += '<label class="feld" for="vorname">'+t(FELD.vorname)+'</label><input type="text" id="vorname" value="'+(k.vorname||"")+'">'
+      + '<label class="feld" for="mail">'+t(FELD.mail)+'</label><input type="email" id="mail" value="'+(k.mail||"")+'">'
+      + '<label class="feld" for="tel">'+t(FELD.tel)+'</label><input type="tel" id="tel" value="'+(k.tel||"")+'">'
+      + '<label class="opt'+(k.ok?' an':'')+'"><input type="checkbox" id="ok"'+(k.ok?' checked':'')+'>'
+      + '<span>'+t(FELD.ok)+'<small>'+t(FELD.okKlein)+'</small></span></label>';
+  }
+  buehne.innerHTML = html;
+  bindeOptionen();
+  var erstes = buehne.querySelector("textarea, input[type=text]");
+  if(erstes) erstes.focus();
+}
+
+function bindeOptionen(){
+  buehne.querySelectorAll(".opt input").forEach(function(inp){
+    inp.addEventListener("change", function(){
+      if(inp.type === "radio"){
+        buehne.querySelectorAll(".opt").forEach(function(l){ l.classList.remove("an"); });
+      }
+      inp.closest(".opt").classList.toggle("an", inp.checked);
+      if(inp.type === "checkbox" && inp.value){
+        var alle = Array.prototype.slice.call(buehne.querySelectorAll(".opt input"));
+        if(inp.value === "nichts" && inp.checked){
+          alle.forEach(function(a){ if(a !== inp){ a.checked = false; a.closest(".opt").classList.remove("an"); } });
+        } else if(inp.checked){
+          alle.forEach(function(a){ if(a.value === "nichts"){ a.checked = false; a.closest(".opt").classList.remove("an"); } });
+        }
+      }
+    });
+  });
+}
+
+function sichern(){
+  var s = schritte[i];
+  if(!s) return true;
+  if(s.typ === "einfach"){
+    var g = buehne.querySelector('input[name="'+s.id+'"]:checked');
+    if(!g) return false;
+    antworten[s.id] = g.value;
+  }
+  if(s.typ === "mehrfach"){
+    var m = Array.prototype.slice.call(buehne.querySelectorAll('input[name="'+s.id+'"]:checked'));
+    if(!m.length) return false;
+    antworten[s.id] = m.map(function(x){ return x.value; });
+  }
+  if(s.typ === "text"){
+    var tx = buehne.querySelector("#freitext").value.trim();
+    if(tx.length < 3) return false;
+    antworten[s.id] = tx;
+  }
+  if(s.typ === "kontakt"){
+    var v = buehne.querySelector("#vorname").value.trim();
+    var e = buehne.querySelector("#mail").value.trim();
+    if(!v || e.indexOf("@") < 1 || !buehne.querySelector("#ok").checked) return false;
+    antworten.kontakt = {vorname:v, mail:e, tel:buehne.querySelector("#tel").value.trim(), ok:true};
+  }
+  return true;
+}
+
+function zeigeStart(){
+  titel.textContent = t(UI.titelStart);
+  untertitel.textContent = t(UI.ledeStart);
+  balken.style.width = "0%";
+  zaehler.textContent = t(UI.start);
+  btnW.textContent = t(UI.losgehts);
+  buehne.innerHTML = '<p class="frage">'+t(UI.startFrage)+'</p>'
+    + '<p class="hinweis">'+t(UI.startText)+'</p>'
+    + '<div class="karte"><h3>'+t(UI.startKarte)+'</h3>'
+    + zeile(t(UI.sKanal)[0], t(UI.sKanal)[1])
+    + zeile(t(UI.sRahmen)[0], t(UI.sRahmen)[1])
+    + zeile(t(UI.sAntwort)[0], t(UI.sAntwort)[1])
+    + '</div>';
+}
+
+function zeigeErgebnis(){
+  var a = antworten, k = kanalText[a.kanal];
+  balken.style.width = "100%";
+  zaehler.textContent = t(UI.fertig);
+  titel.textContent = t(UI.titelEnde);
+  untertitel.textContent = (L === "de")
+    ? a.kontakt.vorname + ", so würden wir starten."
+    : a.kontakt.vorname + ", this is how we'd start.";
+  btnZ.classList.remove("hidden");
+  btnZ.textContent = t(UI.kopieren);
+
+  var abklaeren = a.sicherheit.filter(function(x){ return x !== "nichts"; }).length > 0;
+
+  var h = '<div class="spiegel">' + (L === "de"
+    ? 'Du hast selbst geschrieben, woran du es merken willst: „' + esc(a.hinzu) + '“ Genau dieser Satz ist der Maßstab — und du wirst früher darauf zurückkommen, als du jetzt denkst.'
+    : 'You wrote the sign yourself: “' + esc(a.hinzu) + '” That sentence is the measure — and you\'ll come back to it sooner than you think.')
+    + '</div>';
+
+  h += '<div class="karte"><h3>'+t(UI.ergTitel)+'</h3>'
+    + zeile(t(UI.ergKanal), t(k.name))
+    + zeile(t(UI.ergInd), t(k.tipp))
+    + zeile(t(UI.ergLaenge), a.laenge + t(UI.minuten))
+    + zeile(t(UI.ergRhythmus), t(fensterText[a.fenster]))
+    + zeile(t(UI.ergAnsprache), t(tempoText[a.tempo]))
+    + zeile(t(UI.ergThema), t(anlassText[a.anlass]))
+    + '</div>';
+
+  var offen = a.bedenken.filter(function(x){ return x !== "nichts"; });
+  if(offen.length){
+    h += '<div class="karte"><h3>'+t(UI.einwandTitel)+'</h3>';
+    offen.forEach(function(x){
+      h += '<div class="einwand"><b>'+t(einwandAntwort[x].titel)+'</b>'+t(einwandAntwort[x].text)+'</div>';
+    });
+    h += '</div>';
+  }
+
+  if(abklaeren){
+    h += '<div class="karte achtung"><h3>'+t(UI.achtungTitel)+'</h3>'
+      + '<div class="einwand">'+t(UI.achtungText)+'</div></div>';
+  }
+
+  h += '<div class="karte"><h3>'+t(UI.nextTitel)+'</h3><div class="einwand">' + (L === "de"
+    ? 'Schick das Profil ab — dann bekommst du deinen Terminvorschlag und das erste ' + a.laenge + '-Minuten-Protokoll. Ob du damit schon heute ' + t(fensterText[a.fenster]) + ' anfängst oder erst nach dem Gespräch, entscheidest du dann.'
+    : 'Send the profile and you\'ll get your appointment suggestion and the first ' + a.laenge + '-minute protocol. Whether you begin ' + t(fensterText[a.fenster]) + ' today or only after the call, you decide then.')
+    + '</div></div>';
+
+  buehne.innerHTML = h;
+  btnW.textContent = t(UI.senden);
+}
+
+function protokoll(){
+  var a = antworten;
+  return [
+    "Trance-Profil — mindful7777 (" + L.toUpperCase() + ")",
+    "",
+    "Name: " + a.kontakt.vorname,
+    "E-Mail: " + a.kontakt.mail,
+    "Telefon: " + (a.kontakt.tel || "—"),
+    "",
+    "Thema: " + t(anlassText[a.anlass]),
+    "Ausgangslage: " + a.wegvon,
+    "Erstes Zeichen: " + a.hinzu,
+    "Kanal: " + t(kanalText[a.kanal].name),
+    "Trance-Erfahrung: " + a.erfahrung,
+    "Bedenken: " + a.bedenken.join(", "),
+    "Vorab zu klären: " + a.sicherheit.join(", "),
+    "Rhythmus: " + t(fensterText[a.fenster]),
+    "Länge: " + a.laenge + " min",
+    "Ansprache: " + t(tempoText[a.tempo])
+  ].join("\n");
+}
+
+btnW.addEventListener("click", function(){
+  if(i >= schritte.length){
+    window.location.href = "mailto:" + MAIL
+      + "?subject=" + encodeURIComponent("Trance-Profil " + antworten.kontakt.vorname)
+      + "&body=" + encodeURIComponent(protokoll());
+    return;
+  }
+  if(i >= 0 && !sichern()){
+    btnW.textContent = t(UI.bitte);
+    setTimeout(render, 1400);
+    return;
+  }
+  i++;
+  render();
+  window.scrollTo({top:0, behavior:"smooth"});
+});
+
+btnZ.addEventListener("click", function(){
+  if(i >= schritte.length){
+    navigator.clipboard.writeText(protokoll()).then(function(){
+      btnZ.textContent = t(UI.kopiert);
+      setTimeout(function(){ btnZ.textContent = t(UI.kopieren); }, 1800);
+    });
+    return;
+  }
+  sichern();
+  i--;
+  render();
+  window.scrollTo({top:0, behavior:"smooth"});
+});
+
+/* ---------- Sprache ---------- */
+function setzeSprache(l){
+  L = l;
+  document.documentElement.lang = l;
+  document.querySelectorAll(".langbar button").forEach(function(b){
+    b.setAttribute("aria-pressed", b.dataset.set === l ? "true" : "false");
+  });
+  document.getElementById("fussnav").innerHTML = t(UI.fussnav).map(function(x){
+    return '<a href="'+x[0]+'">'+x[1]+'</a>';
+  }).join("");
+  document.getElementById("fusstext").textContent = t(UI.fusstext);
+  try{ history.replaceState(null, "", "?lang=" + l); }catch(e){}
+  render();
+}
+document.querySelectorAll(".langbar button").forEach(function(b){
+  b.addEventListener("click", function(){ setzeSprache(b.dataset.set); });
+});
+var p = new URLSearchParams(location.search).get("lang");
+if(!p && (navigator.language || "").slice(0,2) === "en") p = "en";
+setzeSprache(p === "en" ? "en" : "de");
+</script>
+</body>
+</html>

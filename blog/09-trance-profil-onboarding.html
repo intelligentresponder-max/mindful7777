@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============ SEO ============ -->
+<title data-i18n="meta.title">Trance-Profil: Zehn Fragen vor der ersten Session | mindful7777</title>
+<meta name="description" data-i18n="meta.desc" content="Bevor eine Session beginnt, lohnen sich zwei Fragen: was nicht so bleiben soll — und woran du die Veränderung zuerst merkst. Der Onboarding-Fragebogen macht daraus ein Trance-Profil.">
+<meta name="keywords" content="Trance-Profil, Onboarding, Hypnose Vorbereitung, Sinneskanal, Repräsentationssystem, mindful7777">
+<link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/blog/09-trance-profil-onboarding.html">
+<link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/blog/09-trance-profil-onboarding.html?lang=de">
+<link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/blog/09-trance-profil-onboarding.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/blog/09-trance-profil-onboarding.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trance-Profil: Zehn Fragen vor der ersten Session">
+<meta property="og:image" content="https://intelligentresponder-max.github.io/mindful7777/assets/images/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:description" content="Zehn Fragen, vier Minuten: der Onboarding-Fragebogen und das Trance-Profil, das dabei entsteht.">
+<meta property="og:site_name" content="mindful7777">
+
+<!-- Article structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Zehn Fragen, vier Minuten: dein Trance-Profil",
+  "author": { "@type": "Person", "name": "André" },
+  "publisher": { "@type": "Organization", "name": "mindful7777" },
+  "inLanguage": "de",
+  "about": "Onboarding vor der ersten Hypnose-Session"
+}
+</script>
+
+<style>
+:root{
+  --primary:#1B2845;   /* Dunkelblau */
+  --accent:#D4A574;    /* Gold */
+  --bg:#F7F4EE;        /* Beige */
+  --text:#3A3A3A;      /* Grau */
+  --theta:#3FB6A8;     /* Türkis (Theta) */
+  --beta:#C75D52;      /* Rot (Beta) */
+  --line:rgba(27,40,69,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:"Playfair Display",Georgia,"Times New Roman",serif}
+
+/* ---- Top bar / language switch ---- */
+.bar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(18px,5vw,48px);
+  background:rgba(27,40,69,.96);backdrop-filter:blur(6px);
+  color:var(--bg);
+}
+.brand{font-weight:700;letter-spacing:.04em;font-size:1rem;text-decoration:none;color:inherit}
+.brand b{color:var(--accent)}
+.lang{display:flex;gap:4px;background:rgba(247,244,238,.1);border-radius:999px;padding:4px}
+.lang button{
+  font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;
+  border:0;border-radius:999px;padding:6px 14px;color:var(--bg);
+  background:transparent;transition:.18s;
+}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--primary)}
+.lang button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---- Hero ---- */
+.hero{padding:clamp(48px,9vw,110px) clamp(18px,5vw,48px) clamp(36px,6vw,72px);max-width:780px;margin:0 auto}
+.eyebrow{
+  display:inline-block;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;margin-bottom:20px;
+}
+.hero h1{
+  font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.04;color:var(--primary);
+  font-weight:800;letter-spacing:-.01em;
+}
+.hero .sub{margin-top:22px;font-size:clamp(1.05rem,2.4vw,1.3rem);max-width:60ch;color:#54616e}
+
+/* ---- Body ---- */
+main{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px) 40px}
+h2{
+  font-family:"Playfair Display",Georgia,serif;color:var(--primary);
+  font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:700;
+  margin:48px 0 16px;line-height:1.15;
+}
+h2 .n{color:var(--accent);font-size:.7em;margin-right:.5ch;font-style:italic}
+p{margin:0 0 18px}
+p .term{
+  border-bottom:2px dotted var(--accent);cursor:help;font-weight:600;color:var(--primary);
+}
+.lead{font-size:1.12rem}
+
+.kanaele{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0}
+.kanaele .card{border-radius:14px;padding:18px;background:#fff;border:1px solid var(--line)}
+.kanaele .card h3{font-size:.92rem;letter-spacing:.02em;margin-bottom:6px;color:var(--primary)}
+.kanaele .card p{font-size:.9rem;color:#54616e;margin:0}
+@media(max-width:540px){.kanaele{grid-template-columns:1fr}}
+
+/* ---- Glossary ---- */
+.glossary{background:var(--primary);color:var(--bg);margin-top:64px;padding:clamp(40px,7vw,72px) 0}
+.glossary .inner{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.glossary h2{color:var(--bg)}
+.glossary h2 .n{color:var(--accent)}
+.gitem{border-top:1px solid rgba(247,244,238,.16);padding:18px 0}
+.gitem dt{font-weight:700;color:var(--accent);font-size:1.02rem;margin-bottom:4px}
+.gitem dd{font-size:.95rem;color:rgba(247,244,238,.86)}
+
+/* ---- CTA (only place with persuasive language patterns) ---- */
+.cta{max-width:720px;margin:56px auto;padding:0 clamp(18px,5vw,48px)}
+.cta-box{
+  background:linear-gradient(135deg,#fff, #fbf7ef);
+  border:1px solid var(--line);border-radius:20px;
+  padding:clamp(28px,5vw,44px);text-align:center;box-shadow:0 18px 40px -28px rgba(27,40,69,.5);
+}
+.cta-box h2{margin-top:0}
+.cta-box p{max-width:48ch;margin-inline:auto;color:#54616e}
+.cta-btn{
+  display:inline-block;margin-top:20px;background:var(--primary);color:var(--bg);
+  text-decoration:none;font-weight:700;letter-spacing:.02em;
+  padding:16px 34px;border-radius:999px;transition:.2s;
+}
+.cta-btn:hover{background:var(--accent);color:var(--primary)}
+.cta-btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.cta-fine{font-size:.78rem;color:#8a949e;margin-top:14px}
+
+footer{text-align:center;padding:40px 18px;font-size:.8rem;color:#8a949e}
+
+.disclaimer{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.disclaimer p{font-size:.8rem;color:#8a949e;border-top:1px solid var(--line);padding-top:18px}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
+
+/* ===== magic layer (language-neutral) ===== */
+@keyframes breathe { 0%,100%{transform:scale(1);opacity:.55} 40%{transform:scale(1.18);opacity:.9} }
+@keyframes drift   { 0%{transform:translateX(0)} 100%{transform:translateX(-50px)} }
+@keyframes floatUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+.hero{position:relative;overflow:hidden}
+.hero .ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5}
+.hero .ambient svg{position:absolute;bottom:18%;left:0;width:160%;height:auto}
+.hero .ambient path{animation:drift 14s linear infinite alternate}
+
+.ico{display:inline-flex;vertical-align:middle;width:1.05em;height:1.05em;margin-right:.5ch;color:var(--accent)}
+.ico svg{width:100%;height:100%;display:block}
+h2 .ico{width:.9em;height:.9em;margin-right:.45ch;opacity:.9}
+
+p .term{transition:color .15s, border-color .15s}
+p .term:hover{color:var(--accent);border-bottom-style:solid}
+
+.reveal{opacity:0}
+.reveal.in{animation:floatUp .7s ease both}
+
+.cta-box{position:relative}
+.breath{width:14px;height:14px;border-radius:50%;background:var(--accent);
+  margin:0 auto 14px;animation:breathe 10s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){
+  .hero .ambient path{animation:none}
+  .breath{animation:none}
+  .reveal{opacity:1}
+  .reveal.in{animation:none}
+}
+
+</style>
+<noscript><style>.reveal{opacity:1!important}.hero .ambient,.breath{display:none}</style></noscript>
+</head>
+<body>
+
+<div class="bar">
+  <a href="https://intelligentresponder-max.github.io/mindful7777/index.html" class="brand">mindful<b>7777</b></a>
+  <div class="lang" role="group" aria-label="Sprache / Language">
+    <button data-lang="de" aria-pressed="true">DE</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="ambient" aria-hidden="true"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0,100 Q60,40 120,100 T240,100 T360,100 T480,100 T600,100 T720,100 T840,100 T960,100 T1080,100 T1200,100" fill="none" stroke="#3FB6A8" stroke-width="2.5"/></svg></div>
+  <span class="eyebrow" data-i18n="hero.eyebrow">Onboarding · vor der ersten Session</span>
+  <h1 class="serif" data-i18n="hero.h1">Zehn Fragen, vier Minuten: dein Trance-Profil</h1>
+  <p class="sub" data-i18n="hero.sub">Bevor wir zusammenarbeiten, will ich zwei Dinge wissen: was gerade so nicht bleiben soll — und woran du zuerst merken wirst, dass sich etwas verändert hat. Der Onboarding-Fragebogen macht daraus ein Profil, das die erste Session formt.</p>
+</header>
+
+<main>
+  <p class="lead" data-i18n="b.lead">Der zweite Satz wiegt schwerer als der erste. „Was soll nicht so bleiben" beschreibt die Ausgangslage — die kennst du schon. „Woran merkst du zuerst, dass sich etwas verändert hat" beschreibt das erste Zeichen. Genau dieser Satz wird später zum <span class="term" title="Der Ausgangswert vor dem Training. Ohne Baseline lässt sich später nicht sagen, ob sich etwas verändert hat.">Maßstab</span> — nicht das große Ziel, sondern das kleine, überprüfbare Signal davor.</p>
+
+  <h2 data-i18n="b.h2a"><span class="n">01</span>Der wichtigere der zwei Sätze</h2>
+  <p data-i18n="b.p1">Die meisten Menschen können mühelos beschreiben, was sie loswerden wollen. Deutlich seltener können sie sagen, woran sie die Veränderung zuerst bemerken werden. Genau diese Lücke schließt der Fragebogen: Er verlangt eine konkrete Szene statt eines Adjektivs — nicht „entspannter sein", sondern zum Beispiel „ich lege das Handy weg und merke, dass ich müde bin, statt es zu beschließen".</p>
+  <p data-i18n="b.p2">Dieser Satz ist danach kein Vorsatz mehr, sondern eine Prüfgröße. Die Session arbeitet auf ihn hin, und du merkst früher als gedacht, ob sie greift.</p>
+
+  <h2 data-i18n="b.h2b"><span class="n">02</span>Warum der Sinneskanal die Session formt</h2>
+  <p data-i18n="b.p3">Eine der zehn Fragen ist bewusst unscheinbar: Stell dir einen Moment vor — was ist zuerst da, ein Bild, ein Klang, ein Körpergefühl oder ein Gedanke? Die Antwort zeigt dein bevorzugtes <span class="term" title="Der Kanal, in dem jemand bevorzugt denkt. Erkennbar an der Wortwahl: sehen, klingen, sich anfühlen.">Repräsentationssystem</span> — einen der vier Kanäle aus dem <span class="term" title="Kürzel für die fünf Wahrnehmungskanäle: visuell, auditiv, kinästhetisch, olfaktorisch, gustatorisch. Gute Skripte bedienen mehrere davon.">VAKOG</span>-Modell.</p>
+  <div class="kanaele">
+    <div class="card"><h3 data-i18n="k.v.t">Visuell</h3><p data-i18n="k.v.d">Induktion über Bilder: Ort, Licht, Weite. Vertiefung über eine Szene, die sich langsam verändert.</p></div>
+    <div class="card"><h3 data-i18n="k.a.t">Auditiv</h3><p data-i18n="k.a.d">Induktion über Stimme und Rhythmus: Tempowechsel, Pausen, ein wiederkehrender Klang als Anker.</p></div>
+    <div class="card"><h3 data-i18n="k.k.t">Kinästhetisch</h3><p data-i18n="k.k.d">Induktion über Körperempfinden: Atem, Gewicht, Wärme. Ein Handanker macht den Zustand später abrufbar.</p></div>
+    <div class="card"><h3 data-i18n="k.d.t">Sprachlich</h3><p data-i18n="k.d.d">Induktion über Zählen, Struktur und klare Schritte. Erst der Rahmen, dann das Bild.</p></div>
+  </div>
+  <p data-i18n="b.p4">Kein Kanal ist besser als ein anderer — er entscheidet nur, welche Tür beim ersten Mal am leichtesten aufgeht.</p>
+
+  <h2 data-i18n="b.h2c"><span class="n">03</span>Rahmen statt Formular</h2>
+  <p data-i18n="b.p5">Die restlichen Fragen — Tageszeit, Länge, Ansprache — klingen praktisch, sind es auch: Sie legen fest, welches Protokoll du zuerst bekommst. Aber der Fragebogen ist damit noch kein Formular. Er ist der erste Teil der Arbeit, weil du dir die Antworten selbst laut vorsagst, bevor jemand anders sie hört.</p>
+  <p data-i18n="b.p6">Am Ende steht eine Antwort auf jeden Punkt, der bisher zurückgehalten hat — Zeit, Kosten, Skepsis, Kontrolle. Ob du danach heute Abend anfängst oder erst nach einem Gespräch, entscheidest du.</p>
+</main>
+
+<!-- ===== GLOSSARY (self-explaining) ===== -->
+<section class="glossary" id="glossar">
+  <div class="inner">
+    <h2><span class="n">★</span><span data-i18n="g.title">Glossar</span></h2>
+    <dl>
+      <div class="gitem"><dt data-i18n="g.1.t">Repräsentationssystem</dt><dd data-i18n="g.1.d">Der Kanal, in dem jemand bevorzugt denkt. Erkennbar an der Wortwahl: sehen, klingen, sich anfühlen.</dd></div>
+      <div class="gitem"><dt data-i18n="g.2.t">VAKOG</dt><dd data-i18n="g.2.d">Kürzel für die fünf Wahrnehmungskanäle: visuell, auditiv, kinästhetisch, olfaktorisch, gustatorisch.</dd></div>
+      <div class="gitem"><dt data-i18n="g.3.t">Baseline</dt><dd data-i18n="g.3.d">Der Ausgangswert vor dem Training. Ohne Baseline lässt sich später nicht sagen, ob sich etwas verändert hat.</dd></div>
+      <div class="gitem"><dt data-i18n="g.4.t">Zustandsabhängiges Lernen</dt><dd data-i18n="g.4.d">Erinnerungen sind leichter abrufbar, wenn der aktuelle Zustand dem beim Lernen ähnelt.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ===== CTA: the ONLY section using nls/rhetoric language patterns ===== -->
+<!-- Patterns used (Sog statt Druck):
+     · Presupposition  -> "während du das hier liest" setzt das Lesen als gegeben voraus, Fokus auf das WIE
+     · Embedded command -> "stell dir vor, wie leicht" als getarnter Imperativ im Nebensatz
+     Bewusst sparsam: max. 2 Muster, keine Druck-/Angstsprache, kein Heilversprechen.
+     Autonomie-Regel (CLAUDE.md): Nutzen vor Anweisung, Leser bleibt der Handelnde. -->
+<section class="cta">
+  <div class="cta-box">
+    <div class="breath" aria-hidden="true"></div>
+    <h2 class="serif" data-i18n="cta.h">Bereit für dein Trance-Profil?</h2>
+    <p data-i18n="cta.p">Während du das hier liest, kannst du dir schon vorstellen, wie leicht sich zehn Fragen beantworten lassen, wenn sie dir bekannt vorkommen — und genau deshalb lohnt sich der erste Schritt heute. Vier Minuten, dann steht dein Profil.</p>
+    <a class="cta-btn" href="https://intelligentresponder-max.github.io/mindful7777/onboarding-fragebogen.html" data-i18n="cta.btn">Trance-Profil ausfüllen</a>
+    <p class="cta-fine" data-i18n="cta.fine">10 Fragen · ~4 Minuten · nichts wird automatisch gespeichert oder versendet</p>
+  </div>
+</section>
+
+<div class="disclaimer">
+  <p data-i18n="disc">Hinweis: Dieser Beitrag dient der Information und Entspannung. Er ersetzt keine medizinische oder therapeutische Beratung und macht keine Heilversprechen.</p>
+</div>
+
+<footer>© 2026 mindful7777 · <a href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html" style="color:inherit" data-i18n="foot.blog">&larr; Zur&uuml;ck zum Blog</a> &middot; <a href="#glossar" style="color:inherit" data-i18n="foot.link">Zum Glossar</a></footer>
+
+<script>
+const i18n = {
+  de: null, // DE = die Markup wie geschrieben (Standard)
+  en: {
+    "meta.title":"Trance Profile: Ten Questions Before Your First Session | mindful7777",
+    "meta.desc":"Before a session starts, two questions matter: what shouldn't stay this way — and what you'll notice first when it changes. The onboarding questionnaire turns that into a trance profile.",
+    "hero.eyebrow":"Onboarding · before the first session",
+    "hero.h1":"Ten questions, four minutes: your trance profile",
+    "hero.sub":"Before we work together I want to know two things: what shouldn't stay the way it is — and what you'll notice first when it changes. The onboarding questionnaire turns that into a profile that shapes the first session.",
+    "b.lead":"The second sentence matters more than the first. “What shouldn't stay this way” describes where you are — you already know that. “What you'll notice first when it changes” describes the first sign. That sentence becomes the <span class=\"term\" title=\"The baseline value before training. Without it, there's no way to tell later whether anything changed.\">measure</span> later — not the big goal, but the small, checkable signal before it.",
+    "b.h2a":"<span class=\"n\">01</span>The sentence that matters more",
+    "b.p1":"Most people can easily describe what they want to get rid of. Far fewer can say what they'll notice first when it changes. That's exactly the gap the questionnaire closes: it asks for a concrete scene instead of an adjective — not “more relaxed”, but something like “I put the phone down and notice I'm tired, instead of deciding to be”.",
+    "b.p2":"That sentence stops being a resolution and becomes a checkpoint. The session works toward it, and you'll notice sooner than expected whether it's landing.",
+    "b.h2b":"<span class=\"n\">02</span>Why the sensory channel shapes the session",
+    "b.p3":"One of the ten questions is deliberately quiet: picture a moment for a second — what comes first, an image, a sound, a body sensation or a thought? The answer shows your preferred <span class=\"term\" title=\"The channel someone prefers to think in. Recognisable by word choice: seeing, sounding, feeling.\">representational system</span> — one of the four channels in the <span class=\"term\" title=\"Shorthand for the five perceptual channels: visual, auditory, kinaesthetic, olfactory, gustatory. Good scripts use more than one.\">VAKOG</span> model.",
+    "k.v.t":"Visual","k.v.d":"Induction through images: place, light, space. Deepening through a scene that slowly changes.",
+    "k.a.t":"Auditory","k.a.d":"Induction through voice and rhythm: pace changes, pauses, a recurring sound as anchor.",
+    "k.k.t":"Kinaesthetic","k.k.d":"Induction through body sensation: breath, weight, warmth. A hand anchor makes the state recallable later.",
+    "k.d.t":"Verbal","k.d.d":"Induction through counting, structure and clear steps. Frame first, image second.",
+    "b.p4":"No channel is better than another — it only decides which door opens most easily the first time.",
+    "b.h2c":"<span class=\"n\">03</span>A frame, not a form",
+    "b.p5":"The remaining questions — time of day, length, tone — sound practical, and they are: they decide which protocol you get first. But that doesn't make the questionnaire a form. It's the first part of the work, because you say the answers to yourself before anyone else hears them.",
+    "b.p6":"At the end there's an answer to every point that's held you back so far — time, cost, scepticism, control. Whether you start tonight or only after a conversation is up to you.",
+    "g.title":"Glossary",
+    "g.1.t":"Representational system","g.1.d":"The channel someone prefers to think in. Recognisable by word choice: seeing, sounding, feeling.",
+    "g.2.t":"VAKOG","g.2.d":"Shorthand for the five perceptual channels: visual, auditory, kinaesthetic, olfactory, gustatory.",
+    "g.3.t":"Baseline","g.3.d":"The baseline value before training. Without it, there's no way to tell later whether anything changed.",
+    "g.4.t":"State-dependent learning","g.4.d":"Memories are easier to recall when the current state resembles the state during learning.",
+    "cta.h":"Ready for your trance profile?",
+    "cta.p":"As you read this, you can already picture how easy ten questions feel once they sound familiar — and that's exactly why the first step is worth it today. Four minutes, then your profile is ready.",
+    "cta.btn":"Fill out the trance profile",
+    "cta.fine":"10 questions · ~4 minutes · nothing is stored or sent automatically",
+    "disc":"Note: This article is for information and relaxation. It is not medical or psychotherapeutic advice and makes no health claims.",
+    "foot.blog":"&larr; Back to blog",
+    "foot.link":"Go to glossary"
+  }
+};
+
+const nodes = document.querySelectorAll('[data-i18n]');
+const defaults = {};
+nodes.forEach(n => defaults[n.getAttribute('data-i18n')] = n.tagName==='TITLE'||n.tagName==='META' ? (n.content||n.textContent) : n.innerHTML);
+
+function setLang(lang){
+  const dict = i18n[lang];
+  nodes.forEach(n=>{
+    const key=n.getAttribute('data-i18n');
+    const val = dict ? (dict[key] ?? defaults[key]) : defaults[key];
+    if(n.tagName==='META'){ n.setAttribute('content',val); }
+    else if(n.tagName==='TITLE'){ n.textContent=val; }
+    else { n.innerHTML=val; }
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang button').forEach(b=>
+    b.setAttribute('aria-pressed', b.dataset.lang===lang ? 'true':'false'));
+}
+document.querySelectorAll('.lang button').forEach(b=>
+  b.addEventListener('click',()=>setLang(b.dataset.lang)));
+
+// --- deep-link language via ?lang= (for hreflang crawling & sharing) ---
+(function(){
+  var p=new URLSearchParams(location.search).get('lang');
+  if(p && ['de','en'].includes(p)){ setLang(p); }
+})();
+document.querySelectorAll('.lang button').forEach(function(b){
+  b.addEventListener('click', function(){
+    var u=new URL(location.href); u.searchParams.set('lang', b.dataset.lang);
+    history.replaceState(null,'',u);
+  });
+});
+
+</script>
+<script>
+/* ===== magic layer JS (language-neutral) ===== */
+(function(){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('main h2, main p, .kanaele .card, .gitem').forEach(function(el){
+    el.classList.add('reveal'); io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
