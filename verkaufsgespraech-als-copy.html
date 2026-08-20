@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Das eingefrorene Verkaufsgespräch — Sprachmuster in Sales-Copy | mindful7777</title>
+<meta name="description" content="Sales-Copy ist ein eingefrorenes Verkaufsgespräch: sechs Gesprächsphasen werden zur Seitenstruktur. Welches Sprachmuster wo arbeitet — und woher es nachweisbar stammt.">
+<link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/verkaufsgespraech-als-copy.html">
+<link rel="alternate" hreflang="de" href="https://intelligentresponder-max.github.io/mindful7777/verkaufsgespraech-als-copy.html?lang=de">
+<link rel="alternate" hreflang="en" href="https://intelligentresponder-max.github.io/mindful7777/verkaufsgespraech-als-copy.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://intelligentresponder-max.github.io/mindful7777/verkaufsgespraech-als-copy.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinte:#0E1220; --tiefe:#161C31; --kante:#26304C;
+  --nebel:#ECE7DC; --dampf:#8D97B4; --gold:#C9A227; --theta:#79AEC6;
+  --mass:38rem;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--tinte);color:var(--nebel);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:17px;line-height:1.65}
+.wrap{max-width:var(--mass);margin:0 auto;padding:0 1.25rem}
+a{color:var(--theta)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+.langbar{display:flex;justify-content:flex-end;gap:.35rem;padding:1rem 0 0}
+.langbar button{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.12em;
+  background:transparent;border:1px solid var(--kante);color:var(--dampf);
+  border-radius:3px;padding:.3rem .55rem;cursor:pointer}
+.langbar button[aria-pressed=true]{border-color:var(--gold);color:var(--gold)}
+
+header.hero{padding:1.5rem 0 2rem;border-bottom:1px solid var(--kante)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);margin:0 0 1.25rem}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:clamp(2.1rem,8vw,3.1rem);
+  line-height:1.08;margin:0 0 1rem;letter-spacing:-.01em}
+.lede{color:var(--dampf);margin:0 0 1.75rem}
+.wave{display:block;width:100%;height:44px;opacity:.75}
+.wave path{fill:none;stroke:var(--theta);stroke-width:1.5;
+  stroke-dasharray:6 340;animation:drift 14s linear infinite}
+@keyframes drift{to{stroke-dashoffset:-692}}
+@media (prefers-reduced-motion:reduce){.wave path{animation:none;stroke-dasharray:none;opacity:.5}}
+
+section{padding:2.75rem 0;border-bottom:1px solid var(--kante)}
+h2{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.6rem;line-height:1.2;
+  margin:0 0 .35rem;letter-spacing:-.01em}
+h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.1rem;margin:1.75rem 0 .4rem}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dampf);margin:0 0 1.5rem}
+p{margin:0 0 1rem}
+
+.phase{border-left:2px solid var(--kante);padding:0 0 1.5rem 1.15rem;margin:0 0 .25rem}
+.phase:last-child{padding-bottom:0}
+.phase .nr{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--gold);
+  letter-spacing:.12em;display:block;margin-bottom:.15rem}
+.phase h3{margin:0 0 .75rem;font-size:1.15rem}
+.pair{display:grid;gap:.55rem}
+@media (min-width:620px){.pair{grid-template-columns:1fr 1fr;gap:1rem}}
+.side{padding:.7rem .85rem;border-radius:3px;font-size:.94rem;line-height:1.5}
+.gesprochen{background:rgba(121,174,198,.09);border-top:2px solid var(--theta)}
+.gesetzt{background:rgba(201,162,39,.08);border-top:2px solid var(--gold)}
+.side b{display:block;font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:.66rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--dampf);margin-bottom:.3rem}
+.nutzen{margin:.6rem 0 0;font-size:.92rem;color:var(--dampf)}
+
+.beispiel{border-left:2px solid var(--gold);padding:.15rem 0 .15rem .9rem;margin:0 0 1rem;
+  font-family:"Fraunces",Georgia,serif;font-size:1.02rem}
+.beispiel span{display:block;font-family:"IBM Plex Mono",monospace;font-size:.66rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--dampf);margin-bottom:.2rem}
+ul{margin:0 0 1rem;padding-left:1.1rem}
+li{margin-bottom:.4rem}
+ol.som{list-style:none;padding:0;margin:0 0 1rem;counter-reset:som;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.4rem}
+ol.som li{counter-increment:som;margin:0;font-size:.9rem;padding:.5rem .6rem;
+  background:var(--tiefe);border-radius:3px}
+ol.som li::before{content:counter(som,decimal-leading-zero);
+  font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--gold);
+  display:block;margin-bottom:.15rem}
+
+.quelle{background:var(--tiefe);border:1px solid var(--kante);border-radius:4px;
+  padding:1.15rem 1.15rem .4rem;margin:1.5rem 0}
+.quelle .kicker{margin-bottom:.75rem;color:var(--gold)}
+.quelle p{font-size:.94rem}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+  letter-spacing:.12em;text-transform:uppercase;padding:.15rem .45rem;
+  border:1px solid var(--kante);border-radius:2px;color:var(--dampf);
+  margin-right:.35rem;vertical-align:.1em}
+.tag.beleg{border-color:var(--theta);color:var(--theta)}
+.tag.allgemein{border-color:var(--gold);color:var(--gold)}
+.tag.dilts{border-color:var(--dampf)}
+
+.cta{display:inline-block;background:var(--gold);color:#0E1220;font-weight:500;
+  text-decoration:none;border-radius:4px;padding:.75rem 1.3rem;margin:.25rem 0 .5rem}
+.cta:hover{filter:brightness(1.08)}
+
+footer{padding:2.25rem 0 3rem;font-size:.85rem;color:var(--dampf)}
+footer nav a{margin-right:1rem;display:inline-block;margin-bottom:.4rem}
+[data-lang][hidden]{display:none}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="langbar">
+    <button type="button" data-set="de" aria-pressed="true">DE</button>
+    <button type="button" data-set="en" aria-pressed="false">EN</button>
+  </div>
+</div>
+
+<!-- ============================ DEUTSCH ============================ -->
+<div data-lang="de">
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">mindful7777 · Copy-Werkstatt</p>
+    <h1>Ein Verkaufs&shy;gespräch, das stillsteht</h1>
+    <p class="lede">Sales-Copy ist ein eingefrorenes Verkaufsgespräch. Dieselben sechs Phasen, nur ohne Gegenüber, das nachfragt — deshalb muss die Seite die Fragen vorwegnehmen, die sonst laut gestellt würden. Diese Seite zeigt, welches Sprachmuster an welcher Stelle arbeitet, was der Leser davon hat und woher das Muster nachweisbar stammt.</p>
+    <svg class="wave" viewBox="0 0 600 44" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,22 C50,4 100,40 150,22 C200,4 250,40 300,22 C350,4 400,40 450,22 C500,4 550,40 600,22"/>
+    </svg>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Die Übersetzung</h2>
+    <p class="kicker">Sechs Phasen — links gesprochen, rechts gesetzt</p>
+    <p>Die Reihenfolge trägt hier Information: Wer die Einwände vor dem Nutzen behandelt, beantwortet Fragen, die noch niemand hat. Wer den Abschluss vor der Story setzt, fragt vor dem Vertrauen. Die Phasenfolge ist deshalb kein Formular, sondern die Dramaturgie, in der ein Leser ohnehin denkt.</p>
+
+    <div class="phase"><span class="nr">Phase 01</span><h3>Kontakt &amp; Rapport</h3>
+      <div class="pair">
+        <div class="side gesprochen"><b>Im Gespräch</b>Ein Einstieg, der zeigt: Ich kenne deine Lage. Tempo und Sprache spiegeln.</div>
+        <div class="side gesetzt"><b>Auf der Seite</b>Hook und Lead. Schmerz-Freude-Öffnung: erst die Lage benennen, dann den Zustand danach.</div>
+      </div>
+      <p class="nutzen">Was der Leser davon hat: Er weiß in fünf Sekunden, ob die Seite von ihm handelt.</p>
+    </div>
+
+    <div class="phase"><span class="nr">Phase 02</span><h3>Bedarf &amp; Situation</h3>
+      <div class="pair">
+        <div class="side gesprochen"><b>Im Gespräch</b>Offene Fragen, Nachfragen, Präzisieren.</div>
+        <div class="side gesetzt"><b>Auf der Seite</b>Der „Kennst du das?“-Block: konkrete Szenen statt Adjektive, sinnlich beschrieben (sehen, hören, spüren).</div>
+      </div>
+      <p class="nutzen">Was der Leser davon hat: Er erkennt sein Problem genauer, als er es selbst formuliert hätte.</p>
+    </div>
+
+    <div class="phase"><span class="nr">Phase 03</span><h3>Präsentation &amp; Nutzen</h3>
+      <div class="pair">
+        <div class="side gesprochen"><b>Im Gespräch</b>Vorführen, erklären, am Bedarf entlang argumentieren.</div>
+        <div class="side gesetzt"><b>Auf der Seite</b>Narrativer Mittelteil: Story-Selling. Eine Person, ein Vorher, ein Wendepunkt, ein Nachher — das Angebot steckt in der Wende.</div>
+      </div>
+      <p class="nutzen">Was der Leser davon hat: Er sieht das Ergebnis an jemandem, statt es zu glauben.</p>
+    </div>
+
+    <div class="phase"><span class="nr">Phase 04</span><h3>Einwände</h3>
+      <div class="pair">
+        <div class="side gesprochen"><b>Im Gespräch</b>Zuhören, umdeuten, den Rahmen wechseln.</div>
+        <div class="side gesetzt"><b>Auf der Seite</b>Einwand- und FAQ-Sektion. Jede Frage ist ein Reframing-Muster in Textform.</div>
+      </div>
+      <p class="nutzen">Was der Leser davon hat: Sein stiller Zweifel wird ausgesprochen, statt übergangen.</p>
+    </div>
+
+    <div class="phase"><span class="nr">Phase 05</span><h3>Abschluss</h3>
+      <div class="pair">
+        <div class="side gesprochen"><b>Im Gespräch</b>Der Abschlusssatz — Auswahl statt Ja/Nein.</div>
+        <div class="side gesetzt"><b>Auf der Seite</b>CTA-Formulierung: Vorannahmen und eingebettete Aufforderungen, die den nächsten Schritt schon voraussetzen.</div>
+      </div>
+      <p class="nutzen">Was der Leser davon hat: Er muss keine Entscheidung erfinden, nur eine treffen.</p>
+    </div>
+
+    <div class="phase"><span class="nr">Phase 06</span><h3>Nachfassen &amp; Bindung</h3>
+      <div class="pair">
+        <div class="side gesprochen"><b>Im Gespräch</b>Nachbetreuung, Empfehlung, nächster Termin.</div>
+        <div class="side gesetzt"><b>Auf der Seite</b>Danke-Seite, erste Mail, Einstiegsprotokoll. Der Kauf ist der Anfang der Sequenz, nicht ihr Ende.</div>
+      </div>
+      <p class="nutzen">Was der Leser davon hat: Er kommt an, statt allein gelassen zu werden.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Schmerz und Freude als Lead</h2>
+    <p class="kicker">Phase 01 · <span class="tag beleg">Galal-Blog belegt</span></p>
+    <p>Der Hook arbeitet mit zwei Richtungen: weg von etwas und hin zu etwas. Beides in einem Absatz, in dieser Reihenfolge — der Weg-von-Teil schafft Aufmerksamkeit, der Hin-zu-Teil hält sie. Bleibt der Lead nur im Schmerz, liest sich die Seite wie ein Vorwurf; springt sie sofort ins Ziel, glaubt niemand den Weg dorthin.</p>
+    <div class="beispiel"><span>Beispiel-Lead</span>Du kennst den Moment kurz vor dem Einschlafen, in dem der Kopf noch einmal alles aufzählt. Und du kennst — vielleicht von einem einzigen guten Abend — das andere Gefühl: dass der Tag zu Ende ist, bevor du es beschließen musst.</div>
+    <p>Sinnlich beschreiben statt bewerten: was man dabei sieht, hört, spürt. Das ist die VAKOG-Ebene, und sie ist der Unterschied zwischen „Stress abbauen“ und einem Bild, in dem sich jemand wiedererkennt.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Vorannahmen und eingebettete Aufforderungen im CTA</h2>
+    <p class="kicker">Phase 05 · <span class="tag beleg">Galal-Blog belegt</span></p>
+    <p>Ein CTA-Text hat zwei Schrauben. Die Vorannahme verlegt das Ja an eine Stelle, an der es nicht mehr verhandelt wird: nicht <em>ob</em>, sondern <em>wie</em> oder <em>wann</em>. Die eingebettete Aufforderung setzt den eigentlichen Handlungssatz in einen ruhigen Nebensatz, statt ihn zu rufen.</p>
+    <div class="beispiel"><span>Vorannahme (wie statt ob)</span>Womit du anfängst, entscheidest du nach dem ersten Hören.</div>
+    <div class="beispiel"><span>Auswahlrahmen</span>Zehn Minuten heute Abend — oder die lange Session am Wochenende?</div>
+    <div class="beispiel"><span>Eingebettete Aufforderung</span>Die meisten merken erst hinterher, wie leicht es war, heute damit zu beginnen.</div>
+    <div class="beispiel"><span>Zeitliche Vorannahme</span>Nachdem du das erste Protokoll durch hast, wirst du wissen, welches Tempo dir liegt.</div>
+    <p>Die Grenze ist einfach und sie ist eine Haltung, keine Vorschrift: Vorannahmen dürfen den nächsten Schritt vorwegnehmen, aber keine Tatsache behaupten, die nicht stimmt. Eine Verknappung, die es nicht gibt, ist kein Muster, sondern eine Lüge — und sie kostet genau den Kunden, der wiederkommen würde.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Story-Selling als Mittelteil</h2>
+    <p class="kicker">Phase 03 · <span class="tag beleg">Galal-Blog belegt (Metaphern)</span></p>
+    <p>Die Metapher trägt im Text, was im Gespräch die Vorführung trägt. Vier Teile reichen: Ausgangslage, Kipppunkt, Widerstand, Ergebnis. Das Angebot erscheint im Kipppunkt — nicht als Produktabsatz, sondern als das, was die Person getan hat.</p>
+    <ul>
+      <li>Eine Person, ein Zeitraum, ein konkretes Detail — Details machen Geschichten überprüfbar.</li>
+      <li>Der Widerstand gehört hinein: Ohne Zweifel im Text kommt der Zweifel beim Leser.</li>
+      <li>Das Ergebnis in derselben Sprache wie der Lead — so schließt sich der Bogen hörbar.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Einwände: Reframing als FAQ</h2>
+    <p class="kicker">Phase 04 · <span class="tag dilts">Sleight of Mouth — Robert Dilts</span></p>
+    <p>Jeder Einwand ist ein Satz über die Welt: „zu teuer“, „keine Zeit“, „bei mir wirkt das nicht“. Die vierzehn Sleight-of-Mouth-Muster sind vierzehn Blickwinkel auf so einen Satz — jeder ergibt eine FAQ-Antwort mit anderem Ton. Für eine Verkaufsseite reichen meist drei bis fünf.</p>
+    <ol class="som">
+      <li>Absicht</li><li>Neudefinition</li><li>Konsequenz</li><li>Aufgliedern</li>
+      <li>Verallgemeinern</li><li>Analogie</li><li>Gegenbeispiel</li><li>Anderes Ergebnis</li>
+      <li>Hierarchie der Kriterien</li><li>Auf sich selbst anwenden</li><li>Realitätsstrategie</li>
+      <li>Modell der Welt</li><li>Meta-Rahmen</li><li>Rahmengröße ändern</li>
+    </ol>
+    <p>Die deutschen Bezeichnungen schwanken je nach Übersetzung; die Zuordnung oben folgt der gängigen Fassung.</p>
+    <div class="beispiel"><span>Einwand „zu teuer“ · Hierarchie der Kriterien</span>Die Frage ist nicht, ob es günstig ist, sondern was dich der nächste Monat ohne Schlaf kostet.</div>
+    <div class="beispiel"><span>Einwand „keine Zeit“ · Rahmengröße ändern</span>Zehn Minuten am Abend sind in einem Jahr sechzig Stunden — und in einer Woche nichts.</div>
+    <div class="beispiel"><span>Einwand „wirkt bei mir nicht“ · Realitätsstrategie</span>Woran würdest du merken, dass es wirkt? Genau darauf ist das erste Protokoll gebaut.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Abschlusssätze</h2>
+    <p class="kicker">Phase 05 · <span class="tag allgemein">allgemeine Vertriebsliteratur</span></p>
+    <p>Die folgenden Abschlussformen sind Standardrepertoire der Verkaufsliteratur, kein durchnummeriertes System eines einzelnen Trainers. Für Copy sind sie brauchbar, weil jede eine andere Entscheidungslast beim Leser abnimmt.</p>
+    <ul>
+      <li><strong>Alternativabschluss</strong> — zwei Wege statt Ja/Nein.</li>
+      <li><strong>Zusammenfassungsabschluss</strong> — der Nutzen noch einmal in drei Zeilen, dann der Button.</li>
+      <li><strong>Zustimmungsabschluss</strong> — mehrere kleine Ja-Punkte vor der eigentlichen Frage.</li>
+      <li><strong>Annahmeabschluss</strong> — der nächste Schritt wird beschrieben, als sei er beschlossen.</li>
+      <li><strong>Bedingungsabschluss</strong> — „wenn X gelöst ist, dann Y“; in Copy die Garantie- oder Rückgabezeile.</li>
+      <li><strong>Bilanzabschluss</strong> — Vor- und Nachteile offen nebeneinander; wirkt bei skeptischem Publikum stärker als jeder Superlativ.</li>
+      <li><strong>Verknappung</strong> — nur mit echtem Limit. Sonst schadet sie mehr, als sie einbringt.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Quellen-Einordnung</h2>
+    <p class="kicker">Wichtig für die Weiterverwendung</p>
+    <div class="quelle">
+      <p><span class="tag beleg">Galal-Blog belegt</span> Die eigene Blog-Serie von Marc Galal liefert reichlich wörtliche Sprachmuster — besonders zu eingebetteten Aufforderungen, Vorannahmen, Meta-Modell, Metaphern, Ankern und VAKOG. Diese Bereiche lassen sich direkt belegen.</p>
+      <p><span class="tag allgemein">allgemeine Literatur</span> Eine vollständige, durchnummerierte Liste von Abschlusssätzen veröffentlicht Galal nicht. Die oben genannten Abschlussformen stammen aus allgemeiner Vertriebsliteratur und sind hier entsprechend gekennzeichnet — nicht als sein System zitieren.</p>
+      <p><span class="tag dilts">Dilts</span> Die vollständigen vierzehn Sleight-of-Mouth-Muster sind Material von Robert Dilts. Im Galal-Blog werden nur zwei davon ausgeführt. Bei Zitaten und Quellenangaben gehört die Urheberschaft zu Dilts.</p>
+    </div>
+    <p>Für alle daraus entstehenden Texte gilt: Muster nachbauen, Formulierungen selbst schreiben. Wörtliche Übernahmen aus fremden Blogs oder Büchern gehören nicht in unsere Seiten — weder in die öffentlichen noch in die VIP-Inhalte.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Die Muster in Aktion</h2>
+    <p class="kicker">Zum Ausprobieren</p>
+    <p>Der Onboarding-Fragebogen ist nach genau dieser Reihenfolge gebaut: Lage, erstes Zeichen, Sinneskanal, Einwände, Auswahlrahmen. Zehn Fragen, vier Minuten — am Ende steht ein Trance-Profil.</p>
+    <p><a class="cta" href="onboarding-fragebogen.html?lang=de">Fragebogen öffnen</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <nav>
+      <a href="index.html">Start</a>
+      <a href="onboarding-fragebogen.html?lang=de">Fragebogen</a>
+      <a href="glossar.html">Glossar</a>
+      <a href="vip.html">VIP</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+    <p>© mindful7777 — Arbeitsunterlage der Copy-Werkstatt. Marken- und Werknamen gehören ihren jeweiligen Inhabern.</p>
+  </div>
+</footer>
+</div>
+
+<!-- ============================ ENGLISH ============================ -->
+<div data-lang="en" hidden>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">mindful7777 · Copy workshop</p>
+    <h1>A sales conversation, frozen</h1>
+    <p class="lede">Sales copy is a frozen sales conversation. The same six phases, only without someone across the table asking questions — which is why the page has to anticipate the questions that would otherwise be spoken aloud. This page shows which language pattern does the work where, what the reader gets out of it, and where each pattern verifiably comes from.</p>
+    <svg class="wave" viewBox="0 0 600 44" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,22 C50,4 100,40 150,22 C200,4 250,40 300,22 C350,4 400,40 450,22 C500,4 550,40 600,22"/>
+    </svg>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The translation</h2>
+    <p class="kicker">Six phases — spoken on the left, set in type on the right</p>
+    <p>The order carries information. Handle objections before benefits and you answer questions nobody has yet. Put the close before the story and you ask before there is trust. The sequence isn't a form to fill in; it's the dramaturgy a reader follows anyway.</p>
+
+    <div class="phase"><span class="nr">Phase 01</span><h3>Contact &amp; rapport</h3>
+      <div class="pair">
+        <div class="side gesprochen"><b>In conversation</b>An opening that says: I know where you are. Match pace and language.</div>
+        <div class="side gesetzt"><b>On the page</b>Hook and lead. A pain-to-pleasure opening: name the situation first, then the state that follows.</div>
+      </div>
+      <p class="nutzen">What the reader gets: within five seconds they know whether the page is about them.</p>
+    </div>
+
+    <div class="phase"><span class="nr">Phase 02</span><h3>Needs &amp; situation</h3>
+      <div class="pair">
+        <div class="side gesprochen"><b>In conversation</b>Open questions, follow-ups, getting precise.</div>
+        <div class="side gesetzt"><b>On the page</b>The “sound familiar?” block: concrete scenes instead of adjectives, described through the senses.</div>
+      </div>
+      <p class="nutzen">What the reader gets: their problem, stated more precisely than they would have put it.</p>
+    </div>
+
+    <div class="phase"><span class="nr">Phase 03</span><h3>Presentation &amp; benefit</h3>
+      <div class="pair">
+        <div class="side gesprochen"><b>In conversation</b>Demonstrate, explain, argue along the stated need.</div>
+        <div class="side gesetzt"><b>On the page</b>The narrative middle: story selling. One person, a before, a turning point, an after — the offer sits inside the turn.</div>
+      </div>
+      <p class="nutzen">What the reader gets: they see the result happen to someone, instead of being asked to believe it.</p>
+    </div>
+
+    <div class="phase"><span class="nr">Phase 04</span><h3>Objections</h3>
+      <div class="pair">
+        <div class="side gesprochen"><b>In conversation</b>Listen, reinterpret, change the frame.</div>
+        <div class="side gesetzt"><b>On the page</b>The objection and FAQ section. Every question is a reframing pattern in written form.</div>
+      </div>
+      <p class="nutzen">What the reader gets: their quiet doubt gets said out loud rather than skipped.</p>
+    </div>
+
+    <div class="phase"><span class="nr">Phase 05</span><h3>Close</h3>
+      <div class="pair">
+        <div class="side gesprochen"><b>In conversation</b>The closing line — a choice rather than yes/no.</div>
+        <div class="side gesetzt"><b>On the page</b>CTA wording: presuppositions and embedded commands that already assume the next step.</div>
+      </div>
+      <p class="nutzen">What the reader gets: they don't have to invent a decision, only make one.</p>
+    </div>
+
+    <div class="phase"><span class="nr">Phase 06</span><h3>Follow-up &amp; retention</h3>
+      <div class="pair">
+        <div class="side gesprochen"><b>In conversation</b>Aftercare, referral, next appointment.</div>
+        <div class="side gesetzt"><b>On the page</b>Thank-you page, first email, starter protocol. The purchase begins the sequence rather than ending it.</div>
+      </div>
+      <p class="nutzen">What the reader gets: they arrive somewhere, instead of being left alone.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Pain and pleasure as the lead</h2>
+    <p class="kicker">Phase 01 · <span class="tag beleg">documented in Galal's blog</span></p>
+    <p>The hook runs in two directions: away from something and towards something. Both in one paragraph, in that order — the away-from part earns attention, the towards part keeps it. A lead that stays in the pain reads like an accusation; one that jumps straight to the goal makes the route there unbelievable.</p>
+    <div class="beispiel"><span>Sample lead</span>You know the moment just before sleep when your head runs through the list one more time. And you know — maybe from a single good evening — the other feeling: the day ending before you have to decide it's over.</div>
+    <p>Describe through the senses instead of judging: what you see, hear, feel. That is the VAKOG layer, and it is the difference between “reduce stress” and an image someone recognises themselves in.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Presuppositions and embedded commands in the CTA</h2>
+    <p class="kicker">Phase 05 · <span class="tag beleg">documented in Galal's blog</span></p>
+    <p>CTA copy has two dials. The presupposition moves the yes to a place where it is no longer negotiated: not <em>whether</em>, but <em>how</em> or <em>when</em>. The embedded command puts the actual instruction into a quiet subordinate clause instead of shouting it.</p>
+    <div class="beispiel"><span>Presupposition (how, not whether)</span>Which one you start with, you'll decide after the first listen.</div>
+    <div class="beispiel"><span>Choice frame</span>Ten minutes tonight — or the long session at the weekend?</div>
+    <div class="beispiel"><span>Embedded command</span>Most people only notice afterwards how easy it was to begin today.</div>
+    <div class="beispiel"><span>Time presupposition</span>Once you've finished the first protocol, you'll know which pace suits you.</div>
+    <p>The limit is simple, and it is a stance rather than a rule: a presupposition may anticipate the next step, but it must not assert a fact that isn't true. Scarcity that doesn't exist isn't a pattern, it's a lie — and it costs you exactly the customer who would have come back.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Story selling as the middle</h2>
+    <p class="kicker">Phase 03 · <span class="tag beleg">documented in Galal's blog (metaphor)</span></p>
+    <p>In writing, the metaphor carries what the demonstration carries in conversation. Four parts are enough: starting point, tipping point, resistance, result. The offer appears at the tipping point — not as a product paragraph, but as the thing the person did.</p>
+    <ul>
+      <li>One person, one timeframe, one concrete detail — details make a story checkable.</li>
+      <li>Include the resistance: leave doubt out of the text and it shows up in the reader.</li>
+      <li>State the result in the same words as the lead, so the arc closes audibly.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Objections: reframing as FAQ</h2>
+    <p class="kicker">Phase 04 · <span class="tag dilts">Sleight of Mouth — Robert Dilts</span></p>
+    <p>Every objection is a statement about the world: too expensive, no time, it won't work for me. The fourteen Sleight of Mouth patterns are fourteen angles on such a statement — each produces an FAQ answer in a different key. Three to five are usually enough for one sales page.</p>
+    <ol class="som">
+      <li>Intention</li><li>Redefining</li><li>Consequence</li><li>Chunking down</li>
+      <li>Chunking up</li><li>Analogy</li><li>Counter-example</li><li>Another outcome</li>
+      <li>Hierarchy of criteria</li><li>Apply to self</li><li>Reality strategy</li>
+      <li>Model of the world</li><li>Meta frame</li><li>Changing frame size</li>
+    </ol>
+    <p>Names vary between translations; the list above follows the common English wording.</p>
+    <div class="beispiel"><span>“Too expensive” · hierarchy of criteria</span>The question isn't whether it's cheap, but what another month without sleep costs you.</div>
+    <div class="beispiel"><span>“No time” · changing frame size</span>Ten minutes an evening is sixty hours a year — and nothing at all in a week.</div>
+    <div class="beispiel"><span>“It won't work for me” · reality strategy</span>How would you notice that it works? That's exactly what the first protocol is built around.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Closing lines</h2>
+    <p class="kicker">Phase 05 · <span class="tag allgemein">general sales literature</span></p>
+    <p>The closing forms below are standard repertoire from sales literature, not a numbered system belonging to any single trainer. They work in copy because each removes a different part of the decision load.</p>
+    <ul>
+      <li><strong>Alternative close</strong> — two routes instead of yes/no.</li>
+      <li><strong>Summary close</strong> — the benefit once more in three lines, then the button.</li>
+      <li><strong>Agreement close</strong> — several small yes points before the real question.</li>
+      <li><strong>Assumptive close</strong> — the next step described as if it were already settled.</li>
+      <li><strong>Conditional close</strong> — “if X is solved, then Y”; in copy, the guarantee or returns line.</li>
+      <li><strong>Balance-sheet close</strong> — pros and cons side by side; with sceptical readers this beats any superlative.</li>
+      <li><strong>Scarcity</strong> — only with a real limit. Otherwise it costs more than it earns.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Where this comes from</h2>
+    <p class="kicker">Important when reusing this</p>
+    <div class="quelle">
+      <p><span class="tag beleg">Galal's blog</span> Marc Galal's own blog series supplies plenty of verbatim language patterns — particularly on embedded commands, presuppositions, the meta model, metaphor, anchoring and VAKOG. Those areas can be cited directly.</p>
+      <p><span class="tag allgemein">general literature</span> Galal does not publish a complete, numbered list of closing lines. The closing forms above come from general sales literature and are labelled as such here — do not attribute them to him as a system.</p>
+      <p><span class="tag dilts">Dilts</span> The full set of fourteen Sleight of Mouth patterns is Robert Dilts's material. Galal's blog covers only two of them. In quotes and citations, authorship belongs to Dilts.</p>
+    </div>
+    <p>For anything written from this: rebuild the pattern, write the wording yourself. Verbatim lifts from other people's blogs or books don't belong on our pages — public or VIP.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The patterns in use</h2>
+    <p class="kicker">Try it</p>
+    <p>The onboarding questionnaire is built in exactly this order: situation, first sign, sensory channel, objections, choice frame. Ten questions, four minutes — it ends with a trance profile.</p>
+    <p><a class="cta" href="onboarding-fragebogen.html?lang=en">Open the questionnaire</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="onboarding-fragebogen.html?lang=en">Questionnaire</a>
+      <a href="glossar.html">Glossary</a>
+      <a href="vip.html">VIP</a>
+      <a href="impressum.html">Imprint</a>
+      <a href="datenschutz.html">Privacy</a>
+    </nav>
+    <p>© mindful7777 — copy workshop working document. Trade and work names belong to their respective owners.</p>
+  </div>
+</footer>
+</div>
+
+<script>
+(function(){
+  var knoepfe = document.querySelectorAll(".langbar button");
+  function setze(l){
+    document.documentElement.lang = l;
+    document.querySelectorAll("[data-lang]").forEach(function(d){
+      d.hidden = (d.getAttribute("data-lang") !== l);
+    });
+    knoepfe.forEach(function(b){
+      b.setAttribute("aria-pressed", b.dataset.set === l ? "true" : "false");
+    });
+    try{ history.replaceState(null, "", "?lang=" + l); }catch(e){}
+  }
+  knoepfe.forEach(function(b){
+    b.addEventListener("click", function(){ setze(b.dataset.set); });
+  });
+  var p = new URLSearchParams(location.search).get("lang");
+  if(!p && (navigator.language || "").slice(0,2) === "en") p = "en";
+  setze(p === "en" ? "en" : "de");
+})();
+</script>
+</body>
+</html>
