@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audio-Extraktor · Sprachklarheit-Kalibrierung | mindful7777</title>
+<meta name="description" content="MP4 hochladen, Tonspur extrahieren und auf Sprachverständlichkeit kalibrieren — Rauschunterdrückung, Lautheit-Normalisierung und Presence-EQ, wählbar nach Sprachprofil. Läuft komplett im Browser, kein Upload an einen Server.">
+<link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/audio-extractor.html">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+<noscript><style>.reveal{opacity:1!important}</style></noscript>
+
+<style>
+.container-wide{max-width:920px;margin:0 auto;padding:0 clamp(18px,5vw,48px)}
+.tool-grid{display:grid;gap:22px;grid-template-columns:1fr;margin:28px 0 40px}
+@media(min-width:860px){.tool-grid{grid-template-columns:1fr 1fr;align-items:start}}
+
+.drop{
+  border:2px dashed var(--line);border-radius:var(--radius);padding:32px 20px;
+  text-align:center;background:var(--surface);cursor:pointer;transition:.18s;
+}
+.drop.drag{border-color:var(--gold);background:rgba(212,165,116,.08)}
+.drop input{display:none}
+.drop .dz-title{font-family:var(--serif);font-size:1.15rem;color:var(--ink);margin-bottom:6px}
+.drop .dz-sub{font-size:.86rem;color:var(--ink-soft)}
+.drop .dz-file{margin-top:14px;font-family:var(--mono);font-size:.82rem;color:var(--gold-deep);word-break:break-all}
+
+fieldset{border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin:0 0 16px;background:var(--surface)}
+legend{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);padding:0 6px}
+.opt-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0}
+.opt-row input[type=radio],.opt-row input[type=checkbox]{margin-top:4px;accent-color:var(--gold)}
+.opt-row label{cursor:pointer;font-size:.92rem}
+.opt-row .opt-desc{display:block;font-size:.8rem;color:var(--ink-soft);margin-top:2px}
+.seg{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:4px}
+.seg button{flex:1;font:inherit;font-size:.82rem;padding:9px 10px;border:0;background:var(--surface);color:var(--ink-soft);cursor:pointer;transition:.15s}
+.seg button.on{background:var(--ink);color:var(--bg)}
+
+.run-btn{width:100%;margin-top:6px}
+.run-btn:disabled{opacity:.5;cursor:not-allowed}
+
+.progress-wrap{margin-top:16px;display:none}
+.progress-wrap.show{display:block}
+.progress-bar{height:8px;border-radius:999px;background:var(--line);overflow:hidden}
+.progress-bar i{display:block;height:100%;width:0%;background:var(--gold);transition:width .25s ease}
+.progress-label{font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);margin-top:6px}
+
+.result-card{display:none}
+.result-card.show{display:block}
+.result-card audio{width:100%;margin:14px 0}
+.stat-row{display:flex;justify-content:space-between;font-size:.86rem;padding:6px 0;border-top:1px solid var(--line)}
+.stat-row:first-of-type{border-top:0}
+.stat-row b{color:var(--ink-soft);font-weight:500}
+
+.filter-chain{font-family:var(--mono);font-size:.76rem;line-height:1.7;color:var(--ink-soft);
+  background:var(--ink);color:rgba(247,244,238,.86);border-radius:12px;padding:14px 16px;
+  margin-top:14px;overflow-x:auto;white-space:pre-wrap;word-break:break-all}
+
+.log-toggle{font-family:var(--mono);font-size:.76rem;color:var(--gold-deep);cursor:pointer;
+  background:none;border:0;padding:6px 0;text-decoration:underline}
+.log-box{display:none;max-height:200px;overflow-y:auto;font-family:var(--mono);font-size:.74rem;
+  background:var(--ink);color:rgba(247,244,238,.72);border-radius:12px;padding:12px 14px;margin-top:8px;white-space:pre-wrap}
+.log-box.show{display:block}
+
+.error-box{display:none;background:rgba(199,93,82,.1);border:1px solid rgba(199,93,82,.4);
+  border-radius:12px;padding:14px 16px;font-size:.88rem;color:#8a3a32;margin-top:14px}
+.error-box.show{display:block}
+
+.privacy-note{display:flex;gap:10px;align-items:flex-start;font-size:.84rem;color:var(--ink-soft);
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-top:24px}
+.privacy-note svg{flex:0 0 auto;width:20px;height:20px;color:var(--gold-deep);margin-top:1px}
+
+.loading-core{display:none;font-family:var(--mono);font-size:.82rem;color:var(--ink-soft);margin-top:10px}
+.loading-core.show{display:block}
+</style>
+</head>
+<body>
+
+<div class="watermark-spiral" aria-hidden="true">
+  <svg viewBox="0 0 100 100"><path d="M50,50 m0,-4 a4,4 0 1,1 -4,4 a8,8 0 1,1 8,8 a12,12 0 1,1 -12,-12 a16,16 0 1,1 16,16 a20,20 0 1,1 -20,-20" fill="none" stroke="#D4A574" stroke-width="2"/></svg>
+</div>
+
+<div class="bar">
+  <a href="https://intelligentresponder-max.github.io/mindful7777/index.html" class="brand" style="color:inherit;text-decoration:none">mindful<b>7777</b></a>
+  <nav style="font-size:.78rem;letter-spacing:.06em;text-transform:uppercase"><a href="https://intelligentresponder-max.github.io/mindful7777/index.html" style="color:inherit;text-decoration:none;opacity:.85">← Start</a></nav>
+</div>
+
+<header class="hero">
+  <span class="eyebrow">Werkzeug · läuft lokal im Browser</span>
+  <h1 class="serif">Audio-Extraktor &amp; Sprachklarheit-Kalibrierung</h1>
+  <p class="sub">MP4 hochladen, Tonspur extrahieren, auf Sprachverständlichkeit kalibrieren — Rauschunterdrückung, Lautheit-Normalisierung und ein Presence-EQ, wählbar nach Sprachprofil (Deutsch, Englisch, Spanisch, Japanisch, Tschechisch und mehr). Reproduzierbare Filterkette, keine KI-Transkription — reine, nachvollziehbare Signalverarbeitung.</p>
+</header>
+
+<div class="container-wide">
+  <div class="tool-grid">
+
+    <!-- LEFT: Upload + Options -->
+    <section>
+      <div class="drop" id="drop" tabindex="0" role="button" aria-label="Video- oder Audiodatei auswählen">
+        <input type="file" id="fileInput" accept="video/*,audio/*">
+        <div class="dz-title">Datei hierher ziehen</div>
+        <div class="dz-sub">oder klicken zum Auswählen — MP4, MOV, WebM, MKV, MP3, WAV …</div>
+        <div class="dz-file" id="fileLabel"></div>
+      </div>
+
+      <fieldset style="margin-top:20px">
+        <legend>Sprachprofil</legend>
+        <div class="opt-row">
+          <input type="radio" name="preset" id="p-standard" value="standard" checked>
+          <label for="p-standard">Standard (EN)<span class="opt-desc">Ausgewogener Presence-Boost, mittlere Kompression — passt für die meisten Sprachen als neutraler Startpunkt.</span></label>
+        </div>
+        <div class="opt-row">
+          <input type="radio" name="preset" id="p-consonant" value="consonant">
+          <label for="p-consonant">Konsonantenreich (DE, CS)<span class="opt-desc">Stärkerer Boost um 4–6 kHz — hilft bei Sprachen mit vielen Konsonantenclustern und Zischlauten (Deutsch, Tschechisch).</span></label>
+        </div>
+        <div class="opt-row">
+          <input type="radio" name="preset" id="p-tonal" value="tonal">
+          <label for="p-tonal">Tonsprache (JA)<span class="opt-desc">Sanftere Kompression, dezenterer EQ — erhält die Tonhöhenverläufe, die bei Pitch-Akzent-Sprachen zur Verständlichkeit beitragen.</span></label>
+        </div>
+        <div class="opt-row">
+          <input type="radio" name="preset" id="p-vowel" value="vowel">
+          <label for="p-vowel">Vokalreich (ES, romanische Sprachen)<span class="opt-desc">Boost im Vokal-Formantbereich (1–2 kHz) plus etwas Wärme darunter — passt zu silbenrhythmischen, vokalbetonten Sprachen.</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Verarbeitung</legend>
+        <div class="opt-row">
+          <input type="checkbox" id="optDenoise" checked>
+          <label for="optDenoise">Rauschunterdrückung<span class="opt-desc">FFT-basiertes Denoising (afftdn) — reduziert Hintergrundrauschen, ohne die Sprache zu verwaschen.</span></label>
+        </div>
+        <div class="opt-row">
+          <input type="checkbox" id="optNormalize" checked>
+          <label for="optNormalize">Lautheit normalisieren<span class="opt-desc">EBU-R128-Loudnorm auf −16 LUFS — gleichmäßige Lautstärke, keine Ausreißer nach oben oder unten.</span></label>
+        </div>
+        <div class="opt-row">
+          <input type="checkbox" id="optMono">
+          <label for="optMono">Mono-Downmix<span class="opt-desc">Fasst Stereo zu einem Kanal zusammen — auf kleinen Lautsprechern oft klarer, kleinere Datei.</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Ausgabeformat</legend>
+        <div class="seg" role="group" aria-label="Ausgabeformat">
+          <button type="button" data-fmt="mp3" class="on">MP3</button>
+          <button type="button" data-fmt="wav">WAV (verlustfrei)</button>
+        </div>
+      </fieldset>
+
+      <button class="cta-btn btn-magic run-btn" id="runBtn" disabled>Audio extrahieren &amp; kalibrieren</button>
+      <div class="loading-core" id="loadingCore">Lädt die Verarbeitungs-Engine (~30 MB, einmalig pro Sitzung) …</div>
+
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-bar"><i id="progressBar"></i></div>
+        <div class="progress-label" id="progressLabel">Verarbeite …</div>
+      </div>
+
+      <div class="error-box" id="errorBox"></div>
+    </section>
+
+    <!-- RIGHT: Result -->
+    <section>
+      <div class="card result-card" id="resultCard">
+        <div class="eyebrow" style="margin-bottom:10px">Ergebnis</div>
+        <audio controls id="resultAudio"></audio>
+        <a class="btn cta-btn" id="downloadBtn" download style="display:inline-block">Herunterladen</a>
+        <div style="margin-top:18px">
+          <div class="stat-row"><span>Ausgangsdatei</span><b id="statIn">–</b></div>
+          <div class="stat-row"><span>Extrahierte Tonspur</span><b id="statOut">–</b></div>
+          <div class="stat-row"><span>Sprachprofil</span><b id="statPreset">–</b></div>
+        </div>
+        <div class="filter-chain" id="filterChain"></div>
+        <button class="log-toggle" id="logToggle" type="button">Verarbeitungsprotokoll anzeigen</button>
+        <div class="log-box" id="logBox"></div>
+      </div>
+
+      <div class="privacy-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <div>Die gesamte Verarbeitung läuft im Browser (WebAssembly). Die Datei wird nicht an einen Server hochgeladen — auch nicht an mindful7777. Beim Schließen des Tabs ist alles wieder weg.</div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="disclaimer">
+    <p>Reine Signalverarbeitung (Filter, keine KI-Transkription oder Spracherkennung). Das Sprachprofil wählt eine Filterkurve nach typischen Frequenzschwerpunkten der jeweiligen Sprachfamilie — kein Ersatz für professionelles Mastering. Für sehr lange oder sehr große Dateien kann die Verarbeitung im Browser einige Minuten dauern.</p>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 mindful7777 · WHY NOT? BE THE CHANGE. · <a href="https://intelligentresponder-max.github.io/mindful7777/impressum.html" style="color:inherit">Impressum</a> · <a href="https://intelligentresponder-max.github.io/mindful7777/datenschutz.html" style="color:inherit">Datenschutz</a></footer>
+
+<script type="module">
+import { FFmpeg } from './assets/vendor/ffmpeg/ffmpeg-esm/index.js';
+import { toBlobURL, fetchFile } from './assets/vendor/ffmpeg/util-esm/index.js';
+
+const $ = (id) => document.getElementById(id);
+const drop = $('drop');
+const fileInput = $('fileInput');
+const fileLabel = $('fileLabel');
+const runBtn = $('runBtn');
+const loadingCore = $('loadingCore');
+const progressWrap = $('progressWrap');
+const progressBar = $('progressBar');
+const progressLabel = $('progressLabel');
+const errorBox = $('errorBox');
+const resultCard = $('resultCard');
+const resultAudio = $('resultAudio');
+const downloadBtn = $('downloadBtn');
+const statIn = $('statIn');
+const statOut = $('statOut');
+const statPreset = $('statPreset');
+const filterChainEl = $('filterChain');
+const logBox = $('logBox');
+const logToggle = $('logToggle');
+
+let currentFile = null;
+let outFormat = 'mp3';
+let ffmpeg = null;
+let coreLoaded = false;
+
+/* ---------- Sprachprofile: EQ + Kompression je Frequenzschwerpunkt ---------- */
+const PRESETS = {
+  standard: {
+    label: 'Standard (EN)',
+    eq: [{ f: 3000, g: 3 }],
+    comp: 'threshold=-18dB:ratio=3:attack=5:release=50:makeup=2'
+  },
+  consonant: {
+    label: 'Konsonantenreich (DE, CS)',
+    eq: [{ f: 4000, g: 5 }, { f: 6000, g: 2 }],
+    comp: 'threshold=-18dB:ratio=3:attack=4:release=45:makeup=2'
+  },
+  tonal: {
+    label: 'Tonsprache (JA)',
+    eq: [{ f: 2500, g: 2 }],
+    comp: 'threshold=-20dB:ratio=2:attack=8:release=70:makeup=1.5'
+  },
+  vowel: {
+    label: 'Vokalreich (ES, romanische Sprachen)',
+    eq: [{ f: 1500, g: 3 }, { f: 250, g: 1.5 }],
+    comp: 'threshold=-18dB:ratio=2.5:attack=6:release=55:makeup=2'
+  }
+};
+
+function buildFilterChain(){
+  const preset = PRESETS[document.querySelector('input[name="preset"]:checked').value];
+  const chain = [];
+  chain.push('highpass=f=80');
+  if ($('optDenoise').checked) chain.push('afftdn=nr=10');
+  preset.eq.forEach(e => chain.push(`equalizer=f=${e.f}:width_type=o:width=2:g=${e.g}`));
+  chain.push(`acompressor=${preset.comp}`);
+  if ($('optNormalize').checked) chain.push('loudnorm=I=-16:TP=-1.5:LRA=11');
+  return { chain, preset };
+}
+
+function fmtBytes(b){
+  if (b < 1024) return b + ' B';
+  if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+  return (b/1024/1024).toFixed(2) + ' MB';
+}
+
+/* ---------- Upload UI ---------- */
+['dragenter','dragover'].forEach(evt => drop.addEventListener(evt, e => { e.preventDefault(); drop.classList.add('drag'); }));
+['dragleave','drop'].forEach(evt => drop.addEventListener(evt, e => { e.preventDefault(); drop.classList.remove('drag'); }));
+drop.addEventListener('drop', e => { if (e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]); });
+drop.addEventListener('click', () => fileInput.click());
+drop.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+fileInput.addEventListener('change', () => { if (fileInput.files[0]) setFile(fileInput.files[0]); });
+
+function setFile(file){
+  currentFile = file;
+  fileLabel.textContent = `${file.name} · ${fmtBytes(file.size)}`;
+  runBtn.disabled = false;
+  resultCard.classList.remove('show');
+  errorBox.classList.remove('show');
+}
+
+document.querySelectorAll('.seg button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.seg button').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    outFormat = b.dataset.fmt;
+  });
+});
+
+logToggle.addEventListener('click', () => {
+  const showing = logBox.classList.toggle('show');
+  logToggle.textContent = showing ? 'Verarbeitungsprotokoll ausblenden' : 'Verarbeitungsprotokoll anzeigen';
+});
+
+/* ---------- FFmpeg laden (einmalig, self-hosted, kein CDN) ---------- */
+async function ensureCore(){
+  if (coreLoaded) return;
+  loadingCore.classList.add('show');
+  ffmpeg = new FFmpeg();
+  ffmpeg.on('log', ({ message }) => {
+    logBox.textContent += message + '\n';
+    logBox.scrollTop = logBox.scrollHeight;
+  });
+  ffmpeg.on('progress', ({ progress }) => {
+    const pct = Math.min(100, Math.max(0, Math.round(progress * 100)));
+    progressBar.style.width = pct + '%';
+    progressLabel.textContent = `Verarbeite … ${pct}%`;
+  });
+  const baseURL = './assets/vendor/ffmpeg/core-esm';
+  await ffmpeg.load({
+    coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+  });
+  coreLoaded = true;
+  loadingCore.classList.remove('show');
+}
+
+/* ---------- Verarbeitung ---------- */
+runBtn.addEventListener('click', async () => {
+  if (!currentFile) return;
+  errorBox.classList.remove('show');
+  resultCard.classList.remove('show');
+  logBox.textContent = '';
+  runBtn.disabled = true;
+  progressWrap.classList.add('show');
+  progressBar.style.width = '0%';
+  progressLabel.textContent = 'Verarbeitungs-Engine wird geladen …';
+
+  try {
+    await ensureCore();
+
+    const { chain, preset } = buildFilterChain();
+    const inName = 'input' + (currentFile.name.match(/\.[a-zA-Z0-9]+$/)?.[0] || '.mp4');
+    const outName = outFormat === 'wav' ? 'output.wav' : 'output.mp3';
+
+    progressLabel.textContent = 'Datei wird eingelesen …';
+    await ffmpeg.writeFile(inName, await fetchFile(currentFile));
+
+    const args = ['-i', inName, '-vn', '-af', chain.join(',')];
+    if ($('optMono').checked) args.push('-ac', '1');
+    if (outFormat === 'mp3') args.push('-codec:a', 'libmp3lame', '-q:a', '2');
+    else args.push('-codec:a', 'pcm_s16le');
+    args.push(outName);
+
+    progressLabel.textContent = 'Verarbeite …';
+    const rc = await ffmpeg.exec(args);
+    if (rc !== 0) throw new Error('ffmpeg-Prozess beendete sich mit Fehlercode ' + rc);
+
+    const data = await ffmpeg.readFile(outName);
+    const mime = outFormat === 'wav' ? 'audio/wav' : 'audio/mpeg';
+    const blob = new Blob([data.buffer], { type: mime });
+    const url = URL.createObjectURL(blob);
+
+    resultAudio.src = url;
+    downloadBtn.href = url;
+    downloadBtn.download = currentFile.name.replace(/\.[a-zA-Z0-9]+$/, '') + '_optimiert.' + outFormat;
+    statIn.textContent = `${currentFile.name} · ${fmtBytes(currentFile.size)}`;
+    statOut.textContent = `${outName} · ${fmtBytes(blob.size)}`;
+    statPreset.textContent = preset.label;
+    filterChainEl.textContent = 'ffmpeg -i input -vn -af "' + chain.join(',') + '"' +
+      ($('optMono').checked ? ' -ac 1' : '') + ' ' + outName;
+    resultCard.classList.add('show');
+    progressLabel.textContent = 'Fertig.';
+
+    await ffmpeg.deleteFile(inName);
+    await ffmpeg.deleteFile(outName);
+  } catch (err) {
+    console.error(err);
+    errorBox.textContent = 'Verarbeitung fehlgeschlagen: ' + (err?.message || err) + '. Prüfe, ob die Datei ein gängiges Video-/Audioformat ist, und versuche es erneut.';
+    errorBox.classList.add('show');
+  } finally {
+    runBtn.disabled = false;
+    progressWrap.classList.remove('show');
+  }
+});
+</script>
+
+</body>
+</html>
