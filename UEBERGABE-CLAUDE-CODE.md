@@ -1,151 +1,157 @@
 # Übergabe an Claude Code — mindful7777
 
-**Stand:** 19.08.2026, Session am Handy (Chat)
-**Repo:** `intelligentresponder-max/mindful7777`, Branch `main`
+**Stand:** 21.08.2026, Session im Browser (Claude Code on the web)
+**Ersetzt:** die vorherige Fassung dieser Datei (19.08., Handy-Chat-Session — alle
+dort offenen Punkte sind unten unter Punkt 2 als erledigt markiert) und
+`HANDOVER.md` (21.08., lag nur als Chat-Anhang vor, nie im Repo — ebenfalls erledigt).
+**Repo:** `intelligentresponder-max/mindful7777`, aktuell auf `main`
 **Live:** https://intelligentresponder-max.github.io/mindful7777/
-**Ergänzt** `CLAUDE.md` im Repo (Brand-Regeln und ACCIO-Design-System gelten unverändert).
+**Gilt zusätzlich:** `CLAUDE.md` (Brand-Regeln, ACCIO-Design-System, Repo-Struktur)
 
 ---
 
 ## 1. Ausgangslage der Session
 
-André arbeitete am Handy, konnte Dateien nur über die GitHub-Weboberfläche hochladen,
-nicht bearbeiten oder umbenennen. Alle Änderungen wurden deshalb als vollständige
-Dateien geliefert und per Upload unter gleichem Namen ersetzt.
+Arbeit lief auf dem Branch `claude/new-session-1wjmcn` (direkter Repo-Zugriff, kein
+Copy-Paste-Umweg). Alle Änderungen wurden dort committed und anschließend nach `main`
+gemergt und gepusht — **main ist aktuell, GitHub Pages hat den Stand bereits gebaut.**
+Vor Arbeitsbeginn am PC einmal `git pull`, dann ist alles unten Beschriebene lokal da.
 
 ---
 
-## 2. Bereits live im Repo
+## 2. Was in dieser Session erledigt wurde
 
-| Datei | Änderung |
-|---|---|
-| `mindful7777-pdf-maker.html` | **neu** — Single-HTML-Werkzeug: Markdown-Eingabe → druckfertiges PDF über den Browser-Druckdialog |
-| `00-blog-index.html` | Block „Extras" ergänzt: Glücksrad-Karte mit Rad-SVG, Gratis-Guide-Karte, auskommentierte PDF-Vorlage; i18n-Keys DE/EN/FR |
-| `index.html` | Abschnitt „Alles im Überblick" mit 8 Karten zu allen öffentlichen Seiten; Impressum und Datenschutz im Footer |
-| `vip.html` | Stripe-Buy-Button (altes Konto) entfernt, Stripe-Script entfernt, 13 WhatsApp-Links durch Ko-fi ersetzt, Texte angepasst DE/EN, Blog-Link in beiden Footern |
+### 2.1 · Preis- und Autonomie-Korrekturen
+- `upsell.html`: Preis auf 77,77 €/Monat vereinheitlicht (war 25 €), Streichpreis
+  „Normalerweise 47 €/Monat" entfernt (den Preis gab es nie — UWG-Risiko), künstliche
+  Verknappungs-Banner („Nur hier", „Einmaliges Angebot") entfernt.
+- `afterwork.html`: derselbe stray 25-€-Preis gefunden und auf 77,77 € korrigiert.
+- `vip.html`: `obj.card3.a` (DE+EN) umformuliert — statt „hast du 21 Tage verloren —
+  aber es wird funktionieren" jetzt eine Messgröße statt eines Erfolgsversprechens.
+- `glossar.html`: „Abfolge von Anweisungen" → „Abfolge von Schritten" (Autonomie-Regel).
+- Testimonial „Maximilian R." in `upsell.html` mit André geklärt: **echt, freigegeben,
+  unverändert gelassen.**
 
----
+### 2.2 · Gumroad-Altlasten (B2 aus früherer Übergabe)
+Bereits vollständig migriert — keine Kunden-Links mehr auf `mindful777.gumroad.com`.
+Einzige verbleibenden Treffer: `intern/links_0.html` und `intern/links_2.html`
+(Andrés eigenes Verkäufer-Dashboard, laut `CLAUDE.md` bewusst so). Kein Handlungsbedarf.
 
-## 3. Noch hochzuladen (liegt beim Nutzer als Download)
+### 2.3 · Doppelte Dateien (B3)
+3 von 4 gemeldeten Paaren existieren nicht mehr (bereits bereinigt).
+`gluecksrad.html` vs. `vip/gluecksrad.html` sind **keine** Duplikate, sondern zwei
+bewusst getrennte Seiten (öffentliches Gratis-Rad vs. VIP-exklusives Rad) — beide bleiben.
 
-**Ins Repo-Root:**
-`index.html`, `sitemap.xml`, `00-blog-index.html`, `glossar.html`, `tech-glossar.html`,
-`gluecksrad.html`, `afterwork.html`, `fernsitzungen.html`, `mindful7_guide.html`,
-`mindful7777_lookbook.html`, `mindful7777-pdf-maker.html`, `lead-magnet.html`
+### 2.4 · Struktur (B4)
+`pages/`-Verweise bereits weg (Ordner ist in `archiv/pages/` verschoben),
+`intern/login.html`/`auth.js` bereits korrekt. Ein repoweiter Link-Check lief sauber
+durch (einzige Auffälligkeit ist ein False Positive in `funnel/quiz.html`,
+`'result-'+type+'.html'` ist ein JS-Template-String, kein kaputter Link).
 
-**In den Ordner `blog/`:**
-`blog-sock-anchor-induktion-de.html`, `blog-sock-anchor-induction-en.html`
+### 2.5 · VIP-Artikel `vip/gehorsam-verkauft-nicht.html`
+Datei fehlte komplett im Repo (lag nur als nie hochgeladener Chat-Download vor). Auf
+Andrés Wunsch aus der Kurzzusammenfassung neu verfasst: These „obedience is pleasure"
+im Test, zwei Lager, Drei-Punkte-Test, zwei echte Formulierungspaare aus dem
+Textabgleich dieser Session, Sonderfall Hypnose-Skripte. `noindex`, nicht in der
+Sitemap, dezent im VIP-Mitgliederbereich verlinkt (DE+EN, `internal.link` in `vip.html`).
 
-**Ebenfalls neu, noch nicht im Repo:**
-`pdf-maker-client.html`, `PDF-MAKER.md`
+### 2.6 · Empfehlung VIP-Zugang-Automatisierung
+**Nur eine Empfehlung, noch nicht gebaut** — Details in
+`docs/vip-zugang-automatisierung.md`. Kurzfassung: Ko-fi-Webhook → Cloudflare Worker
+zuerst (kostenlos, unabhängig vom Stripe-Rollout), Stripe-Weg erst wenn der ohnehin
+geplante Stripe-Umbau (siehe Punkt 3) angegangen wird. Das Passwort-im-Client-Problem
+bleibt in beiden Fällen bestehen (siehe Punkt 3).
 
-Falls der Upload noch nicht passiert ist: Die Änderungen sind in Abschnitt 4 einzeln
-beschrieben und lassen sich am PC genauso gut direkt im Repo nachziehen.
+### 2.7 · Test: serverseitige PDF-Erzeugung
+Nur ein Test, nichts gebaut — Ergebnis in `docs/pdf-serverseitig-test.md`. Nativer
+Chromium-Druck (Puppeteer/Playwright-Äquivalent) erzeugt 77 KB mit echtem,
+durchsuchbarem Vektortext; `html2pdf.js` (der Weg, den `pdf-maker-client.html`s
+Teilen-Button nutzen würde) erzeugt 349 KB reine Rasterbilder ohne markierbaren Text.
+Bestätigt die seit Längerem bekannte Schwäche. Falls der Teilen-Weg wichtig wird: ein
+kleiner Puppeteer-Endpunkt (z. B. neben `stripe-api/` auf Vercel) wäre der nächste
+Schritt — noch nicht umgesetzt.
 
----
+### 2.8 · Datenschutz-Ergänzung
+Neuer Abschnitt 9 „Onboarding-Fragebogen (E-Mail-Versand)" in `datenschutz.html`
+(Zweck, Empfänger, Rechtsgrundlage inkl. Art. 9 DSGVO für die Gesundheitsangaben aus
+Fragebogen-Schritt 7, Widerruf). Folgeabschnitte entsprechend umnummeriert (9→12).
 
-## 4. Inhalt dieser Änderungen
+### 2.9 · Zwei neue Seiten aus `HANDOVER.md` eingebunden
+- `verkaufsgespraech-als-copy.html` — Blogbeitrag „Ein Verkaufsgespräch, das
+  stillsteht", DE/EN, Quellen-Einordnung Galal/Dilts/allgemeine Literatur.
+- `onboarding-fragebogen.html` — zehnstufiger Trance-Profil-Fragebogen, DE/EN,
+  `mailto:`-Versand an `intelligent.responder@gmail.com`.
+- Beide lagen nur als Chat-Download vor. Beim Einbinden **Basis-URL korrigiert**: die
+  Dateien zeigten auf `mindful7777.github.io` (nie live), jetzt auf das tatsächlich
+  laufende `intelligentresponder-max.github.io/mindful7777/`. `onboarding-fragebogen.html`
+  hatte zusätzlich noch gar kein `canonical`-Tag — ergänzt.
+- Auf der Startseite verlinkt: zwei neue Karten im „Alles im Überblick"-Raster
+  (`hub.11`/`hub.12`), gleiche `.hub-card`-Klasse wie die anderen zehn.
 
-**Preis vereinheitlicht** — `index.html` warb mit „VIP-Stack: 25 €/Monat", `vip.html`
-verlangt 77,77 €. Beide i18n-Stellen (DE inline, EN im Dictionary `cta.price`) stehen
-jetzt auf 77,77 €.
+### 2.10 · Neuer Blogbeitrag
+`blog/09-trance-profil-onboarding.html` — „Zehn Fragen, vier Minuten: dein
+Trance-Profil", im Stil der Beiträge 01–08 (gleiches CSS, Glossar-Sektion,
+i18n-Dictionary DE/EN, FR bewusst ausgelassen — keine Vorlage dafür vorhanden, wie
+schon bei den beiden Seiten aus 2.9). Verlinkt an drei Stellen: Extras-Karte in
+`00-blog-index.html` (DE/EN/FR, da dieser Index durchgehend dreisprachig ist), 13.
+Hub-Karte auf der Startseite, neuer Sitemap-Eintrag.
 
-**sitemap.xml neu erzeugt** — vorher 22 URLs, **ohne die Startseite**, ohne
-`sock-anchor-protocol.html`, `glossar.html`, `gluecksrad.html`, `lead-magnet.html`.
-Jetzt 29 URLs mit hreflang DE/EN/x-default, `lastmod` 2026-08-19 und Prioritäten
-(Startseite 1.0, VIP und Protokoll 0.9, Blog-Index 0.8).
-
-**Rechtsfooter ergänzt** — neun öffentliche Seiten hatten keinen Impressumslink
-(Impressumspflicht §5 DDG). Eingefügt vor `</body>`: dezenter Footer mit Startseite,
-Blog, Impressum, Datenschutz und Haftungshinweis, absolute URLs, `opacity:.6`.
-Betroffen: `00-blog-index`, `glossar`, `tech-glossar`, `gluecksrad`, `afterwork`,
-`fernsitzungen`, `mindful7_guide`, `mindful7777_lookbook`, `mindful7777-pdf-maker`.
-
-**Tote Links repariert** — `lead-magnet.html` verwies auf ein nicht existierendes
-`favicon_spiral.png` (→ `favicon.svg`); die beiden Induktions-Blogartikel verlinkten
-sich gegenseitig ohne das Präfix `blog-`.
-
----
-
-## 5. Die beiden PDF-Werkzeuge
-
-Beide sind eigenständige HTML-Dateien ohne Build und ohne Server. Kein
-`localStorage`, keine Datenübertragung — alles bleibt im Browser.
-
-### `mindful7777-pdf-maker.html` (öffentlich)
-Markdown-Eingabe links, Live-Vorschau rechts, Ausgabe über `window.print()` mit
-`@media print`, das die Bedienoberfläche ausblendet. Deckblatt mit Theta-Ring-SVG und
-7777-Signet, optionales Inhaltsverzeichnis aus allen `##`-Kapiteln, A4 und A5.
-Syntax: `#` `##` `###` `-` `1.` `>` `**fett**` `---` (Seitenumbruch).
-Dokumentiert in `PDF-MAKER.md`.
-
-### `pdf-maker-client.html` (intern, `noindex`)
-Erweiterung für Klientendokumente:
-- Klientenfelder Name, E-Mail, Datum → Deckblatt „Erstellt für …", Fußzeile, Dateiname
-- Bilder per `FileReader` als Data-URL, Platzhalter `[bild1]` bzw. `[bild1: Unterschrift]`,
-  optional erstes Bild als Deckblattmotiv
-- Versand: (1) Druckdialog, (2) `html2pdf.js` von cdnjs erzeugt einen Blob →
-  `navigator.share({files})`, sonst Download-Fallback, (3) `mailto:` mit vorbereitetem
-  Anschreiben. Anhängen kann `mailto:` prinzipbedingt nicht — das ist so dokumentiert.
-
-**Bekannte Schwäche:** Weg 2 rendert über html2canvas, die Qualität liegt unter dem
-Druckdialog. Ein serverseitiger Weg (Puppeteer, WeasyPrint) wäre die bessere Lösung,
-sobald ein Backend existiert.
-
----
-
-## 6. Offene Punkte
-
-**Dringend, außerhalb des Repos — Gumroad**
-- „Das Sock-Anker Protokoll": Text sagt „Nur 1 €", das Preisfeld verlangt mindestens 5 €.
-  Entweder Mindestpreis senken oder Text angleichen.
-- „Complete Sock Anchor File" (10 €): steht auf *not currently for sale*. `vip.html`
-  verlinkt `mindful777.gumroad.com/l/ucaan` als Mitglieder-Download — prüfen, ob das
-  dasselbe Produkt ist, sonst läuft der VIP-Bereich ins Leere.
-
-**Zahlungen**
-- Neues Stripe-Konto „mindful7777" (`acct_1U5HoDRFsSeIZjZL`) steht im Testmodus.
-  Sobald live: Kauf-Button auf `vip.html` einbauen, aktuell nur Ko-fi
-  (`ko-fi.com/mindf7777`, Widget-ID `Y0G62040JC`).
-- Ko-fi verschickt kein automatisches VIP-Passwort. Die Seite verspricht „Passwort per
-  Mail" — das passiert derzeit manuell. Kandidat für eine Automatisierung.
-
-**Aufräumen im Repo**
-- Zehn Dateien verweisen noch auf das alte Konto `mindful777.gumroad.com`:
-  `fernsitzungen`, `hypnosis-gumroad-page-live`, `ares-transformation(-en)`,
-  `funnel/result-*`, `vip/ares-transformation`.
-- Doppelte Fassungen: `afterwork.html` / `mindful7777_afterwork.html`,
-  `index.html` / `mindful7777_index.html`, `vip.html` / `vip-updated.html`,
-  `gluecksrad.html` / `vip/gluecksrad.html` (unterschiedlich groß, Inhalte vergleichen).
-- Der Ordner `pages/` nutzt absolute Pfade `/mindful7777/pages/…` auf Dateien, die es
-  so nicht gibt — entweder reparieren oder entfernen.
-- `intern/login.html` verlinkt auf `/`, das führt bei Pages ins Leere.
-
-**Inhaltlich**
-- Ein PDF-Downloadbereich ist in `00-blog-index.html` als Kommentar vorbereitet
-  (Ordner `downloads/`), bisher ohne Dateien.
-- `robots.txt` und Search Console gegen die neue Sitemap prüfen.
+### 2.11 · sitemap.xml
+Von 35 auf **38 URLs** gewachsen (die drei neuen Seiten aus 2.9/2.10), durchgehend im
+bestehenden `?lang=`-Alternate-Muster.
 
 ---
 
-## 7. Arbeitsweise mit André
+## 3. Was wirklich noch offen ist
 
-- Coding-Anfänger, arbeitet am Handy per Diktat, am PC per Git Bash unter
-  `~/Projects/mindful7777`. Termux-Befehle knapp und Schritt für Schritt.
-- Am Handy nur Upload über die GitHub-Weboberfläche, kein Umbenennen — deshalb immer
-  vollständige Dateien unter unverändertem Namen liefern, keine Patches.
-- Absolute URLs mit `https://intelligentresponder-max.github.io/mindful7777/` sind im
-  Repo die Regel, ebenso das i18n-Muster über `data-i18n` mit `?lang=de|en|fr`.
-- GitHub Pages cacht: nach dem Upload `?v=2` an die URL hängen.
+**`knowledge/markenrichtlinie.md` und `knowledge/verbotene_phrasen.md` sind leer
+(0 Zeilen).** `CLAUDE.md` verlangt, diese Dateien vor jedem Content-Output zu prüfen —
+das geht aktuell ins Leere. Frühere Übergaben sagten, der Inhalt läge bei André als
+Download („war leer, jetzt vollständig") — im Repo ist davon nichts angekommen. Vor der
+nächsten größeren Text-Session lohnt sich ein Blick, ob diese beiden Dateien
+tatsächlich befüllt werden sollen.
+
+**Stripe-Backend nicht deployed.** `assets/stripe-checkout.js` hat weiterhin nur den
+Platzhalter `STRIPE_API_BASE = "https://REPLACE-WITH-YOUR-STRIPE-API-DOMAIN"`,
+`vip.html` bindet das Script noch nicht ein. Vollständige Deploy-Checkliste in
+`docs/stripe-setup.md` — unverändert offen, in dieser Session nicht angefasst.
+
+**VIP-Zugang-Automatisierung nicht gebaut** (nur Empfehlung, siehe 2.6).
+
+**Serverseitiger PDF-Endpunkt nicht gebaut** (nur Test, siehe 2.7).
+
+**Gumroad, außerhalb des Repos (macht André selbst, letzter bekannter Stand
+unverändert):**
+- „Das Sock-Anker Protokoll": Text sagt „Nur 1 €", Preisfeld verlangt mindestens 5 €.
+- „Complete Sock Anchor File" (10 €): stand auf *not currently for sale* — prüfen, ob
+  das noch aktuell ist, `vip.html` verlinkt dieses Produkt für Mitglieder.
 
 ---
 
-## 8. Erster Schritt am PC
+## 4. Arbeitsweise mit André
+
+- Coding-Anfänger. Arbeitet am Handy per Diktat, am PC mit Git Bash unter
+  `~/Projects/mindful7777` (Windows: `C:\Users\Holy New\Projects\mindful7777`).
+  Befehle knapp und Schritt für Schritt.
+- Am Handy nur Upload über die GitHub-Weboberfläche, kein Umbenennen, kein Editieren —
+  deshalb dort immer vollständige Dateien unter unverändertem Namen liefern.
+- i18n-Muster: `data-i18n`-Attribute mit `?lang=de|en|fr` (fr nur auf älteren Seiten,
+  neuere Einzelseiten sind bewusst DE/EN). DE steht inline im HTML, EN/FR in
+  Dictionaries — **beide Stellen ändern**, sonst driften die Sprachen.
+- Absolute URLs mit `https://intelligentresponder-max.github.io/mindful7777/` sind die
+  Regel — **nicht** `mindful7777.github.io` (das war ein wiederkehrender Fehler in
+  extern vorbereiteten Dateien, siehe 2.9).
+- GitHub Pages cacht: nach dem Deploy `?v=2` an die URL hängen, falls es veraltet wirkt.
+
+---
+
+## 5. Erster Schritt am PC
 
 ```bash
 cd ~/Projects/mindful7777
 git pull
-grep -rn "25 €" index.html          # muss leer sein
-grep -c "<url>" sitemap.xml         # sollte 29 sein
-grep -L "impressum" *.html          # Seiten ohne Impressumslink
+grep -c "<loc>" sitemap.xml               # sollte 38 sein
+grep -rn "25 €\|47 €" --include="*.html" . | grep -v archiv   # sollte leer sein
+wc -l knowledge/markenrichtlinie.md knowledge/verbotene_phrasen.md   # noch 0 0 — s. Punkt 3
+ls vip/gehorsam-verkauft-nicht.html verkaufsgespraech-als-copy.html onboarding-fragebogen.html blog/09-trance-profil-onboarding.html
 ```
