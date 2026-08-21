@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audio-Extraktor · Sprachklarheit-Kalibrierung | mindful7777</title>
-<meta name="description" content="MP4 hochladen, Tonspur extrahieren und auf Sprachverständlichkeit kalibrieren — Rauschunterdrückung, Lautheit-Normalisierung und Presence-EQ, wählbar nach Sprachprofil. Läuft komplett im Browser, kein Upload an einen Server.">
+<title>Audio-Extraktor &amp; Transkription | mindful7777</title>
+<meta name="description" content="MP4 hochladen, Tonspur extrahieren, auf Sprachverständlichkeit kalibrieren und transkribieren — Deutsch, Englisch, Spanisch, Japanisch, Tschechisch und mehr. Kalibrierung läuft komplett offline im Browser, Transkription per Whisper (lädt einmalig von Hugging Face).">
 <link rel="canonical" href="https://intelligentresponder-max.github.io/mindful7777/audio-extractor.html">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -72,6 +72,26 @@ legend{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transf
 
 .loading-core{display:none;font-family:var(--mono);font-size:.82rem;color:var(--ink-soft);margin-top:10px}
 .loading-core.show{display:block}
+
+.transcribe-section{display:none;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.transcribe-section.show{display:block}
+.transcribe-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0 14px}
+.transcribe-row select{
+  font:inherit;font-size:.88rem;padding:9px 12px;border-radius:8px;border:1px solid var(--line);
+  background:var(--surface);color:var(--ink);flex:1 1 200px
+}
+.transcribe-row button{flex:0 0 auto}
+.transcribe-hint{font-size:.8rem;color:var(--ink-soft);margin:0 0 4px}
+.transcript-box{display:none;margin-top:14px}
+.transcript-box.show{display:block}
+.transcript-box textarea{
+  width:100%;min-height:180px;font-family:var(--sans);font-size:.92rem;line-height:1.6;
+  padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);resize:vertical
+}
+.transcript-meta{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--ink-soft);margin:8px 0}
+.transcript-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.transcript-actions .btn{padding:9px 18px;font-size:.84rem}
+.transcribe-note{font-size:.78rem;color:var(--ink-soft);margin-top:8px}
 </style>
 </head>
 <body>
@@ -88,7 +108,7 @@ legend{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transf
 <header class="hero">
   <span class="eyebrow">Werkzeug · läuft lokal im Browser</span>
   <h1 class="serif">Audio-Extraktor &amp; Sprachklarheit-Kalibrierung</h1>
-  <p class="sub">MP4 hochladen, Tonspur extrahieren, auf Sprachverständlichkeit kalibrieren — Rauschunterdrückung, Lautheit-Normalisierung und ein Presence-EQ, wählbar nach Sprachprofil (Deutsch, Englisch, Spanisch, Japanisch, Tschechisch und mehr). Reproduzierbare Filterkette, keine KI-Transkription — reine, nachvollziehbare Signalverarbeitung.</p>
+  <p class="sub">MP4 hochladen, Tonspur extrahieren, auf Sprachverständlichkeit kalibrieren — Rauschunterdrückung, Lautheit-Normalisierung und ein Presence-EQ, wählbar nach Sprachprofil (Deutsch, Englisch, Spanisch, Japanisch, Tschechisch und mehr). Reproduzierbare Filterkette, dazu optional eine Transkription desselben Audios. Kalibrierung läuft offline im Browser, die Transkription lädt einmalig ein offenes Spracherkennungsmodell nach.</p>
 </header>
 
 <div class="container-wide">
@@ -172,18 +192,51 @@ legend{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transf
         <div class="filter-chain" id="filterChain"></div>
         <button class="log-toggle" id="logToggle" type="button">Verarbeitungsprotokoll anzeigen</button>
         <div class="log-box" id="logBox"></div>
+
+        <div class="transcribe-section show" id="transcribeSection">
+          <div class="eyebrow" style="margin-bottom:8px">Transkription</div>
+          <p class="transcribe-hint">Whisper (tiny, mehrsprachig) — lädt beim ersten Klick einmalig von Hugging Face (~75 MB), danach vom Browser gecacht. Läuft danach lokal, aber nicht offline-fähig wie die Kalibrierung oben.</p>
+          <div class="transcribe-row">
+            <select id="transcribeLang" aria-label="Sprache">
+              <option value="">Automatisch erkennen</option>
+              <option value="de">Deutsch</option>
+              <option value="en">Englisch</option>
+              <option value="es">Spanisch</option>
+              <option value="ja">Japanisch</option>
+              <option value="cs">Tschechisch</option>
+            </select>
+            <button class="btn" id="transcribeBtn" type="button">Transkribieren</button>
+          </div>
+          <div class="progress-wrap" id="transcribeProgressWrap">
+            <div class="progress-bar"><i id="transcribeProgressBar"></i></div>
+            <div class="progress-label" id="transcribeProgressLabel">Lädt Modell …</div>
+          </div>
+          <div class="error-box" id="transcribeError"></div>
+          <div class="transcript-box" id="transcriptBox">
+            <div class="transcript-meta">
+              <span>Erkannte Sprache: <b id="transcriptLang">–</b></span>
+              <span id="transcriptDuration"></span>
+            </div>
+            <textarea id="transcriptText" readonly></textarea>
+            <div class="transcript-actions">
+              <button class="btn cta-btn" id="copyTranscriptBtn" type="button">Text kopieren</button>
+              <a class="btn cta-btn" id="downloadTxtBtn" download>.txt herunterladen</a>
+              <a class="btn cta-btn" id="downloadSrtBtn" download>.srt herunterladen (Untertitel)</a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="privacy-note">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <div>Die gesamte Verarbeitung läuft im Browser (WebAssembly). Die Datei wird nicht an einen Server hochgeladen — auch nicht an mindful7777. Beim Schließen des Tabs ist alles wieder weg.</div>
+        <div>Extraktion und Kalibrierung laufen komplett offline-fähig im Browser (WebAssembly) — die Datei wird nicht an einen Server hochgeladen, auch nicht an mindful7777. Die optionale Transkription braucht beim ersten Klick einmalig eine Verbindung zu Hugging Face, um das Sprachmodell zu laden; danach läuft auch sie lokal im Browser. Beim Schließen des Tabs ist alles wieder weg.</div>
       </div>
     </section>
 
   </div>
 
   <div class="disclaimer">
-    <p>Reine Signalverarbeitung (Filter, keine KI-Transkription oder Spracherkennung). Das Sprachprofil wählt eine Filterkurve nach typischen Frequenzschwerpunkten der jeweiligen Sprachfamilie — kein Ersatz für professionelles Mastering. Für sehr lange oder sehr große Dateien kann die Verarbeitung im Browser einige Minuten dauern.</p>
+    <p>Kalibrierung ist reine Signalverarbeitung (Filter, keine KI). Das Sprachprofil wählt eine Filterkurve nach typischen Frequenzschwerpunkten der jeweiligen Sprachfamilie — kein Ersatz für professionelles Mastering. Die Transkription nutzt ein offenes Spracherkennungsmodell (Whisper, tiny) — bei Hintergrundgeräuschen, Dialekten oder mehreren Sprechern können Fehler auftreten, für wichtige Dokumente gegenprüfen. Für sehr lange oder sehr große Dateien können beide Schritte im Browser einige Minuten dauern.</p>
   </div>
 </div>
 
@@ -217,6 +270,8 @@ let currentFile = null;
 let outFormat = 'mp3';
 let ffmpeg = null;
 let coreLoaded = false;
+let lastResultBlob = null;
+let asrPipeline = null;
 
 /* ---------- Sprachprofile: EQ + Kompression je Frequenzschwerpunkt ---------- */
 const PRESETS = {
@@ -357,6 +412,9 @@ runBtn.addEventListener('click', async () => {
       ($('optMono').checked ? ' -ac 1' : '') + ' ' + outName;
     resultCard.classList.add('show');
     progressLabel.textContent = 'Fertig.';
+    lastResultBlob = blob;
+    transcriptBox.classList.remove('show');
+    transcribeError.classList.remove('show');
 
     await ffmpeg.deleteFile(inName);
     await ffmpeg.deleteFile(outName);
@@ -367,6 +425,143 @@ runBtn.addEventListener('click', async () => {
   } finally {
     runBtn.disabled = false;
     progressWrap.classList.remove('show');
+  }
+});
+
+/* ---------- Transkription (Whisper, lädt bei Bedarf von Hugging Face) ---------- */
+const transcribeBtn = $('transcribeBtn');
+const transcribeLang = $('transcribeLang');
+const transcribeProgressWrap = $('transcribeProgressWrap');
+const transcribeProgressBar = $('transcribeProgressBar');
+const transcribeProgressLabel = $('transcribeProgressLabel');
+const transcribeError = $('transcribeError');
+const transcriptBox = $('transcriptBox');
+const transcriptText = $('transcriptText');
+const transcriptLangEl = $('transcriptLang');
+const transcriptDuration = $('transcriptDuration');
+const copyTranscriptBtn = $('copyTranscriptBtn');
+const downloadTxtBtn = $('downloadTxtBtn');
+const downloadSrtBtn = $('downloadSrtBtn');
+
+const ASR_MODEL = 'onnx-community/whisper-tiny';
+const TRANSFORMERS_CDN = 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.2.0';
+
+/* Dekodiert eine Audio-Blob zu Float32-PCM bei 16 kHz mono — das Format, das Whisper erwartet. */
+async function decodeTo16kMono(blob){
+  const arrayBuffer = await blob.arrayBuffer();
+  const AC = window.AudioContext || window.webkitAudioContext;
+  const decodeCtx = new AC();
+  const decoded = await decodeCtx.decodeAudioData(arrayBuffer);
+  decodeCtx.close?.();
+  const offlineCtx = new OfflineAudioContext(1, Math.ceil(decoded.duration * 16000), 16000);
+  const src = offlineCtx.createBufferSource();
+  src.buffer = decoded;
+  src.connect(offlineCtx.destination);
+  src.start();
+  const rendered = await offlineCtx.startRendering();
+  return { samples: rendered.getChannelData(0), duration: decoded.duration };
+}
+
+function fmtTime(sec){
+  if (sec == null || isNaN(sec)) sec = 0;
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  const s = Math.floor(sec % 60);
+  const ms = Math.round((sec - Math.floor(sec)) * 1000);
+  const pad = (n, l = 2) => String(n).padStart(l, '0');
+  return `${pad(h)}:${pad(m)}:${pad(s)},${pad(ms, 3)}`;
+}
+
+function chunksToSrt(chunks){
+  return chunks.map((c, i) => {
+    const [start, end] = c.timestamp || [0, 0];
+    return `${i + 1}\n${fmtTime(start)} --> ${fmtTime(end ?? start)}\n${c.text.trim()}\n`;
+  }).join('\n');
+}
+
+function fmtDuration(sec){
+  const m = Math.floor(sec / 60);
+  const s = Math.round(sec % 60);
+  return `${m}:${String(s).padStart(2, '0')} min`;
+}
+
+transcribeBtn.addEventListener('click', async () => {
+  if (!lastResultBlob) return;
+  transcribeError.classList.remove('show');
+  transcriptBox.classList.remove('show');
+  transcribeBtn.disabled = true;
+  transcribeProgressWrap.classList.add('show');
+  transcribeProgressBar.style.width = '0%';
+  transcribeProgressLabel.textContent = 'Lädt Verarbeitungs-Bibliothek …';
+
+  try {
+    if (!asrPipeline) {
+      const { pipeline } = await import(TRANSFORMERS_CDN);
+      transcribeProgressLabel.textContent = 'Lädt Spracherkennungs-Modell (einmalig, ~75 MB) …';
+      asrPipeline = await pipeline('automatic-speech-recognition', ASR_MODEL, {
+        progress_callback: (p) => {
+          if (p.status === 'progress' && p.total) {
+            const pct = Math.round((p.loaded / p.total) * 100);
+            transcribeProgressBar.style.width = pct + '%';
+            transcribeProgressLabel.textContent = `Lädt Modell … ${pct}% (${p.file || ''})`;
+          }
+        }
+      });
+    }
+
+    transcribeProgressLabel.textContent = 'Audio wird aufbereitet …';
+    const { samples, duration } = await decodeTo16kMono(lastResultBlob);
+
+    transcribeProgressLabel.textContent = 'Transkribiert …';
+    transcribeProgressBar.style.width = '0%';
+    const lang = transcribeLang.value || null;
+    const output = await asrPipeline(samples, {
+      language: lang,
+      task: 'transcribe',
+      return_timestamps: true,
+      chunk_length_s: 30,
+      stride_length_s: 5,
+      callback_function: (beams) => {
+        // grobe Fortschrittsanzeige während der Inferenz (keine exakte Prozentzahl verfügbar)
+        transcribeProgressBar.style.width = '90%';
+      }
+    });
+
+    const text = (output.text || '').trim();
+    const chunks = output.chunks || [];
+    transcriptText.value = text;
+    transcriptLangEl.textContent = lang
+      ? transcribeLang.options[transcribeLang.selectedIndex].textContent
+      : 'automatisch erkannt';
+    transcriptDuration.textContent = fmtDuration(duration);
+    transcriptBox.classList.add('show');
+
+    const txtBlob = new Blob([text], { type: 'text/plain' });
+    downloadTxtBtn.href = URL.createObjectURL(txtBlob);
+    downloadTxtBtn.download = currentFile.name.replace(/\.[a-zA-Z0-9]+$/, '') + '.txt';
+
+    const srtBlob = new Blob([chunksToSrt(chunks.length ? chunks : [{ text, timestamp: [0, duration] }])], { type: 'text/plain' });
+    downloadSrtBtn.href = URL.createObjectURL(srtBlob);
+    downloadSrtBtn.download = currentFile.name.replace(/\.[a-zA-Z0-9]+$/, '') + '.srt';
+
+    transcribeProgressLabel.textContent = 'Fertig.';
+  } catch (err) {
+    console.error(err);
+    transcribeError.textContent = 'Transkription fehlgeschlagen: ' + (err?.message || err) + '. Prüfe die Internetverbindung (das Modell lädt von huggingface.co) und versuche es erneut.';
+    transcribeError.classList.add('show');
+  } finally {
+    transcribeBtn.disabled = false;
+    transcribeProgressWrap.classList.remove('show');
+  }
+});
+
+copyTranscriptBtn.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(transcriptText.value);
+    copyTranscriptBtn.textContent = 'Kopiert ✓';
+    setTimeout(() => { copyTranscriptBtn.textContent = 'Text kopieren'; }, 1600);
+  } catch {
+    transcriptText.select();
   }
 });
 </script>
