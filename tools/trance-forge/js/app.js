@@ -1,6 +1,6 @@
 import { parse, compile, retime, DEFAULTS, formatTime, estimateSpeech } from './trancescript.js';
 import { harvest, breakSentences } from './harvest.js';
-import { decodeAll, mix, toWav, verifyTiming } from './mixdown.js';
+import { decodeAll, mix, toWav, verifyTiming, normalizeTake } from './mixdown.js';
 import * as api from './providers.js';
 import * as db from './db.js';
 import { Recorder, inspect, pickMimeType } from './recorder.js';
@@ -224,17 +224,22 @@ async function refreshTakes() {
  * Rohtake herausgeben. Braucht keinen Anbieter und keinen Schlüssel — damit
  * lässt sich schon vor dem ersten API-Aufruf am großen Rechner prüfen, ob
  * Mikrofon, Raum und Pegel taugen.
+ *
+ * Der Take wird dabei auf Zielpegel angehoben (normalizeTake, s. mixdown.js)
+ * und als WAV herausgegeben statt im rohen Aufnahmeformat — ohne
+ * autoGainControl beim Aufnehmen kommt sonst oft weniger an, als beim
+ * Abhören erwartet wird.
  */
 async function exportTake(t, nr) {
-  const ext = t.mimeType?.includes('mp4') ? 'm4a' : t.mimeType?.includes('ogg') ? 'ogg' : 'webm';
-  const name = `${(state.project?.name || 'take').replace(/[^\w-]+/g, '_')}_take${nr}.${ext}`;
-  const file = new File([t.blob], name, { type: t.blob.type });
+  const name = `${(state.project?.name || 'take').replace(/[^\w-]+/g, '_')}_take${nr}.wav`;
+  const blob = await normalizeTake(t.blob);
+  const file = new File([blob], name, { type: 'audio/wav' });
   if (navigator.canShare?.({ files: [file] })) {
     try { await navigator.share({ files: [file], title: name }); return; }
     catch (e) { if (e.name === 'AbortError') return; }
   }
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(t.blob);
+  a.href = URL.createObjectURL(blob);
   a.download = name;
   a.click();
 }

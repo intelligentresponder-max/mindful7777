@@ -211,6 +211,55 @@ export function toWav(audioBuffer) {
   return new Blob([data], { type: 'audio/wav' });
 }
 
+/* ───────────────────── Rohtake normalisieren ───────────────────── */
+
+const TAKE_TARGET_PEAK = dB(-3);
+// Nie mehr als +20 dB verstärken: ein wirklich stiller Take hat oft nur
+// Rauschen und Raumton eingefangen — verstärkt man den bis auf Zielpegel,
+// wird aus "zu leise" nur "laut und verrauscht". Ab hier ist zu wenig auf
+// dem Band, um das digital zu retten; das ist ein Hinweis, näher ans
+// Mikrofon zu gehen, kein Normalisierungsproblem.
+const TAKE_MAX_GAIN = dB(20);
+
+/**
+ * Rohtake auf einen Zielpegel anheben, ohne die Aufnahme selbst anzufassen.
+ *
+ * autoGainControl ist beim Aufnehmen bewusst aus (recorder.js) — sie würde
+ * die Pausen zwischen den Sätzen hochregeln und genau die Stille auffressen,
+ * die eine Trance-Session trägt. Der Take kommt dadurch oft leiser aus dem
+ * Mikrofon, als er beim Anhören oder Weitergeben sein sollte. Dieser Schritt
+ * gleicht das erst hier aus — einmalig, beim Export — statt live beim
+ * Aufnehmen, wo es die Dynamik wieder zerstören würde: die Differenzen
+ * zwischen laut und leise im Take bleiben exakt erhalten, nur der
+ * Gesamtpegel verschiebt sich.
+ */
+export async function normalizeTake(blob) {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const buf = await ctx.decodeAudioData(await blob.arrayBuffer());
+  await ctx.close();
+
+  let peak = 0;
+  for (let c = 0; c < buf.numberOfChannels; c++) {
+    const d = buf.getChannelData(c);
+    for (let i = 0; i < d.length; i++) {
+      const a = Math.abs(d[i]);
+      if (a > peak) peak = a;
+    }
+  }
+
+  if (peak > 0) {
+    const gain = Math.min(TAKE_TARGET_PEAK / peak, TAKE_MAX_GAIN);
+    if (gain > 1.02) {
+      for (let c = 0; c < buf.numberOfChannels; c++) {
+        const d = buf.getChannelData(c);
+        for (let i = 0; i < d.length; i++) d[i] = Math.max(-1, Math.min(1, d[i] * gain));
+      }
+    }
+  }
+
+  return toWav(buf);
+}
+
 /** Prüft nach dem Rendern, ob die Pausen wirklich stehen. */
 export function verifyTiming(timeline, buffers) {
   const issues = [];
