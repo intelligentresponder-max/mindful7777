@@ -1,0 +1,128 @@
+/* Tokens aus theta_state.svg — damit das Werkzeug zum Ecosystem gehört.
+   Dunkler Grund ist hier keine Stilfrage: bedient wird abends und im
+   abgedunkelten Raum. */
+
+:root {
+  --bg:        #0D0A12;
+  --surface:   #100818;
+  --surface-2: #16091F;
+  --line:      #2A1436;
+  --ink:       #1E0A2C;
+
+  --amber:     #E8A020;
+  --amber-lt:  #F5C670;
+  --amber-dim: #D4A847;
+  --amber-dp:  #885005;
+
+  --text:      #EDE2D0;
+  --text-dim:  #9A8A78;
+  --text-mute: #6A5B4C;
+  --danger:    #D9553F;
+  --ok:        #6FA86A;
+
+  --display: Georgia, 'Times New Roman', serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --body: system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --pulse: 3.6s; /* dieselbe Frequenz wie die Ringe in der SVG */
+  --r: 3px;
+  --pad: 16px;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+  overscroll-behavior-y: none;
+}
+
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--amber-lt);
+  margin: 0 0 .4em;
+}
+h1 { font-size: 1.15rem; letter-spacing: .22em; text-transform: uppercase; }
+h2 { font-size: 1rem; letter-spacing: .16em; color: var(--amber); }
+h3 { font-size: .85rem; letter-spacing: .12em; color: var(--amber-dim); }
+
+.eyebrow {
+  font-family: var(--display);
+  font-size: .68rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--amber-dp);
+}
+
+button, input, textarea, select {
+  font-family: inherit; font-size: 1rem; color: inherit;
+}
+
+button {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--amber-dim);
+  padding: 11px 16px;
+  border-radius: var(--r);
+  cursor: pointer;
+  letter-spacing: .04em;
+  transition: border-color .18s, color .18s, background .18s;
+  min-height: 44px;
+}
+button:hover:not(:disabled) { border-color: var(--amber-dp); color: var(--amber-lt); }
+button:active:not(:disabled) { background: var(--surface-2); }
+button:disabled { opacity: .35; cursor: default; }
+button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+button.primary {
+  background: var(--amber-dp); border-color: var(--amber);
+  color: #150C05; font-weight: 600;
+}
+button.primary:hover:not(:disabled) { background: var(--amber); color: #150C05; }
+button.ghost { border-color: transparent; color: var(--text-dim); }
+button.danger { border-color: #4A2018; color: var(--danger); }
+
+input, textarea, select {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 11px 12px;
+  width: 100%;
+  color: var(--text);
+}
+input:focus, textarea:focus, select:focus {
+  outline: none; border-color: var(--amber-dp);
+}
+label { display: block; margin-bottom: 14px; }
+label > span {
+  display: block; margin-bottom: 5px;
+  font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: var(--pad);
+  margin-bottom: 12px;
+}
+
+.row { display: flex; gap: 8px; align-items: center; }
+.row.wrap { flex-wrap: wrap; }
+.spread { justify-content: space-between; }
+.grow { flex: 1; min-width: 0; }
+.muted { color: var(--text-dim); font-size: .85rem; }
+.mono { font-family: var(--mono); font-size: .8rem; }
+.hidden { display: none !important; }
+
+@keyframes pulse { 0%,100% { opacity: .38 } 50% { opacity: .95 } }
+.pulse { animation: pulse var(--pulse) ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}

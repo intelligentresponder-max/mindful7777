@@ -1,0 +1,16 @@
+name = "trance-forge"
+main = "index.build.js"
+compatibility_date = "2025-01-01"
+
+# Optional: Tageslimit gegen durchgelaufene Renders und geleakte Tokens.
+# [[kv_namespaces]]
+# binding = "TF_KV"
+# id = "…"
+
+[vars]
+TF_DAILY_LIMIT = "4000"
+
+# Secrets werden NICHT hier eingetragen:
+#   wrangler secret put TF_TOKEN
+#   wrangler secret put ELEVENLABS_KEY
+#   wrangler secret put ANTHROPIC_KEY

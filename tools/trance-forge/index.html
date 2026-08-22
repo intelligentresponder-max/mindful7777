@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0D0A12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>TranceForge · mindful7777</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header id="topbar">
+  <div class="row spread">
+    <div>
+      <div class="eyebrow">mindful7777</div>
+      <h1 id="projectName">TranceForge</h1>
+    </div>
+    <div class="row" style="gap:6px">
+      <span id="netBadge" class="badge" title="Verbindung">·</span>
+      <button class="ghost" id="btnProjects" aria-label="Projekte">☰</button>
+    </div>
+  </div>
+  <div id="statusStrip" class="strip"></div>
+</header>
+
+<main id="main">
+
+<!-- ══════════ AUFNAHME ══════════ -->
+<section class="screen" data-screen="record">
+  <div class="card">
+    <div class="eyebrow">Schritt 1</div>
+    <h2>Einsprechen</h2>
+    <p class="muted">Sprich die Rohfassung im Zieltempo. Die Pausen, die du dabei setzt, werden gemessen und übernommen — dein Timing überlebt die Umwandlung.</p>
+  </div>
+
+  <div class="recorder-stage">
+    <svg id="levelRings" viewBox="0 0 260 260" aria-hidden="true">
+      <ellipse class="lr" cx="130" cy="130" rx="38"  ry="38"  data-i="0"/>
+      <ellipse class="lr" cx="130" cy="130" rx="58"  ry="58"  data-i="1"/>
+      <ellipse class="lr" cx="130" cy="130" rx="80"  ry="80"  data-i="2"/>
+      <ellipse class="lr" cx="130" cy="130" rx="103" ry="103" data-i="3"/>
+      <ellipse class="lr" cx="130" cy="130" rx="126" ry="126" data-i="4"/>
+      <text x="130" y="138" text-anchor="middle" class="theta">θ</text>
+    </svg>
+    <button id="btnRec" class="rec-btn" aria-label="Aufnahme starten"><span></span></button>
+    <div id="recTime" class="rec-time mono">0:00</div>
+    <div id="recHint" class="muted" style="text-align:center">Mikrofon noch nicht aktiviert</div>
+  </div>
+
+  <div class="row" style="gap:8px;margin-bottom:12px">
+    <button id="btnArm" class="grow">Mikrofon aktivieren</button>
+    <button id="btnPause" class="grow" disabled>Pause</button>
+  </div>
+
+  <div class="card">
+    <div class="row spread"><h3>Takes</h3><span id="takeCount" class="mono muted">0</span></div>
+    <div id="takeList" class="list"></div>
+  </div>
+</section>
+
+<!-- ══════════ ERNTE / REFINE ══════════ -->
+<section class="screen hidden" data-screen="refine">
+  <div class="card">
+    <div class="eyebrow">Schritt 2</div>
+    <h2>Ernten &amp; schärfen</h2>
+    <p class="muted">Transkript mit gemessenen Pausen, danach der Schliff. Änderungen siehst du als Diff, bevor sie übernommen werden.</p>
+  </div>
+
+  <div class="card" id="harvestStats" hidden>
+    <h3>Gemessen</h3>
+    <div class="statgrid mono" id="statGrid"></div>
+    <button id="btnAdoptCps" class="ghost" style="margin-top:10px;font-size:.8rem">Sprechrate für Laufzeitschätzung übernehmen</button>
+  </div>
+
+  <div class="row" style="gap:8px;margin-bottom:12px">
+    <button id="btnTranscribe" class="grow primary">Transkribieren</button>
+    <button id="btnRefine" class="grow" disabled>Schärfen</button>
+  </div>
+
+  <div id="diffWrap" class="card hidden">
+    <div class="row spread"><h3>Vorschlag</h3><span id="diffCount" class="mono muted"></span></div>
+    <div id="diffView" class="diff mono"></div>
+    <div id="refineNotes" class="notes"></div>
+    <div id="newTerms" class="notes"></div>
+    <div class="row" style="gap:8px;margin-top:12px">
+      <button id="btnAcceptRefine" class="grow primary">Übernehmen</button>
+      <button id="btnRejectRefine" class="grow ghost">Verwerfen</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row spread">
+      <h3>Glossar</h3>
+      <span id="glossCount" class="mono muted">0</span>
+    </div>
+    <p class="muted" style="font-size:.78rem">Jeder Fachbegriff bekommt genau eine Umschreibung — und behält sie über alle Sessions. Beim Schärfen geht die Liste mit, damit derselbe Begriff nie zweimal anders erklärt wird.</p>
+    <div id="glossList" class="list"></div>
+    <div class="row" style="gap:8px;margin-top:12px">
+      <button id="btnAddTerm" class="grow">Begriff ergänzen</button>
+      <button id="btnExportGloss" class="grow">glossar.md exportieren</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ EDITOR ══════════ -->
+<section class="screen hidden" data-screen="edit">
+  <div class="editor-head">
+    <div class="row spread mono" style="font-size:.75rem">
+      <span id="edRuntime" class="amber">0:00</span>
+      <span id="edChars" class="muted">0 Zeichen</span>
+      <span id="edCost" class="muted">–</span>
+    </div>
+    <canvas id="tlCanvas" height="56"></canvas>
+    <div id="edErrors" class="errors"></div>
+  </div>
+
+  <div class="editor-wrap">
+    <pre id="edHighlight" aria-hidden="true"></pre>
+    <textarea id="edText" spellcheck="false" autocapitalize="sentences"
+      placeholder="@phase:induktion&#10;>> Setz dich hin. [2]&#10;~~Zehn.~~ Dein Kiefer löst sich. [3~]"></textarea>
+  </div>
+
+  <div id="edToolbar" class="toolbar">
+    <button data-ins="[3]" title="Pause">[3]</button>
+    <button data-ins="[5~]" title="Pause auf Atemzyklus">[5~]</button>
+    <button data-wrap="~~" title="Sehr langsam">~~</button>
+    <button data-wrap="~" title="Langsam">~</button>
+    <button data-wrap="*" title="Betonung">*</button>
+    <button data-wrap="//" title="Stimmschicht">//</button>
+    <button data-ins=">> " title="Auf Atem starten">&gt;&gt;</button>
+    <button data-ins="@phase:" title="Abschnitt">@</button>
+    <button id="btnPreviewLine" title="Zeile vorhören">▶</button>
+  </div>
+</section>
+
+<!-- ══════════ RENDER ══════════ -->
+<section class="screen hidden" data-screen="render">
+  <div class="card">
+    <div class="eyebrow">Schritt 3</div>
+    <h2>Rendern</h2>
+  </div>
+
+  <div class="card">
+    <label><span>Stimme</span><select id="selVoice"></select></label>
+    <label><span>Bett</span><select id="selBed">
+      <option value="amber">Amber — Drone in Quinte</option>
+      <option value="theta">Theta — mit binauraler Differenz</option>
+      <option value="tief">Tief — nur Fundament</option>
+      <option value="aus">Aus</option>
+    </select></label>
+    <label><span>Bett-Pegel <b id="bedGainVal" class="mono">−24 dB</b></span>
+      <input type="range" id="rngBed" min="-40" max="-10" value="-24"></label>
+    <label><span>Atemzyklus <b id="breathVal" class="mono">5,5 s</b></span>
+      <input type="range" id="rngBreath" min="40" max="80" value="55"></label>
+  </div>
+
+  <div class="render-stage">
+    <svg id="renderRings" viewBox="0 0 220 220" aria-hidden="true">
+      <ellipse class="rr" cx="110" cy="110" rx="30" ry="30"/>
+      <ellipse class="rr" cx="110" cy="110" rx="48" ry="48"/>
+      <ellipse class="rr" cx="110" cy="110" rx="67" ry="67"/>
+      <ellipse class="rr" cx="110" cy="110" rx="87" ry="87"/>
+      <ellipse class="rr" cx="110" cy="110" rx="106" ry="106"/>
+    </svg>
+    <div id="renderPct" class="render-pct mono">0%</div>
+  </div>
+  <div id="renderStatus" class="muted" style="text-align:center;min-height:2.4em"></div>
+
+  <div class="row" style="gap:8px;margin-bottom:12px">
+    <button id="btnRender" class="grow primary">Session rendern</button>
+    <button id="btnCancelRender" class="grow hidden danger">Abbrechen</button>
+  </div>
+
+  <div id="renderResult" class="card hidden">
+    <h3>Ergebnis</h3>
+    <audio id="player" controls preload="none"></audio>
+    <div id="verifyList" class="notes"></div>
+    <div class="row" style="gap:8px;margin-top:12px">
+      <button id="btnShare" class="grow primary">Teilen</button>
+      <button id="btnDownload" class="grow">Speichern</button>
+    </div>
+    <div id="failedList" class="notes"></div>
+  </div>
+</section>
+
+<!-- ══════════ STIMME ══════════ -->
+<section class="screen hidden" data-screen="voice">
+  <div class="card">
+    <div class="eyebrow">Stimmprofil</div>
+    <h2>Eigene Stimme klonen</h2>
+    <p class="muted">Das Profil wird ausschließlich aus deiner eigenen Stimme erzeugt. Der Bestätigungssatz wird mit aufgenommen und im Profil hinterlegt.</p>
+  </div>
+
+  <div class="card">
+    <h3>1 · Referenzmaterial</h3>
+    <p class="muted">Lies die vorgegebenen Passagen — <b>in genau der Sprechweise, die später erzeugt werden soll</b>: ruhig, tief, langsam. Ein Klon aus Alltagssprache klingt in einer Session falsch.</p>
+    <div id="refProgress" class="refbar"><div></div></div>
+    <div id="refTarget" class="mono muted" style="margin:6px 0 12px">0:00 von 3:00 · Ziel für ein tragfähiges Profil</div>
+    <div id="refPassage" class="passage"></div>
+    <div class="row" style="gap:8px">
+      <button id="btnRefRec" class="grow primary">Passage aufnehmen</button>
+      <button id="btnRefNext" class="grow">Nächste</button>
+    </div>
+    <div id="refList" class="list" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card">
+    <h3>2 · Bestätigung</h3>
+    <p class="muted">Sprich diesen Satz mit demselben Mikrofon und in derselben Umgebung wie die Referenzaufnahmen:</p>
+    <div id="challengePhrase" class="challenge"></div>
+    <div class="row" style="gap:8px">
+      <button id="btnChallengeRec" class="grow">Bestätigungssatz aufnehmen</button>
+      <button id="btnChallengeNew" class="ghost">Neu</button>
+    </div>
+    <div id="challengeState" class="muted" style="margin-top:8px"></div>
+  </div>
+
+  <button id="btnClone" class="primary" style="width:100%" disabled>Stimmprofil erzeugen</button>
+  <div id="cloneState" class="muted" style="margin-top:8px"></div>
+
+  <div class="card" style="margin-top:12px">
+    <h3>Vorhandene Profile</h3>
+    <div id="voiceList" class="list"></div>
+  </div>
+</section>
+
+<!-- ══════════ EINSTELLUNGEN ══════════ -->
+<section class="screen hidden" data-screen="settings">
+  <div class="card">
+    <h2>Verbindung</h2>
+    <label><span>Worker-URL</span><input id="inpBase" placeholder="https://tf.dein-worker.workers.dev"></label>
+    <label><span>Zugangstoken</span><input id="inpToken" type="password" placeholder="…"></label>
+    <div class="row" style="gap:8px">
+      <button id="btnSaveConn" class="grow primary">Speichern</button>
+      <button id="btnTestConn" class="grow">Testen</button>
+    </div>
+    <div id="connState" class="muted" style="margin-top:8px"></div>
+    <p class="muted" style="margin-top:12px;font-size:.78rem">Die API-Schlüssel liegen im Worker, nicht hier. Im Client-Bundle ist kein Schlüssel enthalten.</p>
+  </div>
+
+  <div class="card">
+    <h2>Sprechen</h2>
+    <label><span>Zeichen pro Sekunde bei Tempo 1,0 <b id="cpsVal" class="mono">13,2</b></span>
+      <input type="range" id="rngCps" min="80" max="200" value="132"></label>
+    <p class="muted" style="font-size:.78rem">Wird nach einer Transkription automatisch an deine gemessene Sprechrate angepasst.</p>
+  </div>
+
+  <div class="card">
+    <h2>Daten</h2>
+    <div id="storageInfo" class="mono muted"></div>
+    <button id="btnWipe" class="danger" style="width:100%;margin-top:10px">Alle lokalen Daten löschen</button>
+  </div>
+</section>
+
+<!-- ══════════ PROJEKTE ══════════ -->
+<section class="screen hidden" data-screen="projects">
+  <div class="row spread" style="margin-bottom:12px">
+    <h2>Projekte</h2>
+    <button id="btnNewProject" class="primary">Neu</button>
+  </div>
+  <div id="projectList" class="list"></div>
+</section>
+
+</main>
+
+<nav id="tabs">
+  <button data-go="record"><span>◉</span>Aufnahme</button>
+  <button data-go="refine"><span>⤳</span>Ernte</button>
+  <button data-go="edit"><span>✎</span>Editor</button>
+  <button data-go="render"><span>▲</span>Render</button>
+  <button data-go="voice"><span>θ</span>Stimme</button>
+</nav>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
