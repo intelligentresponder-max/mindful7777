@@ -136,8 +136,8 @@
     <section class="phase active" data-phase="1">
       <h2 class="serif" data-i18n="p1.h"><span class="mono" style="color:var(--gold)">01</span> Wer bist du?</h2>
       <p class="hint" data-i18n="p1.hint">Nur das Nötigste — für deine persönliche Empfehlung.</p>
-      <div class="field"><label data-i18n="p1.name">Vorname</label><input type="text" name="name" data-i18n-ph="p1.name.ph" placeholder="Dein Vorname"></div>
-      <div class="field"><label data-i18n="p1.email">E-Mail</label><input type="email" name="email" placeholder="du@beispiel.de"></div>
+      <div class="field"><label data-i18n="p1.name">Vorname</label><input type="text" name="name" data-i18n-ph="p1.name.ph" placeholder="Dein Vorname" required></div>
+      <div class="field"><label data-i18n="p1.email">E-Mail</label><input type="email" name="email" placeholder="du@beispiel.de" required></div>
     </section>
 
     <!-- PHASE 2: Ziel (steuert Kaskade) -->
@@ -270,6 +270,28 @@ function showPhase(n){
   renderProgress();
   // Kaskade: Phase 6 dynamisch nach VAK
   if(n===6) applyVakCascade();
+  validatePhase(n);
+}
+
+/* ---------- Live-Validierung pro Phase ---------- */
+function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+function validatePhase(n){
+  let valid = true;
+  if(n===1){
+    const name=document.querySelector('[name=name]').value.trim();
+    const email=document.querySelector('[name=email]').value.trim();
+    valid = name.length>0 && isValidEmail(email);
+  } else if(n===2){
+    valid = !!document.querySelector('[name=ziel]:checked');
+  } else if(n===3){
+    valid = !!document.querySelector('[name=vak]:checked');
+  } else if(n===4){
+    valid = data.erfahrung!==null;
+  } else if(n===7){
+    valid = !!document.querySelector('[name=session_typ]:checked');
+  }
+  document.getElementById('btnNext').classList.toggle('is-disabled', !valid);
+  return valid;
 }
 function applyVakCascade(){
   const map={
@@ -298,8 +320,14 @@ document.querySelectorAll('#scaleExp .s').forEach(s=>{
   s.addEventListener('click',()=>{
     document.querySelectorAll('#scaleExp .s').forEach(x=>x.classList.remove('sel'));
     s.classList.add('sel'); data.erfahrung=+s.dataset.v;
+    validatePhase(phase);
   });
 });
+
+/* Live-Validierung: Text-/E-Mail-Felder und Radiogruppen */
+document.querySelector('[name=name]').addEventListener('input',()=>validatePhase(phase));
+document.querySelector('[name=email]').addEventListener('input',()=>validatePhase(phase));
+document.querySelectorAll('input[type=radio]').forEach(r=>r.addEventListener('change',()=>validatePhase(phase)));
 
 /* ---------- Navigation ---------- */
 document.getElementById('btnNext').addEventListener('click',()=>{
