@@ -41,6 +41,7 @@
   width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;
   font:inherit;background:var(--surface);color:var(--ink);transition:.16s}
 .field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--gold);box-shadow:var(--glow-gold)}
+.field .sub-hint{font-size:.82rem;color:var(--ink-soft);margin:0 0 8px}
 
 /* Auswahl-Karten */
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
@@ -54,6 +55,9 @@
 .opt input:focus-visible + .box{outline:2px solid var(--gold);outline-offset:2px}
 
 /* Skala */
+.scale-block{margin:0 0 22px}
+.scale-block:last-child{margin-bottom:0}
+.scale-block .s-label{font-weight:600;font-size:.95rem;margin-bottom:4px;display:block}
 .scale{display:flex;gap:6px;margin-top:8px}
 .scale .s{flex:1;text-align:center;padding:12px 0;border:1.5px solid var(--line);border-radius:10px;cursor:pointer;font-family:var(--mono);transition:.14s;background:var(--surface)}
 .scale .s.sel{border-color:var(--gold);background:var(--ink);color:var(--bg)}
@@ -106,9 +110,9 @@
       <path d="M0,100 Q60,40 120,100 T240,100 T360,100 T480,100 T600,100 T720,100 T840,100 T960,100 T1080,100 T1200,100" fill="none" stroke="#3FB6A8" stroke-width="2.5"/>
     </svg>
   </div>
-  <span class="eyebrow" data-i18n="eyebrow">ERSTGESPRÄCH · 2 MIN</span>
+  <span class="eyebrow" data-i18n="eyebrow">AUSFÜHRLICHES ERSTGESPRÄCH</span>
   <h1 class="serif" data-i18n="h1">Finde deinen Weg</h1>
-  <p class="sub" data-i18n="sub" style="margin-inline:auto">Ein paar Fragen, dann kennst du dein passendes Protokoll. Kein Account nötig.</p>
+  <p class="sub" data-i18n="sub" style="margin-inline:auto">Ein paar ausführlichere Fragen, dann kennst du dein passendes Protokoll ganz genau. Kein Account nötig.</p>
 </header>
 
 <div class="ob">
@@ -128,7 +132,7 @@
 
   <!-- Formular-Wrapper (erst nach Altersbestätigung sichtbar) -->
   <div id="obWrap" style="display:none">
-  <div class="step-label" id="stepLabel">Schritt 01 / 07</div>
+  <div class="step-label" id="stepLabel">Schritt 01 / 12</div>
   <div class="progress" id="progress" aria-hidden="true"></div>
 
   <form id="obForm" novalidate>
@@ -170,38 +174,116 @@
       </div>
     </section>
 
-    <!-- PHASE 4: Erfahrung -->
+    <!-- PHASE 4: Stress & Schlaf -->
     <section class="phase" data-phase="4">
-      <h2 class="serif" data-i18n="p4.h"><span class="mono" style="color:var(--gold)">04</span> Deine Erfahrung mit Entspannungstechniken?</h2>
-      <p class="hint" data-i18n="p4.hint">1 = noch nie · 5 = sehr erfahren</p>
-      <div class="scale" id="scaleExp" data-name="erfahrung">
-        <div class="s" data-v="1">1</div><div class="s" data-v="2">2</div><div class="s" data-v="3">3</div><div class="s" data-v="4">4</div><div class="s" data-v="5">5</div>
+      <h2 class="serif" data-i18n="p4.h"><span class="mono" style="color:var(--gold)">04</span> Stress & Schlaf gerade?</h2>
+      <p class="hint" data-i18n="p4.hint">Zwei kurze Einschätzungen — hilft, die Intensität deines Protokolls richtig zu kalibrieren.</p>
+      <div class="scale-block">
+        <span class="s-label" data-i18n="p4.stress.label">Aktueller Stresslevel</span>
+        <div class="sub-hint" data-i18n="p4.stress.hint">1 = entspannt · 5 = sehr angespannt</div>
+        <div class="scale" id="scaleStress" data-name="stress">
+          <div class="s" data-v="1">1</div><div class="s" data-v="2">2</div><div class="s" data-v="3">3</div><div class="s" data-v="4">4</div><div class="s" data-v="5">5</div>
+        </div>
+      </div>
+      <div class="scale-block">
+        <span class="s-label" data-i18n="p4.schlaf.label">Schlafqualität</span>
+        <div class="sub-hint" data-i18n="p4.schlaf.hint">1 = schlecht · 5 = sehr gut</div>
+        <div class="scale" id="scaleSchlaf" data-name="schlaf">
+          <div class="s" data-v="1">1</div><div class="s" data-v="2">2</div><div class="s" data-v="3">3</div><div class="s" data-v="4">4</div><div class="s" data-v="5">5</div>
+        </div>
       </div>
     </section>
 
-    <!-- PHASE 5: Blockaden (harmlos, offen) -->
+    <!-- PHASE 5: Erfahrung (+ dynamische Detailfrage ab Stufe 2) -->
     <section class="phase" data-phase="5">
-      <h2 class="serif" data-i18n="p5.h"><span class="mono" style="color:var(--gold)">05</span> Was hält dich gerade am meisten auf?</h2>
-      <p class="hint" data-i18n="p5.hint">Stichworte reichen. (z.B. wenig Zeit, viele Gedanken)</p>
-      <div class="field"><textarea name="blockaden" rows="3" data-i18n-ph="p5.ph" placeholder="In deinen Worten …"></textarea></div>
+      <h2 class="serif" data-i18n="p5.h"><span class="mono" style="color:var(--gold)">05</span> Deine Erfahrung mit Entspannungstechniken?</h2>
+      <p class="hint" data-i18n="p5.hint">1 = noch nie · 5 = sehr erfahren</p>
+      <div class="scale" id="scaleExp" data-name="erfahrung">
+        <div class="s" data-v="1">1</div><div class="s" data-v="2">2</div><div class="s" data-v="3">3</div><div class="s" data-v="4">4</div><div class="s" data-v="5">5</div>
+      </div>
+      <div class="field" id="erfDetailWrap" style="display:none">
+        <label data-i18n="p5.detail.label">Was hast du bisher ausprobiert?</label>
+        <div class="sub-hint" data-i18n="p5.detail.hint">Apps, Hypnose, Meditation, Atemtechniken – was hat funktioniert, was nicht?</div>
+        <textarea name="erfahrung_detail" rows="2" data-i18n-ph="p5.detail.ph" placeholder="In deinen Worten …"></textarea>
+      </div>
     </section>
 
-    <!-- PHASE 6: Metapher (dynamisch nach VAK) -->
+    <!-- PHASE 6: Ziel-Vertiefung (dynamisch nach Hauptziel) -->
     <section class="phase" data-phase="6">
-      <h2 class="serif" data-i18n="p6.h"><span class="mono" style="color:var(--gold)">06</span> <span id="p6dyn">Dein emotionaler Anker</span></h2>
-      <p class="hint" id="p6hint" data-i18n="p6.hint">Das hilft, deine Session persönlich zu gestalten.</p>
-      <div class="field"><input type="text" name="metapher" data-i18n-ph="p6.ph" placeholder="z.B. ein Film, ein Ort, ein Song …"></div>
+      <h2 class="serif"><span class="mono" style="color:var(--gold)">06</span> <span id="p6dyn">Mehr zu deinem Ziel</span></h2>
+      <p class="hint" id="p6hint">Ganz kurz reicht — auch das darfst du überspringen.</p>
+      <div class="field"><textarea name="ziel_deep" id="inputZielDeep" rows="2" placeholder="In deinen Worten …"></textarea></div>
     </section>
 
-    <!-- PHASE 7: Session-Typ -->
+    <!-- PHASE 7: Blockaden (harmlos, offen) -->
     <section class="phase" data-phase="7">
-      <h2 class="serif" data-i18n="p7.h"><span class="mono" style="color:var(--gold)">07</span> Wie möchtest du starten?</h2>
-      <p class="hint" data-i18n="p7.hint">Du kannst jederzeit wechseln.</p>
+      <h2 class="serif" data-i18n="p7.h"><span class="mono" style="color:var(--gold)">07</span> Was hält dich gerade am meisten auf?</h2>
+      <p class="hint" data-i18n="p7.hint">Stichworte reichen. (z.B. wenig Zeit, viele Gedanken)</p>
+      <div class="field"><textarea name="blockaden" rows="3" data-i18n-ph="p7.ph" placeholder="In deinen Worten …"></textarea></div>
+    </section>
+
+    <!-- PHASE 8: Metapher (dynamisch nach VAK) -->
+    <section class="phase" data-phase="8">
+      <h2 class="serif" data-i18n="p8.h"><span class="mono" style="color:var(--gold)">08</span> <span id="p8dyn">Dein emotionaler Anker</span></h2>
+      <p class="hint" id="p8hint" data-i18n="p8.hint">Das hilft, deine Session persönlich zu gestalten.</p>
+      <div class="field"><input type="text" name="metapher" data-i18n-ph="p8.ph" placeholder="z.B. ein Film, ein Ort, ein Song …"></div>
+    </section>
+
+    <!-- PHASE 9: Bevorzugtes Format -->
+    <section class="phase" data-phase="9">
+      <h2 class="serif" data-i18n="p9.h"><span class="mono" style="color:var(--gold)">09</span> Wie möchtest du deine Protokolle nutzen?</h2>
+      <p class="hint" data-i18n="p9.hint">Beeinflusst, welches Format wir dir empfehlen.</p>
+      <div class="cards">
+        <label class="opt"><input type="radio" name="format" value="audio">
+          <div class="box"><div class="t" data-i18n="p9.audio.t">Audio zum Anhören</div><div class="d" data-i18n="p9.audio.d">Geführte Session, bequem unterwegs oder im Liegen</div></div></label>
+        <label class="opt"><input type="radio" name="format" value="text">
+          <div class="box"><div class="t" data-i18n="p9.text.t">Text zum Selberlesen</div><div class="d" data-i18n="p9.text.d">PDF-Skript, eigenes Tempo</div></div></label>
+        <label class="opt"><input type="radio" name="format" value="video">
+          <div class="box"><div class="t" data-i18n="p9.video.t">Video mit Anleitung</div><div class="d" data-i18n="p9.video.d">Bewegtbild, teils noch in Produktion</div></div></label>
+      </div>
+    </section>
+
+    <!-- PHASE 10: Tageszeit -->
+    <section class="phase" data-phase="10">
+      <h2 class="serif" data-i18n="p10.h"><span class="mono" style="color:var(--gold)">10</span> Wann hast du realistisch Zeit dafür?</h2>
+      <p class="hint" data-i18n="p10.hint">Deine wahrscheinlichste Tageszeit.</p>
+      <div class="cards">
+        <label class="opt"><input type="radio" name="tageszeit" value="morgens">
+          <div class="box"><div class="t" data-i18n="p10.morgens.t">Morgens</div><div class="d" data-i18n="p10.morgens.d">Direkt nach dem Aufwachen</div></div></label>
+        <label class="opt"><input type="radio" name="tageszeit" value="mittags">
+          <div class="box"><div class="t" data-i18n="p10.mittags.t">Mittags</div><div class="d" data-i18n="p10.mittags.d">In der Pause</div></div></label>
+        <label class="opt"><input type="radio" name="tageszeit" value="abends">
+          <div class="box"><div class="t" data-i18n="p10.abends.t">Abends</div><div class="d" data-i18n="p10.abends.d">Zum Runterkommen</div></div></label>
+        <label class="opt"><input type="radio" name="tageszeit" value="variabel">
+          <div class="box"><div class="t" data-i18n="p10.variabel.t">Variiert</div><div class="d" data-i18n="p10.variabel.d">Kein fester Rhythmus</div></div></label>
+      </div>
+    </section>
+
+    <!-- PHASE 11: Häufigkeit -->
+    <section class="phase" data-phase="11">
+      <h2 class="serif" data-i18n="p11.h"><span class="mono" style="color:var(--gold)">11</span> Wie oft realistisch pro Woche?</h2>
+      <p class="hint" data-i18n="p11.hint">Ehrliche Einschätzung hilft mehr als Wunschdenken.</p>
+      <div class="cards">
+        <label class="opt"><input type="radio" name="haeufigkeit" value="taeglich">
+          <div class="box"><div class="t" data-i18n="p11.taeglich.t">Täglich</div><div class="d" data-i18n="p11.taeglich.d">Feste tägliche Routine</div></div></label>
+        <label class="opt"><input type="radio" name="haeufigkeit" value="mehrmals">
+          <div class="box"><div class="t" data-i18n="p11.mehrmals.t">Mehrmals pro Woche</div><div class="d" data-i18n="p11.mehrmals.d">3–5×</div></div></label>
+        <label class="opt"><input type="radio" name="haeufigkeit" value="einmal">
+          <div class="box"><div class="t" data-i18n="p11.einmal.t">Einmal pro Woche</div><div class="d" data-i18n="p11.einmal.d">Fixer Termin</div></div></label>
+        <label class="opt"><input type="radio" name="haeufigkeit" value="unregelmaessig">
+          <div class="box"><div class="t" data-i18n="p11.unregelmaessig.t">Unregelmäßig</div><div class="d" data-i18n="p11.unregelmaessig.d">Wie es passt</div></div></label>
+      </div>
+    </section>
+
+    <!-- PHASE 12: Session-Typ -->
+    <section class="phase" data-phase="12">
+      <h2 class="serif" data-i18n="p12.h"><span class="mono" style="color:var(--gold)">12</span> Wie möchtest du starten?</h2>
+      <p class="hint" data-i18n="p12.hint">Du kannst jederzeit wechseln.</p>
       <div class="cards">
         <label class="opt"><input type="radio" name="session_typ" value="kostenlos">
-          <div class="box"><div class="t" data-i18n="p7.free.t">Gratis starten</div><div class="d" data-i18n="p7.free.d">Sock-Anchor Basis</div></div></label>
+          <div class="box"><div class="t" data-i18n="p12.free.t">Gratis starten</div><div class="d" data-i18n="p12.free.d">Sock-Anchor Basis</div></div></label>
         <label class="opt"><input type="radio" name="session_typ" value="vip">
-          <div class="box"><div class="t" data-i18n="p7.vip.t">VIP-Stack</div><div class="d" data-i18n="p7.vip.d">Alle 7 Protokolle</div></div></label>
+          <div class="box"><div class="t" data-i18n="p12.vip.t">VIP-Stack</div><div class="d" data-i18n="p12.vip.d">Alle 7 Protokolle</div></div></label>
       </div>
     </section>
 
@@ -237,20 +319,21 @@
    ============================================================ */
 const PROFILE_DB = {
   sport_focus:  { session:"Sport-Anker",  audio:"training.html", depth:"medium",
-                  followups:{de:["Welche Sportart?","Wettkampf oder Training?"],en:["Which sport?","Competition or training?"]} },
+                  followups:{de:["Gibt es eine konkrete Wettkampf-Deadline?"],en:["Is there a specific competition deadline?"]} },
   stress_relief:{ session:"Nature-Anker", audio:"shower.html",   depth:"deep",
-                  followups:{de:["Wie viele Stunden schläfst du?","Wann ist der Stress am stärksten?"],en:["How many hours do you sleep?","When is stress strongest?"]} },
+                  followups:{de:["Gibt es einen festen Auslöser für den Stress?"],en:["Is there one specific trigger for the stress?"]} },
   urban_flow:   { session:"Urban-Anker",  audio:"street.html",   depth:"light",
-                  followups:{de:["Homeoffice oder Büro?","Wann brauchst du den Fokus am meisten?"],en:["Home office or office?","When do you need focus most?"]} },
+                  followups:{de:["Nutzt du bereits Fokus-Tools wie Pomodoro?"],en:["Do you already use focus tools like Pomodoro?"]} },
   explore:      { session:"Sock-Anchor Basis", audio:"sock-anchor-protocol.html", depth:"light",
-                  followups:{de:["Was hat dich neugierig gemacht?","Lieber morgens oder abends?"],en:["What made you curious?","Mornings or evenings?"]} }
+                  followups:{de:["Gibt es ein konkretes Ziel für die nächsten 4 Wochen?"],en:["Is there a concrete goal for the next 4 weeks?"]} }
 };
 const BASE="https://intelligentresponder-max.github.io/mindful7777";
 const FORMSPREE="https://formspree.io/f/xgaevdyo";
 
 /* ---------- State + Kaskade ---------- */
-let phase=1; const TOTAL=7;
-const data={name:"",email:"",ziel:"",vak:"",erfahrung:null,blockaden:"",metapher:"",session_typ:""};
+let phase=1; const TOTAL=12;
+const data={name:"",email:"",ziel:"",vak:"",stress:null,schlaf:null,erfahrung:null,erfahrung_detail:"",
+            ziel_deep:"",blockaden:"",metapher:"",format:"",tageszeit:"",haeufigkeit:"",session_typ:""};
 let LANG='de';
 
 const phases=[...document.querySelectorAll('.phase')];
@@ -261,15 +344,18 @@ const dots=[...progress.children];
 function renderProgress(){
   dots.forEach((d,i)=>{d.className='dot'+(i<phase-1?' done':i===phase-1?' active':'');});
   const lbl=String(phase).padStart(2,'0');
-  document.getElementById('stepLabel').textContent=(LANG==='de'?'Schritt ':'Step ')+lbl+' / 07';
+  const tot=String(TOTAL).padStart(2,'0');
+  document.getElementById('stepLabel').textContent=(LANG==='de'?'Schritt ':'Step ')+lbl+' / '+tot;
 }
 function showPhase(n){
   phases.forEach(p=>p.classList.toggle('active',+p.dataset.phase===n));
   document.getElementById('btnBack').style.visibility = n>1?'visible':'hidden';
   document.getElementById('btnNext').textContent = (n===TOTAL)?(LANG==='de'?'Abschließen':'Finish'):(LANG==='de'?'Weiter':'Next');
   renderProgress();
-  // Kaskade: Phase 6 dynamisch nach VAK
-  if(n===6) applyVakCascade();
+  // Kaskaden: Phase 5 (Erfahrungs-Detail), Phase 6 (Ziel-Vertiefung), Phase 8 (VAK-Metapher)
+  if(n===5) applyErfahrungCascade();
+  if(n===6) applyZielCascade();
+  if(n===8) applyVakCascade();
   validatePhase(n);
 }
 
@@ -286,12 +372,50 @@ function validatePhase(n){
   } else if(n===3){
     valid = !!document.querySelector('[name=vak]:checked');
   } else if(n===4){
+    valid = data.stress!==null && data.schlaf!==null;
+  } else if(n===5){
     valid = data.erfahrung!==null;
-  } else if(n===7){
+  } else if(n===9){
+    valid = !!document.querySelector('[name=format]:checked');
+  } else if(n===10){
+    valid = !!document.querySelector('[name=tageszeit]:checked');
+  } else if(n===11){
+    valid = !!document.querySelector('[name=haeufigkeit]:checked');
+  } else if(n===12){
     valid = !!document.querySelector('[name=session_typ]:checked');
   }
   document.getElementById('btnNext').classList.toggle('is-disabled', !valid);
   return valid;
+}
+function applyErfahrungCascade(){
+  const wrap=document.getElementById('erfDetailWrap');
+  if(data.erfahrung && data.erfahrung>=2){
+    wrap.style.display='block';
+  } else {
+    wrap.style.display='none';
+    document.querySelector('[name=erfahrung_detail]').value='';
+    data.erfahrung_detail='';
+  }
+}
+function applyZielCascade(){
+  const map={
+    sport_focus:{de:"Welche Sportart betreibst du?",en:"Which sport do you do?",
+                 hint_de:"Hilft uns, das Protokoll auf deine Disziplin abzustimmen.",hint_en:"Helps us match the protocol to your discipline.",
+                 ph_de:"z.B. Laufen, Kraftsport … eher Wettkampf oder Training?",ph_en:"e.g. running, strength training … competition or training?"},
+    stress_relief:{de:"Wann ist der Stress bei dir am stärksten?",en:"When is your stress strongest?",
+                 hint_de:"Morgens, im Job, abends beim Runterkommen — oder durchgehend?",hint_en:"Mornings, at work, evenings winding down — or constant?",
+                 ph_de:"z.B. abends nach der Arbeit …",ph_en:"e.g. evenings after work …"},
+    urban_flow:{de:"Wie sieht dein Arbeitsalltag aus?",en:"What does your work routine look like?",
+                 hint_de:"Homeoffice oder Büro, und wann brauchst du den Fokus am meisten?",hint_en:"Home office or office, and when do you need focus most?",
+                 ph_de:"z.B. Homeoffice, Fokus-Tief nachmittags …",ph_en:"e.g. home office, focus dip in the afternoon …"},
+    explore:{de:"Was hat dich neugierig gemacht?",en:"What made you curious?",
+                 hint_de:"Ganz offen — es gibt keine falsche Antwort.",hint_en:"Totally open — there's no wrong answer.",
+                 ph_de:"z.B. ein Freund hat erzählt, ein Artikel …",ph_en:"e.g. a friend mentioned it, an article …"}
+  };
+  const m=map[data.ziel]||map.explore;
+  document.getElementById('p6dyn').textContent=LANG==='de'?m.de:m.en;
+  document.getElementById('p6hint').textContent=LANG==='de'?m.hint_de:m.hint_en;
+  document.getElementById('inputZielDeep').placeholder=LANG==='de'?m.ph_de:m.ph_en;
 }
 function applyVakCascade(){
   const map={
@@ -300,7 +424,7 @@ function applyVakCascade(){
     kinesthetic:{de:"Welche Bewegung gibt dir Kraft?",en:"Which movement gives you strength?",ph_de:"z.B. Laufen, Stretching …",ph_en:"e.g. running, stretching …"}
   };
   const m=map[data.vak]; if(!m) return;
-  document.getElementById('p6dyn').textContent=m[LANG];
+  document.getElementById('p8dyn').textContent=m[LANG];
   document.querySelector('[name=metapher]').placeholder=LANG==='de'?m.ph_de:m.ph_en;
 }
 
@@ -310,16 +434,36 @@ function collect(){
   data.email=document.querySelector('[name=email]').value.trim();
   data.ziel=(document.querySelector('[name=ziel]:checked')||{}).value||"";
   data.vak=(document.querySelector('[name=vak]:checked')||{}).value||"";
+  data.erfahrung_detail=document.querySelector('[name=erfahrung_detail]').value.trim();
+  data.ziel_deep=document.querySelector('[name=ziel_deep]').value.trim();
   data.blockaden=document.querySelector('[name=blockaden]').value.trim();
   data.metapher=document.querySelector('[name=metapher]').value.trim();
+  data.format=(document.querySelector('[name=format]:checked')||{}).value||"";
+  data.tageszeit=(document.querySelector('[name=tageszeit]:checked')||{}).value||"";
+  data.haeufigkeit=(document.querySelector('[name=haeufigkeit]:checked')||{}).value||"";
   data.session_typ=(document.querySelector('[name=session_typ]:checked')||{}).value||"";
 }
 
-/* Skala */
+/* Skalen */
+document.querySelectorAll('#scaleStress .s').forEach(s=>{
+  s.addEventListener('click',()=>{
+    document.querySelectorAll('#scaleStress .s').forEach(x=>x.classList.remove('sel'));
+    s.classList.add('sel'); data.stress=+s.dataset.v;
+    validatePhase(phase);
+  });
+});
+document.querySelectorAll('#scaleSchlaf .s').forEach(s=>{
+  s.addEventListener('click',()=>{
+    document.querySelectorAll('#scaleSchlaf .s').forEach(x=>x.classList.remove('sel'));
+    s.classList.add('sel'); data.schlaf=+s.dataset.v;
+    validatePhase(phase);
+  });
+});
 document.querySelectorAll('#scaleExp .s').forEach(s=>{
   s.addEventListener('click',()=>{
     document.querySelectorAll('#scaleExp .s').forEach(x=>x.classList.remove('sel'));
     s.classList.add('sel'); data.erfahrung=+s.dataset.v;
+    applyErfahrungCascade();
     validatePhase(phase);
   });
 });
@@ -364,7 +508,10 @@ function finish(){
   // Formspree POST (Felder ohne sensible Daten)
   const payload={
     name:data.name, email:data.email, ziel:data.ziel, vak_type:data.vak,
-    erfahrung:data.erfahrung, blockaden:data.blockaden, metapher:data.metapher,
+    stress:data.stress, schlaf:data.schlaf,
+    erfahrung:data.erfahrung, erfahrung_detail:data.erfahrung_detail,
+    ziel_deep:data.ziel_deep, blockaden:data.blockaden, metapher:data.metapher,
+    format:data.format, tageszeit:data.tageszeit, haeufigkeit:data.haeufigkeit,
     empfohlene_session:prof.session+' · '+prof.audio,
     followup_fragen:fu, session_typ:data.session_typ,
     _subject:'Neues Onboarding: '+(data.name||'?')+' → '+prof.session
@@ -378,7 +525,7 @@ const i18n={de:null,en:{
   "meta.title":"Intake · mindful7777","meta.desc":"Find your ideal Sock-Anchor path in a few steps. Science-based, no esoteric BS.",
   "age.eyebrow":"ADULTS ONLY","age.h":"Are you 18 or older?","age.hint":"This intake is intended exclusively for adults.",
   "age.yes":"Yes, I'm 18+","age.no":"No","age.deny":"Sorry, this offer is for adults only. Feel free to explore the <a href=\"https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html\" style=\"color:var(--gold-deep)\">blog</a>.",
-  "eyebrow":"INTAKE · 2 MIN","h1":"Find your path","sub":"A few questions, then you'll know your matching protocol. No account needed.",
+  "eyebrow":"IN-DEPTH INTAKE","h1":"Find your path","sub":"A few more thorough questions, then you'll know your matching protocol in detail. No account needed.",
   "p1.h":"<span class=\"mono\" style=\"color:var(--gold)\">01</span> Who are you?","p1.hint":"Just the essentials — for your personal recommendation.",
   "p1.name":"First name","p1.email":"Email",
   "p2.h":"<span class=\"mono\" style=\"color:var(--gold)\">02</span> What's your main goal?","p2.hint":"Pick what fits best. This sets your path.",
@@ -388,11 +535,29 @@ const i18n={de:null,en:{
   "p2.explore.t":"Just explore","p2.explore.d":"Curiosity, first time",
   "p3.h":"<span class=\"mono\" style=\"color:var(--gold)\">03</span> How do you perceive most strongly?","p3.hint":"There's no right or wrong.",
   "p3.v.t":"Images","p3.v.d":"I see things in front of me","p3.a.t":"Sounds","p3.a.d":"I hear inner voices/music","p3.k.t":"Feelings","p3.k.d":"I feel it in my body",
-  "p4.h":"<span class=\"mono\" style=\"color:var(--gold)\">04</span> Your experience with relaxation techniques?","p4.hint":"1 = never · 5 = very experienced",
-  "p5.h":"<span class=\"mono\" style=\"color:var(--gold)\">05</span> What holds you back most right now?","p5.hint":"Keywords are fine. (e.g. little time, racing thoughts)",
-  "p6.hint":"This helps us shape your session personally.",
-  "p7.h":"<span class=\"mono\" style=\"color:var(--gold)\">07</span> How would you like to start?","p7.hint":"You can switch anytime.",
-  "p7.free.t":"Start free","p7.free.d":"Sock-Anchor basics","p7.vip.t":"VIP stack","p7.vip.d":"All 7 protocols",
+  "p4.h":"<span class=\"mono\" style=\"color:var(--gold)\">04</span> Stress & sleep right now?","p4.hint":"Two quick ratings — helps calibrate the intensity of your protocol correctly.",
+  "p4.stress.label":"Current stress level","p4.stress.hint":"1 = relaxed · 5 = very tense",
+  "p4.schlaf.label":"Sleep quality","p4.schlaf.hint":"1 = poor · 5 = very good",
+  "p5.h":"<span class=\"mono\" style=\"color:var(--gold)\">05</span> Your experience with relaxation techniques?","p5.hint":"1 = never · 5 = very experienced",
+  "p5.detail.label":"What have you tried so far?","p5.detail.hint":"Apps, hypnosis, meditation, breathing techniques – what worked, what didn't?",
+  "p7.h":"<span class=\"mono\" style=\"color:var(--gold)\">07</span> What holds you back most right now?","p7.hint":"Keywords are fine. (e.g. little time, racing thoughts)",
+  "p8.h":"<span class=\"mono\" style=\"color:var(--gold)\">08</span> Your emotional anchor","p8.hint":"This helps us shape your session personally.",
+  "p9.h":"<span class=\"mono\" style=\"color:var(--gold)\">09</span> How would you like to use your protocols?","p9.hint":"Shapes which format we recommend.",
+  "p9.audio.t":"Audio to listen to","p9.audio.d":"Guided session, easy on the go or lying down",
+  "p9.text.t":"Text to read yourself","p9.text.d":"PDF script, your own pace",
+  "p9.video.t":"Video with guidance","p9.video.d":"Moving image, some still in production",
+  "p10.h":"<span class=\"mono\" style=\"color:var(--gold)\">10</span> When do you realistically have time?","p10.hint":"Your most likely time of day.",
+  "p10.morgens.t":"Morning","p10.morgens.d":"Right after waking up",
+  "p10.mittags.t":"Midday","p10.mittags.d":"During a break",
+  "p10.abends.t":"Evening","p10.abends.d":"To wind down",
+  "p10.variabel.t":"Varies","p10.variabel.d":"No fixed rhythm",
+  "p11.h":"<span class=\"mono\" style=\"color:var(--gold)\">11</span> How often, realistically, per week?","p11.hint":"An honest estimate helps more than wishful thinking.",
+  "p11.taeglich.t":"Daily","p11.taeglich.d":"Fixed daily routine",
+  "p11.mehrmals.t":"Several times a week","p11.mehrmals.d":"3–5×",
+  "p11.einmal.t":"Once a week","p11.einmal.d":"Fixed slot",
+  "p11.unregelmaessig.t":"Irregular","p11.unregelmaessig.d":"Whenever it fits",
+  "p12.h":"<span class=\"mono\" style=\"color:var(--gold)\">12</span> How would you like to start?","p12.hint":"You can switch anytime.",
+  "p12.free.t":"Start free","p12.free.d":"Sock-Anchor basics","p12.vip.t":"VIP stack","p12.vip.d":"All 7 protocols",
   "nav.back":"Back","nav.next":"Next",
   "res.h":"Your path is set","res.sub":"Based on your answers we recommend:","res.cta":"Let's go",
   "disc":"These resources are for relaxation and personal development only. They do not replace medical or therapeutic treatment."
@@ -403,7 +568,7 @@ const defaults={};
 nodes.forEach(n=>defaults[n.getAttribute('data-i18n')]=n.tagName==='TITLE'||n.tagName==='META'?(n.content||n.textContent):n.innerHTML);
 const phDefaults={};
 phNodes.forEach(n=>phDefaults[n.getAttribute('data-i18n-ph')]=n.placeholder);
-const phEN={"p1.name.ph":"Your first name","p5.ph":"In your words …","p6.ph":"e.g. a film, a place, a song …"};
+const phEN={"p1.name.ph":"Your first name","p7.ph":"In your words …","p8.ph":"e.g. a film, a place, a song …","p5.detail.ph":"In your words …"};
 function setLang(lang){
   LANG=lang; const dict=i18n[lang];
   nodes.forEach(n=>{const k=n.getAttribute('data-i18n');const v=dict?(dict[k]??defaults[k]):defaults[k];
