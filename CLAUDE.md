@@ -49,19 +49,12 @@ Sprach-Switcher: assets/lang.js (DE/EN auf allen Seiten)
 | GitHub Pages | intelligentresponder-max.github.io/mindful7777 | Hosting |
 | Ko-fi | (entfernt 17.11.2026) | Alle Ko-fi-Links aus dem Repo entfernt; Zahlweg/Download-Auslieferung neu festlegen |
 | Throne | throne.com/mindful7777 | Wishlist / Support |
-| Stripe | Checkout via stripe-api (Vercel) | Membership + Direktzahlung, Tax |
 | Discord | FFM-777 Server | Community |
 
 Gumroad (mindful777.gumroad.com) ist abgeloest — alle Kauf-/Support-Links im
 Repo zeigen jetzt auf Ko-fi. Ausnahme: `intern/links_0.html` und
 `intern/links_2.html` verlinken bewusst noch auf das Gumroad-Verkaeufer-
 Dashboard fuer Andres eigene Verwaltung/Historie, nicht fuer Kunden.
-
-### Stripe-Backend
-Eigene Vercel-Deployment unter `stripe-api/` (Payments, Billing, Tax) —
-GitHub Pages kann keinen Secret Key/Webhook halten. Details, Deploy-Schritte
-und offene Punkte: `docs/stripe-setup.md` und `stripe-api/README.md`.
-Connect und Invoicing bewusst noch nicht gebaut (kein Bedarf aktuell).
 
 ### Aktive Produkt-Links
 - VIP Membership (77,77 €/Mo): vip.html (Ko-fi-Links entfernt 17.11.2026, Zahlweg offen)
@@ -71,7 +64,7 @@ Connect und Invoicing bewusst noch nicht gebaut (kein Bedarf aktuell).
 - eBook HTML: /sock-anchor-ebook.html (self-hosted)
 
 ### Plattform-Regeln
-- Ko-fi wird nicht mehr verlinkt (Stand 17.11.2026); neue Links nur nach Entscheidung des Zahlwegs (Stripe/Throne)
+- Ko-fi wird nicht mehr verlinkt (Stand 17.11.2026); neue Links nur nach Entscheidung des Zahlwegs (Throne o. ä.)
 - Throne für Wishlist-Items und Community-Support
 - Alle Download-Produkte: ZIP mit PDF + MP3 + README.txt
 

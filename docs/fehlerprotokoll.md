@@ -29,3 +29,13 @@ Bei jeder Methode werden Alternativen auf Nutzen / Sicherheit / neue Wege geprü
 - `blog/blog-sock-anchor-induktion-de.html` enthält Wörter der Verbotsliste (Zeile ~230).
 - Testimonial „Michael R." auf `sporthypnose(-en).html` — Echtheit/Einwilligung prüfen.
 - Startseite, VIP u. a. nutzen weiter `?lang=`-hreflang (eine URL, JS-Wechsel) — mittelfristig auf echte URLs umstellen.
+
+## 2026-11-17 (Nachtrag) — Aufräumen
+
+| # | Fehler | Ursache | Fix | Gegenmaßnahme |
+|---|--------|---------|-----|---------------|
+| 8 | Erfundene Testimonials (Sporthypnose „Michael R.", Upsell „Maximilian R.") | Platzhalter-Texte wurden als echte Stimmen veröffentlicht | Durch neutrale Einordnung ersetzt | Nur echte, freigegebene Rückmeldungen mit Einwilligung veröffentlichen |
+| 9 | `?lang=`-hreflang auf 21 Seiten + Sitemap | Eine URL, Inhalt per JS umgeschaltet: Suchmaschinen sehen keine zweite Sprache | Entfernt; echte Sprachzwillinge nur für Seiten mit eigener URL | Hreflang nur zwischen echten URLs |
+| 10 | Human-Design-Inhalte (Marken-Widerspruch), Stripe-Backend ohne Nutzung | Altlasten | Entfernt (Seite, Gästebereich-Karten, Guide-Kapitel 6, `stripe-api/`, Doku) | Verbotsliste vor jedem Release gegen das ganze Repo prüfen |
+
+Offen: Die Gratis-Leistungsbalken auf Sporthypnose („Erfahrungsbasierte Werte aus Nutzerberichten") haben keine belegte Datengrundlage. `mindful7_guide*.html` enthält nur noch Säulen 1, 2, 3 und 7.

@@ -28,7 +28,7 @@ SCAN_EXTENSIONS = {".html", ".css", ".js"}
 # Externe Domains, die wir NICHT prüfen (Payment-Links, Social etc.)
 SKIP_EXTERNAL_DOMAINS = {
     "ko-fi.com", "gumroad.com", "throne.com", "discord.gg", "discord.com",
-    "stripe.com", "paypal.com", "twitter.com", "instagram.com", "tiktok.com",
+    "paypal.com", "twitter.com", "instagram.com", "tiktok.com",
     "facebook.com", "linkedin.com", "youtube.com", "fonts.googleapis.com",
     "fonts.gstatic.com", "cdnjs.cloudflare.com", "cdn.jsdelivr.net",
     "unpkg.com", "ajax.googleapis.com", "kit.fontawesome.com",
