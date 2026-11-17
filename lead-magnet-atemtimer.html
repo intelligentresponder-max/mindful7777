@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sock-Anchor Atemtimer · mindful7777</title>
+<meta name="description" content="Das Sock-Anchor Protocol in 90 Sekunden. Teste den 4-7-8-Atemzug direkt auf der Seite.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#1B2845;--bg2:#162038;--bg3:#0f1828;--surface:#243358;
+  --gold:#D4A574;--gold2:#E8C49A;
+  --beige:#F7F4EE;
+  --text:rgba(247,244,238,.84);--muted:rgba(247,244,238,.62);
+  --border:rgba(212,165,116,.2);
+  --serif:"Playfair Display",Georgia,serif;
+  --sans:"DM Sans",system-ui,sans-serif;
+  --mono:"DM Mono",ui-monospace,monospace;
+}
+body{font-family:var(--sans);font-size:17px;line-height:1.65;background:var(--bg3);color:var(--text);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+
+/* NAV */
+nav{border-bottom:1px solid var(--border);background:var(--bg3)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:16px;padding-bottom:16px}
+.logo{font-family:var(--serif);font-size:20px;color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;background:var(--gold);color:var(--bg3);font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:.04em;border:1px solid var(--gold);border-radius:2px;cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--gold)}
+.btn.ghost:hover{background:rgba(212,165,116,.1)}
+.btn.sm{min-height:44px;padding:0 18px;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;color:var(--beige);text-wrap:balance}
+
+/* HERO */
+.hero{background:var(--bg)}
+.hero .wrap{display:flex;flex-wrap:wrap;gap:56px;align-items:center;padding-top:72px;padding-bottom:88px}
+.hero-copy{flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:24px}
+h1{font-size:clamp(44px,6.4vw,84px);line-height:1.02;letter-spacing:-.01em}
+.lead{max-width:540px;color:var(--text)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:8px}
+.micro{font-size:14px;color:var(--muted);max-width:540px}
+
+/* THETA-RING */
+.stage-col{flex:1 1 400px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:20px}
+.stage{position:relative;width:100%;max-width:460px;aspect-ratio:1/1;background:var(--bg2);border:1px solid var(--gold);overflow:hidden}
+#ring{position:absolute;inset:0;transform-origin:50% 50%}
+#ring svg{width:100%;height:100%;display:block}
+.stage-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.theta{font-family:var(--serif);font-size:96px;line-height:1;color:var(--gold)}
+#phase{font-family:var(--mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+#count{font-family:var(--mono);font-weight:500;font-size:88px;line-height:1;color:var(--beige)}
+.timer-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+#note{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.timer-help{max-width:380px;text-align:center;font-size:14px;color:var(--muted)}
+
+/* PROTOKOLL */
+section.block{border-top:1px solid var(--border)}
+section.block .wrap{padding-top:80px;padding-bottom:80px;display:flex;flex-direction:column;gap:40px}
+h2{font-size:clamp(32px,4.2vw,50px);line-height:1.1;max-width:720px}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;flex-wrap:wrap;gap:12px 32px;padding:24px 0;border-top:1px solid var(--border)}
+.step:last-child{border-bottom:1px solid var(--border)}
+.step-n{flex:0 0 56px;font-family:var(--serif);font-size:40px;line-height:1;color:var(--gold)}
+.step-body{flex:1 1 360px;min-width:0}
+.step-body h3{font-size:24px;line-height:1.25;margin-bottom:6px}
+.step-time{flex:0 0 auto;font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--muted);align-self:flex-start;padding-top:8px}
+.note21{max-width:720px;padding:20px 24px;background:var(--surface);border:1px solid var(--border)}
+
+/* PAKET */
+.pack{display:flex;flex-wrap:wrap;gap:24px}
+.pack>div{flex:1 1 260px;min-width:0;padding:28px;background:var(--bg2);border:1px solid var(--border)}
+.pack h3{font-size:22px;margin:8px 0}
+
+/* LADDER */
+.rung{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:baseline;padding:24px 0;border-top:1px solid var(--border)}
+.rung:last-child{border-bottom:1px solid var(--border)}
+.rung-main{flex:1 1 320px;min-width:0}
+.rung-main h3{font-size:22px;margin-bottom:2px}
+.rung-main p{color:var(--muted);font-size:15px}
+.price{font-family:var(--mono);font-weight:500;font-size:18px;color:var(--gold)}
+
+/* FINAL */
+.final{background:var(--surface);border-top:1px solid var(--border)}
+.final .wrap{display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between;padding-top:72px;padding-bottom:72px}
+.final h2{flex:1 1 420px;font-size:clamp(28px,3.6vw,42px)}
+
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;padding-top:32px;padding-bottom:40px;font-size:14px;color:var(--muted)}
+footer a:hover{color:var(--gold)}
+
+@media (prefers-reduced-motion:reduce){#ring{transition:none!important}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="index.html">mindful7777</a>
+    <a class="btn sm" href="https://ko-fi.com/mindf7777" target="_blank" rel="noopener">Kostenlos laden</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="tag">Sock-Anchor Protocol · Kostenlos</div>
+      <h1>Socken aus. Reset an.</h1>
+      <p class="lead">Ein fester Reiz, ein Atemprotokoll, 21 Tage Wiederholung. Das ist klassische Konditionierung nach Pawlow, messbar und reproduzierbar. 90 Sekunden jeden Abend, ohne Esoterik und ohne Vorwissen.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://ko-fi.com/mindf7777" target="_blank" rel="noopener">Sock-Anchor kostenlos laden</a>
+        <a class="btn ghost" href="#protokoll">Protokoll ansehen</a>
+      </div>
+      <p class="micro">Kein Account nötig. PDF und Audio, sofort verfügbar. Auf Ko-fi kannst du zusätzlich einen frei wählbaren Betrag hinterlassen.</p>
+    </div>
+
+    <div class="stage-col">
+      <div class="stage">
+        <div id="ring">
+          <svg viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+            <circle cx="200" cy="200" r="60"  fill="none" stroke="#D4A574" stroke-opacity=".95" stroke-width="1.5"/>
+            <circle cx="200" cy="200" r="86"  fill="none" stroke="#D4A574" stroke-opacity=".75" stroke-width="1.5"/>
+            <circle cx="200" cy="200" r="112" fill="none" stroke="#D4A574" stroke-opacity=".55" stroke-width="1.5"/>
+            <circle cx="200" cy="200" r="138" fill="none" stroke="#D4A574" stroke-opacity=".38" stroke-width="1.5"/>
+            <circle cx="200" cy="200" r="164" fill="none" stroke="#D4A574" stroke-opacity=".22" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="stage-center">
+          <div id="idle" class="theta" aria-hidden="true">θ</div>
+          <div id="live" hidden>
+            <div id="phase" aria-live="polite" style="text-align:center">Ein</div>
+            <div id="count" aria-hidden="true" style="text-align:center">4</div>
+          </div>
+        </div>
+      </div>
+      <div class="timer-row">
+        <button id="toggle" class="btn ghost" type="button">Atemzug starten</button>
+        <span id="note">Bereit</span>
+      </div>
+      <p class="timer-help">Schritt 2 des Protokolls zum Ausprobieren: 4 Sekunden ein, 7 halten, 8 aus. Einmal, 19 Sekunden.</p>
+    </div>
+  </div>
+</header>
+
+<section class="block" id="protokoll">
+  <div class="wrap">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="tag">Das Protokoll · 5 Schritte</div>
+      <h2>90 Sekunden. Jeden Abend.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-body">
+          <h3>Weiße Socken anziehen, immer dieselben</h3>
+          <p>Gleiche Socken, gleiche Tageszeit, gleicher Ort. Das ist der Reiz, an den dein Nervensystem später koppelt.</p>
+        </div>
+        <div class="step-time">00:00 · Setup</div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-body">
+          <h3>4-7-8-Atemzug, einmal</h3>
+          <p>4 Sekunden ein, 7 halten, 8 aus. Die lange Ausatmung aktiviert den Parasympathikus über den Vagus-Nerv.</p>
+        </div>
+        <div class="step-time">00:00–00:20 · Atmung</div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-body">
+          <h3>Schultern einmal nach hinten rollen</h3>
+          <p>Körperlicher Reset. Du löst die Stresshaltung und signalisierst: Der Tag ist durch.</p>
+        </div>
+        <div class="step-time">00:20–00:30 · Körper</div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-body">
+          <h3>Socken langsam und bewusst ausziehen</h3>
+          <p>Hier koppelst du Reiz und Zustand. Der Reiz trifft genau auf die Entspannung aus Schritt 2 und 3.</p>
+        </div>
+        <div class="step-time">00:30–01:00 · Kopplung</div>
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
+        <div class="step-body">
+          <h3>Innerer Satz, still gesprochen</h3>
+          <p>„Der Tag ist vorbei. Diese Zeit gehört mir.“ Du schließt die Arbeitsschleife bewusst ab.</p>
+        </div>
+        <div class="step-time">01:00–01:30 · Abschluss</div>
+      </div>
+    </div>
+    <p class="note21">Wiederholung ist die Architektur. Nach 21 Abenden mit demselben Ablauf soll der Reiz allein genügen: Socken aus, Anker gesetzt.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="tag">Dein kostenloses Paket</div>
+      <h2>Was du bekommst</h2>
+    </div>
+    <div class="pack">
+      <div>
+        <div class="tag">PDF</div>
+        <h3>Guide · 8 Seiten</h3>
+        <p>Das vollständige Protokoll, die Erklärung dahinter, Fehler-Checkliste und Progressions-Tracker.</p>
+      </div>
+      <div>
+        <div class="tag">Audio</div>
+        <h3>Geführte Session · 8 Minuten</h3>
+        <p>Atemführung und Theta-Induktion von André, sofort streambar.</p>
+      </div>
+      <div>
+        <div class="tag">Tracker</div>
+        <h3>21-Tage-Plan</h3>
+        <p>Druckbar. Abhaken, Notizen, Bewertung pro Abend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="stack">
+  <div class="wrap">
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:720px">
+      <div class="tag">Danach</div>
+      <h2>Die nächste Stufe</h2>
+      <p>Der Sock-Anchor ist der Einstieg. Wer die Kopplung nachweisbar spürt, baut den Stack darauf auf.</p>
+    </div>
+    <div>
+      <div class="rung">
+        <div class="rung-main"><h3>Sock-Anchor</h3><p>Der Einstieg. Du bist gerade hier.</p></div>
+        <div class="price">Kostenlos</div>
+      </div>
+      <div class="rung">
+        <div class="rung-main"><h3>E-Book &amp; Audio-Bundle</h3><p>Das System zum Nachlesen und Nachhören.</p></div>
+        <a class="price" href="https://ko-fi.com/mindf7777" target="_blank" rel="noopener">9,00 €</a>
+      </div>
+      <div class="rung">
+        <div class="rung-main"><h3>VIP-Stack</h3><p>Alle 7 Protokolle: Sock-Anchor, Focus-Stack, Sleep-Reset, Calm-Trigger, Peak-State, Recovery, Deep-Stack.</p></div>
+        <a class="price" href="https://ko-fi.com/mindf7777" target="_blank" rel="noopener">77,77 € / Monat</a>
+      </div>
+      <div class="rung">
+        <div class="rung-main"><h3>Ares Transformation</h3><p>VIP-Mentoring für Leute, die es ernst meinen.</p></div>
+        <a class="price" href="ares-transformation.html">Details</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Der erste Durchgang dauert 90 Sekunden.</h2>
+    <a class="btn" href="https://ko-fi.com/mindf7777" target="_blank" rel="noopener">Sock-Anchor kostenlos laden</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>mindful7777 · WHY NOT? BE THE CHANGE.</div>
+    <div><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var ring = document.getElementById('ring');
+  var idle = document.getElementById('idle');
+  var live = document.getElementById('live');
+  var lab = document.getElementById('phase');
+  var cnt = document.getElementById('count');
+  var btn = document.getElementById('toggle');
+  var note = document.getElementById('note');
+
+  // 4-7-8 wie im Protokoll: ein, halten, aus
+  var PH = [
+    { name: 'Ein',    sec: 4, scale: 1   },
+    { name: 'Halten', sec: 7, scale: 1   },
+    { name: 'Aus',    sec: 8, scale: 0.7 }
+  ];
+  var iv = null, p = 0, left = 0;
+
+  function setRing(scale, dur) {
+    ring.style.transition = 'transform ' + dur + 's cubic-bezier(.45,.05,.55,.95)';
+    ring.style.transform = 'scale(' + scale + ')';
+  }
+  function render() { lab.textContent = PH[p].name; cnt.textContent = left; }
+  function show(on) { idle.hidden = on; live.hidden = !on; }
+
+  function start() {
+    p = 0; left = PH[0].sec;
+    show(true); render();
+    setRing(PH[0].scale, PH[0].sec);
+    btn.textContent = 'Abbrechen';
+    note.textContent = 'Läuft';
+    iv = setInterval(tick, 1000);
+  }
+  function stop(done) {
+    clearInterval(iv); iv = null;
+    show(false);
+    setRing(0.86, 0.8);
+    btn.textContent = done ? 'Nochmal' : 'Atemzug starten';
+    note.textContent = done ? 'Fertig. Das war Schritt 2.' : 'Bereit';
+  }
+  function tick() {
+    left--;
+    if (left <= 0) {
+      p++;
+      if (p >= PH.length) { stop(true); return; }
+      left = PH[p].sec;
+      setRing(PH[p].scale, PH[p].sec);
+    }
+    render();
+  }
+
+  btn.addEventListener('click', function () { if (iv) stop(false); else start(); });
+  setRing(0.86, 0);
+})();
+</script>
+</body>
+</html>
