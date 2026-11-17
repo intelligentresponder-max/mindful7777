@@ -55,22 +55,6 @@ im Test, zwei Lager, Drei-Punkte-Test, zwei echte Formulierungspaare aus dem
 Textabgleich dieser Session, Sonderfall Hypnose-Skripte. `noindex`, nicht in der
 Sitemap, dezent im VIP-Mitgliederbereich verlinkt (DE+EN, `internal.link` in `vip.html`).
 
-### 2.6 · Empfehlung VIP-Zugang-Automatisierung
-**Nur eine Empfehlung, noch nicht gebaut** — Details in
-`docs/vip-zugang-automatisierung.md`. Kurzfassung: Ko-fi-Webhook → Cloudflare Worker
-zuerst (kostenlos, unabhängig vom Stripe-Rollout), Stripe-Weg erst wenn der ohnehin
-geplante Stripe-Umbau (siehe Punkt 3) angegangen wird. Das Passwort-im-Client-Problem
-bleibt in beiden Fällen bestehen (siehe Punkt 3).
-
-### 2.7 · Test: serverseitige PDF-Erzeugung
-Nur ein Test, nichts gebaut — Ergebnis in `docs/pdf-serverseitig-test.md`. Nativer
-Chromium-Druck (Puppeteer/Playwright-Äquivalent) erzeugt 77 KB mit echtem,
-durchsuchbarem Vektortext; `html2pdf.js` (der Weg, den `pdf-maker-client.html`s
-Teilen-Button nutzen würde) erzeugt 349 KB reine Rasterbilder ohne markierbaren Text.
-Bestätigt die seit Längerem bekannte Schwäche. Falls der Teilen-Weg wichtig wird: ein
-kleiner Puppeteer-Endpunkt (z. B. neben `stripe-api/` auf Vercel) wäre der nächste
-Schritt — noch nicht umgesetzt.
-
 ### 2.8 · Datenschutz-Ergänzung
 Neuer Abschnitt 9 „Onboarding-Fragebogen (E-Mail-Versand)" in `datenschutz.html`
 (Zweck, Empfänger, Rechtsgrundlage inkl. Art. 9 DSGVO für die Gesundheitsangaben aus
@@ -110,11 +94,6 @@ das geht aktuell ins Leere. Frühere Übergaben sagten, der Inhalt läge bei And
 Download („war leer, jetzt vollständig") — im Repo ist davon nichts angekommen. Vor der
 nächsten größeren Text-Session lohnt sich ein Blick, ob diese beiden Dateien
 tatsächlich befüllt werden sollen.
-
-**Stripe-Backend nicht deployed.** `assets/stripe-checkout.js` hat weiterhin nur den
-Platzhalter `STRIPE_API_BASE = "https://REPLACE-WITH-YOUR-STRIPE-API-DOMAIN"`,
-`vip.html` bindet das Script noch nicht ein. Vollständige Deploy-Checkliste in
-`docs/stripe-setup.md` — unverändert offen, in dieser Session nicht angefasst.
 
 **VIP-Zugang-Automatisierung nicht gebaut** (nur Empfehlung, siehe 2.6).
 

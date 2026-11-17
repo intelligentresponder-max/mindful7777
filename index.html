@@ -217,6 +217,7 @@
   <div class="price" data-i18n="cta.price">VIP-Stack: ✉ Auf Anfrage</div>
   <div class="pill-row">
     <a class="btn-magic cta-btn" href="https://intelligentresponder-max.github.io/mindful7777/vip.html" data-i18n="cta.btn2">Alle 7 Protokolle</a>
+    <a class="btn-magic cta-btn" id="guide-link" href="stack-guide.html" data-i18n="cta.btn3">Gratis-Guide: 7-Protokolle-Stack</a>
   </div>
 </section>
 
@@ -269,7 +270,7 @@ const i18n = {
     "cta.h":"Start with the protocol. Scale when ready.",
     "cta.p":"Once your protocol is set, only one question remains: which entry point fits your day — the Sock-Anchor alone or the complete stack? The more clearly you decide that up front, the smoother the implementation.",
     "cta.price":"VIP stack: ✉ on request",
-    "cta.btn1":"Protocol","cta.btn2":"All 7 protocols",
+    "cta.btn1":"Protocol","cta.btn2":"All 7 protocols","cta.btn3":"Free guide: the 7-protocol stack",
     "disc":"Note: mindful7777 is for information and relaxation and does not replace medical or therapeutic treatment."
   }
 };
@@ -286,6 +287,7 @@ function setLang(lang){
     else{n.innerHTML=v;}
   });
   document.documentElement.lang=lang;
+  const gl=document.getElementById('guide-link');if(gl)gl.setAttribute('href',lang==='en'?'stack-guide-en.html':'stack-guide.html');
   document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang?'true':'false'));
 }
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));

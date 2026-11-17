@@ -74,11 +74,6 @@ Navigation auf die real vorhandenen Dateien im Root umbiegen.
 Aktueller Zustand: `vip.html` verspricht „Passwort per Mail", Ko-fi verschickt aber
 nichts automatisch — André tippt jede Mail von Hand.
 
-Zwei Wege durchdenken und mir empfehlen, welcher zu einer statischen Pages-Seite passt:
-1. Ko-fi-Webhook auf einen kleinen Endpunkt (Cloudflare Worker o. ä.), der die Mail auslöst
-2. Umstieg auf Stripe Payment Links mit automatischer Zustellung, sobald das neue Konto
-   `acct_1U5HoDRFsSeIZjZL` aus dem Testmodus ist
-
 Das Passwort in `vip.html` liegt im Client-Code — das ist Zugangsschutz light, kein
 echter Schutz. Bitte in der Empfehlung mitbewerten.
 

@@ -141,10 +141,6 @@ CTA: "Jetzt kostenlos downloaden" → Email erforderlich
 
 **Verkaufs-Seite (vip.html erweitert):**
 
-```html
-<!-- Nach Stripe-Button einfügen -->
-<section class="pricing">
-  <h2>Wähle deinen Zugang</h2>
   
   <div class="price-card">
     <h3>Single Access</h3>
@@ -169,11 +165,6 @@ CTA: "Jetzt kostenlos downloaden" → Email erforderlich
   </div>
 </section>
 ```
-
-**Stripe-Setup (3 Produkte):**
-1. Dashboard → Produkte → "VIP Single" (7€, einmalig)
-2. "VIP Monthly" (17€/Monat, Abo)
-3. "VIP Lifetime" (77€, einmalig)
 
 ---
 
@@ -269,13 +260,6 @@ Nach Download des Lead Magnets → 7 Emails in 14 Tagen:
 - ✅ Mailchimp + Gumroad Setup
 - **Ziel:** 100 Email-Adressen
 
-### **Monat 2: Traffic**
-- ✅ 8 YouTube-Videos
-- ✅ 24 Shorts/Reels
-- ✅ WhatsApp-Gruppe starten
-- ✅ Erste VIP-Sales (Stripe Live)
-- **Ziel:** 500 Emails | 10 VIP-Käufe (170€)
-
 ### **Monat 3: Scale**
 - ✅ Facebook-Gruppe Launch
 - ✅ Erstes Live-Webinar (Upsell zu Custom Session)
@@ -341,12 +325,6 @@ wenden Sie sich bitte an qualifizierte Fachkräfte."
 Autofahren, Bedienen von Maschinen oder in Situationen, die Ihre 
 volle Aufmerksamkeit erfordern.
 ```
-
-### **Datenschutz-Konformität:**
-- ✅ Mailchimp: DSGVO-konform (EU-Server)
-- ✅ Gumroad: GDPR-compliant
-- ✅ Stripe: EU-Datenschutzrahmen
-- ✅ Throne: Standard Contractual Clauses (SCC)
 
 ---
 

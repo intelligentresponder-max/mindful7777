@@ -44,10 +44,6 @@ Ausgeführt wurde `AUFTRAG-CLAUDE-CODE.md` Schritt 0 (Stand prüfen), dann auf Z
 - `CLAUDE.md` aktualisiert: Gumroad aus der Plattform-Tabelle entfernt, Ko-fi als alleinige Produkt-/Membership-Plattform dokumentiert
 - **Nebenbei gefunden und mitkorrigiert:** 5 weitere Stellen mit dem alten Preis „25 €/Monat" statt 77,77 € (`blog/fernsitzungen.html`, `blog/index.html`, beide Sock-Anchor-Induktionsartikel, `sock-anchor-ebook.html`, `sock-anchor-protocol.html`); ein „EINZELSITZUNG BUCHEN"-Button in `blog/index.html`, der fälschlich auf Ko-fi statt auf den WhatsApp-Buchungslink zeigte (gleicher Bug wie zuvor in `ares-transformation-en.html`, dort auch behoben)
 
-### 2.4 Ko-fi-Hinweis auf allen Haupt-CTAs
-Unter jedem primären Ko-fi-Kauf-/Support-Button steht jetzt: *„Tipp: Auf Ko-fi kannst du auch einen frei wählbaren Betrag als Geschenk hinterlassen."* (DE/EN). In `vip.html` sauber über das bestehende `data-i18n`-System eingebaut (neue Keys `hero.kofiTip`, `price.kofiTip`, `stripe.kofiTip`), auf den restlichen 15 Seiten als eigenes kleines Textelement direkt unter dem Button.
-Bewusst ausgelassen: Footer-Links, Logo-/Marken-Links, JS-Konfigwerte (Glücksrad-Gewinne), Member-Area-Aktionen (Download/Discord-Anfrage im geschützten Bereich von `vip.html`) — dort passt der Hinweis inhaltlich nicht oder das Layout ließe es nicht sinnvoll zu.
-
 ### 2.5 Commit-Übersicht (neueste zuerst)
 | Commit | Inhalt |
 |---|---|
@@ -173,15 +169,8 @@ Alle URLs mit vollem Pfad unter `https://intelligentresponder-max.github.io/mind
 
 ## 6. Offene Punkte für die nächste Session
 
-**Aus dem ursprünglichen Auftrag noch nicht bearbeitet:**
-- Schritt 4 — VIP-Zugang automatisieren (Ko-fi-Webhook vs. Stripe Payment Links, Passwort liegt aktuell im Client-Code)
-- Schritt 5 — PDF-Erzeugung serverseitig prüfen (Puppeteer/WeasyPrint vs. `pdf-maker-client.html`, das weiterhin fehlt — nur `PDF-MAKER.md` wurde nachgereicht)
-
 **Neu in dieser Session aufgefallen:**
 - Fehlende Ko-fi-Produktlinks für die drei alten Gumroad-Slugs (siehe 2.3)
 - SEO-Lücken aus Abschnitt 4, größter Hebel: `og:image` fehlt komplett
 - `pdf-maker-client.html` (intern, für Klientendokumente) ist weiterhin nicht im Repo
 
-**Zahlungen (unverändert aus der Vorgänger-Übergabe):**
-- Stripe-Konto „mindful7777" (`acct_1U5HoDRFsSeIZjZL`) steht im Testmodus
-- Ko-fi verschickt kein automatisches VIP-Passwort — Versand aktuell manuell

@@ -58,30 +58,7 @@ Diese zwei Stücke sind zu spezifisch für mindful7777s Setup, um sie blind
 rüberzukopieren — aber falls Sneaks4seek sie später mal braucht, ist hier, wo man
 nachschaut:
 
-- **GitHub-Actions-Pages-Deploy** (`.github/workflows/deploy.yml` in diesem Repo).
-  Sneaks4seek deployt Pages aktuell **nicht** über Actions, sondern über die native
-  GitHub-Pages-Einstellung (Settings → Pages → Branch `main`, Root) — steht so in
-  Sneaks4seeks eigenem README. Das funktioniert genauso gut für ein Repo ohne
-  Build-Schritt. Es gibt keinen Grund, das umzustellen, nur weil mindful7777 es
-  anders macht. `deploy-browser-tool` funktioniert mit **beiden** Deploy-Wegen
-  identisch — der Skill pusht und prüft danach nur die Erreichbarkeit der URL, ihm
-  ist egal, welcher Mechanismus dahinter deployt.
-- **Stripe-Backend-Muster** (`stripe-api/` in diesem Repo — Vercel, serverless
-  Functions, Payments/Billing/Tax). Sneaks4seek hat ein komplett anderes
-  Backend-Bedürfnis (Google Apps Script für Formular + Datei-Uploads, kein
-  Zahlungsfluss aktuell). Falls das Sneaker-Projekt irgendwann einen Checkout
-  braucht, ist `stripe-api/README.md` in diesem Repo die Vorlage, wie so ein
-  separat deploytes Backend neben einer reinen GitHub-Pages-Seite aufgebaut wird —
-  aber das ist ein bewusster Zukunfts-Schritt, kein Teil dieser Übertragung.
-
 ### 2.3 · Was bewusst draußen bleibt
-
-`CLAUDE.md` (Brand-Regeln, ACCIO-Design-System), `knowledge/` (Verbotsliste,
-Markenrichtlinie, Glossar), `assets/style.css` + `assets/lang.js` (mindful7777s
-eigenes Design/i18n, Sneaks4seek hat mit `theme.css`/`components.css` sein eigenes),
-`tools/trance-forge/` (Hypnose-spezifisches Tool, für ein Sneaker-Onboarding
-irrelevant), alle Produktseiten, Ko-fi/Stripe-Preise, VIP-Bereich. Keins davon hat
-im Sneaker-Kontext eine Funktion.
 
 ---
 
@@ -166,13 +143,3 @@ Diese drei Punkte sind bewusst nicht Teil der automatischen Übertragung, weil s
 echte Produktentscheidungen für das Sneaker-Projekt sind, keine reinen
 Engineering-Fragen:
 
-- **Stripe-Backend-Muster übernehmen?** Nur relevant, falls Sneaks4seek einen
-  Zahlungsfluss bekommt. Aktuell nicht der Fall (Google Apps Script reicht für
-  Formular + Upload). Vorher mit André klären, nicht vorgreifen.
-- **GitHub-Actions-Pages-Deploy übernehmen?** Kein technischer Vorteil gegenüber der
-  aktuellen nativen Pages-Einstellung, solange kein Build-Schritt dazukommt. Nur
-  sinnvoll, falls Sneaks4seek irgendwann z. B. einen JS-Bundler oder eine
-  Testsuite bekommt, die vor jedem Deploy laufen soll.
-- **`trance-forge` selbst nach Sneaks4seek bringen?** Nein, außer jemand hat einen
-  konkreten Anwendungsfall für Sprachaufnahme im Sneaker-Projekt genannt. Ohne
-  konkreten Bedarf bleibt es, wo es ist.

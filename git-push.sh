@@ -54,7 +54,6 @@ git commit -m "🎯 SEO-Optimierung + Impressum-Absicherung + Monetarisierung
 - Doppelklick-Schutz gegen automatisches Scraping
 - JavaScript-Sicherheitsabfrage vor Daten-Anzeige
 
-✅ Stripe Buy Button Integration:
 - Embedded Widget in vip.html
 - Fallback Payment Link
 - Throne Wishlist verlinkt

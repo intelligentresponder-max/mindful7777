@@ -98,8 +98,8 @@
   .qr-label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,240,236,.25)}
   .join-form{display:flex;max-width:480px;margin:0 auto 0}
   .join-input{flex:1;background:var(--glass);border:1px solid var(--glass-border);border-right:none;color:var(--white);padding:16px 20px;font-family:'Space Mono',monospace;font-size:.85rem;outline:none}
-  .stripe-note{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;opacity:.25;text-transform:uppercase;margin-top:16px;display:block}
-  .stripe-note a{color:var(--ice);opacity:.6;border-bottom:1px solid rgba(126,232,250,.2);text-decoration:none}
+  .pay-note{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;opacity:.25;text-transform:uppercase;margin-top:16px;display:block}
+  .pay-note a{color:var(--ice);opacity:.6;border-bottom:1px solid rgba(126,232,250,.2);text-decoration:none}
   footer{border-top:1px solid var(--glass-border);padding:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
   .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.15em}
   .footer-logo span{color:var(--orange)}
@@ -185,7 +185,7 @@
     </div>
   </div>
 
-  <!-- ── JOIN SECTION with QR + Stripe ── -->
+  <!-- ── JOIN SECTION with QR ── -->
   <div class="join-section" id="join">
     <p class="section-label">Exklusiv</p>
     <h2 class="join-title">JOIN<br><span>THE CLUB</span></h2>
@@ -204,12 +204,6 @@
 
       <!-- Buttons -->
       <div class="join-btns">
-        <!-- STRIPE VIP -->
-        <a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00"
-           class="btn-primary" target="_blank" rel="noopener"
-           style="width:280px;text-align:center;">
-          🔥 VIP WERDEN — STRIPE
-        </a>
         <!-- GUMROAD -->
         <a href="https://mindful777.gumroad.com"
            class="btn-ghost" target="_blank" rel="noopener"
@@ -222,7 +216,7 @@
            style="width:280px;text-align:center;border-color:rgba(126,232,250,.3);color:var(--ice);">
           📅 EINZELSITZUNG BUCHEN
         </a>
-        <span class="stripe-note">
+        <span class="pay-note">
           Sichere Zahlung · Jederzeit kündbar ·
           <a href="https://mindful777.gumroad.com" target="_blank">Support our work →</a>
         </span>
@@ -244,7 +238,7 @@
       <li><a href="../impressum.html">Impressum</a></li>
       <li><a href="../datenschutz.html">Datenschutz</a></li>
       <li><a href="https://mindful777.gumroad.com" target="_blank">Gumroad</a></li>
-      <li><a href="https://buy.stripe.com/eVqcN72Vd0EK5LHdSwbwk00" target="_blank">VIP</a></li>
+      <li></li>
     </ul>
     <p class="footer-copy">© 2026 Ares Transformation · mindful7777</p>
   </footer>
