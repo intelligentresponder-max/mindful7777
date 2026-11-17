@@ -67,7 +67,8 @@ input[type=range]{accent-color:var(--cu);flex:1;min-width:100px}
 .r3 fieldset{border:1px solid var(--line);border-radius:8px;margin:0;padding:8px 10px 10px;min-width:0}
 .r3 legend{font:600 .64rem 'DM Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--cu);padding:0 6px}
 .r3 label{display:block;margin:6px 0 0;flex:none}
-.r3 input{width:100%;margin-top:3px;min-width:0}
+.r3 input,.r3 select{width:100%;margin-top:3px;min-width:0}
+.mini{flex:0 1 auto}
 details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);min-height:32px}
 .drop{border:1.5px dashed rgba(79,209,197,.45);border-radius:10px;padding:18px;text-align:center;color:var(--mut);font-size:.85rem;display:flex;flex-direction:column;gap:10px;align-items:center;transition:background .2s,border-color .2s}
 .drop.over{background:rgba(79,209,197,.12);border-color:var(--cy);color:var(--txt)}
@@ -154,6 +155,11 @@ details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);
         </label>
       </div>
     </div>
+    <details><summary data-i="cued.sum">Textbausteine bearbeiten</summary>
+      <p class="note" style="margin:8px 0" data-i="cued.hint"></p>
+      <div id="cued"></div>
+      <div class="row" style="margin-top:10px"><button class="p" id="cued-save" data-i="ed.save">Speichern</button><button class="d" id="cued-reset" data-i="ed.reset">Original wiederherstellen</button></div>
+    </details>
   </section>
 
   <section class="wide">
@@ -164,16 +170,46 @@ details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);
       <button class="p" id="snext" data-i="next">Weiter ▶</button>
       <span id="spos" style="font-size:.8rem;color:var(--mut)"></span>
     </div>
+    <div class="row" style="margin-top:8px">
+      <label style="flex:0 1 auto"><span data-i="slang">Anzeige</span>
+        <select id="slang"><option value="orig" data-i="slang.orig">Original</option><option value="de">Deutsch</option><option value="en">English</option></select></label>
+      <button id="sedit" data-i="ed.open">Bearbeiten</button>
+      <span class="note" id="smode" style="flex:1;border:0;padding:0"></span>
+    </div>
+    <div id="editor" hidden style="margin-top:12px;border:1px solid var(--line);border-radius:8px;padding:12px">
+      <div class="r3">
+        <label><span data-i="up.f.title">Titel</span><input type="text" id="ed-title"></label>
+        <label><span data-i="up.f.lang">Sprache</span><select id="ed-lang"><option value="de">Deutsch</option><option value="en">English</option></select></label>
+        <label><span data-i="up.f.mode">Verwendung</span><select id="ed-mode"><option value="A" data-i="mode.A">A</option><option value="B" data-i="mode.B">B</option></select></label>
+      </div>
+      <label style="display:block;flex:none"><span data-i="ed.main">Schritte</span><textarea id="ed-main" rows="10" spellcheck="false"></textarea></label>
+      <label style="display:block;flex:none;margin-top:8px"><span data-i="ed.alt">Übersetzung</span><textarea id="ed-alt" rows="6" spellcheck="false"></textarea></label>
+      <p class="note" style="margin:8px 0" data-i="ed.hint"></p>
+      <div class="row"><button class="p" id="ed-save" data-i="ed.save">Speichern</button><button id="ed-cancel" data-i="ed.cancel">Abbrechen</button><button class="d" id="ed-reset" data-i="ed.reset" hidden>Original wiederherstellen</button></div>
+    </div>
     <p class="note" style="margin:10px 0" data-i="scripthint"></p>
     <div class="steps" id="steplist"></div>
   </section>
 
   <section class="wide">
-    <h2 data-i="up.title">Text hochladen</h2>
-    <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload">
-      <span data-i="up.drop">Dateien hierher ziehen</span>
-      <button class="p" id="upbtn" data-i="up.choose">Datei wählen</button>
+    <h2 data-i="up.title">Text hinzufügen</h2>
+    <div class="r3">
+      <label><span data-i="up.f.title">Titel (optional)</span><input type="text" id="up-title"></label>
+      <label><span data-i="up.f.lang">Sprache des Textes</span><select id="up-lang"><option value="auto" data-i="lang.auto">automatisch</option><option value="de">Deutsch</option><option value="en">English</option></select></label>
+      <label><span data-i="up.f.mode">Verwendung</span><select id="up-mode"><option value="A" data-i="mode.A">A</option><option value="B" data-i="mode.B">B</option></select></label>
+      <label><span data-i="up.f.split">Aufteilung</span><select id="up-split"><option value="auto" data-i="split.auto">automatisch</option><option value="lines" data-i="split.lines">nach Zeilen</option><option value="sent" data-i="split.sent">nach Sätzen</option></select></label>
+    </div>
+    <textarea id="up-text" rows="6" data-ip="up.paste" data-ia="up.paste"></textarea>
+    <details><summary data-i="up.alt.sum">Übersetzung (optional)</summary>
+      <textarea id="up-alt" rows="5" spellcheck="false" data-ia="up.alt.sum"></textarea></details>
+    <div class="row" style="margin-top:8px">
+      <button class="p" id="up-add" data-i="up.add">Hinzufügen</button>
+      <button id="upbtn" data-i="up.choose">Datei wählen</button>
+      <button id="upexport" data-i="up.export">Alle sichern (JSON)</button>
       <input type="file" id="upfile" multiple accept=".txt,.md,.json,text/plain,text/markdown,application/json" hidden>
+    </div>
+    <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload" style="margin-top:10px">
+      <span data-i="up.drop">Dateien hierher ziehen</span>
     </div>
     <p class="note" style="margin:10px 0" data-i="up.hint"></p>
     <div class="row" id="uplist"></div>
@@ -253,6 +289,14 @@ const I18N = {
     'r3.schema':'JSON passt nicht zum Schema: ', 'r3.applied':'JSON übernommen. Jetzt „Zusammensetzen“.', 'r3.badjson':'Kein gültiges JSON: ', 'r3.copied':'JSON kopiert (steht auch im Feld unter „JSON einfügen“).', 'r3.nocopy':'Kopieren nicht erlaubt – JSON steht im Feld unter „JSON einfügen“.',
     'sec.flow':'Ablauf · Profil Good Boys', 'flow.lang':'Sprache des Ablaufs', 'flow.de':'Deutsch', 'flow.en':'English', 'flow.both':'Beide', 'flow.control':'Steuerung',
     'flow.guide':'Ich steuere', 'flow.self':'Person tippt selbst', 'flow.start':'Ablauf starten', 'flow.end':'Ablauf beenden', 'flow.none':'Nicht gestartet', 'flow.over':'Ende des Ablaufs', 'flow.selfpick':'Person wählt selbst …'
+    ,'up.title':'Text hinzufügen', 'up.paste':'Text hier einfügen (Copy & Paste), ganzes Skript oder einzelne Fragmente …', 'up.f.title':'Titel (optional)', 'up.f.lang':'Sprache des Textes', 'lang.auto':'automatisch erkennen',
+    'up.f.mode':'Verwendung', 'mode.A':'A · Session-Text (Fragmente oder ganzes Skript)', 'mode.B':'B · Worte des Gegenübers (als Zitat)', 'up.f.split':'Aufteilung', 'split.auto':'automatisch', 'split.lines':'nach Zeilen', 'split.sent':'nach Sätzen',
+    'up.alt.sum':'Übersetzung in der anderen Sprache (optional, eine Zeile je Schritt, gleiche Reihenfolge)', 'up.add':'Hinzufügen', 'up.export':'Alle sichern (JSON)', 'up.none':'Bitte Text einfügen oder Datei wählen.', 'up.imp':'Sicherung importiert ({n} Teile).',
+    'up.hint':'Eingefügter Text oder Dateien (.txt, .md, .json): Zeilen = Schritte, lange Absätze werden in Sätze geteilt, TranceScript-Format (>>, Phasen, [3~]) wird erkannt. Alles bleibt in diesem Browser gespeichert wie die ersten Skripte; „Alle sichern“ erzeugt eine JSON-Datei zum Übertragen auf andere Geräte. Max. 500 KB je Datei.',
+    slang:'Anzeige', 'slang.orig':'Original', 'ed.open':'Bearbeiten', 'ed.main':'Schritte (# Phase · ~Tempo~ · ⚓ Anker · // Echo · [3~] Pause am Zeilenende)', 'ed.alt':'Übersetzung (eine Zeile je Schritt, gleiche Reihenfolge)', 'ed.save':'Speichern', 'ed.cancel':'Abbrechen', 'ed.reset':'Original wiederherstellen',
+    'ed.hint':'Änderungen bleiben in diesem Browser gespeichert. „Anzeige“ wählt, in welcher Sprache der Text eingeblendet wird (nur wenn eine Übersetzung hinterlegt ist).', 'ed.saved':'Gespeichert.', 'ed.reseted':'Original wiederhergestellt.', smodeA:'A: Text wird unverändert eingeblendet.', smodeB:'B: Worte des Gegenübers werden als Zitat eingeblendet.',
+    'cued.sum':'Textbausteine bearbeiten', 'cued.hint':'Eine Zeile = ein Knopf, Deutsch und Englisch getrennt.', 'cued.saved':'Textbausteine gespeichert.', 'cued.reseted':'Textbausteine zurückgesetzt.'
+
   },
   en: {
     title:'Control panel', black:'Black', stop:'Stop all',
@@ -278,6 +322,14 @@ const I18N = {
     'r3.schema':'JSON does not match the schema: ', 'r3.applied':'JSON applied. Now press "Assemble".', 'r3.badjson':'Not valid JSON: ', 'r3.copied':'JSON copied (also in the field under "Paste JSON").', 'r3.nocopy':'Copying not allowed – the JSON is in the field under "Paste JSON".',
     'sec.flow':'Flow · profile Good Boys', 'flow.lang':'Flow language', 'flow.de':'German', 'flow.en':'English', 'flow.both':'Both', 'flow.control':'Control',
     'flow.guide':'I control', 'flow.self':'Person taps themselves', 'flow.start':'Start flow', 'flow.end':'End flow', 'flow.none':'Not started', 'flow.over':'End of flow', 'flow.selfpick':'Person is choosing …'
+    ,'up.title':'Add text', 'up.paste':'Paste text here (copy & paste), a whole script or single fragments …', 'up.f.title':'Title (optional)', 'up.f.lang':'Language of the text', 'lang.auto':'detect automatically',
+    'up.f.mode':'Use', 'mode.A':'A · Session text (fragments or whole script)', 'mode.B':'B · Words of the other person (as quote)', 'up.f.split':'Splitting', 'split.auto':'automatic', 'split.lines':'by lines', 'split.sent':'by sentences',
+    'up.alt.sum':'Translation in the other language (optional, one line per step, same order)', 'up.add':'Add', 'up.export':'Back up all (JSON)', 'up.none':'Please paste text or choose a file.', 'up.imp':'Backup imported ({n} parts).',
+    'up.hint':'Pasted text or files (.txt, .md, .json): lines = steps, long paragraphs are split into sentences, TranceScript format (>>, phases, [3~]) is recognised. Everything stays in this browser like the first scripts; "Back up all" creates a JSON file to move it to other devices. Max. 500 KB per file.',
+    slang:'Display', 'slang.orig':'Original', 'ed.open':'Edit', 'ed.main':'Steps (# phase · ~tempo~ · ⚓ anchor · // echo · [3~] pause at line end)', 'ed.alt':'Translation (one line per step, same order)', 'ed.save':'Save', 'ed.cancel':'Cancel', 'ed.reset':'Restore original',
+    'ed.hint':'Changes stay in this browser. "Display" chooses the language shown to the person (only if a translation is stored).', 'ed.saved':'Saved.', 'ed.reseted':'Original restored.', smodeA:'A: text is shown unchanged.', smodeB:'B: words of the other person are shown as a quote.',
+    'cued.sum':'Edit text snippets', 'cued.hint':'One line = one button, German and English separate.', 'cued.saved':'Snippets saved.', 'cued.reseted':'Snippets reset.'
+
   }
 };
 let ui = store.get('hd-ui', (navigator.language || 'de').toLowerCase().startsWith('en') ? 'en' : 'de');
@@ -330,7 +382,7 @@ function buildCues(){
   CUES.texts.forEach((g, i) => {
     const h = document.createElement('h3'); h.textContent = L(g); $('texts').appendChild(h);
     const r = document.createElement('div'); r.className = 'row'; r.id = 'tg' + i; $('texts').appendChild(r);
-    (ui === 'en' && g.itemsEn ? g.itemsEn : g.items).forEach(t => btn('tg' + i, t, () => sendText(t)));
+    cueItems(g, i, ui).forEach(t => btn('tg' + i, t, () => sendText(t)));
   });
   ['images','videos','audios'].forEach(g => mark(g, act[g]));
 }
@@ -346,7 +398,7 @@ function stopAll(){ send({type:'videostop'}); send({type:'audiostop'}); send({ty
 $('stop').onclick = stopAll;
 addEventListener('keydown', e => { if (e.key === 'Escape') stopAll(); });
 
-// ================= Skripte (Parser, Schrittsteuerung) =================
+// ================= Skripte =================
 function parseScript(md){
   const out = {title:'', steps:[]}; let phase = '', tempo = '', anchor = '';
   md.split(/\r?\n/).forEach(raw => {
@@ -366,25 +418,48 @@ function parseScript(md){
   });
   return out;
 }
-const SC = {}, TITLES = {}; let steps = [], cur = -1, curId = null;
-function addScript(id, title, st, tkey){ SC[id] = {title, steps:st, tkey}; const sel = $('scriptsel'); let o = [...sel.options].find(x => x.value === id); if (!o) { o = document.createElement('option'); o.value = id; sel.appendChild(o); } o.textContent = tkey ? T(tkey) : title; }
-function useScript(id){ curId = id; steps = SC[id] ? SC[id].steps : []; cur = -1; $('scriptsel').value = id; renderSteps(); }
+const SC = {}; let steps = [], cur = -1, curId = null;
+let slang = store.get('hd-slang', 'orig'); if (!['orig', 'de', 'en'].includes(slang)) slang = 'orig';
+const ED = (() => { try { return JSON.parse(store.get('hd-edits', '{}')) || {}; } catch (e) { return {}; } })();
+let CED = {}; try { CED = JSON.parse(store.get('hd-cues', '{}')) || {}; } catch (e) { CED = {}; }
+const UPKEY = 'hd-uploads', MAXB = 500 * 1024, MAXSTEPS = 500;
+const detectLang = t => { const de = (t.match(/\b(und|der|die|das|nicht|ich|du|ist|mit|ein|eine|zu|auf|wie|dein|deine|dich|dir|wir|sie)\b/gi) || []).length, en = (t.match(/\b(the|and|you|your|is|are|to|of|with|as|in|on|into|we|it)\b/gi) || []).length; return de > en ? 'de' : 'en'; };
+const tagOf = sc => (sc.lang ? '[' + sc.lang.toUpperCase() + ']' : '') + (sc.mode === 'B' ? ' ·B' : '');
+const labelOf = id => { const sc = SC[id]; return sc.tkey ? T(sc.tkey) : (sc.builtin ? '' : '↑ ') + sc.title + ' ' + tagOf(sc); };
+function addScript(id, title, st, tkey, meta){
+  meta = meta || {};
+  SC[id] = {title, steps:st, tkey, lang:meta.lang || '', mode:meta.mode || 'A', builtin:!!meta.builtin, orig:meta.orig};
+  const sel = $('scriptsel'); let o = [...sel.options].find(x => x.value === id);
+  if (!o) { o = document.createElement('option'); o.value = id; sel.appendChild(o); }
+  o.textContent = labelOf(id);
+}
+function applyEdit(id){ const e = ED[id], sc = SC[id]; sc.title = e.title; sc.lang = e.lang; sc.mode = e.mode; sc.steps = e.steps; const o = [...$('scriptsel').options].find(x => x.value === id); if (o) o.textContent = labelOf(id); }
+function useScript(id){ curId = SC[id] ? id : null; steps = curId ? SC[id].steps : []; cur = -1; if (curId) $('scriptsel').value = id; renderSteps(); }
+function quote(t, l){ return l === 'en' ? '“' + t + '”' : '„' + t + '“'; }
+function stepOut(st){
+  const sc = SC[curId] || {}; let t = st.text, l = sc.lang || 'de';
+  if (slang !== 'orig' && sc.lang && sc.lang !== slang && st.alt) { t = st.alt; l = slang; }
+  return sc.mode === 'B' ? quote(t, l) : t;
+}
 function renderSteps(){
-  const Lst = $('steplist'); Lst.innerHTML = ''; let ph = null;
+  const Lst = $('steplist'); Lst.innerHTML = ''; let ph = null; const sc = SC[curId];
   steps.forEach((st, i) => {
     if (st.phase !== ph) { ph = st.phase; const h = document.createElement('h3'); h.textContent = ph || T('sec.script'); Lst.appendChild(h); }
     const b = document.createElement('button'); b.className = 'step'; b.id = 'st' + i;
     const n = document.createElement('i'); n.textContent = i + 1; b.appendChild(n);
     const t = document.createElement('span'); t.textContent = st.text; b.appendChild(t);
+    if (st.alt) { const a = document.createElement('small'); a.style.cssText = 'display:block;color:var(--mut)'; a.textContent = st.alt; t.appendChild(a); }
     const chip = (txt, cls) => { const e = document.createElement('em'); e.textContent = txt; if (cls) e.className = cls; t.appendChild(e); };
     if (st.echo) chip(T('echo')); if (st.tempo) chip(st.tempo); if (st.anchor) chip(T('anchor') + st.anchor, 'a'); if (st.pause) chip(st.pause + T('pause'));
     b.onclick = () => go(i); Lst.appendChild(b);
   });
   $('spos').textContent = steps.length ? '0 / ' + steps.length : T('empty');
+  $('sedit').disabled = !sc || !!sc.tkey; $('smode').textContent = sc ? T('smode' + sc.mode) : '';
+  if (!$('editor').hidden && (!sc || sc.tkey)) $('editor').hidden = true;
 }
 function go(i){
   if (!steps.length) return; i = Math.max(0, Math.min(steps.length - 1, i)); cur = i;
-  sendText(steps[i].text, steps[i].pause);
+  sendText(stepOut(steps[i]), steps[i].pause);
   document.querySelectorAll('#steplist .step').forEach(x => x.classList.remove('on'));
   const el = $('st' + i); el.classList.add('on'); el.scrollIntoView({block:'nearest'});
   $('spos').textContent = (i + 1) + ' / ' + steps.length;
@@ -392,36 +467,132 @@ function go(i){
 $('snext').onclick = () => go(cur + 1);
 $('sprev').onclick = () => go(cur - 1);
 $('scriptsel').onchange = e => useScript(e.target.value);
+$('slang').value = slang; $('slang').onchange = e => { slang = e.target.value; store.set('hd-slang', slang); };
 addEventListener('keydown', e => { if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.closest('[role=tablist]')) return; if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); } });
-(window.SCRIPTS || []).forEach(x => { const p = parseScript(x.md); addScript(x.id, p.title || x.id, p.steps); });
+(window.SCRIPTS || []).forEach(x => { const p = parseScript(x.md); const meta = {lang:'en', mode:'A', builtin:true, orig:{title:p.title || x.id, lang:'en', mode:'A', steps:JSON.parse(JSON.stringify(p.steps))}};
+  addScript(x.id, p.title || x.id, p.steps, null, meta); if (ED[x.id] && Array.isArray(ED[x.id].steps)) applyEdit(x.id); });
 addScript('own', '', [], 'own'); addScript('gen', '', [], 'gen');
 $('loadown').onclick = () => { const st = $('free').value.split(/\r?\n/).map(x => x.trim()).filter(Boolean).map(t => ({phase:T('own'), tempo:'', anchor:'', echo:false, pause:0, text:t})); addScript('own', '', st, 'own'); useScript('own'); };
 
-// ================= Upload (txt / md / json), Drag & Drop, bleibt im Browser gespeichert =================
-const UPKEY = 'hd-uploads', MAXB = 500 * 1024, MAXSTEPS = 500;
+// ----- Schritte <-> Text (Editor) -----
+function serialize(st){
+  const out = []; let ph = null, tp = '';
+  st.forEach(s => {
+    if (s.phase !== ph) { ph = s.phase; if (ph) out.push('# ' + ph); }
+    if ((s.tempo || '') !== tp) { tp = s.tempo || ''; out.push(tp ? '~' + tp + '~' : '~~'); }
+    if (s.anchor) out.push('⚓ ' + s.anchor);
+    out.push((s.echo ? '// ' : '') + s.text + (s.pause ? ' [' + s.pause + '~]' : ''));
+  });
+  return out.join('\n');
+}
+function parseEditor(text){
+  const out = []; let ph = '', tp = '', an = '';
+  text.split(/\r?\n/).forEach(raw => {
+    const l = raw.trim(); if (!l) return; let m;
+    if ((m = l.match(/^#\s+(.*)$/))) { ph = m[1]; return; }
+    if ((m = l.match(/^~([^~]*)~$/))) { tp = m[1].trim(); return; }
+    if ((m = l.match(/^⚓\s*(.*)$/))) { an = m[1]; return; }
+    let echo = false, body = l, pause = 0;
+    if (/^\/\/\s*/.test(body)) { echo = true; body = body.replace(/^\/\/\s*/, ''); }
+    const pm = body.match(/\[(\d+)~\]\s*$/); if (pm) { pause = +pm[1]; body = body.replace(/\s*\[\d+~\]\s*$/, ''); }
+    const c = cleanStep({phase:ph, tempo:tp, anchor:an, echo, pause, text:body}); if (c) { out.push(c); an = ''; }
+  });
+  return out;
+}
+function saveED(){ try { localStorage.setItem('hd-edits', JSON.stringify(ED)); } catch (e) { upmsg(T('up.nostore'), 'bad'); } }
+function openEditor(){
+  const sc = SC[curId]; if (!sc || sc.tkey) return; $('editor').hidden = false;
+  $('ed-title').value = sc.title; $('ed-lang').value = sc.lang || 'de'; $('ed-mode').value = sc.mode;
+  $('ed-main').value = serialize(sc.steps); $('ed-alt').value = sc.steps.map(s => s.alt || '').join('\n'); $('ed-reset').hidden = !(sc.builtin && ED[curId]);
+}
+$('sedit').onclick = () => { if ($('editor').hidden) openEditor(); else $('editor').hidden = true; };
+$('ed-cancel').onclick = () => { $('editor').hidden = true; };
+$('ed-save').onclick = () => {
+  const sc = SC[curId]; if (!sc) return; const st = parseEditor($('ed-main').value); if (!st.length) { upmsg(T('up.empty', {t:sc.title}), 'bad'); return; }
+  const alts = $('ed-alt').value.split(/\r?\n/); st.forEach((s, i) => { const a = (alts[i] || '').trim().slice(0, 600); if (a) s.alt = a; else delete s.alt; });
+  sc.title = $('ed-title').value.trim().slice(0, 80) || sc.title; sc.lang = $('ed-lang').value; sc.mode = $('ed-mode').value; sc.steps = st;
+  if (sc.builtin) { ED[curId] = {title:sc.title, lang:sc.lang, mode:sc.mode, steps:st}; saveED(); }
+  else { const u = UP.find(x => x.id === curId); if (u) { u.title = sc.title; u.lang = sc.lang; u.mode = sc.mode; u.steps = st; saveUP(); } }
+  const o = [...$('scriptsel').options].find(x => x.value === curId); if (o) o.textContent = labelOf(curId);
+  $('editor').hidden = true; useScript(curId); renderUP(); upmsg(T('ed.saved'), 'ok');
+};
+$('ed-reset').onclick = () => {
+  const sc = SC[curId]; if (!sc || !sc.builtin || !sc.orig) return; delete ED[curId]; saveED();
+  sc.title = sc.orig.title; sc.lang = sc.orig.lang; sc.mode = sc.orig.mode; sc.steps = JSON.parse(JSON.stringify(sc.orig.steps));
+  const o = [...$('scriptsel').options].find(x => x.value === curId); if (o) o.textContent = labelOf(curId);
+  $('editor').hidden = true; useScript(curId); upmsg(T('ed.reseted'), 'ok');
+};
+
+// ----- Textbausteine (Einblendung) bearbeiten -----
+const cueItems = (g, i, l) => { const o = CED[i] && CED[i][l]; if (Array.isArray(o) && o.length) return o; return l === 'en' ? (g.itemsEn || g.items) : g.items; };
+function saveCED(){ try { localStorage.setItem('hd-cues', JSON.stringify(CED)); } catch (e) {} }
+function sanitizeCED(o){ const out = {}; Object.keys(o || {}).forEach(i => { if (!CUES.texts[+i]) return; ['de', 'en'].forEach(l => { const a = o[i] && o[i][l]; if (Array.isArray(a)) { const c = a.map(x => String(x).trim().slice(0, 200)).filter(Boolean).slice(0, 40); if (c.length) { out[i] = out[i] || {}; out[i][l] = c; } } }); }); return out; }
+CED = sanitizeCED(CED);
+function buildCueEd(){
+  const R = $('cued'); R.innerHTML = '';
+  CUES.texts.forEach((g, i) => {
+    const h = document.createElement('h3'); h.textContent = L(g); R.appendChild(h);
+    const row = document.createElement('div'); row.className = 'r3';
+    ['de', 'en'].forEach(l => { const lab = document.createElement('label'); lab.textContent = l.toUpperCase(); const ta = document.createElement('textarea'); ta.rows = 5; ta.spellcheck = false; ta.dataset.g = i; ta.dataset.l = l; ta.value = cueItems(g, i, l).join('\n'); ta.setAttribute('aria-label', L(g) + ' ' + l.toUpperCase()); lab.appendChild(ta); row.appendChild(lab); });
+    R.appendChild(row);
+  });
+}
+$('cued-save').onclick = () => { const o = {}; $('cued').querySelectorAll('textarea').forEach(t => { o[t.dataset.g] = o[t.dataset.g] || {}; o[t.dataset.g][t.dataset.l] = t.value.split(/\r?\n/); }); CED = sanitizeCED(o); saveCED(); buildCues(); buildCueEd(); upmsg(T('cued.saved'), 'ok'); };
+$('cued-reset').onclick = () => { CED = {}; saveCED(); buildCues(); buildCueEd(); upmsg(T('cued.reseted'), 'ok'); };
+
+// ================= Text hinzufügen (Einfügen, Datei, Drag & Drop; bleibt im Browser) =================
 let UP = []; try { UP = JSON.parse(store.get(UPKEY, '[]')); if (!Array.isArray(UP)) UP = []; } catch (e) { UP = []; }
+UP.forEach(u => { u.lang = u.lang === 'en' || u.lang === 'de' ? u.lang : detectLang((u.steps || []).map(s => s.text).join(' ')); u.mode = u.mode === 'B' ? 'B' : 'A'; });
 function upmsg(t, cls){ const m = $('upmsg'); m.style.display = t ? '' : 'none'; m.textContent = t; m.className = 'note ' + (cls || ''); }
 function saveUP(){ try { localStorage.setItem(UPKEY, JSON.stringify(UP)); } catch (e) { upmsg(T('up.nostore'), 'bad'); } }
 function renderUP(){
   const R = $('uplist'); R.innerHTML = '';
-  UP.forEach(u => { const c = document.createElement('span'); c.className = 'chip'; const s = document.createElement('span'); s.textContent = u.title + ' (' + u.steps.length + ')'; c.appendChild(s);
+  UP.forEach(u => { const c = document.createElement('span'); c.className = 'chip'; const s = document.createElement('span'); s.textContent = u.title + ' ' + tagOf(u) + ' (' + u.steps.length + ')'; c.appendChild(s);
     const x = document.createElement('button'); x.textContent = '✕'; x.setAttribute('aria-label', T('up.remove') + ': ' + u.title); x.title = T('up.remove');
     x.onclick = () => { UP = UP.filter(y => y.id !== u.id); saveUP(); const o = [...$('scriptsel').options].find(z => z.value === u.id); if (o) o.remove(); delete SC[u.id]; if (curId === u.id) useScript(($('scriptsel').options[0] || {}).value); renderUP(); };
     c.appendChild(x); R.appendChild(c); });
 }
 const cleanStep = (s, ph) => { if (typeof s === 'string') s = {text:s}; if (!s || typeof s.text !== 'string' || !s.text.trim()) return null;
-  return {phase:String(s.phase || ph || '').slice(0, 80), tempo:String(s.tempo || '').slice(0, 40), anchor:String(s.anchor || '').slice(0, 60), echo:!!s.echo, pause:Math.max(0, Math.min(60, +s.pause || 0)), text:s.text.trim().slice(0, 600)}; };
+  const o = {phase:String(s.phase || ph || '').slice(0, 80), tempo:String(s.tempo || '').slice(0, 40), anchor:String(s.anchor || '').slice(0, 60), echo:!!s.echo, pause:Math.max(0, Math.min(60, +s.pause || 0)), text:s.text.trim().slice(0, 600)};
+  if (typeof s.alt === 'string' && s.alt.trim()) o.alt = s.alt.trim().slice(0, 600); return o; };
 function plainSteps(text){ let ph = ''; const out = [];
   text.split(/\r?\n/).forEach(raw => { const l = raw.trim(); if (!l || /^(-{3,}|\*{3,}|={3,})$/.test(l)) return; const h = l.match(/^#{1,6}\s+(.*)$/); if (h) { ph = h[1].slice(0, 80); return; } out.push(cleanStep(l.replace(/^[-*]\s+/, ''), ph)); });
   return out.filter(Boolean); }
-function addUpload(title, st, warnCap){
+const sentences = t => t.replace(/\s+/g, ' ').trim().split(/(?<=[.!?…])\s+(?=[„“"'A-ZÄÖÜ0-9])/).map(x => x.trim()).filter(Boolean);
+function stepsFromText(text, split){
+  if (/(^|\n)\s*`?>>/.test(text)) { const p = parseScript(text); if (p.steps.length) return {title:p.title, steps:p.steps}; }
+  const lines = text.split(/\r?\n/).map(x => x.trim()).filter(Boolean), avg = lines.reduce((a, l) => a + l.length, 0) / (lines.length || 1);
+  let by = split; if (by === 'auto') { const multi = lines.filter(l => sentences(l).length >= 2).length; by = (multi > 0 && multi * 2 >= lines.length && avg >= 90) ? 'sent' : 'lines'; }
+  if (by === 'sent') { const out = []; let ph = ''; text.split(/\r?\n/).forEach(raw => { const l = raw.trim(); const h = l.match(/^#{1,6}\s+(.*)$/); if (h) { ph = h[1].slice(0, 80); return; } if (!l) return; sentences(l).forEach(x => out.push(cleanStep(x, ph))); }); return {title:'', steps:out.filter(Boolean)}; }
+  return {title:'', steps:plainSteps(text)};
+}
+function addUpload(title, st, lang, mode){
   if (!st.length) { upmsg(T('up.empty', {t:title}), 'bad'); return false; }
   let capped = false; if (st.length > MAXSTEPS) { st = st.slice(0, MAXSTEPS); capped = true; }
-  const id = 'up-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
-  UP.push({id, title, steps:st}); saveUP(); addScript(id, '↑ ' + title, st); useScript(id); renderUP();
+  const id = 'up-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), m = {id, title, steps:st, lang, mode};
+  UP.push(m); saveUP(); addScript(id, title, st, null, m); useScript(id); renderUP();
   upmsg(T('up.ok', {n:st.length, t:title}) + (capped ? ' ' + T('up.cap', {t:title}) : ''), 'ok'); return true;
 }
+const formOpts = () => ({title:$('up-title').value.trim(), lang:$('up-lang').value, mode:$('up-mode').value, split:$('up-split').value, alt:$('up-alt').value.split(/\r?\n/).map(x => x.trim())});
+function addFromText(text, fileTitle, o){
+  const r = stepsFromText(text, o.split), cs = r.steps.map(s => cleanStep(s, s.phase)).filter(Boolean);
+  const title = (o.title || r.title || fileTitle || text.trim().split(/\s+/).slice(0, 6).join(' ')).slice(0, 80);
+  const lang = o.lang === 'auto' ? detectLang(cs.map(s => s.text).join(' ')) : o.lang;
+  if (o.alt && o.alt.some(Boolean)) o.alt.forEach((a, i) => { if (cs[i] && a) cs[i].alt = a.slice(0, 600); });
+  return addUpload(title, cs, lang, o.mode);
+}
+function importAll(d){
+  let n = 0;
+  (Array.isArray(d.uploads) ? d.uploads : []).forEach(u => { if (!u || typeof u.title !== 'string' || !Array.isArray(u.steps)) return; const st = u.steps.map(s => cleanStep(s)).filter(Boolean).slice(0, MAXSTEPS); if (!st.length) return;
+    const id = 'up-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), m = {id, title:u.title.slice(0, 80), steps:st, lang:u.lang === 'en' ? 'en' : 'de', mode:u.mode === 'B' ? 'B' : 'A'}; UP.push(m); addScript(id, m.title, st, null, m); n++; });
+  saveUP();
+  if (d.edits && typeof d.edits === 'object') Object.keys(d.edits).forEach(id => { const e = d.edits[id]; if (SC[id] && SC[id].builtin && e && Array.isArray(e.steps)) { const st = e.steps.map(s => cleanStep(s)).filter(Boolean); if (st.length) { ED[id] = {title:String(e.title || SC[id].title).slice(0, 80), lang:e.lang === 'de' ? 'de' : 'en', mode:e.mode === 'B' ? 'B' : 'A', steps:st}; applyEdit(id); n++; } } });
+  saveED();
+  if (d.cues && typeof d.cues === 'object') { CED = sanitizeCED(d.cues); saveCED(); buildCues(); buildCueEd(); n++; }
+  renderUP(); useScript(curId || ($('scriptsel').options[0] || {}).value); return n;
+}
 async function handleFiles(files){
+  let ok = false;
   for (const f of files) {
     const ext = (f.name.split('.').pop() || '').toLowerCase(), title = f.name.replace(/\.[^.]+$/, '');
     if (!['txt', 'md', 'json'].includes(ext)) { upmsg(T('up.ext', {t:f.name}), 'bad'); continue; }
@@ -429,17 +600,22 @@ async function handleFiles(files){
     let text; try { text = await f.text(); } catch (e) { upmsg(String(e), 'bad'); continue; }
     if (ext === 'json') {
       let d; try { d = JSON.parse(text); } catch (e) { upmsg(T('r3.badjson') + e.message, 'bad'); continue; }
+      if (d && typeof d === 'object' && (d.uploads || d.edits || d.cues)) { upmsg(T('up.imp', {n:importAll(d)}), 'ok'); continue; }
       if (d && typeof d === 'object' && d.pace_pace_lead) { const err = RuleOfThree.validate(d); if (err.length) { upmsg(T('r3.schema') + err.join(' · '), 'bad'); continue; } writeR3(d); upmsg(T('up.r3', {t:f.name}), 'ok'); continue; }
       const arr = Array.isArray(d) ? d : (d && Array.isArray(d.steps) ? d.steps : null);
       if (!arr) { upmsg(T('up.badjson', {t:f.name}), 'bad'); continue; }
-      addUpload((d && typeof d.title === 'string' && d.title.trim()) ? d.title.trim().slice(0, 80) : title, arr.map(s => cleanStep(s)).filter(Boolean));
-    } else {
-      const p = parseScript(text);
-      if (p.steps.length) addUpload((p.title || title).slice(0, 80), p.steps.map(s => cleanStep(s, s.phase)).filter(Boolean));
-      else addUpload(title.slice(0, 80), plainSteps(text));
-    }
+      const cs = arr.map(s => cleanStep(s)).filter(Boolean), o = formOpts();
+      ok = addUpload((d && typeof d.title === 'string' && d.title.trim()) ? d.title.trim().slice(0, 80) : (o.title || title), cs, (d && (d.lang === 'de' || d.lang === 'en')) ? d.lang : (o.lang === 'auto' ? detectLang(cs.map(s => s.text).join(' ')) : o.lang), (d && d.mode === 'B') ? 'B' : o.mode) || ok;
+    } else ok = addFromText(text, title, formOpts()) || ok;
   }
+  if (ok) { $('up-title').value = ''; $('up-alt').value = ''; }
 }
+$('up-add').onclick = () => {
+  const t = $('up-text').value; if (!t.trim()) { upmsg(T('up.none'), 'bad'); return; }
+  if (t.length > MAXB) { upmsg(T('up.big', {t:'Text'}), 'bad'); return; }
+  if (addFromText(t, '', formOpts())) { $('up-text').value = ''; $('up-title').value = ''; $('up-alt').value = ''; }
+};
+$('upexport').onclick = () => { const b = new Blob([JSON.stringify({version:1, uploads:UP, edits:ED, cues:CED}, null, 2)], {type:'application/json'}), a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'hypnose-skripte.json'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 3000); };
 $('upbtn').onclick = () => $('upfile').click();
 $('upfile').onchange = e => { handleFiles([...e.target.files]); e.target.value = ''; };
 const dz = $('drop');
@@ -447,8 +623,7 @@ const dz = $('drop');
 ['dragleave', 'drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('over'); }));
 dz.addEventListener('drop', e => { handleFiles([...e.dataTransfer.files]); });
 dz.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('upfile').click(); } });
-['dragover', 'drop'].forEach(ev => addEventListener(ev, e => e.preventDefault()));   // Datei neben der Zone öffnet nicht den Browser-Viewer
-
+['dragover', 'drop'].forEach(ev => addEventListener(ev, e => e.preventDefault()));
 
 // ================= Eigene Bilder / GIFs (IndexedDB, nur im Browser) =================
 const IMGMAX = 8 * 1024 * 1024, IMGOK = ['image/png', 'image/jpeg', 'image/webp', 'image/gif'];
@@ -559,7 +734,7 @@ document.querySelectorAll('#tabs [role=tab]').forEach(b => { b.onclick = () => s
   b.onkeydown = e => { const t = [...document.querySelectorAll('#tabs [role=tab]')], i = t.indexOf(b); if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); const n = t[(i + (e.key === 'ArrowRight' ? 1 : t.length - 1)) % t.length]; n.focus(); showTab(n.dataset.tab); } }; });
 function setUi(l, announce){
   ui = l; store.set('hd-ui', l); applyStatic(); buildCues(); buildR3(true);
-  Object.keys(SC).forEach(id => { const o = [...$('scriptsel').options].find(x => x.value === id); if (o && SC[id].tkey) o.textContent = T(SC[id].tkey); });
+  Object.keys(SC).forEach(id => { const o = [...$('scriptsel').options].find(x => x.value === id); if (o) o.textContent = labelOf(id); }); buildCueEd();
   renderSteps(); renderUP(); renderFlowOp(); renderMy(); showNow(); if (announce) send({type:'uilang', lang:l});
 }
 $('ul-de').onclick = () => setUi('de', true);
@@ -567,7 +742,7 @@ $('ul-en').onclick = () => setUi('en', true);
 
 // ================= Start =================
 buildR3(false); applyStatic(); buildCues(); renderFlowOp(); showNow();
-UP.forEach(u => addScript(u.id, '↑ ' + u.title, u.steps)); renderUP();
+UP.forEach(u => addScript(u.id, u.title, u.steps, null, u)); renderUP(); buildCueEd();
 if (window.SCRIPTS && window.SCRIPTS.length) useScript(window.SCRIPTS[0].id);
 r3msg(T('r3.intro')); renderMy();
 showTab(store.get('hd-tab', 'sitzung'));

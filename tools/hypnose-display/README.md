@@ -55,3 +55,11 @@ Verbindung, Bild, Video (läuft, Schleife), Audio (läuft, Schleife, Lautstärke
 ## Bild-/GIF-Upload (17.11.2026)
 - Tab „Sitzung & Medien“ → „Eigene Bilder / GIFs“: PNG, JPG, WebP, GIF per Klick oder Drag & Drop, max. 8 MB. Speicherung in IndexedDB (nur dieser Browser, nichts online). Anzeige im Display per Datenadresse, GIFs laufen animiert. SVG bewusst ausgeschlossen (könnte Skripte enthalten). Test: Upload, Anzeige im Display, Persistenz nach Reload, Ablehnung falscher Typen, Löschen.
 - Hinweis: Rechte am hochgeladenen Bild liegen beim Nutzer; Bilder im Browser des Geräts, nicht im Repo (kein Eintrag in data/bilder.json nötig, da nichts veröffentlicht wird).
+
+## Skripte hinzufügen, bearbeiten, Sprache (17.11.2026)
+- Tab „Text & Skript“ → „Text hinzufügen“: Text einfügen (Copy & Paste) oder Datei/Drag & Drop. Titel, Sprache (automatisch DE/EN), Aufteilung (Zeilen/Sätze/automatisch), optionale Übersetzung (eine Zeile je Schritt).
+- **A · Session-Text:** Fragmente oder ganzes Skript wird unverändert eingeblendet. **B · Worte des Gegenübers:** wird als Zitat („…“ bzw. “…”) eingeblendet. Jedes Skript trägt eine Sprache ([DE]/[EN]); mit „Anzeige“ (Original/DE/EN) wird die hinterlegte Übersetzung eingeblendet.
+- **Bearbeiten:** alle Skripte (auch die zwei mitgelieferten) und alle Textbausteine (DE/EN getrennt) sind editierbar; Änderungen am Original in localStorage (`hd-edits`, `hd-cues`), „Original wiederherstellen“ möglich.
+- **Sichern:** „Alle sichern (JSON)“ exportiert Uploads, Änderungen und Textbausteine; JSON-Datei wieder hochladen = Import auf anderem Gerät.
+- Grenze: keine automatische Übersetzung (kein Schlüssel/Server auf GitHub Pages, Datenschutz); Übersetzung wird eingefügt oder selbst geschrieben.
+- Test: Einfügen mit Sätze-Aufteilung, Übersetzungs-Umschaltung, Zitat in B, Bearbeiten und Zurücksetzen des Originals, Textbausteine, Export, Persistenz nach Reload, 390 px ohne Überlauf.
