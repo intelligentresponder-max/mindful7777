@@ -20,6 +20,11 @@ Original-Prüfsummen: `ORIGINAL-CHECKSUMS.sha256` (index.html, steuerung.html, p
 - Upload ohne `cues.js` → `verify.sh` meldete FAILED. Lehre: `sh verify.sh` vor jeder Übergabe.
 - Profil-Satz „Mit leerem Kopf bist du am besten" widerspricht `knowledge/discord-onboarding-ffm777.md` (kein Umgehen des kritischen Verstands). Nur mit Einverständnis und eigenem Hinweis nutzen; Text im Profil bei Bedarf entschärfen.
 
+## Skripte, Generator, Texteingabe (17.11.2026)
+- **Skripte** (`scripts/*.md`, Quelle: deine zwei TranceScripts, unverändert): Steuerpult → „Skript · Schritt für Schritt“. Parser liest Phasen, Tempo, Anker, Echo-Zeilen und Pausenmarken `[n~]`; Zeilen erscheinen als Schritte, `Weiter ▶`/`◀` oder Pfeiltasten blenden sie ein. Neues Skript: `.md` in `scripts/` legen, `python3 make_scripts.py` ausführen (erzeugt `scripts.js`).
+- **Rule-of-Three-Generator** (`rule-of-three.js`, Original + Schema unter `rule-of-three/`): fünf Dreier-Muster als Formular, „Zusammensetzen“ lädt die 5 Sätze als Skript. JSON nach `rule_of_three_schema.json` lässt sich einfügen und kopieren; unvollständige Eingaben werden mit Hinweis abgelehnt. `node test-parity.js` beweist, dass JS und Python exakt dieselben Sätze liefern.
+- **Texteingabe**: mehrzeiliges Feld („Einblenden“ zeigt Zeilenumbrüche), „Zeilen als Skript laden“ macht jede Zeile zu einem Schritt, „Anzeigedauer“ (automatisch, 5/8/12 s, bleibt stehen) gilt für alle Texte. Lange Sätze werden automatisch kleiner gesetzt.
+
 ## Sicherheit der erzeugten Medien
 - Videos: nur weiche Sinus-Verläufe, kein Blitzen, langsamste Änderung unter 1 Hz. Trotzdem Hinweis bei Epilepsie/Lichtempfindlichkeit beachten.
 - Audio: Spitzenpegel ca. −10 dBFS. „Kopfhörer“-Dateien (Theta 6 Hz, Alpha 10 Hz) sind binaural und wirken nur über Kopfhörer. Loops sind periodisch erzeugt; je nach Browser kann der Neustart minimal knacken.
@@ -29,6 +34,10 @@ Original-Prüfsummen: `ORIGINAL-CHECKSUMS.sha256` (index.html, steuerung.html, p
 Verbindung, Bild, Video (läuft, Schleife), Audio (läuft, Schleife, Lautstärke 0,6), Text mit Namen, Ablauf, Klienten-Ansicht, „Alles stoppen“ (alles aus, Anzeige zurückgesetzt), Steuerpult bei 390 px ohne Querscrollen: alles ohne Konsolenfehler. Nicht getestet: echte Kopfhörer-Wirkung, Safari/iPhone, Google Fonts (im Test blockiert, Ersatzschrift).
 
 ## Fehlerprotokoll (Ergänzung)
+- Skript-Auswahl sprengte die Breite bei 390 px (lange Titel in `select`) → `min-width:0; max-width:100%`. Lehre: Mobilbreite nach jedem neuen Formularelement prüfen.
+- Generator ließ ein leeres Feld durch (`refreshed, cool, and .`), weil das Original-Schema nur „String“ verlangt → Formular prüft „ausgefüllt“ zusätzlich; Python-Original bleibt unverändert.
+- Test-Fehlgriff: Textfeld im geschlossenen `<details>` ist nicht bedienbar → Test öffnet es zuerst.
+- `curl -I` über den Proxy zeigte „200 Connection Established“ (Proxy-Zeile, nicht die Seite) → Status mit `-w '%{http_code}'` prüfen.
 - Text-Einblendung und Ablauf-Frage lagen übereinander → `body:has(#flow.on) #txt` setzt den Text nach unten. Lehre: Overlays immer gemeinsam im Browser testen, nicht einzeln.
 - Spiral-Bild: Arme endeten mitten im Bild → Arme laufen jetzt aus dem Bild. Lehre: Screenshot prüfen, nicht nur Code.
 - Ganzseiten-Screenshot zeigte weißen Hintergrund (nur `body` hatte `fixed`-Verlauf) → `html{background}` gesetzt.

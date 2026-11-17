@@ -63,6 +63,7 @@ body{background:radial-gradient(circle at 50% 40%,#111a2c,var(--bg) 70%);color:#
 #start .box{display:flex;flex-direction:column;align-items:center}
 body.clean .machine{width:100vw;height:100vh;padding:0;border:0;border-radius:0;box-shadow:none;background:#000}body.clean .halo,body.clean .top,body.clean .bottom{display:none}body.clean .screen{aspect-ratio:auto;width:100%;height:100%;border-radius:0;box-shadow:none}body.clean #wake{opacity:.28;right:14px;bottom:12px}body.clean #wake:hover,body.clean #wake:focus-visible{opacity:1}
 body:has(#flow.on) #txt{place-items:end center;padding-bottom:4%;font-size:clamp(15px,2.4vw,26px)}.ov{white-space:nowrap;border-radius:999px;padding:.5em 1.6em}.fa{gap:4%}
+#txt{white-space:pre-line}#txt.long{font-size:clamp(16px,2.7vw,30px);line-height:1.4}
 </style>
 </head>
 <body>
@@ -137,7 +138,7 @@ ch.onmessage = ({data:m}) => {
     case 'volume': aud.volume = vid.volume = m.value; break;
     case 'text':
       clearTimeout(tt); txt.textContent = (m.text||'').replaceAll('{name}', name || '');
-      txt.classList.add('on'); if (m.ms) tt = setTimeout(()=>txt.classList.remove('on'), m.ms); break;
+      txt.classList.toggle('long', txt.textContent.length > 110); txt.classList.add('on'); if (m.ms) tt = setTimeout(()=>txt.classList.remove('on'), m.ms); break;
     case 'textoff': txt.classList.remove('on'); break;
     case 'black': $('black').classList.toggle('on', m.on); break;
     case 'flow': renderNode(m.node); break;

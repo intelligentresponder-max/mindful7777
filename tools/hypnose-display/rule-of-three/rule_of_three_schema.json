@@ -1,0 +1,133 @@
+{
+  "title": "RuleOfThreeSchema",
+  "description": "JSON Schema for generating 5 modular Listing x3 pattern types",
+  "type": "object",
+  "properties": {
+    "pace_pace_lead": {
+      "type": "object",
+      "properties": {
+        "pace_1": {
+          "type": "string",
+          "example": "You are sitting here right now"
+        },
+        "pace_2": {
+          "type": "string",
+          "example": "listening to the sound of my voice"
+        },
+        "lead": {
+          "type": "string",
+          "example": "you can begin to notice how easily your breathing settles into a natural rhythm"
+        }
+      },
+      "required": [
+        "pace_1",
+        "pace_2",
+        "lead"
+      ]
+    },
+    "vakog_triad": {
+      "type": "object",
+      "properties": {
+        "visual": {
+          "type": "string",
+          "example": "notice the quiet space behind your eyes"
+        },
+        "auditory": {
+          "type": "string",
+          "example": "hear the calm cadence of my voice"
+        },
+        "kinesthetic": {
+          "type": "string",
+          "example": "feel a soothing warmth moving down through your chest and shoulders"
+        }
+      },
+      "required": [
+        "visual",
+        "auditory",
+        "kinesthetic"
+      ]
+    },
+    "progressive_listing": {
+      "type": "object",
+      "properties": {
+        "effort": {
+          "type": "string",
+          "example": "try to relax and it feels like effort"
+        },
+        "waiting": {
+          "type": "string",
+          "example": "just wait and let time pass"
+        },
+        "automatic": {
+          "type": "string",
+          "example": "there comes a moment where a deep, quiet calm simply takes over"
+        }
+      },
+      "required": [
+        "effort",
+        "waiting",
+        "automatic"
+      ]
+    },
+    "triad_items": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string",
+          "example": "Your brain"
+        },
+        "verb": {
+          "type": "string",
+          "example": "feels"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "example": [
+            "refreshed",
+            "cool",
+            "completely silent"
+          ]
+        }
+      },
+      "required": [
+        "subject",
+        "verb",
+        "items"
+      ]
+    },
+    "parts_synthesis": {
+      "type": "object",
+      "properties": {
+        "part_a": {
+          "type": "string",
+          "example": "stay slightly aware for a moment"
+        },
+        "part_b": {
+          "type": "string",
+          "example": "already knows it is safe to drop deep into peace"
+        },
+        "synthesis": {
+          "type": "string",
+          "example": "completely fine and in total harmony"
+        }
+      },
+      "required": [
+        "part_a",
+        "part_b",
+        "synthesis"
+      ]
+    }
+  },
+  "required": [
+    "pace_pace_lead",
+    "vakog_triad",
+    "progressive_listing",
+    "triad_items",
+    "parts_synthesis"
+  ]
+}
