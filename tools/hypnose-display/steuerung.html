@@ -250,8 +250,10 @@ details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);
       <button class="d" id="an-reset" data-i="an.reset">Bogen leeren</button>
     </div>
   </section>
+  <section class="wide"><h2 data-i="an.help.t">Passende Skripte (ohne Trance)</h2><div class="row" id="an-open"></div><p class="note" style="margin-top:10px" data-i="an.help.hint"></p></section>
   <section><div id="anam-form"></div></section>
   <section class="an-out" id="anam-out" aria-live="polite"></section>
+  <section class="wide"><h2 data-i="an.f4.t">4F-Typologie</h2><div class="roles" id="an-4f"></div><p class="note" style="margin-top:10px" data-i="an.f4.hint"></p></section>
 </div>
 
 <!-- ============ Street ============ -->
@@ -360,6 +362,9 @@ const I18N = {
     'r3.schema':'JSON passt nicht zum Schema: ', 'r3.applied':'JSON übernommen. Jetzt „Zusammensetzen“.', 'r3.badjson':'Kein gültiges JSON: ', 'r3.copied':'JSON kopiert (steht auch im Feld unter „JSON einfügen“).', 'r3.nocopy':'Kopieren nicht erlaubt – JSON steht im Feld unter „JSON einfügen“.',
     'sec.flow':'Ablauf · Profil Good Boys', 'flow.lang':'Sprache des Ablaufs', 'flow.de':'Deutsch', 'flow.en':'English', 'flow.both':'Beide', 'flow.control':'Steuerung',
     'flow.guide':'Ich steuere', 'flow.self':'Person tippt selbst', 'flow.start':'Ablauf starten', 'flow.end':'Ablauf beenden', 'flow.none':'Nicht gestartet', 'flow.over':'Ende des Ablaufs', 'flow.selfpick':'Person wählt selbst …'
+    ,'an.help.t':'Passende Skripte (ohne Trance)', 'an.help.hint':'Augen offen, im Gespräch, nur wenn die Person stabil ist. Bei Rot nicht einsetzen. Das Grounding (oben) hat Vorrang bei akuter Belastung.',
+    'an.f4.t':'4F-Typologie (Überblick)', 'an.f4.hint':'Erkennungshilfe nach Pete Walker, kein Diagnoseraster. Weiterführende Arbeit an Auslösern, Trauer oder Konfrontation gehört in die Hand ausgebildeter Psychotherapeut:innen, nicht in dieses Tool.'
+
     ,'tab.anam':'Anamnese', 'sec.anam':'Anamnese-Bogen', ground:'Grounding', 'ground.pick':'Grounding',
     'an.intro':'Kurzer Vorab-Bogen auf Hinweise für traumabezogene Belastung (z. B. emotionale Flashbacks, komplexe PTBS) und Ausschlussgründe. Kein Diagnoseinstrument, die Schwellen sind Faustregeln. Bei Hinweisen bekommst du hier einen Warnbalken und die empfohlene Behandlung. Die Angaben bleiben nur in diesem Tab (nicht im Repo, nicht gespeichert nach Schließen), bitte keine Klarnamen.',
     'an.code':'Kürzel (optional, kein Klarname)', 'an.code.ph':'z. B. A-17', 'an.reset':'Bogen leeren',
@@ -417,6 +422,9 @@ const I18N = {
     'r3.schema':'JSON does not match the schema: ', 'r3.applied':'JSON applied. Now press "Assemble".', 'r3.badjson':'Not valid JSON: ', 'r3.copied':'JSON copied (also in the field under "Paste JSON").', 'r3.nocopy':'Copying not allowed – the JSON is in the field under "Paste JSON".',
     'sec.flow':'Flow · profile Good Boys', 'flow.lang':'Flow language', 'flow.de':'German', 'flow.en':'English', 'flow.both':'Both', 'flow.control':'Control',
     'flow.guide':'I control', 'flow.self':'Person taps themselves', 'flow.start':'Start flow', 'flow.end':'End flow', 'flow.none':'Not started', 'flow.over':'End of flow', 'flow.selfpick':'Person is choosing …'
+    ,'an.help.t':'Matching scripts (no trance)', 'an.help.hint':'Eyes open, in conversation, only when the person is stable. Do not use on red. Grounding (top) takes priority in acute distress.',
+    'an.f4.t':'4F typology (overview)', 'an.f4.hint':'Recognition aid after Pete Walker, not a diagnostic grid. Further work on triggers, grief or confrontation belongs with trained psychotherapists, not in this tool.'
+
     ,'tab.anam':'Intake', 'sec.anam':'Intake form', ground:'Grounding', 'ground.pick':'Grounding',
     'an.intro':'Short pre-session form for signs of trauma-related distress (e.g. emotional flashbacks, complex PTSD) and exclusion reasons. Not a diagnostic instrument, thresholds are rules of thumb. When signs appear you get a warning bar and the recommended treatment. Entries stay in this tab only (not in the repo, gone when the tab closes), please no real names.',
     'an.code':'Code (optional, no real name)', 'an.code.ph':'e.g. A-17', 'an.reset':'Clear form',
@@ -578,7 +586,7 @@ function renderSteps(){
   if (!$('editor').hidden && (!sc || sc.tkey)) $('editor').hidden = true;
 }
 function go(i){
-  if (!steps.length) return; if (curId !== 'ground' && !riskOk()) return; i = Math.max(0, Math.min(steps.length - 1, i)); cur = i;
+  if (!steps.length) return; if (curId !== 'ground' && !(SAFE_SCRIPTS.test(curId || '') && risk.level !== 'stop') && !riskOk()) return; i = Math.max(0, Math.min(steps.length - 1, i)); cur = i;
   sendText(stepOut(steps[i]), steps[i].pause);
   document.querySelectorAll('#steplist .step').forEach(x => x.classList.remove('on'));
   const el = $('st' + i); el.classList.add('on'); el.scrollIntoView({block:'nearest'});
@@ -906,6 +914,21 @@ function riskOk(){
   if (ackSig === risk.sig) return true;
   const ok = confirm(T('risk.confirm.' + risk.level)); if (ok) ackSig = risk.sig; return ok;
 }
+
+const F4 = [
+  ['Fight', 'Kampf', 'Reizbarkeit, Ausbrüche, schroffe Abwehr; „Nein“ fällt schwer oder kommt nur als Wut.', 'Irritability, outbursts, sharp defence; saying "no" is hard or only comes as anger.'],
+  ['Flight', 'Flucht', 'Dauerhektik, Arbeitssucht („Busyholism“), Zwänge, ständiges Beschäftigtsein.', 'Constant rushing, workaholism, compulsions, always being busy.'],
+  ['Freeze', 'Erstarrung', 'Taubheit, Abschalten, Tagträumen, Dissoziation, Rückzug; manchmal Betäubung durch Substanzen.', 'Numbness, switching off, daydreaming, dissociation, withdrawal; sometimes numbing with substances.'],
+  ['Fawn', 'Unterwerfung', 'Übermäßige Anpassung, eigene Bedürfnisse und Grenzen nicht äußern, Konflikte um jeden Preis vermeiden (Kodependenz).', 'Over-adapting, not voicing own needs and limits, avoiding conflict at any cost (codependency).']
+];
+function buildAnHelp(){
+  const R = $('an-open'); R.innerHTML = '';
+  ['09-flashbacks-verstehen', '10-erwachsenen-orientierung'].forEach(id => { if (!SC[id]) return; const b = document.createElement('button'); b.textContent = SC[id].title; b.onclick = () => { showTab('text'); useScript(id); }; R.appendChild(b); });
+  const G = $('an-4f'); G.innerHTML = '';
+  F4.forEach(f => { const d = document.createElement('div'), b = document.createElement('b'), sp = document.createElement('span'); b.textContent = f[0] + (ui === 'de' ? ' · ' + f[1] : ''); sp.textContent = ui === 'en' ? f[3] : f[2]; d.appendChild(b); d.appendChild(sp); G.appendChild(d); });
+}
+const SAFE_SCRIPTS = /^(09|10)-/;
+
 const GROUND = {
   de:d => ['Du bist jetzt hier. Heute ist ' + d + '.', 'Du bist in einem erwachsenen Körper, in diesem Raum, und du bist sicher.', 'Schau dich um und nenne fünf Dinge, die du siehst.', 'Spür deine Füße auf dem Boden. Drück sie fest hinein.', 'Atme aus, länger als du einatmest. Du darfst jederzeit die Augen öffnen und sprechen.'],
   en:d => ['You are here now. Today is ' + d + '.', 'You are in an adult body, in this room, and you are safe.', 'Look around and name five things you can see.', 'Feel your feet on the floor. Press them down firmly.', 'Breathe out longer than you breathe in. You may open your eyes and speak at any time.']
@@ -999,13 +1022,13 @@ document.querySelectorAll('#tabs [role=tab]').forEach(b => { b.onclick = () => s
 function setUi(l, announce){
   ui = l; store.set('hd-ui', l); applyStatic(); buildCues(); buildR3(true);
   Object.keys(SC).forEach(id => { const o = [...$('scriptsel').options].find(x => x.value === id); if (o) o.textContent = labelOf(id); }); buildCueEd();
-  renderSteps(); renderUP(); renderFlowOp(); renderMy(); buildSF(true); buildStreetOpen(); buildAnam(); showNow(); if (announce) send({type:'uilang', lang:l});
+  renderSteps(); renderUP(); renderFlowOp(); renderMy(); buildSF(true); buildStreetOpen(); buildAnam(); buildAnHelp(); showNow(); if (announce) send({type:'uilang', lang:l});
 }
 $('ul-de').onclick = () => setUi('de', true);
 $('ul-en').onclick = () => setUi('en', true);
 
 // ================= Start =================
-buildR3(false); applyStatic(); buildSF(false); buildStreetOpen(); buildAnam(); buildCues(); renderFlowOp(); showNow();
+buildR3(false); applyStatic(); buildSF(false); buildStreetOpen(); buildAnam(); buildAnHelp(); buildCues(); renderFlowOp(); showNow();
 UP.forEach(u => addScript(u.id, u.title, u.steps, null, u)); renderUP(); buildCueEd();
 if (window.SCRIPTS && window.SCRIPTS.length) useScript(window.SCRIPTS[0].id);
 r3msg(T('r3.intro')); renderMy();
