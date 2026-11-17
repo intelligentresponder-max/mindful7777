@@ -61,6 +61,8 @@ body{background:radial-gradient(circle at 50% 40%,#111a2c,var(--bg) 70%);color:#
 #start .warn{max-width:520px;margin:0 20px 22px;padding:16px 18px;border:1px solid rgba(201,162,39,.5);border-radius:6px;font-size:13px;line-height:1.55;color:#c9cfdf;background:rgba(18,26,44,.9)}
 #start .warn b{color:var(--cu)}
 #start .box{display:flex;flex-direction:column;align-items:center}
+body.clean .machine{width:100vw;height:100vh;padding:0;border:0;border-radius:0;box-shadow:none;background:#000}body.clean .halo,body.clean .top,body.clean .bottom{display:none}body.clean .screen{aspect-ratio:auto;width:100%;height:100%;border-radius:0;box-shadow:none}body.clean #wake{opacity:.28;right:14px;bottom:12px}body.clean #wake:hover,body.clean #wake:focus-visible{opacity:1}
+body:has(#flow.on) #txt{place-items:end center;padding-bottom:4%;font-size:clamp(15px,2.4vw,26px)}.ov{white-space:nowrap;border-radius:999px;padding:.5em 1.6em}.fa{gap:4%}
 </style>
 </head>
 <body>
@@ -95,7 +97,8 @@ $('go').onclick = () => {
   document.documentElement.requestFullscreen?.().catch(()=>{});
   ch.postMessage({type:'hello'});
 };
-addEventListener('keydown', e => { if (e.key === 'f') document.documentElement.requestFullscreen?.(); });
+addEventListener('keydown', e => { if (e.key === 'f') document.documentElement.requestFullscreen?.(); if (e.key === 'k') document.body.classList.toggle('clean'); });
+document.addEventListener('fullscreenchange', () => document.body.classList.toggle('clean', !!document.fullscreenElement));
 
 function showImage(src){
   const n = imgs[1-cur], o = imgs[cur];
@@ -127,7 +130,7 @@ ch.onmessage = ({data:m}) => {
     case 'name': name = m.name; $('who').textContent = name || '\u00a0'; break;
     case 'image': showImage(m.src); break;
     case 'noimage': imgs.forEach(i=>i.classList.remove('on')); break;
-    case 'video': vid.src = m.src; vid.onended = clearVideo; vid.play().then(()=>vid.classList.add('on')).catch(()=>{}); break;
+    case 'video': vid.src = m.src; vid.loop = !!m.loop; vid.onended = clearVideo; vid.play().then(()=>vid.classList.add('on')).catch(()=>{}); break;
     case 'videostop': clearVideo(); break;
     case 'audio': aud.src = m.src; aud.loop = !!m.loop; aud.play().catch(()=>{}); break;
     case 'audiostop': aud.pause(); break;

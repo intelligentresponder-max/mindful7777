@@ -3,66 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Steuerpult · Transformator</title>
 <meta name="robots" content="noindex,nofollow">
+<title>Steuerpult · Transformator</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--cu:#c9a227;--bg:#0a0f1c;--panel:#121a2c;--line:rgba(201,162,39,.25)}
+:root{--cu:#c9a227;--cy:#4fd1c5;--bg:#070a12;--panel:rgba(14,22,40,.86);--line:rgba(79,209,197,.24);--txt:#ece8dd;--mut:#8b93a7}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:#ece8dd;font-family:'DM Sans',system-ui,sans-serif;padding:20px;max-width:760px;margin-inline:auto}
-h1{font-family:'Playfair Display',serif;font-size:1.5rem;margin:0 0 4px}
-h2{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cu);margin:0 0 10px}
-.status{font-size:.8rem;color:#8b93a7;margin-bottom:18px}.status.ok{color:#7fae6a}
-section{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:16px;margin-bottom:14px}
+html{background:var(--bg)}
+body{margin:0;color:var(--txt);font-family:'DM Sans',system-ui,sans-serif;background:radial-gradient(circle at 50% -10%,#15213d,var(--bg) 62%) fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(79,209,197,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(79,209,197,.045) 1px,transparent 1px);background-size:40px 40px}
+.bar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding:10px 18px;background:rgba(7,10,18,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+h1{font:700 1.15rem 'Playfair Display',serif;margin:0;letter-spacing:.04em}
+h1 small{display:block;font:600 .6rem 'DM Sans',sans-serif;letter-spacing:.3em;color:var(--cy);text-transform:uppercase}
+.status{font-size:.8rem;color:var(--mut);display:flex;gap:8px;align-items:center;flex:1;min-width:150px}
+.status::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--mut);flex:none}
+.status.ok{color:#9fd18a}.status.ok::before{background:#7fd16a;box-shadow:0 0 10px #7fd16a}
+.bar .row{margin-left:auto}
+main{position:relative;max-width:1040px;margin:0 auto;padding:16px 18px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:14px}
+.note{grid-column:1/-1;font-size:.76rem;color:var(--mut);margin:0;padding:8px 12px;border-left:2px solid var(--cu)}
+section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;position:relative}
+section.wide{grid-column:1/-1}
+h2{display:flex;gap:8px;align-items:center;font:600 .68rem 'DM Sans',sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--cy);margin:0 0 12px}
+h2::before{content:"";width:6px;height:6px;background:var(--cu);transform:rotate(45deg)}
+h3{font:600 .66rem 'DM Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin:12px 0 6px}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-button,input[type=text]{font:600 .85rem 'DM Sans';border-radius:3px;border:1px solid var(--line);background:transparent;color:var(--cu);padding:11px 14px;cursor:pointer}
-button:hover{background:rgba(201,162,39,.12)}
-button.p{background:var(--cu);color:#14100a}
-button.d{color:#d9756a}
-input[type=text]{color:#ece8dd;cursor:text;flex:1;min-width:160px;font-weight:400}
-label{font-size:.8rem;color:#8b93a7;display:flex;gap:8px;align-items:center}
-input[type=range]{accent-color:var(--cu)}
+button,input[type=text]{font:600 .85rem 'DM Sans',sans-serif;border-radius:6px;border:1px solid var(--line);background:rgba(7,10,18,.5);color:var(--txt);padding:10px 14px;min-height:44px;cursor:pointer;transition:border-color .2s,box-shadow .2s,background .2s}
+button:hover{border-color:var(--cy);background:rgba(79,209,197,.1)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
+button.on{border-color:var(--cy);box-shadow:0 0 14px rgba(79,209,197,.45);background:rgba(79,209,197,.14)}
+button.p{background:var(--cu);color:#14100a;border-color:var(--cu)}
+button.p:hover{background:#d8b43a}
+button.d{color:#ff9a8f;border-color:rgba(217,117,106,.55)}
+button.d:hover{background:rgba(217,117,106,.16);border-color:#ff9a8f}
+input[type=text]{cursor:text;flex:1;min-width:160px;font-weight:400}
+label{font-size:.8rem;color:var(--mut);display:flex;gap:10px;align-items:center;flex:1 1 220px}
+input[type=range]{accent-color:var(--cu);flex:1;min-width:100px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px;width:100%}
+.thumb{aspect-ratio:16/10;padding:0;position:relative;overflow:hidden;background-size:cover;background-position:center;background-color:#000}
+.thumb span{position:absolute;inset:auto 0 0 0;padding:14px 7px 5px;font-size:.7rem;text-align:left;background:linear-gradient(transparent,rgba(0,0,0,.85));color:var(--txt)}
+.np{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:.72rem;color:var(--mut)}
+.np div{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:rgba(7,10,18,.5);min-width:0}
+.np b{display:block;font:600 .6rem 'DM Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--cy);margin-bottom:3px}
+.np span{display:block;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:640px){.np{grid-template-columns:repeat(2,1fr)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<h1>Steuerpult</h1>
-<div class="status" id="status">Display nicht verbunden</div>
-<p class="status">Nur mit Einverständnis (18+). Nicht bei Epilepsie/Lichtempfindlichkeit, nicht beim Fahren. „Alles stoppen" und „Schwarz" sind immer erreichbar.</p>
+<header class="bar">
+  <h1>Steuerpult<small>Transformator · T-01</small></h1>
+  <div class="status" id="status">Display nicht verbunden</div>
+  <div class="row">
+    <button id="black">Schwarz</button>
+    <button class="d" id="stop" title="Taste Esc">Alles stoppen</button>
+  </div>
+</header>
+
+<main>
+<p class="note">Nur für Erwachsene (18+) und nur mit Einverständnis. Nicht bei Epilepsie oder Lichtempfindlichkeit, nicht beim Fahren. „Alles stoppen" (oder Esc) und „Schwarz" sind immer oben erreichbar.</p>
+
+<section class="wide">
+  <h2>Läuft gerade</h2>
+  <div class="np">
+    <div><b>Bild</b><span id="np-img">–</span></div>
+    <div><b>Video</b><span id="np-vid">–</span></div>
+    <div><b>Audio</b><span id="np-aud">–</span></div>
+    <div><b>Text</b><span id="np-txt">–</span></div>
+  </div>
+</section>
 
 <section>
   <h2>Sitzung</h2>
   <div class="row">
     <button class="p" id="open">Display öffnen (2. Fenster/Monitor)</button>
-    <input type="text" id="name" placeholder="Name der Person">
+    <input type="text" id="name" placeholder="Name der Person" aria-label="Name der Person">
     <button id="setname">Übernehmen</button>
   </div>
-</section>
-
-<section><h2>Bilder</h2><div class="row" id="images"></div></section>
-<section><h2>Video</h2><div class="row" id="videos"></div></section>
-<section><h2>Audio</h2><div class="row" id="audios"></div></section>
-
-<section>
-  <h2>Einblendung</h2>
-  <div class="row" id="texts" style="margin-bottom:10px"></div>
-  <div class="row">
-    <input type="text" id="free" placeholder="Freier Text, {name} wird ersetzt">
-    <button class="p" id="sendtext">Einblenden</button>
-    <button id="textoff">Ausblenden</button>
-  </div>
+  <p class="note" style="margin-top:10px">Display-Fenster auf den zweiten Monitor ziehen, dort „Sitzung bereit" klicken. Taste <b>F</b> = Vollbild, <b>K</b> = Klienten-Ansicht ohne Rahmen.</p>
 </section>
 
 <section>
   <h2>Maschine</h2>
   <div class="row">
-    <label>Lautstärke <input type="range" id="vol" min="0" max="1" step=".05" value="1"></label>
+    <label>Lautstärke <input type="range" id="vol" min="0" max="1" step=".05" value=".6"></label>
     <label>Spirale <input type="range" id="spd" min="6" max="60" step="1" value="30"></label>
-    <button id="black">Schwarz</button>
-    <button class="d" id="stop">Alles stoppen</button>
   </div>
 </section>
 
-<section>
+<section class="wide"><h2>Bilder</h2><div class="thumbs" id="images"></div><div class="row" style="margin-top:8px" id="images2"></div></section>
+<section><h2>Video</h2><div class="row" id="videos"></div></section>
+<section><h2>Audio</h2><div class="row" id="audios"></div><p class="note" style="margin-top:10px">„Kopfhörer": Binaurale Töne wirken nur über Kopfhörer mit getrennten Kanälen.</p></section>
+
+<section class="wide">
+  <h2>Einblendung</h2>
+  <div id="texts"></div>
+  <div class="row" style="margin-top:12px">
+    <input type="text" id="free" placeholder="Freier Text, {name} wird ersetzt" aria-label="Freier Text">
+    <button class="p" id="sendtext">Einblenden</button>
+    <button id="textoff">Ausblenden</button>
+  </div>
+</section>
+
+<section class="wide">
   <h2>Ablauf · Profil Good Boys</h2>
   <div class="row" style="margin-bottom:10px">
     <button id="ld">Deutsch</button><button id="le">English</button><button id="lb" class="p">Beide</button>
@@ -72,6 +114,7 @@ input[type=range]{accent-color:var(--cu)}
   <div id="flowq" style="font-size:.9rem;color:#f4e7b4;margin-bottom:8px">Nicht gestartet</div>
   <div class="row" id="flowa"></div>
 </section>
+</main>
 
 <script src="cues.js"></script>
 <script src="profil-goodboys.js"></script>
@@ -79,28 +122,47 @@ input[type=range]{accent-color:var(--cu)}
 const ch = new BroadcastChannel('hypnose'), $ = id => document.getElementById(id);
 const send = m => ch.postMessage(m);
 let win, blackOn = false;
+const volMsg = () => ({type:'volume', value:+$('vol').value});
 
-ch.onmessage = ({data}) => { if (data.type === 'flowstate') fstate(data.node); if (data.type === 'wake') { $('status').textContent = 'Person hat Aufwachen gedrückt, alles gestoppt'; $('status').className = 'status'; $('flowq').textContent = 'Nicht gestartet'; $('flowa').innerHTML = ''; } if (data.type === 'hello') { $('status').textContent = 'Display verbunden'; $('status').className = 'status ok'; send({type:'name', name:$('name').value}); } };
+ch.onmessage = ({data}) => { if (data.type === 'flowstate') fstate(data.node); if (data.type === 'wake') { $('status').textContent = 'Person hat Aufwachen gedrückt, alles gestoppt'; $('status').className = 'status'; $('flowq').textContent = 'Nicht gestartet'; $('flowa').innerHTML = ''; clearNow(); } if (data.type === 'hello') { $('status').textContent = 'Display verbunden'; $('status').className = 'status ok'; send({type:'name', name:$('name').value}); send(volMsg()); } };
 send({type:'ping'});
 
 $('open').onclick = () => { win = open('index.html', 'hypnose-display', 'width=1280,height=800'); };
 $('setname').onclick = () => send({type:'name', name:$('name').value});
 
-function btn(parent, label, fn){ const b = document.createElement('button'); b.textContent = label; b.onclick = fn; $(parent).appendChild(b); }
-CUES.images.forEach(c => btn('images', c.label, () => send({type:'image', src:c.src})));
-btn('images', 'Nur Spirale', () => send({type:'noimage'}));
-CUES.videos.forEach(c => btn('videos', c.label, () => send({type:'video', src:c.src})));
-btn('videos', 'Video stopp', () => send({type:'videostop'}));
-CUES.audios.forEach(c => btn('audios', c.label, () => send({type:'audio', src:c.src})));
-btn('audios', 'Audio stopp', () => send({type:'audiostop'}));
-CUES.texts.forEach(t => btn('texts', t, () => send({type:'text', text:t, ms:6000})));
+// --- Anzeige "Läuft gerade" und Markierung der aktiven Knöpfe
+const np = {img:'–', vid:'–', aud:'–', txt:'–'};
+let txtTimer;
+function showNow(){ for (const k in np) $('np-' + k).textContent = np[k]; }
+function mark(group, b){ document.querySelectorAll('#' + group + ' button, #' + group + '2 button').forEach(x => x.classList.remove('on')); if (b) b.classList.add('on'); }
+function clearNow(){ np.img = np.vid = np.aud = np.txt = '–'; ['images','videos','audios'].forEach(g => mark(g, null)); blackOn = false; $('black').classList.remove('on'); showNow(); }
 
-$('sendtext').onclick = () => send({type:'text', text:$('free').value, ms:6000});
-$('textoff').onclick = () => send({type:'textoff'});
-$('vol').oninput = e => send({type:'volume', value:+e.target.value});
+function btn(parent, label, fn, extra){ const b = document.createElement('button'); b.textContent = label; b.onclick = () => fn(b); if (extra) extra(b); $(parent).appendChild(b); return b; }
+
+CUES.images.forEach(c => { const b = btn('images', '', bt => { send({type:'image', src:c.src}); np.img = c.label; mark('images', bt); showNow(); });
+  b.className = 'thumb'; b.style.backgroundImage = 'url("' + c.src + '")'; b.innerHTML = '<span></span>'; b.firstChild.textContent = c.label; b.setAttribute('aria-label', 'Bild ' + c.label); });
+btn('images2', 'Nur Spirale', () => { send({type:'noimage'}); np.img = '–'; mark('images', null); showNow(); });
+CUES.videos.forEach(c => btn('videos', c.label, b => { send({type:'video', src:c.src, loop:!!c.loop}); np.vid = c.label; mark('videos', b); showNow(); }));
+btn('videos', 'Video stopp', () => { send({type:'videostop'}); np.vid = '–'; mark('videos', null); showNow(); });
+CUES.audios.forEach(c => btn('audios', c.label, b => { send({type:'audio', src:c.src, loop:!!c.loop}); np.aud = c.label; mark('audios', b); showNow(); }));
+btn('audios', 'Audio stopp', () => { send({type:'audiostop'}); np.aud = '–'; mark('audios', null); showNow(); });
+
+function sendText(t){ send({type:'text', text:t, ms:6000}); np.txt = t; showNow(); clearTimeout(txtTimer); txtTimer = setTimeout(() => { np.txt = '–'; showNow(); }, 6000); }
+CUES.texts.forEach((g, i) => {
+  if (typeof g === 'string') g = {group:'Texte', items:[g]};
+  const h = document.createElement('h3'); h.textContent = g.group; $('texts').appendChild(h);
+  const r = document.createElement('div'); r.className = 'row'; r.id = 'tg' + i; $('texts').appendChild(r);
+  g.items.forEach(t => btn('tg' + i, t, () => sendText(t)));
+});
+
+$('sendtext').onclick = () => sendText($('free').value);
+$('textoff').onclick = () => { send({type:'textoff'}); np.txt = '–'; showNow(); };
+$('vol').oninput = () => send(volMsg());
 $('spd').oninput = e => send({type:'speed', value:+e.target.value});
-$('black').onclick = () => { blackOn = !blackOn; send({type:'black', on:blackOn}); };
-$('stop').onclick = () => { send({type:'videostop'}); send({type:'audiostop'}); send({type:'textoff'}); send({type:'noimage'}); };
+$('black').onclick = () => { blackOn = !blackOn; send({type:'black', on:blackOn}); $('black').classList.toggle('on', blackOn); };
+function stopAll(){ send({type:'videostop'}); send({type:'audiostop'}); send({type:'textoff'}); send({type:'noimage'}); send({type:'flowoff'}); send({type:'black', on:false}); $('flowq').textContent = 'Nicht gestartet'; $('flowa').innerHTML = ''; fnode = null; clearNow(); }
+$('stop').onclick = stopAll;
+addEventListener('keydown', e => { if (e.key === 'Escape') stopAll(); });
 
 let fnode = null;
 function showNode(id){ fnode = id; send({type:'flow', node:id}); const n = FLOW.nodes[id];

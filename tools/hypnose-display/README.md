@@ -11,9 +11,24 @@ Aufruf (nach Deploy): `…/mindful7777/tools/hypnose-display/steuerung.html` →
 Original-Prüfsummen: `ORIGINAL-CHECKSUMS.sha256` (index.html, steuerung.html, profil-goodboys.js stimmten beim Upload; `cues.js` fehlte).
 1. `index.html`: noindex, Pflicht-Hinweis (18+, Einverständnis, nicht Fahren, Epilepsie/Lichtempfindlichkeit, Telefonseelsorge) vor dem Start – Disclaimer-Regel aus `knowledge/disclaimer.md`; `prefers-reduced-motion` schaltet Spirale/Halo/Blitze ab.
 2. `steuerung.html`: noindex, Kurzhinweis.
-3. `cues.js`: **Platzhalter** (leere Listen), Original bitte nachliefern.
-4. Unverändert: Google-Fonts-Link (wie `assets/style.css` im Repo). Offen: lokal einbetten (DSGVO – Besucher-IP an Google), siehe Fehlerprotokoll.
+3. `cues.js`: neu gefüllt (Original lag nicht bei): 7 Bilder, 4 Video-Schleifen, 4 Audio-Schleifen, 15 Texte in 3 Gruppen (Ankommen, Vertiefen, Ausleiten). Alles unter `media/`, selbst erzeugt mit `make_media.py` (`python3 make_media.py [img|video|audio]`), keine Fremdquellen. Original-`cues.js` bei Bedarf einfach darüberlegen.
+4. `steuerung.html`: neu gestaltet (HUD-Optik, Bild-Vorschauen, Anzeige „Läuft gerade“, aktive Knöpfe markiert, oben fest: Schwarz und Alles stoppen, Esc = Alles stoppen). Lautstärke startet bei 60 % und wird beim Verbinden gesetzt.
+5. `index.html`: Klienten-Ansicht ohne Rahmen (automatisch im Vollbild, Taste K schaltet um), Video-Schleife, Text und Ablauf überlagern sich nicht mehr, Antwort-Knöpfe nicht mehr gequetscht.
+6. Unverändert: Google-Fonts-Link (wie `assets/style.css` im Repo). Offen: lokal einbetten (DSGVO – Besucher-IP an Google), siehe Fehlerprotokoll.
 
 ## Fehlerprotokoll
 - Upload ohne `cues.js` → `verify.sh` meldete FAILED. Lehre: `sh verify.sh` vor jeder Übergabe.
 - Profil-Satz „Mit leerem Kopf bist du am besten" widerspricht `knowledge/discord-onboarding-ffm777.md` (kein Umgehen des kritischen Verstands). Nur mit Einverständnis und eigenem Hinweis nutzen; Text im Profil bei Bedarf entschärfen.
+
+## Sicherheit der erzeugten Medien
+- Videos: nur weiche Sinus-Verläufe, kein Blitzen, langsamste Änderung unter 1 Hz. Trotzdem Hinweis bei Epilepsie/Lichtempfindlichkeit beachten.
+- Audio: Spitzenpegel ca. −10 dBFS. „Kopfhörer“-Dateien (Theta 6 Hz, Alpha 10 Hz) sind binaural und wirken nur über Kopfhörer. Loops sind periodisch erzeugt; je nach Browser kann der Neustart minimal knacken.
+- Text-Cues bewusst ohne Befehls-/Gehorsams-Formulierungen (Markenregel: kritischen Verstand nicht umgehen). Eigene Texte jederzeit in `cues.js` ergänzen.
+
+## Test (17.11.2026, Chrome headless, beide Fenster)
+Verbindung, Bild, Video (läuft, Schleife), Audio (läuft, Schleife, Lautstärke 0,6), Text mit Namen, Ablauf, Klienten-Ansicht, „Alles stoppen“ (alles aus, Anzeige zurückgesetzt), Steuerpult bei 390 px ohne Querscrollen: alles ohne Konsolenfehler. Nicht getestet: echte Kopfhörer-Wirkung, Safari/iPhone, Google Fonts (im Test blockiert, Ersatzschrift).
+
+## Fehlerprotokoll (Ergänzung)
+- Text-Einblendung und Ablauf-Frage lagen übereinander → `body:has(#flow.on) #txt` setzt den Text nach unten. Lehre: Overlays immer gemeinsam im Browser testen, nicht einzeln.
+- Spiral-Bild: Arme endeten mitten im Bild → Arme laufen jetzt aus dem Bild. Lehre: Screenshot prüfen, nicht nur Code.
+- Ganzseiten-Screenshot zeigte weißen Hintergrund (nur `body` hatte `fixed`-Verlauf) → `html{background}` gesetzt.
