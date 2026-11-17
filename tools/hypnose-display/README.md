@@ -63,3 +63,9 @@ Verbindung, Bild, Video (läuft, Schleife), Audio (läuft, Schleife, Lautstärke
 - **Sichern:** „Alle sichern (JSON)“ exportiert Uploads, Änderungen und Textbausteine; JSON-Datei wieder hochladen = Import auf anderem Gerät.
 - Grenze: keine automatische Übersetzung (kein Schlüssel/Server auf GitHub Pages, Datenschutz); Übersetzung wird eingefügt oder selbst geschrieben.
 - Test: Einfügen mit Sätze-Aufteilung, Übersetzungs-Umschaltung, Zitat in B, Bearbeiten und Zurücksetzen des Originals, Textbausteine, Export, Persistenz nach Reload, 390 px ohne Überlauf.
+
+## Skripte 03–05: Socken-Anker (17.11.2026)
+- Aus der Vorlage „Socken-Anker · 3 Theta-Wave-Induktionen“ übernommen: nur die gesprochenen Passagen (Street, After Training, After Shower), gekürzt, Pausen als [3~]/[6~], Phasen und Anker markiert. Jeder Schritt hat die englische Fassung (`<<`-Zeile im .md), umschaltbar über „Anzeige“.
+- Bewusst nicht übernommen: die Sprecher-Hinweise und „Warum das funktioniert“-Texte (nicht zum Einblenden), drei eingestreute englische Fremdzeilen („inner coach“, „universe is smiling“, „Everything is fine…“; das Universum-Wort steht auf der Verbotsliste), Absatz „Einsatz-Empfehlung“.
+- Textliche Anpassungen: „Cortisol sinkt“ und „Das ist Physiologie“ → vorsichtigere Formulierungen (Vagus-Nerv, „messbar Richtung Ruhe“); Edison-Aussage mit „soll“ abgeschwächt; Markenwörter geprüft (CLAUDE.md-Liste, 0 Treffer). `knowledge/verbotene_phrasen.md` fehlt in diesem Checkout (in CLAUDE.md erwähnt) – Prüfung daher gegen die Liste in CLAUDE.md.
+- Neu im Parser: `<<`-Zeile = Übersetzung des vorherigen Schritts; Sprache der mitgelieferten Skripte wird erkannt statt fest „EN“.

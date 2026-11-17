@@ -407,6 +407,7 @@ function parseScript(md){
     if ((m = l.match(/^`@phase:([^`]+)`/))) { phase = m[1]; return; }
     if ((m = l.match(/^`~+([^~`]+)~+`/))) { tempo = m[1]; return; }
     if ((m = l.match(/^`#anchor:([^`]+)`/))) { anchor = m[1]; return; }
+    if ((m = l.match(/^`?<<`?\s*(.*)$/))) { const last = out.steps[out.steps.length - 1]; if (last && m[1].trim()) last.alt = m[1].replace(/\*\*/g, '').trim(); return; }
     let body = null, echo = false;
     if ((m = l.match(/^`?>>`?\s*(.*)$/))) body = m[1];
     else if ((m = l.match(/^`\/\/(.*?)\/\/`\s*(.*)$/))) { echo = true; body = m[1] + ' ' + m[2]; }
@@ -469,7 +470,7 @@ $('sprev').onclick = () => go(cur - 1);
 $('scriptsel').onchange = e => useScript(e.target.value);
 $('slang').value = slang; $('slang').onchange = e => { slang = e.target.value; store.set('hd-slang', slang); };
 addEventListener('keydown', e => { if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.closest('[role=tablist]')) return; if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); } });
-(window.SCRIPTS || []).forEach(x => { const p = parseScript(x.md); const meta = {lang:'en', mode:'A', builtin:true, orig:{title:p.title || x.id, lang:'en', mode:'A', steps:JSON.parse(JSON.stringify(p.steps))}};
+(window.SCRIPTS || []).forEach(x => { const p = parseScript(x.md); const bl = detectLang(p.steps.map(z => z.text).join(' ')); const meta = {lang:bl, mode:'A', builtin:true, orig:{title:p.title || x.id, lang:bl, mode:'A', steps:JSON.parse(JSON.stringify(p.steps))}};
   addScript(x.id, p.title || x.id, p.steps, null, meta); if (ED[x.id] && Array.isArray(ED[x.id].steps)) applyEdit(x.id); });
 addScript('own', '', [], 'own'); addScript('gen', '', [], 'gen');
 $('loadown').onclick = () => { const st = $('free').value.split(/\r?\n/).map(x => x.trim()).filter(Boolean).map(t => ({phase:T('own'), tempo:'', anchor:'', echo:false, pause:0, text:t})); addScript('own', '', st, 'own'); useScript('own'); };
