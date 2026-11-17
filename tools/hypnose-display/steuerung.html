@@ -124,7 +124,16 @@ details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);
     </div>
     <p class="note" style="margin-top:10px" data-i="sessionhint"></p>
   </section>
-  <section class="wide"><h2 data-i="sec.images">Bilder</h2><div class="thumbs" id="images"></div><div class="row" style="margin-top:8px" id="images2"></div></section>
+  <section class="wide"><h2 data-i="sec.images">Bilder</h2><div class="thumbs" id="images"></div><div class="row" style="margin-top:8px" id="images2"></div>
+    <h3 data-i="img.up.title">Eigene Bilder / GIFs</h3>
+    <div class="thumbs" id="myimgs"></div>
+    <div class="drop" id="imgdrop" tabindex="0" role="button" style="margin-top:8px" aria-label="Upload">
+      <span data-i="img.up.drop">Bilder oder GIFs hierher ziehen (PNG, JPG, WebP, GIF)</span>
+      <button class="p" id="imgbtn" data-i="up.choose">Datei wählen</button>
+      <input type="file" id="imgfile" multiple accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+    </div>
+    <p class="note" style="margin-top:8px" data-i="img.up.hint"></p>
+    <p class="note" id="imgmsg" style="margin-top:8px;display:none"></p></section>
   <section><h2 data-i="sec.video">Video</h2><div class="row" id="videos"></div></section>
   <section><h2 data-i="sec.audio">Audio</h2><div class="row" id="audios"></div><p class="note" style="margin-top:10px" data-i="audiohint"></p></section>
 </div>
@@ -239,7 +248,7 @@ const I18N = {
     'up.hint':'.md im TranceScript-Format (Phasen, Pausen [3~], Anker) wird Schritt für Schritt geladen, .txt: jede Zeile ein Schritt, .json: Generator-Daten (Schema) oder {"title":"…","steps":["…"]}. Bleibt in diesem Browser gespeichert, max. 500 KB je Datei.',
     'up.ok':'{n} Schritte geladen: {t}', 'up.r3':'Generator-Daten aus {t} übernommen (Tab Generator).', 'up.big':'{t}: zu groß (max. 500 KB).', 'up.ext':'{t}: nur .txt, .md oder .json.',
     'up.badjson':'{t}: JSON passt weder zum Generator-Schema noch zu {"steps":[…]}.', 'up.empty':'{t}: keine Textzeilen gefunden.', 'up.cap':'{t}: auf 500 Schritte gekürzt.', 'up.nostore':'Konnte nicht dauerhaft speichern (Browser-Speicher voll/gesperrt); gilt nur bis zum Neuladen.', 'up.remove':'Entfernen',
-    'sec.gen':'Rule of Three · Generator', 'r3.build':'Zusammensetzen und als Skript laden', 'r3.sample':'Beispiel laden', 'r3.copy':'Als JSON kopieren', 'r3.jsonsum':'JSON einfügen (Schema rule_of_three_schema.json)', 'r3.apply':'JSON übernehmen',
+    'img.up.title':'Eigene Bilder / GIFs', 'img.up.drop':'Bilder oder GIFs hierher ziehen (PNG, JPG, WebP, GIF)', 'img.up.hint':'Bleiben in diesem Browser gespeichert (nicht im Internet), max. 8 MB je Datei. GIFs laufen animiert. Rechte am Bild müssen bei dir liegen.', 'img.big':'{t}: zu groß (max. 8 MB).', 'img.bad':'{t}: nur PNG, JPG, WebP oder GIF.', 'img.ok':'{t} hinzugefügt.', 'img.err':'Speichern nicht möglich: ', 'sec.gen':'Rule of Three · Generator', 'r3.build':'Zusammensetzen und als Skript laden', 'r3.sample':'Beispiel laden', 'r3.copy':'Als JSON kopieren', 'r3.jsonsum':'JSON einfügen (Schema rule_of_three_schema.json)', 'r3.apply':'JSON übernehmen',
     'r3.intro':'Fünf Dreier-Muster, Sätze wie im Python-Generator (Englisch).', 'r3.loaded':'Beispiel geladen.', 'r3.fill':'Bitte ergänzen: ', 'r3.done':'5 Sätze erzeugt und als Skript geladen. Im Tab „Text & Skript“ mit Weiter ▶ einblenden.',
     'r3.schema':'JSON passt nicht zum Schema: ', 'r3.applied':'JSON übernommen. Jetzt „Zusammensetzen“.', 'r3.badjson':'Kein gültiges JSON: ', 'r3.copied':'JSON kopiert (steht auch im Feld unter „JSON einfügen“).', 'r3.nocopy':'Kopieren nicht erlaubt – JSON steht im Feld unter „JSON einfügen“.',
     'sec.flow':'Ablauf · Profil Good Boys', 'flow.lang':'Sprache des Ablaufs', 'flow.de':'Deutsch', 'flow.en':'English', 'flow.both':'Beide', 'flow.control':'Steuerung',
@@ -264,7 +273,7 @@ const I18N = {
     'up.hint':'.md in TranceScript format (phases, pauses [3~], anchors) loads step by step, .txt: one step per line, .json: generator data (schema) or {"title":"…","steps":["…"]}. Stored in this browser, max. 500 KB per file.',
     'up.ok':'{n} steps loaded: {t}', 'up.r3':'Generator data from {t} applied (Generator tab).', 'up.big':'{t}: too large (max. 500 KB).', 'up.ext':'{t}: only .txt, .md or .json.',
     'up.badjson':'{t}: JSON matches neither the generator schema nor {"steps":[…]}.', 'up.empty':'{t}: no text lines found.', 'up.cap':'{t}: cut to 500 steps.', 'up.nostore':'Could not save permanently (browser storage full/blocked); valid until reload only.', 'up.remove':'Remove',
-    'sec.gen':'Rule of Three · Generator', 'r3.build':'Assemble and load as script', 'r3.sample':'Load example', 'r3.copy':'Copy as JSON', 'r3.jsonsum':'Paste JSON (schema rule_of_three_schema.json)', 'r3.apply':'Apply JSON',
+    'img.up.title':'Own images / GIFs', 'img.up.drop':'Drag images or GIFs here (PNG, JPG, WebP, GIF)', 'img.up.hint':'Stored in this browser only (not online), max. 8 MB per file. GIFs play animated. You must hold the rights to the image.', 'img.big':'{t}: too large (max. 8 MB).', 'img.bad':'{t}: only PNG, JPG, WebP or GIF.', 'img.ok':'{t} added.', 'img.err':'Could not save: ', 'sec.gen':'Rule of Three · Generator', 'r3.build':'Assemble and load as script', 'r3.sample':'Load example', 'r3.copy':'Copy as JSON', 'r3.jsonsum':'Paste JSON (schema rule_of_three_schema.json)', 'r3.apply':'Apply JSON',
     'r3.intro':'Five triple patterns, sentences as in the Python generator (English).', 'r3.loaded':'Example loaded.', 'r3.fill':'Please complete: ', 'r3.done':'5 sentences created and loaded as script. Show them in the "Text & script" tab with Next ▶.',
     'r3.schema':'JSON does not match the schema: ', 'r3.applied':'JSON applied. Now press "Assemble".', 'r3.badjson':'Not valid JSON: ', 'r3.copied':'JSON copied (also in the field under "Paste JSON").', 'r3.nocopy':'Copying not allowed – the JSON is in the field under "Paste JSON".',
     'sec.flow':'Flow · profile Good Boys', 'flow.lang':'Flow language', 'flow.de':'German', 'flow.en':'English', 'flow.both':'Both', 'flow.control':'Control',
@@ -440,6 +449,46 @@ dz.addEventListener('drop', e => { handleFiles([...e.dataTransfer.files]); });
 dz.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('upfile').click(); } });
 ['dragover', 'drop'].forEach(ev => addEventListener(ev, e => e.preventDefault()));   // Datei neben der Zone öffnet nicht den Browser-Viewer
 
+
+// ================= Eigene Bilder / GIFs (IndexedDB, nur im Browser) =================
+const IMGMAX = 8 * 1024 * 1024, IMGOK = ['image/png', 'image/jpeg', 'image/webp', 'image/gif'];
+const idb = new Promise(res => { try { const r = indexedDB.open('hd-media', 1); r.onupgradeneeded = () => r.result.createObjectStore('img', {keyPath:'id'}); r.onsuccess = () => res(r.result); r.onerror = () => res(null); } catch (e) { res(null); } });
+const idbDo = async (mode, fn) => { const db = await idb; if (!db) throw new Error('IndexedDB'); return new Promise((ok, no) => { const t = db.transaction('img', mode), st = t.objectStore('img'), q = fn(st); t.oncomplete = () => ok(q && q.result); t.onerror = () => no(t.error); }); };
+const URLS = {};
+function imgmsg(t, c){ const m = $('imgmsg'); m.style.display = t ? '' : 'none'; m.textContent = t; m.className = 'note ' + (c || ''); }
+const toDataUrl = b => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(r.result); r.onerror = no; r.readAsDataURL(b); });
+async function renderMy(){
+  const R = $('myimgs'); R.innerHTML = ''; let all = []; try { all = await idbDo('readonly', s => s.getAll()) || []; } catch (e) {}
+  all.sort((a, b) => a.t - b.t);
+  for (const it of all) {
+    if (!URLS[it.id]) URLS[it.id] = URL.createObjectURL(it.blob);
+    const w = document.createElement('div'); w.style.position = 'relative';
+    const b = document.createElement('button'); b.className = 'thumb'; b.dataset.n = it.id; b.style.width = '100%'; b.style.backgroundImage = 'url("' + URLS[it.id] + '")'; b.setAttribute('aria-label', it.name);
+    const sp = document.createElement('span'); sp.textContent = it.name; b.appendChild(sp);
+    b.onclick = async () => { send({type:'image', src:await toDataUrl(it.blob)}); np.img = it.name; mark('images', it.id); showNow(); };
+    const x = document.createElement('button'); x.textContent = '✕'; x.title = x.ariaLabel = T('up.remove') + ': ' + it.name; x.style.cssText = 'position:absolute;top:4px;right:4px;min-height:32px;min-width:32px;padding:0;background:rgba(0,0,0,.7)';
+    x.onclick = async () => { await idbDo('readwrite', s => s.delete(it.id)); URL.revokeObjectURL(URLS[it.id]); delete URLS[it.id]; if (act.images === it.id) { send({type:'noimage'}); np.img = '–'; mark('images', null); showNow(); } renderMy(); };
+    w.appendChild(b); w.appendChild(x); R.appendChild(w);
+  }
+  mark('images', act.images);
+}
+async function handleImgs(files){
+  for (const f of files) {
+    if (!IMGOK.includes(f.type)) { imgmsg(T('img.bad', {t:f.name}), 'bad'); continue; }
+    if (f.size > IMGMAX) { imgmsg(T('img.big', {t:f.name}), 'bad'); continue; }
+    try { await idbDo('readwrite', s => s.put({id:'u' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name:f.name.slice(0, 60), t:Date.now(), blob:f})); imgmsg(T('img.ok', {t:f.name}), 'ok'); }
+    catch (e) { imgmsg(T('img.err') + e.message, 'bad'); }
+  }
+  renderMy();
+}
+$('imgbtn').onclick = () => $('imgfile').click();
+$('imgfile').onchange = e => { handleImgs([...e.target.files]); e.target.value = ''; };
+const idz = $('imgdrop');
+['dragenter', 'dragover'].forEach(ev => idz.addEventListener(ev, e => { e.preventDefault(); idz.classList.add('over'); }));
+['dragleave', 'drop'].forEach(ev => idz.addEventListener(ev, e => { e.preventDefault(); idz.classList.remove('over'); }));
+idz.addEventListener('drop', e => handleImgs([...e.dataTransfer.files]));
+idz.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('imgfile').click(); } });
+
 // ================= Rule of Three =================
 const R3L = {
   pace_pace_lead:{t:{de:'Pace · Pace · Lead', en:'Pace · Pace · Lead'}, f:{pace_1:{de:'Pace 1', en:'Pace 1'}, pace_2:{de:'Pace 2', en:'Pace 2'}, lead:{de:'Lead', en:'Lead'}}},
@@ -511,7 +560,7 @@ document.querySelectorAll('#tabs [role=tab]').forEach(b => { b.onclick = () => s
 function setUi(l, announce){
   ui = l; store.set('hd-ui', l); applyStatic(); buildCues(); buildR3(true);
   Object.keys(SC).forEach(id => { const o = [...$('scriptsel').options].find(x => x.value === id); if (o && SC[id].tkey) o.textContent = T(SC[id].tkey); });
-  renderSteps(); renderUP(); renderFlowOp(); showNow(); if (announce) send({type:'uilang', lang:l});
+  renderSteps(); renderUP(); renderFlowOp(); renderMy(); showNow(); if (announce) send({type:'uilang', lang:l});
 }
 $('ul-de').onclick = () => setUi('de', true);
 $('ul-en').onclick = () => setUi('en', true);
@@ -520,7 +569,7 @@ $('ul-en').onclick = () => setUi('en', true);
 buildR3(false); applyStatic(); buildCues(); renderFlowOp(); showNow();
 UP.forEach(u => addScript(u.id, '↑ ' + u.title, u.steps)); renderUP();
 if (window.SCRIPTS && window.SCRIPTS.length) useScript(window.SCRIPTS[0].id);
-r3msg(T('r3.intro'));
+r3msg(T('r3.intro')); renderMy();
 showTab(store.get('hd-tab', 'sitzung'));
 </script>
 </body>

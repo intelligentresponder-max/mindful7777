@@ -51,3 +51,7 @@ Verbindung, Bild, Video (läuft, Schleife), Audio (läuft, Schleife, Lautstärke
 - **Oberfläche:** Tabs (Sitzung & Medien, Text & Skript, Generator, Ablauf), „Läuft gerade“, Schwarz und Stopp immer sichtbar.
 - **Fehler, gefunden beim Test:** Display warf nach dem Start einen JS-Fehler bei `uilang` (Start-Overlay war schon entfernt) → Nullprüfung in `applyUi`.
 - **Alternativen geprüft:** Loop per Crossfade zweier `<audio>`-Elemente (ungenau im Timing, verworfen); Upload per Server (nicht möglich auf GitHub Pages, Datenschutz); Browser-Speicher statt Server ist sicherer.
+
+## Bild-/GIF-Upload (17.11.2026)
+- Tab „Sitzung & Medien“ → „Eigene Bilder / GIFs“: PNG, JPG, WebP, GIF per Klick oder Drag & Drop, max. 8 MB. Speicherung in IndexedDB (nur dieser Browser, nichts online). Anzeige im Display per Datenadresse, GIFs laufen animiert. SVG bewusst ausgeschlossen (könnte Skripte enthalten). Test: Upload, Anzeige im Display, Persistenz nach Reload, Ablehnung falscher Typen, Löschen.
+- Hinweis: Rechte am hochgeladenen Bild liegen beim Nutzer; Bilder im Browser des Geräts, nicht im Repo (kein Eintrag in data/bilder.json nötig, da nichts veröffentlicht wird).
