@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sleep Better with Hypnosis — mindful7777</title>
+<meta content="What is behind hypnosis for better sleep? How to try sleep hypnosis — warm, well-founded, with no promises." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=DM+Mono:wght@300;400&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink:#1a1714;--cream:#f5f1eb;--warm:#e8dfd4;
+    --gold:#c8a96e;--muted:#8c7f74;--green:#4a5c4e;
+    --accent:#7b8fc2;--card-bg:#fffcf8;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Cormorant Garamond',serif;background:var(--cream);color:var(--ink);}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.5rem;background:rgba(245,241,235,0.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,169,110,0.25);}
+  .nav-logo{font-family:'DM Mono',monospace;font-size:.85rem;letter-spacing:.12em;color:var(--green);text-decoration:none;}
+  .nav-back{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.1em;color:var(--muted);text-decoration:none;}
+  .nav-back:hover{color:var(--gold);}
+
+  .article-hero{padding:8rem 2.5rem 4rem;max-width:720px;margin:0 auto;}
+  .article-tag{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
+  .article-title{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:300;line-height:1.08;letter-spacing:-.02em;}
+  .article-title em{font-style:italic;color:var(--green);}
+  .article-meta{margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:var(--muted);display:flex;gap:2rem;}
+
+  .disclaimer-box{max-width:720px;margin:0 auto 3rem;padding:0 2.5rem;}
+  .disclaimer-box .inner{background:var(--warm);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;font-family:'DM Mono',monospace;font-size:.68rem;line-height:1.7;letter-spacing:.04em;color:var(--muted);}
+
+  .article-body{max-width:720px;margin:0 auto;padding:0 2.5rem 6rem;}
+  .article-body p{font-size:1.2rem;font-weight:300;line-height:1.8;color:var(--ink);margin-bottom:1.6rem;}
+  .article-body h2{font-size:1.9rem;font-weight:400;margin:3rem 0 1.2rem;letter-spacing:-.01em;}
+  .article-body h2 em{font-style:italic;color:var(--green);}
+  .article-body h3{font-size:1.3rem;font-weight:400;color:var(--accent);margin:2rem 0 .8rem;font-style:italic;}
+
+  .night-box{background:#1e2535;color:rgba(245,241,235,.88);padding:2rem 2.2rem;margin:2.5rem 0;border-radius:0;}
+  .night-box p{color:rgba(245,241,235,.88);font-size:1.1rem;font-weight:300;line-height:1.75;}
+  .night-box strong{color:var(--gold);}
+  .night-box .nb-label{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;}
+
+  .steps-list{counter-reset:steps;list-style:none;margin:2rem 0;}
+  .steps-list li{counter-increment:steps;display:flex;gap:1.2rem;margin-bottom:1.5rem;align-items:flex-start;}
+  .steps-list li::before{content:counter(steps);font-family:'DM Mono',monospace;font-size:.9rem;min-width:2rem;height:2rem;background:var(--gold);color:var(--cream);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.15rem;}
+  .steps-list .step-text{font-size:1.1rem;font-weight:300;line-height:1.65;color:var(--ink);}
+  .steps-list .step-title{font-weight:600;display:block;margin-bottom:.3rem;}
+
+  .pullquote{border-left:3px solid var(--gold);padding:1rem 0 1rem 2rem;margin:2.5rem 0;font-size:1.4rem;font-style:italic;font-weight:300;color:var(--muted);line-height:1.5;}
+
+  .article-cta{background:var(--warm);padding:3rem 2.5rem;text-align:center;margin-top:3rem;}
+  .article-cta h3{font-size:1.9rem;font-weight:300;margin-bottom:.8rem;}
+  .article-cta p{font-size:1.1rem;font-weight:300;color:var(--muted);margin-bottom:1.8rem;}
+  .btn-primary{display:inline-block;padding:.9rem 2.4rem;background:var(--green);color:var(--cream);font-family:'DM Mono',monospace;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:opacity .2s;}
+  .btn-primary:hover{opacity:.85;}
+
+  .back-link{display:inline-block;margin-top:2rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--muted);text-decoration:none;}
+  .back-link:hover{color:var(--gold);}
+
+  footer{background:var(--ink);color:var(--muted);padding:2.5rem;text-align:center;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.07em;line-height:1.9;}
+  footer a{color:var(--gold);text-decoration:none;}
+
+  @media(max-width:700px){nav{padding:1rem 1.2rem;}.article-hero,.article-body,.disclaimer-box{padding-left:1.2rem;padding-right:1.2rem;}}
+</style>
+<link href="https://intelligentresponder-max.github.io/mindful7777/funnel/blog-besser-schlafen-en.html" rel="canonical"/><meta content="de_DE" property="og:locale:alternate"/><link href="https://intelligentresponder-max.github.io/mindful7777/funnel/blog-besser-schlafen.html" hreflang="de" rel="alternate"/><link href="https://intelligentresponder-max.github.io/mindful7777/funnel/blog-besser-schlafen-en.html" hreflang="en" rel="alternate"/><link href="https://intelligentresponder-max.github.io/mindful7777/funnel/blog-besser-schlafen.html" hreflang="x-default" rel="alternate"/><meta content="https://intelligentresponder-max.github.io/mindful7777/funnel/blog-besser-schlafen-en.html" property="og:url"/><meta content="en_US" property="og:locale"/><style id="lang-link-style">.lang-toggle{display:flex;gap:6px;align-items:center}.lang-toggle a.lang-btn{display:inline-block;text-decoration:none;font:inherit;font-size:12px;letter-spacing:.1em;padding:4px 10px;border:1px solid rgba(212,165,116,.35);border-radius:4px;color:inherit;opacity:.75}.lang-toggle a.lang-btn.active{opacity:1;background:rgba(212,165,116,.22);color:#D4A574}</style></head>
+<body>
+<nav><a class="nav-logo" href="../index.html">mindful7777</a>
+<a class="nav-back" href="blog-en.html">← Back to the blog</a></nav><div class="lang-toggle" style="display:flex;gap:6px;margin-left:12px;"><a class="lang-btn" href="https://intelligentresponder-max.github.io/mindful7777/funnel/blog-besser-schlafen.html" hreflang="de" lang="de" style="font-size:10px;letter-spacing:2px;padding:5px 10px;border:1px solid rgba(212,165,116,.3);background:transparent;color:rgba(247,244,238,.6);text-decoration:none;display:inline-block;">DE</a><a aria-current="page" class="lang-btn active" href="https://intelligentresponder-max.github.io/mindful7777/funnel/blog-besser-schlafen-en.html" hreflang="en" lang="en" style="font-size:10px;letter-spacing:2px;padding:5px 10px;border:1px solid rgba(212,165,116,.3);background:transparent;color:rgba(247,244,238,.6);text-decoration:none;display:inline-block;background:rgba(212,165,116,.25);color:#D4A574;">EN</a></div>
+<header class="article-hero">
+<p class="article-tag">Sleep · Hypnosis · Reading time: 6 min</p>
+<h1 class="article-title">Sleep better<br/>with <em>hypnosis</em></h1>
+<div class="article-meta"><span>André · mindful7777</span>
+<span>May 2025</span>
+<span>Topic: Sleep</span></div>
+</header>
+<div class="disclaimer-box">
+<div class="inner">⚠️ This article is for general information and relaxation only. It does not replace psychotherapeutic or medical advice. If sleep problems last longer than 4 weeks or strongly affect your daily life, please consult a professional. Crisis support (Germany): Telefonseelsorge 0800 111 0 111 (free, 24/7).</div>
+</div>
+<article class="article-body">
+<p>Poor sleep is one of the most common topics people bring to us. Falling asleep doesn’t work. The mind keeps running. You sleep three hours, wake up and ruminate until four in the morning. Many people know this pattern — and many report that hypnosis audio can help interrupt it.</p>
+<p>But what exactly happens in the process? And how can you try it tonight?</p>
+<h2>Why sleeping is so <em>hard</em></h2>
+<p>Sleep isn’t an active performance — it’s a state that sets in when the nervous system is calm. The problem: many of us get into bed with a brain that is still in activation mode. Cortisol, stress, to-do lists. The body is tired, the mind is running at full speed.</p>
+<div class="night-box">
+<div class="nb-label">What happens in the body</div>
+<p>Chronic stress keeps the sympathetic nervous system activated — the so-called “fight or flight” mode. In this state the body releases stress hormones that make falling asleep harder. Deep relaxation — through breathing exercises, body awareness or guided hypnosis — can help activate the parasympathetic nervous system: the counterpart responsible for rest and recovery.</p>
+</div>
+<h2>How <em>sleep hypnosis</em> works</h2>
+<p>A sleep hypnosis audio guides you through a deliberately induced state of relaxation. Not a sleep state — but a calm, focused state of awareness in which your body is already relaxed while your mind is still conscious. From this state it is much easier to slip into real sleep.</p>
+<div class="pullquote">“Many people report that after regular use of our sleep audio they fall asleep faster — and wake up more rested in the morning.”</div>
+<p>The effect builds through <strong>regularity</strong>, not through a one-off experience. Like brushing your teeth: once helps little, every evening changes something.</p>
+<h2>Your evening ritual in <em>5 steps</em></h2>
+<ul class="steps-list">
+<li>
+<div class="step-text"><span class="step-title">Stop screen time</span>
+        No scrolling for at least 20 minutes before the audio. Screens keep the activation mode running — the opposite of what you need.</div>
+</li>
+<li>
+<div class="step-text"><span class="step-title">Prepare your environment</span>
+        Darken the room. Keep the temperature pleasantly cool (18–19 °C is considered optimal for sleep). Have your headphones ready.</div>
+</li>
+<li>
+<div class="step-text"><span class="step-title">Get into a comfortable position</span>
+        Lying in bed. Arms slightly away from the body. If possible, no pillow under the neck — less tension in the neck area.</div>
+</li>
+<li>
+<div class="step-text"><span class="step-title">Start the audio — and stop trying</span>
+        You don’t have to do anything “right”. Just listen. If thoughts come, they are welcome — you don’t have to chase them away. Let them drift by like clouds.</div>
+</li>
+<li>
+<div class="step-text"><span class="step-title">Consistency over perfection</span>
+        5 out of 7 nights beats one perfect week followed by nothing. Build the audio into your ritual — not as an extra, but as a fixed part of it.</div>
+</li>
+</ul>
+<h2>What you should <em>not</em> expect</h2>
+<p>Hypnosis audio is not a sleeping pill. It doesn’t replace a medical check-up for serious sleep disorders. If you have barely slept for weeks, can hardly function during the day, or feel strong anxiety when falling asleep — then the first step is a conversation with your family doctor.</p>
+<p>What hypnosis audio can support: calming the nervous system, gently interrupting racing thoughts, building a positive evening ritual. Many people report that exactly this was the first step out of a poor-sleep pattern.</p>
+<div class="night-box">
+<div class="nb-label">Quick check: is sleep hypnosis right for you?</div>
+<p><strong>Well suited:</strong> You generally sleep okay, but your mind often runs at full speed in the evening. You want to shape your evening ritual more consciously. You are curious about relaxation techniques.<br/><br/>
+<strong>Consult a professional first:</strong> You have a diagnosed sleep disorder (insomnia, sleep apnea). You take sleep medication. You suffer from mental health conditions that affect sleep.</p>
+</div>
+<div class="article-cta">
+<h3>Fall asleep differently tonight.</h3>
+<p>The mindful7777 sleep audio: 18 minutes of guided deep relaxation for falling asleep.</p>
+</div>
+<a class="back-link" href="blog-en.html">← Back to overview</a>
+</article>
+<footer>
+<p>© André · mindful7777 · Updated: May 2025</p>
+<p style="margin-top:.5rem;">All content is for information and relaxation only. Not a substitute for professional advice. <a href="../datenschutz-en.html">Disclaimer</a> · <a href="../impressum-en.html">Legal Notice</a></p>
+</footer>
+
+<style>#wm-spiral{position:fixed;right:14px;bottom:14px;width:54px;height:54px;z-index:5;opacity:.38;pointer-events:none}#wm-spiral svg{width:100%;height:100%;display:block}@media print{#wm-spiral{display:none}}</style>
+<div aria-hidden="true" id="wm-spiral"><svg viewbox="0 0 100 100"><path d="M50,50 m0,-4 a4,4 0 1,1 -4,4 a8,8 0 1,1 8,8 a12,12 0 1,1 -12,-12 a16,16 0 1,1 16,16 a20,20 0 1,1 -20,-20" fill="none" stroke="#D4A574" stroke-width="2"></path></svg></div>
+</body>
+</html>
