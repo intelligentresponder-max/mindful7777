@@ -37,6 +37,7 @@ Verbindung, Bild, Video (läuft, Schleife), Audio (läuft, Schleife, Lautstärke
 - Skript-Auswahl sprengte die Breite bei 390 px (lange Titel in `select`) → `min-width:0; max-width:100%`. Lehre: Mobilbreite nach jedem neuen Formularelement prüfen.
 - Generator ließ ein leeres Feld durch (`refreshed, cool, and .`), weil das Original-Schema nur „String“ verlangt → Formular prüft „ausgefüllt“ zusätzlich; Python-Original bleibt unverändert.
 - Test-Fehlgriff: Textfeld im geschlossenen `<details>` ist nicht bedienbar → Test öffnet es zuerst.
+- `__pycache__/*.pyc` landete im Commit (Test importierte das Python-Original) → entfernt, `.gitignore` ergänzt. Lehre: vor jedem Commit `git status` auf Fremddateien lesen; Tests mit `python3 -I -B` starten.
 - `curl -I` über den Proxy zeigte „200 Connection Established“ (Proxy-Zeile, nicht die Seite) → Status mit `-w '%{http_code}'` prüfen.
 - Text-Einblendung und Ablauf-Frage lagen übereinander → `body:has(#flow.on) #txt` setzt den Text nach unten. Lehre: Overlays immer gemeinsam im Browser testen, nicht einzeln.
 - Spiral-Bild: Arme endeten mitten im Bild → Arme laufen jetzt aus dem Bild. Lehre: Screenshot prüfen, nicht nur Code.

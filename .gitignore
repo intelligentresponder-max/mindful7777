@@ -12,3 +12,6 @@ stripe-api/.vercel/
 node_modules/
 
 .vercel
+
+__pycache__/
+*.pyc
