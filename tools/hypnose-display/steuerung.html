@@ -69,6 +69,11 @@ input[type=range]{accent-color:var(--cu);flex:1;min-width:100px}
 .r3 label{display:block;margin:6px 0 0;flex:none}
 .r3 input,.r3 select{width:100%;margin-top:3px;min-width:0}
 .mini{flex:0 1 auto}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:8px}
+.roles div{padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:rgba(7,10,18,.5);font-size:.8rem;color:var(--mut);line-height:1.45}
+.roles b{display:block;font:600 .64rem 'DM Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--cu);margin-bottom:4px}
+.chk{flex:1 1 100%;color:var(--txt);align-items:flex-start;line-height:1.4}
+.chk input{margin-top:3px;width:20px;height:20px;flex:none;accent-color:var(--cu)}
 details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);min-height:32px}
 .drop{border:1.5px dashed rgba(79,209,197,.45);border-radius:10px;padding:18px;text-align:center;color:var(--mut);font-size:.85rem;display:flex;flex-direction:column;gap:10px;align-items:center;transition:background .2s,border-color .2s}
 .drop.over{background:rgba(79,209,197,.12);border-color:var(--cy);color:var(--txt)}
@@ -94,6 +99,7 @@ details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);
 <nav class="tabs" role="tablist" id="tabs">
   <button role="tab" data-tab="sitzung" data-i="tab.sitzung">Sitzung &amp; Medien</button>
   <button role="tab" data-tab="text" data-i="tab.text">Text &amp; Skript</button>
+  <button role="tab" data-tab="street" data-i="tab.street">Street</button>
   <button role="tab" data-tab="gen" data-i="tab.gen">Generator</button>
   <button role="tab" data-tab="ablauf" data-i="tab.ablauf">Ablauf</button>
 </nav>
@@ -217,6 +223,40 @@ details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);
   </section>
 </div>
 
+<!-- ============ Street ============ -->
+<div class="pane" id="pane-street">
+  <section class="wide">
+    <h2 data-i="sec.street">Street Hypnose</h2>
+    <p class="note" data-i="street.intro"></p>
+    <h3 data-i="street.consent.t">Vorher</h3>
+    <div class="row">
+      <label class="chk"><input type="checkbox"><span data-i="street.c1"></span></label>
+      <label class="chk"><input type="checkbox"><span data-i="street.c2"></span></label>
+      <label class="chk"><input type="checkbox"><span data-i="street.c3"></span></label>
+    </div>
+  </section>
+  <section class="wide"><h2 data-i="street.sc.t">Beispiel-Skripte</h2><div class="row" id="street-open"></div><p class="note" style="margin-top:10px" data-i="street.sc.hint"></p></section>
+  <section class="wide"><h2 data-i="street.roles.t">Bausteine</h2>
+    <p class="note" style="margin-bottom:10px" data-i="street.top"></p>
+    <div class="roles">
+      <div><b data-i="role.cont.t"></b><span data-i="role.cont.d"></span></div>
+      <div><b data-i="role.carr.t"></b><span data-i="role.carr.d"></span></div>
+      <div><b data-i="role.pay.t"></b><span data-i="role.pay.d"></span></div>
+      <div><b data-i="role.tex.t"></b><span data-i="role.tex.d"></span></div>
+      <div><b data-i="role.han.t"></b><span data-i="role.han.d"></span></div>
+    </div>
+  </section>
+  <section class="wide"><h2 data-i="street.build.t">Baukasten</h2>
+    <div class="r3" id="sfform"></div>
+    <div class="row">
+      <label style="flex:0 1 auto"><span data-i="sf.outlang">Sprache</span><select id="sflang"><option value="de">Deutsch</option><option value="en">English</option></select></label>
+      <button class="p" id="sfbuild" data-i="sf.build">Zusammensetzen und als Skript laden</button>
+      <button id="sfsample" data-i="r3.sample">Beispiel laden</button>
+    </div>
+    <p class="note" id="sfmsg" style="margin-top:10px"></p>
+  </section>
+</div>
+
 <!-- ============ Generator ============ -->
 <div class="pane" id="pane-gen">
   <section class="wide">
@@ -289,6 +329,21 @@ const I18N = {
     'r3.schema':'JSON passt nicht zum Schema: ', 'r3.applied':'JSON übernommen. Jetzt „Zusammensetzen“.', 'r3.badjson':'Kein gültiges JSON: ', 'r3.copied':'JSON kopiert (steht auch im Feld unter „JSON einfügen“).', 'r3.nocopy':'Kopieren nicht erlaubt – JSON steht im Feld unter „JSON einfügen“.',
     'sec.flow':'Ablauf · Profil Good Boys', 'flow.lang':'Sprache des Ablaufs', 'flow.de':'Deutsch', 'flow.en':'English', 'flow.both':'Beide', 'flow.control':'Steuerung',
     'flow.guide':'Ich steuere', 'flow.self':'Person tippt selbst', 'flow.start':'Ablauf starten', 'flow.end':'Ablauf beenden', 'flow.none':'Nicht gestartet', 'flow.over':'Ende des Ablaufs', 'flow.selfpick':'Person wählt selbst …'
+    ,'tab.street':'Street', 'sec.street':'Street Hypnose', streetgen:'Street-Baukasten (generiert)',
+    'street.intro':'Gesprächsmuster nach der Black-Book-Methode für kurze Begegnungen. Ausschließlich mit ausdrücklichem Einverständnis, ab 18. Jedes Beispiel beginnt mit der Frage nach dem Einverständnis und endet mit der Rückkehr.',
+    'street.consent.t':'Vorher klären', 'street.c1':'Die Person hat ausdrücklich zugestimmt und ist volljährig.', 'street.c2':'Kein Straßenverkehr, keine Maschinen, kein Alkohol, keine Epilepsie oder Lichtempfindlichkeit.', 'street.c3':'Stopp ist jederzeit möglich: Augen öffnen oder „Stopp“ sagen. Danach sofort Rückkehr, keine Diskussion.',
+    'street.sc.t':'Beispiel-Skripte', 'street.sc.hint':'Öffnet das Skript im Tab „Text & Skript“. Original Englisch, Übersetzung per „Anzeige“. Die Phase zeigt, welches Muster gerade gesprochen wird.',
+    'street.roles.t':'Bausteine', 'street.top':'T.O.P.: Theme (Thema), Outcome (Ziel), Patterns (Muster). Jedes Gespräch besteht aus fünf Rollen:',
+    'role.cont.t':'Container', 'role.cont.d':'Zitat, Pace/Lead, Kontrast, Teile einer Person, Dreier-Liste: ein sicherer Rahmen, in dem das Gespräch weiterläuft.',
+    'role.carr.t':'Carrier', 'role.carr.d':'Trojan Language und Trance-Wörter: tragen die Idee in den Satz.',
+    'role.pay.t':'Payload', 'role.pay.d':'Eingebettete Anregung, z. B. „sinke tiefer“: die eigentliche Einladung.',
+    'role.tex.t':'Texture', 'role.tex.d':'Sinnessprache: macht Abstraktes im Körper spürbar.',
+    'role.han.t':'Handover', 'role.han.d':'Hypnotische Frage: die Person erzeugt den Zustand innerlich, um zu antworten.',
+    'street.build.t':'Baukasten', 'sf.outlang':'Sprache des Skripts', 'sf.build':'Zusammensetzen und als Skript laden', 'sf.done':'Skript erzeugt und geladen. Im Tab „Text & Skript“ mit Weiter ▶ durchgehen, Übersetzung später über „Bearbeiten“ ergänzen.', 'sf.theme':'Thema (Titel)', 'sf.outcome':'Ziel (Outcome)',
+    'sf.quote':'Zitat-Rahmen: „… darüber, dass …“', 'sf.a':'Dreier-Liste 1: „manchmal …“', 'sf.b':'Dreier-Liste 2: „dann wieder …“', 'sf.c':'Dreier-Liste 3: „und plötzlich …“', 'sf.x':'Kontrast A', 'sf.y':'Kontrast B', 'sf.bridge':'Kontrast-Brücke: „aber …“',
+    'sf.p1':'Pace 1 (wahr, gegenwärtig)', 'sf.p2':'Pace 2 (wahr, gegenwärtig)', 'sf.lead':'Lead: „du kannst anfangen zu bemerken, …“', 'sf.sens':'Sinnesbild (Körper)', 'sf.pa':'Teil 1: „Ein Teil von dir …“', 'sf.pb':'Teil 2: „ein tieferer Teil schon …“', 'sf.q':'Hypnotische Frage (ohne „Und ich bin neugierig:“)',
+    'sf.fill':'Bitte ergänzen: '
+
     ,'up.title':'Text hinzufügen', 'up.paste':'Text hier einfügen (Copy & Paste), ganzes Skript oder einzelne Fragmente …', 'up.f.title':'Titel (optional)', 'up.f.lang':'Sprache des Textes', 'lang.auto':'automatisch erkennen',
     'up.f.mode':'Verwendung', 'mode.A':'A · Session-Text (Fragmente oder ganzes Skript)', 'mode.B':'B · Worte des Gegenübers (als Zitat)', 'up.f.split':'Aufteilung', 'split.auto':'automatisch', 'split.lines':'nach Zeilen', 'split.sent':'nach Sätzen',
     'up.alt.sum':'Übersetzung in der anderen Sprache (optional, eine Zeile je Schritt, gleiche Reihenfolge)', 'up.add':'Hinzufügen', 'up.export':'Alle sichern (JSON)', 'up.none':'Bitte Text einfügen oder Datei wählen.', 'up.imp':'Sicherung importiert ({n} Teile).',
@@ -322,6 +377,21 @@ const I18N = {
     'r3.schema':'JSON does not match the schema: ', 'r3.applied':'JSON applied. Now press "Assemble".', 'r3.badjson':'Not valid JSON: ', 'r3.copied':'JSON copied (also in the field under "Paste JSON").', 'r3.nocopy':'Copying not allowed – the JSON is in the field under "Paste JSON".',
     'sec.flow':'Flow · profile Good Boys', 'flow.lang':'Flow language', 'flow.de':'German', 'flow.en':'English', 'flow.both':'Both', 'flow.control':'Control',
     'flow.guide':'I control', 'flow.self':'Person taps themselves', 'flow.start':'Start flow', 'flow.end':'End flow', 'flow.none':'Not started', 'flow.over':'End of flow', 'flow.selfpick':'Person is choosing …'
+    ,'tab.street':'Street', 'sec.street':'Street hypnosis', streetgen:'Street builder (generated)',
+    'street.intro':'Conversation patterns based on the Black Book method for short encounters. Only with explicit consent, 18+. Each example starts by asking for consent and ends with the return.',
+    'street.consent.t':'Clarify first', 'street.c1':'The person has explicitly agreed and is an adult.', 'street.c2':'No traffic, no machinery, no alcohol, no epilepsy or light sensitivity.', 'street.c3':'Stopping is possible at any time: open the eyes or say "stop". Return immediately afterwards, no discussion.',
+    'street.sc.t':'Example scripts', 'street.sc.hint':'Opens the script in the "Text & script" tab. Original in English, translation via "Display". The phase shows which pattern is being spoken.',
+    'street.roles.t':'Building blocks', 'street.top':'T.O.P.: Theme, Outcome, Patterns. Every conversation is built from five roles:',
+    'role.cont.t':'Container', 'role.cont.d':'Quote, pace/lead, compare/contrast, parts of a person, listing x3: a safe frame in which the conversation keeps going.',
+    'role.carr.t':'Carrier', 'role.carr.d':'Trojan language and trance words: carry the idea into the sentence.',
+    'role.pay.t':'Payload', 'role.pay.d':'Embedded suggestion, e.g. "sink deeper": the actual invitation.',
+    'role.tex.t':'Texture', 'role.tex.d':'Sensory language: makes abstract ideas felt in the body.',
+    'role.han.t':'Handover', 'role.han.d':'Hypnotic question: the person creates the state inwardly in order to answer.',
+    'street.build.t':'Builder', 'sf.outlang':'Script language', 'sf.build':'Assemble and load as script', 'sf.done':'Script created and loaded. Step through it in the "Text & script" tab with Next ▶, add the translation later via "Edit".', 'sf.theme':'Theme (title)', 'sf.outcome':'Outcome',
+    'sf.quote':'Quote frame: "… about how …"', 'sf.a':'Listing 1: "sometimes …"', 'sf.b':'Listing 2: "other times …"', 'sf.c':'Listing 3: "and then suddenly …"', 'sf.x':'Contrast A', 'sf.y':'Contrast B', 'sf.bridge':'Contrast bridge: "but …"',
+    'sf.p1':'Pace 1 (true, present)', 'sf.p2':'Pace 2 (true, present)', 'sf.lead':'Lead: "you can begin to notice …"', 'sf.sens':'Sensory image (body)', 'sf.pa':'Part 1: "Part of you might …"', 'sf.pb':'Part 2: "a deeper part already …"', 'sf.q':'Hypnotic question (without "And I\'m curious:")',
+    'sf.fill':'Please complete: '
+
     ,'up.title':'Add text', 'up.paste':'Paste text here (copy & paste), a whole script or single fragments …', 'up.f.title':'Title (optional)', 'up.f.lang':'Language of the text', 'lang.auto':'detect automatically',
     'up.f.mode':'Use', 'mode.A':'A · Session text (fragments or whole script)', 'mode.B':'B · Words of the other person (as quote)', 'up.f.split':'Splitting', 'split.auto':'automatic', 'split.lines':'by lines', 'split.sent':'by sentences',
     'up.alt.sum':'Translation in the other language (optional, one line per step, same order)', 'up.add':'Add', 'up.export':'Back up all (JSON)', 'up.none':'Please paste text or choose a file.', 'up.imp':'Backup imported ({n} parts).',
@@ -699,6 +769,52 @@ $('r3build').onclick = () => {
 $('r3apply').onclick = () => { try { const d = JSON.parse($('r3json').value), err = RuleOfThree.validate(d); if (err.length) { r3msg(T('r3.schema') + err.join(' · '), 'bad'); return; } writeR3(d); r3msg(T('r3.applied'), 'ok'); } catch (e) { r3msg(T('r3.badjson') + e.message, 'bad'); } };
 $('r3copy').onclick = async () => { const t = JSON.stringify(readR3(), null, 2); $('r3json').value = t; try { await navigator.clipboard.writeText(t); r3msg(T('r3.copied'), 'ok'); } catch (e) { r3msg(T('r3.nocopy'), 'bad'); } };
 
+
+// ================= Street: Baukasten und Beispiel-Skripte =================
+const SF_KEYS = ['theme', 'outcome', 'quote', 'a', 'b', 'c', 'x', 'y', 'bridge', 'p1', 'p2', 'lead', 'sens', 'pa', 'pb', 'q'];
+const SF_SAMPLE = {
+  en:{theme:'Mystery & Deep Stillness', outcome:'Listener becomes absorbed while surface chatter fades', quote:'the mind learns to ease off the noise outside when a deeper stillness takes over', a:'thoughts bounce around', b:'they just drift away', c:'a soft wave of quietness settles across your mind', x:'Surface thinking', y:'deep internal quiet', bridge:'stepping between them makes the peace inside twice as heavy', p1:'sitting here right now', p2:'listening smoothly', lead:'how easily your mind settles into this moment', sens:'that warm, comfortable weight spreading through your chest', pa:'still track the sound of my voice', pb:'prefers to rest in this silent space', q:'what is the very first physical sensation that tells you you are completely absorbed'},
+  de:{theme:'Geheimnis & tiefe Stille', outcome:'Die Person versinkt in der Geschichte, das Alltagsrauschen tritt zurück', quote:'wie der Geist lernt, den Lärm draußen leiser zu stellen, wenn eine tiefere Stille übernimmt', a:'Gedanken herumspringen', b:'sie einfach vorbeiziehen', c:'sich eine sanfte Welle von Ruhe über deinen Geist legt', x:'Oberflächliches Denken', y:'tiefe innere Ruhe', bridge:'der Wechsel dazwischen macht den inneren Frieden doppelt so schwer', p1:'gerade hier sitzt', p2:'ruhig zuhörst', lead:'wie leicht dein Geist in diesem Moment zur Ruhe kommt', sens:'dieses warme, angenehme Gewicht, das sich in deiner Brust ausbreitet', pa:'folgt noch dem Klang meiner Stimme', pb:'ruht schon lieber in diesem stillen Raum', q:'Welche körperliche Empfindung zeigt dir als allererste, dass du völlig versunken bist?'}
+};
+const SF_NAMES = {
+  en:['Consent', 'Quote Frame (Container)', 'Trojan + Listing x3 (Carrier + Container)', 'Compare & Contrast + Sensory Texture', 'Pace, Pace, Lead (Container)', 'Trance Word + Embedded Command (Payload)', 'Parts of a Person (Container)', 'Hypnotic Question (Handover)', 'Return'],
+  de:['Einverständnis', 'Zitat-Rahmen (Container)', 'Trojan + Dreier-Liste (Carrier + Container)', 'Kontrast + Sinnesbild', 'Pace, Pace, Lead (Container)', 'Trance-Wort + eingebettete Anregung (Payload)', 'Teile einer Person (Container)', 'Hypnotische Frage (Handover)', 'Rückkehr']
+};
+const SF_T = {
+  en:{consent:() => 'Would you like to try a short focus exercise? You can stop at any moment, simply by opening your eyes.',
+    quote:v => 'I read something recently about how ' + v.quote + '.', list:v => 'Isn’t it interesting how sometimes ' + v.a + ', other times ' + v.b + ', and then suddenly ' + v.c + '?',
+    contrast:v => v.x + ' and ' + v.y + ' seem so different, but ' + v.bridge + '.', pace:v => 'You’re ' + v.p1 + ', ' + v.p2 + ', and you can begin to notice ' + v.lead + '.',
+    sens:v => 'Imagine ' + v.sens + ', as you allow yourself to settle a little deeper.', parts:v => 'Part of you might ' + v.pa + ', while a deeper part already ' + v.pb + ', and both are completely natural.',
+    q:v => 'And I’m curious: ' + v.q.replace(/[?.\s]+$/, '') + '?', ret:() => 'Take a deeper breath, stretch a little, and come back fully to the room. Open your eyes when you are ready.'},
+  de:{consent:() => 'Möchtest du eine kurze Konzentrationsübung ausprobieren? Du kannst jederzeit stoppen, indem du einfach die Augen öffnest.',
+    quote:v => 'Ich habe neulich etwas darüber gelesen, ' + v.quote + '.', list:v => 'Ist es nicht interessant, wie manchmal ' + v.a + ', dann wieder ' + v.b + ', und plötzlich ' + v.c + '?',
+    contrast:v => v.x + ' und ' + v.y + ' wirken so verschieden, aber ' + v.bridge + '.', pace:v => 'Du bist ' + v.p1.replace(/^du\s+/i, '') + ', ' + v.p2.replace(/^du\s+/i, '') + ', und du kannst anfangen zu bemerken, ' + v.lead + '.',
+    sens:v => 'Stell dir ' + v.sens + ' vor, während du dich noch ein Stück tiefer einlässt.', parts:v => 'Ein Teil von dir ' + v.pa + ', während ein tieferer Teil schon ' + v.pb + ', und beides ist völlig natürlich.',
+    q:v => 'Und ich bin neugierig: ' + v.q.replace(/[?.\s]+$/, '') + '?', ret:() => 'Atme einmal tiefer durch, streck dich ein wenig und komm ganz zurück in den Raum. Öffne die Augen, wenn du bereit bist.'}
+};
+function buildSF(keep){
+  const old = keep ? readSF() : SF_SAMPLE[$('sflang').value || ui], F = $('sfform'); F.innerHTML = '';
+  SF_KEYS.forEach(k => { const l = document.createElement('label'); l.textContent = T('sf.' + k); const i = document.createElement('input'); i.type = 'text'; i.dataset.k = k; i.setAttribute('aria-label', T('sf.' + k)); l.appendChild(i); F.appendChild(l); });
+  writeSF(old);
+}
+const readSF = () => { const o = {}; $('sfform').querySelectorAll('input').forEach(i => { o[i.dataset.k] = i.value.trim(); }); return o; };
+function writeSF(d){ $('sfform').querySelectorAll('input').forEach(i => { i.value = (d && d[i.dataset.k]) || ''; }); }
+function sfmsg(t, c){ const m = $('sfmsg'); m.textContent = t; m.className = 'note ' + (c || ''); }
+$('sfsample').onclick = () => { writeSF(SF_SAMPLE[$('sflang').value]); sfmsg(T('r3.loaded'), 'ok'); };
+$('sflang').value = store.get('hd-sflang', ui); $('sflang').onchange = () => store.set('hd-sflang', $('sflang').value);
+$('sfbuild').onclick = () => {
+  const v = readSF(), miss = SF_KEYS.filter(k => k !== 'theme' && k !== 'outcome' && !v[k]);
+  if (miss.length) { sfmsg(T('sf.fill') + miss.map(k => T('sf.' + k)).join(' · '), 'bad'); return; }
+  const l = $('sflang').value, t = SF_T[l], n = SF_NAMES[l];
+  const rows = [[n[0], t.consent(v), 5], [n[1], t.quote(v), 3], [n[2], t.list(v), 3], [n[3], t.contrast(v), 3], [n[4], t.pace(v), 3], [n[5], t.sens(v), 3], [n[6], t.parts(v), 3], [n[7], t.q(v), 6], [n[8], t.ret(v), 6]];
+  const st = rows.map(r => ({phase:r[0], tempo:'langsam', anchor:'', echo:false, pause:r[2], text:r[1]}));
+  addScript('street', '', st, 'streetgen'); useScript('street'); sfmsg(T('sf.done') + (v.theme ? ' (' + v.theme + ')' : ''), 'ok');
+};
+function buildStreetOpen(){
+  const R = $('street-open'); R.innerHTML = '';
+  Object.keys(SC).filter(id => /^0[678]-street/.test(id)).forEach(id => { const b = document.createElement('button'); b.textContent = SC[id].title; b.onclick = () => { showTab('text'); useScript(id); }; R.appendChild(b); });
+}
+
 // ================= Ablauf (Profil Good Boys), Sprache =================
 const fl = o => flowLang === 'de' ? o.de : flowLang === 'en' ? o.en : o.de + ' / ' + o.en;
 function renderFlowOp(){
@@ -736,13 +852,13 @@ document.querySelectorAll('#tabs [role=tab]').forEach(b => { b.onclick = () => s
 function setUi(l, announce){
   ui = l; store.set('hd-ui', l); applyStatic(); buildCues(); buildR3(true);
   Object.keys(SC).forEach(id => { const o = [...$('scriptsel').options].find(x => x.value === id); if (o) o.textContent = labelOf(id); }); buildCueEd();
-  renderSteps(); renderUP(); renderFlowOp(); renderMy(); showNow(); if (announce) send({type:'uilang', lang:l});
+  renderSteps(); renderUP(); renderFlowOp(); renderMy(); buildSF(true); buildStreetOpen(); showNow(); if (announce) send({type:'uilang', lang:l});
 }
 $('ul-de').onclick = () => setUi('de', true);
 $('ul-en').onclick = () => setUi('en', true);
 
 // ================= Start =================
-buildR3(false); applyStatic(); buildCues(); renderFlowOp(); showNow();
+buildR3(false); applyStatic(); buildSF(false); buildStreetOpen(); buildCues(); renderFlowOp(); showNow();
 UP.forEach(u => addScript(u.id, u.title, u.steps, null, u)); renderUP(); buildCueEd();
 if (window.SCRIPTS && window.SCRIPTS.length) useScript(window.SCRIPTS[0].id);
 r3msg(T('r3.intro')); renderMy();
