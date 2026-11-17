@@ -69,6 +69,20 @@ input[type=range]{accent-color:var(--cu);flex:1;min-width:100px}
 .r3 label{display:block;margin:6px 0 0;flex:none}
 .r3 input,.r3 select{width:100%;margin-top:3px;min-width:0}
 .mini{flex:0 1 auto}
+.risk{flex:1 1 100%;padding:8px 12px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid}
+.risk.stop{background:rgba(217,60,50,.22);border-color:#ff7a6e;color:#ffd0ca}
+.risk.orange{background:rgba(230,126,34,.2);border-color:#f0a050;color:#ffdcb8}
+.risk.yellow{background:rgba(201,162,39,.18);border-color:var(--cu);color:#f4e7b4}
+.risk.green{background:rgba(127,209,106,.14);border-color:#7fd16a;color:#cdeec3}
+.an-g{border:1px solid var(--line);border-radius:8px;padding:8px 12px 12px;margin:0 0 12px;min-width:0}
+.an-g legend{font:600 .64rem 'DM Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--cu);padding:0 6px}
+.an-r{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:6px 0;border-top:1px solid rgba(79,209,197,.1);font-size:.84rem;line-height:1.35}
+.an-r:first-of-type{border-top:0}
+.an-r select{flex:0 0 auto;min-height:38px;padding:6px 10px}
+.an-r input[type=checkbox]{width:22px;height:22px;flex:none;accent-color:var(--cu)}
+.an-r span{flex:1;min-width:0}
+.an-out h3{margin:10px 0 4px}
+.an-out ul{margin:4px 0 8px;padding-left:20px;font-size:.84rem;line-height:1.5}
 .roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:8px}
 .roles div{padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:rgba(7,10,18,.5);font-size:.8rem;color:var(--mut);line-height:1.45}
 .roles b{display:block;font:600 .64rem 'DM Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--cu);margin-bottom:4px}
@@ -91,14 +105,17 @@ details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);
     <button id="ul-de" data-ul="de" aria-label="Deutsch">DE</button><button id="ul-en" data-ul="en" aria-label="English">EN</button>
   </div>
   <div class="row acts">
+    <button id="ground" data-i="ground" title="Hier und Jetzt">Grounding</button>
     <button id="black" data-i="black">Schwarz</button>
     <button class="d" id="stop" data-i="stop" title="Esc">Alles stoppen</button>
   </div>
+  <div id="riskbar" class="risk" role="alert" hidden></div>
 </header>
 
 <nav class="tabs" role="tablist" id="tabs">
   <button role="tab" data-tab="sitzung" data-i="tab.sitzung">Sitzung &amp; Medien</button>
   <button role="tab" data-tab="text" data-i="tab.text">Text &amp; Skript</button>
+  <button role="tab" data-tab="anam" data-i="tab.anam">Anamnese</button>
   <button role="tab" data-tab="street" data-i="tab.street">Street</button>
   <button role="tab" data-tab="gen" data-i="tab.gen">Generator</button>
   <button role="tab" data-tab="ablauf" data-i="tab.ablauf">Ablauf</button>
@@ -223,6 +240,20 @@ details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);
   </section>
 </div>
 
+<!-- ============ Anamnese ============ -->
+<div class="pane" id="pane-anam">
+  <section class="wide">
+    <h2 data-i="sec.anam">Anamnese-Bogen</h2>
+    <p class="note" data-i="an.intro"></p>
+    <div class="row" style="margin-top:10px">
+      <label style="flex:1 1 220px"><span data-i="an.code">Kürzel</span><input type="text" id="an-code" maxlength="20" data-ip="an.code.ph" data-ia="an.code.ph" style="flex:1"></label>
+      <button class="d" id="an-reset" data-i="an.reset">Bogen leeren</button>
+    </div>
+  </section>
+  <section><div id="anam-form"></div></section>
+  <section class="an-out" id="anam-out" aria-live="polite"></section>
+</div>
+
 <!-- ============ Street ============ -->
 <div class="pane" id="pane-street">
   <section class="wide">
@@ -329,6 +360,15 @@ const I18N = {
     'r3.schema':'JSON passt nicht zum Schema: ', 'r3.applied':'JSON übernommen. Jetzt „Zusammensetzen“.', 'r3.badjson':'Kein gültiges JSON: ', 'r3.copied':'JSON kopiert (steht auch im Feld unter „JSON einfügen“).', 'r3.nocopy':'Kopieren nicht erlaubt – JSON steht im Feld unter „JSON einfügen“.',
     'sec.flow':'Ablauf · Profil Good Boys', 'flow.lang':'Sprache des Ablaufs', 'flow.de':'Deutsch', 'flow.en':'English', 'flow.both':'Beide', 'flow.control':'Steuerung',
     'flow.guide':'Ich steuere', 'flow.self':'Person tippt selbst', 'flow.start':'Ablauf starten', 'flow.end':'Ablauf beenden', 'flow.none':'Nicht gestartet', 'flow.over':'Ende des Ablaufs', 'flow.selfpick':'Person wählt selbst …'
+    ,'tab.anam':'Anamnese', 'sec.anam':'Anamnese-Bogen', ground:'Grounding', 'ground.pick':'Grounding',
+    'an.intro':'Kurzer Vorab-Bogen auf Hinweise für traumabezogene Belastung (z. B. emotionale Flashbacks, komplexe PTBS) und Ausschlussgründe. Kein Diagnoseinstrument, die Schwellen sind Faustregeln. Bei Hinweisen bekommst du hier einen Warnbalken und die empfohlene Behandlung. Die Angaben bleiben nur in diesem Tab (nicht im Repo, nicht gespeichert nach Schließen), bitte keine Klarnamen.',
+    'an.code':'Kürzel (optional, kein Klarname)', 'an.code.ph':'z. B. A-17', 'an.reset':'Bogen leeren',
+    'an.basis':'Basis', 'an.red':'Ausschluss: akut', 'an.orange':'Abklären', 'an.trauma':'Trauma-Hinweise (in den letzten Wochen)',
+    'an.out.title':'Auswertung', 'an.out.empty':'Noch keine Angaben.', 'an.src':'Quelle: S3-Leitlinie Posttraumatische Belastungsstörung (AWMF 155/001, DeGPT). Therapieempfehlung = Leitlinienlage, ersetzt keine Diagnose durch Fachpersonen.',
+    'risk.stop':'⚠ Anamnese: STOPP-Hinweise. Keine Trance, Sicherheit zuerst.', 'risk.orange':'⚠ Anamnese: Hinweise auf Trauma-Belastung. Keine Trance, Abklärung empfehlen.', 'risk.yellow':'Anamnese: einzelne Hinweise. Nur sanfte Variante, Abklärung anbieten.', 'risk.green':'Anamnese: keine Hinweise im Screening.',
+    'risk.confirm.stop':'Die Anamnese zeigt STOPP-Hinweise. Wirklich eine Sitzung fortsetzen?', 'risk.confirm.orange':'Die Anamnese zeigt Hinweise auf Trauma-Belastung. Trotzdem Trance-Material starten?',
+    'ground.title':'Hier und Jetzt', ground_s:'Grounding', 'ground.loaded':'Grounding geladen: Audio und Video gestoppt, Schritt 1 wird eingeblendet.'
+
     ,'tab.street':'Street', 'sec.street':'Street Hypnose', streetgen:'Street-Baukasten (generiert)',
     'street.intro':'Gesprächsmuster nach der Black-Book-Methode für kurze Begegnungen. Ausschließlich mit ausdrücklichem Einverständnis, ab 18. Jedes Beispiel beginnt mit der Frage nach dem Einverständnis und endet mit der Rückkehr.',
     'street.consent.t':'Vorher klären', 'street.c1':'Die Person hat ausdrücklich zugestimmt und ist volljährig.', 'street.c2':'Kein Straßenverkehr, keine Maschinen, kein Alkohol, keine Epilepsie oder Lichtempfindlichkeit.', 'street.c3':'Stopp ist jederzeit möglich: Augen öffnen oder „Stopp“ sagen. Danach sofort Rückkehr, keine Diskussion.',
@@ -377,6 +417,15 @@ const I18N = {
     'r3.schema':'JSON does not match the schema: ', 'r3.applied':'JSON applied. Now press "Assemble".', 'r3.badjson':'Not valid JSON: ', 'r3.copied':'JSON copied (also in the field under "Paste JSON").', 'r3.nocopy':'Copying not allowed – the JSON is in the field under "Paste JSON".',
     'sec.flow':'Flow · profile Good Boys', 'flow.lang':'Flow language', 'flow.de':'German', 'flow.en':'English', 'flow.both':'Both', 'flow.control':'Control',
     'flow.guide':'I control', 'flow.self':'Person taps themselves', 'flow.start':'Start flow', 'flow.end':'End flow', 'flow.none':'Not started', 'flow.over':'End of flow', 'flow.selfpick':'Person is choosing …'
+    ,'tab.anam':'Intake', 'sec.anam':'Intake form', ground:'Grounding', 'ground.pick':'Grounding',
+    'an.intro':'Short pre-session form for signs of trauma-related distress (e.g. emotional flashbacks, complex PTSD) and exclusion reasons. Not a diagnostic instrument, thresholds are rules of thumb. When signs appear you get a warning bar and the recommended treatment. Entries stay in this tab only (not in the repo, gone when the tab closes), please no real names.',
+    'an.code':'Code (optional, no real name)', 'an.code.ph':'e.g. A-17', 'an.reset':'Clear form',
+    'an.basis':'Basics', 'an.red':'Exclusion: acute', 'an.orange':'Clarify first', 'an.trauma':'Trauma signs (past weeks)',
+    'an.out.title':'Result', 'an.out.empty':'No entries yet.', 'an.src':'Source: German S3 guideline on posttraumatic stress disorder (AWMF 155/001, DeGPT). Therapy recommendation reflects the guideline and does not replace a diagnosis by professionals.',
+    'risk.stop':'⚠ Intake: STOP signs. No trance, safety first.', 'risk.orange':'⚠ Intake: signs of trauma-related distress. No trance, recommend assessment.', 'risk.yellow':'Intake: single signs. Gentle variant only, offer assessment.', 'risk.green':'Intake: no signs in the screening.',
+    'risk.confirm.stop':'The intake shows STOP signs. Really continue a session?', 'risk.confirm.orange':'The intake shows signs of trauma-related distress. Start trance material anyway?',
+    'ground.title':'Here and now', 'ground.loaded':'Grounding loaded: audio and video stopped, step 1 is shown.'
+
     ,'tab.street':'Street', 'sec.street':'Street hypnosis', streetgen:'Street builder (generated)',
     'street.intro':'Conversation patterns based on the Black Book method for short encounters. Only with explicit consent, 18+. Each example starts by asking for consent and ends with the return.',
     'street.consent.t':'Clarify first', 'street.c1':'The person has explicitly agreed and is an adult.', 'street.c2':'No traffic, no machinery, no alcohol, no epilepsy or light sensitivity.', 'street.c3':'Stopping is possible at any time: open the eyes or say "stop". Return immediately afterwards, no discussion.',
@@ -445,9 +494,9 @@ function buildCues(){
   CUES.images.forEach((c, n) => { const b = btn('images', '', () => { send({type:'image', src:c.src}); np.img = L(c); mark('images', n); showNow(); });
     b.className = 'thumb'; b.dataset.n = n; b.style.backgroundImage = 'url("' + c.src + '")'; b.innerHTML = '<span></span>'; b.firstChild.textContent = L(c); b.setAttribute('aria-label', L(c)); });
   btn('images2', T('onlySpiral'), () => { send({type:'noimage'}); np.img = '–'; mark('images', null); showNow(); });
-  CUES.videos.forEach((c, n) => { const b = btn('videos', L(c), () => { send({type:'video', src:c.src, loop:!!c.loop}); np.vid = L(c); mark('videos', n); showNow(); }); b.dataset.n = n; });
+  CUES.videos.forEach((c, n) => { const b = btn('videos', L(c), () => { if (!riskOk()) return; send({type:'video', src:c.src, loop:!!c.loop}); np.vid = L(c); mark('videos', n); showNow(); }); b.dataset.n = n; });
   btn('videos', T('videoStop'), () => { send({type:'videostop'}); np.vid = '–'; mark('videos', null); showNow(); });
-  CUES.audios.forEach((c, n) => { const b = btn('audios', L(c), () => { send({type:'audio', src:c.src, loop:!!c.loop, loopStart:c.loopStart, loopLength:c.loopLength, loopFade:c.loopFade}); np.aud = L(c); mark('audios', n); showNow(); }); b.dataset.n = n; });
+  CUES.audios.forEach((c, n) => { const b = btn('audios', L(c), () => { if (!riskOk()) return; send({type:'audio', src:c.src, loop:!!c.loop, loopStart:c.loopStart, loopLength:c.loopLength, loopFade:c.loopFade}); np.aud = L(c); mark('audios', n); showNow(); }); b.dataset.n = n; });
   btn('audios', T('audioStop'), () => { send({type:'audiostop'}); np.aud = '–'; mark('audios', null); showNow(); });
   CUES.texts.forEach((g, i) => {
     const h = document.createElement('h3'); h.textContent = L(g); $('texts').appendChild(h);
@@ -529,7 +578,7 @@ function renderSteps(){
   if (!$('editor').hidden && (!sc || sc.tkey)) $('editor').hidden = true;
 }
 function go(i){
-  if (!steps.length) return; i = Math.max(0, Math.min(steps.length - 1, i)); cur = i;
+  if (!steps.length) return; if (curId !== 'ground' && !riskOk()) return; i = Math.max(0, Math.min(steps.length - 1, i)); cur = i;
   sendText(stepOut(steps[i]), steps[i].pause);
   document.querySelectorAll('#steplist .step').forEach(x => x.classList.remove('on'));
   const el = $('st' + i); el.classList.add('on'); el.scrollIntoView({block:'nearest'});
@@ -770,6 +819,104 @@ $('r3apply').onclick = () => { try { const d = JSON.parse($('r3json').value), er
 $('r3copy').onclick = async () => { const t = JSON.stringify(readR3(), null, 2); $('r3json').value = t; try { await navigator.clipboard.writeText(t); r3msg(T('r3.copied'), 'ok'); } catch (e) { r3msg(T('r3.nocopy'), 'bad'); } };
 
 
+
+// ================= Anamnese, Warnbalken, Grounding =================
+const AN_ITEMS = {
+  basis:[['b1', 'Person ist volljährig (18+)', 'Person is an adult (18+)'], ['b2', 'Ausdrückliche Einwilligung liegt vor', 'Explicit consent given'], ['b3', 'Stopp-Regel erklärt (Augen öffnen oder „Stopp“ sagen)', 'Stop rule explained (open eyes or say "stop")']],
+  red:[['r1', 'Akute Suizidgedanken oder Drang, sich zu verletzen', 'Acute suicidal thoughts or urge to self-harm'], ['r2', 'Aktuell bedroht oder Gewalt im Umfeld', 'Currently threatened or violence nearby'], ['r3', 'Aktuelle Psychose, Stimmen oder Realitätsverlust', 'Current psychosis, voices or loss of reality'], ['r4', 'Alkohol, Drogen oder starke Medikamente jetzt', 'Alcohol, drugs or strong medication right now'], ['r5', 'Epilepsie oder Lichtempfindlichkeit', 'Epilepsy or light sensitivity']],
+  orange:[['o1', 'In laufender Trauma- oder psychiatrischer Behandlung (vorher mit den Behandelnden klären)', 'In current trauma or psychiatric treatment (clear with the treating clinician first)'], ['o2', 'Frühere schlechte Erfahrung mit Trance, Meditation oder Entspannung', 'Earlier bad experience with trance, meditation or relaxation']],
+  trauma:[['t1', 'Plötzliche Überflutung mit Angst, Scham oder Ohnmacht ohne erkennbaren Anlass', 'Sudden flooding with fear, shame or helplessness without a clear reason'], ['t2', 'Gefühl, die Bedrohung geschehe genau jetzt (Hier-und-Jetzt geht verloren)', 'Feeling the threat is happening right now (losing here-and-now)'], ['t3', 'Körperreaktionen bei Alltagsauslösern: Herzrasen, Zittern, flache Atmung, Enge in der Brust', 'Body reactions to everyday triggers: racing heart, trembling, shallow breathing, tight chest'], ['t4', 'Abschalten, Taubheit, Neben-sich-Stehen, Dissoziation', 'Switching off, numbness, feeling detached, dissociation'], ['t5', 'Plötzliche Gereiztheit oder Ausbrüche, Fluchtdrang oder zwanghafte Hektik', 'Sudden irritability or outbursts, urge to flee or compulsive busyness'], ['t6', 'Übermäßige Anpassung, eigene Grenzen aufgeben, um Konflikte zu vermeiden', 'Over-adapting, giving up own limits to avoid conflict'], ['t7', 'Ruhe- oder Entspannungsübungen machen unruhig, ängstlich oder lösen Kontrollverlust aus', 'Calm or relaxation exercises cause restlessness, anxiety or loss of control'], ['t8', 'Albträume oder Wiedererleben belastender Situationen', 'Nightmares or re-living distressing situations']]
+};
+const AN_SCALE = {de:['Nie', 'Selten', 'Oft', 'Sehr oft'], en:['Never', 'Rarely', 'Often', 'Very often']};
+const AN_GROUPS = [['basis', 'an.basis', 'chk'], ['red', 'an.red', 'chk'], ['orange', 'an.orange', 'chk'], ['trauma', 'an.trauma', 'sel']];
+const AN_TXT = {
+  de:{
+    stop:['Keine Trance-, Entspannungs- oder Induktionsarbeit. Sitzung beenden, Sicherheit zuerst.', 'Akute Krise oder Suizidgedanken: Person nicht allein lassen. Notruf 112, Telefonseelsorge 0800 111 0 111 (kostenlos, 24/7) oder ärztlicher Bereitschaftsdienst 116 117.', 'Epilepsie oder Lichtempfindlichkeit: keine Spirale, keine Lichteffekte, nur ärztlich abgeklärt.'],
+    orange:['Keine Trance-Induktion, keine Regression oder Arbeit mit dem inneren Kind, keine Anker auf belastende Zustände, keine Aufforderung zum Augenschließen.', 'Erlaubt: Orientierung und Grounding (Button oben), normales Gespräch, Stopp jederzeit.', 'Empfohlene Behandlung: traumafokussierte Psychotherapie bei approbierten Psychotherapeut:innen oder Fachärzt:innen, nämlich traumafokussierte Verhaltenstherapie (TF-KVT) oder EMDR. Laut S3-Leitlinie PTBS Behandlung erster Wahl (Empfehlungsgrad A).', 'Bei Hinweisen auf eine komplexe Form (Gefühlsregulation, Beziehungen, Selbstbild): zusätzlich Übungen zur Emotionsregulation und für Beziehungen, meist phasenorientiert mit Stabilisierung vor der Traumaverarbeitung.', 'Weg dorthin: Terminservicestelle 116 117, Psychotherapeutenkammer des Bundeslandes (Therapeutensuche), bei Gewalterfahrung ggf. Traumaambulanz. Hinweis geben, nicht diagnostizieren.'],
+    yellow:['Nur sanfte Variante: Augen offen erlaubt, kurze Einheiten, Kontrolle bei der Person, Stopp jederzeit, danach Hier-und-Jetzt-Check.', 'Keine Regression, keine Gefühlsanker auf Belastendes, vorher im Gespräch klären.', 'Abklärung anbieten, falls Hinweise zunehmen. Dann gilt die Empfehlung traumafokussierte Psychotherapie (TF-KVT oder EMDR).'],
+    green:['Keine Hinweise im Screening. Einwilligung und Stopp-Regel gelten weiter. Ein Screening ersetzt keine Diagnose.'],
+    complex:'Mögliche komplexe Form: mehrere Hinweise auf Abschalten, Anpassung oder Ausbrüche. Besonders vorsichtig sein.',
+    basis:'Basis noch nicht vollständig geklärt (Alter, Einwilligung, Stopp-Regel).',
+    why:'Auslöser: ', score:'Hinweis-Summe (t1 bis t6): '
+  },
+  en:{
+    stop:['No trance, relaxation or induction work. End the session, safety first.', 'Acute crisis or suicidal thoughts: do not leave the person alone. Emergency number 112 (or your local emergency number), a crisis line, or a doctor on call.', 'Epilepsy or light sensitivity: no spiral, no light effects, only after medical clearance.'],
+    orange:['No trance induction, no regression or inner-child work, no anchors on distressing states, no request to close the eyes.', 'Allowed: orientation and grounding (button at the top), normal conversation, stop at any time.', 'Recommended treatment: trauma-focused psychotherapy with a licensed psychotherapist or specialist physician, namely trauma-focused cognitive behavioural therapy (TF-CBT) or EMDR. First-line treatment according to the German S3 PTSD guideline (grade A).', 'If signs of a complex form (emotion regulation, relationships, self-image): add work on emotion regulation and relationships, usually phase-oriented with stabilisation before trauma processing.', 'Route: your local psychotherapy referral service or professional chamber, for violence victims possibly a trauma outpatient clinic. Give a hint, do not diagnose.'],
+    yellow:['Gentle variant only: eyes open allowed, short blocks, control stays with the person, stop at any time, here-and-now check afterwards.', 'No regression, no anchors on distressing states, clarify beforehand in conversation.', 'Offer an assessment if signs increase. Then the recommendation is trauma-focused psychotherapy (TF-CBT or EMDR).'],
+    green:['No signs in the screening. Consent and stop rule still apply. A screening does not replace a diagnosis.'],
+    complex:'Possible complex form: several signs of switching off, over-adapting or outbursts. Be especially careful.',
+    basis:'Basics not fully clarified yet (age, consent, stop rule).',
+    why:'Triggers: ', score:'Sign total (t1 to t6): '
+  }
+};
+let AN = {}; try { AN = JSON.parse(sessionStorage.getItem('hd-anam') || '{}') || {}; } catch (e) { AN = {}; }
+let risk = {level:'none', sig:''}, ackSig = null;
+function saveAN(){ try { sessionStorage.setItem('hd-anam', JSON.stringify(AN)); } catch (e) {} }
+function buildAnam(){
+  const R = $('anam-form'); R.innerHTML = '';
+  AN_GROUPS.forEach(([g, tk, type]) => {
+    const fs = document.createElement('fieldset'); fs.className = 'an-g'; const lg = document.createElement('legend'); lg.textContent = T(tk); fs.appendChild(lg);
+    AN_ITEMS[g].forEach(([k, de, en]) => {
+      const row = document.createElement('label'); row.className = 'an-r'; const sp = document.createElement('span'); sp.textContent = ui === 'en' ? en : de;
+      let el;
+      if (type === 'chk') { el = document.createElement('input'); el.type = 'checkbox'; el.checked = !!AN[k]; }
+      else { el = document.createElement('select'); AN_SCALE[ui].forEach((l, i) => { const o = document.createElement('option'); o.value = i; o.textContent = l; el.appendChild(o); }); el.value = AN[k] || 0; }
+      el.dataset.k = k; el.setAttribute('aria-label', sp.textContent);
+      el.onchange = () => { AN[k] = type === 'chk' ? el.checked : +el.value; saveAN(); evalAnam(); };
+      row.appendChild(sp); row.appendChild(el); fs.appendChild(row);
+    });
+    R.appendChild(fs);
+  });
+  $('an-code').value = AN.code || '';
+  evalAnam();
+}
+$('an-code').oninput = e => { AN.code = e.target.value.slice(0, 20); saveAN(); };
+$('an-reset').onclick = () => { AN = {}; saveAN(); ackSig = null; buildAnam(); };
+function evalAnam(){
+  const v = k => AN[k] || 0, touched = Object.keys(AN).some(k => k !== 'code' && AN[k]);
+  const out = $('anam-out'), bar = $('riskbar'); out.innerHTML = '';
+  const h = document.createElement('h2'); h.textContent = T('an.out.title'); out.appendChild(h);
+  if (!touched) { risk = {level:'none', sig:''}; bar.hidden = true; const p = document.createElement('p'); p.className = 'note'; p.textContent = T('an.out.empty'); out.appendChild(p); return; }
+  const why = [], X = AN_TXT[ui];
+  const redHits = AN_ITEMS.red.filter(([k]) => v(k)), orHits = AN_ITEMS.orange.filter(([k]) => v(k));
+  const sumT = ['t1', 't2', 't3', 't4', 't5', 't6'].reduce((a, k) => a + v(k), 0);
+  let level = 'green';
+  if (sumT >= 2 || ['t1', 't2', 't3', 't4', 't5', 't6', 't7', 't8'].some(k => v(k) >= 2) || v('o2')) level = 'yellow';
+  if (sumT >= 6 || ['t1', 't2', 't3', 't4'].some(k => v(k) >= 3) || v('t4') >= 2 || v('t7') >= 2 || (v('t8') >= 2 && sumT >= 3) || v('o1')) level = 'orange';
+  if (redHits.length) level = 'stop';
+  redHits.concat(orHits).forEach(([k, de, en]) => why.push(ui === 'en' ? en : de));
+  AN_ITEMS.trauma.forEach(([k, de, en]) => { if (v(k) >= 2) why.push((ui === 'en' ? en : de) + ' (' + AN_SCALE[ui][v(k)] + ')'); });
+  const complex = sumT >= 9 || (v('t6') >= 2 && v('t4') >= 2);
+  risk = {level, sig:level + JSON.stringify(AN)};
+  const cls = ({stop:'stop', orange:'orange', yellow:'yellow', green:'green'})[level];
+  bar.hidden = false; bar.className = 'risk ' + cls; bar.textContent = T('risk.' + cls);
+  const b = document.createElement('div'); b.className = 'risk ' + cls; b.textContent = T('risk.' + cls); out.appendChild(b);
+  const ul = (arr) => { const u = document.createElement('ul'); arr.forEach(t => { const li = document.createElement('li'); li.textContent = t; u.appendChild(li); }); return u; };
+  let texts = X[level].slice(); if (level === 'stop' && !AN.r5) texts = texts.slice(0, 2);
+  if (level === 'stop' && AN.r5 && !AN.r1 && !AN.r2 && !AN.r3 && !AN.r4) texts = [X.stop[2]];
+  out.appendChild(ul(texts));
+  if (complex && level !== 'stop') { const p = document.createElement('p'); p.className = 'note'; p.textContent = X.complex; out.appendChild(p); }
+  if (!(AN.b1 && AN.b2 && AN.b3)) { const p = document.createElement('p'); p.className = 'note'; p.style.marginTop = '8px'; p.textContent = X.basis; out.appendChild(p); }
+  if (why.length) { const p = document.createElement('p'); p.className = 'note'; p.style.margin = '8px 0'; p.textContent = X.why + why.join(' · '); out.appendChild(p); }
+  const sc = document.createElement('p'); sc.className = 'note'; sc.textContent = X.score + sumT + ' / 18'; out.appendChild(sc);
+  const src = document.createElement('p'); src.className = 'note'; src.style.marginTop = '8px'; src.textContent = T('an.src'); out.appendChild(src);
+}
+function riskOk(){
+  if (risk.level !== 'stop' && risk.level !== 'orange') return true;
+  if (ackSig === risk.sig) return true;
+  const ok = confirm(T('risk.confirm.' + risk.level)); if (ok) ackSig = risk.sig; return ok;
+}
+const GROUND = {
+  de:d => ['Du bist jetzt hier. Heute ist ' + d + '.', 'Du bist in einem erwachsenen Körper, in diesem Raum, und du bist sicher.', 'Schau dich um und nenne fünf Dinge, die du siehst.', 'Spür deine Füße auf dem Boden. Drück sie fest hinein.', 'Atme aus, länger als du einatmest. Du darfst jederzeit die Augen öffnen und sprechen.'],
+  en:d => ['You are here now. Today is ' + d + '.', 'You are in an adult body, in this room, and you are safe.', 'Look around and name five things you can see.', 'Feel your feet on the floor. Press them down firmly.', 'Breathe out longer than you breathe in. You may open your eyes and speak at any time.']
+};
+$('ground').onclick = () => {
+  send({type:'audiostop'}); send({type:'videostop'}); send({type:'noimage'}); np.aud = np.vid = np.img = '–'; ['images', 'videos', 'audios'].forEach(g => mark(g, null));
+  const d = new Date().toLocaleDateString(ui === 'en' ? 'en-GB' : 'de-DE', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  const st = GROUND[ui](d).map(t => ({phase:T('ground.title'), tempo:'langsam', anchor:'', echo:false, pause:3, text:t}));
+  addScript('ground', '', st, 'ground'); useScript('ground'); showTab('text'); go(0);
+};
+
 // ================= Street: Baukasten und Beispiel-Skripte =================
 const SF_KEYS = ['theme', 'outcome', 'quote', 'a', 'b', 'c', 'x', 'y', 'bridge', 'p1', 'p2', 'lead', 'sens', 'pa', 'pb', 'q'];
 const SF_SAMPLE = {
@@ -852,13 +999,13 @@ document.querySelectorAll('#tabs [role=tab]').forEach(b => { b.onclick = () => s
 function setUi(l, announce){
   ui = l; store.set('hd-ui', l); applyStatic(); buildCues(); buildR3(true);
   Object.keys(SC).forEach(id => { const o = [...$('scriptsel').options].find(x => x.value === id); if (o) o.textContent = labelOf(id); }); buildCueEd();
-  renderSteps(); renderUP(); renderFlowOp(); renderMy(); buildSF(true); buildStreetOpen(); showNow(); if (announce) send({type:'uilang', lang:l});
+  renderSteps(); renderUP(); renderFlowOp(); renderMy(); buildSF(true); buildStreetOpen(); buildAnam(); showNow(); if (announce) send({type:'uilang', lang:l});
 }
 $('ul-de').onclick = () => setUi('de', true);
 $('ul-en').onclick = () => setUi('en', true);
 
 // ================= Start =================
-buildR3(false); applyStatic(); buildSF(false); buildStreetOpen(); buildCues(); renderFlowOp(); showNow();
+buildR3(false); applyStatic(); buildSF(false); buildStreetOpen(); buildAnam(); buildCues(); renderFlowOp(); showNow();
 UP.forEach(u => addScript(u.id, u.title, u.steps, null, u)); renderUP(); buildCueEd();
 if (window.SCRIPTS && window.SCRIPTS.length) useScript(window.SCRIPTS[0].id);
 r3msg(T('r3.intro')); renderMy();
