@@ -69,6 +69,25 @@ input[type=range]{accent-color:var(--cu);flex:1;min-width:100px}
 .r3 label{display:block;margin:6px 0 0;flex:none}
 .r3 input,.r3 select{width:100%;margin-top:3px;min-width:0}
 .mini{flex:0 1 auto}
+.roles button.tile{display:block;text-align:left;min-height:96px;padding:12px;line-height:1.4}
+.roles button.tile b{display:block;font:600 .9rem 'DM Sans',sans-serif;letter-spacing:0;text-transform:none;color:var(--txt);margin-bottom:4px}
+.roles button.tile span{font-weight:400;font-size:.78rem;color:var(--mut)}
+.roles button.tile:hover b{color:var(--cy)}
+.mb h3{color:var(--cu);margin:16px 0 6px}
+.mb p,.mb li{font-size:.88rem;line-height:1.55}
+.mb p{margin:6px 0}.mb ol{padding-left:22px}
+.mb q{display:block;margin:4px 0 10px;padding:8px 12px;border-left:2px solid var(--cu);color:#f4e7b4;quotes:none;font-size:.9rem}
+.mb table{width:100%;border-collapse:collapse;font-size:.8rem;margin:8px 0}
+.mb th,.mb td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.mb th{color:var(--cy);font-weight:600}
+@media print{
+ body.print-merk::before{display:none}
+ body.print-merk{background:#fff!important;color:#000!important}
+ body.print-merk header,body.print-merk nav,body.print-merk main>section.top,body.print-merk .pane:not(#pane-merk),body.print-merk .noprint{display:none!important}
+ body.print-merk section{background:#fff!important;border:0!important;color:#000!important}
+ body.print-merk .mb *{color:#000!important;border-color:#999!important}
+ body.print-merk h2{color:#000!important}
+}
 .risk{flex:1 1 100%;padding:8px 12px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid}
 .risk.stop{background:rgba(217,60,50,.22);border-color:#ff7a6e;color:#ffd0ca}
 .risk.orange{background:rgba(230,126,34,.2);border-color:#f0a050;color:#ffdcb8}
@@ -113,12 +132,14 @@ details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);
 </header>
 
 <nav class="tabs" role="tablist" id="tabs">
+  <button role="tab" data-tab="start" data-i="tab.start">Übersicht</button>
+  <button role="tab" data-tab="anam" data-i="tab.anam">Anamnese</button>
   <button role="tab" data-tab="sitzung" data-i="tab.sitzung">Sitzung &amp; Medien</button>
   <button role="tab" data-tab="text" data-i="tab.text">Text &amp; Skript</button>
-  <button role="tab" data-tab="anam" data-i="tab.anam">Anamnese</button>
   <button role="tab" data-tab="street" data-i="tab.street">Street</button>
   <button role="tab" data-tab="gen" data-i="tab.gen">Generator</button>
   <button role="tab" data-tab="ablauf" data-i="tab.ablauf">Ablauf</button>
+  <button role="tab" data-tab="merk" data-i="tab.merk">Merkblatt</button>
 </nav>
 
 <main>
@@ -240,6 +261,14 @@ details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);
   </section>
 </div>
 
+<!-- ============ Übersicht ============ -->
+<div class="pane" id="pane-start">
+  <section class="wide"><h2 data-i="home.status">Status</h2><div class="np" id="home-chips"></div></section>
+  <section class="wide"><h2 data-i="home.tools">Alle Bereiche</h2><div class="roles" id="home-tiles"></div>
+    <p class="note" style="margin-top:10px" data-i="home.always"></p></section>
+  <section class="wide"><h2 data-i="home.flow">Ablauf einer Sitzung</h2><ol id="home-steps" style="margin:0;padding-left:22px;font-size:.88rem;line-height:1.7"></ol></section>
+</div>
+
 <!-- ============ Anamnese ============ -->
 <div class="pane" id="pane-anam">
   <section class="wide">
@@ -254,6 +283,15 @@ details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);
   <section><div id="anam-form"></div></section>
   <section class="an-out" id="anam-out" aria-live="polite"></section>
   <section class="wide"><h2 data-i="an.f4.t">4F-Typologie</h2><div class="roles" id="an-4f"></div><p class="note" style="margin-top:10px" data-i="an.f4.hint"></p></section>
+</div>
+
+<!-- ============ Merkblatt ============ -->
+<div class="pane" id="pane-merk">
+  <section class="wide">
+    <h2 data-i="tab.merk">Merkblatt</h2>
+    <div class="row noprint" style="margin-bottom:8px"><button class="p" id="mb-print" data-i="mb.print">Drucken / als PDF</button><button id="mb-open" data-i="mb.open">Akut-Protokoll als Skript öffnen</button></div>
+    <div class="mb" id="merk-body"></div>
+  </section>
 </div>
 
 <!-- ============ Street ============ -->
@@ -362,6 +400,20 @@ const I18N = {
     'r3.schema':'JSON passt nicht zum Schema: ', 'r3.applied':'JSON übernommen. Jetzt „Zusammensetzen“.', 'r3.badjson':'Kein gültiges JSON: ', 'r3.copied':'JSON kopiert (steht auch im Feld unter „JSON einfügen“).', 'r3.nocopy':'Kopieren nicht erlaubt – JSON steht im Feld unter „JSON einfügen“.',
     'sec.flow':'Ablauf · Profil Good Boys', 'flow.lang':'Sprache des Ablaufs', 'flow.de':'Deutsch', 'flow.en':'English', 'flow.both':'Beide', 'flow.control':'Steuerung',
     'flow.guide':'Ich steuere', 'flow.self':'Person tippt selbst', 'flow.start':'Ablauf starten', 'flow.end':'Ablauf beenden', 'flow.none':'Nicht gestartet', 'flow.over':'Ende des Ablaufs', 'flow.selfpick':'Person wählt selbst …'
+    ,'tab.start':'Übersicht', 'tab.merk':'Merkblatt', 'home.status':'Status', 'home.tools':'Alle Bereiche', 'home.flow':'Ablauf einer Sitzung',
+    'home.always':'Immer oben: Grounding, Schwarz, Alles stoppen (Esc), Sprache DE/EN und der Warnbalken der Anamnese.',
+    'chip.display':'Display', 'chip.anam':'Anamnese', 'chip.script':'Skript', 'chip.ui':'Sprache', 'chip.open':'nicht gestartet', 'chip.nofill':'nicht ausgefüllt',
+    'lvl.stop':'STOPP', 'lvl.orange':'Orange', 'lvl.yellow':'Gelb', 'lvl.green':'Grün',
+    'tile.anam':'Vorab-Bogen: Einwilligung, Ausschlussgründe, Trauma-Hinweise, Warnbalken, Therapieempfehlung, 4F-Überblick.',
+    'tile.sitzung':'Display öffnen, Name, Lautstärke, Bilder und GIFs, Video, Audio-Loops.',
+    'tile.text':'Textbausteine, Skripte Schritt für Schritt, Text einfügen oder hochladen, alles bearbeitbar.',
+    'tile.street':'Street-Hypnose: Einverständnis-Check, Bausteine, Baukasten, drei Beispiel-Skripte.',
+    'tile.gen':'Rule-of-Three-Generator: fünf Dreier-Muster zu einem Skript zusammensetzen.',
+    'tile.ablauf':'Ablauf Profil Good Boys: Frage-Antwort-Fluss, Sprache wählen, geführt oder selbst.',
+    'tile.merk':'Merkblatt zu emotionalen Flashbacks und Fawn mit 4-Schritte-Protokoll, druckbar als PDF.',
+    'step.1':'Anamnese ausfüllen, Einwilligung und Stopp-Regel klären.', 'step.2':'Display öffnen, Name und Lautstärke einstellen.', 'step.3':'Skript wählen oder Text hinzufügen, Medien starten.', 'step.4':'Rückkehr einplanen: Skripte enden mit einem Rückkehr-Schritt. Bei Überflutung sofort Grounding.',
+    'mb.print':'Drucken / als PDF', 'mb.open':'Akut-Protokoll als Skript öffnen'
+
     ,'an.help.t':'Passende Skripte (ohne Trance)', 'an.help.hint':'Augen offen, im Gespräch, nur wenn die Person stabil ist. Bei Rot nicht einsetzen. Das Grounding (oben) hat Vorrang bei akuter Belastung.',
     'an.f4.t':'4F-Typologie (Überblick)', 'an.f4.hint':'Erkennungshilfe nach Pete Walker, kein Diagnoseraster. Weiterführende Arbeit an Auslösern, Trauer oder Konfrontation gehört in die Hand ausgebildeter Psychotherapeut:innen, nicht in dieses Tool.'
 
@@ -422,6 +474,20 @@ const I18N = {
     'r3.schema':'JSON does not match the schema: ', 'r3.applied':'JSON applied. Now press "Assemble".', 'r3.badjson':'Not valid JSON: ', 'r3.copied':'JSON copied (also in the field under "Paste JSON").', 'r3.nocopy':'Copying not allowed – the JSON is in the field under "Paste JSON".',
     'sec.flow':'Flow · profile Good Boys', 'flow.lang':'Flow language', 'flow.de':'German', 'flow.en':'English', 'flow.both':'Both', 'flow.control':'Control',
     'flow.guide':'I control', 'flow.self':'Person taps themselves', 'flow.start':'Start flow', 'flow.end':'End flow', 'flow.none':'Not started', 'flow.over':'End of flow', 'flow.selfpick':'Person is choosing …'
+    ,'tab.start':'Overview', 'tab.merk':'Handout', 'home.status':'Status', 'home.tools':'All areas', 'home.flow':'Running a session',
+    'home.always':'Always at the top: Grounding, Black, Stop all (Esc), language DE/EN and the intake warning bar.',
+    'chip.display':'Display', 'chip.anam':'Intake', 'chip.script':'Script', 'chip.ui':'Language', 'chip.open':'not started', 'chip.nofill':'not filled in',
+    'lvl.stop':'STOP', 'lvl.orange':'Orange', 'lvl.yellow':'Yellow', 'lvl.green':'Green',
+    'tile.anam':'Pre-session form: consent, exclusion reasons, trauma signs, warning bar, therapy recommendation, 4F overview.',
+    'tile.sitzung':'Open display, name, volume, images and GIFs, video, audio loops.',
+    'tile.text':'Text snippets, scripts step by step, paste or upload text, everything editable.',
+    'tile.street':'Street hypnosis: consent check, building blocks, builder, three example scripts.',
+    'tile.gen':'Rule of Three generator: combine five triple patterns into one script.',
+    'tile.ablauf':'Flow profile Good Boys: question-answer flow, choose language, guided or self.',
+    'tile.merk':'Handout on emotional flashbacks and fawn with a 4-step protocol, printable as PDF.',
+    'step.1':'Fill in the intake, clarify consent and stop rule.', 'step.2':'Open the display, set name and volume.', 'step.3':'Choose a script or add text, start media.', 'step.4':'Plan the return: scripts end with a return step. If flooded, use Grounding immediately.',
+    'mb.print':'Print / save as PDF', 'mb.open':'Open acute protocol as script'
+
     ,'an.help.t':'Matching scripts (no trance)', 'an.help.hint':'Eyes open, in conversation, only when the person is stable. Do not use on red. Grounding (top) takes priority in acute distress.',
     'an.f4.t':'4F typology (overview)', 'an.f4.hint':'Recognition aid after Pete Walker, not a diagnostic grid. Further work on triggers, grief or confrontation belongs with trained psychotherapists, not in this tool.'
 
@@ -479,7 +545,7 @@ function applyStatic(){
   $('ul-de').setAttribute('aria-pressed', ui === 'de'); $('ul-en').setAttribute('aria-pressed', ui === 'en');
   setStatus(statusKey);
 }
-function setStatus(k){ statusKey = k; $('status').textContent = T('status.' + k); $('status').className = 'status' + (k === 'on' ? ' ok' : ''); }
+function setStatus(k){ statusKey = k; try { renderHome(); } catch (e) {} $('status').textContent = T('status.' + k); $('status').className = 'status' + (k === 'on' ? ' ok' : ''); }
 
 // ================= Verbindung =================
 ch.onmessage = ({data}) => {
@@ -562,7 +628,7 @@ function addScript(id, title, st, tkey, meta){
   o.textContent = labelOf(id);
 }
 function applyEdit(id){ const e = ED[id], sc = SC[id]; sc.title = e.title; sc.lang = e.lang; sc.mode = e.mode; sc.steps = e.steps; const o = [...$('scriptsel').options].find(x => x.value === id); if (o) o.textContent = labelOf(id); }
-function useScript(id){ curId = SC[id] ? id : null; steps = curId ? SC[id].steps : []; cur = -1; if (curId) $('scriptsel').value = id; renderSteps(); }
+function useScript(id){ curId = SC[id] ? id : null; steps = curId ? SC[id].steps : []; cur = -1; if (curId) $('scriptsel').value = id; renderSteps(); try { renderHome(); } catch (e) {} }
 function quote(t, l){ return l === 'en' ? '“' + t + '”' : '„' + t + '“'; }
 function stepOut(st){
   const sc = SC[curId] || {}; let t = st.text, l = sc.lang || 'de';
@@ -884,7 +950,7 @@ function evalAnam(){
   const v = k => AN[k] || 0, touched = Object.keys(AN).some(k => k !== 'code' && AN[k]);
   const out = $('anam-out'), bar = $('riskbar'); out.innerHTML = '';
   const h = document.createElement('h2'); h.textContent = T('an.out.title'); out.appendChild(h);
-  if (!touched) { risk = {level:'none', sig:''}; bar.hidden = true; const p = document.createElement('p'); p.className = 'note'; p.textContent = T('an.out.empty'); out.appendChild(p); return; }
+  if (!touched) { risk = {level:'none', sig:''}; try { renderHome(); } catch (e) {} bar.hidden = true; const p = document.createElement('p'); p.className = 'note'; p.textContent = T('an.out.empty'); out.appendChild(p); return; }
   const why = [], X = AN_TXT[ui];
   const redHits = AN_ITEMS.red.filter(([k]) => v(k)), orHits = AN_ITEMS.orange.filter(([k]) => v(k));
   const sumT = ['t1', 't2', 't3', 't4', 't5', 't6'].reduce((a, k) => a + v(k), 0);
@@ -895,7 +961,7 @@ function evalAnam(){
   redHits.concat(orHits).forEach(([k, de, en]) => why.push(ui === 'en' ? en : de));
   AN_ITEMS.trauma.forEach(([k, de, en]) => { if (v(k) >= 2) why.push((ui === 'en' ? en : de) + ' (' + AN_SCALE[ui][v(k)] + ')'); });
   const complex = sumT >= 9 || (v('t6') >= 2 && v('t4') >= 2);
-  risk = {level, sig:level + JSON.stringify(AN)};
+  risk = {level, sig:level + JSON.stringify(AN)}; try { renderHome(); } catch (e) {}
   const cls = ({stop:'stop', orange:'orange', yellow:'yellow', green:'green'})[level];
   bar.hidden = false; bar.className = 'risk ' + cls; bar.textContent = T('risk.' + cls);
   const b = document.createElement('div'); b.className = 'risk ' + cls; b.textContent = T('risk.' + cls); out.appendChild(b);
@@ -923,11 +989,11 @@ const F4 = [
 ];
 function buildAnHelp(){
   const R = $('an-open'); R.innerHTML = '';
-  ['09-flashbacks-verstehen', '10-erwachsenen-orientierung'].forEach(id => { if (!SC[id]) return; const b = document.createElement('button'); b.textContent = SC[id].title; b.onclick = () => { showTab('text'); useScript(id); }; R.appendChild(b); });
+  ['09-flashbacks-verstehen', '10-erwachsenen-orientierung', '11-akut-protokoll-4-schritte'].forEach(id => { if (!SC[id]) return; const b = document.createElement('button'); b.textContent = SC[id].title; b.onclick = () => { showTab('text'); useScript(id); }; R.appendChild(b); });
   const G = $('an-4f'); G.innerHTML = '';
   F4.forEach(f => { const d = document.createElement('div'), b = document.createElement('b'), sp = document.createElement('span'); b.textContent = f[0] + (ui === 'de' ? ' · ' + f[1] : ''); sp.textContent = ui === 'en' ? f[3] : f[2]; d.appendChild(b); d.appendChild(sp); G.appendChild(d); });
 }
-const SAFE_SCRIPTS = /^(09|10)-/;
+const SAFE_SCRIPTS = /^(09|10|11)-/;
 
 const GROUND = {
   de:d => ['Du bist jetzt hier. Heute ist ' + d + '.', 'Du bist in einem erwachsenen Körper, in diesem Raum, und du bist sicher.', 'Schau dich um und nenne fünf Dinge, die du siehst.', 'Spür deine Füße auf dem Boden. Drück sie fest hinein.', 'Atme aus, länger als du einatmest. Du darfst jederzeit die Augen öffnen und sprechen.'],
@@ -939,6 +1005,60 @@ $('ground').onclick = () => {
   const st = GROUND[ui](d).map(t => ({phase:T('ground.title'), tempo:'langsam', anchor:'', echo:false, pause:3, text:t}));
   addScript('ground', '', st, 'ground'); useScript('ground'); showTab('text'); go(0);
 };
+
+
+// ================= Übersicht (Startseite) und Merkblatt =================
+const HOME_TILES = ['anam', 'sitzung', 'text', 'street', 'gen', 'ablauf', 'merk'];
+function renderHome(){
+  const C = $('home-chips'); if (!C) return; C.innerHTML = '';
+  const lvl = risk.level === 'none' ? T('chip.nofill') : T('lvl.' + risk.level);
+  [['chip.display', T('status.' + statusKey)], ['chip.anam', lvl], ['chip.script', curId && SC[curId] ? labelOf(curId) : '–'], ['chip.ui', ui.toUpperCase()]].forEach(([k, v]) => {
+    const d = document.createElement('div'), b = document.createElement('b'), sp = document.createElement('span'); b.textContent = T(k); sp.textContent = v; d.appendChild(b); d.appendChild(sp); C.appendChild(d); });
+  const Tl = $('home-tiles'); Tl.innerHTML = '';
+  HOME_TILES.forEach(t => { const b = document.createElement('button'); b.className = 'tile'; const h = document.createElement('b'), sp = document.createElement('span');
+    h.textContent = T(t === 'anam' ? 'tab.anam' : t === 'sitzung' ? 'tab.sitzung' : t === 'text' ? 'tab.text' : t === 'street' ? 'tab.street' : t === 'gen' ? 'tab.gen' : t === 'ablauf' ? 'tab.ablauf' : 'tab.merk'); sp.textContent = T('tile.' + t);
+    b.appendChild(h); b.appendChild(sp); b.onclick = () => showTab(t); Tl.appendChild(b); });
+  const O = $('home-steps'); O.innerHTML = ''; [1, 2, 3, 4].forEach(n => { const li = document.createElement('li'); li.textContent = T('step.' + n); O.appendChild(li); });
+}
+const MB = {
+  de:[['h','Merkblatt: Emotionale Flashbacks und Fawn-Reaktion'],['p','Orientierung nach dem Modell von Pete Walker. Information, kein Ersatz für Diagnose oder Behandlung.'],
+    ['h3','1. Was ist ein emotionaler Flashback?'],['p','Eine schlagartige Überflutung mit Gefühlen und Körperzuständen aus der Kindheit, vor allem Angst, Machtlosigkeit, Scham, Orientierungslosigkeit und Verlassenheit, oft ohne Bild. Alltägliche Auslöser mit entfernter Ähnlichkeit zu früheren Überforderungs- oder Vernachlässigungssituationen reichen aus. Das Nervensystem antwortet dann automatisch mit Kampf, Flucht, Erstarren oder Anpassen.'],
+    ['p','Fawn: instinktive Reaktion, Bedrohung durch Unterwerfung, Einschmeicheln, Nützlichkeit und Aufgeben eigener Grenzen abzuwenden. Kodependenz: Schwierigkeit, eigene Rechte, Bedürfnisse und Grenzen in Beziehungen zu äußern.'],
+    ['p','Ursprung: Wird Protest bestraft und Flucht erhöht die Gefahr, wählt das Kind Unterwerfung. Sicherheit wird durch Nützlichkeit erkauft. Auch dauerhafte emotionale Vernachlässigung kann dazu führen.'],
+    ['h3','2. Die vier Reaktionen im Überblick'],
+    ['table',['Reaktion','Abwehr','Kindheits-Impuls','Später'],[['Fight (Kampf)','Aggressive Abwehr von Angst und Bedrohung','Protest gegen Missbrauch, bei Strafe oft erloschen','Plötzliche Aggression; bei Erholung Basis gesunder Selbstbehauptung'],['Flight (Flucht)','Drang zu entkommen','Hyperaktivität bei unerträglicher Angst','Dauerhektik, Arbeitssucht, Zwänge'],['Freeze (Erstarrung)','Abschalten, Dissoziation','Rückzug, Ausblenden der Realität','Tagträumen, viel Schlaf, betäubende Substanzen'],['Fawn (Unterwerfung)','Einschmeicheln, Grenzen aufgeben','Eigene Bedürfnisse für die Eltern aufgeben','Kodependenz, „Nein“ fällt schwer, Opferhaltung']]],
+    ['h3','3. Akut-Protokoll: vier Schritte'],
+    ['p','Im Flashback vergisst man oft sein Wissen schlagartig. Die Leitsätze helfen, sie laut oder innerlich zu sprechen.'],
+    ['ol',[['Erkennen und Benennen','„Ich erlebe gerade einen emotionalen Flashback. Die Angst, Scham und Ohnmacht gehören in meine Kindheit. Meine jetzige Situation ist sicher.“'],['Im Körper bleiben','„Ich spüre den Impuls nachzugeben, handle aber nicht sofort danach. Ich atme aus und bleibe im Körper, so weit es sich aushalten lässt.“ Wird es zu viel: Füße spüren, drei Dinge im Raum benennen, Pause, Hilfe holen.'],['Erwachsenen-Status','„Als Kind war ich zu klein und machtlos. Heute bin ich erwachsen und habe Rechte, Möglichkeiten und Unterstützung.“'],['Nein sagen','„Ich darf eigene Bedürfnisse äußern und unfaire Behandlung zurückweisen. Meine Würde hat Vorrang vor vorauseilendem Gehorsam.“']]],
+    ['h3','4. Langfristig (therapeutische Begleitung)'],['p','Verstehen allein reicht meist nicht. In der Therapie folgen oft: Trauer über den Verlust von Selbstschutz und Grenzen, Freisetzung berechtigter Wut als Grundlage gesunder Selbstbehauptung und die dosierte, kontrollierte Auseinandersetzung mit Belastendem ohne Überwältigung. Das gehört in die Hand ausgebildeter Psychotherapeut:innen.'],
+    ['h3','5. Hilfe holen'],['p','Treten solche Zustände häufig oder stark auf: traumafokussierte Psychotherapie (TF-KVT oder EMDR) ist laut S3-Leitlinie PTBS Behandlung erster Wahl. Terminservicestelle 116 117. Akute Krise: 112 oder Telefonseelsorge 0800 111 0 111 (kostenlos, 24/7).']],
+  en:[['h','Handout: Emotional flashbacks and the fawn response'],['p','Orientation based on Pete Walker’s model. Information, not a replacement for diagnosis or treatment.'],
+    ['h3','1. What is an emotional flashback?'],['p','A sudden flooding with feelings and body states from childhood, above all fear, powerlessness, shame, disorientation and abandonment, often without an image. Everyday triggers with a distant resemblance to earlier overwhelming or neglectful situations are enough. The nervous system then answers automatically with fight, flight, freeze or fawn.'],
+    ['p','Fawn: an instinctive reaction that tries to avert threat through submission, flattery, usefulness and giving up one’s own limits. Codependency: difficulty voicing one’s own rights, needs and limits in relationships.'],
+    ['p','Origin: when protest is punished and flight raises the danger, the child chooses submission. Safety is bought with usefulness. Lasting emotional neglect can lead there as well.'],
+    ['h3','2. The four reactions at a glance'],
+    ['table',['Reaction','Defence','Childhood impulse','Later'],[['Fight','Aggressive defence against fear and threat','Protest against abuse, often extinguished by punishment','Sudden aggression; in recovery the basis of healthy assertiveness'],['Flight','Urge to escape','Hyperactivity in unbearable fear','Constant busyness, workaholism, compulsions'],['Freeze','Switching off, dissociation','Withdrawal, blocking out reality','Daydreaming, much sleep, numbing substances'],['Fawn','Flattery, giving up limits','Giving up own needs for the parents','Codependency, difficulty saying "no", victim stance']]],
+    ['h3','3. Acute protocol: four steps'],
+    ['p','In a flashback people often forget what they know. The phrases help when said aloud or inwardly.'],
+    ['ol',[['Recognise and name','"I am having an emotional flashback. The fear, shame and helplessness belong to my childhood. My present situation is safe."'],['Stay in the body','"I notice the urge to give in, but I do not act on it right away. I breathe out and stay in my body, as far as it is bearable." If it becomes too much: feel your feet, name three things in the room, take a break, get help.'],['Adult status','"As a child I was too small and powerless. Today I am an adult and have rights, options and support."'],['Say no','"I am allowed to voice my needs and reject unfair treatment. My dignity comes before anticipatory obedience."']]],
+    ['h3','4. Long term (therapeutic support)'],['p','Understanding alone is usually not enough. Therapy often continues with grief over the loss of self-protection and limits, release of justified anger as the basis of healthy self-assertion, and dosed, controlled work on distressing material without overwhelm. This belongs in the hands of trained psychotherapists.'],
+    ['h3','5. Getting help'],['p','If such states occur often or strongly: trauma-focused psychotherapy (TF-CBT or EMDR) is first-line treatment according to the German S3 PTSD guideline. In acute crisis: emergency number 112 (or your local number) or a crisis line.']]
+};
+function buildMerk(){
+  const R = $('merk-body'); R.innerHTML = '';
+  MB[ui].forEach(b => {
+    let e;
+    if (b[0] === 'h') { e = document.createElement('h2'); e.textContent = b[1]; e.style.letterSpacing = '0'; e.style.textTransform = 'none'; e.style.fontSize = '1.1rem'; }
+    else if (b[0] === 'h3') { e = document.createElement('h3'); e.textContent = b[1]; }
+    else if (b[0] === 'p') { e = document.createElement('p'); e.textContent = b[1]; }
+    else if (b[0] === 'table') { const wrap = document.createElement('div'); wrap.style.cssText = 'overflow-x:auto'; e = document.createElement('table'); const tr = document.createElement('tr'); b[1].forEach(h => { const th = document.createElement('th'); th.textContent = h; tr.appendChild(th); }); e.appendChild(tr); b[2].forEach(r => { const row = document.createElement('tr'); r.forEach(c => { const td = document.createElement('td'); td.textContent = c; row.appendChild(td); }); e.appendChild(row); }); wrap.appendChild(e); e = wrap; }
+    else { e = document.createElement('ol'); b[1].forEach(([h, q]) => { const li = document.createElement('li'), s = document.createElement('strong'); s.textContent = h; li.appendChild(s); const qq = document.createElement('q'); qq.textContent = q; li.appendChild(qq); e.appendChild(li); }); }
+    R.appendChild(e);
+  });
+}
+$('mb-print').onclick = () => { document.body.classList.add('print-merk'); window.print(); };
+addEventListener('afterprint', () => document.body.classList.remove('print-merk'));
+$('mb-open').onclick = () => { if (SC['11-akut-protokoll-4-schritte']) { showTab('text'); useScript('11-akut-protokoll-4-schritte'); } };
 
 // ================= Street: Baukasten und Beispiel-Skripte =================
 const SF_KEYS = ['theme', 'outcome', 'quote', 'a', 'b', 'c', 'x', 'y', 'bridge', 'p1', 'p2', 'lead', 'sens', 'pa', 'pb', 'q'];
@@ -1012,7 +1132,7 @@ $('lb').onclick = () => setFlowLang('both');
 
 // ================= Tabs und Sprachumschalter =================
 function showTab(name){
-  if (!document.getElementById('pane-' + name)) name = 'sitzung';
+  if (!document.getElementById('pane-' + name)) name = 'start';
   document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'pane-' + name));
   document.querySelectorAll('#tabs [role=tab]').forEach(b => { const on = b.dataset.tab === name; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; });
   store.set('hd-tab', name);
@@ -1022,17 +1142,17 @@ document.querySelectorAll('#tabs [role=tab]').forEach(b => { b.onclick = () => s
 function setUi(l, announce){
   ui = l; store.set('hd-ui', l); applyStatic(); buildCues(); buildR3(true);
   Object.keys(SC).forEach(id => { const o = [...$('scriptsel').options].find(x => x.value === id); if (o) o.textContent = labelOf(id); }); buildCueEd();
-  renderSteps(); renderUP(); renderFlowOp(); renderMy(); buildSF(true); buildStreetOpen(); buildAnam(); buildAnHelp(); showNow(); if (announce) send({type:'uilang', lang:l});
+  renderSteps(); renderUP(); renderFlowOp(); renderMy(); buildSF(true); buildStreetOpen(); buildAnam(); buildAnHelp(); buildMerk(); renderHome(); showNow(); if (announce) send({type:'uilang', lang:l});
 }
 $('ul-de').onclick = () => setUi('de', true);
 $('ul-en').onclick = () => setUi('en', true);
 
 // ================= Start =================
-buildR3(false); applyStatic(); buildSF(false); buildStreetOpen(); buildAnam(); buildAnHelp(); buildCues(); renderFlowOp(); showNow();
+buildR3(false); applyStatic(); buildSF(false); buildStreetOpen(); buildAnam(); buildAnHelp(); buildMerk(); buildCues(); renderFlowOp(); showNow();
 UP.forEach(u => addScript(u.id, u.title, u.steps, null, u)); renderUP(); buildCueEd();
 if (window.SCRIPTS && window.SCRIPTS.length) useScript(window.SCRIPTS[0].id);
 r3msg(T('r3.intro')); renderMy();
-showTab(store.get('hd-tab', 'sitzung'));
+renderHome(); showTab('start');
 </script>
 </body>
 </html>
