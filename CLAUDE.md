@@ -47,7 +47,7 @@ Sprach-Switcher: assets/lang.js (DE/EN auf allen Seiten)
 | Plattform | URL | Zweck |
 |-----------|-----|-------|
 | GitHub Pages | intelligentresponder-max.github.io/mindful7777 | Hosting |
-| Ko-fi | ko-fi.com/mindf7777 | VIP Membership 77,77 €/Mo, digitale Produkte, Support |
+| Ko-fi | (entfernt 17.11.2026) | Alle Ko-fi-Links aus dem Repo entfernt; Zahlweg/Download-Auslieferung neu festlegen |
 | Throne | throne.com/mindful7777 | Wishlist / Support |
 | Stripe | Checkout via stripe-api (Vercel) | Membership + Direktzahlung, Tax |
 | Discord | FFM-777 Server | Community |
@@ -64,15 +64,14 @@ und offene Punkte: `docs/stripe-setup.md` und `stripe-api/README.md`.
 Connect und Invoicing bewusst noch nicht gebaut (kein Bedarf aktuell).
 
 ### Aktive Produkt-Links
-- VIP Membership (77,77 €/Mo): ko-fi.com/mindf7777
-- Lead Magnet, Sock-Anchor Bundle, sonstige Downloads: ebenfalls ko-fi.com/mindf7777
+- VIP Membership (77,77 €/Mo): vip.html (Ko-fi-Links entfernt 17.11.2026, Zahlweg offen)
+- Lead Magnet, Sock-Anchor Bundle, sonstige Downloads: Buttons zeigen intern auf lead-magnet.html bzw. vip.html (Platzhalter, Auslieferung offen)
   (frueher einzelne Gumroad-Produktseiten /l/ucaan, /l/csaf777, /l/kxhkot —
   falls es dafuer eigene Ko-fi-Produktseiten gibt, hier eintragen)
 - eBook HTML: /sock-anchor-ebook.html (self-hosted)
 
 ### Plattform-Regeln
-- Ko-fi-Username ist mindf7777
-- Ko-fi für Membership/Recurring und Einmalzahlungen/Downloads
+- Ko-fi wird nicht mehr verlinkt (Stand 17.11.2026); neue Links nur nach Entscheidung des Zahlwegs (Stripe/Throne)
 - Throne für Wishlist-Items und Community-Support
 - Alle Download-Produkte: ZIP mit PDF + MP3 + README.txt
 
