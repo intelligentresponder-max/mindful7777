@@ -16,6 +16,7 @@ Disallow: /favicon-generator.html
 
 # Interne Sitzungs-Tools nicht indexieren
 Disallow: /tools/hypnose-display/
+Disallow: /h/
 
 # Archiv: veraltete/doppelte Seiten, nicht indexieren
 Disallow: /archiv/
