@@ -10,33 +10,46 @@
 :root{--cu:#c9a227;--cy:#4fd1c5;--bg:#070a12;--panel:rgba(14,22,40,.86);--line:rgba(79,209,197,.24);--txt:#ece8dd;--mut:#8b93a7}
 *{box-sizing:border-box}
 html{background:var(--bg)}
-body{margin:0;color:var(--txt);font-family:'DM Sans',system-ui,sans-serif;background:radial-gradient(circle at 50% -10%,#15213d,var(--bg) 62%) fixed}
+body{margin:0;color:var(--txt);font-family:'DM Sans',system-ui,sans-serif;background:radial-gradient(circle at 50% -10%,#15213d,var(--bg) 62%) fixed;min-height:100vh}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(79,209,197,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(79,209,197,.045) 1px,transparent 1px);background-size:40px 40px}
-.bar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding:10px 18px;background:rgba(7,10,18,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
-h1{font:700 1.15rem 'Playfair Display',serif;margin:0;letter-spacing:.04em}
-h1 small{display:block;font:600 .6rem 'DM Sans',sans-serif;letter-spacing:.3em;color:var(--cy);text-transform:uppercase}
-.status{font-size:.8rem;color:var(--mut);display:flex;gap:8px;align-items:center;flex:1;min-width:150px}
+.bar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:8px 18px;background:rgba(7,10,18,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+h1{font:700 1.1rem 'Playfair Display',serif;margin:0;letter-spacing:.04em}
+h1 small{display:block;font:600 .58rem 'DM Sans',sans-serif;letter-spacing:.3em;color:var(--cy);text-transform:uppercase}
+.status{font-size:.8rem;color:var(--mut);display:flex;gap:8px;align-items:center;flex:1;min-width:140px}
 .status::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--mut);flex:none}
 .status.ok{color:#9fd18a}.status.ok::before{background:#7fd16a;box-shadow:0 0 10px #7fd16a}
-.bar .row{margin-left:auto}
-main{position:relative;max-width:1040px;margin:0 auto;padding:16px 18px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:14px}
-.note{grid-column:1/-1;font-size:.76rem;color:var(--mut);margin:0;padding:8px 12px;border-left:2px solid var(--cu)}
-section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;position:relative}
+.langsw{display:flex;gap:0}
+.langsw button{min-width:44px;border-radius:0;padding:8px 10px}
+.langsw button:first-child{border-radius:6px 0 0 6px}.langsw button:last-child{border-radius:0 6px 6px 0;margin-left:-1px}
+.acts{margin-left:auto}
+.tabs{position:relative;display:flex;gap:6px;overflow-x:auto;max-width:1040px;margin:0 auto;padding:12px 18px 0;scrollbar-width:thin}
+.tabs button{flex:none;border-radius:8px 8px 0 0;border-bottom-color:transparent}
+.tabs button[aria-selected=true]{border-color:var(--cy);background:rgba(79,209,197,.16);color:#fff;box-shadow:0 -2px 14px rgba(79,209,197,.25)}
+main{position:relative;max-width:1040px;margin:0 auto;padding:0 18px 40px;display:grid;gap:14px}
+.pane{display:none;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr))}
+.pane.on{display:grid}
+.note{font-size:.76rem;color:var(--mut);margin:0;padding:8px 12px;border-left:2px solid var(--cu)}
+.ok{color:#9fd18a}.bad{color:#ff9a8f}
+section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;position:relative;min-width:0}
 section.wide{grid-column:1/-1}
+main>section.top{margin-top:14px}
 h2{display:flex;gap:8px;align-items:center;font:600 .68rem 'DM Sans',sans-serif;letter-spacing:.26em;text-transform:uppercase;color:var(--cy);margin:0 0 12px}
 h2::before{content:"";width:6px;height:6px;background:var(--cu);transform:rotate(45deg)}
 h3{font:600 .66rem 'DM Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin:12px 0 6px}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-button,input[type=text]{font:600 .85rem 'DM Sans',sans-serif;border-radius:6px;border:1px solid var(--line);background:rgba(7,10,18,.5);color:var(--txt);padding:10px 14px;min-height:44px;cursor:pointer;transition:border-color .2s,box-shadow .2s,background .2s}
+button,input[type=text],textarea,select{font:600 .85rem 'DM Sans',sans-serif;border-radius:6px;border:1px solid var(--line);background:rgba(7,10,18,.5);color:var(--txt);padding:10px 14px;min-height:44px}
+button{cursor:pointer;transition:border-color .2s,box-shadow .2s,background .2s}
 button:hover{border-color:var(--cy);background:rgba(79,209,197,.1)}
-button:focus-visible,input:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,.drop:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
 button.on{border-color:var(--cy);box-shadow:0 0 14px rgba(79,209,197,.45);background:rgba(79,209,197,.14)}
 button.p{background:var(--cu);color:#14100a;border-color:var(--cu)}
 button.p:hover{background:#d8b43a}
 button.d{color:#ff9a8f;border-color:rgba(217,117,106,.55)}
 button.d:hover{background:rgba(217,117,106,.16);border-color:#ff9a8f}
 input[type=text]{cursor:text;flex:1;min-width:160px;font-weight:400}
-label{font-size:.8rem;color:var(--mut);display:flex;gap:10px;align-items:center;flex:1 1 220px}
+textarea{width:100%;resize:vertical;line-height:1.5;font-weight:400}
+select{cursor:pointer;max-width:100%;min-width:0;text-overflow:ellipsis}
+label{font-size:.8rem;color:var(--mut);display:flex;gap:10px;align-items:center;flex:1 1 220px;min-width:0}
 input[type=range]{accent-color:var(--cu);flex:1;min-width:100px}
 .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px;width:100%}
 .thumb{aspect-ratio:16/10;padding:0;position:relative;overflow:hidden;background-size:cover;background-position:center;background-color:#000}
@@ -45,12 +58,8 @@ input[type=range]{accent-color:var(--cu);flex:1;min-width:100px}
 .np div{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:rgba(7,10,18,.5);min-width:0}
 .np b{display:block;font:600 .6rem 'DM Sans',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--cy);margin-bottom:3px}
 .np span{display:block;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-textarea,select{font:400 .85rem 'DM Sans',sans-serif;border-radius:6px;border:1px solid var(--line);background:rgba(7,10,18,.5);color:var(--txt);padding:10px 12px;min-height:44px}
-textarea{width:100%;resize:vertical;line-height:1.5}
-select{cursor:pointer;font-weight:600;max-width:100%;min-width:0;text-overflow:ellipsis}
-label{min-width:0}
 .steps{display:flex;flex-direction:column;gap:6px;max-height:420px;overflow:auto;padding-right:4px}
-.step{scroll-margin-top:90px;display:flex;gap:10px;align-items:flex-start;text-align:left;font-weight:400;line-height:1.45;width:100%}
+.step{scroll-margin-top:130px;display:flex;gap:10px;align-items:flex-start;text-align:left;font-weight:400;line-height:1.45;width:100%}
 .step i{font:600 .7rem 'DM Sans',sans-serif;font-style:normal;color:var(--mut);min-width:2ch;padding-top:2px}
 .step em{display:inline-block;font:600 .62rem 'DM Sans',sans-serif;font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:var(--cy);border:1px solid var(--line);border-radius:99px;padding:1px 7px;margin-left:6px;white-space:nowrap}
 .step em.a{color:var(--cu);border-color:rgba(201,162,39,.5)}
@@ -60,109 +69,144 @@ label{min-width:0}
 .r3 label{display:block;margin:6px 0 0;flex:none}
 .r3 input{width:100%;margin-top:3px;min-width:0}
 details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);min-height:32px}
-.ok{color:#9fd18a}.bad{color:#ff9a8f}
-@media (max-width:640px){.np{grid-template-columns:repeat(2,1fr)}}
+.drop{border:1.5px dashed rgba(79,209,197,.45);border-radius:10px;padding:18px;text-align:center;color:var(--mut);font-size:.85rem;display:flex;flex-direction:column;gap:10px;align-items:center;transition:background .2s,border-color .2s}
+.drop.over{background:rgba(79,209,197,.12);border-color:var(--cy);color:var(--txt)}
+.chip{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:99px;padding:2px 4px 2px 12px;font-size:.78rem}
+.chip button{min-height:32px;min-width:32px;padding:0;border-radius:99px}
+@media (max-width:640px){.np{grid-template-columns:repeat(2,1fr)}.bar{padding:8px 12px}.tabs,main{padding-left:12px;padding-right:12px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <header class="bar">
-  <h1>Steuerpult<small>Transformator · T-01</small></h1>
-  <div class="status" id="status">Display nicht verbunden</div>
-  <div class="row">
-    <button id="black">Schwarz</button>
-    <button class="d" id="stop" title="Taste Esc">Alles stoppen</button>
+  <h1><span data-i="title">Steuerpult</span><small>Transformator · T-01</small></h1>
+  <div class="status" id="status"></div>
+  <div class="langsw" role="group" aria-label="Sprache / Language">
+    <button id="ul-de" data-ul="de" aria-label="Deutsch">DE</button><button id="ul-en" data-ul="en" aria-label="English">EN</button>
+  </div>
+  <div class="row acts">
+    <button id="black" data-i="black">Schwarz</button>
+    <button class="d" id="stop" data-i="stop" title="Esc">Alles stoppen</button>
   </div>
 </header>
 
+<nav class="tabs" role="tablist" id="tabs">
+  <button role="tab" data-tab="sitzung" data-i="tab.sitzung">Sitzung &amp; Medien</button>
+  <button role="tab" data-tab="text" data-i="tab.text">Text &amp; Skript</button>
+  <button role="tab" data-tab="gen" data-i="tab.gen">Generator</button>
+  <button role="tab" data-tab="ablauf" data-i="tab.ablauf">Ablauf</button>
+</nav>
+
 <main>
-<p class="note">Nur für Erwachsene (18+) und nur mit Einverständnis. Nicht bei Epilepsie oder Lichtempfindlichkeit, nicht beim Fahren. „Alles stoppen" (oder Esc) und „Schwarz" sind immer oben erreichbar.</p>
-
-<section class="wide">
-  <h2>Läuft gerade</h2>
+<section class="top">
+  <h2 data-i="np.title">Läuft gerade</h2>
   <div class="np">
-    <div><b>Bild</b><span id="np-img">–</span></div>
-    <div><b>Video</b><span id="np-vid">–</span></div>
-    <div><b>Audio</b><span id="np-aud">–</span></div>
-    <div><b>Text</b><span id="np-txt">–</span></div>
+    <div><b data-i="np.img">Bild</b><span id="np-img">–</span></div>
+    <div><b data-i="np.vid">Video</b><span id="np-vid">–</span></div>
+    <div><b data-i="np.aud">Audio</b><span id="np-aud">–</span></div>
+    <div><b data-i="np.txt">Text</b><span id="np-txt">–</span></div>
   </div>
 </section>
 
-<section>
-  <h2>Sitzung</h2>
-  <div class="row">
-    <button class="p" id="open">Display öffnen (2. Fenster/Monitor)</button>
-    <input type="text" id="name" placeholder="Name der Person" aria-label="Name der Person">
-    <button id="setname">Übernehmen</button>
-  </div>
-  <p class="note" style="margin-top:10px">Display-Fenster auf den zweiten Monitor ziehen, dort „Sitzung bereit" klicken. Taste <b>F</b> = Vollbild, <b>K</b> = Klienten-Ansicht ohne Rahmen.</p>
-</section>
-
-<section>
-  <h2>Maschine</h2>
-  <div class="row">
-    <label>Lautstärke <input type="range" id="vol" min="0" max="1" step=".05" value=".6"></label>
-    <label>Spirale <input type="range" id="spd" min="6" max="60" step="1" value="30"></label>
-  </div>
-</section>
-
-<section class="wide"><h2>Bilder</h2><div class="thumbs" id="images"></div><div class="row" style="margin-top:8px" id="images2"></div></section>
-<section><h2>Video</h2><div class="row" id="videos"></div></section>
-<section><h2>Audio</h2><div class="row" id="audios"></div><p class="note" style="margin-top:10px">„Kopfhörer": Binaurale Töne wirken nur über Kopfhörer mit getrennten Kanälen.</p></section>
-
-<section class="wide">
-  <h2>Einblendung</h2>
-  <div id="texts"></div>
-  <div style="margin-top:12px">
-    <textarea id="free" rows="3" placeholder="Eigener Text, mehrere Zeilen möglich. {name} wird ersetzt." aria-label="Eigener Text"></textarea>
-    <div class="row" style="margin-top:8px">
-      <button class="p" id="sendtext">Einblenden</button>
-      <button id="loadown">Zeilen als Skript laden</button>
-      <button id="textoff">Ausblenden</button>
-      <label style="flex:0 1 auto">Anzeigedauer
-        <select id="dur"><option value="auto">automatisch</option><option value="5000">5 s</option><option value="8000">8 s</option><option value="12000">12 s</option><option value="0">bleibt stehen</option></select>
-      </label>
+<!-- ============ Sitzung & Medien ============ -->
+<div class="pane" id="pane-sitzung">
+  <p class="note" style="grid-column:1/-1" data-i="note18"></p>
+  <section class="wide">
+    <h2 data-i="sec.session">Sitzung</h2>
+    <div class="row">
+      <button class="p" id="open" data-i="open">Display öffnen</button>
+      <input type="text" id="name" data-ip="name.ph" data-ia="name.ph" placeholder="Name der Person">
+      <button id="setname" data-i="apply">Übernehmen</button>
     </div>
-  </div>
-</section>
+    <div class="row" style="margin-top:10px">
+      <label><span data-i="vol">Lautstärke</span> <input type="range" id="vol" min="0" max="1" step=".05" value=".6"></label>
+      <label><span data-i="spiral">Spirale</span> <input type="range" id="spd" min="6" max="60" step="1" value="30"></label>
+    </div>
+    <p class="note" style="margin-top:10px" data-i="sessionhint"></p>
+  </section>
+  <section class="wide"><h2 data-i="sec.images">Bilder</h2><div class="thumbs" id="images"></div><div class="row" style="margin-top:8px" id="images2"></div></section>
+  <section><h2 data-i="sec.video">Video</h2><div class="row" id="videos"></div></section>
+  <section><h2 data-i="sec.audio">Audio</h2><div class="row" id="audios"></div><p class="note" style="margin-top:10px" data-i="audiohint"></p></section>
+</div>
 
-<section class="wide">
-  <h2>Skript · Schritt für Schritt</h2>
-  <div class="row">
-    <label style="flex:1 1 260px">Skript <select id="scriptsel" style="flex:1"></select></label>
-    <button id="sprev">◀ Zurück</button>
-    <button class="p" id="snext">Weiter ▶</button>
-    <span id="spos" style="font-size:.8rem;color:var(--mut)"></span>
-  </div>
-  <p class="note" style="margin:10px 0">Pfeiltasten ← → blättern (nicht beim Tippen). Die Anzeige läuft über „Anzeigedauer“ oben; „automatisch“ = Pausenmarke + 4 s.</p>
-  <div class="steps" id="steplist"></div>
-</section>
+<!-- ============ Text & Skript ============ -->
+<div class="pane" id="pane-text">
+  <section class="wide">
+    <h2 data-i="sec.cues">Einblendung</h2>
+    <div id="texts"></div>
+    <div style="margin-top:12px">
+      <textarea id="free" rows="3" data-ip="free.ph" data-ia="free.ph"></textarea>
+      <div class="row" style="margin-top:8px">
+        <button class="p" id="sendtext" data-i="show">Einblenden</button>
+        <button id="loadown" data-i="loadown">Zeilen als Skript laden</button>
+        <button id="textoff" data-i="hide">Ausblenden</button>
+        <label style="flex:0 1 auto"><span data-i="dur">Anzeigedauer</span>
+          <select id="dur"><option value="auto" data-i="dur.auto">automatisch</option><option value="5000">5 s</option><option value="8000">8 s</option><option value="12000">12 s</option><option value="0" data-i="dur.stay">bleibt stehen</option></select>
+        </label>
+      </div>
+    </div>
+  </section>
 
-<section class="wide">
-  <h2>Rule of Three · Generator</h2>
-  <div class="r3" id="r3form"></div>
-  <div class="row">
-    <button class="p" id="r3build">Zusammensetzen und als Skript laden</button>
-    <button id="r3sample">Beispiel laden</button>
-    <button id="r3copy">Als JSON kopieren</button>
-  </div>
-  <details><summary>JSON einfügen (Schema rule_of_three_schema.json)</summary>
-    <textarea id="r3json" rows="6" spellcheck="false" aria-label="JSON"></textarea>
-    <div class="row" style="margin-top:8px"><button id="r3apply">JSON übernehmen</button></div>
-  </details>
-  <p class="note" id="r3msg" style="margin-top:10px">Fünf Dreier-Muster, Sätze wie im Python-Generator (Englisch).</p>
-</section>
+  <section class="wide">
+    <h2 data-i="sec.script">Skript</h2>
+    <div class="row">
+      <label style="flex:1 1 260px"><span data-i="script">Skript</span> <select id="scriptsel" style="flex:1"></select></label>
+      <button id="sprev" data-i="prev">◀ Zurück</button>
+      <button class="p" id="snext" data-i="next">Weiter ▶</button>
+      <span id="spos" style="font-size:.8rem;color:var(--mut)"></span>
+    </div>
+    <p class="note" style="margin:10px 0" data-i="scripthint"></p>
+    <div class="steps" id="steplist"></div>
+  </section>
 
-<section class="wide">
-  <h2>Ablauf · Profil Good Boys</h2>
-  <div class="row" style="margin-bottom:10px">
-    <button id="ld">Deutsch</button><button id="le">English</button><button id="lb" class="p">Beide</button>
-    <button class="p" id="mguide">Ich steuere</button><button id="mself">Person tippt selbst</button>
-    <button class="p" id="fstart">Ablauf starten</button><button id="fend">Ablauf beenden</button>
-  </div>
-  <div id="flowq" style="font-size:.9rem;color:#f4e7b4;margin-bottom:8px">Nicht gestartet</div>
-  <div class="row" id="flowa"></div>
-</section>
+  <section class="wide">
+    <h2 data-i="up.title">Text hochladen</h2>
+    <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload">
+      <span data-i="up.drop">Dateien hierher ziehen</span>
+      <button class="p" id="upbtn" data-i="up.choose">Datei wählen</button>
+      <input type="file" id="upfile" multiple accept=".txt,.md,.json,text/plain,text/markdown,application/json" hidden>
+    </div>
+    <p class="note" style="margin:10px 0" data-i="up.hint"></p>
+    <div class="row" id="uplist"></div>
+    <p class="note" id="upmsg" style="margin-top:10px;display:none"></p>
+  </section>
+</div>
+
+<!-- ============ Generator ============ -->
+<div class="pane" id="pane-gen">
+  <section class="wide">
+    <h2 data-i="sec.gen">Rule of Three · Generator</h2>
+    <div class="r3" id="r3form"></div>
+    <div class="row">
+      <button class="p" id="r3build" data-i="r3.build">Zusammensetzen und als Skript laden</button>
+      <button id="r3sample" data-i="r3.sample">Beispiel laden</button>
+      <button id="r3copy" data-i="r3.copy">Als JSON kopieren</button>
+    </div>
+    <details><summary data-i="r3.jsonsum">JSON einfügen</summary>
+      <textarea id="r3json" rows="6" spellcheck="false" aria-label="JSON"></textarea>
+      <div class="row" style="margin-top:8px"><button id="r3apply" data-i="r3.apply">JSON übernehmen</button></div>
+    </details>
+    <p class="note" id="r3msg" style="margin-top:10px"></p>
+  </section>
+</div>
+
+<!-- ============ Ablauf ============ -->
+<div class="pane" id="pane-ablauf">
+  <section class="wide">
+    <h2 data-i="sec.flow">Ablauf · Profil Good Boys</h2>
+    <h3 data-i="flow.lang">Sprache des Ablaufs</h3>
+    <div class="row" style="margin-bottom:6px">
+      <button id="ld" data-i="flow.de">Deutsch</button><button id="le" data-i="flow.en">English</button><button id="lb" data-i="flow.both">Beide</button>
+    </div>
+    <h3 data-i="flow.control">Steuerung</h3>
+    <div class="row" style="margin-bottom:10px">
+      <button id="mguide" data-i="flow.guide">Ich steuere</button><button id="mself" data-i="flow.self">Person tippt selbst</button>
+      <button class="p" id="fstart" data-i="flow.start">Ablauf starten</button><button id="fend" data-i="flow.end">Ablauf beenden</button>
+    </div>
+    <div id="flowq" style="font-size:.95rem;color:#f4e7b4;margin-bottom:8px"></div>
+    <div class="row" id="flowa"></div>
+  </section>
+</div>
 </main>
 
 <script src="cues.js"></script>
@@ -172,67 +216,126 @@ details{margin-top:10px}summary{cursor:pointer;font-size:.8rem;color:var(--mut);
 <script>
 const ch = new BroadcastChannel('hypnose'), $ = id => document.getElementById(id);
 const send = m => ch.postMessage(m);
-let win, blackOn = false;
+const store = { get(k, d){ try { const v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } }, set(k, v){ try { localStorage.setItem(k, v); } catch (e) {} } };
+
+// ================= Sprache der Oberfläche (DE/EN) =================
+const I18N = {
+  de: {
+    title:'Steuerpult', black:'Schwarz', stop:'Alles stoppen',
+    'tab.sitzung':'Sitzung & Medien', 'tab.text':'Text & Skript', 'tab.gen':'Generator', 'tab.ablauf':'Ablauf',
+    'status.off':'Display nicht verbunden', 'status.on':'Display verbunden', 'status.wake':'Person hat Aufwachen gedrückt, alles gestoppt',
+    note18:'Nur für Erwachsene (18+) und nur mit Einverständnis. Nicht bei Epilepsie oder Lichtempfindlichkeit, nicht beim Fahren. „Alles stoppen“ (oder Esc) und „Schwarz“ sind immer oben erreichbar.',
+    'np.title':'Läuft gerade', 'np.img':'Bild', 'np.vid':'Video', 'np.aud':'Audio', 'np.txt':'Text',
+    'sec.session':'Sitzung', open:'Display öffnen (2. Fenster/Monitor)', 'name.ph':'Name der Person', apply:'Übernehmen', vol:'Lautstärke', spiral:'Spirale',
+    sessionhint:'Display-Fenster auf den zweiten Monitor ziehen, dort „Sitzung bereit“ klicken. Taste F = Vollbild, K = Klienten-Ansicht ohne Rahmen.',
+    'sec.images':'Bilder', onlySpiral:'Nur Spirale', 'sec.video':'Video', videoStop:'Video stopp', 'sec.audio':'Audio', audioStop:'Audio stopp',
+    audiohint:'„Kopfhörer“: Binaurale Töne wirken nur über Kopfhörer mit getrennten Kanälen.',
+    'sec.cues':'Einblendung', 'free.ph':'Eigener Text, mehrere Zeilen möglich. {name} wird ersetzt.', show:'Einblenden', loadown:'Zeilen als Skript laden', hide:'Ausblenden',
+    dur:'Anzeigedauer', 'dur.auto':'automatisch', 'dur.stay':'bleibt stehen',
+    'sec.script':'Skript · Schritt für Schritt', script:'Skript', prev:'◀ Zurück', next:'Weiter ▶', empty:'leer', own:'Eigener Text (Zeilen)', gen:'Rule of Three (generiert)',
+    scripthint:'Pfeiltasten ← → blättern (nicht beim Tippen). Die Anzeige läuft über „Anzeigedauer“ oben; „automatisch“ = Pausenmarke + 4 s.',
+    echo:'Echo', anchor:'Anker: ', pause:' s Pause',
+    'up.title':'Text hochladen', 'up.drop':'Dateien hierher ziehen (.txt, .md, .json)', 'up.choose':'Datei wählen',
+    'up.hint':'.md im TranceScript-Format (Phasen, Pausen [3~], Anker) wird Schritt für Schritt geladen, .txt: jede Zeile ein Schritt, .json: Generator-Daten (Schema) oder {"title":"…","steps":["…"]}. Bleibt in diesem Browser gespeichert, max. 500 KB je Datei.',
+    'up.ok':'{n} Schritte geladen: {t}', 'up.r3':'Generator-Daten aus {t} übernommen (Tab Generator).', 'up.big':'{t}: zu groß (max. 500 KB).', 'up.ext':'{t}: nur .txt, .md oder .json.',
+    'up.badjson':'{t}: JSON passt weder zum Generator-Schema noch zu {"steps":[…]}.', 'up.empty':'{t}: keine Textzeilen gefunden.', 'up.cap':'{t}: auf 500 Schritte gekürzt.', 'up.nostore':'Konnte nicht dauerhaft speichern (Browser-Speicher voll/gesperrt); gilt nur bis zum Neuladen.', 'up.remove':'Entfernen',
+    'sec.gen':'Rule of Three · Generator', 'r3.build':'Zusammensetzen und als Skript laden', 'r3.sample':'Beispiel laden', 'r3.copy':'Als JSON kopieren', 'r3.jsonsum':'JSON einfügen (Schema rule_of_three_schema.json)', 'r3.apply':'JSON übernehmen',
+    'r3.intro':'Fünf Dreier-Muster, Sätze wie im Python-Generator (Englisch).', 'r3.loaded':'Beispiel geladen.', 'r3.fill':'Bitte ergänzen: ', 'r3.done':'5 Sätze erzeugt und als Skript geladen. Im Tab „Text & Skript“ mit Weiter ▶ einblenden.',
+    'r3.schema':'JSON passt nicht zum Schema: ', 'r3.applied':'JSON übernommen. Jetzt „Zusammensetzen“.', 'r3.badjson':'Kein gültiges JSON: ', 'r3.copied':'JSON kopiert (steht auch im Feld unter „JSON einfügen“).', 'r3.nocopy':'Kopieren nicht erlaubt – JSON steht im Feld unter „JSON einfügen“.',
+    'sec.flow':'Ablauf · Profil Good Boys', 'flow.lang':'Sprache des Ablaufs', 'flow.de':'Deutsch', 'flow.en':'English', 'flow.both':'Beide', 'flow.control':'Steuerung',
+    'flow.guide':'Ich steuere', 'flow.self':'Person tippt selbst', 'flow.start':'Ablauf starten', 'flow.end':'Ablauf beenden', 'flow.none':'Nicht gestartet', 'flow.over':'Ende des Ablaufs', 'flow.selfpick':'Person wählt selbst …'
+  },
+  en: {
+    title:'Control panel', black:'Black', stop:'Stop all',
+    'tab.sitzung':'Session & media', 'tab.text':'Text & script', 'tab.gen':'Generator', 'tab.ablauf':'Flow',
+    'status.off':'Display not connected', 'status.on':'Display connected', 'status.wake':'Person pressed Wake, everything stopped',
+    note18:'Adults only (18+) and only with consent. Not with epilepsy or light sensitivity, not while driving. "Stop all" (or Esc) and "Black" are always available at the top.',
+    'np.title':'Now playing', 'np.img':'Image', 'np.vid':'Video', 'np.aud':'Audio', 'np.txt':'Text',
+    'sec.session':'Session', open:'Open display (2nd window/monitor)', 'name.ph':'Name of the person', apply:'Apply', vol:'Volume', spiral:'Spiral',
+    sessionhint:'Drag the display window to the second monitor and click "Session ready" there. Key F = full screen, K = client view without frame.',
+    'sec.images':'Images', onlySpiral:'Spiral only', 'sec.video':'Video', videoStop:'Stop video', 'sec.audio':'Audio', audioStop:'Stop audio',
+    audiohint:'"headphones": binaural tones only work with headphones (separate channels).',
+    'sec.cues':'Cues', 'free.ph':'Your own text, several lines possible. {name} is replaced.', show:'Show', loadown:'Load lines as script', hide:'Hide',
+    dur:'Display time', 'dur.auto':'automatic', 'dur.stay':'stays on',
+    'sec.script':'Script · step by step', script:'Script', prev:'◀ Back', next:'Next ▶', empty:'empty', own:'Own text (lines)', gen:'Rule of Three (generated)',
+    scripthint:'Arrow keys ← → step through (not while typing). Display time follows the setting above; "automatic" = pause marker + 4 s.',
+    echo:'Echo', anchor:'Anchor: ', pause:' s pause',
+    'up.title':'Upload text', 'up.drop':'Drag files here (.txt, .md, .json)', 'up.choose':'Choose file',
+    'up.hint':'.md in TranceScript format (phases, pauses [3~], anchors) loads step by step, .txt: one step per line, .json: generator data (schema) or {"title":"…","steps":["…"]}. Stored in this browser, max. 500 KB per file.',
+    'up.ok':'{n} steps loaded: {t}', 'up.r3':'Generator data from {t} applied (Generator tab).', 'up.big':'{t}: too large (max. 500 KB).', 'up.ext':'{t}: only .txt, .md or .json.',
+    'up.badjson':'{t}: JSON matches neither the generator schema nor {"steps":[…]}.', 'up.empty':'{t}: no text lines found.', 'up.cap':'{t}: cut to 500 steps.', 'up.nostore':'Could not save permanently (browser storage full/blocked); valid until reload only.', 'up.remove':'Remove',
+    'sec.gen':'Rule of Three · Generator', 'r3.build':'Assemble and load as script', 'r3.sample':'Load example', 'r3.copy':'Copy as JSON', 'r3.jsonsum':'Paste JSON (schema rule_of_three_schema.json)', 'r3.apply':'Apply JSON',
+    'r3.intro':'Five triple patterns, sentences as in the Python generator (English).', 'r3.loaded':'Example loaded.', 'r3.fill':'Please complete: ', 'r3.done':'5 sentences created and loaded as script. Show them in the "Text & script" tab with Next ▶.',
+    'r3.schema':'JSON does not match the schema: ', 'r3.applied':'JSON applied. Now press "Assemble".', 'r3.badjson':'Not valid JSON: ', 'r3.copied':'JSON copied (also in the field under "Paste JSON").', 'r3.nocopy':'Copying not allowed – the JSON is in the field under "Paste JSON".',
+    'sec.flow':'Flow · profile Good Boys', 'flow.lang':'Flow language', 'flow.de':'German', 'flow.en':'English', 'flow.both':'Both', 'flow.control':'Control',
+    'flow.guide':'I control', 'flow.self':'Person taps themselves', 'flow.start':'Start flow', 'flow.end':'End flow', 'flow.none':'Not started', 'flow.over':'End of flow', 'flow.selfpick':'Person is choosing …'
+  }
+};
+let ui = store.get('hd-ui', (navigator.language || 'de').toLowerCase().startsWith('en') ? 'en' : 'de');
+if (!I18N[ui]) ui = 'de';
+const T = (k, v) => { let s = (I18N[ui][k] !== undefined ? I18N[ui][k] : I18N.de[k]) || k; if (v) for (const x in v) s = s.replace('{' + x + '}', v[x]); return s; };
+const L = o => (ui === 'en' && o.en) ? o.en : (o.label || o.group);
+
+// ================= Zustand =================
+let blackOn = false, win, fnode = null, selfMode = false, txtTimer, statusKey = 'off';
+let flowLang = store.get('hd-flang', 'both'); if (!['de', 'en', 'both'].includes(flowLang)) flowLang = 'both';
+const np = {img:'–', vid:'–', aud:'–', txt:'–'}; const act = {images:null, videos:null, audios:null};
 const volMsg = () => ({type:'volume', value:+$('vol').value});
 
-ch.onmessage = ({data}) => { if (data.type === 'flowstate') fstate(data.node); if (data.type === 'wake') { $('status').textContent = 'Person hat Aufwachen gedrückt, alles gestoppt'; $('status').className = 'status'; $('flowq').textContent = 'Nicht gestartet'; $('flowa').innerHTML = ''; clearNow(); } if (data.type === 'hello') { $('status').textContent = 'Display verbunden'; $('status').className = 'status ok'; send({type:'name', name:$('name').value}); send(volMsg()); } };
-send({type:'ping'});
+function applyStatic(){
+  document.documentElement.lang = ui; document.title = T('title') + ' · Transformator';
+  document.querySelectorAll('[data-i]').forEach(e => { e.textContent = T(e.dataset.i); });
+  document.querySelectorAll('[data-ip]').forEach(e => { e.placeholder = T(e.dataset.ip); });
+  document.querySelectorAll('[data-ia]').forEach(e => { e.setAttribute('aria-label', T(e.dataset.ia)); });
+  $('ul-de').classList.toggle('on', ui === 'de'); $('ul-en').classList.toggle('on', ui === 'en');
+  $('ul-de').setAttribute('aria-pressed', ui === 'de'); $('ul-en').setAttribute('aria-pressed', ui === 'en');
+  setStatus(statusKey);
+}
+function setStatus(k){ statusKey = k; $('status').textContent = T('status.' + k); $('status').className = 'status' + (k === 'on' ? ' ok' : ''); }
 
+// ================= Verbindung =================
+ch.onmessage = ({data}) => {
+  if (data.type === 'flowstate') fstate(data.node);
+  if (data.type === 'wake') { setStatus('wake'); fnode = null; renderFlowOp(); clearNow(); }
+  if (data.type === 'hello') { setStatus('on'); send({type:'name', name:$('name').value}); send(volMsg()); send({type:'lang', lang:flowLang}); send({type:'mode', self:selfMode}); send({type:'uilang', lang:ui}); send({type:'speed', value:+$('spd').value}); }
+};
+send({type:'ping'});
 $('open').onclick = () => { win = open('index.html', 'hypnose-display', 'width=1280,height=800'); };
 $('setname').onclick = () => send({type:'name', name:$('name').value});
 
-// --- Anzeige "Läuft gerade" und Markierung der aktiven Knöpfe
-const np = {img:'–', vid:'–', aud:'–', txt:'–'};
-let txtTimer;
+// ================= Anzeige "Läuft gerade", aktive Knöpfe =================
 function showNow(){ for (const k in np) $('np-' + k).textContent = np[k]; }
-function mark(group, b){ document.querySelectorAll('#' + group + ' button, #' + group + '2 button').forEach(x => x.classList.remove('on')); if (b) b.classList.add('on'); }
+function mark(group, n){ act[group] = n; document.querySelectorAll('#' + group + ' button, #' + group + '2 button').forEach(x => x.classList.toggle('on', n !== null && x.dataset.n === String(n))); }
 function clearNow(){ np.img = np.vid = np.aud = np.txt = '–'; ['images','videos','audios'].forEach(g => mark(g, null)); blackOn = false; $('black').classList.remove('on'); showNow(); }
+function btn(parent, label, fn){ const b = document.createElement('button'); b.textContent = label; b.onclick = () => fn(b); $(parent).appendChild(b); return b; }
 
-function btn(parent, label, fn, extra){ const b = document.createElement('button'); b.textContent = label; b.onclick = () => fn(b); if (extra) extra(b); $(parent).appendChild(b); return b; }
-
-CUES.images.forEach(c => { const b = btn('images', '', bt => { send({type:'image', src:c.src}); np.img = c.label; mark('images', bt); showNow(); });
-  b.className = 'thumb'; b.style.backgroundImage = 'url("' + c.src + '")'; b.innerHTML = '<span></span>'; b.firstChild.textContent = c.label; b.setAttribute('aria-label', 'Bild ' + c.label); });
-btn('images2', 'Nur Spirale', () => { send({type:'noimage'}); np.img = '–'; mark('images', null); showNow(); });
-CUES.videos.forEach(c => btn('videos', c.label, b => { send({type:'video', src:c.src, loop:!!c.loop}); np.vid = c.label; mark('videos', b); showNow(); }));
-btn('videos', 'Video stopp', () => { send({type:'videostop'}); np.vid = '–'; mark('videos', null); showNow(); });
-CUES.audios.forEach(c => btn('audios', c.label, b => { send({type:'audio', src:c.src, loop:!!c.loop}); np.aud = c.label; mark('audios', b); showNow(); }));
-btn('audios', 'Audio stopp', () => { send({type:'audiostop'}); np.aud = '–'; mark('audios', null); showNow(); });
+function buildCues(){
+  ['images','images2','videos','audios','texts'].forEach(id => { $(id).innerHTML = ''; });
+  CUES.images.forEach((c, n) => { const b = btn('images', '', () => { send({type:'image', src:c.src}); np.img = L(c); mark('images', n); showNow(); });
+    b.className = 'thumb'; b.dataset.n = n; b.style.backgroundImage = 'url("' + c.src + '")'; b.innerHTML = '<span></span>'; b.firstChild.textContent = L(c); b.setAttribute('aria-label', L(c)); });
+  btn('images2', T('onlySpiral'), () => { send({type:'noimage'}); np.img = '–'; mark('images', null); showNow(); });
+  CUES.videos.forEach((c, n) => { const b = btn('videos', L(c), () => { send({type:'video', src:c.src, loop:!!c.loop}); np.vid = L(c); mark('videos', n); showNow(); }); b.dataset.n = n; });
+  btn('videos', T('videoStop'), () => { send({type:'videostop'}); np.vid = '–'; mark('videos', null); showNow(); });
+  CUES.audios.forEach((c, n) => { const b = btn('audios', L(c), () => { send({type:'audio', src:c.src, loop:!!c.loop, loopStart:c.loopStart, loopLength:c.loopLength, loopFade:c.loopFade}); np.aud = L(c); mark('audios', n); showNow(); }); b.dataset.n = n; });
+  btn('audios', T('audioStop'), () => { send({type:'audiostop'}); np.aud = '–'; mark('audios', null); showNow(); });
+  CUES.texts.forEach((g, i) => {
+    const h = document.createElement('h3'); h.textContent = L(g); $('texts').appendChild(h);
+    const r = document.createElement('div'); r.className = 'row'; r.id = 'tg' + i; $('texts').appendChild(r);
+    (ui === 'en' && g.itemsEn ? g.itemsEn : g.items).forEach(t => btn('tg' + i, t, () => sendText(t)));
+  });
+  ['images','videos','audios'].forEach(g => mark(g, act[g]));
+}
 
 const durMs = pause => { const v = $('dur').value; return v === 'auto' ? Math.max(6000, ((pause || 0) + 4) * 1000) : +v; };
 function sendText(t, pause){ const ms = durMs(pause); send({type:'text', text:t, ms}); np.txt = t; showNow(); clearTimeout(txtTimer); if (ms) txtTimer = setTimeout(() => { np.txt = '–'; showNow(); }, ms); }
-CUES.texts.forEach((g, i) => {
-  if (typeof g === 'string') g = {group:'Texte', items:[g]};
-  const h = document.createElement('h3'); h.textContent = g.group; $('texts').appendChild(h);
-  const r = document.createElement('div'); r.className = 'row'; r.id = 'tg' + i; $('texts').appendChild(r);
-  g.items.forEach(t => btn('tg' + i, t, () => sendText(t)));
-});
-
 $('sendtext').onclick = () => sendText($('free').value);
 $('textoff').onclick = () => { send({type:'textoff'}); np.txt = '–'; showNow(); };
 $('vol').oninput = () => send(volMsg());
 $('spd').oninput = e => send({type:'speed', value:+e.target.value});
 $('black').onclick = () => { blackOn = !blackOn; send({type:'black', on:blackOn}); $('black').classList.toggle('on', blackOn); };
-function stopAll(){ send({type:'videostop'}); send({type:'audiostop'}); send({type:'textoff'}); send({type:'noimage'}); send({type:'flowoff'}); send({type:'black', on:false}); $('flowq').textContent = 'Nicht gestartet'; $('flowa').innerHTML = ''; fnode = null; clearNow(); }
+function stopAll(){ send({type:'videostop'}); send({type:'audiostop'}); send({type:'textoff'}); send({type:'noimage'}); send({type:'flowoff'}); send({type:'black', on:false}); fnode = null; renderFlowOp(); clearNow(); }
 $('stop').onclick = stopAll;
 addEventListener('keydown', e => { if (e.key === 'Escape') stopAll(); });
-
-let fnode = null;
-function showNode(id){ fnode = id; send({type:'flow', node:id}); const n = FLOW.nodes[id];
-  $('flowq').textContent = n.q.de + ' / ' + n.q.en; $('flowa').innerHTML = '';
-  if (!n.a) { $('flowa').textContent = 'Ende des Ablaufs'; return; }
-  if (selfMode) { $('flowa').textContent = 'Person wählt selbst …'; return; }
-  n.a.forEach((a,i) => btn('flowa', a.de + ' / ' + a.en, () => pick(i))); }
-function pick(i){ const a = FLOW.nodes[fnode].a[i]; send({type:'flowanswer', idx:i}); $('flowa').textContent = '…'; setTimeout(() => showNode(a.next), 2600); }
-let selfMode = false;
-function fstate(id){ fnode = id; const n = FLOW.nodes[id]; $('flowq').textContent = n.q.de + ' / ' + n.q.en; $('flowa').textContent = n.a ? 'Person wählt selbst …' : 'Ende des Ablaufs'; }
-function setMode(v){ selfMode = v; send({type:'mode', self:v}); $('mself').className = v ? 'p' : ''; $('mguide').className = v ? '' : 'p'; if (fnode) showNode(fnode); }
-$('mguide').onclick = () => setMode(false);
-$('mself').onclick = () => setMode(true);
-$('fstart').onclick = () => showNode(FLOW.start);
-$('fend').onclick = () => { send({type:'flowoff'}); $('flowq').textContent = 'Nicht gestartet'; $('flowa').innerHTML = ''; };
-$('ld').onclick = () => send({type:'lang', lang:'de'});
-$('le').onclick = () => send({type:'lang', lang:'en'});
-$('lb').onclick = () => send({type:'lang', lang:'both'});
 
 // ================= Skripte (Parser, Schrittsteuerung) =================
 function parseScript(md){
@@ -254,21 +357,21 @@ function parseScript(md){
   });
   return out;
 }
-const SC = {}; let steps = [], cur = -1;
-function addScript(id, title, st){ SC[id] = {title, steps:st}; if (![...$('scriptsel').options].some(o => o.value === id)) { const o = document.createElement('option'); o.value = id; o.textContent = title; $('scriptsel').appendChild(o); } else { [...$('scriptsel').options].find(o => o.value === id).textContent = title; } }
-function useScript(id){ steps = SC[id] ? SC[id].steps : []; cur = -1; $('scriptsel').value = id; renderSteps(); }
+const SC = {}, TITLES = {}; let steps = [], cur = -1, curId = null;
+function addScript(id, title, st, tkey){ SC[id] = {title, steps:st, tkey}; const sel = $('scriptsel'); let o = [...sel.options].find(x => x.value === id); if (!o) { o = document.createElement('option'); o.value = id; sel.appendChild(o); } o.textContent = tkey ? T(tkey) : title; }
+function useScript(id){ curId = id; steps = SC[id] ? SC[id].steps : []; cur = -1; $('scriptsel').value = id; renderSteps(); }
 function renderSteps(){
-  const L = $('steplist'); L.innerHTML = ''; let ph = null;
+  const Lst = $('steplist'); Lst.innerHTML = ''; let ph = null;
   steps.forEach((st, i) => {
-    if (st.phase !== ph) { ph = st.phase; const h = document.createElement('h3'); h.textContent = ph || 'Skript'; L.appendChild(h); }
+    if (st.phase !== ph) { ph = st.phase; const h = document.createElement('h3'); h.textContent = ph || T('sec.script'); Lst.appendChild(h); }
     const b = document.createElement('button'); b.className = 'step'; b.id = 'st' + i;
     const n = document.createElement('i'); n.textContent = i + 1; b.appendChild(n);
     const t = document.createElement('span'); t.textContent = st.text; b.appendChild(t);
     const chip = (txt, cls) => { const e = document.createElement('em'); e.textContent = txt; if (cls) e.className = cls; t.appendChild(e); };
-    if (st.echo) chip('Echo'); if (st.tempo) chip(st.tempo); if (st.anchor) chip('Anker: ' + st.anchor, 'a'); if (st.pause) chip(st.pause + ' s Pause');
-    b.onclick = () => go(i); L.appendChild(b);
+    if (st.echo) chip(T('echo')); if (st.tempo) chip(st.tempo); if (st.anchor) chip(T('anchor') + st.anchor, 'a'); if (st.pause) chip(st.pause + T('pause'));
+    b.onclick = () => go(i); Lst.appendChild(b);
   });
-  $('spos').textContent = steps.length ? '0 / ' + steps.length : 'leer';
+  $('spos').textContent = steps.length ? '0 / ' + steps.length : T('empty');
 }
 function go(i){
   if (!steps.length) return; i = Math.max(0, Math.min(steps.length - 1, i)); cur = i;
@@ -280,46 +383,145 @@ function go(i){
 $('snext').onclick = () => go(cur + 1);
 $('sprev').onclick = () => go(cur - 1);
 $('scriptsel').onchange = e => useScript(e.target.value);
-addEventListener('keydown', e => { if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return; if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); } });
+addEventListener('keydown', e => { if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.closest('[role=tablist]')) return; if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); } });
 (window.SCRIPTS || []).forEach(x => { const p = parseScript(x.md); addScript(x.id, p.title || x.id, p.steps); });
-addScript('own', 'Eigener Text (Zeilen)', []); addScript('gen', 'Rule of Three (generiert)', []);
-$('loadown').onclick = () => { const st = $('free').value.split(/\r?\n/).map(x => x.trim()).filter(Boolean).map(t => ({phase:'Eigener Text', tempo:'', anchor:'', echo:false, pause:0, text:t})); addScript('own', 'Eigener Text (Zeilen)', st); useScript('own'); };
-if (window.SCRIPTS && window.SCRIPTS.length) useScript(window.SCRIPTS[0].id);
+addScript('own', '', [], 'own'); addScript('gen', '', [], 'gen');
+$('loadown').onclick = () => { const st = $('free').value.split(/\r?\n/).map(x => x.trim()).filter(Boolean).map(t => ({phase:T('own'), tempo:'', anchor:'', echo:false, pause:0, text:t})); addScript('own', '', st, 'own'); useScript('own'); };
+
+// ================= Upload (txt / md / json), Drag & Drop, bleibt im Browser gespeichert =================
+const UPKEY = 'hd-uploads', MAXB = 500 * 1024, MAXSTEPS = 500;
+let UP = []; try { UP = JSON.parse(store.get(UPKEY, '[]')); if (!Array.isArray(UP)) UP = []; } catch (e) { UP = []; }
+function upmsg(t, cls){ const m = $('upmsg'); m.style.display = t ? '' : 'none'; m.textContent = t; m.className = 'note ' + (cls || ''); }
+function saveUP(){ try { localStorage.setItem(UPKEY, JSON.stringify(UP)); } catch (e) { upmsg(T('up.nostore'), 'bad'); } }
+function renderUP(){
+  const R = $('uplist'); R.innerHTML = '';
+  UP.forEach(u => { const c = document.createElement('span'); c.className = 'chip'; const s = document.createElement('span'); s.textContent = u.title + ' (' + u.steps.length + ')'; c.appendChild(s);
+    const x = document.createElement('button'); x.textContent = '✕'; x.setAttribute('aria-label', T('up.remove') + ': ' + u.title); x.title = T('up.remove');
+    x.onclick = () => { UP = UP.filter(y => y.id !== u.id); saveUP(); const o = [...$('scriptsel').options].find(z => z.value === u.id); if (o) o.remove(); delete SC[u.id]; if (curId === u.id) useScript(($('scriptsel').options[0] || {}).value); renderUP(); };
+    c.appendChild(x); R.appendChild(c); });
+}
+const cleanStep = (s, ph) => { if (typeof s === 'string') s = {text:s}; if (!s || typeof s.text !== 'string' || !s.text.trim()) return null;
+  return {phase:String(s.phase || ph || '').slice(0, 80), tempo:String(s.tempo || '').slice(0, 40), anchor:String(s.anchor || '').slice(0, 60), echo:!!s.echo, pause:Math.max(0, Math.min(60, +s.pause || 0)), text:s.text.trim().slice(0, 600)}; };
+function plainSteps(text){ let ph = ''; const out = [];
+  text.split(/\r?\n/).forEach(raw => { const l = raw.trim(); if (!l || /^(-{3,}|\*{3,}|={3,})$/.test(l)) return; const h = l.match(/^#{1,6}\s+(.*)$/); if (h) { ph = h[1].slice(0, 80); return; } out.push(cleanStep(l.replace(/^[-*]\s+/, ''), ph)); });
+  return out.filter(Boolean); }
+function addUpload(title, st, warnCap){
+  if (!st.length) { upmsg(T('up.empty', {t:title}), 'bad'); return false; }
+  let capped = false; if (st.length > MAXSTEPS) { st = st.slice(0, MAXSTEPS); capped = true; }
+  const id = 'up-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+  UP.push({id, title, steps:st}); saveUP(); addScript(id, '↑ ' + title, st); useScript(id); renderUP();
+  upmsg(T('up.ok', {n:st.length, t:title}) + (capped ? ' ' + T('up.cap', {t:title}) : ''), 'ok'); return true;
+}
+async function handleFiles(files){
+  for (const f of files) {
+    const ext = (f.name.split('.').pop() || '').toLowerCase(), title = f.name.replace(/\.[^.]+$/, '');
+    if (!['txt', 'md', 'json'].includes(ext)) { upmsg(T('up.ext', {t:f.name}), 'bad'); continue; }
+    if (f.size > MAXB) { upmsg(T('up.big', {t:f.name}), 'bad'); continue; }
+    let text; try { text = await f.text(); } catch (e) { upmsg(String(e), 'bad'); continue; }
+    if (ext === 'json') {
+      let d; try { d = JSON.parse(text); } catch (e) { upmsg(T('r3.badjson') + e.message, 'bad'); continue; }
+      if (d && typeof d === 'object' && d.pace_pace_lead) { const err = RuleOfThree.validate(d); if (err.length) { upmsg(T('r3.schema') + err.join(' · '), 'bad'); continue; } writeR3(d); upmsg(T('up.r3', {t:f.name}), 'ok'); continue; }
+      const arr = Array.isArray(d) ? d : (d && Array.isArray(d.steps) ? d.steps : null);
+      if (!arr) { upmsg(T('up.badjson', {t:f.name}), 'bad'); continue; }
+      addUpload((d && typeof d.title === 'string' && d.title.trim()) ? d.title.trim().slice(0, 80) : title, arr.map(s => cleanStep(s)).filter(Boolean));
+    } else {
+      const p = parseScript(text);
+      if (p.steps.length) addUpload((p.title || title).slice(0, 80), p.steps.map(s => cleanStep(s, s.phase)).filter(Boolean));
+      else addUpload(title.slice(0, 80), plainSteps(text));
+    }
+  }
+}
+$('upbtn').onclick = () => $('upfile').click();
+$('upfile').onchange = e => { handleFiles([...e.target.files]); e.target.value = ''; };
+const dz = $('drop');
+['dragenter', 'dragover'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('over'); }));
+['dragleave', 'drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('over'); }));
+dz.addEventListener('drop', e => { handleFiles([...e.dataTransfer.files]); });
+dz.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('upfile').click(); } });
+['dragover', 'drop'].forEach(ev => addEventListener(ev, e => e.preventDefault()));   // Datei neben der Zone öffnet nicht den Browser-Viewer
 
 // ================= Rule of Three =================
 const R3L = {
-  pace_pace_lead:{t:'Pace · Pace · Lead', f:{pace_1:'Pace 1', pace_2:'Pace 2', lead:'Lead'}},
-  vakog_triad:{t:'VAKOG-Dreiklang', f:{visual:'Visuell', auditory:'Auditiv', kinesthetic:'Kinästhetisch'}},
-  progressive_listing:{t:'Progressive Aufzählung', f:{effort:'Mühe', waiting:'Warten', automatic:'Von selbst'}},
-  triad_items:{t:'Dreier-Kette', f:{subject:'Subjekt', verb:'Verb', items:['Punkt 1', 'Punkt 2', 'Punkt 3']}},
-  parts_synthesis:{t:'Teile und Synthese', f:{part_a:'Teil A', part_b:'Teil B', synthesis:'Synthese'}}
+  pace_pace_lead:{t:{de:'Pace · Pace · Lead', en:'Pace · Pace · Lead'}, f:{pace_1:{de:'Pace 1', en:'Pace 1'}, pace_2:{de:'Pace 2', en:'Pace 2'}, lead:{de:'Lead', en:'Lead'}}},
+  vakog_triad:{t:{de:'VAKOG-Dreiklang', en:'VAKOG triad'}, f:{visual:{de:'Visuell', en:'Visual'}, auditory:{de:'Auditiv', en:'Auditory'}, kinesthetic:{de:'Kinästhetisch', en:'Kinesthetic'}}},
+  progressive_listing:{t:{de:'Progressive Aufzählung', en:'Progressive listing'}, f:{effort:{de:'Mühe', en:'Effort'}, waiting:{de:'Warten', en:'Waiting'}, automatic:{de:'Von selbst', en:'Automatic'}}},
+  triad_items:{t:{de:'Dreier-Kette', en:'Triad chain'}, f:{subject:{de:'Subjekt', en:'Subject'}, verb:{de:'Verb', en:'Verb'}, items:[{de:'Punkt 1', en:'Item 1'}, {de:'Punkt 2', en:'Item 2'}, {de:'Punkt 3', en:'Item 3'}]}},
+  parts_synthesis:{t:{de:'Teile und Synthese', en:'Parts and synthesis'}, f:{part_a:{de:'Teil A', en:'Part A'}, part_b:{de:'Teil B', en:'Part B'}, synthesis:{de:'Synthese', en:'Synthesis'}}}
 };
-(function buildR3(){
-  const F = $('r3form');
-  for (const k in R3L) {
-    const fs = document.createElement('fieldset'); const lg = document.createElement('legend'); lg.textContent = R3L[k].t; fs.appendChild(lg);
-    for (const f in R3L[k].f) {
-      const labs = [].concat(R3L[k].f[f]);
-      labs.forEach((lab, j) => { const l = document.createElement('label'); l.textContent = lab; const inp = document.createElement('input'); inp.type = 'text'; inp.dataset.k = k + '.' + f + (Array.isArray(R3L[k].f[f]) ? '.' + j : ''); inp.setAttribute('aria-label', R3L[k].t + ' ' + lab); l.appendChild(inp); fs.appendChild(l); });
-    }
-    F.appendChild(fs);
-  }
-})();
 function readR3(){ const d = {pace_pace_lead:{}, vakog_triad:{}, progressive_listing:{}, triad_items:{items:['', '', '']}, parts_synthesis:{}};
   $('r3form').querySelectorAll('input').forEach(i => { const [k, f, j] = i.dataset.k.split('.'); if (j !== undefined) d[k][f][+j] = i.value; else d[k][f] = i.value; }); return d; }
 function writeR3(d){ $('r3form').querySelectorAll('input').forEach(i => { const [k, f, j] = i.dataset.k.split('.'); const v = (d[k] || {})[f]; i.value = (j !== undefined ? (v || [])[+j] : v) || ''; }); }
+function buildR3(keep){
+  const old = keep ? readR3() : RuleOfThree.SAMPLE, F = $('r3form'); F.innerHTML = '';
+  for (const k in R3L) {
+    const fs = document.createElement('fieldset'), lg = document.createElement('legend'); lg.textContent = R3L[k].t[ui]; fs.appendChild(lg);
+    for (const f in R3L[k].f) {
+      [].concat(R3L[k].f[f]).forEach((lab, j) => { const l = document.createElement('label'); l.textContent = lab[ui]; const inp = document.createElement('input'); inp.type = 'text'; inp.dataset.k = k + '.' + f + (Array.isArray(R3L[k].f[f]) ? '.' + j : ''); inp.setAttribute('aria-label', R3L[k].t[ui] + ' ' + lab[ui]); l.appendChild(inp); fs.appendChild(l); });
+    }
+    F.appendChild(fs);
+  }
+  writeR3(old);
+}
 function r3msg(t, cls){ const m = $('r3msg'); m.textContent = t; m.className = 'note ' + (cls || ''); }
-writeR3(RuleOfThree.SAMPLE);
-$('r3sample').onclick = () => { writeR3(RuleOfThree.SAMPLE); r3msg('Beispiel geladen.', 'ok'); };
+$('r3sample').onclick = () => { writeR3(RuleOfThree.SAMPLE); r3msg(T('r3.loaded'), 'ok'); };
 $('r3build').onclick = () => {
   const d = readR3(), err = RuleOfThree.validate(d);
-  if (err.length) { r3msg('Bitte ergänzen: ' + err.join(' · '), 'bad'); return; }
-  const names = Object.keys(R3L).map(k => R3L[k].t);
+  if (err.length) { r3msg(T('r3.fill') + err.join(' · '), 'bad'); return; }
+  const names = Object.keys(R3L).map(k => R3L[k].t[ui]);
   const st = RuleOfThree.sentences(d).map((t, i) => ({phase:names[i], tempo:'', anchor:'', echo:false, pause:0, text:t}));
-  addScript('gen', 'Rule of Three (generiert)', st); useScript('gen'); r3msg('5 Sätze erzeugt und als Skript geladen. Unten bei „Skript“ mit Weiter ▶ einblenden.', 'ok');
+  addScript('gen', '', st, 'gen'); useScript('gen'); r3msg(T('r3.done'), 'ok');
 };
-$('r3apply').onclick = () => { try { const d = JSON.parse($('r3json').value), err = RuleOfThree.validate(d); if (err.length) { r3msg('JSON passt nicht zum Schema: ' + err.join(' · '), 'bad'); return; } writeR3(d); r3msg('JSON übernommen. Jetzt „Zusammensetzen“.', 'ok'); } catch (e) { r3msg('Kein gültiges JSON: ' + e.message, 'bad'); } };
-$('r3copy').onclick = async () => { const t = JSON.stringify(readR3(), null, 2); $('r3json').value = t; try { await navigator.clipboard.writeText(t); r3msg('JSON kopiert (steht auch im Feld oben).', 'ok'); } catch (e) { r3msg('Kopieren nicht erlaubt – JSON steht im Feld unter „JSON einfügen“.', 'bad'); } };
+$('r3apply').onclick = () => { try { const d = JSON.parse($('r3json').value), err = RuleOfThree.validate(d); if (err.length) { r3msg(T('r3.schema') + err.join(' · '), 'bad'); return; } writeR3(d); r3msg(T('r3.applied'), 'ok'); } catch (e) { r3msg(T('r3.badjson') + e.message, 'bad'); } };
+$('r3copy').onclick = async () => { const t = JSON.stringify(readR3(), null, 2); $('r3json').value = t; try { await navigator.clipboard.writeText(t); r3msg(T('r3.copied'), 'ok'); } catch (e) { r3msg(T('r3.nocopy'), 'bad'); } };
+
+// ================= Ablauf (Profil Good Boys), Sprache =================
+const fl = o => flowLang === 'de' ? o.de : flowLang === 'en' ? o.en : o.de + ' / ' + o.en;
+function renderFlowOp(){
+  const Q = $('flowq'), A = $('flowa'); A.innerHTML = '';
+  ['ld', 'le', 'lb'].forEach(id => $(id).classList.toggle('p', ({ld:'de', le:'en', lb:'both'})[id] === flowLang));
+  $('mguide').className = selfMode ? '' : 'p'; $('mself').className = selfMode ? 'p' : '';
+  if (!fnode) { Q.textContent = T('flow.none'); return; }
+  const n = FLOW.nodes[fnode]; Q.textContent = fl(n.q);
+  if (!n.a) { A.textContent = T('flow.over'); return; }
+  if (selfMode) { A.textContent = T('flow.selfpick'); return; }
+  n.a.forEach((a, i) => btn('flowa', fl(a), () => pick(i)));
+}
+function showNode(id){ fnode = id; send({type:'flow', node:id}); renderFlowOp(); }
+function pick(i){ const a = FLOW.nodes[fnode].a[i]; send({type:'flowanswer', idx:i}); $('flowa').textContent = '…'; setTimeout(() => showNode(a.next), 2600); }
+function fstate(id){ fnode = id; renderFlowOp(); }
+function setMode(v){ selfMode = v; send({type:'mode', self:v}); if (fnode) showNode(fnode); else renderFlowOp(); }
+function setFlowLang(l){ flowLang = l; store.set('hd-flang', l); send({type:'lang', lang:l}); renderFlowOp(); }
+$('mguide').onclick = () => setMode(false);
+$('mself').onclick = () => setMode(true);
+$('fstart').onclick = () => showNode(FLOW.start);
+$('fend').onclick = () => { send({type:'flowoff'}); fnode = null; renderFlowOp(); };
+$('ld').onclick = () => setFlowLang('de');
+$('le').onclick = () => setFlowLang('en');
+$('lb').onclick = () => setFlowLang('both');
+
+// ================= Tabs und Sprachumschalter =================
+function showTab(name){
+  if (!document.getElementById('pane-' + name)) name = 'sitzung';
+  document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'pane-' + name));
+  document.querySelectorAll('#tabs [role=tab]').forEach(b => { const on = b.dataset.tab === name; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; });
+  store.set('hd-tab', name);
+}
+document.querySelectorAll('#tabs [role=tab]').forEach(b => { b.onclick = () => showTab(b.dataset.tab);
+  b.onkeydown = e => { const t = [...document.querySelectorAll('#tabs [role=tab]')], i = t.indexOf(b); if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); const n = t[(i + (e.key === 'ArrowRight' ? 1 : t.length - 1)) % t.length]; n.focus(); showTab(n.dataset.tab); } }; });
+function setUi(l, announce){
+  ui = l; store.set('hd-ui', l); applyStatic(); buildCues(); buildR3(true);
+  Object.keys(SC).forEach(id => { const o = [...$('scriptsel').options].find(x => x.value === id); if (o && SC[id].tkey) o.textContent = T(SC[id].tkey); });
+  renderSteps(); renderUP(); renderFlowOp(); showNow(); if (announce) send({type:'uilang', lang:l});
+}
+$('ul-de').onclick = () => setUi('de', true);
+$('ul-en').onclick = () => setUi('en', true);
+
+// ================= Start =================
+buildR3(false); applyStatic(); buildCues(); renderFlowOp(); showNow();
+UP.forEach(u => addScript(u.id, '↑ ' + u.title, u.steps)); renderUP();
+if (window.SCRIPTS && window.SCRIPTS.length) useScript(window.SCRIPTS[0].id);
+r3msg(T('r3.intro'));
+showTab(store.get('hd-tab', 'sitzung'));
 </script>
 </body>
 </html>

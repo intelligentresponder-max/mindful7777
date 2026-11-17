@@ -42,3 +42,12 @@ Verbindung, Bild, Video (läuft, Schleife), Audio (läuft, Schleife, Lautstärke
 - Text-Einblendung und Ablauf-Frage lagen übereinander → `body:has(#flow.on) #txt` setzt den Text nach unten. Lehre: Overlays immer gemeinsam im Browser testen, nicht einzeln.
 - Spiral-Bild: Arme endeten mitten im Bild → Arme laufen jetzt aus dem Bild. Lehre: Screenshot prüfen, nicht nur Code.
 - Ganzseiten-Screenshot zeigte weißen Hintergrund (nur `body` hatte `fixed`-Verlauf) → `html{background}` gesetzt.
+
+## Version 3 (17.11.2026): Loop-Knacken, Sprache, Upload, Oberfläche
+- **Audio-Loop ohne Knacken:** Ursache war das MP3-Encoder-Padding plus Phasensprung am Dateiende bei `<audio loop>`. Jetzt Web-Audio-Loop-Puffer: 30-s-Fenster ab Sekunde 2 (Dateien 40 s lang, periodisches Material), Anfang 1 s linear überblendet. Messung im Browser: Sprung an der Naht ≤ typischer Sample-Schritt (z. B. 0,0065 vs. 0,0066). Ein-/Ausblendung 1,5 s / 0,8 s. Fallback auf `<audio>`, falls Decodieren scheitert.
+- **Sprache im Ablauf (Profil Good Boys):** Ursache: Knöpfe ohne aktiven Zustand, `lang`/`mode` wurden nur beim Klick gesendet (ein später geöffnetes/neu geladenes Display verlor sie), Operator-Text immer zweisprachig. Jetzt: aktiver Zustand, Speicherung (`hd-flang`), Neusenden bei `hello`, Operator zeigt die gewählte Sprache.
+- **Sprachumschalter DE/EN oben** (`hd-ui`, Nachricht `uilang`): Steuerpult, Cue-Beschriftungen, Textbausteine und Startseite des Displays.
+- **Upload** (.txt, .md, .json; Drag & Drop; max. 500 KB, max. 500 Schritte): bleibt im Browser (localStorage), entfernbar. Text nur per `textContent` (XSS-Test bestanden).
+- **Oberfläche:** Tabs (Sitzung & Medien, Text & Skript, Generator, Ablauf), „Läuft gerade“, Schwarz und Stopp immer sichtbar.
+- **Fehler, gefunden beim Test:** Display warf nach dem Start einen JS-Fehler bei `uilang` (Start-Overlay war schon entfernt) → Nullprüfung in `applyUi`.
+- **Alternativen geprüft:** Loop per Crossfade zweier `<audio>`-Elemente (ungenau im Timing, verworfen); Upload per Server (nicht möglich auf GitHub Pages, Datenschutz); Browser-Speicher statt Server ist sicherer.

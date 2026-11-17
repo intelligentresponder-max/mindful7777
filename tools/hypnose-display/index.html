@@ -83,7 +83,7 @@ body:has(#flow.on) #txt{place-items:end center;padding-bottom:4%;font-size:clamp
 </div>
 <button id="wake" title="Beenden / Stop">Aufwachen · Wake</button>
 <audio id="aud"></audio>
-<div id="start"><div class="box"><div class="warn"><b>Bitte vor der Nutzung lesen</b><br>Nur für Erwachsene (18+) und nur mit ausdrücklichem Einverständnis der Person. Dient der Entspannung und Unterhaltung, ersetzt keine ärztliche oder psychotherapeutische Behandlung. <b>Nicht</b> beim Autofahren oder Bedienen von Maschinen. <b>Nicht</b> bei Epilepsie oder Lichtempfindlichkeit (drehende Spirale, Lichteffekte). Mit „Aufwachen" unten rechts kann jederzeit beendet werden. Bei akuten psychischen Beschwerden: Telefonseelsorge 0800 111 0 111 (kostenlos, 24/7).</div><button id="go">Hinweise gelesen · Sitzung bereit</button></div></div>
+<div id="start"><div class="box"><div class="warn" id="warn"><b>Bitte vor der Nutzung lesen</b><br>Nur für Erwachsene (18+) und nur mit ausdrücklichem Einverständnis der Person. Dient der Entspannung und Unterhaltung, ersetzt keine ärztliche oder psychotherapeutische Behandlung. <b>Nicht</b> beim Autofahren oder Bedienen von Maschinen. <b>Nicht</b> bei Epilepsie oder Lichtempfindlichkeit (drehende Spirale, Lichteffekte). Mit „Aufwachen" unten rechts kann jederzeit beendet werden. Bei akuten psychischen Beschwerden: Telefonseelsorge 0800 111 0 111 (kostenlos, 24/7).</div><button id="go">Hinweise gelesen · Sitzung bereit</button></div></div>
 
 <script src="profil-goodboys.js"></script>
 <script>
@@ -93,7 +93,7 @@ const imgs = [$('i0'), $('i1')], vid = $('vid'), aud = $('aud'), txt = $('txt');
 let cur = 0, name = '', tt;
 
 $('go').onclick = () => {
-  aud.play().catch(()=>{}); aud.pause();           // Audio freischalten
+  aud.play().catch(()=>{}); aud.pause(); ac();      // Audio freischalten
   $('start').remove();
   document.documentElement.requestFullscreen?.().catch(()=>{});
   ch.postMessage({type:'hello'});
@@ -121,9 +121,55 @@ FL.addEventListener('click',e=>{ if(!selfMode||busy||!node) return; const o=e.ta
   const i=[...FL.querySelectorAll('.ov')].indexOf(o); busy=true; answer(i); const nx=FLOW.nodes[node].a[i].next;
   ch.postMessage({type:'flowstate',node:node});
   setTimeout(()=>{renderNode(nx);ch.postMessage({type:'flowstate',node:nx});},2600); });
-function wake(){busy=false;FL.className='';node=null;aud.pause();clearVideo();txt.classList.remove('on');$('black').classList.remove('on');
+function wake(){busy=false;FL.className='';node=null;stopAudio();clearVideo();txt.classList.remove('on');$('black').classList.remove('on');
   document.documentElement.style.setProperty('--spin','30s');}
 $('wake').onclick=()=>{wake();ch.postMessage({type:'wake'});};
+
+
+/* ---- Audio: nahtloser Loop über Web-Audio (MP3-Padding verursacht beim <audio loop> ein Knacken) ---- */
+let AC = null, MASTER = null, VOL = 1, loopNode = null, atok = 0; const BUF = {};
+function ac(){ if (!AC) { const C = window.AudioContext || window.webkitAudioContext; if (!C) return null; AC = new C(); MASTER = AC.createGain(); MASTER.gain.value = VOL; MASTER.connect(AC.destination); } if (AC.state === 'suspended') AC.resume(); return AC; }
+function setVol(v){ VOL = v; if (MASTER) MASTER.gain.value = v; aud.volume = vid.volume = v; }
+function fadeOut(sec){ if (!loopNode || !AC) return; const {s, g} = loopNode; loopNode = null; try { g.gain.cancelScheduledValues(AC.currentTime); g.gain.setValueAtTime(g.gain.value, AC.currentTime); g.gain.linearRampToValueAtTime(0, AC.currentTime + sec); s.stop(AC.currentTime + sec + 0.05); } catch (e) {} }
+function stopAudio(){ atok++; fadeOut(.8); aud.pause(); }
+/* Periodisches Material (len gesetzt): ein Fenster der Länge len ab start, Anfang mit dem Überhang überblendet.
+   Anderes Material: Ende wird per Equal-Power in den Anfang überblendet. Die Naht ist so ein normaler Schritt der Wellenform. */
+function makeLoop(c, buf, start, len, fade){
+  const sr = buf.sampleRate, X = Math.round((fade || 1) * sr), n = buf.numberOfChannels;
+  if (len) { const O = Math.round((start || 0) * sr), L = Math.round(len * sr);
+    if (O + L + X <= buf.length) { const out = c.createBuffer(n, L, sr);
+      for (let ch = 0; ch < n; ch++) { const a = buf.getChannelData(ch), d = out.getChannelData(ch);
+        for (let i = 0; i < L; i++) d[i] = a[O + i];
+        for (let i = 0; i < X; i++) { const w = i / X; d[i] = w * a[O + i] + (1 - w) * a[O + L + i]; } }
+      return out; } }
+  const L = buf.length - X; if (L < X) return buf; const out = c.createBuffer(n, L, sr);
+  for (let ch = 0; ch < n; ch++) { const a = buf.getChannelData(ch), d = out.getChannelData(ch);
+    for (let i = 0; i < L; i++) d[i] = a[i];
+    for (let i = 0; i < X; i++) { const w = Math.PI / 2 * i / X; d[i] = Math.sin(w) * a[i] + Math.cos(w) * a[L + i]; } }
+  return out;
+}
+async function playAudio(m){
+  const my = ++atok; aud.pause(); const c = ac();
+  if (!m.loop || !c) { fadeOut(.5); aud.src = m.src; aud.loop = !!m.loop; aud.play().catch(()=>{}); return; }
+  try {
+    let buf = BUF[m.src];
+    if (!buf) { const r = await fetch(m.src); if (!r.ok) throw new Error(r.status); buf = await c.decodeAudioData(await r.arrayBuffer()); BUF[m.src] = buf; }
+    if (my !== atok) return;
+    const lb = makeLoop(c, buf, m.loopStart, m.loopLength, m.loopFade);
+    fadeOut(1.2);
+    const s = c.createBufferSource(); s.buffer = lb; s.loop = true;
+    const g = c.createGain(); g.gain.setValueAtTime(0, c.currentTime); g.gain.linearRampToValueAtTime(1, c.currentTime + 1.5);
+    s.connect(g); g.connect(MASTER); s.start(); loopNode = {s, g};
+  } catch (e) { aud.src = m.src; aud.loop = true; aud.play().catch(()=>{}); }
+}
+
+/* ---- Anzeigesprache des Tools (DE/EN), gemeinsam mit dem Steuerpult über localStorage + Kanal ---- */
+const DI = {
+  de: {warn: '<b>Bitte vor der Nutzung lesen</b><br>Nur für Erwachsene (18+) und nur mit ausdrücklichem Einverständnis der Person. Dient der Entspannung und Unterhaltung, ersetzt keine ärztliche oder psychotherapeutische Behandlung. <b>Nicht</b> beim Autofahren oder Bedienen von Maschinen. <b>Nicht</b> bei Epilepsie oder Lichtempfindlichkeit (drehende Spirale, Lichteffekte). Mit „Aufwachen" unten rechts kann jederzeit beendet werden. Bei akuten psychischen Beschwerden: Telefonseelsorge 0800 111 0 111 (kostenlos, 24/7).', go: 'Hinweise gelesen · Sitzung bereit', who: 'Sitzung'},
+  en: {warn: '<b>Please read before use</b><br>Adults only (18+) and only with the person\'s explicit consent. For relaxation and entertainment; not a substitute for medical or psychotherapeutic treatment. <b>Not</b> while driving or operating machinery. <b>Not</b> with epilepsy or light sensitivity (rotating spiral, light effects). The person can end the session at any time with "Wake" at the bottom right. In acute distress contact a professional or a crisis line.', go: 'Notes read · Session ready', who: 'Session'}
+};
+function applyUi(l){ l = DI[l] ? l : 'de'; document.documentElement.lang = l; if ($('warn')) $('warn').innerHTML = DI[l].warn; if ($('go')) $('go').textContent = DI[l].go; const w = document.querySelector('.bottom span'); if (w) w.textContent = DI[l].who; }
+try { applyUi(localStorage.getItem('hd-ui') || 'de'); } catch (e) { applyUi('de'); }
 
 ch.onmessage = ({data:m}) => {
   switch (m.type) {
@@ -133,9 +179,9 @@ ch.onmessage = ({data:m}) => {
     case 'noimage': imgs.forEach(i=>i.classList.remove('on')); break;
     case 'video': vid.src = m.src; vid.loop = !!m.loop; vid.onended = clearVideo; vid.play().then(()=>vid.classList.add('on')).catch(()=>{}); break;
     case 'videostop': clearVideo(); break;
-    case 'audio': aud.src = m.src; aud.loop = !!m.loop; aud.play().catch(()=>{}); break;
-    case 'audiostop': aud.pause(); break;
-    case 'volume': aud.volume = vid.volume = m.value; break;
+    case 'audio': playAudio(m); break;
+    case 'audiostop': stopAudio(); break;
+    case 'volume': setVol(m.value); break;
     case 'text':
       clearTimeout(tt); txt.textContent = (m.text||'').replaceAll('{name}', name || '');
       txt.classList.toggle('long', txt.textContent.length > 110); txt.classList.add('on'); if (m.ms) tt = setTimeout(()=>txt.classList.remove('on'), m.ms); break;
@@ -147,6 +193,7 @@ ch.onmessage = ({data:m}) => {
     case 'lang': lang=m.lang; if(node&&FL.classList.contains('on')) renderNode(node); break;
     case 'mode': selfMode=!!m.self; if(node&&FL.classList.contains('on')) renderNode(node); break;
     case 'wake': wake(); break;
+    case 'uilang': applyUi(m.lang); break;
     case 'speed': document.documentElement.style.setProperty('--spin', m.value + 's'); break;
   }
 };

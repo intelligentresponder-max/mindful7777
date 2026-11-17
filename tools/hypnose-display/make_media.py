@@ -9,6 +9,7 @@ Sicherheitsregeln (bewusst eingebaut, nicht ändern ohne Grund):
   (Richtwert Photosensitivität: nie mehr als 3 Blitze pro Sekunde).
 - Audio: Spitzenpegel ca. -10 dBFS, damit der Regler nie laut überrascht.
 - Loops sind mathematisch periodisch (ganze Perioden je Loop) -> keine hörbare/sichtbare Naht.
+- Audio-Dateien: 40 s = 30 s Periode + 10 s Überhang; Loop-Fenster 2 s bis 32 s (siehe cues.js loopStart/loopEnd).
 """
 import math, os, random, subprocess, sys, wave
 import numpy as np
@@ -194,7 +195,7 @@ def make_videos():
 
 
 # ---------------------------------------------------------------- Audio
-SR, SEC = 44100, 30
+SR, SEC, EXTRA = 44100, 30, 10
 N = SR * SEC
 T = np.arange(N) / SR
 
@@ -213,6 +214,9 @@ def colored_noise(power, seed):
 def write_mp3(name, left, right, peak=0.32):
     st = np.stack([left, right], 1)
     st = st / np.max(np.abs(st)) * peak
+    # Datei = Periode + 10 s Überhang (Signal ist periodisch). Die Seite loopt das Fenster 2 s..32 s per Web-Audio,
+    # unabhängig vom MP3-Encoder-Padding -> kein Knacken am Neubeginn.
+    st = np.concatenate([st, st[:EXTRA * SR]])
     wav = os.path.join(AUD, name + ".wav")
     with wave.open(wav, "wb") as w:
         w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
