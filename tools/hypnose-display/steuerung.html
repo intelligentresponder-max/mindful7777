@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steuerpult · Transformator</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--cu:#c9a227;--bg:#0a0f1c;--panel:#121a2c;--line:rgba(201,162,39,.25)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#ece8dd;font-family:'DM Sans',system-ui,sans-serif;padding:20px;max-width:760px;margin-inline:auto}
+h1{font-family:'Playfair Display',serif;font-size:1.5rem;margin:0 0 4px}
+h2{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cu);margin:0 0 10px}
+.status{font-size:.8rem;color:#8b93a7;margin-bottom:18px}.status.ok{color:#7fae6a}
+section{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:16px;margin-bottom:14px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button,input[type=text]{font:600 .85rem 'DM Sans';border-radius:3px;border:1px solid var(--line);background:transparent;color:var(--cu);padding:11px 14px;cursor:pointer}
+button:hover{background:rgba(201,162,39,.12)}
+button.p{background:var(--cu);color:#14100a}
+button.d{color:#d9756a}
+input[type=text]{color:#ece8dd;cursor:text;flex:1;min-width:160px;font-weight:400}
+label{font-size:.8rem;color:#8b93a7;display:flex;gap:8px;align-items:center}
+input[type=range]{accent-color:var(--cu)}
+</style>
+</head>
+<body>
+<h1>Steuerpult</h1>
+<div class="status" id="status">Display nicht verbunden</div>
+<p class="status">Nur mit Einverständnis (18+). Nicht bei Epilepsie/Lichtempfindlichkeit, nicht beim Fahren. „Alles stoppen" und „Schwarz" sind immer erreichbar.</p>
+
+<section>
+  <h2>Sitzung</h2>
+  <div class="row">
+    <button class="p" id="open">Display öffnen (2. Fenster/Monitor)</button>
+    <input type="text" id="name" placeholder="Name der Person">
+    <button id="setname">Übernehmen</button>
+  </div>
+</section>
+
+<section><h2>Bilder</h2><div class="row" id="images"></div></section>
+<section><h2>Video</h2><div class="row" id="videos"></div></section>
+<section><h2>Audio</h2><div class="row" id="audios"></div></section>
+
+<section>
+  <h2>Einblendung</h2>
+  <div class="row" id="texts" style="margin-bottom:10px"></div>
+  <div class="row">
+    <input type="text" id="free" placeholder="Freier Text, {name} wird ersetzt">
+    <button class="p" id="sendtext">Einblenden</button>
+    <button id="textoff">Ausblenden</button>
+  </div>
+</section>
+
+<section>
+  <h2>Maschine</h2>
+  <div class="row">
+    <label>Lautstärke <input type="range" id="vol" min="0" max="1" step=".05" value="1"></label>
+    <label>Spirale <input type="range" id="spd" min="6" max="60" step="1" value="30"></label>
+    <button id="black">Schwarz</button>
+    <button class="d" id="stop">Alles stoppen</button>
+  </div>
+</section>
+
+<section>
+  <h2>Ablauf · Profil Good Boys</h2>
+  <div class="row" style="margin-bottom:10px">
+    <button id="ld">Deutsch</button><button id="le">English</button><button id="lb" class="p">Beide</button>
+    <button class="p" id="mguide">Ich steuere</button><button id="mself">Person tippt selbst</button>
+    <button class="p" id="fstart">Ablauf starten</button><button id="fend">Ablauf beenden</button>
+  </div>
+  <div id="flowq" style="font-size:.9rem;color:#f4e7b4;margin-bottom:8px">Nicht gestartet</div>
+  <div class="row" id="flowa"></div>
+</section>
+
+<script src="cues.js"></script>
+<script src="profil-goodboys.js"></script>
+<script>
+const ch = new BroadcastChannel('hypnose'), $ = id => document.getElementById(id);
+const send = m => ch.postMessage(m);
+let win, blackOn = false;
+
+ch.onmessage = ({data}) => { if (data.type === 'flowstate') fstate(data.node); if (data.type === 'wake') { $('status').textContent = 'Person hat Aufwachen gedrückt, alles gestoppt'; $('status').className = 'status'; $('flowq').textContent = 'Nicht gestartet'; $('flowa').innerHTML = ''; } if (data.type === 'hello') { $('status').textContent = 'Display verbunden'; $('status').className = 'status ok'; send({type:'name', name:$('name').value}); } };
+send({type:'ping'});
+
+$('open').onclick = () => { win = open('index.html', 'hypnose-display', 'width=1280,height=800'); };
+$('setname').onclick = () => send({type:'name', name:$('name').value});
+
+function btn(parent, label, fn){ const b = document.createElement('button'); b.textContent = label; b.onclick = fn; $(parent).appendChild(b); }
+CUES.images.forEach(c => btn('images', c.label, () => send({type:'image', src:c.src})));
+btn('images', 'Nur Spirale', () => send({type:'noimage'}));
+CUES.videos.forEach(c => btn('videos', c.label, () => send({type:'video', src:c.src})));
+btn('videos', 'Video stopp', () => send({type:'videostop'}));
+CUES.audios.forEach(c => btn('audios', c.label, () => send({type:'audio', src:c.src})));
+btn('audios', 'Audio stopp', () => send({type:'audiostop'}));
+CUES.texts.forEach(t => btn('texts', t, () => send({type:'text', text:t, ms:6000})));
+
+$('sendtext').onclick = () => send({type:'text', text:$('free').value, ms:6000});
+$('textoff').onclick = () => send({type:'textoff'});
+$('vol').oninput = e => send({type:'volume', value:+e.target.value});
+$('spd').oninput = e => send({type:'speed', value:+e.target.value});
+$('black').onclick = () => { blackOn = !blackOn; send({type:'black', on:blackOn}); };
+$('stop').onclick = () => { send({type:'videostop'}); send({type:'audiostop'}); send({type:'textoff'}); send({type:'noimage'}); };
+
+let fnode = null;
+function showNode(id){ fnode = id; send({type:'flow', node:id}); const n = FLOW.nodes[id];
+  $('flowq').textContent = n.q.de + ' / ' + n.q.en; $('flowa').innerHTML = '';
+  if (!n.a) { $('flowa').textContent = 'Ende des Ablaufs'; return; }
+  if (selfMode) { $('flowa').textContent = 'Person wählt selbst …'; return; }
+  n.a.forEach((a,i) => btn('flowa', a.de + ' / ' + a.en, () => pick(i))); }
+function pick(i){ const a = FLOW.nodes[fnode].a[i]; send({type:'flowanswer', idx:i}); $('flowa').textContent = '…'; setTimeout(() => showNode(a.next), 2600); }
+let selfMode = false;
+function fstate(id){ fnode = id; const n = FLOW.nodes[id]; $('flowq').textContent = n.q.de + ' / ' + n.q.en; $('flowa').textContent = n.a ? 'Person wählt selbst …' : 'Ende des Ablaufs'; }
+function setMode(v){ selfMode = v; send({type:'mode', self:v}); $('mself').className = v ? 'p' : ''; $('mguide').className = v ? '' : 'p'; if (fnode) showNode(fnode); }
+$('mguide').onclick = () => setMode(false);
+$('mself').onclick = () => setMode(true);
+$('fstart').onclick = () => showNode(FLOW.start);
+$('fend').onclick = () => { send({type:'flowoff'}); $('flowq').textContent = 'Nicht gestartet'; $('flowa').innerHTML = ''; };
+$('ld').onclick = () => send({type:'lang', lang:'de'});
+$('le').onclick = () => send({type:'lang', lang:'en'});
+$('lb').onclick = () => send({type:'lang', lang:'both'});
+</script>
+</body>
+</html>

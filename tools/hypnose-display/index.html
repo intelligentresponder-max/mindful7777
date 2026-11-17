@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transformator</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cu:#c9a227;--cu2:#b87333;--bg:#07090f;--spin:30s}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:radial-gradient(circle at 50% 40%,#111a2c,var(--bg) 70%);color:#ece8dd;font-family:'DM Sans',system-ui,sans-serif;display:grid;place-items:center;overflow:hidden}
+.halo{position:fixed;inset:-30%;background:conic-gradient(transparent,rgba(201,162,39,.12),transparent 30%,rgba(184,115,51,.1),transparent 60%);animation:rot 40s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.machine{position:relative;width:min(94vw,900px);padding:26px 26px 20px;border-radius:26px;background:linear-gradient(145deg,#1a2338,#0b1020);border:1px solid rgba(201,162,39,.45);box-shadow:0 0 0 6px #0b1020,0 0 0 7px rgba(184,115,51,.5),0 30px 80px rgba(0,0,0,.7),0 0 60px rgba(201,162,39,.12)}
+.top,.bottom{display:flex;justify-content:space-between;align-items:center;font:600 11px/1 'DM Sans',sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--cu)}
+.top{margin-bottom:16px}.bottom{margin-top:16px;color:#8b93a7}
+.bottom b{font-family:'Playfair Display',serif;letter-spacing:.08em;color:var(--cu);font-size:14px;text-transform:none}
+.leds{display:flex;gap:8px}
+.led{width:9px;height:9px;border-radius:50%;background:var(--cu);box-shadow:0 0 10px var(--cu);animation:blink 2.4s infinite}
+.led:nth-child(2){animation-delay:.6s;background:#4fd1c5;box-shadow:0 0 10px #4fd1c5}
+.led:nth-child(3){animation-delay:1.2s}
+@keyframes blink{50%{opacity:.25}}
+.screen{position:relative;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#000;box-shadow:inset 0 0 40px #000,0 0 0 2px rgba(201,162,39,.35)}
+.screen>*{position:absolute;inset:0;width:100%;height:100%}
+.spiral{background:repeating-conic-gradient(#0b1020 0 9deg,#22335c 9deg 18deg);animation:rot var(--spin) linear infinite;transform-origin:center;scale:2;-webkit-mask:radial-gradient(circle,#000,transparent 45%);mask:radial-gradient(circle,#000,transparent 45%)}
+.layer{object-fit:cover;opacity:0;transition:opacity 1.6s ease}
+.layer.on{opacity:1}
+#txt{display:grid;place-items:center;text-align:center;padding:8%;font:600 clamp(20px,4vw,40px)/1.3 'Playfair Display',serif;color:#f4e7b4;text-shadow:0 0 24px rgba(201,162,39,.8);opacity:0;transition:opacity 1.2s;pointer-events:none}
+#txt.on{opacity:1}
+.fx{pointer-events:none;background:repeating-linear-gradient(transparent 0 2px,rgba(0,0,0,.18) 2px 3px),radial-gradient(circle,transparent 55%,rgba(0,0,0,.55))}
+#black{background:#000;opacity:0;transition:opacity 1.5s;pointer-events:none}
+#black.on{opacity:1}
+#start{position:fixed;inset:0;z-index:9;background:rgba(7,9,15,.94);display:grid;place-items:center}
+#start button{font:600 15px 'DM Sans';letter-spacing:.2em;text-transform:uppercase;color:#14100a;background:var(--cu);border:0;padding:16px 34px;border-radius:3px;cursor:pointer}
+#flow{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6%;text-align:center;opacity:0;transition:opacity 1s;pointer-events:none}
+#flow.on{opacity:1}
+.fq{background:rgba(16,24,43,.82);border:1.5px solid #c9a227;border-radius:10px;padding:2% 5%;font:600 clamp(16px,3.4vw,32px)/1.25 'Playfair Display',serif;color:#f4e7b4;box-shadow:0 0 30px rgba(201,162,39,.35);max-width:86%}
+.fq small{display:block;font:400 .55em 'DM Sans';color:#b8c0d6;margin-top:4px}
+.fq.fin{padding:4% 6%;font-size:clamp(22px,5vw,50px);animation:glow 2.4s ease-in-out infinite alternate}
+.fs{font-size:.5em;margin-top:8px}
+@keyframes glow{to{box-shadow:0 0 70px rgba(201,162,39,.8)}}
+.fa{display:flex;gap:6%;justify-content:center}
+.ov{background:rgba(34,51,92,.85);border:1.5px solid rgba(201,162,39,.6);border-radius:50px;padding:1.2% 4%;font:500 clamp(13px,2.4vw,22px) 'DM Sans';color:#ece8dd;transition:opacity .8s}
+.ov small{display:block;font-size:.7em;color:#b8c0d6}
+.ov.dim{opacity:.12}
+.ov.pick{animation:pk 1.4s ease forwards}
+@keyframes pk{50%{transform:scale(1.25);box-shadow:0 0 40px #c9a227;background:#c9a227;color:#14100a}to{transform:scale(1.1);box-shadow:0 0 24px #c9a227}}
+.burst{pointer-events:none;z-index:3}
+.burst.ripple{background:radial-gradient(circle,transparent 0 8%,rgba(201,162,39,.6) 9% 11%,transparent 12%);animation:rip 1.7s ease-out forwards}
+@keyframes rip{from{transform:scale(.2);opacity:1}to{transform:scale(3.2);opacity:0}}
+.burst.flash{background:radial-gradient(circle,#f4e7b4,#22335c 55%,#000);animation:fl 1.5s ease-out forwards}
+.burst.pulse{box-shadow:inset 0 0 90px 24px rgba(201,162,39,.75);animation:fl 1.7s ease-out forwards}
+@keyframes fl{0%{opacity:.9}to{opacity:0}}
+.fx{z-index:4}#black{z-index:5}
+#flow .ov.tap{pointer-events:auto;cursor:pointer}
+#flow .ov.tap:hover{border-color:#f4e7b4;box-shadow:0 0 18px rgba(201,162,39,.6)}
+#wake{position:absolute;right:26px;bottom:18px;font:600 10px 'DM Sans';letter-spacing:.15em;text-transform:uppercase;color:#8b93a7;background:transparent;border:1px solid #2b3552;border-radius:3px;padding:5px 9px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.spiral,.halo,.led{animation:none}.burst{display:none}.layer,#txt,#flow{transition:none}}
+#start .warn{max-width:520px;margin:0 20px 22px;padding:16px 18px;border:1px solid rgba(201,162,39,.5);border-radius:6px;font-size:13px;line-height:1.55;color:#c9cfdf;background:rgba(18,26,44,.9)}
+#start .warn b{color:var(--cu)}
+#start .box{display:flex;flex-direction:column;align-items:center}
+</style>
+</head>
+<body>
+<div class="halo"></div>
+<div class="machine">
+  <div class="top"><span>Transformator · T-01</span><div class="leds"><i class="led"></i><i class="led"></i><i class="led"></i></div></div>
+  <div class="screen">
+    <div class="spiral"></div>
+    <img class="layer" id="i0" alt=""><img class="layer" id="i1" alt="">
+    <video class="layer" id="vid" playsinline></video>
+    <div id="txt"></div>
+    <div id="flow"></div>
+    <div class="fx"></div>
+    <div id="black"></div>
+  </div>
+  <div class="bottom"><span>Sitzung</span><b id="who">&nbsp;</b></div>
+</div>
+<button id="wake" title="Beenden / Stop">Aufwachen · Wake</button>
+<audio id="aud"></audio>
+<div id="start"><div class="box"><div class="warn"><b>Bitte vor der Nutzung lesen</b><br>Nur für Erwachsene (18+) und nur mit ausdrücklichem Einverständnis der Person. Dient der Entspannung und Unterhaltung, ersetzt keine ärztliche oder psychotherapeutische Behandlung. <b>Nicht</b> beim Autofahren oder Bedienen von Maschinen. <b>Nicht</b> bei Epilepsie oder Lichtempfindlichkeit (drehende Spirale, Lichteffekte). Mit „Aufwachen" unten rechts kann jederzeit beendet werden. Bei akuten psychischen Beschwerden: Telefonseelsorge 0800 111 0 111 (kostenlos, 24/7).</div><button id="go">Hinweise gelesen · Sitzung bereit</button></div></div>
+
+<script src="profil-goodboys.js"></script>
+<script>
+const ch = new BroadcastChannel('hypnose');
+const $ = id => document.getElementById(id);
+const imgs = [$('i0'), $('i1')], vid = $('vid'), aud = $('aud'), txt = $('txt');
+let cur = 0, name = '', tt;
+
+$('go').onclick = () => {
+  aud.play().catch(()=>{}); aud.pause();           // Audio freischalten
+  $('start').remove();
+  document.documentElement.requestFullscreen?.().catch(()=>{});
+  ch.postMessage({type:'hello'});
+};
+addEventListener('keydown', e => { if (e.key === 'f') document.documentElement.requestFullscreen?.(); });
+
+function showImage(src){
+  const n = imgs[1-cur], o = imgs[cur];
+  n.onload = () => { n.classList.add('on'); o.classList.remove('on'); cur = 1-cur; };
+  n.src = src;
+}
+function clearVideo(){ vid.classList.remove('on'); setTimeout(()=>vid.pause(),1600); }
+
+
+let lang='both', node=null, selfMode=false, busy=false; const FL=$('flow'), scr=document.querySelector('.screen');
+const tx=o=>lang==='de'?o.de:lang==='en'?o.en:o.de+'<small>'+o.en+'</small>';
+function burst(k){const d=document.createElement('div');d.className='burst '+k;scr.appendChild(d);setTimeout(()=>d.remove(),1800);}
+function renderNode(id){const n=FLOW.nodes[id];node=id;busy=false;
+  FL.innerHTML='<div class="fq'+(n.end?' fin':'')+'">'+tx(n.q)+(n.sub?'<div class="fs">'+tx(n.sub)+'</div>':'')+'</div>'+
+   (n.a?'<div class="fa">'+n.a.map(a=>'<div class="ov'+(selfMode?' tap':'')+'">'+tx(a)+'</div>').join('')+'</div>':'');
+  FL.classList.add('on'); if(n.end){burst('ripple');document.documentElement.style.setProperty('--spin','90s');}}
+function answer(i){FL.querySelectorAll('.ov').forEach((e,j)=>e.classList.add(j==i?'pick':'dim'));burst(FLOW.nodes[node].a[i].fx||'ripple');}
+FL.addEventListener('click',e=>{ if(!selfMode||busy||!node) return; const o=e.target.closest('.ov'); if(!o) return;
+  const i=[...FL.querySelectorAll('.ov')].indexOf(o); busy=true; answer(i); const nx=FLOW.nodes[node].a[i].next;
+  ch.postMessage({type:'flowstate',node:node});
+  setTimeout(()=>{renderNode(nx);ch.postMessage({type:'flowstate',node:nx});},2600); });
+function wake(){busy=false;FL.className='';node=null;aud.pause();clearVideo();txt.classList.remove('on');$('black').classList.remove('on');
+  document.documentElement.style.setProperty('--spin','30s');}
+$('wake').onclick=()=>{wake();ch.postMessage({type:'wake'});};
+
+ch.onmessage = ({data:m}) => {
+  switch (m.type) {
+    case 'ping': ch.postMessage({type:'hello'}); break;
+    case 'name': name = m.name; $('who').textContent = name || '\u00a0'; break;
+    case 'image': showImage(m.src); break;
+    case 'noimage': imgs.forEach(i=>i.classList.remove('on')); break;
+    case 'video': vid.src = m.src; vid.onended = clearVideo; vid.play().then(()=>vid.classList.add('on')).catch(()=>{}); break;
+    case 'videostop': clearVideo(); break;
+    case 'audio': aud.src = m.src; aud.loop = !!m.loop; aud.play().catch(()=>{}); break;
+    case 'audiostop': aud.pause(); break;
+    case 'volume': aud.volume = vid.volume = m.value; break;
+    case 'text':
+      clearTimeout(tt); txt.textContent = (m.text||'').replaceAll('{name}', name || '');
+      txt.classList.add('on'); if (m.ms) tt = setTimeout(()=>txt.classList.remove('on'), m.ms); break;
+    case 'textoff': txt.classList.remove('on'); break;
+    case 'black': $('black').classList.toggle('on', m.on); break;
+    case 'flow': renderNode(m.node); break;
+    case 'flowanswer': answer(m.idx); break;
+    case 'flowoff': FL.className=''; node=null; break;
+    case 'lang': lang=m.lang; if(node&&FL.classList.contains('on')) renderNode(node); break;
+    case 'mode': selfMode=!!m.self; if(node&&FL.classList.contains('on')) renderNode(node); break;
+    case 'wake': wake(); break;
+    case 'speed': document.documentElement.style.setProperty('--spin', m.value + 's'); break;
+  }
+};
+</script>
+</body>
+</html>
