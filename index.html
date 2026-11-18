@@ -65,6 +65,36 @@
 .pill-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
 </style>
 <style id="fig-style">.fig{margin:28px 0}.fig img{display:block;width:100%;height:auto;border:1px solid #D4A574;border-radius:6px}.fig figcaption{font-size:.85rem;opacity:.72;margin-top:8px;line-height:1.5}</style>
+<style id="blog-style">
+.blog-cluster{margin-top:56px;scroll-margin-top:90px}
+.blog-cluster h2{scroll-margin-top:90px}
+.lead{color:var(--ink-soft);font-size:.92rem;margin:0 0 22px}
+.grid{max-width:760px;margin:22px auto 0;padding:0}
+.pillar-card{display:block;text-decoration:none;background:var(--ink);color:var(--bg);border-radius:var(--radius-lg);padding:26px;margin-bottom:14px;transition:.18s}
+.pillar-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-card)}
+.pillar-card .tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.pillar-card h3{font-family:var(--serif);font-size:1.5rem;margin:8px 0 6px;color:var(--bg)}
+.pillar-card p{color:rgba(247,244,238,.8);font-size:.95rem;margin:0}
+.top-card{background:linear-gradient(135deg,rgba(212,165,116,.92),rgba(232,196,154,.84)),url('assets/images/white-socks.jpg');background-size:cover;background-position:center;color:var(--ink)}
+.top-card .tag{color:var(--ink)}
+.top-card h3{color:var(--ink)}
+.top-card p{color:rgba(27,40,69,.8)}
+.blog-cluster .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:560px){.blog-cluster .cards{grid-template-columns:1fr}}
+.card2{text-decoration:none;display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;transition:.16s}
+.card2:hover{border-color:var(--gold);transform:translateY(-2px)}
+.card2 .num{font-family:var(--serif);font-weight:800;color:var(--gold);font-size:1.1rem}
+.card2 h4{color:var(--ink);font-size:1.05rem;margin:4px 0 4px;line-height:1.25}
+.card2 p{color:var(--ink-soft);font-size:.86rem;margin:0}
+.bonus{margin-top:30px}
+.bonus .eyebrow{display:block;margin-bottom:14px}
+.wheel{position:relative;background:linear-gradient(180deg,#fff 0%,#fdf8ef 100%);border-color:rgba(212,165,116,.55)}
+.wheel-mark{position:absolute;top:16px;right:16px;width:30px;height:30px;opacity:.9}
+.wheel-mark svg{width:100%;height:100%;display:block}
+.ico{display:inline-flex;vertical-align:middle;width:1.4em;height:1.4em;margin-bottom:6px;color:var(--gold)}
+.ico svg{width:100%;height:100%;display:block}
+.pillar-card .ico{color:var(--gold);margin-right:0}
+</style>
 </head>
 <body>
 
@@ -76,7 +106,7 @@
 <div class="bar">
   <div class="brand">mindful<b>7777</b></div>
   <nav class="bar-nav">
-    <a href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html">Blog</a>
+    <a href="#blog">Blog</a>
   </nav>
   <div class="lang" role="group" aria-label="Sprache / Language">
     <button data-lang="de" aria-pressed="true">DE</button>
@@ -160,15 +190,125 @@
 .site-footer a{color:inherit}
 </style>
 
-<section class="hub container">
+<section class="blog-cluster container" id="blog">
   <span class="n">04</span>
+  <h2 class="serif" data-i18n="blog.h">Der Wissens-Cluster</h2>
+  <p class="lead" data-i18n="blog.lead">Sieben Beitr&auml;ge f&uuml;hren dich vom einzelnen Begriff bis zum kompletten Protokoll. Starte beim Gesamtbild &ndash; oder pick dir heraus, was dich interessiert.</p>
+
+  <figure class="fig">
+    <img src="assets/images/stock/forest-light.jpg" alt="Lichtstrahlen fallen durch B&auml;ume in einem ruhigen Wald" width="1400" height="933" loading="lazy" decoding="async">
+    <figcaption data-i18n="blog.fig">Vom einzelnen Begriff zum klaren Gesamtbild.</figcaption>
+  </figure>
+
+  <div class="grid">
+    <a class="pillar-card" href="https://intelligentresponder-max.github.io/mindful7777/blog/07-sock-anchor-protokoll.html">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="5" r="2"/><path d="M12 7v13M7 14a5 5 0 0 0 10 0M5 11h4m6 0h4" stroke-linecap="round"/></svg></span>
+      <span class="tag" data-i18n="pillar.tag">Start hier &middot; Das Protokoll</span>
+      <h3 data-i18n="pillar.t">Das Sock-Anchor-Protokoll</h3>
+      <p data-i18n="pillar.d">Der komplette 90-Sekunden-Reset, Schritt f&uuml;r Schritt &ndash; plus alle Grundlagen.</p>
+    </a>
+    <a class="pillar-card top-card" href="https://intelligentresponder-max.github.io/mindful7777/blog/08-weisse-socke-modetrend.html">
+      <span class="tag" data-i18n="w.tag">&#9733; Top-Beitrag</span>
+      <h3 data-i18n="w.t">Die wei&szlig;e Socke: Mehr als nur ein Modetrend</h3>
+      <p data-i18n="w.d">Warum Generation Z wieder wei&szlig;e Socken tr&auml;gt &mdash; und was das mit dem Sock-Anchor-Prinzip zu tun hat.</p>
+    </a>
+    <div class="cards">
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/01-theta-zustand.html">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 14c3-8 7-8 10 0s7 8 10 0" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="num">01</span>
+        <h4 data-i18n="p1.t">Theta-Zustand</h4>
+        <p data-i18n="p1.d">Was Theta-Wellen sind und wie du sie ausl&ouml;st.</p>
+      </a>
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/02-beta-wellen-stress.html">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16l3-10 3 10 3-10 3 10 3-10 3 10 3-10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="num">02</span>
+        <h4 data-i18n="p2.t">Beta-Wellen &amp; Stress</h4>
+        <p data-i18n="p2.d">Warum dein Kopf abends nicht abschaltet.</p>
+      </a>
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/03-vagusnerv-atmung.html">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v6M12 9c-2 0-4 2-4 5v4a2 2 0 1 0 4 0zM12 9c2 0 4 2 4 5v4a2 2 0 1 1-4 0z" stroke-linejoin="round"/></svg></span>
+        <span class="num">03</span>
+        <h4 data-i18n="p3.t">Vagusnerv &amp; 4-6-Atmung</h4>
+        <p data-i18n="p3.d">Dein eingebauter Ruhe-Schalter.</p>
+      </a>
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/04-cortisol-stress.html">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c3 4.5 6 8 6 11.5a6 6 0 1 1-12 0C6 11 9 7.5 12 3z" stroke-linejoin="round"/></svg></span>
+        <span class="num">04</span>
+        <h4 data-i18n="p4.t">Cortisol</h4>
+        <p data-i18n="p4.d">Das Stresshormon steuern, nicht abschalten.</p>
+      </a>
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/05-klassische-konditionierung-anker.html">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4a1 1 0 0 1 1 1v.6a5.5 5.5 0 0 1 4.5 5.4v3l1.5 2.5h-14L6.5 14v-3A5.5 5.5 0 0 1 11 5.6V5a1 1 0 0 1 1-1z" stroke-linejoin="round" stroke-linecap="round"/><path d="M9.5 19a2.5 2.5 0 0 0 5 0" stroke-linecap="round"/></svg></span>
+        <span class="num">05</span>
+        <h4 data-i18n="p5.t">Konditionierung</h4>
+        <p data-i18n="p5.d">Wie aus einem Signal ein Schalter wird.</p>
+      </a>
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/06-parasympathikus-regeneration.html">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14C4 7 9 4 18 4c0 9-3 14-10 14-2 0-4-1.5-4-4z" stroke-linejoin="round"/><path d="M8 18c2-3 4-6 10-12" stroke-linecap="round"/></svg></span>
+        <span class="num">06</span>
+        <h4 data-i18n="p6.t">Parasympathikus</h4>
+        <p data-i18n="p6.d">Warum Erholung ein aktiver Modus ist.</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="bonus">
+    <span class="eyebrow" data-i18n="bonus.eyebrow">Extras</span>
+    <div class="cards">
+      <a class="card2 wheel" href="https://intelligentresponder-max.github.io/mindful7777/gluecksrad.html">
+        <span class="wheel-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="none" stroke="#D4A574" stroke-width="1.4"/><path d="M20 3v34M3 20h34M8 8l24 24M32 8L8 32" stroke="#D4A574" stroke-width=".8" opacity=".55"/><circle cx="20" cy="20" r="3.2" fill="#D4A574"/></svg></span>
+        <span class="num">&#9733;</span>
+        <h4 data-i18n="wheel.t">Gl&uuml;cksrad</h4>
+        <p data-i18n="wheel.d">Einmal drehen und deinen Bonus sichern.</p>
+      </a>
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-sock-anchor-induktion-de.html">
+        <span class="num">&#127911;</span>
+        <h4 data-i18n="audio.t">Sock-Anchor Audio-Version</h4>
+        <p data-i18n="audio.d">Die gef&uuml;hrte 9-Minuten-Induktion zum Nachh&ouml;ren.</p>
+      </a>
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/index.html">
+        <span class="num">&#8734;</span>
+        <h4 data-i18n="archive.t">Weitere Artikel</h4>
+        <p data-i18n="archive.d">Sechs weitere Protokolle im Ares-Transformation-Blog.</p>
+      </a>
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/teaser-sock-anker.html">
+        <span class="num">&#128204;</span>
+        <h4 data-i18n="teaser.t">Der Sock-Anchor: 90 Sekunden echter Reset</h4>
+        <p data-i18n="teaser.d">Die Geschichte hinter dem Protokoll &mdash; Pavlov, Vagus-Nerv und warum eine Socke.</p>
+      </a>
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/blog-remote-sessions-en.html">
+        <span class="num">EN</span>
+        <h4 data-i18n="remote.t">Remote Hypnosis: How It Works</h4>
+        <p data-i18n="remote.d">English article: the science behind sessions via video call.</p>
+      </a>
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/09-trance-profil-onboarding.html">
+        <span class="num">09</span>
+        <h4 data-i18n="profil.t">Trance-Profil</h4>
+        <p data-i18n="profil.d">Zehn Fragen, vier Minuten bis zum eigenen Session-Plan.</p>
+      </a>
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/10-wenn-es-lange-schwer-ist.html">
+        <span class="num">10</span>
+        <h4 data-i18n="t10.t">Wenn es schon lange schwer ist</h4>
+        <p data-i18n="t10.d">Ein Gespr&auml;ch unter Freunden: kleine Schritte, eine Atem&uuml;bung und der Weg zu echter Hilfe.</p>
+      </a>
+      <a class="card2" href="https://intelligentresponder-max.github.io/mindful7777/blog/11-emotionale-flashbacks.html">
+        <span class="num">11</span>
+        <h4 data-i18n="t11.t">Emotionale Flashbacks</h4>
+        <p data-i18n="t11.d">Die 5-Schritte-Notfallkarte f&uuml;r den Akutmoment, mit Hinweisen auf professionelle Hilfe.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="hub container">
+  <span class="n">05</span>
   <h2 class="serif" data-i18n="hub.h">Alles im &Uuml;berblick</h2>
   <p class="lead" data-i18n="hub.p">Jede Seite des mindful7777-Systems an einem Ort.</p>
   <div class="hub-grid">
     <a class="hub-card" href="https://intelligentresponder-max.github.io/mindful7777/sock-anchor-protocol.html">
       <span class="k">START</span><h3 data-i18n="hub.1t">Sock-Anchor Protokoll</h3>
       <p data-i18n="hub.1d">Der komplette 90-Sekunden-Reset.</p></a>
-    <a class="hub-card" href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html">
+    <a class="hub-card" href="#blog">
       <span class="k">WISSEN</span><h3 data-i18n="hub.2t">Blog</h3>
       <p data-i18n="hub.2d">Sieben Beitr&auml;ge: Theta, Vagusnerv, Cortisol.</p></a>
     <a class="hub-card" href="https://intelligentresponder-max.github.io/mindful7777/glossar.html">
@@ -225,7 +365,7 @@
   <p data-i18n="disc">Hinweis: mindful7777 dient der Information und Entspannung und ersetzt keine medizinische oder therapeutische Behandlung.</p>
 </div>
 
-<footer class="site-footer">© 2026 mindful7777 · WHY NOT? BE THE CHANGE.<br><a href="https://intelligentresponder-max.github.io/mindful7777/00-blog-index.html">Blog</a> · <a href="https://intelligentresponder-max.github.io/mindful7777/impressum.html">Impressum</a> · <a href="https://intelligentresponder-max.github.io/mindful7777/datenschutz.html">Datenschutz</a></footer>
+<footer class="site-footer">© 2026 mindful7777 · WHY NOT? BE THE CHANGE.<br><a href="#blog">Blog</a> · <a href="https://intelligentresponder-max.github.io/mindful7777/impressum.html">Impressum</a> · <a href="https://intelligentresponder-max.github.io/mindful7777/datenschutz.html">Datenschutz</a></footer>
 
 <script>
 const i18n = {
@@ -256,6 +396,30 @@ const i18n = {
     "prin.h":"<span class=\"n\">01</span>One stimulus. One response. Classical conditioning.",
     "fig1":"Arriving: one fixed stimulus, one fixed breathing sequence, one calm moment.",
     "fig2":"Falling asleep as a protocol instead of chance: the Sleep-Reset in the VIP stack.",
+    "blog.h":"The knowledge cluster",
+    "blog.lead":"Seven articles take you from a single concept to the complete protocol. Start with the big picture – or pick whatever interests you.",
+    "blog.fig":"From a single concept to the full picture.",
+    "pillar.tag":"Start here · The protocol",
+    "pillar.t":"The Sock-Anchor Protocol",
+    "pillar.d":"The complete 90-second reset, step by step – plus all the fundamentals.",
+    "w.tag":"★ Top article",
+    "w.t":"The white sock: more than a fashion trend",
+    "w.d":"Why Gen Z is wearing white socks again — and what that has to do with the Sock-Anchor principle.",
+    "p1.t":"Theta State","p1.d":"What theta waves are and how to trigger them.",
+    "p2.t":"Beta Waves & Stress","p2.d":"Why your mind won't switch off at night.",
+    "p3.t":"Vagus Nerve & 4-6 Breathing","p3.d":"Your built-in calm switch.",
+    "p4.t":"Cortisol","p4.d":"Steer the stress hormone, don't switch it off.",
+    "p5.t":"Conditioning","p5.d":"How a signal becomes a switch.",
+    "p6.t":"Parasympathetic","p6.d":"Why recovery is an active mode.",
+    "bonus.eyebrow":"Extras",
+    "wheel.t":"Wheel of Fortune","wheel.d":"One spin, one bonus.",
+    "audio.t":"Sock-Anchor audio version","audio.d":"The guided 9-minute induction to listen to.",
+    "archive.t":"More articles","archive.d":"Six more protocols on the Ares Transformation blog.",
+    "teaser.t":"The Sock-Anchor: a 90-second real reset","teaser.d":"The story behind the protocol — Pavlov, the vagus nerve, and why a sock.",
+    "remote.t":"Remote Hypnosis: How It Works","remote.d":"The science behind sessions via video call.",
+    "profil.t":"Trance Profile","profil.d":"Ten questions, four minutes to your own session plan.",
+    "t10.t":"When it has been hard for a long time","t10.d":"A conversation between friends: small steps, a breathing exercise and the way to real help.",
+    "t11.t":"Emotional flashbacks","t11.d":"The 5-step emergency card for the acute moment, with pointers to professional help.",
     "prin.p":"Pavlov only needed a bell. The Sock-Anchor works on the same principle — but you're your own trainer: a fixed stimulus is paired with a breathing protocol until your nervous system responds to it. Vagus nerve, classical conditioning, brainwave transition: all measurable and reproducible, none of it a matter of belief. The more regularly you pair the same stimulus with the same breathing protocol, the faster your nervous system switches.",
     "proto.h":"<span class=\"n\">02</span>7 protocols. One system.",
     "proto.p":"The Sock-Anchor is the entry protocol of the mindful7777 system. Not because it's the easiest — but because it lays the foundation for everything that follows.",
